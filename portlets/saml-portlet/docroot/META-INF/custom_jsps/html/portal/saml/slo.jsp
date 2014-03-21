@@ -54,7 +54,7 @@ JSONArray samlSloRequestInfosJSONArray = samlSloContextJSONObject.getJSONArray("
 
 <div id="samlSloResults"></div>
 
-<div class="aui-helper-hidden" id="samlSloCompleteSignOut">
+<div class="hide" id="samlSloCompleteSignOut">
 	<div class="portlet-msg-info">
 		<liferay-ui:message arguments="<%= 5 %>" key="all-service-providers-are-processed.-continuing-sign-out-automatically-in-x-seconds" />
 	</div>
@@ -127,8 +127,8 @@ JSONArray samlSloRequestInfosJSONArray = samlSloContextJSONObject.getJSONArray("
 		'<tpl for="items">',
 			'<div id="samlSp{$i}" class="saml-sp">' +
 				'<span class="saml-sp-label portlet-msg-progress-label">{name}</span>' +
-				'<a class="aui-helper-hidden saml-sp-retry" data-entityId="{entityId}" href="javascript:;"><%= UnicodeLanguageUtil.get(pageContext, "retry") %></a>' +
-				'<iframe class="aui-helper-hidden-accessible" src="?cmd=logout&entityId={entityId}"></iframe>' +
+				'<a class="hide saml-sp-retry" data-entityId="{entityId}" href="javascript:;"><%= UnicodeLanguageUtil.get(pageContext, "retry") %></a>' +
+				'<iframe class="hide-accessible" src="?cmd=logout&entityId={entityId}"></iframe>' +
 			'</div>' +
 		'</tpl>'
 	);

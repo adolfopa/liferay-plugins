@@ -150,7 +150,7 @@ catch (Exception e) {
 		</c:choose>
 
 		<aui:form action="<%= updateCertificateURL %>">
-			<div class="<%= ((x509Certificate == null) && Validator.isNotNull(MetadataManagerUtil.getLocalEntityId())) ? "" : "aui-helper-hidden hide" %>" id="<portlet:namespace />certificateForm">
+			<div class="<%= ((x509Certificate == null) && Validator.isNotNull(MetadataManagerUtil.getLocalEntityId())) ? "" : "hide" %>" id="<portlet:namespace />certificateForm">
 				<liferay-ui:error exception="<%= CertificateKeyPasswordException.class %>" message="please-enter-a-valid-key-password" />
 				<liferay-ui:error exception="<%= InvalidParameterException.class %>" message="please-enter-a-valid-key-length-and-algorithm" />
 

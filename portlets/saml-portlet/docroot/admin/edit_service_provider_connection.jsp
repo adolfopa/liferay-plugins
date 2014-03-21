@@ -74,7 +74,7 @@ String nameIdFormat = ParamUtil.getString(request, "nameIdFormat", PortletPrefsP
 			<aui:button onClick='<%= renderResponse.getNamespace() + "uploadMetadataXml();" %>' value="upload-metadata-xml" />
 		</aui:button-row>
 
-		<aui:fieldset cssClass="aui-helper-hidden hide" id="uploadMetadataXmlForm" label="upload-metadata">
+		<aui:fieldset cssClass="hide" id="uploadMetadataXmlForm" label="upload-metadata">
 			<aui:input name="metadataXml" type="file" />
 		</aui:fieldset>
 	</aui:fieldset>
