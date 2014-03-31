@@ -853,7 +853,12 @@ AUI.add(
 									}
 
 									if (template) {
-										buffer.push(XMLUtil.create('template', template[index]));
+										if ((templateLanguage[index] === 'freemarker') || (templateLanguage[index] === 'velocity')) {
+											buffer.push(XMLUtil.create('template', cdata(template[index])));
+										}
+										else {
+											buffer.push(XMLUtil.create('template', template[index]));
+										}
 									}
 
 									if (templateLanguage) {
