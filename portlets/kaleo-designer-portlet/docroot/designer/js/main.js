@@ -853,11 +853,11 @@ AUI.add(
 									}
 
 									if (template) {
-										if ((templateLanguage[index] === 'freemarker') || (templateLanguage[index] === 'velocity')) {
-											buffer.push(XMLUtil.create('template', cdata(template[index])));
+										if (templateLanguage[index] === 'text') {
+											buffer.push(XMLUtil.create('template', template[index]));
 										}
 										else {
-											buffer.push(XMLUtil.create('template', template[index]));
+											buffer.push(XMLUtil.create('template', cdata(template[index])));
 										}
 									}
 
