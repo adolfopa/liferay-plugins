@@ -14,44 +14,44 @@ AUI().use(
 
 				var uri = currentTarget.attr('data-href');
 
-				if (uri) {
-					var markAsReadURL = currentTarget.attr('data-markAsReadURL');
+				var markAsReadURL = currentTarget.attr('data-markAsReadURL');
 
-					if (markAsReadURL) {
-						A.io.request(
-							markAsReadURL,
-							{
-								after: {
-									success: function(event, id, obj) {
-										var responseData = this.get('responseData');
+				if (markAsReadURL) {
+					A.io.request(
+						markAsReadURL,
+						{
+							after: {
+								success: function(event, id, obj) {
+									var responseData = this.get('responseData');
 
-										if (responseData.success) {
-											var userNotification = currentTarget.ancestor('.user-notification');
+									if (responseData.success) {
+										var userNotification = currentTarget.ancestor('.user-notification');
 
-											if (userNotification) {
-												userNotification.removeClass('unread');
+										if (userNotification) {
+											userNotification.removeClass('unread');
 
-												var read = userNotification.one('.content .read');
+											var read = userNotification.one('.content .read');
 
-												if (read) {
-													read.setHTML(Liferay.Language.get('read'));
-												}
+											if (read) {
+												read.setHTML(Liferay.Language.get('read'));
+											}
 
+											if (uri) {
 												instance._redirect(uri, openDialog);
 											}
 										}
 									}
-								},
-								dataType: 'json'
-							}
-						);
-					}
-					else {
-						var userNotification = currentTarget.ancestor('.user-notification');
-
-						if (userNotification) {
-							instance._redirect(uri, openDialog);
+								}
+							},
+							dataType: 'json'
 						}
+					);
+				}
+				else {
+					var userNotification = currentTarget.ancestor('.user-notification');
+
+					if (userNotification) {
+						instance._redirect(uri, openDialog);
 					}
 				}
 			},
