@@ -186,22 +186,16 @@ for (CorpEntryIdentifier currentCorpEntryIdentifier : CorpEntryServiceUtil.getCo
 				<%= HtmlUtil.escape(lcsClusterNode.getName()) %>
 			</dd>
 			<dt>
-				<liferay-ui:message key="portal-version" />
+				<liferay-ui:message key="location" />
 			</dt>
 			<dd>
-				<%= lcsClusterNode.getBuildNumber() %>
+				<%= HtmlUtil.escape(lcsClusterNode.getLocation()) %>
 			</dd>
 			<dt>
 				<liferay-ui:message key="description" />
 			</dt>
 			<dd>
 				<%= HtmlUtil.escape(lcsClusterNode.getDescription()) %>
-			</dd>
-			<dt>
-				<liferay-ui:message key="location" />
-			</dt>
-			<dd>
-				<%= HtmlUtil.escape(lcsClusterNode.getLocation()) %>
 			</dd>
 		</dl>
 

@@ -95,15 +95,15 @@
 		</aui:button-row>
 	</aui:field-wrapper>
 
-	<aui:input name="name" />
+	<aui:input label="server-name" name="name" />
 
-	<aui:field-wrapper label="portal-key">
+	<aui:input label="server-location" name="location" />
+
+	<aui:input label="server-description" name="description" />
+
+	<aui:field-wrapper label="lcs-server-key">
 		<%= KeyGeneratorUtil.getKey() %>
 	</aui:field-wrapper>
-
-	<aui:input name="location" />
-
-	<aui:input name="description" />
 
 	<aui:input checked="<%= true %>" disabled="<%= !ClusterExecutorUtil.isEnabled() %>" id="registerAllClusterNodes" label="register-all-nodes-of-this-cluster" name="registerAllClusterNodes" type="checkbox" />
 
