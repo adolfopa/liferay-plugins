@@ -18,13 +18,14 @@ import com.liferay.portal.kernel.bi.rules.Fact;
 import com.liferay.portal.kernel.bi.rules.Query;
 import com.liferay.portal.kernel.bi.rules.RulesResourceRetriever;
 import com.liferay.portal.kernel.resource.StringResourceRetriever;
-import com.liferay.portal.kernel.test.TestCase;
 
 import java.io.File;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import junit.framework.TestCase;
 
 import org.apache.commons.io.FileUtils;
 

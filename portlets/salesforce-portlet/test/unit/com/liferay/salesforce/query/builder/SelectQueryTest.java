@@ -14,13 +14,14 @@
 
 package com.liferay.salesforce.query.builder;
 
-import com.liferay.portal.kernel.test.TestCase;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.salesforce.query.ConditionGroup;
 import com.liferay.salesforce.query.ConditionImpl;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import junit.framework.TestCase;
 
 import org.junit.Test;
 

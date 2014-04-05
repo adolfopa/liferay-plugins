@@ -42,13 +42,14 @@ import com.liferay.portal.kernel.bi.reporting.ReportFormatExporterRegistry;
 import com.liferay.portal.kernel.bi.reporting.ReportRequest;
 import com.liferay.portal.kernel.bi.reporting.ReportRequestContext;
 import com.liferay.portal.kernel.bi.reporting.ReportResultContainer;
-import com.liferay.portal.kernel.test.TestCase;
 
 import java.io.File;
 
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
+import junit.framework.TestCase;
 
 import org.apache.commons.io.FileUtils;
 

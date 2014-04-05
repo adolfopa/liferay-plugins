@@ -14,7 +14,7 @@
 
 package com.liferay.salesforce.query;
 
-import com.liferay.portal.kernel.test.TestCase;
+import junit.framework.TestCase;
 
 import org.junit.Test;
 

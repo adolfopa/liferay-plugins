@@ -15,11 +15,12 @@
 package com.liferay.salesforce.service.impl;
 
 import com.liferay.portal.kernel.messaging.Message;
-import com.liferay.portal.kernel.test.TestCase;
 import com.liferay.salesforce.connection.SalesforceConnection;
 import com.liferay.salesforce.connection.SalesforceConnectionManager;
 
 import java.util.Map;
+
+import junit.framework.TestCase;
 
 /**
  * @author Michael C. Han
