@@ -197,8 +197,9 @@ public class LCSServletContextListener
 	protected void updateMonitoring() throws Exception {
 		updateHibernateGenerateStatistics();
 		updateMonitoringPortalRequest();
-		updateMonitoringPortletManager();
 		updateMonitoringPortletRequest();
+
+		updateMonitoringPortletManager();
 	}
 
 	protected void updateMonitoringPortalRequest() throws Exception {
