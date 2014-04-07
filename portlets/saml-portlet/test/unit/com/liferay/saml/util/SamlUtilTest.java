@@ -42,16 +42,16 @@ public class SamlUtilTest extends PowerMockito {
 
 	@Test
 	public void testGetRequestPath() {
-		MockHttpServletRequest request = new MockHttpServletRequest(
-			HttpMethods.GET,
-			"/c/portal/login;jsessionid=ACD311312312323BF.worker1");
-
 		when(
 			_http.removePathParameters(
 				"/c/portal/login;jsessionid=ACD311312312323BF.worker1")
 		).thenReturn(
 			"/c/portal/login"
 		);
+
+		MockHttpServletRequest request = new MockHttpServletRequest(
+			HttpMethods.GET,
+			"/c/portal/login;jsessionid=ACD311312312323BF.worker1");
 
 		Assert.assertEquals(
 			"/c/portal/login", SamlUtil.getRequestPath(request));
@@ -59,12 +59,6 @@ public class SamlUtilTest extends PowerMockito {
 
 	@Test
 	public void testGetRequestPathWithContext() {
-		MockHttpServletRequest request = new MockHttpServletRequest(
-			HttpMethods.GET,
-			"/portal/c/portal/login;jsessionid=ACD311312312323BF.worker1");
-
-		request.setContextPath("/portal");
-
 		when(
 			_http.removePathParameters(
 				"/c/portal/login;jsessionid=ACD311312312323BF.worker1")
@@ -72,21 +66,27 @@ public class SamlUtilTest extends PowerMockito {
 			"/c/portal/login"
 		);
 
+		MockHttpServletRequest request = new MockHttpServletRequest(
+			HttpMethods.GET,
+			"/portal/c/portal/login;jsessionid=ACD311312312323BF.worker1");
+
+		request.setContextPath("/portal");
+
 		Assert.assertEquals(
 			"/c/portal/login", SamlUtil.getRequestPath(request));
 	}
 
 	@Test
 	public void testGetRequestPathWithoutJsessionId() {
-		MockHttpServletRequest request = new MockHttpServletRequest(
-			HttpMethods.GET, "/c/portal/login");
-
 		when(
 			_http.removePathParameters(
 				"/c/portal/login")
 		).thenReturn(
 			"/c/portal/login"
 		);
+
+		MockHttpServletRequest request = new MockHttpServletRequest(
+			HttpMethods.GET, "/c/portal/login");
 
 		Assert.assertEquals(
 			"/c/portal/login", SamlUtil.getRequestPath(request));
