@@ -121,6 +121,31 @@ span.lcs-alert {
 		}
 	}
 
+	.lcs-environment-container {
+		.lcs-environment-input-wrapper {
+			height: 37px;
+			line-height: 37px;
+			margin-bottom: 8px;
+
+			.loadingmask-content {
+				background-color: transparent;
+			}
+
+			.loadingmask-message {
+				left: 0 !important;
+			}
+		}
+
+		.control-group {
+			margin-bottom: 0;
+			padding-top: 2px;
+		}
+
+		.button-holder {
+			margin: 0;
+		}
+	}
+
 	.lcs-synchronizing-alert {
 		display: inline-block;
 		position: relative;

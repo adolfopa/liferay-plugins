@@ -155,7 +155,7 @@ AUI.add(
 						instance._portletContentBox = instance._registrationForm.ancestor('.portlet-content');
 
 						instance.byId('addEnvironmentButton').on(STR_CLICK, instance._createLCSClusterEntryPanel, instance);
-						instance.byId('corpEntryId').on('change', instance._loadData, instance);
+						instance.byId('corpEntryId').on('change', instance._getLCSClusterEntries, instance);
 						instance.byId('name').on(STR_INPUT, A.bind('_refreshSubmitDisabled', instance));
 
 						instance._lcsClusterNewEntry = false;
@@ -175,27 +175,6 @@ AUI.add(
 						lcsClusterEntryFormAdd.on(STR_SUBMIT, instance._onLCSClusterEntryFormSubmit, instance, lcsClusterEntryFormAdd);
 
 						instance._lcsClusterEntryFormAdd = lcsClusterEntryFormAdd;
-					},
-
-					_loadData: function(event) {
-						var instance = this;
-
-						A.io.request(
-							instance._createURL(TYPE_SERVE_CORP_ENTRY),
-							{
-								dataType: 'json',
-								form: {
-									id: instance._registrationForm.getDOM()
-								},
-								on: {
-									success: function(event, id, obj) {
-										var response = this.get(STR_REPONSE_DATA);
-
-										instance._refreshFormData(response);
-									}
-								}
-							}
-						);
 					},
 
 					_createSelectLCSClusterEntryHTML: function(optionsArray) {
@@ -314,6 +293,77 @@ AUI.add(
 						);
 					},
 
+					_getLCSClusterEntries: function(event) {
+						var instance = this;
+
+						var lcsClusterEntryInputWrapper = instance._lcsClusterEntryInputWrapper;
+
+						lcsClusterEntryInputWrapper.empty();
+
+						lcsClusterEntryInputWrapper.plug(A.LoadingMask);
+
+						lcsClusterEntryInputWrapper.loadingmask.show();
+
+						A.io.request(
+							instance._createURL(TYPE_SERVE_CORP_ENTRY),
+							{
+								dataType: 'json',
+								form: {
+									id: instance._registrationForm.getDOM()
+								},
+								on: {
+									success: function(event, id, obj) {
+										var response = this.get(STR_REPONSE_DATA);
+
+										var corpEntrySelect = instance.byId('corpEntryId', instance._registrationForm);
+
+										var corpEntries = response.corpEntries;
+
+										if (corpEntries && !corpEntrySelect.get('children').size()) {
+											var options = A.Array.map(
+												corpEntries,
+												function(item, index, collection) {
+													return Lang.sub(TPL_OPTION, [item.corpEntryId, item.name]);
+												}
+											);
+
+											corpEntrySelect.append(options.join(''));
+										}
+
+										var lcsClusterEntries = response.lcsClusterEntries;
+
+										if (lcsClusterEntries.length > 0) {
+											var selectLCSClusterEntryHTML = instance._createSelectLCSClusterEntryHTML(lcsClusterEntries);
+
+											lcsClusterEntryInputWrapper.html(selectLCSClusterEntryHTML);
+
+											var lcsClusterEntryIdNode = lcsClusterEntryInputWrapper.one('#' + instance.NS + 'lcsClusterEntryId');
+
+											if (instance._lcsClusterNewEntry) {
+												var lastIndex = lcsClusterEntryIdNode.attr('length') - 1;
+
+												lcsClusterEntryIdNode.set('selectedIndex', lastIndex);
+
+												instance._lcsClusterNewEntry = false;
+											}
+
+											instance._lcsClusterEntryIdNode = lcsClusterEntryIdNode;
+										}
+										else {
+											lcsClusterEntryInputWrapper.html(instance._msgNoEnvironmentsCreated);
+
+											instance._lcsClusterEntryIdNode = null;
+										}
+
+										lcsClusterEntryInputWrapper.unplug(A.LoadingMask);
+
+										instance._refreshSubmitDisabled();
+									}
+								}
+							}
+						);
+					},
+
 					_handleLCSClusterEntryError: function(message) {
 						var instance = this;
 
@@ -361,7 +411,7 @@ AUI.add(
 
 											instance._lcsClusterNewEntry = true;
 
-											instance._loadData();
+											instance._getLCSClusterEntries();
 										}
 										else {
 											var message = instance._errorGenericEnvironment;
@@ -450,54 +500,6 @@ AUI.add(
 						}
 					},
 
-					_refreshFormData: function(data) {
-						var instance = this;
-
-						var corpEntrySelect = instance.byId('corpEntryId', instance._registrationForm);
-
-						var corpEntries = data.corpEntries;
-
-						if (corpEntries && !corpEntrySelect.get('children').size()) {
-							var options = A.Array.map(
-								corpEntries,
-								function(item, index, collection) {
-									return Lang.sub(TPL_OPTION, [item.corpEntryId, item.name]);
-								}
-							);
-
-							corpEntrySelect.append(options.join(''));
-						}
-
-						var lcsClusterEntries = data.lcsClusterEntries;
-
-						var lcsClusterEntryInputWrapper = instance._lcsClusterEntryInputWrapper;
-
-						if (lcsClusterEntries.length > 0) {
-							var selectLCSClusterEntryHTML = instance._createSelectLCSClusterEntryHTML(lcsClusterEntries);
-
-							lcsClusterEntryInputWrapper.html(selectLCSClusterEntryHTML);
-
-							var lcsClusterEntryIdNode = lcsClusterEntryInputWrapper.one('#' + instance.NS + 'lcsClusterEntryId');
-
-							if (instance._lcsClusterNewEntry) {
-								var lastIndex = lcsClusterEntryIdNode.attr('length') - 1;
-
-								lcsClusterEntryIdNode.set('selectedIndex', lastIndex);
-
-								instance._lcsClusterNewEntry = false;
-							}
-
-							instance._lcsClusterEntryIdNode = lcsClusterEntryIdNode;
-						}
-						else {
-							lcsClusterEntryInputWrapper.html(instance._msgNoEnvironmentsCreated);
-
-							instance._lcsClusterEntryIdNode = null;
-						}
-
-						instance._refreshSubmitDisabled();
-					},
-
 					_refreshSubmitDisabled: function(event) {
 						var instance = this;
 
@@ -515,6 +517,6 @@ AUI.add(
 	},
 	'',
 	{
-		requires: ['aui-io-plugin-deprecated', 'aui-tooltip-delegate', 'liferay-portlet-base', 'liferay-portlet-url', 'liferay-util-window', 'resize']
+		requires: ['aui-io-request', 'aui-loading-mask-deprecated', 'aui-tooltip-delegate', 'liferay-portlet-base', 'liferay-portlet-url', 'liferay-util-window', 'resize']
 	}
 );

@@ -64,8 +64,8 @@
 	List<LCSClusterEntry> lcsClusterEntries = LCSClusterEntryServiceUtil.getCorpEntryLCSClusterEntries(corpEntryId);
 	%>
 
-	<aui:field-wrapper helpMessage="environment-help" label="environment-required">
-		<span id="<portlet:namespace />lcsClusterEntryInputWrapper">
+	<aui:field-wrapper cssClass="lcs-environment-container" helpMessage="environment-help" label="environment-required">
+		<div class="lcs-environment-input-wrapper" id="<portlet:namespace />lcsClusterEntryInputWrapper">
 			<c:choose>
 				<c:when test="<%= lcsClusterEntries.isEmpty() %>">
 					<liferay-ui:message key="there-are-no-environments-created-yet" />
@@ -88,7 +88,7 @@
 					</aui:select>
 				</c:otherwise>
 			</c:choose>
-		</span>
+		</div>
 
 		<aui:button-row>
 			<aui:button name="addEnvironmentButton" value="add-new-environment" />
