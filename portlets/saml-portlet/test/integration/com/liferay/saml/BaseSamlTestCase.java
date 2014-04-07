@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.configuration.Configuration;
 import com.liferay.portal.kernel.configuration.ConfigurationFactory;
 import com.liferay.portal.kernel.configuration.ConfigurationFactoryUtil;
 import com.liferay.portal.kernel.portlet.PortletClassLoaderUtil;
+import com.liferay.portal.kernel.util.ClassLoaderPool;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Props;
 import com.liferay.portal.kernel.util.PropsKeys;
@@ -117,6 +118,8 @@ public class BaseSamlTestCase extends PowerMockito {
 			catch (Exception e) {
 			}
 		}
+
+		ClassLoaderPool.unregister("saml-portlet");
 	}
 
 	protected Credential getCredential(String entityId) throws Exception {
@@ -264,8 +267,10 @@ public class BaseSamlTestCase extends PowerMockito {
 	protected void setupConfiguration() {
 		Thread currentThread = Thread.currentThread();
 
-		PortletClassLoaderUtil.setClassLoader(
-			currentThread.getContextClassLoader());
+		ClassLoaderPool.register(
+			"saml-portlet", currentThread.getContextClassLoader());
+
+		PortletClassLoaderUtil.setServletContextName("saml-portlet");
 
 		Configuration configuration = mock(Configuration.class);
 

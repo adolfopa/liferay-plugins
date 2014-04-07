@@ -15,9 +15,11 @@
 package com.liferay.saml.util;
 
 import com.liferay.portal.kernel.portlet.PortletClassLoaderUtil;
+import com.liferay.portal.kernel.util.ClassLoaderPool;
 
 import java.io.InputStream;
 
+import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -33,14 +35,21 @@ public class MetadataUtilTest {
 	public static void setUpClass() throws Exception {
 		Thread currentThread = Thread.currentThread();
 
-		PortletClassLoaderUtil.setClassLoader(
-			currentThread.getContextClassLoader());
+		ClassLoaderPool.register(
+			"saml-portlet", currentThread.getContextClassLoader());
+
+		PortletClassLoaderUtil.setServletContextName("saml-portlet");
 
 		OpenSamlBootstrap.bootstrap();
 
 		MetadataUtil metadataUtil = new MetadataUtil();
 
 		metadataUtil.setParserPool(new BasicParserPool());
+	}
+
+	@AfterClass
+	public static void tearDownClass() {
+		ClassLoaderPool.unregister("saml-portlet");
 	}
 
 	@Test

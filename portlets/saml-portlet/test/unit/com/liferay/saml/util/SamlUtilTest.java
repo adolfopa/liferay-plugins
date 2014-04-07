@@ -15,22 +15,43 @@
 package com.liferay.saml.util;
 
 import com.liferay.portal.kernel.servlet.HttpMethods;
+import com.liferay.portal.kernel.util.Http;
+import com.liferay.portal.kernel.util.HttpUtil;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
+
+import org.powermock.api.mockito.PowerMockito;
 
 import org.springframework.mock.web.MockHttpServletRequest;
 
 /**
  * @author Mika Koivisto
  */
-public class SamlUtilTest {
+public class SamlUtilTest extends PowerMockito {
+
+	@Before
+	public void setUp() {
+		_http = mock(Http.class);
+
+		HttpUtil httpUtil = new HttpUtil();
+
+		httpUtil.setHttp(_http);
+	}
 
 	@Test
 	public void testGetRequestPath() {
 		MockHttpServletRequest request = new MockHttpServletRequest(
 			HttpMethods.GET,
 			"/c/portal/login;jsessionid=ACD311312312323BF.worker1");
+
+		when(
+			_http.removePathParameters(
+				"/c/portal/login;jsessionid=ACD311312312323BF.worker1")
+		).thenReturn(
+			"/c/portal/login"
+		);
 
 		Assert.assertEquals(
 			"/c/portal/login", SamlUtil.getRequestPath(request));
@@ -44,6 +65,13 @@ public class SamlUtilTest {
 
 		request.setContextPath("/portal");
 
+		when(
+			_http.removePathParameters(
+				"/c/portal/login;jsessionid=ACD311312312323BF.worker1")
+		).thenReturn(
+			"/c/portal/login"
+		);
+
 		Assert.assertEquals(
 			"/c/portal/login", SamlUtil.getRequestPath(request));
 	}
@@ -53,8 +81,17 @@ public class SamlUtilTest {
 		MockHttpServletRequest request = new MockHttpServletRequest(
 			HttpMethods.GET, "/c/portal/login");
 
+		when(
+			_http.removePathParameters(
+				"/c/portal/login")
+		).thenReturn(
+			"/c/portal/login"
+		);
+
 		Assert.assertEquals(
 			"/c/portal/login", SamlUtil.getRequestPath(request));
 	}
+
+	private Http _http;
 
 }
