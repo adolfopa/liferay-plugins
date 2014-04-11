@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
+import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.kernel.workflow.WorkflowException;
@@ -46,6 +47,7 @@ import com.liferay.portal.workflow.kaleo.forms.service.KaleoProcessLocalServiceU
 import com.liferay.portal.workflow.kaleo.forms.service.KaleoProcessServiceUtil;
 import com.liferay.portal.workflow.kaleo.forms.service.permission.KaleoProcessPermission;
 import com.liferay.portal.workflow.kaleo.forms.util.ActionKeys;
+import com.liferay.portal.workflow.kaleo.forms.util.TaskFormPairsSerializer;
 import com.liferay.portal.workflow.kaleo.forms.util.WebKeys;
 import com.liferay.portlet.dynamicdatalists.RecordSetDDMStructureIdException;
 import com.liferay.portlet.dynamicdatalists.RecordSetNameException;
@@ -63,6 +65,7 @@ import java.io.IOException;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -70,6 +73,7 @@ import java.util.Map;
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
+import javax.portlet.PortletSession;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 import javax.portlet.ResourceRequest;
@@ -204,7 +208,14 @@ public class KaleoFormsPortlet extends MVCPortlet {
 		throws IOException, PortletException {
 
 		try {
-			serveKaleoProcess(resourceRequest, resourceResponse);
+			String resourceID = resourceRequest.getResourceID();
+
+			if (resourceID.equals("kaleoProcess")) {
+				serveKaleoProcess(resourceRequest, resourceResponse);
+			}
+			else if (resourceID.equals("saveInSession")) {
+				saveInSession(resourceRequest, resourceResponse);
+			}
 		}
 		catch (IOException ioe) {
 			throw ioe;
@@ -246,8 +257,13 @@ public class KaleoFormsPortlet extends MVCPortlet {
 
 		long groupId = ParamUtil.getLong(actionRequest, "groupId");
 		long ddmTemplateId = ParamUtil.getLong(actionRequest, "ddmTemplateId");
-		long[] kaleoProcessLinkIds = ParamUtil.getLongValues(
-			actionRequest, "kaleoProcessLinkIds");
+		String workflowDefinition = ParamUtil.getString(
+			actionRequest, "workflowDefinition");
+		String taskFormPairsData = ParamUtil.getString(
+			actionRequest, "taskFormPairsData");
+
+		List<ObjectValuePair<String, Long>> taskFormPairs =
+			TaskFormPairsSerializer.deserialize(taskFormPairsData);
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			KaleoProcess.class.getName(), actionRequest);
@@ -261,16 +277,13 @@ public class KaleoFormsPortlet extends MVCPortlet {
 		if (kaleoProcessId <= 0) {
 			kaleoProcess = KaleoProcessServiceUtil.addKaleoProcess(
 				groupId, ddlRecordSet.getRecordSetId(), ddmTemplateId,
-				kaleoProcessLinkIds, serviceContext);
+				workflowDefinition, taskFormPairs, serviceContext);
 		}
 		else {
 			kaleoProcess = KaleoProcessServiceUtil.updateKaleoProcess(
-				kaleoProcessId, ddmTemplateId, kaleoProcessLinkIds,
-				serviceContext);
+				kaleoProcessId, ddmTemplateId, workflowDefinition,
+				taskFormPairs, serviceContext);
 		}
-
-		String workflowDefinition = ParamUtil.getString(
-			actionRequest, "workflowDefinition");
 
 		WorkflowDefinitionLinkLocalServiceUtil.updateWorkflowDefinitionLink(
 			serviceContext.getUserId(), serviceContext.getCompanyId(), groupId,
@@ -422,6 +435,27 @@ public class KaleoFormsPortlet extends MVCPortlet {
 				themeDisplay.getCompanyId(), workflowTaskId);
 
 			renderRequest.setAttribute(WebKeys.WORKFLOW_TASK, workflowTask);
+		}
+	}
+
+	protected void saveInSession(
+			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+		throws Exception {
+
+		Enumeration<String> enu = resourceRequest.getParameterNames();
+
+		while (enu.hasMoreElements()) {
+			String name = enu.nextElement();
+
+			if (name.equals("doAsUserId")) {
+				continue;
+			}
+
+			String value = ParamUtil.getString(resourceRequest, name);
+
+			PortletSession portletSession = resourceRequest.getPortletSession();
+
+			portletSession.setAttribute(name, value);
 		}
 	}
 
