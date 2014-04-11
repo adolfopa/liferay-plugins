@@ -62,6 +62,10 @@
 	<liferay-ui:search-iterator />
 </liferay-ui:search-container>
 
+<%
+KaleoFormsUtil.cleanupSession(portletSession);
+%>
+
 <div class="hide" id="<portlet:namespace />export-process">
 	<aui:select label="file-extension" name="fileExtension">
 		<aui:option value="csv">CSV</aui:option>
