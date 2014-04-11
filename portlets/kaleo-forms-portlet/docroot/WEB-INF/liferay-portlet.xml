@@ -16,6 +16,8 @@
 		<control-panel-entry-weight>12.0</control-panel-entry-weight>
 		<ddm-display>com.liferay.portal.workflow.kaleo.forms.ddm.KaleoFormsDDMDisplay</ddm-display>
 		<workflow-handler>com.liferay.portal.workflow.kaleo.forms.workflow.KaleoProcessWorkflowHandler</workflow-handler>
+		<header-portlet-css>/admin/css/main.css</header-portlet-css>
+		<footer-portlet-javascript>/admin/js/main.js</footer-portlet-javascript>
 		<css-class-wrapper>kaleo-forms-admin-portlet</css-class-wrapper>
 	</portlet>
 	<role-mapper>
