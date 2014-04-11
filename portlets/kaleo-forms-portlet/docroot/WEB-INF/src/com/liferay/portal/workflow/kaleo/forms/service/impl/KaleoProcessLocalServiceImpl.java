@@ -16,6 +16,7 @@ package com.liferay.portal.workflow.kaleo.forms.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
@@ -36,7 +37,9 @@ public class KaleoProcessLocalServiceImpl
 
 	public KaleoProcess addKaleoProcess(
 			long userId, long groupId, long ddlRecordSetId, long ddmTemplateId,
-			long[] kaleoProcessLinkIds, ServiceContext serviceContext)
+			String workflowDefinition,
+			List<ObjectValuePair<String, Long>> taskFormPairs,
+			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		// Kaleo process
@@ -59,6 +62,7 @@ public class KaleoProcessLocalServiceImpl
 		kaleoProcess.setModifiedDate(serviceContext.getModifiedDate(now));
 		kaleoProcess.setDDLRecordSetId(ddlRecordSetId);
 		kaleoProcess.setDDMTemplateId(ddmTemplateId);
+		kaleoProcess.setWorkflowDefinition(workflowDefinition);
 
 		kaleoProcessPersistence.update(kaleoProcess);
 
@@ -68,10 +72,7 @@ public class KaleoProcessLocalServiceImpl
 
 		// Kaleo process links
 
-		for (long kaleoProcessLinkId : kaleoProcessLinkIds) {
-			kaleoProcessLinkLocalService.updateKaleoProcessLink(
-				kaleoProcessLinkId, kaleoProcessId);
-		}
+		updateKaleoProcessLinks(kaleoProcessId, taskFormPairs);
 
 		return kaleoProcess;
 	}
@@ -172,7 +173,8 @@ public class KaleoProcessLocalServiceImpl
 	}
 
 	public KaleoProcess updateKaleoProcess(
-			long kaleoProcessId, long ddmTemplateId, long[] kaleoProcessLinkIds,
+			long kaleoProcessId, long ddmTemplateId, String workflowDefinition,
+			List<ObjectValuePair<String, Long>> taskFormPairs,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
@@ -185,17 +187,28 @@ public class KaleoProcessLocalServiceImpl
 
 		kaleoProcess.setModifiedDate(serviceContext.getModifiedDate(null));
 		kaleoProcess.setDDMTemplateId(ddmTemplateId);
+		kaleoProcess.setWorkflowDefinition(workflowDefinition);
 
 		kaleoProcessPersistence.update(kaleoProcess);
 
 		// Kaleo process links
 
-		for (long kaleoProcessLinkId : kaleoProcessLinkIds) {
-			kaleoProcessLinkLocalService.updateKaleoProcessLink(
-				kaleoProcessLinkId, kaleoProcessId);
-		}
+		kaleoProcessLinkLocalService.deleteKaleoProcessLinks(kaleoProcessId);
+
+		updateKaleoProcessLinks(kaleoProcessId, taskFormPairs);
 
 		return kaleoProcess;
+	}
+
+	protected void updateKaleoProcessLinks(
+			long kaleoProcessId,
+			List<ObjectValuePair<String, Long>> taskFormPairs)
+		throws SystemException {
+
+		for (ObjectValuePair<String, Long> taskFormPair : taskFormPairs) {
+			kaleoProcessLinkLocalService.addKaleoProcessLink(
+				kaleoProcessId, taskFormPair.getKey(), taskFormPair.getValue());
+		}
 	}
 
 	protected void validate(long ddmTemplateId) throws PortalException {

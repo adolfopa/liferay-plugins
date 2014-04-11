@@ -16,6 +16,7 @@ package com.liferay.portal.workflow.kaleo.forms.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess;
@@ -33,7 +34,9 @@ public class KaleoProcessServiceImpl extends KaleoProcessServiceBaseImpl {
 
 	public KaleoProcess addKaleoProcess(
 			long groupId, long ddlRecordSetId, long ddmTemplateId,
-			long[] kaleoProcessLinkIds, ServiceContext serviceContext)
+			String workflowDefinition,
+			List<ObjectValuePair<String, Long>> taskFormPairs,
+			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		KaleoFormsPermission.check(
@@ -41,7 +44,7 @@ public class KaleoProcessServiceImpl extends KaleoProcessServiceBaseImpl {
 
 		return kaleoProcessLocalService.addKaleoProcess(
 			getUserId(), groupId, ddlRecordSetId, ddmTemplateId,
-			kaleoProcessLinkIds, serviceContext);
+			workflowDefinition, taskFormPairs, serviceContext);
 	}
 
 	public KaleoProcess deleteKaleoProcess(long kaleoProcessId)
@@ -85,7 +88,8 @@ public class KaleoProcessServiceImpl extends KaleoProcessServiceBaseImpl {
 	}
 
 	public KaleoProcess updateKaleoProcess(
-			long kaleoProcessId, long ddmTemplateId, long[] kaleoProcessLinkIds,
+			long kaleoProcessId, long ddmTemplateId, String workflowDefinition,
+			List<ObjectValuePair<String, Long>> taskFormPairs,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
@@ -93,7 +97,8 @@ public class KaleoProcessServiceImpl extends KaleoProcessServiceBaseImpl {
 			getPermissionChecker(), kaleoProcessId, ActionKeys.UPDATE);
 
 		return kaleoProcessLocalService.updateKaleoProcess(
-			kaleoProcessId, ddmTemplateId, kaleoProcessLinkIds, serviceContext);
+			kaleoProcessId, ddmTemplateId, workflowDefinition, taskFormPairs,
+			serviceContext);
 	}
 
 }
