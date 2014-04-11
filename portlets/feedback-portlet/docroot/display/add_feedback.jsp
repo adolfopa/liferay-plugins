@@ -81,9 +81,6 @@ String redirect = ParamUtil.getString(request, "redirect");
 		var title = form.one('.feedback-container .feedback .title');
 		var subject = form.one('.feedback-container .feedback .subject');
 		var attachments = form.one('.feedback-container .feedback .attachments');
-		var type = form.one('#<portlet:namespace />type');
-
-		type.val(feedbackType);
 
 		if (feedbackType == '<%= FeedbackConstant.TYPE_POSITIVE %>') {
 			title.setHTML('<liferay-ui:message key="we-are-glad-you-like-it" />');
@@ -101,6 +98,10 @@ String redirect = ParamUtil.getString(request, "redirect");
 				attachments.removeClass("hide");
 			}
 		}
+
+		var type = form.one('#<portlet:namespace />type');
+
+		type.val(feedbackType);
 
 		var start = form.one('#<portlet:namespace />start');
 
