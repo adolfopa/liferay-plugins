@@ -24,7 +24,7 @@ String redirect = ParamUtil.getString(request, "redirect");
 
 <portlet:actionURL name="updateFeedback" var="updateFeedbackURL" />
 
-<aui:form action="<%= updateFeedbackURL %>" method="post" name="fm">
+<aui:form action="<%= updateFeedbackURL %>" enctype="multipart/form-data" method="post" name="fm">
 	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 	<aui:input name="groupId" type="hidden" value="<%= String.valueOf(groupId) %>" />
 	<aui:input name="mbCategoryId" type="hidden" value="<%= String.valueOf(mbCategoryId) %>" />
@@ -45,6 +45,17 @@ String redirect = ParamUtil.getString(request, "redirect");
 			<p class="subject"></p>
 
 			<aui:input cssClass="body" id="body" label="" name="body" required="<%= true %>" type="textarea" />
+
+			<div class="attachments">
+				<liferay-ui:panel defaultState="closed" extended="<%= false %>" id="attachmentsPanel" persistState="<%= false %>" title="attachments">
+					<div>
+						<aui:input id="file1" label="" name="file1" size="70" type="file" />
+					</div>
+					<div>
+						<aui:input id="file2" label="" name="file2" size="70" type="file" />
+					</div>
+				</liferay-ui:panel>
+			</div>
 
 			<aui:input id="anonymous" label="Anonymous" name="anonymous" type="checkbox" />
 
@@ -69,6 +80,7 @@ String redirect = ParamUtil.getString(request, "redirect");
 	var displayFeedBack = function(feedbackType) {
 		var title = form.one('.feedback-container .feedback .title');
 		var subject = form.one('.feedback-container .feedback .subject');
+		var attachments = form.one('.feedback-container .feedback .attachments');
 		var type = form.one('#<portlet:namespace />type');
 
 		type.val(feedbackType);
@@ -76,10 +88,18 @@ String redirect = ParamUtil.getString(request, "redirect");
 		if (feedbackType == '<%= FeedbackConstant.TYPE_POSITIVE %>') {
 			title.setHTML('<liferay-ui:message key="we-are-glad-you-like-it" />');
 			subject.setHTML('<%= FeedbackUtil.getFeedbackSubject(FeedbackConstant.TYPE_POSITIVE) %>');
+
+			if (!attachments.hasClass("hide")) {
+				attachments.addClass("hide");
+			}
 		}
 		else if (feedbackType == '<%= FeedbackConstant.TYPE_NEGATIVE %>') {
 			title.setHTML('<liferay-ui:message key="help-us-fix-it" />');
 			subject.setHTML('<%= FeedbackUtil.getFeedbackSubject(FeedbackConstant.TYPE_NEGATIVE) %>');
+
+			if (attachments.hasClass("hide")) {
+				attachments.removeClass("hide");
+			}
 		}
 
 		var start = form.one('#<portlet:namespace />start');
@@ -153,9 +173,11 @@ String redirect = ParamUtil.getString(request, "redirect");
 				A.io.request(
 					form.getAttribute('action'),
 					{
-						after: {
-							success: function(event, id, obj) {
-								var response = this.get('responseData');
+						on: {
+							complete: function(event, id, obj) {
+								var responseData = obj.responseText;
+
+								var response = A.JSON.parse(responseData);
 
 								if (response && (response.success == 'true')) {
 									var confirmation = A.one('#<portlet:namespace />confirmation');
@@ -179,7 +201,8 @@ String redirect = ParamUtil.getString(request, "redirect");
 						},
 						dataType: 'JSON',
 						form: {
-							id: form.getDOM()
+							id: form.getDOM(),
+							upload: true
 						},
 						method: 'POST'
 					}

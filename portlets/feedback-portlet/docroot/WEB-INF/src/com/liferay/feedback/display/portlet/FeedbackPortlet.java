@@ -17,10 +17,14 @@ package com.liferay.feedback.display.portlet;
 import com.liferay.compat.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.upload.UploadPortletRequest;
+import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.PortletPreferencesIds;
 import com.liferay.portal.model.User;
@@ -34,9 +38,12 @@ import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
 import com.liferay.portlet.messageboards.service.MBThreadLocalServiceUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
+import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.InputStream;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -72,16 +79,22 @@ public class FeedbackPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
+		UploadPortletRequest uploadPortletRequest =
+			PortalUtil.getUploadPortletRequest(actionRequest);
+
+		ThemeDisplay themeDisplay =
+			(ThemeDisplay)uploadPortletRequest.getAttribute(
+				WebKeys.THEME_DISPLAY);
 
 		User user = themeDisplay.getUser();
 
-		long groupId = ParamUtil.getLong(actionRequest, "groupId");
-		long mbCategoryId = ParamUtil.getLong(actionRequest, "mbCategoryId");
-		String type = ParamUtil.getString(actionRequest, "type");
-		String body = ParamUtil.getString(actionRequest, "body");
-		boolean anonymous = ParamUtil.getBoolean(actionRequest, "anonymous");
+		long groupId = ParamUtil.getLong(uploadPortletRequest, "groupId");
+		long mbCategoryId = ParamUtil.getLong(
+			uploadPortletRequest, "mbCategoryId");
+		String type = ParamUtil.getString(uploadPortletRequest, "type");
+		String body = ParamUtil.getString(uploadPortletRequest, "body");
+		boolean anonymous = ParamUtil.getBoolean(
+			uploadPortletRequest, "anonymous");
 
 		StringBundler sb = new StringBundler(5);
 
@@ -114,13 +127,39 @@ public class FeedbackPortlet extends MVCPortlet {
 
 		serviceContext.setPortletPreferencesIds(portletPreferencesIds);
 
+		List<ObjectValuePair<String, InputStream>> inputStreamOVPs =
+			new ArrayList<ObjectValuePair<String, InputStream>>();
+
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		try {
+			for (int i = 1; i < 3; i++) {
+				String fileName = uploadPortletRequest.getFileName("file" + i);
+
+				if (Validator.isNotNull(fileName)) {
+					File file = uploadPortletRequest.getFile("file" + i);
+
+					if (file != null) {
+						byte[] bytes = FileUtil.getBytes(file);
+
+						if ((bytes != null) && (bytes.length > 0)) {
+							ByteArrayInputStream byteArrayInputStream =
+								new ByteArrayInputStream(bytes);
+
+							ObjectValuePair<String, InputStream> ovp =
+								new ObjectValuePair<String, InputStream>(
+									fileName, byteArrayInputStream);
+
+							inputStreamOVPs.add(ovp);
+						}
+					}
+				}
+			}
+
 			MBMessage mbMessage = MBMessageLocalServiceUtil.addMessage(
 				user.getUserId(), user.getFullName(), groupId, mbCategoryId,
-				subject, body, "plain", new ArrayList<ObjectValuePair<String,
-				InputStream>>(), anonymous, 0, false, serviceContext);
+				subject, body, "plain", inputStreamOVPs, anonymous, 0, false,
+				serviceContext);
 
 			MBThreadLocalServiceUtil.updateQuestion(
 				mbMessage.getThreadId(), true);
@@ -129,6 +168,15 @@ public class FeedbackPortlet extends MVCPortlet {
 		}
 		catch (Exception e) {
 			jsonObject.put("success", Boolean.FALSE.toString());
+		}
+		finally {
+			for (ObjectValuePair<String, InputStream> inputStreamOVP :
+					inputStreamOVPs) {
+
+				InputStream inputStream = inputStreamOVP.getValue();
+
+				StreamUtil.cleanUp(inputStream);
+			}
 		}
 
 		writeJSON(actionRequest, actionResponse, jsonObject);

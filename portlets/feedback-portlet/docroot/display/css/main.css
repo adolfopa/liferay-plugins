@@ -28,7 +28,11 @@
 	.feedback {
 		.body {
 			height: 250px;
-			width: 700px;
+			width: 720px;
+		}
+
+		.control-group {
+			margin-bottom: 10px;
 		}
 
 		button {
