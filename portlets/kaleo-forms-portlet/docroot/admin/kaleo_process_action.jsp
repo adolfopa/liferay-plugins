@@ -37,7 +37,7 @@ KaleoProcess kaleoProcess = (KaleoProcess)row.getObject();
 	</c:if>
 
 	<c:if test="<%= KaleoProcessPermission.contains(permissionChecker, kaleoProcess, ActionKeys.VIEW) %>">
-		<portlet:resourceURL var="exportURL">
+		<portlet:resourceURL id="kaleoProcess" var="exportURL">
 			<portlet:param name="kaleoProcessId" value="<%= String.valueOf(kaleoProcess.getKaleoProcessId()) %>" />
 		</portlet:resourceURL>
 
@@ -45,7 +45,7 @@ KaleoProcess kaleoProcess = (KaleoProcess)row.getObject();
 		StringBundler sb = new StringBundler(6);
 
 		sb.append("javascript:");
-		sb.append(renderResponse.getNamespace());
+		sb.append(portletNamespace);
 		sb.append("exportKaleoProcess");
 		sb.append("('");
 		sb.append(exportURL);

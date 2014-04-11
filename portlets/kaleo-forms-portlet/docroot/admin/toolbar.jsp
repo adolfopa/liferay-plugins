@@ -30,7 +30,6 @@ String toolbarItem = ParamUtil.getString(request, "toolbarItem", "view-all");
 			<portlet:renderURL var="addProcessURL">
 				<portlet:param name="mvcPath" value="/admin/edit_kaleo_process.jsp" />
 				<portlet:param name="redirect" value="<%= currentURL %>" />
-				<portlet:param name="backURL" value="<%= currentURL %>" />
 			</portlet:renderURL>
 
 			<aui:nav-item href="<%= addProcessURL %>" iconClass="icon-plus" label="add" selected='<%= toolbarItem.equals("add") %>' />
