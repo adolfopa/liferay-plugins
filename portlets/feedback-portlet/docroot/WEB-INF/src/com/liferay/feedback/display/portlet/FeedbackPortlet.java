@@ -135,11 +135,11 @@ public class FeedbackPortlet extends MVCPortlet {
 				ByteArrayInputStream byteArrayInputStream =
 					new ByteArrayInputStream(bytes);
 
-				ObjectValuePair<String, InputStream> ovp =
+				ObjectValuePair<String, InputStream> inputStreamOVP =
 					new ObjectValuePair<String, InputStream>(
 						fileName, byteArrayInputStream);
 
-				inputStreamOVPs.add(ovp);
+				inputStreamOVPs.add(inputStreamOVP);
 			}
 
 			ServiceContext serviceContext =
