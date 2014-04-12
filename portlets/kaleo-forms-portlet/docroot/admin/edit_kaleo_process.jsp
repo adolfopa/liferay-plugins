@@ -63,7 +63,7 @@ if (kaleoProcess != null) {
 	<portlet:param name="redirect" value="<%= redirect %>" />
 </portlet:actionURL>
 
-<aui:form action="<%= editKaleoProcessURL %>" method="post" name="editKaleoProcessForm">
+<aui:form action="<%= editKaleoProcessURL %>" method="post" name="fm">
 	<aui:input name="kaleoProcessId" type="hidden" value="<%= kaleoProcessId %>" />
 	<aui:input name="groupId" type="hidden" value="<%= groupId %>" />
 	<aui:input name="scope" type="hidden" value="1" />
@@ -83,7 +83,7 @@ if (kaleoProcess != null) {
 	<liferay-ui:form-navigator
 		categoryNames="<%= _CATEGORY_NAMES %>"
 		categorySections="<%= _CATEGORY_SECTIONS %>"
-		formName="editKaleoProcessForm"
+		formName="fm"
 		htmlBottom="<%= htmlBottom %>"
 		jspPath="/admin/process/"
 		showButtons="<%= false %>"
@@ -93,7 +93,7 @@ if (kaleoProcess != null) {
 		Liferay.after(
 			'form:registered',
 			function(event) {
-				var form = Liferay.Form.get('<portlet:namespace />editKaleoProcessForm');
+				var form = Liferay.Form.get('<portlet:namespace />fm');
 
 				if (form === event.form) {
 					new Liferay.KaleoFormsAdmin(
@@ -103,7 +103,7 @@ if (kaleoProcess != null) {
 							namespace: '<portlet:namespace />',
 							portletId: '<%= PortalUtil.getPortletId(request) %>',
 							saveInSessionURL: '<portlet:resourceURL id="saveInSession" />',
-							tabView: Liferay.component('<portlet:namespace />editKaleoProcessFormTabview')
+							tabView: Liferay.component('<portlet:namespace />fmTabview')
 						}
 					);
 				}

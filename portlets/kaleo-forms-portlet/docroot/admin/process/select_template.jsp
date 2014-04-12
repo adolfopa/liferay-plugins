@@ -39,9 +39,9 @@ String mode = ParamUtil.getString(request, "mode");
 	searchContainer='<%= new SearchContainer(renderRequest, new DisplayTerms(request), null, SearchContainer.DEFAULT_CUR_PARAM, SearchContainer.DEFAULT_DELTA, iteratorURL, null, "there-are-no-results") %>'
 >
 
-		<%
-		DisplayTerms displayTerms = searchContainer.getDisplayTerms();
-		%>
+	<%
+	DisplayTerms displayTerms = searchContainer.getDisplayTerms();
+	%>
 
 	<liferay-ui:search-container-results>
 
@@ -94,14 +94,14 @@ String mode = ParamUtil.getString(request, "mode");
 	Liferay.on(
 		'<portlet:namespace />chooseTemplate',
 		function(event) {
-			var A = new AUI();
+			var A = AUI();
 
 			A.io.request(
 				'<portlet:resourceURL id="saveInSession" />',
 				{
 					after: {
 						success: function() {
-							window.location = '<%= backURL %>';
+							window.location = '<%= HtmlUtil.escapeHREF(backURL) %>';
 						}
 					},
 					data: {
@@ -117,7 +117,6 @@ String mode = ParamUtil.getString(request, "mode");
 		window,
 		'<portlet:namespace />openDDMPortlet',
 		function(ddmTemplateId) {
-
 			Liferay.Util.openDDMPortlet(
 				{
 					basePortletURL: '<%= PortletURLFactoryUtil.create(request, PortletKeys.DYNAMIC_DATA_MAPPING, themeDisplay.getPlid(), PortletRequest.RENDER_PHASE) %>',
@@ -132,16 +131,13 @@ String mode = ParamUtil.getString(request, "mode");
 						}
 					},
 					id: 'ddmDialog',
-					refererPortletName: '<%= portletDisplay.getId() %>',
 					portletResourceNamespace: '<%= portletNamespace %>',
+					refererPortletName: '<%= portletDisplay.getId() %>',
+					showredirect: false,
 					structureAvailableFields: '<%= portletNamespace + "getAvailableFields" %>',
 					struts_action: '/dynamic_data_mapping/edit_template',
-					showredirect: false,
 					templateId: ddmTemplateId,
 					title: '<liferay-ui:message key="form" />'
-				},
-				function() {
-					console.log('save callback');
 				}
 			);
 		},

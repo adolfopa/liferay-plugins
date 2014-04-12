@@ -1,16 +1,13 @@
 AUI.add(
 	'liferay-kaleo-forms-admin',
 	function(A) {
-		var Lang = A.Lang;
 		var AArray = A.Array;
 
-		var AParseContent = A.Plugin.ParseContent;
-
 		var STEPS_MAP = {
-			DETAILS: 1,
 			DEFINITION: 2,
-			WORKFLOW: 3,
-			FORMS: 4
+			DETAILS: 1,
+			FORMS: 4,
+			WORKFLOW: 3
 		};
 
 		var KaleoFormsAdmin = A.Component.create(
@@ -141,23 +138,23 @@ AUI.add(
 					_showForms: function() {
 						var instance = this;
 
-						var currentURL = instance.get('currentURL');
-
 						var namespace = instance.get('namespace');
+
+						var currentURL = instance.get('currentURL');
 
 						var resultsContainer = instance.one('#resultsContainer');
 
 						var workflowDefinition = instance.one('#workflowDefinition').val();
 
-						var backURL = new A.Url(currentURL);
+						var backURL = new Liferay.PortletURL(Liferay.PortletURL.RENDER_PHASE, null, currentURL);
 
-						backURL.setParameter(namespace + 'historyKey', 'forms');
+						backURL.setParameter('historyKey', 'forms');
 
-						var formsURL = new A.Url(currentURL);
+						var formsURL = new Liferay.PortletURL(Liferay.PortletURL.RENDER_PHASE, null, currentURL);
 
-						formsURL.setParameter(namespace + 'backURL', backURL.toString());
-						formsURL.setParameter(namespace + 'mvcPath', '/admin/process/task_template_search_container.jsp');
-						formsURL.setParameter(namespace + 'workflowDefinition', workflowDefinition);
+						formsURL.setParameter('mvcPath', '/admin/process/task_template_search_container.jsp');
+						formsURL.setParameter('backURL', backURL.toString());
+						formsURL.setParameter('workflowDefinition', workflowDefinition);
 
 						resultsContainer.plug(A.LoadingMask).loadingmask.show();
 
@@ -177,6 +174,6 @@ AUI.add(
 	},
 	'',
 	{
-		requires: ['aui-base', 'aui-io-request', 'aui-loading-mask-deprecated', 'aui-parse-content', 'aui-url', 'liferay-portlet-base', 'node-load']
+		requires: ['aui-base', 'aui-io-request', 'aui-loading-mask-deprecated', 'aui-parse-content', 'liferay-portlet-base', 'liferay-portlet-url', 'node-load']
 	}
 );

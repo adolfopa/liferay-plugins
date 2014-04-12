@@ -190,7 +190,7 @@ if (Validator.isNotNull(workflowDefinition)) {
 	Liferay.on(
 		'<portlet:namespace />chooseWorkflow',
 		function(event) {
-			var A = new AUI();
+			var A = AUI();
 
 			A.one('#<portlet:namespace />workflowDefinition').val(event.name + '@' + event.version);
 

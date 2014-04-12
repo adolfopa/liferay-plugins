@@ -128,7 +128,7 @@ if (ddmStructureId > 0) {
 	Liferay.on(
 		'<portlet:namespace />chooseDefinition',
 		function(event) {
-			var A = new AUI();
+			var A = AUI();
 
 			A.one('#<portlet:namespace />ddmStructureDisplay').html(Liferay.Util.unescapeHTML(event.name));
 			A.one('#<portlet:namespace />ddmStructureId').val(event.ddmstructureid);
