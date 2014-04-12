@@ -79,60 +79,40 @@ public class FeedbackPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		UploadPortletRequest uploadPortletRequest =
-			PortalUtil.getUploadPortletRequest(actionRequest);
-
-		ThemeDisplay themeDisplay =
-			(ThemeDisplay)uploadPortletRequest.getAttribute(
-				WebKeys.THEME_DISPLAY);
-
-		User user = themeDisplay.getUser();
-
-		long groupId = ParamUtil.getLong(uploadPortletRequest, "groupId");
-		long mbCategoryId = ParamUtil.getLong(
-			uploadPortletRequest, "mbCategoryId");
-		String type = ParamUtil.getString(uploadPortletRequest, "type");
-		String body = ParamUtil.getString(uploadPortletRequest, "body");
-		boolean anonymous = ParamUtil.getBoolean(
-			uploadPortletRequest, "anonymous");
-
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(themeDisplay.translate(type));
-		sb.append(StringPool.SPACE);
-		sb.append(StringPool.DASH);
-		sb.append(StringPool.SPACE);
-		sb.append(StringUtil.shorten(body));
-
-		String subject = sb.toString();
-
-		ServiceContext serviceContext =
-			ServiceContextThreadLocal.getServiceContext();
-
-		serviceContext.setAddGroupPermissions(true);
-
-		long plid = PortalUtil.getPlidFromPortletId(
-			groupId, true, PortletKeys.MESSAGE_BOARDS);
-
-		if (plid == 0) {
-			plid = PortalUtil.getPlidFromPortletId(
-				groupId, false, PortletKeys.MESSAGE_BOARDS);
-		}
-
-		serviceContext.setPlid(plid);
-
-		PortletPreferencesIds portletPreferencesIds = new PortletPreferencesIds(
-			themeDisplay.getCompanyId(), groupId,
-			PortletKeys.PREFS_OWNER_TYPE_GROUP, 0, PortletKeys.MESSAGE_BOARDS);
-
-		serviceContext.setPortletPreferencesIds(portletPreferencesIds);
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		List<ObjectValuePair<String, InputStream>> inputStreamOVPs =
 			new ArrayList<ObjectValuePair<String, InputStream>>();
 
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-
 		try {
+			UploadPortletRequest uploadPortletRequest =
+				PortalUtil.getUploadPortletRequest(actionRequest);
+
+			ThemeDisplay themeDisplay =
+				(ThemeDisplay)uploadPortletRequest.getAttribute(
+					WebKeys.THEME_DISPLAY);
+
+			User user = themeDisplay.getUser();
+
+			long groupId = ParamUtil.getLong(uploadPortletRequest, "groupId");
+			long mbCategoryId = ParamUtil.getLong(
+				uploadPortletRequest, "mbCategoryId");
+			String type = ParamUtil.getString(uploadPortletRequest, "type");
+			String body = ParamUtil.getString(uploadPortletRequest, "body");
+
+			StringBundler sb = new StringBundler(5);
+
+			sb.append(themeDisplay.translate(type));
+			sb.append(StringPool.SPACE);
+			sb.append(StringPool.DASH);
+			sb.append(StringPool.SPACE);
+			sb.append(StringUtil.shorten(body));
+
+			String subject = sb.toString();
+
+			boolean anonymous = ParamUtil.getBoolean(
+				uploadPortletRequest, "anonymous");
+
 			for (int i = 1; i < 3; i++) {
 				String fileName = uploadPortletRequest.getFileName("file" + i);
 
@@ -155,6 +135,29 @@ public class FeedbackPortlet extends MVCPortlet {
 					}
 				}
 			}
+
+			ServiceContext serviceContext =
+				ServiceContextThreadLocal.getServiceContext();
+
+			serviceContext.setAddGroupPermissions(true);
+
+			long plid = PortalUtil.getPlidFromPortletId(
+				groupId, true, PortletKeys.MESSAGE_BOARDS);
+
+			if (plid == 0) {
+				plid = PortalUtil.getPlidFromPortletId(
+					groupId, false, PortletKeys.MESSAGE_BOARDS);
+			}
+
+			serviceContext.setPlid(plid);
+
+			PortletPreferencesIds portletPreferencesIds =
+				new PortletPreferencesIds(
+					themeDisplay.getCompanyId(), groupId,
+					PortletKeys.PREFS_OWNER_TYPE_GROUP, 0,
+					PortletKeys.MESSAGE_BOARDS);
+
+			serviceContext.setPortletPreferencesIds(portletPreferencesIds);
 
 			MBMessage mbMessage = MBMessageLocalServiceUtil.addMessage(
 				user.getUserId(), user.getFullName(), groupId, mbCategoryId,
