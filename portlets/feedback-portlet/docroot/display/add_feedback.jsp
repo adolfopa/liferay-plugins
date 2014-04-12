@@ -174,6 +174,12 @@ String redirect = ParamUtil.getString(request, "redirect");
 				A.io.request(
 					form.getAttribute('action'),
 					{
+						dataType: 'JSON',
+						form: {
+							id: form.getDOM(),
+							upload: true
+						},
+						method: 'POST',
 						on: {
 							complete: function(event, id, obj) {
 								var responseData = obj.responseText;
@@ -199,13 +205,7 @@ String redirect = ParamUtil.getString(request, "redirect");
 
 								loadingMask.hide();
 							}
-						},
-						dataType: 'JSON',
-						form: {
-							id: form.getDOM(),
-							upload: true
-						},
-						method: 'POST'
+						}
 					}
 				);
 			}
