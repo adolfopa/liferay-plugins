@@ -116,24 +116,30 @@ public class FeedbackPortlet extends MVCPortlet {
 			for (int i = 1; i < 3; i++) {
 				String fileName = uploadPortletRequest.getFileName("file" + i);
 
-				if (Validator.isNotNull(fileName)) {
-					File file = uploadPortletRequest.getFile("file" + i);
-
-					if (file != null) {
-						byte[] bytes = FileUtil.getBytes(file);
-
-						if ((bytes != null) && (bytes.length > 0)) {
-							ByteArrayInputStream byteArrayInputStream =
-								new ByteArrayInputStream(bytes);
-
-							ObjectValuePair<String, InputStream> ovp =
-								new ObjectValuePair<String, InputStream>(
-									fileName, byteArrayInputStream);
-
-							inputStreamOVPs.add(ovp);
-						}
-					}
+				if (Validator.isNull(fileName)) {
+					continue;
 				}
+
+				File file = uploadPortletRequest.getFile("file" + i);
+
+				if (file == null) {
+					continue;
+				}
+
+				byte[] bytes = FileUtil.getBytes(file);
+
+				if ((bytes == null) || (bytes.length == 0)) {
+					continue;
+				}
+
+				ByteArrayInputStream byteArrayInputStream =
+					new ByteArrayInputStream(bytes);
+
+				ObjectValuePair<String, InputStream> ovp =
+					new ObjectValuePair<String, InputStream>(
+						fileName, byteArrayInputStream);
+
+				inputStreamOVPs.add(ovp);
 			}
 
 			ServiceContext serviceContext =
