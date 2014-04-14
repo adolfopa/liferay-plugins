@@ -57,8 +57,8 @@ import org.powermock.modules.junit4.PowerMockRunner;
 /**
  * @author Mika Koivisto
  */
-@RunWith(PowerMockRunner.class)
 @PrepareForTest(LuceneHelperUtil.class)
+@RunWith(PowerMockRunner.class)
 public class DQLQueryBuilderTest extends PowerMockito {
 
 	@Before
