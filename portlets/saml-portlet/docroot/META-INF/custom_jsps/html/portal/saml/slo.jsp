@@ -125,8 +125,8 @@ JSONArray samlSloRequestInfosJSONArray = samlSloContextJSONObject.getJSONArray("
 
 	var TPL_SAML_ENTITY = new A.Template(
 		'<tpl for="items">',
-			'<div id="samlSp{$i}" class="saml-sp">' +
-				'<span class="saml-sp-label portlet-msg-progress-label">{name}</span>' +
+			'<div class="saml-sp" id="samlSp{$i}">' +
+				'<span class="portlet-msg-progress-label saml-sp-label">{name}</span>' +
 				'<a class="hide saml-sp-retry" data-entityId="{entityId}" href="javascript:;"><%= UnicodeLanguageUtil.get(pageContext, "retry") %></a>' +
 				'<iframe class="hide-accessible" src="?cmd=logout&entityId={entityId}"></iframe>' +
 			'</div>' +
