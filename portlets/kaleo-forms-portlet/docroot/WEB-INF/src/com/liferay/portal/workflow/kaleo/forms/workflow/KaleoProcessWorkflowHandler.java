@@ -16,7 +16,6 @@ package com.liferay.portal.workflow.kaleo.forms.workflow;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.workflow.BaseWorkflowHandler;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -48,15 +47,16 @@ public class KaleoProcessWorkflowHandler extends BaseWorkflowHandler {
 	}
 
 	@Override
-	public String getURLEditWorkflowTask(
-		long workflowTaskId, ServiceContext serviceContext)
-		throws PortalException, SystemException {
-		return null;
+	public String getType(Locale locale) {
+		return ResourceActionsUtil.getModelResource(locale, CLASS_NAME);
 	}
 
 	@Override
-	public String getType(Locale locale) {
-		return ResourceActionsUtil.getModelResource(locale, CLASS_NAME);
+	public String getURLEditWorkflowTask(
+			long workflowTaskId, ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		return null;
 	}
 
 	@Override

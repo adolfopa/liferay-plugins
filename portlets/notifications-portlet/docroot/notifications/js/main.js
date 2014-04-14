@@ -36,9 +36,7 @@ AUI().use(
 												read.setHTML(Liferay.Language.get('read'));
 											}
 
-											if (uri) {
-												instance._redirect(uri, openDialog);
-											}
+											instance._redirect(uri, openDialog);
 										}
 									}
 								}
@@ -57,18 +55,20 @@ AUI().use(
 			},
 
 			_redirect: function(uri, openDialog) {
-				if (openDialog === "false") {
-					var topWindow = Liferay.Util.getTop();
+				if (uri) {
+					if (openDialog === "false") {
+						var topWindow = Liferay.Util.getTop();
 
-					topWindow.location.href = uri;
-				}
-				else {
-					Liferay.Util.openWindow(
-						{
-							id: 'notificationsWindow',
-							uri: uri
-						}
-					);
+						topWindow.location.href = uri;
+					}
+					else {
+						Liferay.Util.openWindow(
+							{
+								id: 'notificationsWindow',
+								uri: uri
+							}
+						);
+					}
 				}
 			}
 		};
