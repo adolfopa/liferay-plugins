@@ -154,6 +154,11 @@ public class DocumentumLock
 	}
 
 	@Override
+	public long getMvccVersion() {
+		return 0;
+	}
+
+	@Override
 	public String getOwner() {
 		return getUserName();
 	}
@@ -194,12 +199,22 @@ public class DocumentumLock
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return false;
+	}
+
+	@Override
 	public boolean isEscapedModel() {
 		return false;
 	}
 
 	@Override
 	public boolean isExpired() {
+		return false;
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
 		return false;
 	}
 
@@ -282,6 +297,10 @@ public class DocumentumLock
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
+	}
+
+	@Override
+	public void setMvccVersion(long mvccVersion) {
 	}
 
 	@Override
