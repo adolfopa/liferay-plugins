@@ -65,9 +65,9 @@
 		<aui:form method="post" name="fm" onSubmit="event.preventDefault();">
 			<aui:model-context bean="<%= kaleoDraftDefinition %>" model="<%= KaleoDraftDefinition.class %>" />
 
-			<aui:input name="kaleoDraftDefinitionId" type="hidden" />
 			<aui:input name="mvcPath" type="hidden" value="/designer/edit_kaleo_draft_definition.jsp" />
 			<aui:input name="backURL" type="hidden" value="<%= backURL %>" />
+			<aui:input name="kaleoDraftDefinitionId" type="hidden" />
 			<aui:input name="content" type="hidden" value="<%= content %>" />
 			<aui:input name="version" type="hidden" />
 			<aui:input name="draftVersion" type="hidden" />
