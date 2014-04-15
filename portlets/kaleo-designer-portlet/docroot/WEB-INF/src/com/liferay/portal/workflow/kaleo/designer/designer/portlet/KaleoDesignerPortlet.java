@@ -74,50 +74,6 @@ import javax.portlet.ResourceResponse;
  */
 public class KaleoDesignerPortlet extends MVCPortlet {
 
-	public void addKaleoDraftDefinition(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		String content = null;
-
-		try {
-			String name = ParamUtil.getString(actionRequest, "name");
-			Map<Locale, String> titleMap = LocalizationUtil.getLocalizationMap(
-				actionRequest, "title");
-			content = ParamUtil.getString(actionRequest, "content");
-			int version = ParamUtil.getInteger(actionRequest, "version", 0);
-
-			ServiceContext serviceContext = ServiceContextFactory.getInstance(
-				actionRequest);
-
-			KaleoDraftDefinition kaleoDraftDefinition =
-				KaleoDraftDefinitionServiceUtil.addKaleoDraftDefinition(
-					themeDisplay.getUserId(), themeDisplay.getCompanyGroupId(),
-					name, titleMap, content, version, 1, serviceContext);
-
-			actionRequest.setAttribute(
-				WebKeys.KALEO_DRAFT_DEFINITION, kaleoDraftDefinition);
-		}
-		catch (Exception e) {
-			if (isSessionErrorException(e)) {
-				if (_log.isDebugEnabled()) {
-					_log.debug(e, e);
-				}
-
-				SessionErrors.add(actionRequest, e.getClass(), e);
-
-				actionRequest.setAttribute(
-					WebKeys.KALEO_DRAFT_DEFINITION_CONTENT, content);
-			}
-			else {
-				throw e;
-			}
-		}
-	}
-
 	public void publishKaleoDraftDefinition(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
@@ -224,6 +180,9 @@ public class KaleoDesignerPortlet extends MVCPortlet {
 		String content = null;
 
 		try {
+			long kaleoDraftDefinitionId = ParamUtil.getLong(
+				actionRequest, "kaleoDraftDefinitionId");
+
 			String name = ParamUtil.getString(actionRequest, "name");
 			Map<Locale, String> titleMap = LocalizationUtil.getLocalizationMap(
 				actionRequest, "title");
@@ -233,10 +192,21 @@ public class KaleoDesignerPortlet extends MVCPortlet {
 			ServiceContext serviceContext = ServiceContextFactory.getInstance(
 				actionRequest);
 
-			KaleoDraftDefinition kaleoDraftDefinition =
-				KaleoDraftDefinitionServiceUtil.updateKaleoDraftDefinition(
-					themeDisplay.getUserId(), name, titleMap, content, version,
-					serviceContext);
+			KaleoDraftDefinition kaleoDraftDefinition = null;
+
+			if (kaleoDraftDefinitionId <= 0) {
+				kaleoDraftDefinition =
+					KaleoDraftDefinitionServiceUtil.addKaleoDraftDefinition(
+						themeDisplay.getUserId(),
+						themeDisplay.getCompanyGroupId(), name, titleMap,
+						content, version, 1, serviceContext);
+			}
+			else {
+				kaleoDraftDefinition =
+					KaleoDraftDefinitionServiceUtil.updateKaleoDraftDefinition(
+						themeDisplay.getUserId(), name, titleMap, content,
+						version, serviceContext);
+			}
 
 			actionRequest.setAttribute(
 				WebKeys.KALEO_DRAFT_DEFINITION, kaleoDraftDefinition);

@@ -33,13 +33,13 @@
 		>
 
 			<c:if test="<%= KaleoDesignerPermission.contains(permissionChecker, themeDisplay.getCompanyGroupId(), ActionKeys.ADD_DRAFT) %>">
-				<portlet:renderURL var="addKaleoDraftDefinitionURL">
+				<portlet:renderURL var="editKaleoDraftDefinitionURL">
 					<portlet:param name="mvcPath" value='<%= "/designer/edit_kaleo_draft_definition.jsp" %>' />
 					<portlet:param name="backURL" value="<%= currentURL %>" />
 				</portlet:renderURL>
 
 				<div class="btn-toolbar">
-					<aui:button href="<%= addKaleoDraftDefinitionURL %>" value="add-definition" />
+					<aui:button href="<%= editKaleoDraftDefinitionURL %>" value="add-definition" />
 				</div>
 			</c:if>
 

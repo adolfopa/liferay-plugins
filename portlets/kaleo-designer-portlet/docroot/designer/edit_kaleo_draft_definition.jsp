@@ -65,6 +65,7 @@
 		<aui:form method="post" name="fm" onSubmit="event.preventDefault();">
 			<aui:model-context bean="<%= kaleoDraftDefinition %>" model="<%= KaleoDraftDefinition.class %>" />
 
+			<aui:input name="kaleoDraftDefinitionId" type="hidden" />
 			<aui:input name="mvcPath" type="hidden" value="/designer/edit_kaleo_draft_definition.jsp" />
 			<aui:input name="backURL" type="hidden" value="<%= backURL %>" />
 			<aui:input name="content" type="hidden" value="<%= content %>" />
@@ -142,7 +143,7 @@
 						<c:choose>
 							<c:when test="<%= kaleoDraftDefinition == null %>">
 								<c:if test="<%= KaleoDesignerPermission.contains(permissionChecker, themeDisplay.getCompanyGroupId(), ActionKeys.ADD_DRAFT) %>">
-									<aui:button onClick='<%= renderResponse.getNamespace() + "addKaleoDraftDefinition();" %>' value="add-draft" />
+									<aui:button onClick='<%= renderResponse.getNamespace() + "updateKaleoDraftDefinition();" %>' value="add-draft" />
 								</c:if>
 							</c:when>
 							<c:otherwise>
@@ -219,23 +220,6 @@
 		</div>
 
 		<aui:script>
-			<c:if test="<%= KaleoDesignerPermission.contains(permissionChecker, themeDisplay.getCompanyGroupId(), ActionKeys.ADD_DRAFT) %>">
-				Liferay.provide(
-					window,
-					'<portlet:namespace />addKaleoDraftDefinition',
-					function() {
-						var A = AUI();
-
-						<portlet:namespace />updateContent();
-
-						<portlet:namespace />updateAction('<portlet:actionURL name="addKaleoDraftDefinition" />');
-
-						submitForm(document.<portlet:namespace />fm);
-					},
-					['aui-base']
-				);
-			</c:if>
-
 			Liferay.provide(
 				window,
 				'<portlet:namespace />afterTabViewChange',
@@ -437,7 +421,7 @@
 				['aui-base']
 			);
 
-			<c:if test="<%= (kaleoDraftDefinition != null) && KaleoDraftDefinitionPermission.contains(permissionChecker, kaleoDraftDefinition, ActionKeys.UPDATE) %>">
+			<c:if test="<%= ((kaleoDraftDefinition == null) && KaleoDesignerPermission.contains(permissionChecker, themeDisplay.getCompanyGroupId(), ActionKeys.ADD_DRAFT)) || ((kaleoDraftDefinition != null) && KaleoDraftDefinitionPermission.contains(permissionChecker, kaleoDraftDefinition, ActionKeys.UPDATE)) %>">
 				Liferay.provide(
 					window,
 					'<portlet:namespace />updateKaleoDraftDefinition',
