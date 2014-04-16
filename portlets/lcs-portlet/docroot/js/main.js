@@ -315,24 +315,9 @@ AUI.add(
 									success: function(event, id, obj) {
 										var response = this.get(STR_REPONSE_DATA);
 
-										var corpEntrySelect = instance.byId('corpEntryId', instance._registrationForm);
-
-										var corpEntries = response.corpEntries;
-
-										if (corpEntries && !corpEntrySelect.get('children').size()) {
-											var options = A.Array.map(
-												corpEntries,
-												function(item, index, collection) {
-													return Lang.sub(TPL_OPTION, [item.corpEntryId, item.name]);
-												}
-											);
-
-											corpEntrySelect.append(options.join(''));
-										}
-
 										var lcsClusterEntries = response.lcsClusterEntries;
 
-										if (lcsClusterEntries.length > 0) {
+										if (lcsClusterEntries.length) {
 											var selectLCSClusterEntryHTML = instance._createSelectLCSClusterEntryHTML(lcsClusterEntries);
 
 											lcsClusterEntryInputWrapper.html(selectLCSClusterEntryHTML);
