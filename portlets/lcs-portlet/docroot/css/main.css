@@ -86,7 +86,7 @@ span.lcs-alert {
 		.lcs-header-title {
 			float: left;
 
-			.lcs-account {
+			.lcs-project {
 				color: $text-blue;
 				font-size: 20px;
 				line-height: 20px;

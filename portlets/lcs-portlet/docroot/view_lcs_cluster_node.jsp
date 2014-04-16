@@ -63,7 +63,7 @@ for (CorpEntryIdentifier currentCorpEntryIdentifier : CorpEntryServiceUtil.getCo
 	</div>
 
 	<div class="lcs-header-title">
-		<div class="lcs-account">
+		<div class="lcs-project">
 			<%= HtmlUtil.escape(corpEntryIdentifier.getName()) %>
 		</div>
 
