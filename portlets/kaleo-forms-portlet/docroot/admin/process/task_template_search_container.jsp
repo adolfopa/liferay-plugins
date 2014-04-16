@@ -35,26 +35,30 @@ String initialStateName = KaleoFormsUtil.getInitialStateName(company.getCompanyI
 		<liferay-ui:search-container-results>
 
 			<%
-			List<ObjectValuePair<String, Long>> pairs = KaleoFormsUtil.getTaskFormPairs(company.getCompanyId(), kaleoProcessId, workflowDefinition, portletSession);
+			TaskFormPairs taskFormPairs = KaleoFormsUtil.getTaskFormPairs(company.getCompanyId(), kaleoProcessId, workflowDefinition, portletSession);
 
-			searchContainer.setResults(pairs);
-			searchContainer.setTotal(pairs.size());
+			TaskFormPair initialStateTaskFormPair = KaleoFormsUtil.getInitialStateTaskFormPair(kaleoProcessId, initialStateName, portletSession);
+
+			taskFormPairs.add(initialStateTaskFormPair);
+
+			searchContainer.setResults(taskFormPairs.list());
+			searchContainer.setTotal(taskFormPairs.size());
 			%>
 
 		</liferay-ui:search-container-results>
 
 		<liferay-ui:search-container-row
-			className="com.liferay.portal.kernel.util.ObjectValuePair<String, Long>"
-			modelVar="objectValuePair"
+			className="com.liferay.portal.workflow.kaleo.forms.util.TaskFormPair"
+			modelVar="taskFormsPair"
 		>
 
 		<liferay-ui:search-container-column-text
 			name="Task"
-			value="<%= objectValuePair.getKey() %>"
+			value="<%= taskFormsPair.getWorkflowTaskName() %>"
 		/>
 
 		<%
-		long ddmTemplateId = objectValuePair.getValue();
+		long ddmTemplateId = taskFormsPair.getDDMTemplateId();
 
 		String formName = StringPool.BLANK;
 
@@ -73,8 +77,8 @@ String initialStateName = KaleoFormsUtil.getInitialStateName(company.getCompanyI
 		<portlet:renderURL var="selectFormURL">
 			<portlet:param name="mvcPath" value="/admin/process/select_template.jsp" />
 			<portlet:param name="backURL" value="<%= backURL %>" />
-			<portlet:param name="workflowTaskName" value="<%= objectValuePair.getKey() %>" />
-			<portlet:param name="mode" value="<%= objectValuePair.getKey().equals(initialStateName) ? DDMTemplateConstants.TEMPLATE_MODE_CREATE : DDMTemplateConstants.TEMPLATE_MODE_EDIT %>" />
+			<portlet:param name="workflowTaskName" value="<%= taskFormsPair.getWorkflowTaskName() %>" />
+			<portlet:param name="mode" value="<%= taskFormsPair.getWorkflowTaskName().equals(initialStateName) ? DDMTemplateConstants.TEMPLATE_MODE_CREATE : DDMTemplateConstants.TEMPLATE_MODE_EDIT %>" />
 		</portlet:renderURL>
 
 		<%

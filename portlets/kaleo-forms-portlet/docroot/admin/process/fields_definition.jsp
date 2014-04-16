@@ -24,9 +24,7 @@ KaleoProcess kaleoProcess = (KaleoProcess)request.getAttribute(WebKeys.KALEO_PRO
 
 long ddlRecordSetId = BeanParamUtil.getLong(kaleoProcess, request, "DDLRecordSetId");
 
-DDLRecordSet ddlRecordSet = KaleoFormsUtil.getDDLRecordSet(kaleoProcess, portletSession);
-
-long ddmStructureId = ddlRecordSet.getDDMStructureId();
+long ddmStructureId = KaleoFormsUtil.getKaleoProcessDDMStructureId(kaleoProcess, portletSession);
 
 String ddmStructureName = StringPool.BLANK;
 

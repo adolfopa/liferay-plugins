@@ -18,20 +18,16 @@
 
 <%
 KaleoProcess kaleoProcess = (KaleoProcess)request.getAttribute(WebKeys.KALEO_PROCESS);
-
-DDLRecordSet ddlRecordSet = KaleoFormsUtil.getDDLRecordSet(kaleoProcess, portletSession);
 %>
 
 <h3><liferay-ui:message key="details" /></h3>
 
 <liferay-ui:error exception="<%= RecordSetNameException.class %>" message="please-enter-a-valid-name" />
 
-<aui:model-context bean="<%= ddlRecordSet %>" model="<%= DDLRecordSet.class %>" />
-
 <aui:fieldset>
-	<aui:input name="name">
+	<aui:input localized="<%= true %>" name="name" type="text" value="<%= KaleoFormsUtil.getKaleoProcessName(kaleoProcess, portletSession) %>">
 		<aui:validator name="required" />
 	</aui:input>
 
-	<aui:input name="description" />
+	<aui:input localized="<%= true %>" name="description" type="text" value="<%= KaleoFormsUtil.getKaleoProcessDescription(kaleoProcess, portletSession) %>" />
 </aui:fieldset>

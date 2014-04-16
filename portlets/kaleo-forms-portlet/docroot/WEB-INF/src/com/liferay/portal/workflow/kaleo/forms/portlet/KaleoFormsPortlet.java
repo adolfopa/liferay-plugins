@@ -23,7 +23,6 @@ import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
-import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.kernel.workflow.WorkflowException;
@@ -47,7 +46,7 @@ import com.liferay.portal.workflow.kaleo.forms.service.KaleoProcessLocalServiceU
 import com.liferay.portal.workflow.kaleo.forms.service.KaleoProcessServiceUtil;
 import com.liferay.portal.workflow.kaleo.forms.service.permission.KaleoProcessPermission;
 import com.liferay.portal.workflow.kaleo.forms.util.ActionKeys;
-import com.liferay.portal.workflow.kaleo.forms.util.TaskFormPairsSerializer;
+import com.liferay.portal.workflow.kaleo.forms.util.TaskFormPairs;
 import com.liferay.portal.workflow.kaleo.forms.util.WebKeys;
 import com.liferay.portlet.dynamicdatalists.RecordSetDDMStructureIdException;
 import com.liferay.portlet.dynamicdatalists.RecordSetNameException;
@@ -259,11 +258,14 @@ public class KaleoFormsPortlet extends MVCPortlet {
 		long ddmTemplateId = ParamUtil.getLong(actionRequest, "ddmTemplateId");
 		String workflowDefinition = ParamUtil.getString(
 			actionRequest, "workflowDefinition");
+		String workflowDefinitionName = ParamUtil.getString(
+			actionRequest, "workflowDefinitionName");
+		long workflowDefinitionVersion = ParamUtil.getLong(
+			actionRequest, "workflowDefinitionVersion");
 		String taskFormPairsData = ParamUtil.getString(
 			actionRequest, "taskFormPairsData");
 
-		List<ObjectValuePair<String, Long>> taskFormPairs =
-			TaskFormPairsSerializer.deserialize(taskFormPairsData);
+		TaskFormPairs taskFormPairs = TaskFormPairs.parse(taskFormPairsData);
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			KaleoProcess.class.getName(), actionRequest);
@@ -277,12 +279,13 @@ public class KaleoFormsPortlet extends MVCPortlet {
 		if (kaleoProcessId <= 0) {
 			kaleoProcess = KaleoProcessServiceUtil.addKaleoProcess(
 				groupId, ddlRecordSet.getRecordSetId(), ddmTemplateId,
-				workflowDefinition, taskFormPairs, serviceContext);
+				workflowDefinitionName, workflowDefinitionVersion,
+				taskFormPairs, serviceContext);
 		}
 		else {
 			kaleoProcess = KaleoProcessServiceUtil.updateKaleoProcess(
-				kaleoProcessId, ddmTemplateId, workflowDefinition,
-				taskFormPairs, serviceContext);
+				kaleoProcessId, ddmTemplateId, workflowDefinitionName,
+				workflowDefinitionVersion, taskFormPairs, serviceContext);
 		}
 
 		WorkflowDefinitionLinkLocalServiceUtil.updateWorkflowDefinitionLink(

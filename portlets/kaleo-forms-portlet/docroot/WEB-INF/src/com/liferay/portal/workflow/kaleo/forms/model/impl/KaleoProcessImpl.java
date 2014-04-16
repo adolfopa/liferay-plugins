@@ -43,6 +43,12 @@ public class KaleoProcessImpl extends KaleoProcessBaseImpl {
 		return DDMTemplateLocalServiceUtil.getTemplate(getDDMTemplateId());
 	}
 
+	public String getDescription() throws PortalException, SystemException {
+		DDLRecordSet ddlRecordSet = getDDLRecordSet();
+
+		return ddlRecordSet.getDescription();
+	}
+
 	public String getDescription(Locale locale)
 		throws PortalException, SystemException {
 
@@ -56,6 +62,12 @@ public class KaleoProcessImpl extends KaleoProcessBaseImpl {
 
 		return KaleoProcessLinkLocalServiceUtil.getKaleoProcessLinks(
 			getKaleoProcessId());
+	}
+
+	public String getName() throws PortalException, SystemException {
+		DDLRecordSet ddlRecordSet = getDDLRecordSet();
+
+		return ddlRecordSet.getName();
 	}
 
 	public String getName(Locale locale)

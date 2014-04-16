@@ -16,7 +16,6 @@ package com.liferay.portal.workflow.kaleo.forms.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
@@ -24,6 +23,8 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.forms.KaleoProcessDDMTemplateIdException;
 import com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess;
 import com.liferay.portal.workflow.kaleo.forms.service.base.KaleoProcessLocalServiceBaseImpl;
+import com.liferay.portal.workflow.kaleo.forms.util.TaskFormPair;
+import com.liferay.portal.workflow.kaleo.forms.util.TaskFormPairs;
 import com.liferay.portlet.dynamicdatalists.model.DDLRecord;
 
 import java.util.Date;
@@ -37,9 +38,8 @@ public class KaleoProcessLocalServiceImpl
 
 	public KaleoProcess addKaleoProcess(
 			long userId, long groupId, long ddlRecordSetId, long ddmTemplateId,
-			String workflowDefinition,
-			List<ObjectValuePair<String, Long>> taskFormPairs,
-			ServiceContext serviceContext)
+			String workflowDefinitionName, long workflowDefinitionVersion,
+			TaskFormPairs taskFormPairs, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		// Kaleo process
@@ -62,7 +62,8 @@ public class KaleoProcessLocalServiceImpl
 		kaleoProcess.setModifiedDate(serviceContext.getModifiedDate(now));
 		kaleoProcess.setDDLRecordSetId(ddlRecordSetId);
 		kaleoProcess.setDDMTemplateId(ddmTemplateId);
-		kaleoProcess.setWorkflowDefinition(workflowDefinition);
+		kaleoProcess.setWorkflowDefinitionName(workflowDefinitionName);
+		kaleoProcess.setWorkflowDefinitionVersion(workflowDefinitionVersion);
 
 		kaleoProcessPersistence.update(kaleoProcess);
 
@@ -173,9 +174,9 @@ public class KaleoProcessLocalServiceImpl
 	}
 
 	public KaleoProcess updateKaleoProcess(
-			long kaleoProcessId, long ddmTemplateId, String workflowDefinition,
-			List<ObjectValuePair<String, Long>> taskFormPairs,
-			ServiceContext serviceContext)
+			long kaleoProcessId, long ddmTemplateId,
+			String workflowDefinitionName, long workflowDefinitionVersion,
+			TaskFormPairs taskFormPairs, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		// Kaleo process
@@ -187,7 +188,8 @@ public class KaleoProcessLocalServiceImpl
 
 		kaleoProcess.setModifiedDate(serviceContext.getModifiedDate(null));
 		kaleoProcess.setDDMTemplateId(ddmTemplateId);
-		kaleoProcess.setWorkflowDefinition(workflowDefinition);
+		kaleoProcess.setWorkflowDefinitionName(workflowDefinitionName);
+		kaleoProcess.setWorkflowDefinitionVersion(workflowDefinitionVersion);
 
 		kaleoProcessPersistence.update(kaleoProcess);
 
@@ -201,13 +203,13 @@ public class KaleoProcessLocalServiceImpl
 	}
 
 	protected void updateKaleoProcessLinks(
-			long kaleoProcessId,
-			List<ObjectValuePair<String, Long>> taskFormPairs)
+			long kaleoProcessId, TaskFormPairs taskFormPairs)
 		throws SystemException {
 
-		for (ObjectValuePair<String, Long> taskFormPair : taskFormPairs) {
+		for (TaskFormPair taskFormPair : taskFormPairs) {
 			kaleoProcessLinkLocalService.addKaleoProcessLink(
-				kaleoProcessId, taskFormPair.getKey(), taskFormPair.getValue());
+				kaleoProcessId, taskFormPair.getWorkflowTaskName(),
+				taskFormPair.getDDMTemplateId());
 		}
 	}
 

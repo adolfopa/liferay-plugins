@@ -101,7 +101,7 @@ String mode = ParamUtil.getString(request, "mode");
 				{
 					after: {
 						success: function() {
-							window.location = '<%= HtmlUtil.escapeHREF(backURL) %>';
+							window.location = decodeURIComponent('<%= HtmlUtil.escapeURL(backURL) %>');
 						}
 					},
 					data: {

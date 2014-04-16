@@ -14,32 +14,26 @@
 
 package com.liferay.portal.workflow.kaleo.forms.util;
 
-import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
  * @author Marcellus Tavares
  */
-public class TaskFormPairsSerializer {
+public class TaskFormPairs implements Iterable<TaskFormPair> {
 
-	public static List<ObjectValuePair<String, Long>> deserialize(
-		String taskFormPairsData) {
+	public static TaskFormPairs parse(String data) {
+		TaskFormPairs taskFormPairs = new TaskFormPairs();
 
-		List<ObjectValuePair<String, Long>> taskFormPairs =
-			new ArrayList<ObjectValuePair<String, Long>>();
-
-		for (String taskForm : StringUtil.split(taskFormPairsData)) {
+		for (String taskForm : StringUtil.split(data)) {
 			String[] keyValue = StringUtil.split(taskForm, "#");
 
-			ObjectValuePair<String, Long> taskFormPair =
-				new ObjectValuePair<String, Long>();
-
-			taskFormPair.setKey(keyValue[0]);
-			taskFormPair.setValue(Long.valueOf(keyValue[1]));
+			TaskFormPair taskFormPair = new TaskFormPair(
+				keyValue[0], Long.valueOf(keyValue[1]));
 
 			taskFormPairs.add(taskFormPair);
 		}
@@ -47,20 +41,31 @@ public class TaskFormPairsSerializer {
 		return taskFormPairs;
 	}
 
-	public static String serialize(
-		List<ObjectValuePair<String, Long>> taskFormPairs,
-		String initialStateName) {
+	public void add(TaskFormPair taskFormPair) {
+		_taskFormPairs.add(taskFormPair);
+	}
 
-		StringBundler sb = new StringBundler(taskFormPairs.size() * 4);
+	@Override
+	public Iterator<TaskFormPair> iterator() {
+		return _taskFormPairs.iterator();
+	}
 
-		for (ObjectValuePair<String, Long> taskFormPair : taskFormPairs) {
-			if (initialStateName.equals(taskFormPair.getKey())) {
-				continue;
-			}
+	public List<TaskFormPair> list() {
+		return _taskFormPairs;
+	}
 
-			sb.append(taskFormPair.getKey());
+	public int size() {
+		return _taskFormPairs.size();
+	}
+
+	@Override
+	public String toString() {
+		StringBundler sb = new StringBundler(_taskFormPairs.size() * 4);
+
+		for (TaskFormPair taskFormPair : _taskFormPairs) {
+			sb.append(taskFormPair.getWorkflowTaskName());
 			sb.append("#");
-			sb.append(taskFormPair.getValue());
+			sb.append(taskFormPair.getDDMTemplateId());
 			sb.append(",");
 		}
 
@@ -70,5 +75,7 @@ public class TaskFormPairsSerializer {
 
 		return sb.toString();
 	}
+
+	private List<TaskFormPair> _taskFormPairs = new ArrayList<TaskFormPair>();
 
 }

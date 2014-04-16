@@ -24,7 +24,7 @@ String tabs1 = ParamUtil.getString(request, "tabs1", "published");
 
 KaleoProcess kaleoProcess = (KaleoProcess)request.getAttribute(WebKeys.KALEO_PROCESS);
 
-String workflowDefinition = GetterUtil.getString(portletSession.getAttribute("workflowDefinition"), BeanParamUtil.getString(kaleoProcess, request, "workflowDefinition"));
+String workflowDefinition = KaleoFormsUtil.getWorkflowDefinition(kaleoProcess, portletSession);
 
 String workflowDefinitionName = StringPool.BLANK;
 
@@ -56,6 +56,9 @@ if (Validator.isNotNull(workflowDefinition)) {
 	<aui:input name="workflowDefinition" type="hidden" value="<%= workflowDefinition %>">
 		<aui:validator name="required" />
 	</aui:input>
+
+	<aui:input name="workflowDefinitionName" type="hidden" value="<%= workflowDefinitionName %>" />
+	<aui:input name="workflowDefinitionVersion" type="hidden" value="<%= workflowDefinitionVersion %>" />
 </aui:field-wrapper>
 
 <liferay-portlet:renderURL varImpl="iteratorURL">

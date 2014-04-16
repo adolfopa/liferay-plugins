@@ -14,10 +14,10 @@
 
 package com.liferay.portal.workflow.kaleo.forms.util;
 
+import com.liferay.compat.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
-import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -31,7 +31,6 @@ import com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink;
 import com.liferay.portal.workflow.kaleo.forms.service.KaleoProcessLinkLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.forms.service.KaleoProcessServiceUtil;
 import com.liferay.portlet.dynamicdatalists.model.DDLRecordSet;
-import com.liferay.portlet.dynamicdatalists.service.DDLRecordSetLocalServiceUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -58,45 +57,6 @@ public class KaleoFormsUtil {
 		}
 	}
 
-	public static DDLRecordSet getDDLRecordSet(
-			KaleoProcess kaleoProcess, PortletSession portletSession)
-		throws Exception {
-
-		Map<Locale, String> nameMap = _getNameMap(portletSession);
-
-		Map<Locale, String> descriptionMap = _getDescriptionMap(portletSession);
-
-		long ddmStructureId = GetterUtil.getLong(
-			portletSession.getAttribute("ddmStructureId"), 0);
-
-		DDLRecordSet ddlRecordSet = null;
-
-		if (kaleoProcess == null) {
-			ddlRecordSet = DDLRecordSetLocalServiceUtil.createDDLRecordSet(0);
-		}
-		else {
-			ddlRecordSet = kaleoProcess.getDDLRecordSet();
-
-			if (nameMap.isEmpty()) {
-				nameMap = ddlRecordSet.getNameMap();
-			}
-
-			if (descriptionMap.isEmpty()) {
-				descriptionMap = ddlRecordSet.getDescriptionMap();
-			}
-
-			if (ddmStructureId == 0) {
-				ddmStructureId = ddlRecordSet.getDDMStructureId();
-			}
-		}
-
-		ddlRecordSet.setNameMap(nameMap);
-		ddlRecordSet.setDescriptionMap(descriptionMap);
-		ddlRecordSet.setDDMStructureId(ddmStructureId);
-
-		return ddlRecordSet;
-	}
-
 	public static String getInitialStateName(
 			long companyId, String workflowDefinition)
 		throws Exception {
@@ -119,16 +79,10 @@ public class KaleoFormsUtil {
 		return _getInitalStateName(document.getRootElement());
 	}
 
-	public static List<ObjectValuePair<String, Long>> getTaskFormPairs(
-			long companyId, long kaleoProcessId, String workflowDefinition,
+	public static TaskFormPair getInitialStateTaskFormPair(
+			long kaleoProcessId, String initialStateName,
 			PortletSession portletSession)
 		throws Exception {
-
-		List<ObjectValuePair<String, Long>> taskFormPairs =
-			new ArrayList<ObjectValuePair<String, Long>>();
-
-		String initialStateName = getInitialStateName(
-			companyId, workflowDefinition);
 
 		long ddmTemplateId = GetterUtil.getLong(
 			portletSession.getAttribute(initialStateName), 0);
@@ -140,21 +94,145 @@ public class KaleoFormsUtil {
 			ddmTemplateId = kaleoProcess.getDDMTemplateId();
 		}
 
-		taskFormPairs.add(
-			new ObjectValuePair<String, Long>(initialStateName, ddmTemplateId));
+		return new TaskFormPair(initialStateName, ddmTemplateId);
+	}
+
+	public static long getKaleoProcessDDMStructureId(
+			KaleoProcess kaleoProcess, PortletSession portletSession)
+		throws Exception {
+
+		long ddmStructureId = GetterUtil.getLong(
+			portletSession.getAttribute("ddmStructureId"), 0);
+
+		if (ddmStructureId > 0) {
+			return ddmStructureId;
+		}
+
+		if (kaleoProcess != null) {
+			DDLRecordSet ddlRecordSet = kaleoProcess.getDDLRecordSet();
+
+			return ddlRecordSet.getDDMStructureId();
+		}
+
+		return 0;
+	}
+
+	public static String getKaleoProcessDescription(
+			KaleoProcess kaleoProcess, PortletSession portletSession)
+		throws Exception {
+
+		Map<Locale, String> descriptionMap = new HashMap<Locale, String>();
+
+		String translatedLanguagesDescription = GetterUtil.getString(
+			portletSession.getAttribute("translatedLanguagesDescription"),
+			StringPool.BLANK);
+
+		for (String translatedLanguage :
+				StringUtil.split(translatedLanguagesDescription)) {
+
+			String description = GetterUtil.getString(
+				portletSession.getAttribute("description" + translatedLanguage),
+				StringPool.BLANK);
+
+			Locale locale = LocaleUtil.fromLanguageId(translatedLanguage);
+
+			descriptionMap.put(locale, description);
+		}
+
+		if (!descriptionMap.isEmpty()) {
+			String description = LocalizationUtil.updateLocalization(
+				descriptionMap, StringPool.BLANK, "Description",
+				_getDefaultLanguageId());
+
+			return description;
+		}
+
+		if (kaleoProcess != null) {
+			return kaleoProcess.getDescription();
+		}
+
+		return StringPool.BLANK;
+	}
+
+	public static String getKaleoProcessName(
+			KaleoProcess kaleoProcess, PortletSession portletSession)
+		throws Exception {
+
+		Map<Locale, String> nameMap = new HashMap<Locale, String>();
+
+		String translatedLanguagesName = GetterUtil.getString(
+			portletSession.getAttribute("translatedLanguagesName"),
+			StringPool.BLANK);
+
+		for (String translatedLanguage :
+				StringUtil.split(translatedLanguagesName)) {
+
+			String name = GetterUtil.getString(
+				portletSession.getAttribute("name" + translatedLanguage),
+				StringPool.BLANK);
+
+			Locale locale = LocaleUtil.fromLanguageId(translatedLanguage);
+
+			nameMap.put(locale, name);
+		}
+
+		if (!nameMap.isEmpty()) {
+			String name = LocalizationUtil.updateLocalization(
+				nameMap, StringPool.BLANK, "Name", _getDefaultLanguageId());
+
+			return name;
+		}
+
+		if (kaleoProcess != null) {
+			return kaleoProcess.getName();
+		}
+
+		return StringPool.BLANK;
+	}
+
+	public static TaskFormPairs getTaskFormPairs(
+			long companyId, long kaleoProcessId, String workflowDefinition,
+			PortletSession portletSession)
+		throws Exception {
+
+		TaskFormPairs taskFormPairs = new TaskFormPairs();
 
 		for (String taskName : _getTaskNames(companyId, workflowDefinition)) {
-			ObjectValuePair<String, Long> taskFormPair =
-				new ObjectValuePair<String, Long>();
+			long ddmTemplateId = _getDDMTemplateId(
+				kaleoProcessId, taskName, portletSession);
 
-			taskFormPair.setKey(taskName);
-			taskFormPair.setValue(
-				_getDDMTemplateId(kaleoProcessId, taskName, portletSession));
+			TaskFormPair taskFormPair = new TaskFormPair(
+				taskName, ddmTemplateId);
 
 			taskFormPairs.add(taskFormPair);
 		}
 
 		return taskFormPairs;
+	}
+
+	public static String getWorkflowDefinition(
+		KaleoProcess kaleoProcess, PortletSession portletSession) {
+
+		String workflowDefinition = GetterUtil.getString(
+			portletSession.getAttribute("workflowDefinition"),
+			StringPool.BLANK);
+
+		if (Validator.isNotNull(workflowDefinition)) {
+			return workflowDefinition;
+		}
+
+		if (kaleoProcess != null) {
+			String workflowDefinitionName =
+				kaleoProcess.getWorkflowDefinitionName();
+
+			long workflowDefinitionVersion =
+				kaleoProcess.getWorkflowDefinitionVersion();
+
+			workflowDefinition =
+				workflowDefinitionName + "@" + workflowDefinitionVersion;
+		}
+
+		return workflowDefinition;
 	}
 
 	private static void _addTaskNames(Element element, List<String> taskNames) {
@@ -187,29 +265,10 @@ public class KaleoFormsUtil {
 		return 0;
 	}
 
-	private static Map<Locale, String> _getDescriptionMap(
-			PortletSession portletSession)
-		throws Exception {
+	private static String _getDefaultLanguageId() {
+		Locale defaultLocale = LocaleUtil.getSiteDefault();
 
-		Map<Locale, String> descriptionMap = new HashMap<Locale, String>();
-
-		String translatedLanguagesDescription = GetterUtil.getString(
-			portletSession.getAttribute("translatedLanguagesDescription"),
-			StringPool.BLANK);
-
-		for (String translatedLanguage :
-				StringUtil.split(translatedLanguagesDescription)) {
-
-			String description = GetterUtil.getString(
-				portletSession.getAttribute("description" + translatedLanguage),
-				StringPool.BLANK);
-
-			Locale locale = LocaleUtil.fromLanguageId(translatedLanguage);
-
-			descriptionMap.put(locale, description);
-		}
-
-		return descriptionMap;
+		return LocaleUtil.toLanguageId(defaultLocale);
 	}
 
 	private static String _getInitalStateName(Element rootElement) {
@@ -223,31 +282,6 @@ public class KaleoFormsUtil {
 		}
 
 		return null;
-	}
-
-	private static Map<Locale, String> _getNameMap(
-			PortletSession portletSession)
-		throws Exception {
-
-		Map<Locale, String> nameMap = new HashMap<Locale, String>();
-
-		String translatedLanguagesName = GetterUtil.getString(
-			portletSession.getAttribute("translatedLanguagesName"),
-			StringPool.BLANK);
-
-		for (String translatedLanguage :
-				StringUtil.split(translatedLanguagesName)) {
-
-			String name = GetterUtil.getString(
-				portletSession.getAttribute("name" + translatedLanguage),
-				StringPool.BLANK);
-
-			Locale locale = LocaleUtil.fromLanguageId(translatedLanguage);
-
-			nameMap.put(locale, name);
-		}
-
-		return nameMap;
 	}
 
 	private static List<String> _getTaskNames(Element rootElement) {

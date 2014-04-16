@@ -23,7 +23,7 @@ KaleoProcess kaleoProcess = (KaleoProcess)request.getAttribute(WebKeys.KALEO_PRO
 
 long kaleoProcessId = BeanParamUtil.getLong(kaleoProcess, request, "kaleoProcessId");
 
-String workflowDefinition = GetterUtil.getString(portletSession.getAttribute("workflowDefinition"), StringPool.BLANK);
+String workflowDefinition = KaleoFormsUtil.getWorkflowDefinition(kaleoProcess, portletSession);
 
 String initialStateName = KaleoFormsUtil.getInitialStateName(company.getCompanyId(), workflowDefinition);
 
@@ -39,14 +39,14 @@ if (kaleoProcess != null) {
 <aui:field-wrapper>
 
 	<%
-	List<ObjectValuePair<String, Long>> taskFormPairs = KaleoFormsUtil.getTaskFormPairs(company.getCompanyId(), kaleoProcessId, workflowDefinition, portletSession);
+	TaskFormPairs taskFormPairs = KaleoFormsUtil.getTaskFormPairs(company.getCompanyId(), kaleoProcessId, workflowDefinition, portletSession);
 	%>
 
 	<aui:input name="ddmTemplateId" type="hidden" value="<%= ddmTemplateId %>">
 		<aui:validator name="required" />
 	</aui:input>
 
-	<aui:input name="taskFormPairsData" type="hidden" value="<%= TaskFormPairsSerializer.serialize(taskFormPairs, initialStateName) %>" />
+	<aui:input name="taskFormPairsData" type="hidden" value="<%= taskFormPairs.toString() %>" />
 </aui:field-wrapper>
 
 <portlet:renderURL var="currentSectionURL">
