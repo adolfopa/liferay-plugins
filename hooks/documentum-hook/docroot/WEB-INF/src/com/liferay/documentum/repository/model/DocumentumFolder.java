@@ -208,7 +208,7 @@ public class DocumentumFolder extends DocumentumModel implements Folder {
 
 	@Override
 	public StagedModelType getStagedModelType() {
-		return new StagedModelType(Folder.class);
+		return new StagedModelType(DLFolderConstants.getClassName());
 	}
 
 	@Override
