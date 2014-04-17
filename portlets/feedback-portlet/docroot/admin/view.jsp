@@ -69,7 +69,7 @@ String redirect = ParamUtil.getString(request, "redirect");
 			</c:choose>
 
 			<aui:button-row>
-				<aui:button cssClass="save-configurations" type="button" value="save" />
+				<aui:button cssClass="save-configurations" value="save" />
 			</aui:button-row>
 		</aui:form>
 
