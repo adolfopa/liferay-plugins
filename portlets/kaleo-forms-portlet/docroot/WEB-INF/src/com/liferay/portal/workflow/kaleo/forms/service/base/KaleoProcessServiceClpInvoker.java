@@ -35,7 +35,8 @@ public class KaleoProcessServiceClpInvoker {
 		_methodName56 = "addKaleoProcess";
 
 		_methodParameterTypes56 = new String[] {
-				"long", "long", "long", "long[][]",
+				"long", "long", "long", "java.lang.String", "long",
+				"com.liferay.portal.workflow.kaleo.forms.util.TaskFormPairs",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
@@ -65,7 +66,8 @@ public class KaleoProcessServiceClpInvoker {
 		_methodName62 = "updateKaleoProcess";
 
 		_methodParameterTypes62 = new String[] {
-				"long", "long", "long[][]",
+				"long", "long", "java.lang.String", "long",
+				"com.liferay.portal.workflow.kaleo.forms.util.TaskFormPairs",
 				"com.liferay.portal.service.ServiceContext"
 			};
 	}
@@ -88,8 +90,11 @@ public class KaleoProcessServiceClpInvoker {
 				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
 			return KaleoProcessServiceUtil.addKaleoProcess(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
-				((Long)arguments[2]).longValue(), (long[])arguments[3],
-				(com.liferay.portal.service.ServiceContext)arguments[4]);
+				((Long)arguments[2]).longValue(),
+				(java.lang.String)arguments[3],
+				((Long)arguments[4]).longValue(),
+				(com.liferay.portal.workflow.kaleo.forms.util.TaskFormPairs)arguments[5],
+				(com.liferay.portal.service.ServiceContext)arguments[6]);
 		}
 
 		if (_methodName57.equals(name) &&
@@ -125,8 +130,11 @@ public class KaleoProcessServiceClpInvoker {
 		if (_methodName62.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes62, parameterTypes)) {
 			return KaleoProcessServiceUtil.updateKaleoProcess(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue(), (long[])arguments[2],
-				(com.liferay.portal.service.ServiceContext)arguments[3]);
+				((Long)arguments[1]).longValue(),
+				(java.lang.String)arguments[2],
+				((Long)arguments[3]).longValue(),
+				(com.liferay.portal.workflow.kaleo.forms.util.TaskFormPairs)arguments[4],
+				(com.liferay.portal.service.ServiceContext)arguments[5]);
 		}
 
 		throw new UnsupportedOperationException();

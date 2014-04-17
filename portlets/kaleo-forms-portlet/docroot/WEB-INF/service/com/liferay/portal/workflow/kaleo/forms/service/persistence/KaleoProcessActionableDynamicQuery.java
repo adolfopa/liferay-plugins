@@ -21,8 +21,10 @@ import com.liferay.portal.workflow.kaleo.forms.service.KaleoProcessLocalServiceU
 
 /**
  * @author Marcellus Tavares
+ * @deprecated As of 7.0.0, replaced by {@link KaleoProcessLocalServiceUtil#getExportActionableDynamicQuery()}
  * @generated
  */
+@Deprecated
 public abstract class KaleoProcessActionableDynamicQuery
 	extends BaseActionableDynamicQuery {
 	public KaleoProcessActionableDynamicQuery() throws SystemException {

@@ -59,12 +59,15 @@ public class KaleoProcessServiceWrapper implements KaleoProcessService,
 	@Override
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess addKaleoProcess(
 		long groupId, long ddlRecordSetId, long ddmTemplateId,
-		long[] kaleoProcessLinkIds,
+		java.lang.String workflowDefinitionName,
+		long workflowDefinitionVersion,
+		com.liferay.portal.workflow.kaleo.forms.util.TaskFormPairs taskFormPairs,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoProcessService.addKaleoProcess(groupId, ddlRecordSetId,
-			ddmTemplateId, kaleoProcessLinkIds, serviceContext);
+			ddmTemplateId, workflowDefinitionName, workflowDefinitionVersion,
+			taskFormPairs, serviceContext);
 	}
 
 	@Override
@@ -107,12 +110,16 @@ public class KaleoProcessServiceWrapper implements KaleoProcessService,
 
 	@Override
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess updateKaleoProcess(
-		long kaleoProcessId, long ddmTemplateId, long[] kaleoProcessLinkIds,
+		long kaleoProcessId, long ddmTemplateId,
+		java.lang.String workflowDefinitionName,
+		long workflowDefinitionVersion,
+		com.liferay.portal.workflow.kaleo.forms.util.TaskFormPairs taskFormPairs,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoProcessService.updateKaleoProcess(kaleoProcessId,
-			ddmTemplateId, kaleoProcessLinkIds, serviceContext);
+			ddmTemplateId, workflowDefinitionName, workflowDefinitionVersion,
+			taskFormPairs, serviceContext);
 	}
 
 	/**

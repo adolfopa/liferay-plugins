@@ -40,6 +40,8 @@ public class KaleoProcessSoap implements Serializable {
 		soapModel.setModifiedDate(model.getModifiedDate());
 		soapModel.setDDLRecordSetId(model.getDDLRecordSetId());
 		soapModel.setDDMTemplateId(model.getDDMTemplateId());
+		soapModel.setWorkflowDefinitionName(model.getWorkflowDefinitionName());
+		soapModel.setWorkflowDefinitionVersion(model.getWorkflowDefinitionVersion());
 
 		return soapModel;
 	}
@@ -164,6 +166,22 @@ public class KaleoProcessSoap implements Serializable {
 		_DDMTemplateId = DDMTemplateId;
 	}
 
+	public String getWorkflowDefinitionName() {
+		return _WorkflowDefinitionName;
+	}
+
+	public void setWorkflowDefinitionName(String WorkflowDefinitionName) {
+		_WorkflowDefinitionName = WorkflowDefinitionName;
+	}
+
+	public long getWorkflowDefinitionVersion() {
+		return _WorkflowDefinitionVersion;
+	}
+
+	public void setWorkflowDefinitionVersion(long WorkflowDefinitionVersion) {
+		_WorkflowDefinitionVersion = WorkflowDefinitionVersion;
+	}
+
 	private long _kaleoProcessId;
 	private long _groupId;
 	private long _companyId;
@@ -173,4 +191,6 @@ public class KaleoProcessSoap implements Serializable {
 	private Date _modifiedDate;
 	private long _DDLRecordSetId;
 	private long _DDMTemplateId;
+	private String _WorkflowDefinitionName;
+	private long _WorkflowDefinitionVersion;
 }

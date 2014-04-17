@@ -35,7 +35,8 @@ public class KaleoProcessServiceClp implements KaleoProcessService {
 		_methodName3 = "addKaleoProcess";
 
 		_methodParameterTypes3 = new String[] {
-				"long", "long", "long", "long[][]",
+				"long", "long", "long", "java.lang.String", "long",
+				"com.liferay.portal.workflow.kaleo.forms.util.TaskFormPairs",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
@@ -65,7 +66,8 @@ public class KaleoProcessServiceClp implements KaleoProcessService {
 		_methodName9 = "updateKaleoProcess";
 
 		_methodParameterTypes9 = new String[] {
-				"long", "long", "long[][]",
+				"long", "long", "java.lang.String", "long",
+				"com.liferay.portal.workflow.kaleo.forms.util.TaskFormPairs",
 				"com.liferay.portal.service.ServiceContext"
 			};
 	}
@@ -123,7 +125,9 @@ public class KaleoProcessServiceClp implements KaleoProcessService {
 	@Override
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess addKaleoProcess(
 		long groupId, long ddlRecordSetId, long ddmTemplateId,
-		long[] kaleoProcessLinkIds,
+		java.lang.String workflowDefinitionName,
+		long workflowDefinitionVersion,
+		com.liferay.portal.workflow.kaleo.forms.util.TaskFormPairs taskFormPairs,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -139,7 +143,11 @@ public class KaleoProcessServiceClp implements KaleoProcessService {
 						
 					ddmTemplateId,
 						
-					ClpSerializer.translateInput(kaleoProcessLinkIds),
+					ClpSerializer.translateInput(workflowDefinitionName),
+						
+					workflowDefinitionVersion,
+						
+					ClpSerializer.translateInput(taskFormPairs),
 						
 					ClpSerializer.translateInput(serviceContext)
 					});
@@ -333,7 +341,10 @@ public class KaleoProcessServiceClp implements KaleoProcessService {
 
 	@Override
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess updateKaleoProcess(
-		long kaleoProcessId, long ddmTemplateId, long[] kaleoProcessLinkIds,
+		long kaleoProcessId, long ddmTemplateId,
+		java.lang.String workflowDefinitionName,
+		long workflowDefinitionVersion,
+		com.liferay.portal.workflow.kaleo.forms.util.TaskFormPairs taskFormPairs,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -347,7 +358,11 @@ public class KaleoProcessServiceClp implements KaleoProcessService {
 						
 					ddmTemplateId,
 						
-					ClpSerializer.translateInput(kaleoProcessLinkIds),
+					ClpSerializer.translateInput(workflowDefinitionName),
+						
+					workflowDefinitionVersion,
+						
+					ClpSerializer.translateInput(taskFormPairs),
 						
 					ClpSerializer.translateInput(serviceContext)
 					});

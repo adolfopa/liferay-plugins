@@ -204,6 +204,11 @@ public class KaleoProcessLocalServiceUtil {
 		return getService().getKaleoProcess(kaleoProcessId);
 	}
 
+	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getActionableDynamicQuery();
+	}
+
 	public static com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -279,13 +284,16 @@ public class KaleoProcessLocalServiceUtil {
 
 	public static com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess addKaleoProcess(
 		long userId, long groupId, long ddlRecordSetId, long ddmTemplateId,
-		long[] kaleoProcessLinkIds,
+		java.lang.String workflowDefinitionName,
+		long workflowDefinitionVersion,
+		com.liferay.portal.workflow.kaleo.forms.util.TaskFormPairs taskFormPairs,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .addKaleoProcess(userId, groupId, ddlRecordSetId,
-			ddmTemplateId, kaleoProcessLinkIds, serviceContext);
+			ddmTemplateId, workflowDefinitionName, workflowDefinitionVersion,
+			taskFormPairs, serviceContext);
 	}
 
 	public static void deleteKaleoProcessData(long kaleoProcessId)
@@ -321,13 +329,17 @@ public class KaleoProcessLocalServiceUtil {
 	}
 
 	public static com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess updateKaleoProcess(
-		long kaleoProcessId, long ddmTemplateId, long[] kaleoProcessLinkIds,
+		long kaleoProcessId, long ddmTemplateId,
+		java.lang.String workflowDefinitionName,
+		long workflowDefinitionVersion,
+		com.liferay.portal.workflow.kaleo.forms.util.TaskFormPairs taskFormPairs,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .updateKaleoProcess(kaleoProcessId, ddmTemplateId,
-			kaleoProcessLinkIds, serviceContext);
+			workflowDefinitionName, workflowDefinitionVersion, taskFormPairs,
+			serviceContext);
 	}
 
 	public static void clearService() {

@@ -217,6 +217,35 @@ public interface KaleoProcessModel extends BaseModel<KaleoProcess>, GroupedModel
 	 */
 	public void setDDMTemplateId(long DDMTemplateId);
 
+	/**
+	 * Returns the workflow definition name of this kaleo process.
+	 *
+	 * @return the workflow definition name of this kaleo process
+	 */
+	@AutoEscape
+	public String getWorkflowDefinitionName();
+
+	/**
+	 * Sets the workflow definition name of this kaleo process.
+	 *
+	 * @param WorkflowDefinitionName the workflow definition name of this kaleo process
+	 */
+	public void setWorkflowDefinitionName(String WorkflowDefinitionName);
+
+	/**
+	 * Returns the workflow definition version of this kaleo process.
+	 *
+	 * @return the workflow definition version of this kaleo process
+	 */
+	public long getWorkflowDefinitionVersion();
+
+	/**
+	 * Sets the workflow definition version of this kaleo process.
+	 *
+	 * @param WorkflowDefinitionVersion the workflow definition version of this kaleo process
+	 */
+	public void setWorkflowDefinitionVersion(long WorkflowDefinitionVersion);
+
 	@Override
 	public boolean isNew();
 

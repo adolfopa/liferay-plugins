@@ -75,9 +75,11 @@ public class KaleoProcessModelImpl extends BaseModelImpl<KaleoProcess>
 			{ "createDate", Types.TIMESTAMP },
 			{ "modifiedDate", Types.TIMESTAMP },
 			{ "DDLRecordSetId", Types.BIGINT },
-			{ "DDMTemplateId", Types.BIGINT }
+			{ "DDMTemplateId", Types.BIGINT },
+			{ "WorkflowDefinitionName", Types.VARCHAR },
+			{ "WorkflowDefinitionVersion", Types.BIGINT }
 		};
-	public static final String TABLE_SQL_CREATE = "create table KaleoProcess (kaleoProcessId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,DDLRecordSetId LONG,DDMTemplateId LONG)";
+	public static final String TABLE_SQL_CREATE = "create table KaleoProcess (kaleoProcessId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,DDLRecordSetId LONG,DDMTemplateId LONG,WorkflowDefinitionName VARCHAR(75) null,WorkflowDefinitionVersion LONG)";
 	public static final String TABLE_SQL_DROP = "drop table KaleoProcess";
 	public static final String ORDER_BY_JPQL = " ORDER BY kaleoProcess.kaleoProcessId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY KaleoProcess.kaleoProcessId ASC";
@@ -119,6 +121,8 @@ public class KaleoProcessModelImpl extends BaseModelImpl<KaleoProcess>
 		model.setModifiedDate(soapModel.getModifiedDate());
 		model.setDDLRecordSetId(soapModel.getDDLRecordSetId());
 		model.setDDMTemplateId(soapModel.getDDMTemplateId());
+		model.setWorkflowDefinitionName(soapModel.getWorkflowDefinitionName());
+		model.setWorkflowDefinitionVersion(soapModel.getWorkflowDefinitionVersion());
 
 		return model;
 	}
@@ -192,6 +196,9 @@ public class KaleoProcessModelImpl extends BaseModelImpl<KaleoProcess>
 		attributes.put("modifiedDate", getModifiedDate());
 		attributes.put("DDLRecordSetId", getDDLRecordSetId());
 		attributes.put("DDMTemplateId", getDDMTemplateId());
+		attributes.put("WorkflowDefinitionName", getWorkflowDefinitionName());
+		attributes.put("WorkflowDefinitionVersion",
+			getWorkflowDefinitionVersion());
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -253,6 +260,20 @@ public class KaleoProcessModelImpl extends BaseModelImpl<KaleoProcess>
 
 		if (DDMTemplateId != null) {
 			setDDMTemplateId(DDMTemplateId);
+		}
+
+		String WorkflowDefinitionName = (String)attributes.get(
+				"WorkflowDefinitionName");
+
+		if (WorkflowDefinitionName != null) {
+			setWorkflowDefinitionName(WorkflowDefinitionName);
+		}
+
+		Long WorkflowDefinitionVersion = (Long)attributes.get(
+				"WorkflowDefinitionVersion");
+
+		if (WorkflowDefinitionVersion != null) {
+			setWorkflowDefinitionVersion(WorkflowDefinitionVersion);
 		}
 	}
 
@@ -400,6 +421,33 @@ public class KaleoProcessModelImpl extends BaseModelImpl<KaleoProcess>
 		_DDMTemplateId = DDMTemplateId;
 	}
 
+	@JSON
+	@Override
+	public String getWorkflowDefinitionName() {
+		if (_WorkflowDefinitionName == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _WorkflowDefinitionName;
+		}
+	}
+
+	@Override
+	public void setWorkflowDefinitionName(String WorkflowDefinitionName) {
+		_WorkflowDefinitionName = WorkflowDefinitionName;
+	}
+
+	@JSON
+	@Override
+	public long getWorkflowDefinitionVersion() {
+		return _WorkflowDefinitionVersion;
+	}
+
+	@Override
+	public void setWorkflowDefinitionVersion(long WorkflowDefinitionVersion) {
+		_WorkflowDefinitionVersion = WorkflowDefinitionVersion;
+	}
+
 	public long getColumnBitmask() {
 		return _columnBitmask;
 	}
@@ -440,6 +488,8 @@ public class KaleoProcessModelImpl extends BaseModelImpl<KaleoProcess>
 		kaleoProcessImpl.setModifiedDate(getModifiedDate());
 		kaleoProcessImpl.setDDLRecordSetId(getDDLRecordSetId());
 		kaleoProcessImpl.setDDMTemplateId(getDDMTemplateId());
+		kaleoProcessImpl.setWorkflowDefinitionName(getWorkflowDefinitionName());
+		kaleoProcessImpl.setWorkflowDefinitionVersion(getWorkflowDefinitionVersion());
 
 		kaleoProcessImpl.resetOriginalValues();
 
@@ -555,12 +605,23 @@ public class KaleoProcessModelImpl extends BaseModelImpl<KaleoProcess>
 
 		kaleoProcessCacheModel.DDMTemplateId = getDDMTemplateId();
 
+		kaleoProcessCacheModel.WorkflowDefinitionName = getWorkflowDefinitionName();
+
+		String WorkflowDefinitionName = kaleoProcessCacheModel.WorkflowDefinitionName;
+
+		if ((WorkflowDefinitionName != null) &&
+				(WorkflowDefinitionName.length() == 0)) {
+			kaleoProcessCacheModel.WorkflowDefinitionName = null;
+		}
+
+		kaleoProcessCacheModel.WorkflowDefinitionVersion = getWorkflowDefinitionVersion();
+
 		return kaleoProcessCacheModel;
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(19);
+		StringBundler sb = new StringBundler(23);
 
 		sb.append("{kaleoProcessId=");
 		sb.append(getKaleoProcessId());
@@ -580,6 +641,10 @@ public class KaleoProcessModelImpl extends BaseModelImpl<KaleoProcess>
 		sb.append(getDDLRecordSetId());
 		sb.append(", DDMTemplateId=");
 		sb.append(getDDMTemplateId());
+		sb.append(", WorkflowDefinitionName=");
+		sb.append(getWorkflowDefinitionName());
+		sb.append(", WorkflowDefinitionVersion=");
+		sb.append(getWorkflowDefinitionVersion());
 		sb.append("}");
 
 		return sb.toString();
@@ -587,7 +652,7 @@ public class KaleoProcessModelImpl extends BaseModelImpl<KaleoProcess>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(31);
+		StringBundler sb = new StringBundler(37);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess");
@@ -629,6 +694,14 @@ public class KaleoProcessModelImpl extends BaseModelImpl<KaleoProcess>
 			"<column><column-name>DDMTemplateId</column-name><column-value><![CDATA[");
 		sb.append(getDDMTemplateId());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>WorkflowDefinitionName</column-name><column-value><![CDATA[");
+		sb.append(getWorkflowDefinitionName());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>WorkflowDefinitionVersion</column-name><column-value><![CDATA[");
+		sb.append(getWorkflowDefinitionVersion());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -652,6 +725,8 @@ public class KaleoProcessModelImpl extends BaseModelImpl<KaleoProcess>
 	private long _originalDDLRecordSetId;
 	private boolean _setOriginalDDLRecordSetId;
 	private long _DDMTemplateId;
+	private String _WorkflowDefinitionName;
+	private long _WorkflowDefinitionVersion;
 	private long _columnBitmask;
 	private KaleoProcess _escapedModel;
 }

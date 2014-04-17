@@ -59,6 +59,9 @@ public class KaleoProcessWrapper implements KaleoProcess,
 		attributes.put("modifiedDate", getModifiedDate());
 		attributes.put("DDLRecordSetId", getDDLRecordSetId());
 		attributes.put("DDMTemplateId", getDDMTemplateId());
+		attributes.put("WorkflowDefinitionName", getWorkflowDefinitionName());
+		attributes.put("WorkflowDefinitionVersion",
+			getWorkflowDefinitionVersion());
 
 		return attributes;
 	}
@@ -117,6 +120,20 @@ public class KaleoProcessWrapper implements KaleoProcess,
 
 		if (DDMTemplateId != null) {
 			setDDMTemplateId(DDMTemplateId);
+		}
+
+		String WorkflowDefinitionName = (String)attributes.get(
+				"WorkflowDefinitionName");
+
+		if (WorkflowDefinitionName != null) {
+			setWorkflowDefinitionName(WorkflowDefinitionName);
+		}
+
+		Long WorkflowDefinitionVersion = (Long)attributes.get(
+				"WorkflowDefinitionVersion");
+
+		if (WorkflowDefinitionVersion != null) {
+			setWorkflowDefinitionVersion(WorkflowDefinitionVersion);
 		}
 	}
 
@@ -342,6 +359,47 @@ public class KaleoProcessWrapper implements KaleoProcess,
 		_kaleoProcess.setDDMTemplateId(DDMTemplateId);
 	}
 
+	/**
+	* Returns the workflow definition name of this kaleo process.
+	*
+	* @return the workflow definition name of this kaleo process
+	*/
+	@Override
+	public java.lang.String getWorkflowDefinitionName() {
+		return _kaleoProcess.getWorkflowDefinitionName();
+	}
+
+	/**
+	* Sets the workflow definition name of this kaleo process.
+	*
+	* @param WorkflowDefinitionName the workflow definition name of this kaleo process
+	*/
+	@Override
+	public void setWorkflowDefinitionName(
+		java.lang.String WorkflowDefinitionName) {
+		_kaleoProcess.setWorkflowDefinitionName(WorkflowDefinitionName);
+	}
+
+	/**
+	* Returns the workflow definition version of this kaleo process.
+	*
+	* @return the workflow definition version of this kaleo process
+	*/
+	@Override
+	public long getWorkflowDefinitionVersion() {
+		return _kaleoProcess.getWorkflowDefinitionVersion();
+	}
+
+	/**
+	* Sets the workflow definition version of this kaleo process.
+	*
+	* @param WorkflowDefinitionVersion the workflow definition version of this kaleo process
+	*/
+	@Override
+	public void setWorkflowDefinitionVersion(long WorkflowDefinitionVersion) {
+		_kaleoProcess.setWorkflowDefinitionVersion(WorkflowDefinitionVersion);
+	}
+
 	@Override
 	public boolean isNew() {
 		return _kaleoProcess.isNew();
@@ -462,6 +520,13 @@ public class KaleoProcessWrapper implements KaleoProcess,
 	}
 
 	@Override
+	public java.lang.String getDescription()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _kaleoProcess.getDescription();
+	}
+
+	@Override
 	public java.lang.String getDescription(java.util.Locale locale)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -472,6 +537,13 @@ public class KaleoProcessWrapper implements KaleoProcess,
 	public java.util.List<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink> getKaleoProcessLinks()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoProcess.getKaleoProcessLinks();
+	}
+
+	@Override
+	public java.lang.String getName()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _kaleoProcess.getName();
 	}
 
 	@Override

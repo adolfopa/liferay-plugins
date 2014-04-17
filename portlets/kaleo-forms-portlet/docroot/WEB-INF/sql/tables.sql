@@ -7,7 +7,9 @@ create table KaleoProcess (
 	createDate DATE null,
 	modifiedDate DATE null,
 	DDLRecordSetId LONG,
-	DDMTemplateId LONG
+	DDMTemplateId LONG,
+	WorkflowDefinitionName VARCHAR(75) null,
+	WorkflowDefinitionVersion LONG
 );
 
 create table KaleoProcessLink (

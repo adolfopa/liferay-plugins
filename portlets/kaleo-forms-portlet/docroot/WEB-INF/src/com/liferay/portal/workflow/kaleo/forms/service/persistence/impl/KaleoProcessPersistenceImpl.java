@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.workflow.kaleo.forms.service.persistence;
+package com.liferay.portal.workflow.kaleo.forms.service.persistence.impl;
 
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
@@ -42,6 +42,7 @@ import com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessException;
 import com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess;
 import com.liferay.portal.workflow.kaleo.forms.model.impl.KaleoProcessImpl;
 import com.liferay.portal.workflow.kaleo.forms.model.impl.KaleoProcessModelImpl;
+import com.liferay.portal.workflow.kaleo.forms.service.persistence.KaleoProcessPersistence;
 
 import java.io.Serializable;
 
@@ -1481,6 +1482,8 @@ public class KaleoProcessPersistenceImpl extends BasePersistenceImpl<KaleoProces
 		kaleoProcessImpl.setModifiedDate(kaleoProcess.getModifiedDate());
 		kaleoProcessImpl.setDDLRecordSetId(kaleoProcess.getDDLRecordSetId());
 		kaleoProcessImpl.setDDMTemplateId(kaleoProcess.getDDMTemplateId());
+		kaleoProcessImpl.setWorkflowDefinitionName(kaleoProcess.getWorkflowDefinitionName());
+		kaleoProcessImpl.setWorkflowDefinitionVersion(kaleoProcess.getWorkflowDefinitionVersion());
 
 		return kaleoProcessImpl;
 	}

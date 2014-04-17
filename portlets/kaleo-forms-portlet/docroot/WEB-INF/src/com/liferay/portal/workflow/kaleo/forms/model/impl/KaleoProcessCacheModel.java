@@ -37,7 +37,7 @@ public class KaleoProcessCacheModel implements CacheModel<KaleoProcess>,
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(19);
+		StringBundler sb = new StringBundler(23);
 
 		sb.append("{kaleoProcessId=");
 		sb.append(kaleoProcessId);
@@ -57,6 +57,10 @@ public class KaleoProcessCacheModel implements CacheModel<KaleoProcess>,
 		sb.append(DDLRecordSetId);
 		sb.append(", DDMTemplateId=");
 		sb.append(DDMTemplateId);
+		sb.append(", WorkflowDefinitionName=");
+		sb.append(WorkflowDefinitionName);
+		sb.append(", WorkflowDefinitionVersion=");
+		sb.append(WorkflowDefinitionVersion);
 		sb.append("}");
 
 		return sb.toString();
@@ -95,6 +99,15 @@ public class KaleoProcessCacheModel implements CacheModel<KaleoProcess>,
 		kaleoProcessImpl.setDDLRecordSetId(DDLRecordSetId);
 		kaleoProcessImpl.setDDMTemplateId(DDMTemplateId);
 
+		if (WorkflowDefinitionName == null) {
+			kaleoProcessImpl.setWorkflowDefinitionName(StringPool.BLANK);
+		}
+		else {
+			kaleoProcessImpl.setWorkflowDefinitionName(WorkflowDefinitionName);
+		}
+
+		kaleoProcessImpl.setWorkflowDefinitionVersion(WorkflowDefinitionVersion);
+
 		kaleoProcessImpl.resetOriginalValues();
 
 		return kaleoProcessImpl;
@@ -111,6 +124,8 @@ public class KaleoProcessCacheModel implements CacheModel<KaleoProcess>,
 		modifiedDate = objectInput.readLong();
 		DDLRecordSetId = objectInput.readLong();
 		DDMTemplateId = objectInput.readLong();
+		WorkflowDefinitionName = objectInput.readUTF();
+		WorkflowDefinitionVersion = objectInput.readLong();
 	}
 
 	@Override
@@ -132,6 +147,15 @@ public class KaleoProcessCacheModel implements CacheModel<KaleoProcess>,
 		objectOutput.writeLong(modifiedDate);
 		objectOutput.writeLong(DDLRecordSetId);
 		objectOutput.writeLong(DDMTemplateId);
+
+		if (WorkflowDefinitionName == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(WorkflowDefinitionName);
+		}
+
+		objectOutput.writeLong(WorkflowDefinitionVersion);
 	}
 
 	public long kaleoProcessId;
@@ -143,4 +167,6 @@ public class KaleoProcessCacheModel implements CacheModel<KaleoProcess>,
 	public long modifiedDate;
 	public long DDLRecordSetId;
 	public long DDMTemplateId;
+	public String WorkflowDefinitionName;
+	public long WorkflowDefinitionVersion;
 }

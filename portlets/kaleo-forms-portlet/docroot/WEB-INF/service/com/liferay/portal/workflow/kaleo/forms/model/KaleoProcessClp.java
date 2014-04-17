@@ -15,13 +15,16 @@
 package com.liferay.portal.workflow.kaleo.forms.model;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.BaseModel;
+import com.liferay.portal.model.User;
 import com.liferay.portal.model.impl.BaseModelImpl;
-import com.liferay.portal.util.PortalUtil;
+import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.forms.service.ClpSerializer;
 import com.liferay.portal.workflow.kaleo.forms.service.KaleoProcessLocalServiceUtil;
 
@@ -84,6 +87,9 @@ public class KaleoProcessClp extends BaseModelImpl<KaleoProcess>
 		attributes.put("modifiedDate", getModifiedDate());
 		attributes.put("DDLRecordSetId", getDDLRecordSetId());
 		attributes.put("DDMTemplateId", getDDMTemplateId());
+		attributes.put("WorkflowDefinitionName", getWorkflowDefinitionName());
+		attributes.put("WorkflowDefinitionVersion",
+			getWorkflowDefinitionVersion());
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -145,6 +151,20 @@ public class KaleoProcessClp extends BaseModelImpl<KaleoProcess>
 
 		if (DDMTemplateId != null) {
 			setDDMTemplateId(DDMTemplateId);
+		}
+
+		String WorkflowDefinitionName = (String)attributes.get(
+				"WorkflowDefinitionName");
+
+		if (WorkflowDefinitionName != null) {
+			setWorkflowDefinitionName(WorkflowDefinitionName);
+		}
+
+		Long WorkflowDefinitionVersion = (Long)attributes.get(
+				"WorkflowDefinitionVersion");
+
+		if (WorkflowDefinitionVersion != null) {
+			setWorkflowDefinitionVersion(WorkflowDefinitionVersion);
 		}
 
 		_entityCacheEnabled = GetterUtil.getBoolean("entityCacheEnabled");
@@ -245,12 +265,18 @@ public class KaleoProcessClp extends BaseModelImpl<KaleoProcess>
 
 	@Override
 	public String getUserUuid() throws SystemException {
-		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
+		try {
+			User user = UserLocalServiceUtil.getUserById(getUserId());
+
+			return user.getUuid();
+		}
+		catch (PortalException pe) {
+			return StringPool.BLANK;
+		}
 	}
 
 	@Override
 	public void setUserUuid(String userUuid) {
-		_userUuid = userUuid;
 	}
 
 	@Override
@@ -369,6 +395,74 @@ public class KaleoProcessClp extends BaseModelImpl<KaleoProcess>
 	}
 
 	@Override
+	public String getWorkflowDefinitionName() {
+		return _WorkflowDefinitionName;
+	}
+
+	@Override
+	public void setWorkflowDefinitionName(String WorkflowDefinitionName) {
+		_WorkflowDefinitionName = WorkflowDefinitionName;
+
+		if (_kaleoProcessRemoteModel != null) {
+			try {
+				Class<?> clazz = _kaleoProcessRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setWorkflowDefinitionName",
+						String.class);
+
+				method.invoke(_kaleoProcessRemoteModel, WorkflowDefinitionName);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public long getWorkflowDefinitionVersion() {
+		return _WorkflowDefinitionVersion;
+	}
+
+	@Override
+	public void setWorkflowDefinitionVersion(long WorkflowDefinitionVersion) {
+		_WorkflowDefinitionVersion = WorkflowDefinitionVersion;
+
+		if (_kaleoProcessRemoteModel != null) {
+			try {
+				Class<?> clazz = _kaleoProcessRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setWorkflowDefinitionVersion",
+						long.class);
+
+				method.invoke(_kaleoProcessRemoteModel,
+					WorkflowDefinitionVersion);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public java.lang.String getDescription() {
+		try {
+			String methodName = "getDescription";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			java.lang.String returnObj = (java.lang.String)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
+	}
+
+	@Override
 	public com.liferay.portlet.dynamicdatamapping.model.DDMTemplate getDDMTemplate() {
 		try {
 			String methodName = "getDDMTemplate";
@@ -397,6 +491,25 @@ public class KaleoProcessClp extends BaseModelImpl<KaleoProcess>
 			Object[] parameterValues = new Object[] {  };
 
 			com.liferay.portlet.dynamicdatalists.model.DDLRecordSet returnObj = (com.liferay.portlet.dynamicdatalists.model.DDLRecordSet)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
+	}
+
+	@Override
+	public java.lang.String getName() {
+		try {
+			String methodName = "getName";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			java.lang.String returnObj = (java.lang.String)invokeOnRemoteModel(methodName,
 					parameterTypes, parameterValues);
 
 			return returnObj;
@@ -542,6 +655,8 @@ public class KaleoProcessClp extends BaseModelImpl<KaleoProcess>
 		clone.setModifiedDate(getModifiedDate());
 		clone.setDDLRecordSetId(getDDLRecordSetId());
 		clone.setDDMTemplateId(getDDMTemplateId());
+		clone.setWorkflowDefinitionName(getWorkflowDefinitionName());
+		clone.setWorkflowDefinitionVersion(getWorkflowDefinitionVersion());
 
 		return clone;
 	}
@@ -600,7 +715,7 @@ public class KaleoProcessClp extends BaseModelImpl<KaleoProcess>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(19);
+		StringBundler sb = new StringBundler(23);
 
 		sb.append("{kaleoProcessId=");
 		sb.append(getKaleoProcessId());
@@ -620,6 +735,10 @@ public class KaleoProcessClp extends BaseModelImpl<KaleoProcess>
 		sb.append(getDDLRecordSetId());
 		sb.append(", DDMTemplateId=");
 		sb.append(getDDMTemplateId());
+		sb.append(", WorkflowDefinitionName=");
+		sb.append(getWorkflowDefinitionName());
+		sb.append(", WorkflowDefinitionVersion=");
+		sb.append(getWorkflowDefinitionVersion());
 		sb.append("}");
 
 		return sb.toString();
@@ -627,7 +746,7 @@ public class KaleoProcessClp extends BaseModelImpl<KaleoProcess>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(31);
+		StringBundler sb = new StringBundler(37);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess");
@@ -669,6 +788,14 @@ public class KaleoProcessClp extends BaseModelImpl<KaleoProcess>
 			"<column><column-name>DDMTemplateId</column-name><column-value><![CDATA[");
 		sb.append(getDDMTemplateId());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>WorkflowDefinitionName</column-name><column-value><![CDATA[");
+		sb.append(getWorkflowDefinitionName());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>WorkflowDefinitionVersion</column-name><column-value><![CDATA[");
+		sb.append(getWorkflowDefinitionVersion());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -679,12 +806,13 @@ public class KaleoProcessClp extends BaseModelImpl<KaleoProcess>
 	private long _groupId;
 	private long _companyId;
 	private long _userId;
-	private String _userUuid;
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
 	private long _DDLRecordSetId;
 	private long _DDMTemplateId;
+	private String _WorkflowDefinitionName;
+	private long _WorkflowDefinitionVersion;
 	private BaseModel<?> _kaleoProcessRemoteModel;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
