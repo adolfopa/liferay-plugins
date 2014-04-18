@@ -2231,7 +2231,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 	}
 
 	protected FileEntry toFileEntry(IDfDocument idfDocument)
-		throws SystemException {
+		throws PortalException, SystemException {
 
 		try {
 			IDfId fileEntryIDfId = idfDocument.getObjectId();
@@ -2444,7 +2444,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 	}
 
 	protected Object toFolderOrFileEntry(IDfSysObject idfSysObject)
-		throws SystemException {
+		throws PortalException, SystemException {
 
 		if (idfSysObject instanceof IDfDocument) {
 			IDfDocument idfDocument = (IDfDocument)idfSysObject;
