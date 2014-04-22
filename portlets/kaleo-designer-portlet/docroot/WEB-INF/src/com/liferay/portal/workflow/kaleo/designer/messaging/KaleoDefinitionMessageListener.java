@@ -24,7 +24,7 @@ import com.liferay.portal.workflow.kaleo.designer.service.KaleoDraftDefinitionLo
 /**
  * @author Kenneth Chang
  */
-public class KaleoDraftDefinitionMessageListener implements MessageListener {
+public class KaleoDefinitionMessageListener implements MessageListener {
 
 	public void receive(Message message) {
 		try {
@@ -36,8 +36,17 @@ public class KaleoDraftDefinitionMessageListener implements MessageListener {
 	}
 
 	protected void doReceive(Message message) throws Exception {
+		String command = message.getString("command");
+
+		if (command.equals("delete")) {
+			onDelete(message);
+		}
+	}
+
+	protected void onDelete(Message message) throws Exception {
 		String name = message.getString("name");
 		int version = message.getInteger("version");
+
 		ServiceContext serviceContext = (ServiceContext)message.get(
 			"serviceContext");
 
@@ -46,6 +55,6 @@ public class KaleoDraftDefinitionMessageListener implements MessageListener {
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
-		KaleoDraftDefinitionMessageListener.class);
+		KaleoDefinitionMessageListener.class);
 
 }
