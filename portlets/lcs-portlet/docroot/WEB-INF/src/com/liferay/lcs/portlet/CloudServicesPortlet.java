@@ -169,14 +169,9 @@ public class CloudServicesPortlet extends MVCPortlet {
 			long corpEntryId, String name, String description, String location)
 		throws Exception {
 
-		int type = LCSConstants.LCS_CLUSTER_ENTRY_TYPE_ENVIRONMENT;
-
-		if (ClusterExecutorUtil.isEnabled()) {
-			type = LCSConstants.LCS_CLUSTER_ENTRY_TYPE_CLUSTER;
-		}
-
 		return LCSClusterEntryServiceUtil.addLCSClusterEntry(
-			corpEntryId, name, description, location, type);
+			corpEntryId, name, description, location,
+			getLocalLCSClusterEntryType());
 	}
 
 	protected void addLCSClusterNode(
@@ -321,7 +316,13 @@ public class CloudServicesPortlet extends MVCPortlet {
 			LCSClusterEntryServiceUtil.getCorpEntryLCSClusterEntries(
 				corpEntryId);
 
+		int allowedType = getLocalLCSClusterEntryType();
+
 		for (LCSClusterEntry lcsClusterEntry : lcsClusterEntries) {
+			if (allowedType != lcsClusterEntry.getType()) {
+				continue;
+			}
+
 			jsonArray.put(getLCSClusterEntryJSONObject(lcsClusterEntry));
 		}
 
@@ -339,6 +340,14 @@ public class CloudServicesPortlet extends MVCPortlet {
 		jsonObject.put("type", lcsClusterEntry.getType());
 
 		return jsonObject;
+	}
+
+	protected int getLocalLCSClusterEntryType() {
+		if (ClusterExecutorUtil.isEnabled()) {
+			return LCSConstants.LCS_CLUSTER_ENTRY_TYPE_CLUSTER;
+		}
+
+		return LCSConstants.LCS_CLUSTER_ENTRY_TYPE_ENVIRONMENT;
 	}
 
 	protected void serveConnectionStatus(
