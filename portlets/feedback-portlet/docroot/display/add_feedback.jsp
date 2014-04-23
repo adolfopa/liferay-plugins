@@ -34,9 +34,9 @@ String redirect = ParamUtil.getString(request, "redirect");
 		<div class="start" id="<portlet:namespace />start">
 			<h2><liferay-ui:message key="social-office-is" /></h2>
 
-			<aui:button cssClass="btn btn-success feedback-positive" icon="icon-thumbs-up" value='<%= LanguageUtil.get(pageContext, "positive") %>' />
+			<aui:button cssClass="btn btn-success feedback-positive" icon="icon-thumbs-up" value="positive" />
 
-			<aui:button cssClass="btn btn-danger feedback-negative" icon="icon-thumbs-down" value='<%= LanguageUtil.get(pageContext, "negative") %>' />
+			<aui:button cssClass="btn btn-danger feedback-negative" icon="icon-thumbs-down" value="negative" />
 		</div>
 
 		<div class="feedback hide" id="<portlet:namespace />feedback">
@@ -59,7 +59,7 @@ String redirect = ParamUtil.getString(request, "redirect");
 
 			<aui:input id="anonymous" label="Anonymous" name="anonymous" type="checkbox" />
 
-			<aui:button cssClass="btn btn-primary send-feedback" value='<%= LanguageUtil.get(pageContext, "send-feedback") %>' />
+			<aui:button cssClass="btn btn-primary send-feedback" value="send-feedback" />
 		</div>
 
 		<div class="confirmation hide" id="<portlet:namespace />confirmation">
