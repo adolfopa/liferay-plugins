@@ -1858,7 +1858,9 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 					foldersOrFileEntries.add(folderOrfileEntry);
 				}
 				catch (RepositoryException re) {
-					_log.warn(re, re);
+					if (_log.isWarnEnabled()) {
+						_log.warn(re, re);
+					}
 				}
 			}
 
@@ -2155,7 +2157,9 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 				idfSessionManager.release(idfSession);
 			}
 			catch (SystemException se) {
-				_log.warn("Unable to get session manager", se);
+				if (_log.isWarnEnabled()) {
+					_log.warn("Unable to get session manager", se);
+				}
 			}
 		}
 	}
@@ -2200,9 +2204,11 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 					_contentTypes.put(mimeTypes[i], contentType);
 				}
 				else {
-					_log.info(
-						"Unable to determine documentum content type for " +
-						"mime type " + mimeTypes[i]);
+					if (_log.isInfoEnabled()) {
+						_log.info(
+							"Unable to determine documentum content type for " +
+								"mime type " + mimeTypes[i]);
+					}
 				}
 
 				idfCollection.close();

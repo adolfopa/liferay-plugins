@@ -72,8 +72,11 @@ public class DQLParameterValueUtil {
 				value = dqlSimpleDateFormat.format(date);
 			}
 			catch (ParseException pe) {
-				_log.warn(
-					"Unable to parse date " + value + " for field " + field);
+				if (_log.isWarnEnabled()) {
+					_log.warn(
+						"Unable to parse date " + value + " for field " +
+							field);
+				}
 			}
 
 			return "DATE('".concat(value).concat("', 'yyyy/mm/dd hh:mi:ss')");
