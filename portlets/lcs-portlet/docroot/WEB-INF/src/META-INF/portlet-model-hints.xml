@@ -43,4 +43,25 @@
 			<validator name="required" />
 		</field>
 	</model>
+	<model name="com.liferay.osb.lcs.model.LCSPatchEntry">
+		<field name="lcsPatchEntryId" type="long" />
+		<field name="patchId" type="String" />
+		<field name="name" type="String" />
+		<field name="description" type="String" />
+		<field name="patchingToolVersion" type="int" />
+		<field name="incremental" type="boolean" />
+		<field name="singular" type="boolean" />
+		<field name="version" type="int" />
+		<field name="rank" type="long" />
+		<field name="requirements" type="String" />
+		<field name="component" type="String" />
+		<field name="compatibleBuild" type="String" />
+		<field name="product" type="String" />
+		<field name="fixedIssues" type="String" />
+		<field name="moduleName" type="String" />
+		<field name="moduleId" type="String" />
+		<field name="tunnelWeb" type="boolean" />
+		<field name="buildDate" type="Date" />
+		<field name="builtFor" type="String" />
+	</model>
 </model-hints>
