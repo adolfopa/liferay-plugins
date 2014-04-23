@@ -316,10 +316,8 @@ public class CloudServicesPortlet extends MVCPortlet {
 			LCSClusterEntryServiceUtil.getCorpEntryLCSClusterEntries(
 				corpEntryId);
 
-		int allowedType = getLocalLCSClusterEntryType();
-
 		for (LCSClusterEntry lcsClusterEntry : lcsClusterEntries) {
-			if (allowedType != lcsClusterEntry.getType()) {
+			if (lcsClusterEntry.getType() != getLocalLCSClusterEntryType()) {
 				continue;
 			}
 
