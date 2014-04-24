@@ -69,7 +69,6 @@ public class KaleoFormsUtil {
 			workflowDefinition, CharPool.AT);
 
 		String workflowDefinitionName = workflowDefinitionParts[0];
-
 		int workflowDefinitionVersion = GetterUtil.getInteger(
 			workflowDefinitionParts[1]);
 
@@ -127,14 +126,15 @@ public class KaleoFormsUtil {
 			portletSession.getAttribute("translatedLanguagesDescription"),
 			StringPool.BLANK);
 
-		for (String translatedLanguage :
+		for (String translatedLanguageId :
 				StringUtil.split(translatedLanguagesDescription)) {
 
 			String description = GetterUtil.getString(
-				portletSession.getAttribute("description" + translatedLanguage),
+				portletSession.getAttribute(
+					"description" + translatedLanguageId),
 				StringPool.BLANK);
 
-			Locale locale = LocaleUtil.fromLanguageId(translatedLanguage);
+			Locale locale = LocaleUtil.fromLanguageId(translatedLanguageId);
 
 			descriptionMap.put(locale, description);
 		}
@@ -164,14 +164,14 @@ public class KaleoFormsUtil {
 			portletSession.getAttribute("translatedLanguagesName"),
 			StringPool.BLANK);
 
-		for (String translatedLanguage :
+		for (String translatedLanguageId :
 				StringUtil.split(translatedLanguagesName)) {
 
 			String name = GetterUtil.getString(
-				portletSession.getAttribute("name" + translatedLanguage),
+				portletSession.getAttribute("name" + translatedLanguageId),
 				StringPool.BLANK);
 
-			Locale locale = LocaleUtil.fromLanguageId(translatedLanguage);
+			Locale locale = LocaleUtil.fromLanguageId(translatedLanguageId);
 
 			nameMap.put(locale, name);
 		}
