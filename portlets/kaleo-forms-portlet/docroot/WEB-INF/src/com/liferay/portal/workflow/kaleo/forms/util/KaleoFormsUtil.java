@@ -48,10 +48,10 @@ import javax.portlet.PortletSession;
 public class KaleoFormsUtil {
 
 	public static void cleanUpPortletSession(PortletSession portletSession) {
-		Enumeration<String> enu = portletSession.getAttributeNames();
+		Enumeration<String> enumeration = portletSession.getAttributeNames();
 
-		while (enu.hasMoreElements()) {
-			String name = enu.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String name = enumeration.nextElement();
 
 			portletSession.removeAttribute(name);
 		}
