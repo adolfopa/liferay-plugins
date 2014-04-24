@@ -20,7 +20,6 @@
 String backURL = ParamUtil.getString(request, "backURL");
 
 String name = ParamUtil.getString(request, "name");
-
 int version = ParamUtil.getInteger(request, "version");
 int draftVersion = ParamUtil.getInteger(request, "draftVersion");
 %>

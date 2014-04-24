@@ -92,7 +92,6 @@ if (ddmStructureId > 0) {
 		keyProperty="structureId"
 		modelVar="structure"
 	>
-
 		<liferay-ui:search-container-row-parameter
 			name="redirect"
 			value="<%= currentSectionURL %>"

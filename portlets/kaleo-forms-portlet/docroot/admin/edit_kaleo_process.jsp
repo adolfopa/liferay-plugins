@@ -67,7 +67,6 @@ if (kaleoProcess != null) {
 	<aui:input name="kaleoProcessId" type="hidden" value="<%= kaleoProcessId %>" />
 	<aui:input name="groupId" type="hidden" value="<%= groupId %>" />
 	<aui:input name="scope" type="hidden" value="1" />
-
 	<aui:input name="oldDDMStructureId" type="hidden" value="<%= ddmStructureId %>" />
 
 	<liferay-ui:error exception="<%= KaleoProcessDDMTemplateIdException.class %>" message="please-enter-a-valid-initial-form" />
