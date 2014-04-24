@@ -63,7 +63,7 @@
 </liferay-ui:search-container>
 
 <%
-KaleoFormsUtil.cleanupSession(portletSession);
+KaleoFormsUtil.cleanUpPortletSession(portletSession);
 %>
 
 <div class="hide" id="<portlet:namespace />export-process">
