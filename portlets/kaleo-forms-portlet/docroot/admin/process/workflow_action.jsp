@@ -40,7 +40,7 @@ String backURL = (String)row.getParameter("backURL");
 	/>
 
 	<%
-	String taglibOnClick = "Liferay.fire('" + portletNamespace + "chooseWorkflow', {name: '" + workflowDefinition.getName() + "', version: '" + workflowDefinition.getVersion() + "'});";
+	String taglibOnClick = "Liferay.fire('" + renderResponse.getNamespace() + "chooseWorkflow', {name: '" + workflowDefinition.getName() + "', version: '" + workflowDefinition.getVersion() + "'});";
 	%>
 
 	<liferay-ui:icon

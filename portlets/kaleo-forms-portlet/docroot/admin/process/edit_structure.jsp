@@ -33,9 +33,9 @@ if (classPK > 0) {
 	<liferay-util:include page="/html/portlet/dynamic_data_mapping/edit_structure.jsp" portletId="<%= PortletKeys.DYNAMIC_DATA_MAPPING %>">
 		<portlet:param name="redirect" value="<%= redirect %>" />
 		<portlet:param name="refererPortletName" value="<%= portletDisplay.getId() %>" />
-		<portlet:param name="portletResourceNamespace" value="<%= portletNamespace %>" />
+		<portlet:param name="portletResourceNamespace" value="<%= renderResponse.getNamespace() %>" />
 		<portlet:param name="groupId" value="<%= String.valueOf(scopeGroupId) %>" />
-		<portlet:param name="structureAvailableFields" value='<%= portletNamespace + "getAvailableFields" %>' />
+		<portlet:param name="structureAvailableFields" value='<%= renderResponse.getNamespace() + "getAvailableFields" %>' />
 		<portlet:param name="editStructureURL" value='<portlet:actionURL name="updateDefinition" />' />
 		<portlet:param name="classNameId" value="<%= String.valueOf(classNameId) %>" />
 		<portlet:param name="classPK" value="<%= String.valueOf(classPK) %>" />

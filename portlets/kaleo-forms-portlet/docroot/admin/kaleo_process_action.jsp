@@ -45,7 +45,7 @@ KaleoProcess kaleoProcess = (KaleoProcess)row.getObject();
 		StringBundler sb = new StringBundler(6);
 
 		sb.append("javascript:");
-		sb.append(portletNamespace);
+		sb.append(renderResponse.getNamespace());
 		sb.append("exportKaleoProcess");
 		sb.append("('");
 		sb.append(exportURL);

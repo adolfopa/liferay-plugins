@@ -18,7 +18,7 @@
 
 <%
 String redirect = ParamUtil.getString(request, "redirect");
-String currentSectionURL = HttpUtil.setParameter(currentURL, portletNamespace + "historyKey", "fields-definition");
+String currentSectionURL = HttpUtil.setParameter(currentURL, renderResponse.getNamespace() + "historyKey", "fields-definition");
 
 KaleoProcess kaleoProcess = (KaleoProcess)request.getAttribute(WebKeys.KALEO_PROCESS);
 

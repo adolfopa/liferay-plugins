@@ -25,7 +25,7 @@ DDMTemplate ddmTemplate = (DDMTemplate)row.getObject();
 <liferay-ui:icon-menu>
 
 	<%
-	String taglibOnClick = "javascript:" + portletNamespace + "openDDMPortlet('"+ ddmTemplate.getTemplateId() +"');";
+	String taglibOnClick = "javascript:" + renderResponse.getNamespace() + "openDDMPortlet('"+ ddmTemplate.getTemplateId() +"');";
 	%>
 
 	<liferay-ui:icon
@@ -36,7 +36,7 @@ DDMTemplate ddmTemplate = (DDMTemplate)row.getObject();
 	/>
 
 	<%
-	taglibOnClick = "Liferay.fire('" + portletNamespace + "chooseTemplate', {ddmtemplateid: " + ddmTemplate.getTemplateId() + ", name: '" + HtmlUtil.escapeAttribute(ddmTemplate.getName(locale)) + "'});";
+	taglibOnClick = "Liferay.fire('" + renderResponse.getNamespace() + "chooseTemplate', {ddmtemplateid: " + ddmTemplate.getTemplateId() + ", name: '" + HtmlUtil.escapeAttribute(ddmTemplate.getName(locale)) + "'});";
 	%>
 
 	<liferay-ui:icon

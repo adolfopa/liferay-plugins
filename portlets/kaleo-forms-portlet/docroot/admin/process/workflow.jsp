@@ -18,7 +18,7 @@
 
 <%
 String redirect = ParamUtil.getString(request, "redirect");
-String currentSectionURL = HttpUtil.setParameter(currentURL, portletNamespace + "historyKey", "workflow");
+String currentSectionURL = HttpUtil.setParameter(currentURL, renderResponse.getNamespace() + "historyKey", "workflow");
 
 String tabs1 = ParamUtil.getString(request, "tabs1", "published");
 

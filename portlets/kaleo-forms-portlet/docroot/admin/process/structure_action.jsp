@@ -39,7 +39,7 @@ String redirect = (String)row.getParameter("redirect");
 	/>
 
 	<%
-	String taglibOnClick = "Liferay.fire('" + portletNamespace + "chooseDefinition', {ddmstructureid: " + ddmStructure.getStructureId() + ", name: '" + HtmlUtil.escapeAttribute(ddmStructure.getName(locale)) + "', node: this});";
+	String taglibOnClick = "Liferay.fire('" + renderResponse.getNamespace() + "chooseDefinition', {ddmstructureid: " + ddmStructure.getStructureId() + ", name: '" + HtmlUtil.escapeAttribute(ddmStructure.getName(locale)) + "', node: this});";
 	%>
 
 	<liferay-ui:icon

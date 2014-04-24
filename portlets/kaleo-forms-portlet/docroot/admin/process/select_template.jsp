@@ -59,7 +59,7 @@ String mode = ParamUtil.getString(request, "mode");
 	</liferay-ui:search-container-results>
 
 	<%
-	String taglibOnClick = "javascript:" + portletNamespace + "openDDMPortlet();";
+	String taglibOnClick = "javascript:" + renderResponse.getNamespace() + "openDDMPortlet();";
 	%>
 
 	<aui:button onClick="<%= taglibOnClick %>" primary="<%= true %>" value="add-form" />
@@ -130,10 +130,10 @@ String mode = ParamUtil.getString(request, "mode");
 						}
 					},
 					id: 'ddmDialog',
-					portletResourceNamespace: '<%= portletNamespace %>',
+					portletResourceNamespace: '<%= renderResponse.getNamespace() %>',
 					refererPortletName: '<%= portletDisplay.getId() %>',
 					showredirect: false,
-					structureAvailableFields: '<%= portletNamespace + "getAvailableFields" %>',
+					structureAvailableFields: '<%= renderResponse.getNamespace() + "getAvailableFields" %>',
 					struts_action: '/dynamic_data_mapping/edit_template',
 					templateId: ddmTemplateId,
 					title: '<liferay-ui:message key="form" />'
