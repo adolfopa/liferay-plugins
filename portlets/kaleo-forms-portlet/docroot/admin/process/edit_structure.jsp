@@ -35,9 +35,9 @@ if (classPK > 0) {
 		<portlet:param name="refererPortletName" value="<%= portletDisplay.getId() %>" />
 		<portlet:param name="portletResourceNamespace" value="<%= renderResponse.getNamespace() %>" />
 		<portlet:param name="groupId" value="<%= String.valueOf(scopeGroupId) %>" />
-		<portlet:param name="structureAvailableFields" value='<%= renderResponse.getNamespace() + "getAvailableFields" %>' />
-		<portlet:param name="editStructureURL" value='<portlet:actionURL name="updateDefinition" />' />
 		<portlet:param name="classNameId" value="<%= String.valueOf(classNameId) %>" />
 		<portlet:param name="classPK" value="<%= String.valueOf(classPK) %>" />
+		<portlet:param name="structureAvailableFields" value='<%= renderResponse.getNamespace() + "getAvailableFields" %>' />
+		<portlet:param name="editStructureURL" value='<portlet:actionURL name="updateDefinition" />' />
 	</liferay-util:include>
 </div>
