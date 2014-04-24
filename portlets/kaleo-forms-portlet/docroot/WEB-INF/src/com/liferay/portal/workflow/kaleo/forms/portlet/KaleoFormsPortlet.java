@@ -256,8 +256,6 @@ public class KaleoFormsPortlet extends MVCPortlet {
 
 		long groupId = ParamUtil.getLong(actionRequest, "groupId");
 		long ddmTemplateId = ParamUtil.getLong(actionRequest, "ddmTemplateId");
-		String workflowDefinition = ParamUtil.getString(
-			actionRequest, "workflowDefinition");
 		String workflowDefinitionName = ParamUtil.getString(
 			actionRequest, "workflowDefinitionName");
 		long workflowDefinitionVersion = ParamUtil.getLong(
@@ -287,6 +285,9 @@ public class KaleoFormsPortlet extends MVCPortlet {
 				kaleoProcessId, ddmTemplateId, workflowDefinitionName,
 				workflowDefinitionVersion, taskFormPairs, serviceContext);
 		}
+
+		String workflowDefinition = ParamUtil.getString(
+			actionRequest, "workflowDefinition");
 
 		WorkflowDefinitionLinkLocalServiceUtil.updateWorkflowDefinitionLink(
 			serviceContext.getUserId(), serviceContext.getCompanyId(), groupId,
