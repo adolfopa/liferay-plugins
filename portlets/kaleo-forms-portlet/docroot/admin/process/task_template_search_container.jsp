@@ -53,7 +53,7 @@ String initialStateName = KaleoFormsUtil.getInitialStateName(company.getCompanyI
 		>
 
 		<liferay-ui:search-container-column-text
-			name="Task"
+			name="task"
 			value="<%= taskFormsPair.getWorkflowTaskName() %>"
 		/>
 
@@ -70,7 +70,7 @@ String initialStateName = KaleoFormsUtil.getInitialStateName(company.getCompanyI
 		%>
 
 		<liferay-ui:search-container-column-text
-			name="Form"
+			name="form"
 			value="<%= formName %>"
 		/>
 
