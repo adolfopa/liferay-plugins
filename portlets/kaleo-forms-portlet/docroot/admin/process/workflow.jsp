@@ -27,14 +27,12 @@ KaleoProcess kaleoProcess = (KaleoProcess)request.getAttribute(WebKeys.KALEO_PRO
 String workflowDefinition = KaleoFormsUtil.getWorkflowDefinition(kaleoProcess, portletSession);
 
 String workflowDefinitionName = StringPool.BLANK;
-
 int workflowDefinitionVersion = 0;
 
 if (Validator.isNotNull(workflowDefinition)) {
 	String[] workflowDefinitionParts = StringUtil.split(workflowDefinition, CharPool.AT);
 
 	workflowDefinitionName = workflowDefinitionParts[0];
-
 	workflowDefinitionVersion = GetterUtil.getInteger(workflowDefinitionParts[1]);
 }
 %>
@@ -73,7 +71,6 @@ if (Validator.isNotNull(workflowDefinition)) {
 	iteratorURL="<%= iteratorURL %>"
 	total= '<%= tabs1.equals("published") ? WorkflowDefinitionManagerUtil.getActiveWorkflowDefinitionCount(company.getCompanyId()) : KaleoDraftDefinitionLocalServiceUtil.getLatestKaleoDraftDefinitionsCount(company.getCompanyId(), 0) %>'
 >
-
 	<portlet:renderURL var="editWorkflowURL">
 		<portlet:param name="mvcPath" value="/admin/process/edit_workflow.jsp" />
 		<portlet:param name="backURL" value="<%= currentSectionURL %>" />
@@ -105,7 +102,6 @@ if (Validator.isNotNull(workflowDefinition)) {
 				className="com.liferay.portal.kernel.workflow.WorkflowDefinition"
 				modelVar="workflowDefinitionVar"
 			>
-
 				<liferay-ui:search-container-row-parameter
 					name="backURL"
 					value="<%= currentSectionURL %>"
@@ -142,7 +138,6 @@ if (Validator.isNotNull(workflowDefinition)) {
 				keyProperty="kaleoDraftDefinitionId"
 				modelVar="kaleoDraftDefinition"
 			>
-
 				<liferay-ui:search-container-row-parameter
 					name="backURL"
 					value="<%= currentSectionURL %>"
@@ -182,7 +177,6 @@ if (Validator.isNotNull(workflowDefinition)) {
 					align="right"
 					path="/admin/process/kaleo_draft_definition_action.jsp"
 				/>
-
 			</liferay-ui:search-container-row>
 		</c:otherwise>
 	</c:choose>

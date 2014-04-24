@@ -446,18 +446,18 @@ public class KaleoFormsPortlet extends MVCPortlet {
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
 
-		Enumeration<String> enu = resourceRequest.getParameterNames();
+		Enumeration<String> enumeration = resourceRequest.getParameterNames();
 
-		while (enu.hasMoreElements()) {
-			String name = enu.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String name = enumeration.nextElement();
 
 			if (name.equals("doAsUserId")) {
 				continue;
 			}
 
-			String value = ParamUtil.getString(resourceRequest, name);
-
 			PortletSession portletSession = resourceRequest.getPortletSession();
+
+			String value = ParamUtil.getString(resourceRequest, name);
 
 			portletSession.setAttribute(name, value);
 		}

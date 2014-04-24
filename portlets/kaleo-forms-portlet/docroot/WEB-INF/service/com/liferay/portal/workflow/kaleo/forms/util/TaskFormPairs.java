@@ -15,6 +15,7 @@
 package com.liferay.portal.workflow.kaleo.forms.util;
 
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 
 import java.util.ArrayList;
@@ -64,9 +65,9 @@ public class TaskFormPairs implements Iterable<TaskFormPair> {
 
 		for (TaskFormPair taskFormPair : _taskFormPairs) {
 			sb.append(taskFormPair.getWorkflowTaskName());
-			sb.append("#");
+			sb.append(StringPool.COLON);
 			sb.append(taskFormPair.getDDMTemplateId());
-			sb.append(",");
+			sb.append(StringPool.COMMA);
 		}
 
 		if (sb.index() > 0) {
