@@ -21,8 +21,7 @@ String backURL = ParamUtil.getString(request, "backURL");
 
 String workflowTaskName = ParamUtil.getString(request, "workflowTaskName");
 
-long ddmStructureId = GetterUtil.getLong(portletSession.getAttribute("ddmStructureId"), 0);
-
+long ddmStructureId = GetterUtil.getLong(portletSession.getAttribute("ddmStructureId"));
 String mode = ParamUtil.getString(request, "mode");
 %>
 

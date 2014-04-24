@@ -27,7 +27,7 @@ String workflowDefinition = KaleoFormsUtil.getWorkflowDefinition(kaleoProcess, p
 
 String initialStateName = KaleoFormsUtil.getInitialStateName(company.getCompanyId(), workflowDefinition);
 
-long ddmTemplateId = GetterUtil.getLong(portletSession.getAttribute(initialStateName), 0);
+long ddmTemplateId = GetterUtil.getLong(portletSession.getAttribute(initialStateName));
 
 if (kaleoProcess != null) {
 	ddmTemplateId = kaleoProcess.getDDMTemplateId();

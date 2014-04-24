@@ -84,7 +84,7 @@ public class KaleoFormsUtil {
 		throws Exception {
 
 		long ddmTemplateId = GetterUtil.getLong(
-			portletSession.getAttribute(initialStateName), 0);
+			portletSession.getAttribute(initialStateName));
 
 		if ((ddmTemplateId == 0) && (kaleoProcessId > 0)) {
 			KaleoProcess kaleoProcess = KaleoProcessServiceUtil.getKaleoProcess(
@@ -101,7 +101,7 @@ public class KaleoFormsUtil {
 		throws Exception {
 
 		long ddmStructureId = GetterUtil.getLong(
-			portletSession.getAttribute("ddmStructureId"), 0);
+			portletSession.getAttribute("ddmStructureId"));
 
 		if (ddmStructureId > 0) {
 			return ddmStructureId;
@@ -248,7 +248,7 @@ public class KaleoFormsUtil {
 		throws Exception {
 
 		long ddmTemplateId = GetterUtil.getLong(
-			portletSession.getAttribute(taskName), 0);
+			portletSession.getAttribute(taskName));
 
 		if (ddmTemplateId > 0) {
 			return ddmTemplateId;
