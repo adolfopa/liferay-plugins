@@ -304,7 +304,6 @@ public class KaleoFormsUtil {
 			workflowDefinition, CharPool.AT);
 
 		String workflowDefinitionName = workflowDefinitionParts[0];
-
 		int workflowDefinitionVersion = GetterUtil.getInteger(
 			workflowDefinitionParts[1]);
 
