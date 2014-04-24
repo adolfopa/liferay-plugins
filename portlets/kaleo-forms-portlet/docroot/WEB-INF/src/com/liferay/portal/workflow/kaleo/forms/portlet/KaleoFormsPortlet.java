@@ -212,8 +212,8 @@ public class KaleoFormsPortlet extends MVCPortlet {
 			if (resourceID.equals("kaleoProcess")) {
 				serveKaleoProcess(resourceRequest, resourceResponse);
 			}
-			else if (resourceID.equals("saveInSession")) {
-				saveInSession(resourceRequest, resourceResponse);
+			else if (resourceID.equals("saveInPortletSession")) {
+				saveInPortletSession(resourceRequest, resourceResponse);
 			}
 		}
 		catch (IOException ioe) {
@@ -442,7 +442,7 @@ public class KaleoFormsPortlet extends MVCPortlet {
 		}
 	}
 
-	protected void saveInSession(
+	protected void saveInPortletSession(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
 

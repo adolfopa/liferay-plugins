@@ -97,7 +97,7 @@ String mode = ParamUtil.getString(request, "mode");
 			var A = AUI();
 
 			A.io.request(
-				'<portlet:resourceURL id="saveInSession" />',
+				'<portlet:resourceURL id="saveInPortletSession" />',
 				{
 					after: {
 						success: function() {

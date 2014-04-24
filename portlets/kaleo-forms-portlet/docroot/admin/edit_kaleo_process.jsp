@@ -102,7 +102,7 @@ if (kaleoProcess != null) {
 							form: form,
 							namespace: '<portlet:namespace />',
 							portletId: '<%= PortalUtil.getPortletId(request) %>',
-							saveInSessionURL: '<portlet:resourceURL id="saveInSession" />',
+							saveInPortletSessionURL: '<portlet:resourceURL id="saveInPortletSession" />',
 							tabView: Liferay.component('<portlet:namespace />fmTabview')
 						}
 					);

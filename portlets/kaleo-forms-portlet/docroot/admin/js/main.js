@@ -17,7 +17,7 @@ AUI.add(
 						value: null
 					},
 
-					saveInSessionURL: {
+					saveInPortletSessionURL: {
 						value: null
 					},
 
@@ -92,7 +92,7 @@ AUI.add(
 
 							var workflowDefinition = instance.one('#workflowDefinition').val();
 
-							instance._saveInSession(
+							instance._saveInPortletSession(
 								A.merge(
 									sessionMap,
 									{
@@ -113,7 +113,7 @@ AUI.add(
 						}
 					},
 
-					_saveInSession: function(data) {
+					_saveInPortletSession: function(data) {
 						var instance = this;
 
 						var namespace = instance.get('namespace');
@@ -128,7 +128,7 @@ AUI.add(
 						);
 
 						A.io.request(
-							instance.get('saveInSessionURL'),
+							instance.get('saveInPortletSessionURL'),
 							{
 								data: data,
 							}
