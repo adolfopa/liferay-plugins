@@ -19,6 +19,7 @@ import com.liferay.lcs.messaging.ResponseCommandMessage;
 import com.liferay.lcs.service.LCSGatewayService;
 import com.liferay.lcs.util.ResponseCommandMessageUtil;
 import com.liferay.portal.kernel.bean.BeanReference;
+import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -60,6 +61,13 @@ public class SendInstallationEnvironmentCommand implements Command {
 	protected Map<String, String> getHardwareMetadata() {
 		Map<String, String> hardwareMetadata = new HashMap<String, String>();
 
+		OperatingSystemMXBean operatingSystemMXBean =
+			ManagementFactory.getOperatingSystemMXBean();
+
+		hardwareMetadata.put(
+			"availableProcessors",
+			String.valueOf(operatingSystemMXBean.getAvailableProcessors()));
+
 		File[] roots = File.listRoots();
 
 		if (roots.length > 0) {
@@ -71,13 +79,6 @@ public class SendInstallationEnvironmentCommand implements Command {
 				"fs.root.usable.space",
 				String.valueOf(roots[0].getUsableSpace()));
 		}
-
-		OperatingSystemMXBean operatingSystemMXBean =
-			ManagementFactory.getOperatingSystemMXBean();
-
-		hardwareMetadata.put(
-			"availableProcessors",
-			String.valueOf(operatingSystemMXBean.getAvailableProcessors()));
 
 		String javaVendor = SystemProperties.get("java.vendor");
 
@@ -104,7 +105,7 @@ public class SendInstallationEnvironmentCommand implements Command {
 		}
 		catch (Exception e) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("Unable to fetch hardware details.");
+				_log.warn("Unable to get extra hardware metadata");
 			}
 		}
 
@@ -122,10 +123,13 @@ public class SendInstallationEnvironmentCommand implements Command {
 			}
 		}
 
-		String databaseName = DBFactoryUtil.getDB().getType();
+		softwareMetadata.put("appsrv.name", ServerDetector.getServerId());
+
+		DB db = DBFactoryUtil.getDB();
+
+		String databaseName = db.getType();
 
 		softwareMetadata.put("database.name", databaseName);
-		softwareMetadata.put("appsrv.name", ServerDetector.getServerId());
 
 		return softwareMetadata;
 	}
