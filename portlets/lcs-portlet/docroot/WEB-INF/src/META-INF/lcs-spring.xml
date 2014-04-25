@@ -20,6 +20,7 @@
 	<bean id="com.liferay.lcs.command.DeregisterCommand" class="com.liferay.lcs.command.DeregisterCommand" />
 	<bean id="com.liferay.lcs.command.DownloadPatchesCommand" class="com.liferay.lcs.command.DownloadPatchesCommand" />
 	<bean id="com.liferay.lcs.command.ExecuteScriptCommand" class="com.liferay.lcs.command.ExecuteScriptCommand" />
+	<bean id="com.liferay.lcs.command.SendInstallationEnvironmentCommand" class="com.liferay.lcs.command.SendInstallationEnvironmentCommand" />
 	<bean id="com.liferay.lcs.command.SendPatchesCommand" class="com.liferay.lcs.command.SendPatchesCommand" />
 	<bean id="com.liferay.lcs.command.SendPortalPropertiesCommand" class="com.liferay.lcs.command.SendPortalPropertiesCommand" />
 

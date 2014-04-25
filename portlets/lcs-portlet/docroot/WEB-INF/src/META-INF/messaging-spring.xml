@@ -23,6 +23,7 @@
 				<entry key="#{T(com.liferay.lcs.messaging.CommandMessage).COMMAND_TYPE_DEREGISTER}" value-ref="com.liferay.lcs.command.DeregisterCommand" />
 				<entry key="#{T(com.liferay.lcs.messaging.CommandMessage).COMMAND_TYPE_DOWNLOAD_PATCHES}" value-ref="com.liferay.lcs.command.DownloadPatchesCommand" />
 				<entry key="#{T(com.liferay.lcs.messaging.CommandMessage).COMMAND_TYPE_EXECUTE_SCRIPT}" value-ref="com.liferay.lcs.command.ExecuteScriptCommand" />
+				<entry key="#{T(com.liferay.lcs.messaging.CommandMessage).COMMAND_TYPE_SEND_INSTALLATION_ENVIRONMENT}" value-ref="com.liferay.lcs.command.SendInstallationEnvironmentCommand" />
 				<entry key="#{T(com.liferay.lcs.messaging.CommandMessage).COMMAND_TYPE_SEND_PATCHES}" value-ref="com.liferay.lcs.command.SendPatchesCommand" />
 				<entry key="#{T(com.liferay.lcs.messaging.CommandMessage).COMMAND_TYPE_SEND_PORTAL_PROPERTIES}" value-ref="com.liferay.lcs.command.SendPortalPropertiesCommand" />
 			</map>
