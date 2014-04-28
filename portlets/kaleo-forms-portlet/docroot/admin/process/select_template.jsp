@@ -130,8 +130,10 @@ String mode = ParamUtil.getString(request, "mode");
 						}
 					},
 					id: 'ddmDialog',
+					mode: '<%= HtmlUtil.escapeJS(mode) %>',
 					portletResourceNamespace: '<%= renderResponse.getNamespace() %>',
 					refererPortletName: '<%= portletDisplay.getId() %>',
+					showBackURL: false,
 					showredirect: false,
 					structureAvailableFields: '<%= renderResponse.getNamespace() + "getAvailableFields" %>',
 					struts_action: '/dynamic_data_mapping/edit_template',

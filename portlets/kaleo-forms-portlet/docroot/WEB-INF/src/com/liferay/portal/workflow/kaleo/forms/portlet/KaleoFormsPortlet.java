@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.portlet.PortletResponseUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.CharPool;
+import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
@@ -58,6 +59,9 @@ import com.liferay.portlet.dynamicdatalists.util.DDLExportFormat;
 import com.liferay.portlet.dynamicdatalists.util.DDLExporter;
 import com.liferay.portlet.dynamicdatalists.util.DDLExporterFactory;
 import com.liferay.portlet.dynamicdatalists.util.DDLUtil;
+import com.liferay.portlet.dynamicdatamapping.model.DDMStructure;
+import com.liferay.portlet.dynamicdatamapping.model.DDMStructureConstants;
+import com.liferay.portlet.dynamicdatamapping.service.DDMStructureServiceUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.io.IOException;
@@ -293,6 +297,43 @@ public class KaleoFormsPortlet extends MVCPortlet {
 			serviceContext.getUserId(), serviceContext.getCompanyId(), groupId,
 			KaleoProcess.class.getName(), kaleoProcess.getKaleoProcessId(), 0,
 			workflowDefinition);
+	}
+
+	public void updateStructure(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
+
+		long classPK = ParamUtil.getLong(actionRequest, "classPK");
+
+		long groupId = ParamUtil.getLong(actionRequest, "groupId");
+		long scopeClassNameId = ParamUtil.getLong(
+			actionRequest, "scopeClassNameId");
+		long parentStructureId = ParamUtil.getLong(
+			actionRequest, "parentStructureId",
+			DDMStructureConstants.DEFAULT_PARENT_STRUCTURE_ID);
+		Map<Locale, String> nameMap = LocalizationUtil.getLocalizationMap(
+			actionRequest, "name");
+		Map<Locale, String> descriptionMap =
+			LocalizationUtil.getLocalizationMap(actionRequest, "description");
+		String xsd = ParamUtil.getString(actionRequest, "xsd");
+		String storageType = ParamUtil.getString(actionRequest, "storageType");
+
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			DDMStructure.class.getName(), actionRequest);
+
+		if (cmd.equals(Constants.ADD)) {
+			DDMStructureServiceUtil.addStructure(
+				groupId, parentStructureId, scopeClassNameId, null, nameMap,
+				descriptionMap, xsd, storageType,
+				DDMStructureConstants.TYPE_DEFAULT, serviceContext);
+		}
+		else if (cmd.equals(Constants.UPDATE)) {
+			DDMStructureServiceUtil.updateStructure(
+				classPK, parentStructureId, nameMap, descriptionMap, xsd,
+				serviceContext);
+		}
 	}
 
 	public void updateWorkflowTask(
