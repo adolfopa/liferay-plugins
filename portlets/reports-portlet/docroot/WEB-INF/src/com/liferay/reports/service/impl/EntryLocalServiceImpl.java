@@ -40,7 +40,9 @@ import com.liferay.portal.kernel.scheduler.Trigger;
 import com.liferay.portal.kernel.scheduler.TriggerFactoryUtil;
 import com.liferay.portal.kernel.scheduler.TriggerType;
 import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
+import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -64,6 +66,8 @@ import com.liferay.reports.model.Source;
 import com.liferay.reports.service.base.EntryLocalServiceBaseImpl;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 
 import java.text.DateFormat;
 
@@ -320,15 +324,29 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 		String reportName = StringUtil.extractLast(
 			fileName, StringPool.FORWARD_SLASH);
 
-		File file = DLStoreUtil.getFile(
-			entry.getCompanyId(), CompanyConstants.SYSTEM, fileName);
+		InputStream inputStream = null;
 
 		try {
+			inputStream = DLStoreUtil.getFileAsStream(
+				entry.getCompanyId(), CompanyConstants.SYSTEM, fileName);
+
+			if (inputStream == null) {
+				throw new IOException("Unable to open file " + fileName);
+			}
+
+			File file = FileUtil.createTempFile(inputStream);
+
 			notifySubscribers(
 				entry, emailAddresses, reportName, file, notification);
 		}
+		catch (IOException ioe) {
+			throw new PortalException(ioe.getMessage());
+		}
 		catch (Exception e) {
 			throw new SystemException(e);
+		}
+		finally {
+			StreamUtil.cleanUp(inputStream);
 		}
 	}
 
