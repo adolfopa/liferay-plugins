@@ -17,6 +17,7 @@ package com.liferay.portal.workflow.kaleo.designer.util;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -75,6 +76,14 @@ public class KaleoDesignerUtil {
 
 		if (kaleoDraftDefinition != null) {
 			return kaleoDraftDefinition;
+		}
+
+		long kaleoDraftDefinitionId = GetterUtil.getLong(
+			request.getAttribute(WebKeys.KALEO_DRAFT_DEFINITION_ID));
+
+		if (kaleoDraftDefinitionId > 0) {
+			return KaleoDraftDefinitionLocalServiceUtil.getKaleoDraftDefinition(
+				kaleoDraftDefinitionId);
 		}
 
 		String name = ParamUtil.getString(request, "name");

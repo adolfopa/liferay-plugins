@@ -20,11 +20,12 @@
 	<c:when test="<%= WorkflowEngineManagerUtil.isDeployed() %>">
 
 		<%
+		String mvcPath = ParamUtil.getString(request, "mvcPath", "/designer/edit_kaleo_draft_definition.jsp");
 		String backURL = ParamUtil.getString(request, "backURL");
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(request);
 
-		KaleoDraftDefinition kaleoDraftDefinition = (KaleoDraftDefinition)request.getAttribute(WebKeys.KALEO_DRAFT_DEFINITION);
+		KaleoDraftDefinition kaleoDraftDefinition = KaleoDesignerUtil.getKaleoDraftDefinition(request);
 
 		String content = (String)request.getAttribute(WebKeys.KALEO_DRAFT_DEFINITION_CONTENT);
 
@@ -65,7 +66,7 @@
 		<aui:form method="post" name="fm" onSubmit="event.preventDefault();">
 			<aui:model-context bean="<%= kaleoDraftDefinition %>" model="<%= KaleoDraftDefinition.class %>" />
 
-			<aui:input name="mvcPath" type="hidden" value="/designer/edit_kaleo_draft_definition.jsp" />
+			<aui:input name="mvcPath" type="hidden" value="<%= mvcPath %>" />
 			<aui:input name="backURL" type="hidden" value="<%= backURL %>" />
 			<aui:input name="kaleoDraftDefinitionId" type="hidden" />
 			<aui:input name="content" type="hidden" value="<%= content %>" />

@@ -52,6 +52,7 @@ page import="com.liferay.portal.workflow.kaleo.designer.service.KaleoDraftDefini
 page import="com.liferay.portal.workflow.kaleo.designer.service.permission.KaleoDesignerPermission" %><%@
 page import="com.liferay.portal.workflow.kaleo.designer.service.permission.KaleoDraftDefinitionPermission" %><%@
 page import="com.liferay.portal.workflow.kaleo.designer.util.ActionKeys" %><%@
+page import="com.liferay.portal.workflow.kaleo.designer.util.KaleoDesignerUtil" %><%@
 page import="com.liferay.portal.workflow.kaleo.designer.util.WebKeys" %><%@
 page import="com.liferay.portlet.PortletURLUtil" %>
 
