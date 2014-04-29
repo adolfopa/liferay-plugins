@@ -84,6 +84,10 @@ public class GitHubServlet extends HttpServlet {
 			String gitHubProcessorClassName = GitHubPropsUtil.get(
 				"github.processor.class");
 
+			if (_log.isInfoEnabled()) {
+				_log.info("Initializing " + gitHubProcessorClassName);
+			}
+
 			Class<?> gitHubProcessorClass = classLoader.loadClass(
 				gitHubProcessorClassName);
 
