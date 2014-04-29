@@ -22,6 +22,12 @@ public class WebKeys implements com.liferay.portal.kernel.util.WebKeys {
 	public static final String DYNAMIC_DATA_MAPPING_STRUCTURE =
 		"DYNAMIC_DATA_MAPPING_STRUCTURE";
 
+	public static final String KALEO_DRAFT_DEFINITION_CONTENT =
+		"KALEO_DRAFT_DEFINITION_CONTENT";
+
+	public static final String KALEO_DRAFT_DEFINITION_ID =
+		"KALEO_DRAFT_DEFINITION_ID";
+
 	public static final String KALEO_PROCESS = "KALEO_PROCESS";
 
 	public static final String WORKFLOW_INSTANCE = "WORKFLOW_INSTANCE";

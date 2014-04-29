@@ -16,6 +16,10 @@ package com.liferay.portal.workflow.kaleo.forms.portlet;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.PortletResponseUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
@@ -25,6 +29,7 @@ import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.kernel.workflow.WorkflowException;
 import com.liferay.portal.kernel.workflow.WorkflowHandlerRegistryUtil;
@@ -40,6 +45,12 @@ import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.service.WorkflowDefinitionLinkLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portal.workflow.kaleo.designer.DuplicateKaleoDraftDefinitionNameException;
+import com.liferay.portal.workflow.kaleo.designer.KaleoDraftDefinitionContentException;
+import com.liferay.portal.workflow.kaleo.designer.KaleoDraftDefinitionNameException;
+import com.liferay.portal.workflow.kaleo.designer.NoSuchKaleoDraftDefinitionException;
+import com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition;
+import com.liferay.portal.workflow.kaleo.designer.service.KaleoDraftDefinitionServiceUtil;
 import com.liferay.portal.workflow.kaleo.forms.KaleoProcessDDMTemplateIdException;
 import com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessException;
 import com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess;
@@ -182,6 +193,50 @@ public class KaleoFormsPortlet extends MVCPortlet {
 			themeDisplay.getCompanyId(), workflowInstanceId);
 	}
 
+	public void publishKaleoDraftDefinition(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		String content = null;
+
+		try {
+			String name = ParamUtil.getString(actionRequest, "name");
+			Map<Locale, String> titleMap = LocalizationUtil.getLocalizationMap(
+				actionRequest, "title");
+			content = ParamUtil.getString(actionRequest, "content");
+
+			ServiceContext serviceContext = ServiceContextFactory.getInstance(
+				actionRequest);
+
+			KaleoDraftDefinition kaleoDraftDefinition =
+				KaleoDraftDefinitionServiceUtil.publishKaleoDraftDefinition(
+					themeDisplay.getUserId(), themeDisplay.getCompanyGroupId(),
+					name, titleMap, content, serviceContext);
+
+			actionRequest.setAttribute(
+				WebKeys.KALEO_DRAFT_DEFINITION_ID,
+				kaleoDraftDefinition.getKaleoDraftDefinitionId());
+		}
+		catch (Exception e) {
+			if (isSessionErrorException(e)) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(e, e);
+				}
+
+				SessionErrors.add(actionRequest, e.getClass(), e);
+
+				actionRequest.setAttribute(
+					WebKeys.KALEO_DRAFT_DEFINITION_CONTENT, content);
+			}
+			else {
+				throw e;
+			}
+		}
+	}
+
 	@Override
 	public void render(
 			RenderRequest renderRequest, RenderResponse renderResponse)
@@ -213,7 +268,10 @@ public class KaleoFormsPortlet extends MVCPortlet {
 		try {
 			String resourceID = resourceRequest.getResourceID();
 
-			if (resourceID.equals("kaleoProcess")) {
+			if (resourceID.equals("draftDefinitions")) {
+				serveDraftDefinitions(resourceRequest, resourceResponse);
+			}
+			else if (resourceID.equals("kaleoProcess")) {
 				serveKaleoProcess(resourceRequest, resourceResponse);
 			}
 			else if (resourceID.equals("saveInPortletSession")) {
@@ -249,6 +307,65 @@ public class KaleoFormsPortlet extends MVCPortlet {
 			serviceContext.getCompanyId(), serviceContext.getScopeGroupId(),
 			serviceContext.getUserId(), KaleoProcess.class.getName(),
 			ddlRecord.getRecordId(), ddlRecord, serviceContext);
+	}
+
+	public void updateKaleoDraftDefinition(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		String content = null;
+
+		try {
+			long kaleoDraftDefinitionId = ParamUtil.getLong(
+				actionRequest, "kaleoDraftDefinitionId");
+
+			String name = ParamUtil.getString(actionRequest, "name");
+			Map<Locale, String> titleMap = LocalizationUtil.getLocalizationMap(
+				actionRequest, "title");
+			content = ParamUtil.getString(actionRequest, "content");
+			int version = ParamUtil.getInteger(actionRequest, "version");
+
+			ServiceContext serviceContext = ServiceContextFactory.getInstance(
+				actionRequest);
+
+			KaleoDraftDefinition kaleoDraftDefinition = null;
+
+			if (kaleoDraftDefinitionId <= 0) {
+				kaleoDraftDefinition =
+					KaleoDraftDefinitionServiceUtil.addKaleoDraftDefinition(
+						themeDisplay.getUserId(),
+						themeDisplay.getCompanyGroupId(), name, titleMap,
+						content, version, 1, serviceContext);
+			}
+			else {
+				kaleoDraftDefinition =
+					KaleoDraftDefinitionServiceUtil.updateKaleoDraftDefinition(
+						themeDisplay.getUserId(), name, titleMap, content,
+						version, serviceContext);
+			}
+
+			actionRequest.setAttribute(
+				WebKeys.KALEO_DRAFT_DEFINITION_ID,
+				kaleoDraftDefinition.getKaleoDraftDefinitionId());
+		}
+		catch (Exception e) {
+			if (isSessionErrorException(e)) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(e, e);
+				}
+
+				SessionErrors.add(actionRequest, e.getClass(), e);
+
+				actionRequest.setAttribute(
+					WebKeys.KALEO_DRAFT_DEFINITION_CONTENT, content);
+			}
+			else {
+				throw e;
+			}
+		}
 	}
 
 	public void updateKaleoProcess(
@@ -433,9 +550,14 @@ public class KaleoFormsPortlet extends MVCPortlet {
 
 	@Override
 	protected boolean isSessionErrorException(Throwable cause) {
-		if (cause instanceof KaleoProcessDDMTemplateIdException ||
+		if (cause instanceof DuplicateKaleoDraftDefinitionNameException ||
+			cause instanceof KaleoDraftDefinitionContentException ||
+			cause instanceof KaleoDraftDefinitionNameException ||
+			cause instanceof KaleoProcessDDMTemplateIdException ||
+			cause instanceof NoSuchKaleoDraftDefinitionException ||
 			cause instanceof RecordSetDDMStructureIdException ||
-			cause instanceof RecordSetNameException) {
+			cause instanceof RecordSetNameException ||
+			cause instanceof WorkflowException) {
 
 			return true;
 		}
@@ -502,6 +624,41 @@ public class KaleoFormsPortlet extends MVCPortlet {
 
 			portletSession.setAttribute(name, value);
 		}
+	}
+
+	protected void serveDraftDefinitions(
+			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		String name = ParamUtil.getString(resourceRequest, "name");
+		int version = ParamUtil.getInteger(resourceRequest, "version");
+		int draftVersion = ParamUtil.getInteger(
+			resourceRequest, "draftVersion");
+
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			resourceRequest);
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+		if (Validator.isNotNull(name) && (draftVersion > 0)) {
+			KaleoDraftDefinition kaleoDraftDefinition =
+				KaleoDraftDefinitionServiceUtil.getKaleoDraftDefinition(
+					name, version, draftVersion, serviceContext);
+
+			jsonObject.put("content", kaleoDraftDefinition.getContent());
+			jsonObject.put(
+				"draftVersion", kaleoDraftDefinition.getDraftVersion());
+			jsonObject.put("name", kaleoDraftDefinition.getName());
+			jsonObject.put(
+				"title",
+				kaleoDraftDefinition.getTitle(themeDisplay.getLocale()));
+			jsonObject.put("version", kaleoDraftDefinition.getVersion());
+		}
+
+		writeJSON(resourceRequest, resourceResponse, jsonObject);
 	}
 
 	protected void serveKaleoProcess(
@@ -590,5 +747,7 @@ public class KaleoFormsPortlet extends MVCPortlet {
 
 		return ddlRecordSet;
 	}
+
+	private static Log _log = LogFactoryUtil.getLog(KaleoFormsPortlet.class);
 
 }
