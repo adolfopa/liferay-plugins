@@ -14,6 +14,7 @@
 
 package com.liferay.github.servlet;
 
+import com.liferay.github.util.GitHubPropsUtil;
 import com.liferay.github.util.GitHubRequestProcessor;
 
 import java.io.BufferedOutputStream;
@@ -29,6 +30,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import org.json.JSONObject;
 
 /**
  * @author Brian Wing Shun Chan
@@ -51,8 +54,16 @@ public class GitHubServlet extends HttpServlet {
 			return;
 		}
 
+		String payload = request.getParameter("payload");
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("Payload: " + payload);
+		}
+
 		try {
-			GitHubRequestProcessor.process(request);
+			JSONObject payloadJSONObject = new JSONObject(payload);
+
+			_gitHubRequestProcessor.process(payloadJSONObject);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -64,6 +75,24 @@ public class GitHubServlet extends HttpServlet {
 		String validIpsString = servletConfig.getInitParameter("validIps");
 
 		_validIps = validIpsString.split(",");
+
+		try {
+			Class<?> clazz = getClass();
+
+			ClassLoader classLoader = clazz.getClassLoader();
+
+			String gitHubProcessorClassName = GitHubPropsUtil.get(
+				"github.processor.class");
+
+			Class<?> gitHubProcessorClass = classLoader.loadClass(
+				gitHubProcessorClassName);
+
+			_gitHubRequestProcessor =
+				(GitHubRequestProcessor)gitHubProcessorClass.newInstance();
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+		}
 	}
 
 	protected boolean isValidIP(String remoteAddr) {
@@ -143,6 +172,7 @@ public class GitHubServlet extends HttpServlet {
 
 	private static Log _log = LogFactory.getLog(GitHubServlet.class);
 
+	private GitHubRequestProcessor _gitHubRequestProcessor;
 	private String[] _validIps;
 
 }
