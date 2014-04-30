@@ -2419,8 +2419,6 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 
 			IDfId idfFolderId = idfFolder.getObjectId();
 
-			// Ensure the corresponding RepositoryEntry row is created
-
 			getRepositoryEntryIds(idfFolderId.getId());
 
 			return idfFolderId;
