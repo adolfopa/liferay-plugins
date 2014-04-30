@@ -57,7 +57,9 @@
 		<field name="component" type="String" />
 		<field name="compatibleBuild" type="String" />
 		<field name="product" type="String" />
-		<field name="fixedIssues" type="String" />
+		<field name="fixedIssues" type="String">
+			<hint-collection name="TEXTAREA" />
+		</field>
 		<field name="moduleName" type="String" />
 		<field name="moduleId" type="String" />
 		<field name="tunnelWeb" type="boolean" />
