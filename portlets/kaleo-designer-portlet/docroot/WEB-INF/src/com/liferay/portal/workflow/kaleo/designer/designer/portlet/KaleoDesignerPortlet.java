@@ -149,11 +149,11 @@ public class KaleoDesignerPortlet extends MVCPortlet {
 		try {
 			String resourceID = resourceRequest.getResourceID();
 
-			if (resourceID.equals("draftDefinitions")) {
-				serveDraftDefinitions(resourceRequest, resourceResponse);
-			}
-			else if (resourceID.equals("forms")) {
+			if (resourceID.equals("forms")) {
 				serveForms(resourceRequest, resourceResponse);
+			}
+			else if (resourceID.equals("kaleoDraftDefinitions")) {
+				serveKaleoDraftDefinitions(resourceRequest, resourceResponse);
 			}
 			else if (resourceID.equals("roles")) {
 				serveRoles(resourceRequest, resourceResponse);
@@ -254,41 +254,6 @@ public class KaleoDesignerPortlet extends MVCPortlet {
 		return false;
 	}
 
-	protected void serveDraftDefinitions(
-			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
-		throws Exception {
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		String name = ParamUtil.getString(resourceRequest, "name");
-		int version = ParamUtil.getInteger(resourceRequest, "version");
-		int draftVersion = ParamUtil.getInteger(
-			resourceRequest, "draftVersion");
-
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			resourceRequest);
-
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-
-		if (Validator.isNotNull(name) && (draftVersion > 0)) {
-			KaleoDraftDefinition kaleoDraftDefinition =
-				KaleoDraftDefinitionServiceUtil.getKaleoDraftDefinition(
-					name, version, draftVersion, serviceContext);
-
-			jsonObject.put("content", kaleoDraftDefinition.getContent());
-			jsonObject.put(
-				"draftVersion", kaleoDraftDefinition.getDraftVersion());
-			jsonObject.put("name", kaleoDraftDefinition.getName());
-			jsonObject.put(
-				"title",
-				kaleoDraftDefinition.getTitle(themeDisplay.getLocale()));
-			jsonObject.put("version", kaleoDraftDefinition.getVersion());
-		}
-
-		writeJSON(resourceRequest, resourceResponse, jsonObject);
-	}
-
 	protected void serveForms(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
@@ -330,6 +295,41 @@ public class KaleoDesignerPortlet extends MVCPortlet {
 		}
 
 		writeJSON(resourceRequest, resourceResponse, jsonArray);
+	}
+
+	protected void serveKaleoDraftDefinitions(
+			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		String name = ParamUtil.getString(resourceRequest, "name");
+		int version = ParamUtil.getInteger(resourceRequest, "version");
+		int draftVersion = ParamUtil.getInteger(
+			resourceRequest, "draftVersion");
+
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			resourceRequest);
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+		if (Validator.isNotNull(name) && (draftVersion > 0)) {
+			KaleoDraftDefinition kaleoDraftDefinition =
+				KaleoDraftDefinitionServiceUtil.getKaleoDraftDefinition(
+					name, version, draftVersion, serviceContext);
+
+			jsonObject.put("content", kaleoDraftDefinition.getContent());
+			jsonObject.put(
+				"draftVersion", kaleoDraftDefinition.getDraftVersion());
+			jsonObject.put("name", kaleoDraftDefinition.getName());
+			jsonObject.put(
+				"title",
+				kaleoDraftDefinition.getTitle(themeDisplay.getLocale()));
+			jsonObject.put("version", kaleoDraftDefinition.getVersion());
+		}
+
+		writeJSON(resourceRequest, resourceResponse, jsonObject);
 	}
 
 	protected void serveRoles(
