@@ -268,8 +268,8 @@ public class KaleoFormsPortlet extends MVCPortlet {
 		try {
 			String resourceID = resourceRequest.getResourceID();
 
-			if (resourceID.equals("draftDefinitions")) {
-				serveDraftDefinitions(resourceRequest, resourceResponse);
+			if (resourceID.equals("kaleoDraftDefinitions")) {
+				serveKaleoDraftDefinitions(resourceRequest, resourceResponse);
 			}
 			else if (resourceID.equals("kaleoProcess")) {
 				serveKaleoProcess(resourceRequest, resourceResponse);
@@ -626,7 +626,7 @@ public class KaleoFormsPortlet extends MVCPortlet {
 		}
 	}
 
-	protected void serveDraftDefinitions(
+	protected void serveKaleoDraftDefinitions(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
 

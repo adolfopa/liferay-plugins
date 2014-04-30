@@ -21,6 +21,7 @@
 
 		<%
 		String mvcPath = ParamUtil.getString(request, "mvcPath", "/designer/edit_kaleo_draft_definition.jsp");
+
 		String backURL = ParamUtil.getString(request, "backURL");
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(request);
@@ -249,13 +250,13 @@
 				function(name, version, draftVersion, callback) {
 					var A = AUI();
 
-					<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="draftDefinitions" var="draftDefinitionsURL">
+					<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="kaleoDraftDefinitions" var="kaleoDraftDefinitionsURL">
 						<portlet:param name="name" value="LIFERAY_NAME" />
 						<portlet:param name="version" value="LIFERAY_VERSION" />
 						<portlet:param name="draftVersion" value="LIFERAY_DRAFT_VERSION" />
 					</liferay-portlet:resourceURL>
 
-					var contentURL = '<%= draftDefinitionsURL %>';
+					var contentURL = '<%= kaleoDraftDefinitionsURL %>';
 
 					contentURL = contentURL.replace('LIFERAY_NAME', name);
 					contentURL = contentURL.replace('LIFERAY_VERSION', version);
