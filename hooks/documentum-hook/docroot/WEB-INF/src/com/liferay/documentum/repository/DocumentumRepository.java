@@ -2419,20 +2419,9 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 
 			IDfId idfFolderId = idfFolder.getObjectId();
 
-			repositoryEntry = RepositoryEntryUtil.fetchByR_M(
-				getRepositoryId(), idfFolderId.getId());
+			// Ensure the corresponding RepositoryEntry row is created
 
-			if (repositoryEntry == null) {
-				long repositoryEntryId = counterLocalService.increment();
-
-				repositoryEntry = RepositoryEntryUtil.create(repositoryEntryId);
-
-				repositoryEntry.setGroupId(getGroupId());
-				repositoryEntry.setRepositoryId(getRepositoryId());
-				repositoryEntry.setMappedId(idfFolderId.getId());
-
-				RepositoryEntryUtil.update(repositoryEntry);
-			}
+			getRepositoryEntryIds(idfFolderId.getId());
 
 			return idfFolderId;
 		}
