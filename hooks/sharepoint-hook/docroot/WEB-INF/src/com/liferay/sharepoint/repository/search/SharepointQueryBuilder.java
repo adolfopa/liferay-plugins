@@ -117,10 +117,11 @@ public class SharepointQueryBuilder {
 			SharepointQueryOperator sharepointQueryOperator)
 		throws SearchException {
 
+		String formattedFieldValue = formatFieldValue(fieldName, fieldValue);
+
 		QueryField queryField = new QueryField(
 			getSharepointFieldName(fieldName));
-		QueryValue queryValue = new QueryValue(
-			formatFieldValue(fieldName, fieldValue));
+		QueryValue queryValue = new QueryValue(formattedFieldValue);
 
 		if (sharepointQueryOperator == SharepointQueryOperator.EQ) {
 			return new EqOperator(queryField, queryValue);
@@ -135,7 +136,7 @@ public class SharepointQueryBuilder {
 			return new LeqOperator(queryField, queryValue);
 		}
 		else if (sharepointQueryOperator == SharepointQueryOperator.LIKE) {
-			return buildLikeQueryClause(queryField, fieldValue);
+			return buildLikeQueryClause(queryField, formattedFieldValue);
 		}
 		else if (sharepointQueryOperator == SharepointQueryOperator.LT) {
 			return new LtOperator(queryField, queryValue);
@@ -248,6 +249,14 @@ public class SharepointQueryBuilder {
 				_SHAREPOINT_DATE_FORMAT_PATTERN);
 
 			return dateFormat.format(date);
+		}
+		else if (fieldName.equals(Field.USER_ID) ||
+				 fieldName.equals(Field.USER_NAME)) {
+
+			String screenName = _extRepositoryQueryMapper.formatParameterValue(
+				fieldName, fieldValue);
+
+			return _sharepointWSRepository.getSharepointLogin(screenName);
 		}
 		else {
 			return _extRepositoryQueryMapper.formatParameterValue(

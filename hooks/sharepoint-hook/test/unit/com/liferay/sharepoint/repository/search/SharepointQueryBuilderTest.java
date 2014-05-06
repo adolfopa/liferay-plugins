@@ -848,6 +848,24 @@ public class SharepointQueryBuilderTest extends PowerMockito {
 		);
 
 		when(
+			_sharepointExtRepository.getSharepointLogin(Matchers.anyString())
+		).thenAnswer(
+			new Answer<String>() {
+
+				@Override
+				public String answer(InvocationOnMock invocation)
+					throws Throwable {
+
+					String liferayLogin = GetterUtil.getString(
+						invocation.getArguments()[0]);
+
+					return liferayLogin;
+				}
+
+			}
+		);
+
+		when(
 			_sharepointExtRepository.getExtRepositoryObject(
 				any(ExtRepositoryObjectType.class), Matchers.anyString())
 		).thenAnswer(

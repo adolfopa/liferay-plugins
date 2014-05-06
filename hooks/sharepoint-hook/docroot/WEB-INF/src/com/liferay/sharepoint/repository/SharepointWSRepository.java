@@ -685,6 +685,10 @@ public class SharepointWSRepository
 		return sharepointConnection;
 	}
 
+	public String getSharepointLogin(String liferayLogin) {
+		return _host + StringPool.BACK_SLASH + liferayLogin;
+	}
+
 	@Override
 	public List<String> getSubfolderKeys(
 			String extRepositoryFolderKey, boolean recurse)
