@@ -117,10 +117,11 @@ public class SharepointQueryBuilder {
 			SharepointQueryOperator sharepointQueryOperator)
 		throws SearchException {
 
-		String formattedFieldValue = formatFieldValue(fieldName, fieldValue);
-
 		QueryField queryField = new QueryField(
 			getSharepointFieldName(fieldName));
+
+		String formattedFieldValue = formatFieldValue(fieldName, fieldValue);
+
 		QueryValue queryValue = new QueryValue(formattedFieldValue);
 
 		if (sharepointQueryOperator == SharepointQueryOperator.EQ) {
