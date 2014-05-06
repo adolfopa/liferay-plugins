@@ -80,23 +80,14 @@ String redirect = ParamUtil.getString(request, "redirect");
 	var displayFeedBack = function(feedbackType) {
 		var title = form.one('.feedback-container .feedback .title');
 		var subject = form.one('.feedback-container .feedback .subject');
-		var attachments = form.one('.feedback-container .feedback .attachments');
 
 		if (feedbackType == '<%= FeedbackConstant.TYPE_POSITIVE %>') {
 			title.setHTML('<liferay-ui:message key="we-are-glad-you-like-it" />');
 			subject.setHTML('<%= FeedbackUtil.getFeedbackSubject(FeedbackConstant.TYPE_POSITIVE) %>');
-
-			if (!attachments.hasClass("hide")) {
-				attachments.addClass("hide");
-			}
 		}
 		else if (feedbackType == '<%= FeedbackConstant.TYPE_NEGATIVE %>') {
 			title.setHTML('<liferay-ui:message key="help-us-fix-it" />');
 			subject.setHTML('<%= FeedbackUtil.getFeedbackSubject(FeedbackConstant.TYPE_NEGATIVE) %>');
-
-			if (attachments.hasClass("hide")) {
-				attachments.removeClass("hide");
-			}
 		}
 
 		var type = form.one('#<portlet:namespace />type');
