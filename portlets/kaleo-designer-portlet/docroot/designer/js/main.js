@@ -198,6 +198,7 @@ AUI.add(
 			text: Liferay.Language.get('text'),
 			type: Liferay.Language.get('type'),
 			user: Liferay.Language.get('user'),
+			userNotification: Liferay.Language.get('user-notification'),
 			userId: Liferay.Language.get('user-id'),
 			velocity: Liferay.Language.get('velocity')
 		};
@@ -2279,7 +2280,11 @@ AUI.add(
 								},
 								{
 									label: strings.privateMessage,
-									value: 'privateMessage'
+									value: 'private-message'
+								},
+								{
+									label: strings.userNotification,
+									value: 'user-notification'
 								}
 							];
 						}
