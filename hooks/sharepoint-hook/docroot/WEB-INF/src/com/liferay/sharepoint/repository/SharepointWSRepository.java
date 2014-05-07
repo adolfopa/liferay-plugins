@@ -118,7 +118,7 @@ public class SharepointWSRepository
 		}
 	}
 
-	private void processAddEntryException(
+	protected void processAddEntryException(
 			SharepointException se, boolean folder, String path, String name)
 		throws PortalException, SystemException {
 
