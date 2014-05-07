@@ -33,8 +33,9 @@ import javax.servlet.ServletContextListener;
  * @author Wesley Gong
  * @author Lin Cui
  * @author Rachael Koestartyo
+ * @author Peter Shin
  */
-public class OSBReportsServletContextListener
+public class OSBMetricsServletContextListener
 	extends BasePortalLifecycle implements ServletContextListener {
 
 	@Override
@@ -44,7 +45,6 @@ public class OSBReportsServletContextListener
 
 	@Override
 	public void contextInitialized(ServletContextEvent servletContextEvent) {
-
 		registerPortalLifecycle();
 	}
 
