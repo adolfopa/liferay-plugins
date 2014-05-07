@@ -52,6 +52,14 @@ public class KaleoProcessWorkflowHandler extends BaseWorkflowHandler {
 	}
 
 	@Override
+	public String getURLEditWorkflowTask(
+			long workflowTaskId, ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		return null;
+	}
+
+	@Override
 	public WorkflowDefinitionLink getWorkflowDefinitionLink(
 			long companyId, long groupId, long classPK)
 		throws PortalException, SystemException {
