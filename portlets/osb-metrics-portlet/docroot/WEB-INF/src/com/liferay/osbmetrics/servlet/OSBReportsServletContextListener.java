@@ -12,10 +12,10 @@
  * details.
  */
 
-package com.liferay.osbreports.hook.servlet;
+package com.liferay.osbmetrics.servlet;
 
-import com.liferay.osbreports.hook.importer.ReportsImporter;
-import com.liferay.osbreports.hook.importer.SQLImporter;
+import com.liferay.osbmetrics.importer.ReportsImporter;
+import com.liferay.osbmetrics.importer.SQLImporter;
 import com.liferay.portal.kernel.util.BasePortalLifecycle;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.StringPool;

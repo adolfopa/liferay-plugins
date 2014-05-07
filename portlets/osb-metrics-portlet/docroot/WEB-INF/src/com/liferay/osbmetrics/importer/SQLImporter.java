@@ -12,10 +12,10 @@
  * details.
  */
 
-package com.liferay.osbreports.hook.importer;
+package com.liferay.osbmetrics.importer;
 
 import com.liferay.compat.portal.kernel.util.StringUtil;
-import com.liferay.osbreports.hook.util.PortletPropsValues;
+import com.liferay.osbmetrics.util.PortletPropsValues;
 import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
 import com.liferay.portal.kernel.util.FileUtil;

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.osbreports.hook.util;
+package com.liferay.osbmetrics.util;
 
 /**
  * @author Brian Wing Shun Chan

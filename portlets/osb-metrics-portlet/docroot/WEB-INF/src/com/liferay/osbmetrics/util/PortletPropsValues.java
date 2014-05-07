@@ -12,9 +12,8 @@
  * details.
  */
 
-package com.liferay.osbreports.hook.util;
+package com.liferay.osbmetrics.util;
 
-import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.util.portlet.PortletProps;
 
 /**

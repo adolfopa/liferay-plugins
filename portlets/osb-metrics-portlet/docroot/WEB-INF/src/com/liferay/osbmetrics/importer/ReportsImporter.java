@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.osbreports.hook.importer;
+package com.liferay.osbmetrics.importer;
 
 import com.liferay.compat.portal.kernel.util.LocalizationUtil;
 import com.liferay.compat.portal.kernel.util.StringUtil;
