@@ -17,6 +17,8 @@ package com.liferay.osbmetrics.importer;
 import com.liferay.osbmetrics.util.PortletPropsValues;
 import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringPool;
@@ -31,6 +33,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
+
+import org.apache.commons.lang.time.StopWatch;
 
 /**
  * @author Wesley Gong
@@ -47,13 +51,16 @@ public class SQLImporter {
 	protected void executeSQL(List<String> fileNames, String dirName)
 		throws Exception {
 
-		ClassLoader classLoader = getClassLoader();
-
 		DB db = DBFactoryUtil.getDB();
-
 		List<String> processedFileNames = new ArrayList<String>();
 
+		StopWatch stopWatch = null;
+
 		for (String fileName : fileNames) {
+			if (_log.isDebugEnabled()) {
+				_log.debug("Processing file: " + fileName);
+			}
+
 			if (!fileName.endsWith(".sql")) {
 				processedFileNames.add(fileName);
 
@@ -71,9 +78,21 @@ public class SQLImporter {
 				tableName = "DROP VIEW IF EXISTS " + tableName;
 			}
 
+			if (_log.isDebugEnabled()) {
+				stopWatch = new StopWatch();
+
+				stopWatch.start();
+			}
+
 			db.runSQL(tableName);
 
-			InputStream inputStream = classLoader.getResourceAsStream(
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					"Drop sql completed in " + stopWatch.getTime() +
+						" seconds");
+			}
+
+			InputStream inputStream = getClassLoader().getResourceAsStream(
 				dirName + StringPool.SLASH + fileName);
 
 			String sql = new String(FileUtil.getBytes(inputStream));
@@ -83,11 +102,25 @@ public class SQLImporter {
 			sql = replaceDatabaseName(
 				sql, "[$LRDCOM_DB$]", PortletPropsValues.LRDCOM_DB);
 
+			if (_log.isDebugEnabled()) {
+				stopWatch = new StopWatch();
+
+				stopWatch.start();
+			}
+
 			try {
 				db.runSQL(sql);
 			}
 			catch (Exception e) {
+				e.printStackTrace();
+
 				continue;
+			}
+			finally {
+				if (_log.isDebugEnabled()) {
+					_log.debug(
+						"Processed sql in " + stopWatch.getTime() + " seconds");
+				}
 			}
 
 			processedFileNames.add(fileName);
@@ -133,5 +166,7 @@ public class SQLImporter {
 
 		return StringUtil.replace(sql, key, databaseName);
 	}
+
+	private static Log _log = LogFactoryUtil.getLog(SQLImporter.class);
 
 }
