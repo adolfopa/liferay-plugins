@@ -1,0 +1,251 @@
+<?xml version="1.0"?>
+
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bottomMargin="10" columnWidth="842" leftMargin="0" name="OSB_TeamTotalsSubReport" orientation="Landscape" pageHeight="595" pageWidth="842" rightMargin="0" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" topMargin="10" uuid="1a893d59-da91-43fd-abf9-2069aad1e6d7">
+	<property name="ireport.zoom" value="1.0" />
+	<property name="ireport.x" value="0" />
+	<property name="ireport.y" value="0" />
+	<parameter class="java.util.Date" name="startDate">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter class="java.util.Date" name="endDate">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter class="java.lang.String" name="support_region" />
+	<parameter class="java.lang.String" isForPrompting="false" name="closed_month" />
+	<queryString> <![CDATA[CALL OSB_TeamTotalsByMonthAndSupportRegion($P{startDate}, $P{endDate}, $P{support_region});]]> </queryString>
+	<field class="java.lang.String" name="closedMonthYear">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field class="java.math.BigDecimal" name="goldTicketCount" />
+	<field class="java.math.BigDecimal" name="averageGoldClosedDelta" />
+	<field class="java.math.BigDecimal" name="hotfixGoldCount" />
+	<field class="java.math.BigDecimal" name="hotfixGoldPercentage" />
+	<field class="java.math.BigDecimal" name="platinumTicketCount" />
+	<field class="java.math.BigDecimal" name="averagePlatinumClosedDelta" />
+	<field class="java.math.BigDecimal" name="hotfixPlatinumCount" />
+	<field class="java.math.BigDecimal" name="hotfixPlatinumPercentage" />
+	<field class="java.math.BigDecimal" name="combinedTicketCount" />
+	<field class="java.math.BigDecimal" name="averageCombinedClosedDelta" />
+	<field class="java.math.BigDecimal" name="hotfixCombinedCount" />
+	<field class="java.math.BigDecimal" name="hotfixCombinedPercentage" />
+	<variable class="java.util.Date" name="closedMonthYear">
+		<variableExpression><![CDATA[$F{closedMonthYear}]]></variableExpression>
+		<initialValueExpression><![CDATA[$F{closedMonthYear}]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch" />
+	</background>
+	<columnHeader>
+		<band height="65" splitType="Stretch">
+			<staticText>
+				<reportElement backcolor="#C0EDED" height="20" mode="Opaque" uuid="b2f1e6cb-1a85-4d1a-97ab-e22000d5d915" width="175" x="73" y="-1" />
+				<box>
+					<pen lineWidth="2.0" />
+					<topPen lineWidth="2.0" />
+					<leftPen lineWidth="2.0" />
+					<bottomPen lineWidth="2.0" />
+					<rightPen lineWidth="2.0" />
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="12" />
+				</textElement>
+				<text><![CDATA[GOLD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement backcolor="#C0EDED" height="20" mode="Opaque" uuid="210893fb-0c60-4938-a502-6d0f3d778507" width="175" x="256" y="-1" />
+				<box>
+					<pen lineWidth="2.0" />
+					<topPen lineWidth="2.0" />
+					<leftPen lineWidth="2.0" />
+					<bottomPen lineWidth="2.0" />
+					<rightPen lineWidth="2.0" />
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="12" />
+				</textElement>
+				<text><![CDATA[PLATINUM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement backcolor="#CCCCCC" height="44" mode="Opaque" uuid="39468cfe-acc8-4e06-b1a4-870302668c82" width="56" x="137" y="20" />
+				<box>
+					<topPen lineStyle="Double" lineWidth="1.0" />
+					<leftPen lineStyle="Double" lineWidth="1.0" />
+					<bottomPen lineStyle="Double" lineWidth="1.0" />
+					<rightPen lineStyle="Double" lineWidth="1.0" />
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" />
+				</textElement>
+				<text><![CDATA[Total Number of Tickets Closed]]></text>
+			</staticText>
+			<staticText>
+				<reportElement backcolor="#F1EFEF" height="44" mode="Opaque" uuid="a2d8e510-3e10-446c-9963-cfe1e9707a6e" width="56" x="192" y="20" />
+				<box>
+					<topPen lineStyle="Double" lineWidth="1.0" />
+					<leftPen lineStyle="Double" lineWidth="1.0" />
+					<bottomPen lineStyle="Double" lineWidth="1.0" />
+					<rightPen lineStyle="Double" lineWidth="1.0" />
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" />
+				</textElement>
+				<text><![CDATA[Total Number of Tickets Needing a Patch]]></text>
+			</staticText>
+			<staticText>
+				<reportElement backcolor="#F1EFEF" height="44" mode="Opaque" uuid="37679e14-03e8-41d0-b7ba-66ab139eaddd" width="64" x="73" y="20" />
+				<box>
+					<topPen lineStyle="Double" lineWidth="1.0" />
+					<leftPen lineStyle="Double" lineWidth="1.0" />
+					<bottomPen lineStyle="Double" lineWidth="1.0" />
+					<rightPen lineStyle="Double" lineWidth="1.0" />
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" />
+				</textElement>
+				<text><![CDATA[Average Days Left Before Due Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement backcolor="#C0EDED" height="20" mode="Opaque" uuid="63adaa03-594f-4ee5-ba79-ac565e074a97" width="175" x="438" y="-1" />
+				<box>
+					<pen lineWidth="2.0" />
+					<topPen lineWidth="2.0" />
+					<leftPen lineWidth="2.0" />
+					<bottomPen lineWidth="2.0" />
+					<rightPen lineWidth="2.0" />
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="12" />
+				</textElement>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement backcolor="#F1EFEF" height="44" mode="Opaque" uuid="80ad6b94-050f-4b3d-bb5f-20f643dadea0" width="64" x="256" y="20" />
+				<box>
+					<topPen lineStyle="Double" lineWidth="1.0" />
+					<leftPen lineStyle="Double" lineWidth="1.0" />
+					<bottomPen lineStyle="Double" lineWidth="1.0" />
+					<rightPen lineStyle="Double" lineWidth="1.0" />
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" />
+				</textElement>
+				<text><![CDATA[Average Days Left Before Due Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement backcolor="#CCCCCC" height="44" mode="Opaque" uuid="338425d6-61a6-4e16-8764-ac088a21c402" width="56" x="320" y="20" />
+				<box>
+					<topPen lineStyle="Double" lineWidth="1.0" />
+					<leftPen lineStyle="Double" lineWidth="1.0" />
+					<bottomPen lineStyle="Double" lineWidth="1.0" />
+					<rightPen lineStyle="Double" lineWidth="1.0" />
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" />
+				</textElement>
+				<text><![CDATA[Total Number of Tickets Closed]]></text>
+			</staticText>
+			<staticText>
+				<reportElement backcolor="#F1EFEF" height="44" mode="Opaque" uuid="24686f8b-d048-48e0-8430-9395d57c74a4" width="56" x="375" y="20" />
+				<box>
+					<topPen lineStyle="Double" lineWidth="1.0" />
+					<leftPen lineStyle="Double" lineWidth="1.0" />
+					<bottomPen lineStyle="Double" lineWidth="1.0" />
+					<rightPen lineStyle="Double" lineWidth="1.0" />
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" />
+				</textElement>
+				<text><![CDATA[Total Number of Tickets Needing a Patch]]></text>
+			</staticText>
+			<staticText>
+				<reportElement backcolor="#F1EFEF" height="44" mode="Opaque" uuid="aeeb83f8-28d3-4bf7-9b86-faa9df827527" width="64" x="438" y="20" />
+				<box>
+					<topPen lineStyle="Double" lineWidth="1.0" />
+					<leftPen lineStyle="Double" lineWidth="1.0" />
+					<bottomPen lineStyle="Double" lineWidth="1.0" />
+					<rightPen lineStyle="Double" lineWidth="1.0" />
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" />
+				</textElement>
+				<text><![CDATA[Average Days Left Before Due Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement backcolor="#CCCCCC" height="44" mode="Opaque" uuid="6152d99c-fb06-4618-b87d-3a2ddad9e4cf" width="56" x="502" y="20" />
+				<box>
+					<topPen lineStyle="Double" lineWidth="1.0" />
+					<leftPen lineStyle="Double" lineWidth="1.0" />
+					<bottomPen lineStyle="Double" lineWidth="1.0" />
+					<rightPen lineStyle="Double" lineWidth="1.0" />
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" />
+				</textElement>
+				<text><![CDATA[Total Number of Tickets Closed]]></text>
+			</staticText>
+			<staticText>
+				<reportElement backcolor="#F1EFEF" height="44" mode="Opaque" uuid="df6c834c-770e-4484-a468-826310d73c1c" width="56" x="557" y="20" />
+				<box>
+					<topPen lineStyle="Double" lineWidth="1.0" />
+					<leftPen lineStyle="Double" lineWidth="1.0" />
+					<bottomPen lineStyle="Double" lineWidth="1.0" />
+					<rightPen lineStyle="Double" lineWidth="1.0" />
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" />
+				</textElement>
+				<text><![CDATA[Total Number of Tickets Needing a Patch]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<printWhenExpression><![CDATA[$F{closedMonthYear}.equals($P{closed_month})]]></printWhenExpression>
+			<textField isStretchWithOverflow="true" pattern="###0.00">
+				<reportElement backcolor="#F1EFEF" height="20" mode="Opaque" stretchType="RelativeToTallestObject" uuid="40753145-2770-4bec-a405-6aef652e1f5d" width="57" x="191" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[(($F{hotfixGoldCount} == null) || ($F{hotfixGoldCount}.intValue() == 0)) ? "-" : $F{hotfixGoldCount} + "\n(" + (($F{hotfixGoldPercentage} == null) ? 0.0 : (new java.text.DecimalFormat("#,##0.00").format(Double.valueOf($F{hotfixGoldPercentage}.doubleValue() * 100)))) + "%)"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement backcolor="#CCCCCC" height="20" mode="Opaque" stretchType="RelativeToTallestObject" uuid="652d38a4-8e3f-47a2-9cc3-d02be363af9c" width="56" x="136" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[(($F{goldTicketCount} == null) || ($F{goldTicketCount}.intValue() == 0)) ? "-" : $F{goldTicketCount}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="###0.00">
+				<reportElement backcolor="#F1EFEF" height="20" mode="Opaque" stretchType="RelativeToTallestObject" uuid="7d2dcdae-71ed-41d8-9204-682607a2c064" width="63" x="74" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[(($F{averageGoldClosedDelta} == null) || ($F{goldTicketCount}.intValue() == 0)) ? "-" : $F{averageGoldClosedDelta}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="###0.00">
+				<reportElement backcolor="#F1EFEF" height="20" mode="Opaque" stretchType="RelativeToTallestObject" uuid="9a7e27a2-403e-492b-954f-1ebc73dd0dbe" width="57" x="374" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[(($F{hotfixPlatinumCount} == null) || ($F{hotfixPlatinumCount}.intValue() == 0)) ? "-" : $F{hotfixPlatinumCount} + "\n(" + (($F{hotfixPlatinumPercentage} == null) ? 0.0 : (new java.text.DecimalFormat("#,##0.00").format(Double.valueOf($F{hotfixPlatinumPercentage}.doubleValue() * 100)))) + "%)"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement backcolor="#CCCCCC" height="20" mode="Opaque" stretchType="RelativeToTallestObject" uuid="f94fceba-00f1-4c9b-8c4e-ac6ce8a6da42" width="56" x="319" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[(($F{platinumTicketCount} == null) || ($F{platinumTicketCount}.intValue() == 0)) ? "-" : $F{platinumTicketCount}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="###0.00">
+				<reportElement backcolor="#F1EFEF" height="20" mode="Opaque" stretchType="RelativeToTallestObject" uuid="b32e8e82-cd47-41ae-9ff6-63f1f6ea3326" width="64" x="256" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[(($F{averagePlatinumClosedDelta} == null) || ($F{platinumTicketCount}.intValue() == 0)) ? "-" : $F{averagePlatinumClosedDelta}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="###0.00">
+				<reportElement backcolor="#F1EFEF" height="20" mode="Opaque" stretchType="RelativeToTallestObject" uuid="689f7b60-b93b-42a6-9ee1-9ff3211b5001" width="56" x="557" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[(($F{hotfixCombinedCount} == null) || ($F{hotfixCombinedCount}.intValue() == 0)) ? "-" : $F{hotfixCombinedCount} + "\n(" + (($F{hotfixCombinedPercentage} == null) ? 0.0 : (new java.text.DecimalFormat("#,##0.00").format(Double.valueOf($F{hotfixCombinedPercentage}.doubleValue() * 100)))) + "%)"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="###0.00">
+				<reportElement backcolor="#F1EFEF" height="20" mode="Opaque" stretchType="RelativeToTallestObject" uuid="f23469b8-fe57-4071-a736-eda3ea34a070" width="64" x="438" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[(($F{averageCombinedClosedDelta} == null) || ($F{combinedTicketCount}.intValue() == 0)) ? "-" : $F{averageCombinedClosedDelta}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement backcolor="#CCCCCC" height="20" mode="Opaque" stretchType="RelativeToTallestObject" uuid="7adc979c-5c41-45aa-b5c1-77f55dca1dec" width="55" x="502" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[(($F{combinedTicketCount} == null) || ($F{combinedTicketCount}.intValue() == 0)) ? "-" : $F{combinedTicketCount}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

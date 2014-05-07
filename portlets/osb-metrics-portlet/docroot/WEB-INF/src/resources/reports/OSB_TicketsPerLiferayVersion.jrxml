@@ -1,0 +1,603 @@
+<?xml version="1.0"?>
+
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bottomMargin="20" columnWidth="802" leftMargin="20" name="OSB_TicketsPerLiferayVersion" orientation="Landscape" pageHeight="595" pageWidth="842" rightMargin="20" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" topMargin="20" uuid="ac462201-3cf5-4096-bb12-c40d1cf5b73e">
+	<property name="ireport.zoom" value="1.0" />
+	<property name="ireport.x" value="0" />
+	<property name="ireport.y" value="0" />
+	<style name="table 1">
+		<box>
+			<pen lineColor="#000000" lineWidth="1.0" />
+		</box>
+	</style>
+	<style backcolor="#73B0E6" mode="Opaque" name="table 1_TH">
+		<box>
+			<pen lineColor="#000000" lineWidth="0.5" />
+		</box>
+	</style>
+	<style backcolor="#CFDBE6" mode="Opaque" name="table 1_CH">
+		<box>
+			<pen lineColor="#000000" lineWidth="0.5" />
+		</box>
+	</style>
+	<style backcolor="#FFFFFF" mode="Opaque" name="table 1_TD">
+		<box>
+			<pen lineColor="#000000" lineWidth="0.5" />
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue() % 2 == 0)]]></conditionExpression>
+			<style backcolor="#F3F6F8" />
+		</conditionalStyle>
+	</style>
+	<subDataset name="New Dataset 1" uuid="357cce00-a73f-468c-ac2e-701c1d12c6c0">
+		<queryString> <![CDATA[CALL OSB_TicketsPerLiferayVersion();]]> </queryString>
+		<field class="java.lang.String" name="version">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field class="java.lang.Long" name="Month 1" />
+		<field class="java.lang.Long" name="Month 2" />
+		<field class="java.lang.Long" name="Month 3" />
+		<field class="java.lang.Long" name="Month 4" />
+		<field class="java.lang.Long" name="Month 5" />
+		<field class="java.lang.Long" name="Month 6" />
+		<field class="java.lang.Long" name="Month 7" />
+		<field class="java.lang.Long" name="Month 8" />
+		<field class="java.lang.Long" name="Month 9" />
+		<field class="java.lang.Long" name="Month 10" />
+		<field class="java.lang.Long" name="Month 11" />
+		<field class="java.lang.Long" name="Month 12" />
+		<field class="java.lang.Long" name="Month 13" />
+		<field class="java.lang.Long" name="Month 14" />
+		<field class="java.lang.Long" name="Month 15" />
+		<field class="java.lang.Long" name="Month 16" />
+		<field class="java.lang.Long" name="Month 17" />
+		<field class="java.lang.Long" name="Month 18" />
+		<field class="java.lang.Long" name="Month 19" />
+		<field class="java.lang.Long" name="Month 20" />
+		<field class="java.lang.Long" name="Month 21" />
+		<field class="java.lang.Long" name="Month 22" />
+		<field class="java.lang.Long" name="Month 23" />
+		<field class="java.lang.Long" name="Month 24" />
+		<field class="java.lang.Long" name="Month 24+" />
+		<field class="java.lang.Long" name="ticketsCount" />
+	</subDataset>
+	<queryString> <![CDATA[CALL OSB_TicketsPerLiferayVersion();]]> </queryString>
+	<field class="java.lang.String" name="version">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field class="java.lang.Long" name="Month 1" />
+	<field class="java.lang.Long" name="Month 2" />
+	<field class="java.lang.Long" name="Month 3" />
+	<field class="java.lang.Long" name="Month 4" />
+	<field class="java.lang.Long" name="Month 5" />
+	<field class="java.lang.Long" name="Month 6" />
+	<field class="java.lang.Long" name="Month 7" />
+	<field class="java.lang.Long" name="Month 8" />
+	<field class="java.lang.Long" name="Month 9" />
+	<field class="java.lang.Long" name="Month 10" />
+	<field class="java.lang.Long" name="Month 11" />
+	<field class="java.lang.Long" name="Month 12" />
+	<field class="java.lang.Long" name="Month 13" />
+	<field class="java.lang.Long" name="Month 14" />
+	<field class="java.lang.Long" name="Month 15" />
+	<field class="java.lang.Long" name="Month 16" />
+	<field class="java.lang.Long" name="Month 17" />
+	<field class="java.lang.Long" name="Month 18" />
+	<field class="java.lang.Long" name="Month 19" />
+	<field class="java.lang.Long" name="Month 20" />
+	<field class="java.lang.Long" name="Month 21" />
+	<field class="java.lang.Long" name="Month 22" />
+	<field class="java.lang.Long" name="Month 23" />
+	<field class="java.lang.Long" name="Month 24" />
+	<field class="java.lang.Long" name="Month 24+" />
+	<field class="java.lang.Long" name="ticketsCount" />
+	<background>
+		<band splitType="Stretch" />
+	</background>
+	<title>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement forecolor="#000000" height="30" uuid="dd3eb142-7beb-4fd4-82bf-d9994158e897" width="802" x="0" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" isUnderline="false" size="16" />
+				</textElement>
+				<text><![CDATA[Tickets per Liferay Version]]></text>
+			</staticText>
+		</band>
+	</title>
+	<summary>
+		<band height="64" splitType="Stretch">
+			<componentElement>
+				<reportElement height="61" key="table 1" style="table 1" uuid="2e27f7fc-364f-4a37-b090-e0aa2fb0b746" width="802" x="0" y="0" />
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="New Dataset 1" uuid="bcbb9e9b-d250-4d01-8c53-698ce135e339">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column uuid="8b996aaf-370b-44ff-9f4e-2c0560c27b7c" width="114">
+						<jr:columnHeader height="30" rowSpan="1" style="table 1_CH">
+							<staticText>
+								<reportElement height="30" uuid="7e701a85-8156-40c0-9dc1-6684d817abdd" width="114" x="0" y="0" />
+								<textElement verticalAlignment="Middle" />
+								<text><![CDATA[ Version]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="20" rowSpan="1" style="table 1_TD">
+							<textField>
+								<reportElement height="20" uuid="0a5bc76b-0033-407c-8ec8-1da0787eb223" width="114" x="0" y="0" />
+								<textElement verticalAlignment="Middle">
+									<font size="8" />
+								</textElement>
+								<textFieldExpression><![CDATA[$F{version}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column uuid="35bb62a3-54d7-4db1-b24e-3c25f1eb11d7" width="25">
+						<jr:columnHeader height="30" rowSpan="1" style="table 1_CH">
+							<staticText>
+								<reportElement height="30" uuid="022dccbe-3df9-425a-864e-3d0446980775" width="25" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" />
+								</textElement>
+								<text><![CDATA[Month 1]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="20" rowSpan="1" style="table 1_TD">
+							<textField>
+								<reportElement height="20" uuid="52b8e364-9358-4cdf-91b7-148672193dec" width="25" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle" />
+								<textFieldExpression><![CDATA[$F{Month 1}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column uuid="6c3f1ae9-64e9-49ef-8e3c-1921d3ba0341" width="25">
+						<jr:columnHeader height="30" rowSpan="1" style="table 1_CH">
+							<staticText>
+								<reportElement height="30" uuid="c1db0b48-504f-453a-ba1e-e521a537fa57" width="25" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" />
+								</textElement>
+								<text><![CDATA[Month 2]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="20" rowSpan="1" style="table 1_TD">
+							<textField>
+								<reportElement height="20" uuid="23b63ec6-b4b5-4bc3-bc3b-2cb91563a01a" width="25" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle" />
+								<textFieldExpression><![CDATA[$F{Month 2}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column uuid="3da3f83c-ce0e-4f6f-8c50-ec5d2cff5fd2" width="25">
+						<jr:columnHeader height="30" rowSpan="1" style="table 1_CH">
+							<staticText>
+								<reportElement height="30" uuid="d565fa08-d68a-4b44-98f6-323176df5e27" width="25" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" />
+								</textElement>
+								<text><![CDATA[Month 3]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="20" rowSpan="1" style="table 1_TD">
+							<textField>
+								<reportElement height="20" uuid="7e221ede-ba63-4f03-9825-2a563e7b12d3" width="25" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle" />
+								<textFieldExpression><![CDATA[$F{Month 3}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column uuid="e8d58b71-73f3-4289-b497-e8bacf820512" width="25">
+						<jr:columnHeader height="30" rowSpan="1" style="table 1_CH">
+							<staticText>
+								<reportElement height="30" uuid="c1398aec-16b2-4912-be79-14328feccdc4" width="25" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" />
+								</textElement>
+								<text><![CDATA[Month 4]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="20" rowSpan="1" style="table 1_TD">
+							<textField>
+								<reportElement height="20" uuid="b9631498-4830-4e0c-adc0-7eaa0778fa8b" width="25" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle" />
+								<textFieldExpression><![CDATA[$F{Month 4}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column uuid="bdf94ecf-f1b5-4174-865c-104bd29f6531" width="25">
+						<jr:columnHeader height="30" rowSpan="1" style="table 1_CH">
+							<staticText>
+								<reportElement height="30" uuid="828afaab-4b23-48b7-944a-5b167957533d" width="25" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" />
+								</textElement>
+								<text><![CDATA[Month 5]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="20" rowSpan="1" style="table 1_TD">
+							<textField>
+								<reportElement height="20" uuid="aaf6c8c6-e88c-4a42-999a-eba326b8f406" width="25" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle" />
+								<textFieldExpression><![CDATA[$F{Month 5}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column uuid="8ae6f6d1-c320-4c95-9ad9-3860ed8f04d1" width="25">
+						<jr:columnHeader height="30" rowSpan="1" style="table 1_CH">
+							<staticText>
+								<reportElement height="30" uuid="1aa497ef-8c80-48d9-b064-69f56d297330" width="25" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" />
+								</textElement>
+								<text><![CDATA[Month 6]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="20" rowSpan="1" style="table 1_TD">
+							<textField>
+								<reportElement height="20" uuid="5943458b-3616-4353-a6af-e8e0820f357c" width="25" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle" />
+								<textFieldExpression><![CDATA[$F{Month 6}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column uuid="5298df5b-f51c-42cf-ac34-e6d0fc933428" width="25">
+						<jr:columnHeader height="30" rowSpan="1" style="table 1_CH">
+							<staticText>
+								<reportElement height="30" uuid="83dd9910-48ae-4185-895d-9e22f2290bb2" width="25" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" />
+								</textElement>
+								<text><![CDATA[Month 7]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="20" rowSpan="1" style="table 1_TD">
+							<textField>
+								<reportElement height="20" uuid="b058d636-18d2-4e71-9253-ff372b300c9f" width="25" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle" />
+								<textFieldExpression><![CDATA[$F{Month 7}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column uuid="051b62a0-4035-4ea8-9199-ba183950cfe4" width="25">
+						<jr:columnHeader height="30" rowSpan="1" style="table 1_CH">
+							<staticText>
+								<reportElement height="30" uuid="820e57b1-9fe3-4355-85bc-4a7abf6ffc25" width="25" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" />
+								</textElement>
+								<text><![CDATA[Month 8]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="20" rowSpan="1" style="table 1_TD">
+							<textField>
+								<reportElement height="20" uuid="1e9ffd49-45d7-4cd5-b0b3-8d5cb0b9ced0" width="25" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle" />
+								<textFieldExpression><![CDATA[$F{Month 8}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column uuid="702f6bac-b102-4151-aaeb-a9e181d01847" width="25">
+						<jr:columnHeader height="30" rowSpan="1" style="table 1_CH">
+							<staticText>
+								<reportElement height="30" uuid="7dc65872-284b-4206-a6b9-63fc1eb6eecc" width="25" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" />
+								</textElement>
+								<text><![CDATA[Month 9]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="20" rowSpan="1" style="table 1_TD">
+							<textField>
+								<reportElement height="20" uuid="eefaca19-9287-478e-9348-c59007940ba7" width="25" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle" />
+								<textFieldExpression><![CDATA[$F{Month 9}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column uuid="6f664a06-d2e2-4510-ae77-bb259c26dbfc" width="25">
+						<jr:columnHeader height="30" rowSpan="1" style="table 1_CH">
+							<staticText>
+								<reportElement height="30" uuid="c00208bf-d0cf-4211-a843-8dc2b359ae0a" width="25" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" />
+								</textElement>
+								<text><![CDATA[Month 10]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="20" rowSpan="1" style="table 1_TD">
+							<textField>
+								<reportElement height="20" uuid="577142c2-7820-4e5c-a870-8da44825b59b" width="25" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle" />
+								<textFieldExpression><![CDATA[$F{Month 10}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column uuid="c388afed-7523-4d94-9bdd-a48fee9fd905" width="25">
+						<jr:columnHeader height="30" rowSpan="1" style="table 1_CH">
+							<staticText>
+								<reportElement height="30" uuid="f153083e-cf84-452f-9040-e6309f48dc11" width="25" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" />
+								</textElement>
+								<text><![CDATA[Month 11]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="20" rowSpan="1" style="table 1_TD">
+							<textField>
+								<reportElement height="20" uuid="52cb0e58-c370-4771-b113-89de9d47f690" width="25" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle" />
+								<textFieldExpression><![CDATA[$F{Month 11}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column uuid="1fb42f6c-8c77-4000-b306-e6428a2610c2" width="25">
+						<jr:columnHeader height="30" rowSpan="1" style="table 1_CH">
+							<staticText>
+								<reportElement height="30" uuid="3596ea46-3068-4136-8643-9d7ebd8aab23" width="25" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" />
+								</textElement>
+								<text><![CDATA[Month 12]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="20" rowSpan="1" style="table 1_TD">
+							<textField>
+								<reportElement height="20" uuid="5f9f2a78-e8ad-406f-af78-d1d48b2d4281" width="25" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle" />
+								<textFieldExpression><![CDATA[$F{Month 12}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column uuid="33a39d33-0855-4847-929c-cb7dc13f3bd8" width="25">
+						<jr:columnHeader height="30" rowSpan="1" style="table 1_CH">
+							<staticText>
+								<reportElement height="30" uuid="ccac83ab-2fd9-408d-9d08-e6e0ab71bd45" width="25" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" />
+								</textElement>
+								<text><![CDATA[Month 13]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="20" rowSpan="1" style="table 1_TD">
+							<textField>
+								<reportElement height="20" uuid="30acea7d-3755-4007-98c8-f87d1980fae8" width="25" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle" />
+								<textFieldExpression><![CDATA[$F{Month 13}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column uuid="cafc7d51-2523-4a4f-97b8-4a9c4dbe60a5" width="25">
+						<jr:columnHeader height="30" rowSpan="1" style="table 1_CH">
+							<staticText>
+								<reportElement height="30" uuid="39f190e5-e9c2-4dc3-ab96-b2490e680ccf" width="25" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" />
+								</textElement>
+								<text><![CDATA[Month 14]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="20" rowSpan="1" style="table 1_TD">
+							<textField>
+								<reportElement height="20" uuid="9c62b7cf-4f7c-4c1a-b2b9-9c89e7cc81fe" width="25" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle" />
+								<textFieldExpression><![CDATA[$F{Month 14}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column uuid="ebcca7b6-4f9e-4c1b-ac17-ab3da3f77873" width="25">
+						<jr:columnHeader height="30" rowSpan="1" style="table 1_CH">
+							<staticText>
+								<reportElement height="30" uuid="369eb8d0-021b-4d6e-819d-fa8bded13515" width="25" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" />
+								</textElement>
+								<text><![CDATA[Month 15]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="20" rowSpan="1" style="table 1_TD">
+							<textField>
+								<reportElement height="20" uuid="53d18b4b-9679-46d1-8d33-a0da1d018730" width="25" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle" />
+								<textFieldExpression><![CDATA[$F{Month 15}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column uuid="bb71928b-b8de-45fd-a292-30c8b3c5f307" width="25">
+						<jr:columnHeader height="30" rowSpan="1" style="table 1_CH">
+							<staticText>
+								<reportElement height="30" uuid="ebc16148-08e7-42fa-9f50-11a70f7256c4" width="25" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" />
+								</textElement>
+								<text><![CDATA[Month 16]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="20" rowSpan="1" style="table 1_TD">
+							<textField>
+								<reportElement height="20" uuid="4b7f1260-8342-407c-868c-e3dbfbf2be44" width="25" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle" />
+								<textFieldExpression><![CDATA[$F{Month 16}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column uuid="64d77aeb-a99e-40d8-9b5b-28c019e4ce00" width="25">
+						<jr:columnHeader height="30" rowSpan="1" style="table 1_CH">
+							<staticText>
+								<reportElement height="30" uuid="3bca9f78-c1a5-44b5-9446-ed1c796e63a9" width="25" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" />
+								</textElement>
+								<text><![CDATA[Month 17]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="20" rowSpan="1" style="table 1_TD">
+							<textField>
+								<reportElement height="20" uuid="d250e895-976b-45c7-9261-98db910dfbc7" width="25" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle" />
+								<textFieldExpression><![CDATA[$F{Month 17}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column uuid="85a29f9a-b3da-405c-90e2-5d2ff454644c" width="25">
+						<jr:columnHeader height="30" rowSpan="1" style="table 1_CH">
+							<staticText>
+								<reportElement height="30" uuid="4b1f0f8a-85c8-47ab-8d50-e8e45fc29d8e" width="25" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" />
+								</textElement>
+								<text><![CDATA[Month 18]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="20" rowSpan="1" style="table 1_TD">
+							<textField>
+								<reportElement height="20" uuid="313ba12d-45ba-421d-8290-91ede6ff363c" width="25" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle" />
+								<textFieldExpression><![CDATA[$F{Month 18}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column uuid="ec17a401-777d-4089-9049-b6a193501f7d" width="25">
+						<jr:columnHeader height="30" rowSpan="1" style="table 1_CH">
+							<staticText>
+								<reportElement height="30" uuid="f910212c-1ad5-4cdf-be56-da9ffd6cd434" width="25" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" />
+								</textElement>
+								<text><![CDATA[Month 19]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="20" rowSpan="1" style="table 1_TD">
+							<textField>
+								<reportElement height="20" uuid="3f470490-a322-4220-9041-57e2bf1b5910" width="25" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle" />
+								<textFieldExpression><![CDATA[$F{Month 19}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column uuid="a2f7f66b-cb2b-4e3b-b4d7-b8178a95ddaa" width="25">
+						<jr:columnHeader height="30" rowSpan="1" style="table 1_CH">
+							<staticText>
+								<reportElement height="30" uuid="019efe37-f41c-4df4-8db2-78fe63f60b35" width="25" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" />
+								</textElement>
+								<text><![CDATA[Month 20]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="20" rowSpan="1" style="table 1_TD">
+							<textField>
+								<reportElement height="20" uuid="1878f4b0-433b-498e-8022-e7a5976e001a" width="25" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle" />
+								<textFieldExpression><![CDATA[$F{Month 20}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column uuid="d3f3fb12-9431-4d5b-9b03-7ca55ab6ce57" width="25">
+						<jr:columnHeader height="30" rowSpan="1" style="table 1_CH">
+							<staticText>
+								<reportElement height="30" uuid="e8729150-ac50-4522-9459-eeaa8324eb49" width="25" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" />
+								</textElement>
+								<text><![CDATA[Month 21]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="20" rowSpan="1" style="table 1_TD">
+							<textField>
+								<reportElement height="20" uuid="436ea812-b051-4732-9290-29ba176c6921" width="25" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle" />
+								<textFieldExpression><![CDATA[$F{Month 21}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column uuid="2cca3eb7-3da7-44d7-9a3e-04bb91d68c1a" width="25">
+						<jr:columnHeader height="30" rowSpan="1" style="table 1_CH">
+							<staticText>
+								<reportElement height="30" uuid="688def9a-07f6-4caf-96cf-7c16a1d34985" width="25" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" />
+								</textElement>
+								<text><![CDATA[Month 22]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="20" rowSpan="1" style="table 1_TD">
+							<textField>
+								<reportElement height="20" uuid="e7c48459-82e3-4d2a-82f7-541f0b73665e" width="25" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle" />
+								<textFieldExpression><![CDATA[$F{Month 22}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column uuid="27341379-65b9-4919-a1ec-1921102b6d0d" width="25">
+						<jr:columnHeader height="30" rowSpan="1" style="table 1_CH">
+							<staticText>
+								<reportElement height="30" uuid="a2c27827-9814-4acd-9185-67682f85833b" width="25" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" />
+								</textElement>
+								<text><![CDATA[Month 23]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="20" rowSpan="1" style="table 1_TD">
+							<textField>
+								<reportElement height="20" uuid="b04a551b-7fc8-4c01-9094-7303d2aef24e" width="25" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle" />
+								<textFieldExpression><![CDATA[$F{Month 23}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column uuid="db6c86ef-d188-466b-900c-a0198d36ecb7" width="25">
+						<jr:columnHeader height="30" rowSpan="1" style="table 1_CH">
+							<staticText>
+								<reportElement height="30" uuid="66c85b14-0faa-4f6d-a536-1e826ffff07e" width="25" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" />
+								</textElement>
+								<text><![CDATA[Month 24]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="20" rowSpan="1" style="table 1_TD">
+							<textField>
+								<reportElement height="20" uuid="8ee647d3-e49e-4432-bd76-74019b196d50" width="25" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle" />
+								<textFieldExpression><![CDATA[$F{Month 24}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column uuid="8e812857-3b7e-40df-aee4-dce3e27213e5" width="25">
+						<jr:columnHeader height="30" rowSpan="1" style="table 1_CH">
+							<staticText>
+								<reportElement height="30" uuid="35222b3f-1a62-42fb-af7e-2ec129c1e678" width="25" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" />
+								</textElement>
+								<text><![CDATA[Month 24+]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="20" rowSpan="1" style="table 1_TD">
+							<textField>
+								<reportElement height="20" uuid="bd4b80f8-cde5-4c32-b8d9-6d5f3645e7f6" width="25" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle" />
+								<textFieldExpression><![CDATA[$F{Month 24+}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column uuid="52ac2a9c-1a81-409e-80c4-f708cf92580e" width="38">
+						<jr:columnHeader height="30" rowSpan="1" style="table 1_CH">
+							<staticText>
+								<reportElement height="30" uuid="b5512327-d06b-410c-85b9-4c96029cc78b" width="38" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle" />
+								<text><![CDATA[Total]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="20" rowSpan="1" style="table 1_TD">
+							<textField>
+								<reportElement height="20" uuid="b6a479ae-9cbc-4b62-9c76-e87b8a36f94c" width="38" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle" />
+								<textFieldExpression><![CDATA[$F{ticketsCount}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</summary>
+</jasperReport>

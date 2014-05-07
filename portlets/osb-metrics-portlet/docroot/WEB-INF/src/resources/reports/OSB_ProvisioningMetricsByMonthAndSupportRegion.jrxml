@@ -1,0 +1,209 @@
+<?xml version="1.0"?>
+
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bottomMargin="20" columnWidth="802" leftMargin="20" name="OSB_ProvisioningMetricsByMonthAndSupportRegion" orientation="Landscape" pageHeight="595" pageWidth="842" rightMargin="20" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" topMargin="20" uuid="2278958a-b6e3-4f2b-92c0-28124da387bc">
+	<property name="ireport.zoom" value="1.0" />
+	<property name="ireport.x" value="0" />
+	<property name="ireport.y" value="0" />
+	<parameter class="java.util.Date" name="startDate">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter class="java.util.Date" name="endDate">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter class="java.lang.String" isForPrompting="false" name="SUBREPORT_DIR">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter class="java.lang.String" name="supportRegion" />
+	<queryString> <![CDATA[CALL OSB_TicketsClosedMonthYearBySupportRegion($P{startDate}, $P{endDate}, $P{supportRegion});]]> </queryString>
+	<field class="java.lang.String" name="closedMonthYear">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<group isStartNewPage="true" name="supportRegion">
+		<groupExpression><![CDATA[$P{supportRegion}]]></groupExpression>
+		<groupHeader>
+			<band height="27">
+				<textField>
+					<reportElement forecolor="#000000" height="21" uuid="fc9a84f0-8442-44e4-a6ea-9ce46f18c714" width="100" x="110" y="1" />
+					<textElement verticalAlignment="Middle">
+						<font size="14" />
+					</textElement>
+					<textFieldExpression><![CDATA[$P{supportRegion}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement forecolor="#000000" height="21" uuid="2b6ecb8d-b8f5-4f65-8549-05e9f435feb8" width="109" x="0" y="1" />
+					<textElement verticalAlignment="Middle">
+						<font size="14" />
+					</textElement>
+					<text><![CDATA[Support Region :]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+	</group>
+	<group isReprintHeaderOnEachPage="true" isStartNewPage="true" name="closedMonthYear">
+		<groupExpression><![CDATA[$F{closedMonthYear}]]></groupExpression>
+		<groupHeader>
+			<band height="21">
+				<textField>
+					<reportElement forecolor="#000000" height="20" uuid="426b70de-124c-4e74-86b0-e2a4438899a3" width="119" x="683" y="0" />
+					<textElement/>
+					<textFieldExpression><![CDATA[new SimpleDateFormat("MMMM yyyy").format(new SimpleDateFormat("yyyy-MM-dd").parse($F{closedMonthYear}))]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch" />
+	</background>
+	<title>
+		<band height="57">
+			<staticText>
+				<reportElement forecolor="#000000" height="30" uuid="399817f0-1a6e-445e-a85b-2c14a2c5f8ca" width="802" x="0" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="14" />
+				</textElement>
+				<text><![CDATA[License Metrics Report]]></text>
+			</staticText>
+			<textField>
+				<reportElement forecolor="#000000" height="27" uuid="ea9e4c70-799c-4201-afb5-8934e5bd261c" width="802" x="0" y="30" />
+				<textElement textAlignment="Center">
+					<font isBold="true" size="14" />
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("MMMM dd, yyyy").format($P{startDate}) + " - " + new SimpleDateFormat("MMMM dd, yyyy").format($P{endDate})]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="70" splitType="Prevent">
+			<staticText>
+				<reportElement forecolor="#000000" height="25" uuid="cde1367e-08e5-4b31-af96-08e9e1e3af8d" width="155" x="23" y="0" />
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" isUnderline="true" size="12" />
+				</textElement>
+				<text><![CDATA[License/Account Totals]]></text>
+			</staticText>
+			<subreport>
+				<reportElement height="45" uuid="097ad143-1355-4963-8bc3-0fd4c3a3b178" width="748" x="54" y="25" />
+				<subreportParameter name="startDate">
+					<subreportParameterExpression><![CDATA[$P{startDate}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="closed_month">
+					<subreportParameterExpression><![CDATA[$F{closedMonthYear}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="endDate">
+					<subreportParameterExpression><![CDATA[$P{endDate}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="support_region">
+					<subreportParameterExpression><![CDATA[$P{supportRegion}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "OSB_ProvisioningTeamTotalsSubReport.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="71" splitType="Prevent">
+			<staticText>
+				<reportElement forecolor="#000000" height="25" uuid="9070fa36-d186-4761-93bb-e3be3c1ca7aa" width="155" x="23" y="1" />
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" isUnderline="true" size="12" />
+				</textElement>
+				<text><![CDATA[License/Account Severity]]></text>
+			</staticText>
+			<subreport>
+				<reportElement height="45" uuid="be43c36f-18ea-4403-a862-22bcb0dadde4" width="748" x="54" y="26" />
+				<subreportParameter name="startDate">
+					<subreportParameterExpression><![CDATA[$P{startDate}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="closed_month">
+					<subreportParameterExpression><![CDATA[$F{closedMonthYear}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="endDate">
+					<subreportParameterExpression><![CDATA[$P{endDate}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="support_region">
+					<subreportParameterExpression><![CDATA[$P{supportRegion}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "OSB_ProvisioningTeamSeveritySubReport.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="64" splitType="Prevent">
+			<staticText>
+				<reportElement forecolor="#000000" height="25" uuid="bb349e5a-4bde-4111-834e-eed04928fdff" width="187" x="23" y="0" />
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" isUnderline="true" size="12" />
+				</textElement>
+				<text><![CDATA[License/Account Resolution]]></text>
+			</staticText>
+			<subreport>
+				<reportElement height="39" uuid="af33c804-6959-43c2-a836-ca7058673546" width="748" x="54" y="25" />
+				<subreportParameter name="startDate">
+					<subreportParameterExpression><![CDATA[$P{startDate}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="closed_month">
+					<subreportParameterExpression><![CDATA[$F{closedMonthYear}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="endDate">
+					<subreportParameterExpression><![CDATA[$P{endDate}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="support_region">
+					<subreportParameterExpression><![CDATA[$P{supportRegion}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "OSB_ProvisioningTeamResolutionSubReport.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="71" splitType="Prevent">
+			<staticText>
+				<reportElement forecolor="#000000" height="25" uuid="31b31cea-e682-4051-bc14-1bf13ba1c1bd" width="187" x="23" y="0" />
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" isUnderline="true" size="12" />
+				</textElement>
+				<text><![CDATA[License/Account Engineers]]></text>
+			</staticText>
+			<subreport>
+				<reportElement height="45" uuid="581b55d5-9999-4e9e-b1f3-a01c571307f9" width="779" x="23" y="25" />
+				<subreportParameter name="startDate">
+					<subreportParameterExpression><![CDATA[$P{startDate}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="closed_month">
+					<subreportParameterExpression><![CDATA[$F{closedMonthYear}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="endDate">
+					<subreportParameterExpression><![CDATA[$P{endDate}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="support_team">
+					<subreportParameterExpression><![CDATA[$P{supportRegion}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "OSB_ProvisioningEngineersMetricsSubRepot.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch" />
+	</columnFooter>
+	<pageFooter>
+		<band height="23">
+			<textField evaluationTime="Report">
+				<reportElement height="13" uuid="c467bc81-d488-48f2-b89d-5ba02f817b76" width="100" x="702" y="9" />
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="8" />
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("EEE, MMM dd yyyy HH:mm:ss").format(new Date())]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="20" uuid="85e4ce8b-488e-4de3-9a62-4da8589bba0c" width="80" x="332" y="2" />
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="8" />
+				</textElement>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER} + " of "]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement height="20" uuid="bb5b50e8-0cac-421c-8c53-eb1ce0292bbb" width="40" x="412" y="2" />
+				<textElement verticalAlignment="Bottom">
+					<font size="8" />
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

@@ -1,0 +1,240 @@
+<?xml version="1.0"?>
+
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bottomMargin="20" columnWidth="802" leftMargin="20" name="OSB_TeamMetricsByMonthAndSupportRegion" orientation="Landscape" pageHeight="595" pageWidth="842" rightMargin="20" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" topMargin="20" uuid="bb9ecfbe-eea2-4e87-8d88-9f7de48c8e8b">
+	<property name="ireport.zoom" value="1.0" />
+	<property name="ireport.x" value="0" />
+	<property name="ireport.y" value="0" />
+	<parameter class="java.util.Date" name="startDate">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter class="java.util.Date" name="endDate">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter class="java.lang.String" isForPrompting="false" name="SUBREPORT_DIR">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter class="java.lang.String" name="supportRegion" />
+	<queryString> <![CDATA[CALL OSB_TicketsClosedMonthYearBySupportRegion($P{startDate}, $P{endDate}, $P{supportRegion});]]> </queryString>
+	<field class="java.lang.String" name="closedMonthYear" />
+	<group isStartNewPage="true" name="supportRegion">
+		<groupExpression><![CDATA[$P{supportRegion}]]></groupExpression>
+		<groupHeader>
+			<band height="27">
+				<textField>
+					<reportElement forecolor="#000000" height="21" uuid="bd49b0d8-fd22-46ba-801a-a40bda81fe25" width="100" x="110" y="1" />
+					<textElement verticalAlignment="Middle">
+						<font size="14" />
+					</textElement>
+					<textFieldExpression><![CDATA[$P{supportRegion}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement forecolor="#000000" height="21" uuid="7f1a84af-5664-4bb7-9e44-39bda9974cf1" width="109" x="0" y="1" />
+					<textElement verticalAlignment="Middle">
+						<font size="14" />
+					</textElement>
+					<text><![CDATA[Support Region :]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+	</group>
+	<group isReprintHeaderOnEachPage="true" isStartNewPage="true" name="closedMonthYear">
+		<groupExpression><![CDATA[$F{closedMonthYear}]]></groupExpression>
+		<groupHeader>
+			<band height="21">
+				<textField>
+					<reportElement forecolor="#000000" height="20" uuid="88cec992-468d-437a-ab0f-395d3dd0d553" width="119" x="683" y="0" />
+					<textElement/>
+					<textFieldExpression><![CDATA[new SimpleDateFormat("MMMM yyyy").format(new SimpleDateFormat("yyyy-MM-dd").parse($F{closedMonthYear}))]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch" />
+	</background>
+	<title>
+		<band height="57">
+			<staticText>
+				<reportElement forecolor="#000000" height="30" uuid="4d23312d-53ca-4643-9fee-c69078747c0b" width="802" x="0" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" isUnderline="false" size="14" />
+				</textElement>
+				<text><![CDATA[Team Metrics Report]]></text>
+			</staticText>
+			<textField>
+				<reportElement forecolor="#000000" height="27" uuid="9716a97c-d771-43af-a6ae-3754412eb94d" width="802" x="0" y="30" />
+				<textElement textAlignment="Center">
+					<font isBold="true" size="14" />
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("MMMM dd, yyyy").format($P{startDate}) + " - " + new SimpleDateFormat("MMMM dd, yyyy").format($P{endDate})]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="70" splitType="Prevent">
+			<staticText>
+				<reportElement forecolor="#000000" height="25" uuid="8bb7f69d-8205-42ee-9376-1378acf9323f" width="100" x="23" y="0" />
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" isUnderline="true" size="12" />
+				</textElement>
+				<text><![CDATA[Team Totals]]></text>
+			</staticText>
+			<subreport>
+				<reportElement height="45" uuid="93f976e8-6378-4837-ba27-21433f1a84fe" width="748" x="54" y="25" />
+				<subreportParameter name="startDate">
+					<subreportParameterExpression><![CDATA[$P{startDate}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="closed_month">
+					<subreportParameterExpression><![CDATA[$F{closedMonthYear}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="endDate">
+					<subreportParameterExpression><![CDATA[$P{endDate}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="support_region">
+					<subreportParameterExpression><![CDATA[$P{supportRegion}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "OSB_TeamTotalsSubReport.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="71" splitType="Prevent">
+			<staticText>
+				<reportElement forecolor="#000000" height="25" uuid="5ccb3867-a5d0-4e22-9f36-c5fe527c4202" width="100" x="23" y="1" />
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" isUnderline="true" size="12" />
+				</textElement>
+				<text><![CDATA[Team Severity]]></text>
+			</staticText>
+			<subreport>
+				<reportElement height="45" uuid="4e17a4be-b7fe-4c62-aa21-bdbb84e5486c" width="748" x="54" y="26" />
+				<subreportParameter name="startDate">
+					<subreportParameterExpression><![CDATA[$P{startDate}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="closed_month">
+					<subreportParameterExpression><![CDATA[$F{closedMonthYear}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="endDate">
+					<subreportParameterExpression><![CDATA[$P{endDate}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="support_region">
+					<subreportParameterExpression><![CDATA[$P{supportRegion}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "OSB_TeamSeveritySubReport.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="71" splitType="Prevent">
+			<staticText>
+				<reportElement forecolor="#000000" height="25" uuid="531d3503-e883-40a4-befc-7faebf4b3173" width="127" x="23" y="0" />
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" isUnderline="true" size="12" />
+				</textElement>
+				<text><![CDATA[Team Component]]></text>
+			</staticText>
+			<subreport>
+				<reportElement height="46" uuid="c3b0f7e0-a3fa-4725-9fa0-502cf25e5253" width="748" x="54" y="25" />
+				<subreportParameter name="startDate">
+					<subreportParameterExpression><![CDATA[$P{startDate}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="closed_month">
+					<subreportParameterExpression><![CDATA[$F{closedMonthYear}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="endDate">
+					<subreportParameterExpression><![CDATA[$P{endDate}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="support_region">
+					<subreportParameterExpression><![CDATA[$P{supportRegion}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "OSB_TeamComponentSubReport.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="64" splitType="Prevent">
+			<staticText>
+				<reportElement forecolor="#000000" height="25" uuid="fee157c0-ba06-4677-9849-981f5d7dc6b2" width="127" x="23" y="0" />
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" isUnderline="true" size="12" />
+				</textElement>
+				<text><![CDATA[Team Resolution]]></text>
+			</staticText>
+			<subreport>
+				<reportElement height="39" uuid="d2606421-38a1-424b-bf38-15abe4862d57" width="748" x="54" y="25" />
+				<subreportParameter name="startDate">
+					<subreportParameterExpression><![CDATA[$P{startDate}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="closed_month">
+					<subreportParameterExpression><![CDATA[$F{closedMonthYear}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="endDate">
+					<subreportParameterExpression><![CDATA[$P{endDate}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="support_region">
+					<subreportParameterExpression><![CDATA[$P{supportRegion}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "OSB_TeamResolutionSubReport.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="88" splitType="Prevent">
+			<staticText>
+				<reportElement forecolor="#000000" height="25" uuid="5a26e174-d5c8-4eab-aa0b-765fb94fe2b9" width="127" x="23" y="0" />
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" isUnderline="true" size="12" />
+				</textElement>
+				<text><![CDATA[Team Accounts]]></text>
+			</staticText>
+			<subreport>
+				<reportElement height="45" uuid="5336c594-218c-4331-b21b-9e6855689097" width="748" x="54" y="43" />
+				<subreportParameter name="startDate">
+					<subreportParameterExpression><![CDATA[$P{startDate}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="closed_month">
+					<subreportParameterExpression><![CDATA[$F{closedMonthYear}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="endDate">
+					<subreportParameterExpression><![CDATA[$P{endDate}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="support_region">
+					<subreportParameterExpression><![CDATA[$P{supportRegion}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "OSB_TeamAccountSubRepot.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement height="20" uuid="23ffeb27-88cc-4e9d-ba7b-ca69c519e56c" width="170" x="23" y="21" />
+				<textElement verticalAlignment="Middle">
+					<font size="7" />
+				</textElement>
+				<text><![CDATA[* Feedback added for ticket closed in the past]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch" />
+	</columnFooter>
+	<pageFooter>
+		<band height="23">
+			<textField evaluationTime="Report">
+				<reportElement height="13" uuid="b95cbdeb-c611-43e3-9543-96cfaf6da8d7" width="100" x="702" y="9" />
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="8" />
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("EEE, MMM dd yyyy HH:mm:ss").format(new Date())]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="20" uuid="9c8b86f9-ec82-4249-86ab-f40e5600c5c0" width="80" x="332" y="2" />
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="8" />
+				</textElement>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER} + " of "]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement height="20" uuid="6ba5b8cf-887b-4839-b870-fccf9ed86404" width="40" x="412" y="2" />
+				<textElement verticalAlignment="Bottom">
+					<font size="8" />
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

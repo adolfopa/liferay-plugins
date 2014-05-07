@@ -1,0 +1,208 @@
+<?xml version="1.0"?>
+
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bottomMargin="20" columnWidth="555" language="groovy" leftMargin="20" name="OSB_AccountStatusStatisticsByDateRange" pageHeight="842" pageWidth="595" rightMargin="20" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" topMargin="20" uuid="05035edb-1784-483e-b496-e64d85624aa0">
+	<property name="ireport.zoom" value="1.0" />
+	<property name="ireport.x" value="0" />
+	<property name="ireport.y" value="0" />
+	<parameter class="java.util.Date" name="startDate">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter class="java.util.Date" name="endDate">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString> <![CDATA[CALL OSB_AccountStatusStatisticsByDateRange($P{startDate}, $P{endDate});]]> </queryString>
+	<field class="java.sql.Date" name="startDate">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field class="java.sql.Date" name="endDate">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field class="java.math.BigDecimal" name="New Account" />
+	<field class="java.math.BigDecimal" name="New Renewal Account" />
+	<field class="java.math.BigDecimal" name="Active Account" />
+	<field class="java.math.BigDecimal" name="Active Renewal Account" />
+	<field class="java.math.BigDecimal" name="Closed Account" />
+	<field class="java.math.BigDecimal" name="Closed Renewal Account" />
+	<background>
+		<band splitType="Stretch" />
+	</background>
+	<title>
+		<band height="59" splitType="Stretch">
+			<staticText>
+				<reportElement height="21" uuid="5ccea9ed-d629-41b2-85df-97eb51d29183" width="555" x="0" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="14" />
+				</textElement>
+				<text><![CDATA[Account Status Statistics]]></text>
+			</staticText>
+			<textField>
+				<reportElement forecolor="#000000" height="27" uuid="6f19eab1-9636-45f2-ab2a-9d70c401d4a4" width="555" x="0" y="21" />
+				<textElement textAlignment="Center">
+					<font isBold="true" size="14" />
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("MMMM dd, yyyy").format($P{startDate}) + " - " + new SimpleDateFormat("MMMM dd, yyyy").format($P{endDate})]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="121" splitType="Stretch">
+			<textField>
+				<reportElement backcolor="#E0DEDE" height="20" mode="Opaque" uuid="6d86c560-eeda-405a-85dc-c81d89a49371" width="282" x="273" y="0" />
+				<box>
+					<topPen lineWidth="1.0" />
+					<leftPen lineWidth="1.0" />
+					<bottomPen lineWidth="1.0" />
+					<rightPen lineWidth="1.0" />
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[$F{New Account}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement backcolor="#E0DEDE" height="20" mode="Opaque" uuid="9bd638fc-57e2-454a-9db9-23dcfceba438" width="273" x="0" y="0" />
+				<box>
+					<topPen lineWidth="1.0" />
+					<leftPen lineWidth="1.0" />
+					<bottomPen lineWidth="1.0" />
+					<rightPen lineWidth="1.0" />
+				</box>
+				<textElement verticalAlignment="Middle" />
+				<text><![CDATA[ New Account]]></text>
+			</staticText>
+			<textField>
+				<reportElement height="20" uuid="e9563756-2086-4fed-a960-dc3fa3a5c7a4" width="282" x="273" y="20" />
+				<box>
+					<topPen lineWidth="1.0" />
+					<leftPen lineWidth="1.0" />
+					<bottomPen lineWidth="1.0" />
+					<rightPen lineWidth="1.0" />
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[$F{New Renewal Account}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement height="20" uuid="65c40732-ef62-4c98-876f-56940794288a" width="273" x="0" y="20" />
+				<box>
+					<topPen lineWidth="1.0" />
+					<leftPen lineWidth="1.0" />
+					<bottomPen lineWidth="1.0" />
+					<rightPen lineWidth="1.0" />
+				</box>
+				<textElement verticalAlignment="Middle" />
+				<text><![CDATA[ New Renewal Account]]></text>
+			</staticText>
+			<textField>
+				<reportElement backcolor="#E0DEDE" height="20" mode="Opaque" uuid="b141e79e-089b-473f-8d7e-be96e67e6290" width="282" x="273" y="40" />
+				<box>
+					<topPen lineWidth="1.0" />
+					<leftPen lineWidth="1.0" />
+					<bottomPen lineWidth="1.0" />
+					<rightPen lineWidth="1.0" />
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[$F{Closed Account}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement backcolor="#E0DEDE" height="20" mode="Opaque" uuid="f243b93c-1b63-47a0-b921-817aea9082a0" width="273" x="0" y="40" />
+				<box>
+					<topPen lineWidth="1.0" />
+					<leftPen lineWidth="1.0" />
+					<bottomPen lineWidth="1.0" />
+					<rightPen lineWidth="1.0" />
+				</box>
+				<textElement verticalAlignment="Middle" />
+				<text><![CDATA[ Closed Account]]></text>
+			</staticText>
+			<textField>
+				<reportElement height="20" uuid="93d2015c-985b-4515-9659-553a2ad8a422" width="282" x="273" y="60" />
+				<box>
+					<topPen lineWidth="1.0" />
+					<leftPen lineWidth="1.0" />
+					<bottomPen lineWidth="1.0" />
+					<rightPen lineWidth="1.0" />
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[$F{Closed Renewal Account}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement height="20" uuid="5a47fd2d-2330-413c-bc0a-a2877131908c" width="273" x="0" y="60" />
+				<box>
+					<topPen lineWidth="1.0" />
+					<leftPen lineWidth="1.0" />
+					<bottomPen lineWidth="1.0" />
+					<rightPen lineWidth="1.0" />
+				</box>
+				<textElement verticalAlignment="Middle" />
+				<text><![CDATA[ Closed Renewal Account]]></text>
+			</staticText>
+			<textField>
+				<reportElement backcolor="#E0DEDE" height="20" mode="Opaque" uuid="f60f3b2d-4a5e-4e13-9a69-1105e41125e8" width="282" x="273" y="80" />
+				<box>
+					<topPen lineWidth="1.0" />
+					<leftPen lineWidth="1.0" />
+					<bottomPen lineWidth="1.0" />
+					<rightPen lineWidth="1.0" />
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[$F{Active Account}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement backcolor="#E0DEDE" height="20" mode="Opaque" uuid="d452df51-40ff-48d8-9e6f-ea9196b63336" width="273" x="0" y="80" />
+				<box>
+					<topPen lineWidth="1.0" />
+					<leftPen lineWidth="1.0" />
+					<bottomPen lineWidth="1.0" />
+					<rightPen lineWidth="1.0" />
+				</box>
+				<textElement verticalAlignment="Middle" />
+				<text><![CDATA[ Active Account]]></text>
+			</staticText>
+			<textField>
+				<reportElement height="20" uuid="68602d5c-481c-4807-a169-0f1dda372bcb" width="282" x="273" y="100" />
+				<box>
+					<topPen lineWidth="1.0" />
+					<leftPen lineWidth="1.0" />
+					<bottomPen lineWidth="1.0" />
+					<rightPen lineWidth="1.0" />
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[$F{Active Renewal Account}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement height="20" uuid="fdc4cbd8-62e5-4f31-a58e-44669dc158b5" width="273" x="0" y="100" />
+				<box>
+					<topPen lineWidth="1.0" />
+					<leftPen lineWidth="1.0" />
+					<bottomPen lineWidth="1.0" />
+					<rightPen lineWidth="1.0" />
+				</box>
+				<textElement verticalAlignment="Middle" />
+				<text><![CDATA[ Active Renewal Account]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="26" splitType="Stretch">
+			<textField evaluationTime="Report">
+				<reportElement height="13" uuid="ff1ff8a7-2e10-48f4-82b2-93467fc62296" width="14" x="277" y="13" />
+				<textElement>
+					<font size="8" />
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}.toString()]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement height="13" uuid="89d38b6a-6e19-49cb-a78b-53bbecea3445" width="100" x="455" y="13" />
+				<textElement textAlignment="Right">
+					<font size="8" />
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("EEE, MMM dd yyyy HH:mm:ss").format(new Date())]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="13" uuid="94dd3631-e912-44f1-bd54-90a381c4e967" width="25" x="252" y="13" />
+				<textElement textAlignment="Right">
+					<font size="8" />
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}.toString() + " of "]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

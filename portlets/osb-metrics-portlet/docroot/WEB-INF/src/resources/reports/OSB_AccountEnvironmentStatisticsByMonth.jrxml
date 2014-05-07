@@ -1,0 +1,220 @@
+<?xml version="1.0"?>
+
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bottomMargin="20" columnWidth="555" leftMargin="20" name="OSB_AccountEnvironmentStatisticsByMonth" pageHeight="842" pageWidth="595" rightMargin="20" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" topMargin="20" uuid="5652205d-7ef2-4aeb-b60b-3b45f7e9a966">
+	<property name="ireport.zoom" value="1.0" />
+	<property name="ireport.x" value="0" />
+	<property name="ireport.y" value="0" />
+	<style backcolor="#FFFFFF" mode="Opaque" name="table-cell">
+		<box bottomPadding="1" leftPadding="2" rightPadding="2" topPadding="1">
+			<topPen lineColor="#000000" lineWidth="0.5" />
+			<leftPen lineColor="#000000" lineWidth="0.5" />
+			<bottomPen lineColor="#000000" lineWidth="0.5" />
+			<rightPen lineColor="#000000" lineWidth="0.5" />
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue() % 2 == 0)]]></conditionExpression>
+			<style backcolor="#F6F5F5" />
+		</conditionalStyle>
+	</style>
+	<style backcolor="#E9EBE9" mode="Opaque" name="table-header">
+		<box bottomPadding="1" leftPadding="2" rightPadding="2" topPadding="1">
+			<topPen lineColor="#000000" lineWidth="0.5" />
+			<leftPen lineColor="#000000" lineWidth="0.5" />
+			<bottomPen lineColor="#000000" lineWidth="0.5" />
+			<rightPen lineColor="#000000" lineWidth="0.5" />
+		</box>
+	</style>
+	<parameter class="java.util.Date" name="startDate">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter class="java.util.Date" name="endDate">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString> <![CDATA[CALL OSB_AccountEnvironmentStatisticsByMonth($P{startDate}, $P{endDate});]]> </queryString>
+	<field class="java.sql.Date" name="createdMonthYear" />
+	<field class="java.lang.String" name="productName" />
+	<field class="java.lang.String" name="accountType" />
+	<field class="java.lang.String" name="envLFRType">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="envASType">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="envDBType">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="envOSType">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="envJVMType">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field class="java.lang.Long" name="ticketsCount" />
+	<group isReprintHeaderOnEachPage="true" isStartNewPage="true" name="monthYear">
+		<groupExpression><![CDATA[$F{createdMonthYear}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<textField>
+					<reportElement height="15" uuid="81c358cd-cb9c-429f-b263-6c7456b83542" width="288" x="267" y="0" />
+					<textElement textAlignment="Right">
+						<font isBold="true" />
+					</textElement>
+					<textFieldExpression><![CDATA[new SimpleDateFormat("MMMM yyyy").format($F{createdMonthYear})]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="product">
+		<groupExpression><![CDATA[$F{productName}]]></groupExpression>
+		<groupHeader>
+			<band height="31">
+				<textField>
+					<reportElement backcolor="#CCCCCC" height="22" mode="Opaque" uuid="465a7b4c-6529-49c5-8d83-fb2d885a491a" width="555" x="0" y="9" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="14" />
+					</textElement>
+					<textFieldExpression><![CDATA[$F{productName}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="accountType">
+		<groupExpression><![CDATA[$F{accountType}]]></groupExpression>
+		<groupHeader>
+			<band height="44">
+				<textField>
+					<reportElement backcolor="#F0ECEC" height="20" mode="Opaque" uuid="0e9b23d1-a8a7-4765-a562-12491386a9e9" width="555" x="0" y="0" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="12" />
+					</textElement>
+					<textFieldExpression><![CDATA[$F{accountType}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement height="20" style="table-header" uuid="24d15471-77dd-4988-90fc-e11456d5236d" width="100" x="0" y="24" />
+					<textElement verticalAlignment="Middle">
+						<font isBold="true" />
+					</textElement>
+					<text><![CDATA[Liferay Version]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="20" style="table-header" uuid="7975e51b-c87c-4a2a-a9b3-1f7811bd19d3" width="100" x="100" y="24" />
+					<textElement verticalAlignment="Middle">
+						<font isBold="true" />
+					</textElement>
+					<text><![CDATA[Application Server]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="20" style="table-header" uuid="2ff2ddc2-0d75-42ea-afed-60f3f8918c98" width="100" x="200" y="24" />
+					<textElement verticalAlignment="Middle">
+						<font isBold="true" />
+					</textElement>
+					<text><![CDATA[Database]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="20" style="table-header" uuid="77bbe829-08a9-4a92-bede-55d449aa9401" width="121" x="300" y="24" />
+					<textElement verticalAlignment="Middle">
+						<font isBold="true" />
+					</textElement>
+					<text><![CDATA[Operating System]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="20" style="table-header" uuid="5ef67b2c-0fe5-44bb-a821-06775e31d760" width="79" x="421" y="24" />
+					<textElement verticalAlignment="Middle">
+						<font isBold="true" />
+					</textElement>
+					<text><![CDATA[Java VM]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="20" style="table-header" uuid="af68668a-9105-4a5d-b610-465238cc0707" width="55" x="500" y="24" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true" />
+					</textElement>
+					<text><![CDATA[# Tickets]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="11" />
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch" />
+	</background>
+	<title>
+		<band height="68" splitType="Stretch">
+			<textField>
+				<reportElement height="27" uuid="27d24984-9c4b-4d79-bf57-e57cf5d8c861" width="555" x="0" y="30" />
+				<textElement textAlignment="Center">
+					<font isBold="true" size="14" />
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("MMMM dd, yyyy").format($P{startDate}) + " - " + new SimpleDateFormat("MMMM dd, yyyy").format($P{endDate})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement height="30" uuid="374c7c54-7e85-4aec-b608-db80ecc9d18e" width="555" x="0" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="14" />
+				</textElement>
+				<text><![CDATA[Combinations of Environments Statistics]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement height="20" style="table-cell" uuid="f27f774b-b2ee-4c11-9fcc-ba4ad45f7c1e" width="100" x="0" y="0" />
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{envLFRType}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="20" style="table-cell" uuid="fe8001e4-7150-46bf-b69f-e6b260766b69" width="100" x="100" y="0" />
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{envASType}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="20" style="table-cell" uuid="07d15a89-7611-4565-aa2c-2a603b8b1103" width="100" x="200" y="0" />
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{envDBType}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="20" style="table-cell" uuid="3120a93a-2cf1-4cd7-abae-0b7cdf690280" width="121" x="300" y="0" />
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{envOSType}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="20" style="table-cell" uuid="4cc7309f-422b-45a8-94e0-0b5c08a9a4c8" width="79" x="421" y="0" />
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{envJVMType}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="20" style="table-cell" uuid="f7b73bfa-61a5-44b1-8d64-254535eb9fe3" width="55" x="500" y="0" />
+				<textElement textAlignment="Center" />
+				<textFieldExpression><![CDATA[$F{ticketsCount}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="23" splitType="Stretch">
+			<textField evaluationTime="Report">
+				<reportElement height="13" uuid="10d1d25f-5327-4b68-ba53-2d43e15738f4" width="14" x="286" y="10" />
+				<textElement>
+					<font size="8" />
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}.toString()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="13" uuid="78625ca4-8277-421e-906a-824856aa3255" width="25" x="259" y="10" />
+				<textElement textAlignment="Right">
+					<font size="8" />
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}.toString() + " of "]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement height="13" uuid="0da3f025-1f1f-495b-9203-1e055d142de5" width="100" x="455" y="10" />
+				<textElement textAlignment="Right">
+					<font size="8" />
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("EEE, MMM dd yyyy HH:mm:ss").format(new Date())]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

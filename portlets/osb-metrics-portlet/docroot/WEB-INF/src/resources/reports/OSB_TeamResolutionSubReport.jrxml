@@ -1,0 +1,324 @@
+<?xml version="1.0"?>
+
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bottomMargin="10" columnWidth="842" leftMargin="0" name="OSB_TeamResolutionSubReport" orientation="Landscape" pageHeight="595" pageWidth="842" rightMargin="0" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" topMargin="10" uuid="b97c4687-35de-4be4-bfd5-d90a9e911fd7">
+	<property name="ireport.zoom" value="1.5" />
+	<property name="ireport.x" value="0" />
+	<property name="ireport.y" value="0" />
+	<parameter class="java.util.Date" name="startDate">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter class="java.util.Date" name="endDate">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter class="java.lang.String" isForPrompting="false" name="support_region" />
+	<parameter class="java.lang.String" isForPrompting="false" name="closed_month" />
+	<queryString> <![CDATA[CALL OSB_TeamResolutionByMonthAndSupportRegion($P{startDate}, $P{endDate}, $P{support_region});]]> </queryString>
+	<field class="java.lang.String" name="closedMonthYear">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="resolutionType" />
+	<field class="java.math.BigDecimal" name="goldTicketCount" />
+	<field class="java.math.BigDecimal" name="averageGoldClosedDelta" />
+	<field class="java.math.BigDecimal" name="averageGoldFeedbackRating" />
+	<field class="java.math.BigDecimal" name="goldTicketsWithFeedback" />
+	<field class="java.math.BigDecimal" name="platinumTicketCount" />
+	<field class="java.math.BigDecimal" name="averagePlatinumClosedDelta" />
+	<field class="java.math.BigDecimal" name="averagePlatinumFeedbackRating" />
+	<field class="java.math.BigDecimal" name="platinumTicketsWithFeedback" />
+	<field class="java.math.BigDecimal" name="combinedTicketCount" />
+	<field class="java.math.BigDecimal" name="averageCombinedClosedDelta" />
+	<field class="java.math.BigDecimal" name="averageCombinedFeedbackRating" />
+	<field class="java.math.BigDecimal" name="combinedTicketsWithFeedback" />
+	<variable class="java.util.Date" name="closedMonthYear">
+		<variableExpression><![CDATA[$F{closedMonthYear}]]></variableExpression>
+		<initialValueExpression><![CDATA[$F{closedMonthYear}]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch" />
+	</background>
+	<columnHeader>
+		<band height="65" splitType="Stretch">
+			<staticText>
+				<reportElement backcolor="#F1EFEF" height="44" mode="Opaque" uuid="cc78c847-3b41-4caf-b7c2-2d12d9b91d0d" width="42" x="162" y="20" />
+				<box>
+					<topPen lineStyle="Double" lineWidth="1.0" />
+					<leftPen lineStyle="Double" lineWidth="1.0" />
+					<bottomPen lineStyle="Double" lineWidth="1.0" />
+					<rightPen lineStyle="Double" lineWidth="1.0" />
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" />
+				</textElement>
+				<text><![CDATA[Total Number of Tickets With Feedback]]></text>
+			</staticText>
+			<staticText>
+				<reportElement backcolor="#F1EFEF" height="44" mode="Opaque" uuid="dee9392d-fd4e-4483-9aac-b99cd142470a" width="47" x="73" y="20" />
+				<box>
+					<topPen lineStyle="Double" lineWidth="1.0" />
+					<leftPen lineStyle="Double" lineWidth="1.0" />
+					<bottomPen lineStyle="Double" lineWidth="1.0" />
+					<rightPen lineStyle="Double" lineWidth="1.0" />
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" />
+				</textElement>
+				<text><![CDATA[Average Days Left Before Due Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement backcolor="#CCCCCC" height="44" mode="Opaque" uuid="156cbb06-966f-4534-ada5-750d2a0c33c8" width="42" x="120" y="20" />
+				<box>
+					<topPen lineStyle="Double" lineWidth="1.0" />
+					<leftPen lineStyle="Double" lineWidth="1.0" />
+					<bottomPen lineStyle="Double" lineWidth="1.0" />
+					<rightPen lineStyle="Double" lineWidth="1.0" />
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" />
+				</textElement>
+				<text><![CDATA[Total Number of Tickets Closed]]></text>
+			</staticText>
+			<staticText>
+				<reportElement backcolor="#CCCCCC" height="44" mode="Opaque" uuid="a61e201b-46fa-4e29-8375-13c9ed4a12e3" width="70" x="0" y="20" />
+				<box>
+					<topPen lineStyle="Double" lineWidth="1.0" />
+					<leftPen lineStyle="Double" lineWidth="1.0" />
+					<bottomPen lineStyle="Double" lineWidth="1.0" />
+					<rightPen lineStyle="Double" lineWidth="1.0" />
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" />
+				</textElement>
+				<text><![CDATA[Resolution]]></text>
+			</staticText>
+			<staticText>
+				<reportElement backcolor="#CCCCCC" height="44" mode="Opaque" uuid="9fef2cc5-dd1e-4cfe-9fd8-b4336d9e3f42" width="43" x="204" y="20" />
+				<box>
+					<topPen lineStyle="Double" lineWidth="1.0" />
+					<leftPen lineStyle="Double" lineWidth="1.0" />
+					<bottomPen lineStyle="Double" lineWidth="1.0" />
+					<rightPen lineStyle="Double" lineWidth="1.0" />
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" />
+				</textElement>
+				<text><![CDATA[Average Feedback Rating]]></text>
+			</staticText>
+			<staticText>
+				<reportElement backcolor="#C0EDED" height="20" mode="Opaque" uuid="1c168bb0-1339-49ec-bf8f-8a9db4040ac6" width="175" x="73" y="-1" />
+				<box>
+					<pen lineWidth="2.0" />
+					<topPen lineWidth="2.0" />
+					<leftPen lineWidth="2.0" />
+					<bottomPen lineWidth="2.0" />
+					<rightPen lineWidth="2.0" />
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="12" />
+				</textElement>
+				<text><![CDATA[GOLD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement backcolor="#C0EDED" height="20" mode="Opaque" uuid="8df2a245-5652-4d5d-9517-250adfdf954c" width="175" x="438" y="-1" />
+				<box>
+					<pen lineWidth="2.0" />
+					<topPen lineWidth="2.0" />
+					<leftPen lineWidth="2.0" />
+					<bottomPen lineWidth="2.0" />
+					<rightPen lineWidth="2.0" />
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="12" />
+				</textElement>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement backcolor="#C0EDED" height="20" mode="Opaque" uuid="970c2713-9587-4cb7-9dc9-ed08c4374fd7" width="175" x="256" y="-1" />
+				<box>
+					<pen lineWidth="2.0" />
+					<topPen lineWidth="2.0" />
+					<leftPen lineWidth="2.0" />
+					<bottomPen lineWidth="2.0" />
+					<rightPen lineWidth="2.0" />
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="12" />
+				</textElement>
+				<text><![CDATA[PLATINUM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement backcolor="#F1EFEF" height="44" mode="Opaque" uuid="9696c2c3-1232-4689-8406-e426174cb67e" width="47" x="257" y="20" />
+				<box>
+					<topPen lineStyle="Double" lineWidth="1.0" />
+					<leftPen lineStyle="Double" lineWidth="1.0" />
+					<bottomPen lineStyle="Double" lineWidth="1.0" />
+					<rightPen lineStyle="Double" lineWidth="1.0" />
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" />
+				</textElement>
+				<text><![CDATA[Average Days Left Before Due Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement backcolor="#F1EFEF" height="44" mode="Opaque" uuid="f1bf9b7c-810f-4b66-936d-f1c37b192515" width="42" x="346" y="20" />
+				<box>
+					<topPen lineStyle="Double" lineWidth="1.0" />
+					<leftPen lineStyle="Double" lineWidth="1.0" />
+					<bottomPen lineStyle="Double" lineWidth="1.0" />
+					<rightPen lineStyle="Double" lineWidth="1.0" />
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" />
+				</textElement>
+				<text><![CDATA[Total Number of Tickets With Feedback]]></text>
+			</staticText>
+			<staticText>
+				<reportElement backcolor="#CCCCCC" height="44" mode="Opaque" uuid="a09f5bc5-32b9-42af-a109-75218156151d" width="42" x="304" y="20" />
+				<box>
+					<topPen lineStyle="Double" lineWidth="1.0" />
+					<leftPen lineStyle="Double" lineWidth="1.0" />
+					<bottomPen lineStyle="Double" lineWidth="1.0" />
+					<rightPen lineStyle="Double" lineWidth="1.0" />
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" />
+				</textElement>
+				<text><![CDATA[Total Number of Tickets Closed]]></text>
+			</staticText>
+			<staticText>
+				<reportElement backcolor="#CCCCCC" height="44" mode="Opaque" uuid="d3f5704a-ef4a-4dc2-9a67-3e43841e0ef0" width="43" x="388" y="20" />
+				<box>
+					<topPen lineStyle="Double" lineWidth="1.0" />
+					<leftPen lineStyle="Double" lineWidth="1.0" />
+					<bottomPen lineStyle="Double" lineWidth="1.0" />
+					<rightPen lineStyle="Double" lineWidth="1.0" />
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" />
+				</textElement>
+				<text><![CDATA[Average Feedback Rating]]></text>
+			</staticText>
+			<staticText>
+				<reportElement backcolor="#F1EFEF" height="44" mode="Opaque" uuid="77e896cb-5743-4f57-98a4-f14cae7b5b63" width="47" x="439" y="20" />
+				<box>
+					<topPen lineStyle="Double" lineWidth="1.0" />
+					<leftPen lineStyle="Double" lineWidth="1.0" />
+					<bottomPen lineStyle="Double" lineWidth="1.0" />
+					<rightPen lineStyle="Double" lineWidth="1.0" />
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" />
+				</textElement>
+				<text><![CDATA[Average Days Left Before Due Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement backcolor="#F1EFEF" height="44" mode="Opaque" uuid="fe23a880-64fb-4dba-9237-38efd1d1fe82" width="42" x="528" y="20" />
+				<box>
+					<topPen lineStyle="Double" lineWidth="1.0" />
+					<leftPen lineStyle="Double" lineWidth="1.0" />
+					<bottomPen lineStyle="Double" lineWidth="1.0" />
+					<rightPen lineStyle="Double" lineWidth="1.0" />
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" />
+				</textElement>
+				<text><![CDATA[Total Number of Tickets With Feedback]]></text>
+			</staticText>
+			<staticText>
+				<reportElement backcolor="#CCCCCC" height="44" mode="Opaque" uuid="a7cc2df2-83ba-4cb7-acba-9a640167d878" width="42" x="486" y="20" />
+				<box>
+					<topPen lineStyle="Double" lineWidth="1.0" />
+					<leftPen lineStyle="Double" lineWidth="1.0" />
+					<bottomPen lineStyle="Double" lineWidth="1.0" />
+					<rightPen lineStyle="Double" lineWidth="1.0" />
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" />
+				</textElement>
+				<text><![CDATA[Total Number of Tickets Closed]]></text>
+			</staticText>
+			<staticText>
+				<reportElement backcolor="#CCCCCC" height="44" mode="Opaque" uuid="5969ae40-92a3-4e2e-b114-62b8f5d02f88" width="43" x="570" y="20" />
+				<box>
+					<topPen lineStyle="Double" lineWidth="1.0" />
+					<leftPen lineStyle="Double" lineWidth="1.0" />
+					<bottomPen lineStyle="Double" lineWidth="1.0" />
+					<rightPen lineStyle="Double" lineWidth="1.0" />
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" />
+				</textElement>
+				<text><![CDATA[Average Feedback Rating]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<printWhenExpression><![CDATA[$F{closedMonthYear}.equals($P{closed_month})]]></printWhenExpression>
+			<textField isStretchWithOverflow="true">
+				<reportElement backcolor="#CCCCCC" height="20" isPrintWhenDetailOverflows="true" mode="Opaque" stretchType="RelativeToTallestObject" uuid="a591b516-b967-416c-8129-560345cc7a2f" width="70" x="0" y="0" />
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{resolutionType}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement backcolor="#F1EFEF" height="20" mode="Opaque" stretchType="RelativeToTallestObject" uuid="bf7dd275-c844-46aa-bc50-06089e1b3c20" width="43" x="161" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[(($F{goldTicketsWithFeedback} == null) || ($F{goldTicketsWithFeedback}.intValue() == 0)) ? "-" : $F{goldTicketsWithFeedback}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement backcolor="#CCCCCC" height="20" mode="Opaque" stretchType="RelativeToTallestObject" uuid="7b31f807-f456-46c0-bf42-d5e106a2c45e" width="44" x="203" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[(($F{averageGoldFeedbackRating} == null) || ($F{goldTicketsWithFeedback}.intValue() == 0)) ? "-" : $F{averageGoldFeedbackRating}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement backcolor="#F1EFEF" height="20" mode="Opaque" stretchType="RelativeToTallestObject" uuid="84c78d2f-2f0d-4fc2-82c1-d01aa4f08892" width="46" x="74" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[(($F{averageGoldClosedDelta} == null) || ($F{goldTicketCount}.intValue() == 0)) ? "-" : $F{averageGoldClosedDelta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement backcolor="#CCCCCC" height="20" mode="Opaque" stretchType="RelativeToTallestObject" uuid="441ecfc8-de2b-4ada-8430-3286b0020381" width="43" x="119" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[(($F{goldTicketCount} == null) || ($F{goldTicketCount}.intValue() == 0)) ? "-" : $F{goldTicketCount}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement backcolor="#F1EFEF" height="20" mode="Opaque" stretchType="RelativeToTallestObject" uuid="3e906cd8-5808-4de8-a965-a231f34f1c35" width="47" x="257" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[(($F{averagePlatinumClosedDelta} == null) || ($F{platinumTicketCount}.intValue() == 0)) ? "-" : $F{averagePlatinumClosedDelta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement backcolor="#F1EFEF" height="20" mode="Opaque" stretchType="RelativeToTallestObject" uuid="f4645af1-d388-46f9-be23-cbed95aef8e6" width="43" x="345" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[(($F{platinumTicketsWithFeedback} == null) || ($F{platinumTicketsWithFeedback}.intValue() == 0)) ? "-" : $F{platinumTicketsWithFeedback}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement backcolor="#CCCCCC" height="20" mode="Opaque" stretchType="RelativeToTallestObject" uuid="cca174af-04af-4dfa-8fdf-605b9b4f32f4" width="44" x="387" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[(($F{averagePlatinumFeedbackRating} == null) || ($F{platinumTicketsWithFeedback}.intValue() == 0)) ? "-" : $F{averagePlatinumFeedbackRating}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement backcolor="#CCCCCC" height="20" mode="Opaque" stretchType="RelativeToTallestObject" uuid="f10ead14-4756-46b9-8be0-99f247441afb" width="43" x="303" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[(($F{platinumTicketCount} == null) || ($F{platinumTicketCount}.intValue() == 0)) ? "-" : $F{platinumTicketCount}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement backcolor="#F1EFEF" height="20" mode="Opaque" stretchType="RelativeToTallestObject" uuid="0d9e6496-f4f7-4748-a2c5-41031c9ff7ed" width="42" x="528" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[(($F{combinedTicketsWithFeedback} == null) || ($F{combinedTicketsWithFeedback}.intValue() == 0)) ? "-" : $F{combinedTicketsWithFeedback}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement backcolor="#CCCCCC" height="20" mode="Opaque" stretchType="RelativeToTallestObject" uuid="4e24b626-f022-4268-bde9-690df87f8ab2" width="42" x="486" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[(($F{combinedTicketCount} == null) || ($F{combinedTicketCount}.intValue() == 0)) ? "-" : $F{combinedTicketCount}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement backcolor="#CCCCCC" height="20" mode="Opaque" stretchType="RelativeToTallestObject" uuid="7a79dec1-6c46-4ad3-a8cd-44173c80a74d" width="43" x="570" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[(($F{averageCombinedFeedbackRating} == null) || ($F{combinedTicketsWithFeedback}.intValue() == 0)) ? "-" : $F{averageCombinedFeedbackRating}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement backcolor="#F1EFEF" height="20" mode="Opaque" stretchType="RelativeToTallestObject" uuid="aa39d7de-f4bd-4c08-8ac9-efe3c9752868" width="47" x="439" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[(($F{averageCombinedClosedDelta} == null) || ($F{combinedTicketCount}.intValue() == 0)) ? "-" : $F{averageCombinedClosedDelta}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

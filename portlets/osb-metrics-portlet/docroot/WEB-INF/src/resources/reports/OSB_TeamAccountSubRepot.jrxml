@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bottomMargin="0" columnWidth="842" leftMargin="0" name="OSB_TeamAccountSubRepot" orientation="Landscape" pageHeight="595" pageWidth="842" rightMargin="0" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" topMargin="0" uuid="1ba83839-85e0-457c-ab34-0f31a885fdb4">
+	<property name="ireport.zoom" value="1.0" />
+	<property name="ireport.x" value="0" />
+	<property name="ireport.y" value="0" />
+	<parameter class="java.util.Date" name="startDate">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter class="java.util.Date" name="endDate">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter class="java.lang.String" isForPrompting="false" name="support_region" />
+	<parameter class="java.lang.String" isForPrompting="false" name="closed_month" />
+	<parameter class="java.lang.String" isForPrompting="false" name="SUBREPORT_DIR">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<queryString> <![CDATA[CALL OSB_TeamAccountsByMonthAndSupportRegion($P{startDate}, $P{endDate}, $P{support_region});]]> </queryString>
+	<field class="java.lang.String" name="ticketMonthYear" />
+	<field class="java.lang.String" name="code_">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="accountName">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field class="java.lang.Long" name="ticketCount" />
+	<field class="java.math.BigDecimal" name="averageClosedDelta" />
+	<field class="java.math.BigDecimal" name="hotfixCount" />
+	<field class="java.math.BigDecimal" name="averageFeedbackRating">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch" />
+	</background>
+	<detail>
+		<band height="110" splitType="Prevent">
+			<printWhenExpression><![CDATA[$F{ticketMonthYear}.equals($P{closed_month})]]></printWhenExpression>
+			<textField>
+				<reportElement backcolor="#C0EDED" height="20" mode="Opaque" uuid="763d402e-5715-4204-830d-89f2f5fb36d2" width="141" x="556" y="0" />
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" />
+				</textElement>
+				<textFieldExpression><![CDATA[$F{code_}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement backcolor="#C0EDED" height="20" mode="Opaque" uuid="e1809b34-05a4-47e9-9c6a-8469ac941010" width="419" x="82" y="0" />
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" />
+				</textElement>
+				<textFieldExpression><![CDATA[$F{accountName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement backcolor="#C0EDED" height="20" mode="Opaque" uuid="83c3bb22-86be-4e99-98ec-b157c9c6ee87" width="82" x="0" y="0" />
+				<textElement verticalAlignment="Middle" />
+				<text><![CDATA[Account Name :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement backcolor="#C0EDED" height="20" mode="Opaque" uuid="9bc2bacb-510b-4b75-b525-51356536803c" width="55" x="501" y="0" />
+				<textElement textAlignment="Right" verticalAlignment="Middle" />
+				<text><![CDATA[Code :  ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement height="20" uuid="a95da183-4d9a-45ff-8755-15a055b3a1e6" width="210" x="19" y="43" />
+				<textElement textAlignment="Right" verticalAlignment="Middle" />
+				<text><![CDATA[Average Feedback Rating :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement height="20" uuid="684f9933-7d51-40a2-adaa-cc130f184570" width="210" x="19" y="23" />
+				<textElement textAlignment="Right" verticalAlignment="Middle" />
+				<text><![CDATA[Average Days Left Before Due Date :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement height="20" uuid="e5739a4c-7dda-4c31-a1d7-22509ab5e7a3" width="210" x="359" y="23" />
+				<textElement textAlignment="Right" verticalAlignment="Middle" />
+				<text><![CDATA[Total Number of Tickets Closed :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement height="20" uuid="310d47f4-e66d-4615-9a7b-3bf8b244df05" width="210" x="359" y="43" />
+				<textElement textAlignment="Right" verticalAlignment="Middle" />
+				<text><![CDATA[Total Number of Tickets Needing a Patch :]]></text>
+			</staticText>
+			<textField pattern="###0.00">
+				<reportElement height="20" uuid="16481dd1-79c4-4d2b-b33a-a28f55a0b448" width="100" x="244" y="23" />
+				<textElement verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[(($F{averageClosedDelta} == null) || ($F{ticketCount}.intValue() == 0)) ? "N/A" : $F{averageClosedDelta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="20" uuid="448a35a5-791a-4bfb-ba40-df911f05b78d" width="100" x="584" y="23" />
+				<textElement verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[($F{ticketCount} == null) ? 0 : $F{ticketCount}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="20" uuid="aca08110-0724-416a-ac79-a769ab99de75" width="100" x="584" y="43" />
+				<textElement verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[($F{hotfixCount} == null) ? 0 : $F{hotfixCount}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement height="20" uuid="0d8dd54f-b3b3-4a6d-a235-62c8218aefe9" width="100" x="244" y="43" />
+				<textElement verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[(($F{averageFeedbackRating} == null) || ($F{averageFeedbackRating}.intValue() == 0)) ? "N/A" : $F{averageFeedbackRating}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement height="39" uuid="34c994d4-9ddd-42dd-ae51-362f29d27634" width="674" x="10" y="67" />
+				<subreportParameter name="startDate">
+					<subreportParameterExpression><![CDATA[$P{startDate}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="closed_month">
+					<subreportParameterExpression><![CDATA[$F{ticketMonthYear}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="account_code">
+					<subreportParameterExpression><![CDATA[$F{code_}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="endDate">
+					<subreportParameterExpression><![CDATA[$P{endDate}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="support_region">
+					<subreportParameterExpression><![CDATA[$P{support_region}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "OSB_MasterFeedbackAndTicketClosedList.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

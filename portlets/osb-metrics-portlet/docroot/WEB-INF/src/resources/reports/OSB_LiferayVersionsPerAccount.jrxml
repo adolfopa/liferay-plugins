@@ -1,0 +1,349 @@
+<?xml version="1.0"?>
+
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bottomMargin="20" columnWidth="802" leftMargin="20" name="OSB_LiferayVersionsPerAccount" orientation="Landscape" pageHeight="595" pageWidth="842" rightMargin="20" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" topMargin="20" uuid="32811a50-9c3f-4464-96c1-1d47a438a1f2">
+	<property name="ireport.zoom" value="1.0" />
+	<property name="ireport.x" value="0" />
+	<property name="ireport.y" value="0" />
+	<style hAlign="Center" name="Crosstab Data Text" />
+	<style name="table">
+		<box>
+			<pen lineColor="#000000" lineWidth="1.0" />
+		</box>
+	</style>
+	<style backcolor="#F0F8FF" mode="Opaque" name="table_TH">
+		<box>
+			<pen lineColor="#000000" lineWidth="0.5" />
+		</box>
+	</style>
+	<style backcolor="#BFE1FF" mode="Opaque" name="table_CH">
+		<box>
+			<pen lineColor="#000000" lineWidth="0.5" />
+		</box>
+	</style>
+	<style backcolor="#FFFFFF" mode="Opaque" name="table_TD">
+		<box>
+			<pen lineColor="#000000" lineWidth="0.5" />
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineColor="#000000" lineWidth="1.0" />
+		</box>
+	</style>
+	<style backcolor="#F0F8FF" mode="Opaque" name="table 1_TH">
+		<box>
+			<pen lineColor="#000000" lineWidth="0.5" />
+		</box>
+	</style>
+	<style backcolor="#BFE1FF" mode="Opaque" name="table 1_CH">
+		<box>
+			<pen lineColor="#000000" lineWidth="0.5" />
+		</box>
+	</style>
+	<style backcolor="#FFFFFF" mode="Opaque" name="table 1_TD">
+		<box>
+			<pen lineColor="#000000" lineWidth="0.5" />
+		</box>
+	</style>
+	<subDataset name="New Dataset 1" uuid="9b25ff1d-3ba4-4b62-b558-da88226b832c">
+		<queryString language="SQL"> <![CDATA[CALL OSB_LiferayVersionActiveAccounts();]]> </queryString>
+		<field class="java.lang.String" name="envLFR">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field class="java.lang.Long" name="accountCount" />
+	</subDataset>
+	<queryString> <![CDATA[CALL OSB_FirstOpenedAndLastClosedTicketDateByLiferayVersionAndAccount();]]> </queryString>
+	<field class="java.sql.Timestamp" name="ticketDate" />
+	<field class="java.lang.String" name="code_">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="minorVersion">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="accountStatus">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="offeringType">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="firstOpenedOrLastClosed" />
+	<background>
+		<band splitType="Stretch" />
+	</background>
+	<title>
+		<band height="50">
+			<staticText>
+				<reportElement height="50" uuid="b17409ae-df0c-4257-98d7-b72aab30c272" width="802" x="0" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="24" />
+				</textElement>
+				<text><![CDATA[Liferay Versions: Accounts]]></text>
+			</staticText>
+		</band>
+	</title>
+	<summary>
+		<band height="248" splitType="Stretch">
+			<componentElement>
+				<reportElement height="159" key="table 1" style="table 1" uuid="737201ae-bb70-417c-8ba6-4f9a7204a347" width="360" x="0" y="0" />
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="New Dataset 1" uuid="9fb600d6-744a-44a7-b79e-581f964e9394">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column uuid="2e2cee8b-ed4e-4bff-9bcf-effd1c0976b6" width="90">
+						<jr:columnHeader height="30" style="table 1_CH">
+							<staticText>
+								<reportElement height="30" uuid="b781ad89-ec83-4886-a90f-8ecd5dd3170c" width="90" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle" />
+								<text><![CDATA[Liferay Version]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="20" style="table 1_TD">
+							<textField>
+								<reportElement height="20" uuid="ae202438-fbce-4d7f-b25a-4d57394b2db0" width="90" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle" />
+								<textFieldExpression><![CDATA[$F{envLFR}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column uuid="e92b82cb-3dd1-4a04-b917-69fc1aacf5f3" width="90">
+						<jr:columnHeader height="30" style="table 1_CH">
+							<staticText>
+								<reportElement height="30" uuid="83437d0c-bbee-4e19-8e66-24ccc047d5f1" width="90" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle" />
+								<text><![CDATA[Total Accounts]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="20" style="table 1_TD">
+							<textField>
+								<reportElement height="20" uuid="498be9fa-6cdf-4258-8dbc-39549169b045" width="90" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle" />
+								<textFieldExpression><![CDATA[$F{accountCount}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<crosstab>
+				<reportElement height="89" uuid="e2c52aab-6b41-4d4e-a1ca-a418f7ee18e1" width="802" x="0" y="159" />
+				<rowGroup name="code_" width="100">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{code_}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents backcolor="#BFE1FF" mode="Opaque">
+							<box>
+								<pen lineColor="#000000" lineStyle="Solid" lineWidth="0.5" />
+							</box>
+							<textField hyperlinkTarget="Blank" hyperlinkType="Reference">
+								<reportElement height="20" style="Crosstab Data Text" uuid="d4af68c4-2b43-43d2-89ce-e9b0ae79ff95" width="100" x="0" y="0" />
+								<textElement textAlignment="Left" verticalAlignment="Middle">
+									<font isBold="true" size="8" />
+								</textElement>
+								<textFieldExpression><![CDATA[$V{code_}]]></textFieldExpression>
+								<hyperlinkReferenceExpression><![CDATA["https://www.liferay.com/group/customer/support/-/support/ticket/" + $V{code_}]]></hyperlinkReferenceExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents/>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<rowGroup name="offeringType" width="60">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{offeringType}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents backcolor="#E8F3FF" mode="Opaque">
+							<box>
+								<pen lineColor="#000000" lineStyle="Solid" lineWidth="0.5" />
+							</box>
+							<textField>
+								<reportElement height="20" style="Crosstab Data Text" uuid="94981ca1-732d-40f1-be98-40feb14200fb" width="60" x="0" y="0" />
+								<textElement verticalAlignment="Middle" />
+								<textFieldExpression><![CDATA[$V{offeringType}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents/>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<rowGroup name="accountStatus" width="60">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{accountStatus}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents backcolor="#A8E7EB" mode="Opaque">
+							<box>
+								<pen lineColor="#000000" lineStyle="Solid" lineWidth="0.5" />
+							</box>
+							<textField>
+								<reportElement height="20" style="Crosstab Data Text" uuid="85f0d1a4-78ee-4e77-a923-c0f6e4677aa7" width="60" x="0" y="0" />
+								<textElement verticalAlignment="Middle" />
+								<textFieldExpression><![CDATA[$V{accountStatus}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents/>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<columnGroup height="30" name="minorVersion">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{minorVersion}]]></bucketExpression>
+					</bucket>
+					<crosstabColumnHeader>
+						<cellContents backcolor="#2DC3FF" mode="Opaque">
+							<box>
+								<pen lineColor="#000000" lineStyle="Solid" lineWidth="0.5" />
+							</box>
+							<textField>
+								<reportElement forecolor="#FFFFFF" height="30" style="Crosstab Data Text" uuid="a5f113af-e250-42cc-90a9-47ab434d978c" width="50" x="0" y="0" />
+								<textElement verticalAlignment="Middle">
+									<font isBold="true" />
+								</textElement>
+								<textFieldExpression><![CDATA[$V{minorVersion}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabColumnHeader>
+					<crosstabTotalColumnHeader>
+						<cellContents/>
+					</crosstabTotalColumnHeader>
+				</columnGroup>
+				<columnGroup height="30" name="firstOpenedOrLastClosed">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{firstOpenedOrLastClosed}]]></bucketExpression>
+					</bucket>
+					<crosstabColumnHeader>
+						<cellContents backcolor="#BFE1FF" mode="Opaque">
+							<box>
+								<pen lineColor="#000000" lineStyle="Solid" lineWidth="0.5" />
+							</box>
+							<textField>
+								<reportElement height="30" style="Crosstab Data Text" uuid="195e95df-7336-48a8-bb6c-475c3dab3ed0" width="50" x="0" y="0" />
+								<textElement verticalAlignment="Middle" />
+								<textFieldExpression><![CDATA[$V{firstOpenedOrLastClosed}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabColumnHeader>
+					<crosstabTotalColumnHeader>
+						<cellContents/>
+					</crosstabTotalColumnHeader>
+				</columnGroup>
+				<measure class="java.sql.Timestamp" name="ticketDateMeasure">
+					<measureExpression><![CDATA[$F{ticketDate}]]></measureExpression>
+				</measure>
+				<crosstabCell height="20" width="50">
+					<cellContents>
+						<box>
+							<pen lineColor="#000000" lineStyle="Solid" lineWidth="0.5" />
+						</box>
+						<textField pattern="MM/dd/yyyy">
+							<reportElement height="20" style="Crosstab Data Text" uuid="941781c9-a2c2-4001-bd93-166d2296e373" width="50" x="0" y="0" />
+							<textElement verticalAlignment="Middle">
+								<font size="8" />
+							</textElement>
+							<textFieldExpression><![CDATA[($V{ticketDateMeasure} == null) ? "-" : $V{ticketDateMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell height="20" rowTotalGroup="code_">
+					<cellContents backcolor="#6093BF" mode="Opaque">
+						<box>
+							<pen lineColor="#000000" lineStyle="Solid" lineWidth="0.5" />
+						</box>
+						<textField>
+							<reportElement height="20" style="Crosstab Data Text" uuid="5c68e4d4-6ab4-45d0-94b0-c456465b3e5a" width="50" x="0" y="0" />
+							<textElement/>
+							<textFieldExpression><![CDATA[$V{ticketDateMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell columnTotalGroup="minorVersion" width="50">
+					<cellContents backcolor="#6093BF" mode="Opaque">
+						<box>
+							<pen lineColor="#000000" lineStyle="Solid" lineWidth="0.5" />
+						</box>
+						<textField>
+							<reportElement height="20" style="Crosstab Data Text" uuid="17da7161-d074-402b-aab0-fa6eb5ddd4f8" width="50" x="0" y="0" />
+							<textElement/>
+							<textFieldExpression><![CDATA[$V{ticketDateMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell columnTotalGroup="minorVersion" rowTotalGroup="code_">
+					<cellContents backcolor="#6093BF" mode="Opaque">
+						<box>
+							<pen lineColor="#000000" lineStyle="Solid" lineWidth="0.5" />
+						</box>
+						<textField>
+							<reportElement height="20" style="Crosstab Data Text" uuid="0a6d469b-6625-449c-95ed-edb819cd3fb3" width="50" x="0" y="0" />
+							<textElement/>
+							<textFieldExpression><![CDATA[$V{ticketDateMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell columnTotalGroup="firstOpenedOrLastClosed" width="50">
+					<cellContents backcolor="#E6F3FF" mode="Opaque">
+						<box>
+							<pen lineColor="#000000" lineStyle="Solid" lineWidth="0.5" />
+						</box>
+						<textField>
+							<reportElement height="20" style="Crosstab Data Text" uuid="2e4837fa-9f0f-4094-befc-40fe1bf0dfd1" width="50" x="0" y="0" />
+							<textElement/>
+							<textFieldExpression><![CDATA[$V{ticketDateMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell columnTotalGroup="firstOpenedOrLastClosed" rowTotalGroup="code_">
+					<cellContents backcolor="#6093BF" mode="Opaque">
+						<box>
+							<pen lineColor="#000000" lineStyle="Solid" lineWidth="0.5" />
+						</box>
+						<textField>
+							<reportElement height="20" style="Crosstab Data Text" uuid="19229548-e7f3-4b3c-90a0-de4638db52d7" width="50" x="0" y="0" />
+							<textElement/>
+							<textFieldExpression><![CDATA[$V{ticketDateMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell height="20" rowTotalGroup="offeringType">
+					<cellContents backcolor="#E6F3FF" mode="Opaque">
+						<box>
+							<pen lineColor="#000000" lineStyle="Solid" lineWidth="0.5" />
+						</box>
+						<textField>
+							<reportElement height="20" style="Crosstab Data Text" uuid="20f0c803-c67a-49a8-850d-7abbafc06694" width="50" x="0" y="0" />
+							<textElement/>
+							<textFieldExpression><![CDATA[$V{ticketDateMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell columnTotalGroup="minorVersion" rowTotalGroup="offeringType">
+					<cellContents backcolor="#6093BF" mode="Opaque">
+						<box>
+							<pen lineColor="#000000" lineStyle="Solid" lineWidth="0.5" />
+						</box>
+						<textField>
+							<reportElement height="20" style="Crosstab Data Text" uuid="b16fbada-4d85-4aeb-81e9-e5f4554368c4" width="50" x="0" y="0" />
+							<textElement/>
+							<textFieldExpression><![CDATA[$V{ticketDateMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell columnTotalGroup="firstOpenedOrLastClosed" rowTotalGroup="offeringType">
+					<cellContents backcolor="#E6F3FF" mode="Opaque">
+						<box>
+							<pen lineColor="#000000" lineStyle="Solid" lineWidth="0.5" />
+						</box>
+						<textField>
+							<reportElement height="20" style="Crosstab Data Text" uuid="92abbcc8-21d3-4985-ab66-eece87003b7a" width="50" x="0" y="0" />
+							<textElement/>
+							<textFieldExpression><![CDATA[$V{ticketDateMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+			</crosstab>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,187 @@
+<?xml version="1.0"?>
+
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bottomMargin="20" columnWidth="555" leftMargin="20" name="OSB_SupportedAccountsDetailsByMonth" pageHeight="792" pageWidth="612" rightMargin="20" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" topMargin="20" uuid="8c6c8d0e-bbbc-47ce-bc11-e567bafe07b8">
+	<property name="ireport.zoom" value="1.5" />
+	<property name="ireport.x" value="0" />
+	<property name="ireport.y" value="0" />
+	<style name="table">
+		<box>
+			<topPen lineColor="#000000" lineWidth="1.0" />
+			<bottomPen lineColor="#000000" lineWidth="1.0" />
+		</box>
+	</style>
+	<style backcolor="#D3D3D3" mode="Opaque" name="table_TH">
+		<box>
+			<topPen lineColor="#000000" lineWidth="0.5" />
+			<bottomPen lineColor="#000000" lineWidth="0.5" />
+		</box>
+	</style>
+	<style backcolor="#FFBFBF" mode="Opaque" name="table_CH">
+		<box>
+			<topPen lineColor="#000000" lineWidth="0.5" />
+			<bottomPen lineColor="#000000" lineWidth="0.5" />
+		</box>
+	</style>
+	<style backcolor="#FFFFFF" mode="Opaque" name="table_TD">
+		<box>
+			<topPen lineColor="#000000" lineWidth="0.5" />
+			<bottomPen lineColor="#000000" lineWidth="0.5" />
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue() % 2 == 0)]]></conditionExpression>
+			<style backcolor="#FFEFEF" />
+		</conditionalStyle>
+	</style>
+	<style backcolor="#FFFFFF" mode="Opaque" name="alternate">
+		<box bottomPadding="1" leftPadding="2" rightPadding="2" topPadding="1">
+			<topPen lineColor="#000000" lineWidth="0.5" />
+			<leftPen lineColor="#000000" lineWidth="0.5" />
+			<bottomPen lineColor="#000000" lineWidth="0.5" />
+			<rightPen lineColor="#000000" lineWidth="0.5" />
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue() % 2 == 0)]]></conditionExpression>
+			<style backcolor="#CCCCCC" />
+		</conditionalStyle>
+	</style>
+	<style name="subTotal">
+		<box bottomPadding="1" leftPadding="2" rightPadding="2" topPadding="1">
+			<topPen lineColor="#000000" lineWidth="0.0" />
+			<bottomPen lineColor="#000000" lineWidth="0.0" />
+		</box>
+	</style>
+	<parameter class="java.util.Date" name="startDate">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter class="java.util.Date" name="endDate">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString> <![CDATA[CALL OSB_SupportedAccountsDetailsByMonth($P{startDate}, $P{endDate});]]> </queryString>
+	<field class="java.lang.String" name="supportRegion" />
+	<field class="java.lang.Boolean" name="partnerManagedSupport" />
+	<field class="java.lang.Integer" name="count" />
+	<field class="java.util.Date" name="date" />
+	<variable calculation="Sum" class="java.lang.Integer" name="count_1" resetGroup="date" resetType="Group">
+		<variableExpression><![CDATA[$F{count}]]></variableExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Integer" name="count_2" resetGroup="supportRegion" resetType="Group">
+		<variableExpression><![CDATA[$F{count}]]></variableExpression>
+	</variable>
+	<group keepTogether="true" name="date">
+		<groupExpression><![CDATA[$F{date}]]></groupExpression>
+		<groupHeader>
+			<band height="29">
+				<textField>
+					<reportElement height="15" uuid="d23d72f7-6d7e-423b-bc29-f6f3581568e0" width="255" x="317" y="14" />
+					<textElement textAlignment="Right">
+						<font isBold="true" />
+					</textElement>
+					<textFieldExpression><![CDATA[new SimpleDateFormat("yyyy-MM").format($F{date})]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="18">
+				<textField>
+					<reportElement height="16" style="subTotal" uuid="99de9170-1aa3-455c-9fa7-f81d202827a6" width="100" x="472" y="2" />
+					<textElement textAlignment="Right" />
+					<textFieldExpression><![CDATA[$V{count_1}.toString()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement height="16" style="subTotal" uuid="30b960f6-8a61-4bd0-a7d3-9fe5c91a7cab" width="288" x="0" y="2" />
+					<textElement/>
+					<textFieldExpression><![CDATA["Total (" + new SimpleDateFormat("yyyy-MM").format($F{date}) + ")"]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="supportRegion">
+		<groupExpression><![CDATA[$F{supportRegion}]]></groupExpression>
+		<groupHeader>
+			<band height="16">
+				<textField>
+					<reportElement height="16" style="subTotal" uuid="c4b8a358-3bf3-4967-96d7-0b48ecf5feb5" width="288" x="0" y="0" />
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{supportRegion}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="18">
+				<textField>
+					<reportElement height="16" style="subTotal" uuid="4459fffa-fb44-4ecd-94ab-2786f6fe9d51" width="100" x="472" y="2" />
+					<textElement textAlignment="Right" />
+					<textFieldExpression><![CDATA[$V{count_2}.toString()]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement height="16" style="subTotal" uuid="47fa92e0-b2d4-4868-8a02-54b2d0cdd8a4" width="100" x="38" y="2" />
+					<textElement/>
+					<text><![CDATA[Subtotal]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="partnerManagedSupport">
+		<groupExpression><![CDATA[$F{partnerManagedSupport}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch" />
+	</background>
+	<title>
+		<band height="51" splitType="Stretch">
+			<textField>
+				<reportElement height="29" uuid="3e55a3f7-16e2-4db2-bbd3-a65c67ffda17" width="572" x="0" y="20" />
+				<textElement textAlignment="Center">
+					<font isBold="true" size="14" />
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyy-MM").format($P{startDate}) + " - " + new SimpleDateFormat("yyyy-MM").format($P{endDate})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement height="21" uuid="9d5f7cfb-31c6-4d3b-b48d-7390b401945f" width="572" x="0" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="14" />
+				</textElement>
+				<text><![CDATA[Supported Accounts Details by Month]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<textField>
+				<reportElement height="16" style="alternate" uuid="3249adb9-b9d2-4391-8938-d7124f8a90b7" width="284" x="288" y="0" />
+				<textElement textAlignment="Right" />
+				<textFieldExpression><![CDATA[$F{count}.toString()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="16" style="alternate" uuid="b2a7fa37-6d05-4e67-9ffa-1994b81ddd59" width="250" x="38" y="0" />
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{partnerManagedSupport} ? "Partner Level 1 Support" : "Liferay Level 1 Support"]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="23">
+			<textField evaluationTime="Report">
+				<reportElement height="13" uuid="7fcbe8ce-0602-41be-a2ec-43323e6e54fc" width="100" x="472" y="8" />
+				<textElement textAlignment="Right">
+					<font size="8" />
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("EEE, MMM dd yyyy HH:mm:ss").format(new Date())]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="13" uuid="1f31240e-5cef-4311-b32e-42c0febb3017" width="25" x="265" y="8" />
+				<textElement textAlignment="Right">
+					<font size="8" />
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}.toString() + " of "]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement height="13" uuid="37741732-8c79-442e-b533-715c2ce94c53" width="14" x="292" y="8" />
+				<textElement>
+					<font size="8" />
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}.toString()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

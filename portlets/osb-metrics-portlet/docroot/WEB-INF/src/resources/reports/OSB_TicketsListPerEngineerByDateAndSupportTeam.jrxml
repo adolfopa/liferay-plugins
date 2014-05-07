@@ -1,0 +1,697 @@
+<?xml version="1.0"?>
+
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bottomMargin="0" columnWidth="802" isFloatColumnFooter="true" leftMargin="0" name="OSB_TicketsListPerEngineerByDateAndSupportTeam" orientation="Landscape" pageHeight="555" pageWidth="802" rightMargin="0" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" topMargin="0" uuid="f5b8fb9f-0cfa-49ef-bc7f-8297f6d87882">
+	<property name="ireport.zoom" value="2.0" />
+	<property name="ireport.x" value="0" />
+	<property name="ireport.y" value="0" />
+	<style backcolor="#FFFFFF" mode="Opaque" name="table-cell">
+		<box bottomPadding="1" leftPadding="2" rightPadding="2" topPadding="1">
+			<topPen lineColor="#000000" lineWidth="0.5" />
+			<leftPen lineColor="#000000" lineWidth="0.5" />
+			<bottomPen lineColor="#000000" lineWidth="0.5" />
+			<rightPen lineColor="#000000" lineWidth="0.5" />
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue() % 2 == 0)]]></conditionExpression>
+			<style backcolor="#F6F5F5" />
+		</conditionalStyle>
+	</style>
+	<style backcolor="#B0B2B0" mode="Opaque" name="table-header">
+		<box bottomPadding="1" leftPadding="2" rightPadding="2" topPadding="1">
+			<topPen lineColor="#000000" lineWidth="0.5" />
+			<leftPen lineColor="#000000" lineWidth="0.5" />
+			<bottomPen lineColor="#000000" lineWidth="0.5" />
+			<rightPen lineColor="#000000" lineWidth="0.5" />
+		</box>
+	</style>
+	<style backcolor="#CCF3FF" mode="Opaque" name="table-footer">
+		<box bottomPadding="1" leftPadding="2" rightPadding="2" topPadding="1">
+			<topPen lineColor="#000000" lineWidth="0.5" />
+			<leftPen lineColor="#000000" lineWidth="0.5" />
+			<bottomPen lineColor="#000000" lineWidth="0.5" />
+			<rightPen lineColor="#000000" lineWidth="0.5" />
+		</box>
+	</style>
+	<parameter class="java.util.Date" name="startDate">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter class="java.util.Date" name="endDate">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter class="java.lang.String" name="supportTeam">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter class="java.lang.Long" name="engineerId">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString> <![CDATA[CALL OSB_TicketsListPerEngineerByDateAndSupportTeam($P{startDate}, $P{endDate}, $P{supportTeam}, $P{engineerId});]]> </queryString>
+	<field class="java.lang.Long" name="ticketEntryId">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="ticketNumber" />
+	<field class="java.lang.Integer" name="closedDelta">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field class="java.lang.Integer" name="overSLA">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field class="java.lang.Integer" name="resolvedInDay">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field class="java.lang.Integer" name="escalated">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field class="java.lang.Integer" name="ticketEscalater">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="severityType">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="resolutionType" />
+	<field class="java.lang.Integer" name="hotfixRequired">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field class="java.lang.Integer" name="rating1">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field class="java.lang.Integer" name="rating2">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field class="java.lang.Integer" name="rating3">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field class="java.lang.Integer" name="rating4">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field class="java.math.BigDecimal" name="averageFeedbackRating">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field class="java.lang.Long" name="reopenedCount" />
+	<field class="java.lang.Long" name="commentsCount" />
+	<field class="java.lang.Long" name="firstResponseTime" />
+	<field class="java.lang.Long" name="averageResponseTime" />
+	<field class="java.lang.Long" name="totalTicketTime" />
+	<field class="java.lang.Long" name="reproductionTime" />
+	<sortField name="severityType" />
+	<sortField name="ticketNumber" />
+	<variable calculation="Average" class="java.lang.Long" name="firstResponseTime_1">
+		<variableExpression><![CDATA[$F{firstResponseTime}]]></variableExpression>
+	</variable>
+	<variable calculation="Average" class="java.math.BigDecimal" name="rating1_1">
+		<variableExpression><![CDATA[(($F{rating1} != null) && ($F{rating1} != 0)) ? $F{rating1} : null]]></variableExpression>
+	</variable>
+	<variable calculation="Average" class="java.math.BigDecimal" name="rating2_1">
+		<variableExpression><![CDATA[(($F{rating2} != null) && ($F{rating2} != 0)) ? $F{rating2} : null]]></variableExpression>
+	</variable>
+	<variable calculation="Average" class="java.math.BigDecimal" name="rating3_1">
+		<variableExpression><![CDATA[(($F{rating3} != null) && ($F{rating3} != 0)) ? $F{rating3} : null]]></variableExpression>
+	</variable>
+	<variable calculation="Average" class="java.math.BigDecimal" name="rating4_1">
+		<variableExpression><![CDATA[(($F{rating4} != null) && ($F{rating4} != 0)) ? $F{rating4} : null]]></variableExpression>
+	</variable>
+	<variable calculation="Average" class="java.math.BigDecimal" name="averageFeedbackRating_1">
+		<variableExpression><![CDATA[(($F{averageFeedbackRating} != null) && ($F{averageFeedbackRating}.doubleValue() > 0.0)) ? $F{averageFeedbackRating} : null]]></variableExpression>
+	</variable>
+	<variable calculation="Average" class="java.lang.Integer" name="closedDelta_1">
+		<variableExpression><![CDATA[$F{closedDelta}]]></variableExpression>
+	</variable>
+	<variable calculation="Average" class="java.lang.Long" name="totalTicketTime_1">
+		<variableExpression><![CDATA[$F{totalTicketTime}]]></variableExpression>
+	</variable>
+	<variable calculation="Average" class="java.lang.Long" name="reproductionTime_1">
+		<variableExpression><![CDATA[$F{reproductionTime}]]></variableExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Integer" name="reopenedCount_1">
+		<variableExpression><![CDATA[($F{reopenedCount} != 0) ? 1 : 0]]></variableExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Integer" name="hotfixRequired_1">
+		<variableExpression><![CDATA[$F{hotfixRequired}]]></variableExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Integer" name="escalated_1">
+		<variableExpression><![CDATA[$F{escalated}]]></variableExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Integer" name="overSLA_1">
+		<variableExpression><![CDATA[$F{overSLA}]]></variableExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Integer" name="resolvedInDay_1">
+		<variableExpression><![CDATA[$F{resolvedInDay}]]></variableExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Integer" name="severityType_1">
+		<variableExpression><![CDATA[($F{severityType}.equals("Critical")) ? 1 : 0]]></variableExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Integer" name="severityType_2">
+		<variableExpression><![CDATA[($F{severityType}.equals("Major")) ? 1 : 0]]></variableExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Integer" name="severityType_3">
+		<variableExpression><![CDATA[($F{severityType}.equals("Minor")) ? 1 : 0]]></variableExpression>
+	</variable>
+	<variable calculation="Average" class="java.lang.Long" name="commentsCount_1" resetGroup="engineer" resetType="Group">
+		<variableExpression><![CDATA[$F{commentsCount}]]></variableExpression>
+	</variable>
+	<variable calculation="Average" class="java.lang.Long" name="averageResponseTime_1" resetGroup="engineer" resetType="Group">
+		<variableExpression><![CDATA[$F{averageResponseTime}]]></variableExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Integer" name="ticketEscalater_1">
+		<variableExpression><![CDATA[$F{ticketEscalater}]]></variableExpression>
+	</variable>
+	<group isReprintHeaderOnEachPage="true" keepTogether="true" minHeightToStartNewPage="60" name="engineer">
+		<groupExpression><![CDATA[$P{engineerId}]]></groupExpression>
+		<groupHeader>
+			<band height="59" splitType="Prevent">
+				<staticText>
+					<reportElement height="59" style="table-header" uuid="f8f114ef-afc4-4bde-9bde-da8819794243" width="27" x="608" y="0" />
+					<textElement rotation="Left" textAlignment="Center" verticalAlignment="Middle" />
+					<text><![CDATA[Comments Count]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="59" style="table-header" uuid="9390bb4c-678f-49d7-abc9-48f2474c71b2" width="27" x="635" y="0" />
+					<textElement rotation="Left" textAlignment="Center" verticalAlignment="Middle" />
+					<text><![CDATA[Reopened Count]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="59" style="table-header" uuid="3f8912f5-fef3-4940-a336-b63fb2b7c05c" width="20" x="702" y="0" />
+					<textElement rotation="Left" textAlignment="Center" verticalAlignment="Middle" />
+					<text><![CDATA[Over SLA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="59" style="table-header" uuid="7704d923-d912-4cae-a34c-3978d09fdc91" width="20" x="682" y="0" />
+					<textElement rotation="Left" textAlignment="Center" verticalAlignment="Middle" />
+					<text><![CDATA[Escalated]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="59" style="table-header" uuid="a2f65ccb-2a7d-4c91-9cce-9d01c63c46b4" width="20" x="662" y="0" />
+					<textElement rotation="Left" textAlignment="Center" verticalAlignment="Middle" />
+					<text><![CDATA[Patch]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="59" style="table-header" uuid="6b792767-1fba-46f8-a5d4-95abc28f3fea" width="19" x="772" y="0" />
+					<textElement rotation="Left" textAlignment="Center" verticalAlignment="Middle" />
+					<text><![CDATA[Severity]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="59" style="table-header" uuid="8d4fb55b-757a-4444-a4f1-5e1ca28db8a4" width="37" x="506" y="0" />
+					<textElement rotation="Left" textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true" size="8" />
+					</textElement>
+					<text><![CDATA[Average Feedback Rating]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="59" style="table-header" uuid="8966b94b-9786-4bc9-bed3-03083186c76f" width="20" x="486" y="0" />
+					<textElement rotation="Left" textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true" size="6" />
+					</textElement>
+					<text><![CDATA[Professionalism]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="59" style="table-header" uuid="47ea95dd-71af-4ea3-aa1d-8d27e60e19e0" width="20" x="466" y="0" />
+					<textElement rotation="Left" textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true" size="5" />
+					</textElement>
+					<text><![CDATA[Technical Knowledge]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="59" style="table-header" uuid="19b953e3-5a8b-49f7-84a5-a0e2c3e9e1c1" width="20" x="446" y="0" />
+					<textElement rotation="Left" textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true" size="6" />
+					</textElement>
+					<text><![CDATA[Response Time]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="59" style="table-header" uuid="cc129a0c-3eab-4a0f-8263-e9d26f4f6ac4" width="20" x="426" y="0" />
+					<textElement rotation="Left" textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true" size="6" />
+					</textElement>
+					<text><![CDATA[Final Resolution]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="59" style="table-header" uuid="57608c90-db3d-48b2-b757-557a3aa19583" width="76" x="122" y="0" />
+					<textElement rotation="Left" textAlignment="Center" verticalAlignment="Middle" />
+					<text><![CDATA[First Response Time]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="59" style="table-header" uuid="974fa1cb-a32a-4753-8f8e-dc643cbc488c" width="76" x="198" y="0" />
+					<textElement rotation="Left" textAlignment="Center" verticalAlignment="Middle" />
+					<text><![CDATA[Average Response Time]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="59" style="table-header" uuid="c61baec2-bc00-4f8f-aa9d-7202dc0ab474" width="76" x="350" y="0" />
+					<textElement rotation="Left" textAlignment="Center" verticalAlignment="Middle" />
+					<text><![CDATA[Total Ticket Time]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="59" style="table-header" uuid="0bb16aea-a67d-4b69-a3d7-ae914eb3b8f9" width="76" x="274" y="0" />
+					<textElement rotation="Left" textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true" size="8" />
+					</textElement>
+					<text><![CDATA[Time to Reproduction]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="59" style="table-header" uuid="d76c2189-1077-49dd-accf-c15a86ca6066" width="66" x="542" y="0" />
+					<textElement rotation="Left" textAlignment="Center" verticalAlignment="Middle" />
+					<text><![CDATA[Resolution]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="59" style="table-header" uuid="a80478fe-0ce8-4dd7-b3d6-d11af138a934" width="20" x="752" y="0" />
+					<textElement rotation="Left" textAlignment="Center" verticalAlignment="Middle">
+						<font size="5" />
+					</textElement>
+					<text><![CDATA[Resolved in One Day]]></text>
+				</staticText>
+				<staticText>
+					<reportElement backcolor="#B0B2B0" height="59" style="table-header" uuid="71a5dfeb-b7d5-410c-88ca-b74ce4803c3b" width="30" x="722" y="0" />
+					<textElement rotation="Left" textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true" size="8" />
+					</textElement>
+					<text><![CDATA[Days Closed before SLA]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="92" splitType="Prevent">
+				<textField pattern="###0.00">
+					<reportElement height="20" style="table-footer" uuid="c89894c7-661f-44fe-abbb-d0dc943ada0e" width="20" x="426" y="1" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" />
+					</textElement>
+					<textFieldExpression><![CDATA[(($V{rating1_1} == null) || ($V{rating1_1}.doubleValue() == 0.0)) ? "-" : $V{rating1_1}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.00">
+					<reportElement height="20" style="table-footer" uuid="9313f5cf-1484-4c7c-8603-cb8a79c59cd3" width="20" x="446" y="1" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" />
+					</textElement>
+					<textFieldExpression><![CDATA[(($V{rating2_1} == null) || ($V{rating2_1}.doubleValue() == 0.0)) ? "-" : $V{rating2_1}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.00">
+					<reportElement height="20" style="table-footer" uuid="9c80e02a-31fa-4d07-890f-587b04ee01ac" width="20" x="466" y="1" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" />
+					</textElement>
+					<textFieldExpression><![CDATA[(($V{rating3_1} == null) || ($V{rating3_1}.doubleValue() == 0.0)) ? "-" : $V{rating3_1}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.00">
+					<reportElement height="20" style="table-footer" uuid="b7ce71dd-6b12-4c7e-8a34-7488322ea19c" width="20" x="486" y="1" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" />
+					</textElement>
+					<textFieldExpression><![CDATA[(($V{rating4_1} == null) || ($V{rating4_1}.doubleValue() == 0.0)) ? "-" : $V{rating4_1}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.00">
+					<reportElement height="20" style="table-footer" uuid="6912019c-b44e-49cd-a24d-27eb83cf8d51" width="36" x="506" y="1" />
+					<textElement textAlignment="Center" verticalAlignment="Middle" />
+					<textFieldExpression><![CDATA[(($V{averageFeedbackRating_1} == null) || ($V{averageFeedbackRating_1}.doubleValue() == 0.0)) ? "-" : $V{averageFeedbackRating_1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement height="20" style="table-footer" uuid="c233d41f-c3a9-42e8-bdbe-45707b42913b" width="30" x="722" y="1" />
+					<textElement textAlignment="Center" verticalAlignment="Middle" />
+					<textFieldExpression><![CDATA[$V{closedDelta_1}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0">
+					<reportElement height="20" style="table-footer" uuid="e23a0a87-049a-496a-b7f4-089d0c264300" width="76" x="122" y="1" />
+					<textElement textAlignment="Center" verticalAlignment="Middle" />
+					<textFieldExpression><![CDATA[($V{firstResponseTime_1} != null) ? (((int)Math.floor($V{firstResponseTime_1} / 84600)) + "d " + ((int)Math.floor(($V{firstResponseTime_1} % 84600) / 3600)) + "h " + ((int)Math.floor(($V{firstResponseTime_1} % 84600 % 3600) / 60)) + "m") : "-"]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0">
+					<reportElement height="20" style="table-footer" uuid="d42efd36-be12-46ff-b87c-63230898ae14" width="76" x="274" y="1" />
+					<textElement textAlignment="Center" verticalAlignment="Middle" />
+					<textFieldExpression><![CDATA[($V{reproductionTime_1} != null) ? (((int)Math.floor($V{reproductionTime_1} / 84600)) + "d " + ((int)Math.floor(($V{reproductionTime_1} % 84600) / 3600)) + "h " + ((int)Math.floor(($V{reproductionTime_1} % 84600 % 3600) / 60)) + "m") : "-"]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0">
+					<reportElement height="20" style="table-footer" uuid="be5f6953-afa3-4669-bec4-998f1ed2285c" width="76" x="350" y="1" />
+					<textElement textAlignment="Center" verticalAlignment="Middle" />
+					<textFieldExpression><![CDATA[($V{totalTicketTime_1} != null) ? (((int)Math.floor($V{totalTicketTime_1} / 84600)) + "d " + ((int)Math.floor(($V{totalTicketTime_1} % 84600) / 3600)) + "h " + ((int)Math.floor(($V{totalTicketTime_1} % 84600 % 3600) / 60)) + "m") : "-"]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement height="20" uuid="42b7e338-1c47-49da-a344-25718b8dfad5" width="121" x="0" y="1" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true" />
+					</textElement>
+					<text><![CDATA[Averages]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="20" uuid="d5993608-c863-4c67-91c2-332c5d3c777b" width="121" x="0" y="26" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true" />
+					</textElement>
+					<text><![CDATA[Totals]]></text>
+				</staticText>
+				<textField>
+					<reportElement height="20" style="table-cell" uuid="69ca6bbf-3099-4bf7-8249-67040f55d59a" width="57" x="121" y="46" />
+					<textElement textAlignment="Center" verticalAlignment="Middle" />
+					<textFieldExpression><![CDATA[$V{reopenedCount_1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement height="20" style="table-cell" uuid="90afa6bf-47e1-479c-beb6-d674740d4482" width="66" x="178" y="46" />
+					<textElement textAlignment="Center" verticalAlignment="Middle" />
+					<textFieldExpression><![CDATA[$V{hotfixRequired_1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement height="20" style="table-cell" uuid="5ab0beb8-48cd-493a-99ad-f8bc0729f9ea" width="53" x="297" y="46" />
+					<textElement textAlignment="Center" verticalAlignment="Middle" />
+					<textFieldExpression><![CDATA[$V{overSLA_1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement height="20" style="table-cell" uuid="44e80d40-0f04-4a81-b379-31d0ac340395" width="97" x="350" y="46" />
+					<textElement textAlignment="Center" verticalAlignment="Middle" />
+					<textFieldExpression><![CDATA[$V{resolvedInDay_1}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement height="20" style="table-header" uuid="443a3a34-f453-4efb-afa5-111d3f65cdd4" width="57" x="121" y="26" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true" />
+					</textElement>
+					<text><![CDATA[Reopened]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="20" style="table-header" uuid="d3bbe25d-90f7-42d7-a51c-9498bf634b72" width="66" x="178" y="26" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true" size="8" />
+					</textElement>
+					<text><![CDATA[Needs Patch]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="20" style="table-header" uuid="6f0cff28-6285-4ab1-b5c9-9d466bf6ba53" width="53" x="244" y="26" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true" />
+					</textElement>
+					<text><![CDATA[Escalated]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="20" style="table-header" uuid="6aaf3158-79a9-4d37-bff1-6e6eaf534185" width="53" x="297" y="26" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true" />
+					</textElement>
+					<text><![CDATA[Over SLA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="20" style="table-header" uuid="6d6d121e-5062-486a-bf19-58f0e75b3958" width="97" x="350" y="26" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true" size="8" />
+					</textElement>
+					<text><![CDATA[Resolved in One Day]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="20" style="table-header" uuid="110510a9-8fca-4dd6-853c-a543609f4e69" width="121" x="0" y="46" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true" />
+					</textElement>
+					<text><![CDATA[Yes]]></text>
+				</staticText>
+				<staticText>
+					<reportElement backcolor="#00CC33" height="20" mode="Opaque" style="table-cell" uuid="002cfec3-0929-43a2-ba6c-127f1eaf3580" width="19" x="654" y="46" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true" />
+					</textElement>
+					<text><![CDATA[Ma]]></text>
+				</staticText>
+				<staticText>
+					<reportElement backcolor="#FF3333" height="20" mode="Opaque" style="table-cell" uuid="b2388193-2123-4810-a822-b3a36840c4d3" width="19" x="635" y="46" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true" />
+					</textElement>
+					<text><![CDATA[Cr]]></text>
+				</staticText>
+				<staticText>
+					<reportElement backcolor="#FFFF00" height="20" mode="Opaque" style="table-cell" uuid="da9812ca-3004-4f83-aae5-c5b9a442bb77" width="19" x="673" y="46" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true" />
+					</textElement>
+					<text><![CDATA[Mi]]></text>
+				</staticText>
+				<textField>
+					<reportElement height="20" style="table-cell" uuid="03955399-7077-41c6-bbc1-09f984db5b27" width="19" x="635" y="66" />
+					<textElement textAlignment="Center" verticalAlignment="Middle" />
+					<textFieldExpression><![CDATA[$V{severityType_1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement height="20" style="table-cell" uuid="084a2917-6f79-4515-a3c7-ddc741e08916" width="19" x="654" y="66" />
+					<textElement textAlignment="Center" verticalAlignment="Middle" />
+					<textFieldExpression><![CDATA[$V{severityType_2}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement height="20" style="table-cell" uuid="e029b5bb-293d-457a-bfd7-984bc2463303" width="19" x="673" y="66" />
+					<textElement textAlignment="Center" verticalAlignment="Middle" />
+					<textFieldExpression><![CDATA[$V{severityType_3}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement height="20" style="table-footer" uuid="57fb32bd-652e-4608-9541-80bef7e95330" width="27" x="608" y="1" />
+					<textElement textAlignment="Center" verticalAlignment="Middle" />
+					<textFieldExpression><![CDATA[$V{commentsCount_1}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement height="20" style="table-header" uuid="1ac1ffb9-4274-4783-9b6f-00c7d9d9e880" width="121" x="0" y="66" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true" />
+					</textElement>
+					<text><![CDATA[No]]></text>
+				</staticText>
+				<textField>
+					<reportElement height="20" style="table-cell" uuid="7b2c9bc1-27aa-4d3a-bfcb-5fd3c6da9062" width="57" x="121" y="66" />
+					<textElement textAlignment="Center" verticalAlignment="Middle" />
+					<textFieldExpression><![CDATA[$V{REPORT_COUNT} - $V{reopenedCount_1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement height="20" style="table-cell" uuid="5d43b127-d472-4436-8d3a-ca617c5de771" width="66" x="178" y="66" />
+					<textElement textAlignment="Center" verticalAlignment="Middle" />
+					<textFieldExpression><![CDATA[$V{REPORT_COUNT} - $V{hotfixRequired_1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement height="20" style="table-cell" uuid="c64ec1ce-5f25-48fc-bd5e-998151992681" width="53" x="244" y="66" />
+					<textElement textAlignment="Center" verticalAlignment="Middle" />
+					<textFieldExpression><![CDATA[$V{REPORT_COUNT} - $V{ticketEscalater_1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement height="20" style="table-cell" uuid="ed578f44-90c4-46a7-8b9c-3c2c1be7397e" width="53" x="297" y="66" />
+					<textElement textAlignment="Center" verticalAlignment="Middle" />
+					<textFieldExpression><![CDATA[$V{REPORT_COUNT} - $V{overSLA_1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement height="20" style="table-cell" uuid="ced3fcfc-63d4-4bc9-ad38-b6297c60259a" width="97" x="350" y="66" />
+					<textElement textAlignment="Center" verticalAlignment="Middle" />
+					<textFieldExpression><![CDATA[$V{REPORT_COUNT} - $V{resolvedInDay_1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement height="20" style="table-footer" uuid="6f146c09-2a12-41b3-bf50-ad8d8c54b04d" width="76" x="198" y="1" />
+					<textElement textAlignment="Center" verticalAlignment="Middle" />
+					<textFieldExpression><![CDATA[($V{averageResponseTime_1} != null) ? (((int)Math.floor($V{averageResponseTime_1} / 84600)) + "d " + ((int)Math.floor(($V{averageResponseTime_1} % 84600) / 3600)) + "h " + ((int)Math.floor(($V{averageResponseTime_1} % 84600 % 3600) / 60)) + "m") : "-"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement height="20" style="table-cell" uuid="09dcef19-03bb-4619-8a12-245825ff8b1f" width="99" x="692" y="66" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true" />
+					</textElement>
+					<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement height="20" style="table-header" uuid="5150df4f-6752-4db7-ab6c-39c910316c12" width="92" x="543" y="66" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true" />
+					</textElement>
+					<text><![CDATA[Tickets Closed]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="20" style="table-header" uuid="dfa1e434-bb02-4888-826d-6a00c3139b23" width="99" x="692" y="46" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true" />
+					</textElement>
+					<text><![CDATA[Total]]></text>
+				</staticText>
+				<textField>
+					<reportElement height="20" style="table-cell" uuid="5c8d62b4-f880-4655-ae6b-93dc60853789" width="53" x="244" y="46" />
+					<textElement textAlignment="Center" verticalAlignment="Middle" />
+					<textFieldExpression><![CDATA[$V{ticketEscalater_1}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch" />
+	</background>
+	<detail>
+		<band height="20" splitType="Immediate">
+			<staticText>
+				<reportElement height="20" style="table-cell" uuid="88d1ad48-cc38-4e29-88a5-74d30ddc3374" width="20" x="682" y="0">
+					<printWhenExpression><![CDATA[(($F{ticketEscalater} == 0) && ($F{escalated} == 1))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="14" />
+				</textElement>
+				<text><![CDATA[E]]></text>
+			</staticText>
+			<staticText>
+				<reportElement forecolor="#FF0033" height="20" style="table-cell" uuid="770a2ab1-3434-4ad8-b5f3-394f12373988" width="20" x="682" y="0">
+					<printWhenExpression><![CDATA[(($F{ticketEscalater} == 1) && ($F{escalated} == 1))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="14" />
+				</textElement>
+				<text><![CDATA[E]]></text>
+			</staticText>
+			<staticText>
+				<reportElement backcolor="#FF3333" height="20" mode="Opaque" style="table-cell" uuid="62e5b8ec-dd30-48ea-bcb5-077938ca5632" width="19" x="772" y="0">
+					<printWhenExpression><![CDATA[$F{severityType}.equals("Critical")]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" />
+				</textElement>
+				<text><![CDATA[Cr]]></text>
+			</staticText>
+			<staticText>
+				<reportElement backcolor="#00CC33" height="20" mode="Opaque" style="table-cell" uuid="1bdb8605-51e7-45a0-a131-13e5626876db" width="19" x="772" y="0">
+					<printWhenExpression><![CDATA[$F{severityType}.equals("Major")]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" />
+				</textElement>
+				<text><![CDATA[Ma]]></text>
+			</staticText>
+			<staticText>
+				<reportElement forecolor="#E3E3E3" height="20" style="table-cell" uuid="11727b73-45e4-4a03-a208-f7131beeeb52" width="20" x="682" y="0">
+					<printWhenExpression><![CDATA[$F{escalated} == 0]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="14" />
+				</textElement>
+				<text><![CDATA[E]]></text>
+			</staticText>
+			<staticText>
+				<reportElement forecolor="#E3E3E3" height="20" style="table-cell" uuid="ede506d8-a176-4bbe-9fe0-ee5dd6108d55" width="20" x="702" y="0">
+					<printWhenExpression><![CDATA[$F{overSLA} == 0]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="14" />
+				</textElement>
+				<text><![CDATA[S]]></text>
+			</staticText>
+			<staticText>
+				<reportElement backcolor="#FFFF00" height="20" mode="Opaque" style="table-cell" uuid="58c93806-50c0-47eb-81d7-fcb7bc055d04" width="19" x="772" y="0">
+					<printWhenExpression><![CDATA[$F{severityType}.equals("Minor")]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" />
+				</textElement>
+				<text><![CDATA[Mi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement forecolor="#FF0000" height="20" style="table-cell" uuid="e7bad11c-2a1d-489c-b7a3-af215d8b7da4" width="20" x="702" y="0">
+					<printWhenExpression><![CDATA[$F{overSLA} == 1]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="14" />
+				</textElement>
+				<text><![CDATA[S]]></text>
+			</staticText>
+			<staticText>
+				<reportElement height="20" style="table-cell" uuid="137968bb-8ff4-4fc4-9463-0df70adf4ddc" width="20" x="662" y="0">
+					<printWhenExpression><![CDATA[$F{hotfixRequired} == 1]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="14" />
+				</textElement>
+				<text><![CDATA[P]]></text>
+			</staticText>
+			<staticText>
+				<reportElement forecolor="#E3E3E3" height="20" style="table-cell" uuid="0f6aee33-74c2-447f-82df-e3b85fae4424" width="20" x="662" y="0">
+					<printWhenExpression><![CDATA[$F{hotfixRequired} == 0]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="14" />
+				</textElement>
+				<text><![CDATA[P]]></text>
+			</staticText>
+			<textField>
+				<reportElement height="20" style="table-cell" uuid="adaced7e-980e-455e-9803-73f4e3738717" width="27" x="608" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[$F{commentsCount}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="20" style="table-cell" uuid="087ec6ae-b5b4-4a20-9db0-829e6562d553" width="27" x="635" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[$F{reopenedCount}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement height="20" style="table-cell" uuid="01092999-6fac-49fd-aac0-039139150d05" width="37" x="506" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[(($F{averageFeedbackRating} == null) || ($F{averageFeedbackRating}.doubleValue() == 0.0)) ? "-" : $F{averageFeedbackRating}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="20" style="table-cell" uuid="28db656c-f570-4ccb-b663-f9feffb145f9" width="20" x="486" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[(($F{rating4} == null) || ($F{rating4} == 0)) ? "-" : $F{rating4}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="20" style="table-cell" uuid="9ee6fb62-6f7e-413b-afbf-090263522efd" width="20" x="466" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[(($F{rating3} == null) || ($F{rating3} == 0)) ? "-" : $F{rating3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="20" style="table-cell" uuid="f45a1e69-c1e3-446d-a753-796829083575" width="20" x="446" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[(($F{rating2} == null) || ($F{rating2} == 0)) ? "-" : $F{rating2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="20" style="table-cell" uuid="9a0608b0-ca31-417a-9569-a780a67068e2" width="20" x="426" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[(($F{rating1} == null) || ($F{rating1} == 0)) ? "-" : $F{rating1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement height="20" style="table-cell" uuid="550b5f31-63d6-4207-8e56-439766fd00dc" width="76" x="122" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[($F{firstResponseTime} != null) ? (((int)Math.floor($F{firstResponseTime} / 84600)) + "d " + ((int)Math.floor(($F{firstResponseTime} % 84600) / 3600)) + "h " + ((int)Math.floor(($F{firstResponseTime} % 84600 % 3600) / 60)) + "m") : "-"]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement height="20" style="table-cell" uuid="d6d74f7d-0e01-4fe2-9835-d3dbe71704fa" width="76" x="198" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[($F{averageResponseTime} != null) ? (((int)Math.floor($F{averageResponseTime} / 84600)) + "d " + ((int)Math.floor(($F{averageResponseTime} % 84600) / 3600)) + "h " + ((int)Math.floor(($F{averageResponseTime} % 84600 % 3600) / 60)) + "m") : "-"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="20" style="table-cell" uuid="97cbb3e4-8548-43f7-b7d5-21e72dd0d0d3" width="76" x="350" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[($F{totalTicketTime} != null) ? (((int)Math.floor($F{totalTicketTime} / 84600)) + "d " + ((int)Math.floor(($F{totalTicketTime} % 84600) / 3600)) + "h " + ((int)Math.floor(($F{totalTicketTime} % 84600 % 3600) / 60)) + "m") : "-"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="20" style="table-cell" uuid="89995259-f46a-4c42-855a-21c232182531" width="76" x="274" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[($F{reproductionTime} != null) ? (((int)Math.floor($F{reproductionTime} / 84600)) + "d " + ((int)Math.floor(($F{reproductionTime} % 84600) / 3600)) + "h " + ((int)Math.floor(($F{reproductionTime} % 84600 % 3600) / 60)) + "m") : "-"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement forecolor="#E3E3E3" height="20" style="table-cell" uuid="a1f680d3-8d3b-4c5f-81f5-bbbc06c8f042" width="20" x="752" y="0">
+					<printWhenExpression><![CDATA[$F{resolvedInDay} == 0]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="12" />
+				</textElement>
+				<text><![CDATA[24]]></text>
+			</staticText>
+			<staticText>
+				<reportElement height="20" style="table-cell" uuid="2354535d-3e1b-45a0-b2bf-34942d5087f9" width="20" x="752" y="0">
+					<printWhenExpression><![CDATA[$F{resolvedInDay} == 1]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="12" />
+				</textElement>
+				<text><![CDATA[24]]></text>
+			</staticText>
+			<textField hyperlinkTarget="Blank" hyperlinkType="Reference">
+				<reportElement backcolor="#99CCFF" height="20" mode="Opaque" uuid="177e875a-4965-4e9e-b6ce-454289fe45a8" width="122" x="0" y="0" />
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" size="8" />
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ticketNumber}]]></textFieldExpression>
+				<hyperlinkReferenceExpression><![CDATA["http://www.liferay.com/group/customer/support/-/support/ticket/" + $F{ticketNumber}]]></hyperlinkReferenceExpression>
+			</textField>
+			<textField>
+				<reportElement height="20" style="table-cell" uuid="c9216be8-f539-4362-9a47-7762682d49ec" width="66" x="542" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" />
+				</textElement>
+				<textFieldExpression><![CDATA[$F{resolutionType}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="20" style="table-cell" uuid="c0fd0b55-bb73-4968-96e2-73898a5ae07f" width="30" x="722" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[$F{closedDelta}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

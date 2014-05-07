@@ -1,0 +1,173 @@
+<?xml version="1.0"?>
+
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bottomMargin="20" columnWidth="555" leftMargin="20" name="OSB_ExpiredAndExpiringAccounts" pageHeight="842" pageWidth="595" rightMargin="20" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" topMargin="20" uuid="a4c36e70-e1e3-4d9a-97aa-2ab5ee9e7923">
+	<property name="ireport.zoom" value="2.0" />
+	<property name="ireport.x" value="0" />
+	<property name="ireport.y" value="0" />
+	<style backcolor="#FFFFFF" mode="Opaque" name="table-cell">
+		<box bottomPadding="1" leftPadding="2" rightPadding="2" topPadding="1">
+			<topPen lineColor="#000000" lineWidth="0.5" />
+			<leftPen lineColor="#000000" lineWidth="0.5" />
+			<bottomPen lineColor="#000000" lineWidth="0.5" />
+			<rightPen lineColor="#000000" lineWidth="0.5" />
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue() % 2 == 0)]]></conditionExpression>
+			<style backcolor="#F6F5F5" />
+		</conditionalStyle>
+	</style>
+	<style backcolor="#B0B2B0" mode="Opaque" name="table-header">
+		<box bottomPadding="1" leftPadding="2" rightPadding="2" topPadding="1">
+			<topPen lineColor="#000000" lineWidth="0.5" />
+			<leftPen lineColor="#000000" lineWidth="0.5" />
+			<bottomPen lineColor="#000000" lineWidth="0.5" />
+			<rightPen lineColor="#000000" lineWidth="0.5" />
+		</box>
+	</style>
+	<parameter class="java.util.Date" name="startDate">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter class="java.lang.String" name="numberOfExpiringDays">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString> <![CDATA[CALL OSB_ExpiredAndExpiringAccounts($P{startDate}, $P{numberOfExpiringDays});]]> </queryString>
+	<field class="java.lang.Long" name="accountEntryId">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="account" />
+	<field class="java.lang.String" name="code_">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="salesRepresentativeFirstName" />
+	<field class="java.lang.String" name="salesRepresentativeLastName" />
+	<field class="java.lang.String" name="expireStatus" />
+	<field class="java.sql.Date" name="supportEndDate">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<group isReprintHeaderOnEachPage="true" isStartNewPage="true" name="salesManager">
+		<groupExpression><![CDATA[$F{salesRepresentativeFirstName} + " " + $F{salesRepresentativeLastName}]]></groupExpression>
+		<groupHeader>
+			<band height="32">
+				<textField>
+					<reportElement backcolor="#B5DAF4" height="29" mode="Opaque" uuid="323f587a-fa60-4e47-b344-34ccd3d13cf6" width="555" x="0" y="0" />
+					<textElement verticalAlignment="Middle">
+						<font isBold="true" size="14" />
+					</textElement>
+					<textFieldExpression><![CDATA[$F{salesRepresentativeFirstName} + " " + $F{salesRepresentativeLastName}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="11" />
+		</groupFooter>
+	</group>
+	<group name="expireStatus">
+		<groupExpression><![CDATA[$F{expireStatus}]]></groupExpression>
+		<groupHeader>
+			<band height="42">
+				<textField>
+					<reportElement backcolor="#CCCCCC" height="20" mode="Opaque" uuid="cd443e2b-87c1-485c-8a92-f208afb928f5" width="555" x="0" y="0" />
+					<textElement verticalAlignment="Middle">
+						<font isBold="true" />
+					</textElement>
+					<textFieldExpression><![CDATA[($F{expireStatus}.equals("Expiring")) ? "Expiring Within " + $P{numberOfExpiringDays} + " Days of " + new SimpleDateFormat("MMMM d, yyyy").format($P{startDate}) : "Expired"]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement height="20" style="table-header" uuid="3f9df7aa-5ecf-4f59-ac0d-0cdb26740c69" width="307" x="0" y="22" />
+					<box>
+						<topPen lineWidth="1.0" />
+						<leftPen lineWidth="1.0" />
+						<bottomPen lineWidth="1.0" />
+						<rightPen lineWidth="1.0" />
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" />
+					<text><![CDATA[Account Name]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="20" style="table-header" uuid="f4594b1a-3dc6-46ee-9f21-a45c61f840f6" width="136" x="307" y="22" />
+					<box>
+						<topPen lineWidth="1.0" />
+						<leftPen lineWidth="1.0" />
+						<bottomPen lineWidth="1.0" />
+						<rightPen lineWidth="1.0" />
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" />
+					<text><![CDATA[Account Code]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="20" style="table-header" uuid="7eedd00d-d428-479b-8789-09319e4893aa" width="112" x="443" y="22" />
+					<box>
+						<topPen lineWidth="1.0" />
+						<leftPen lineWidth="1.0" />
+						<bottomPen lineWidth="1.0" />
+						<rightPen lineWidth="1.0" />
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" />
+					<text><![CDATA[Expiration Date]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="5" />
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch" />
+	</background>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField hyperlinkTarget="Blank" hyperlinkType="Reference">
+				<reportElement forecolor="#3366FF" height="20" isPrintWhenDetailOverflows="true" stretchType="RelativeToTallestObject" style="table-cell" uuid="53c2cc43-bc9e-4a89-8af8-fb8883d91007" width="307" x="0" y="0" />
+				<box>
+					<topPen lineWidth="1.0" />
+					<leftPen lineWidth="1.0" />
+					<bottomPen lineWidth="1.0" />
+					<rightPen lineWidth="1.0" />
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font isStrikeThrough="false" isUnderline="true" size="9" />
+				</textElement>
+				<textFieldExpression><![CDATA[$F{account}]]></textFieldExpression>
+				<hyperlinkReferenceExpression><![CDATA["http://www.liferay.com/group/customer/support/-/support/ticket/" + $F{code_}]]></hyperlinkReferenceExpression>
+			</textField>
+			<textField hyperlinkTarget="Blank" hyperlinkType="Reference">
+				<reportElement forecolor="#3366FF" height="20" isPrintWhenDetailOverflows="true" stretchType="RelativeToTallestObject" style="table-cell" uuid="a5dafa44-4bfe-4940-a1a8-deac951e9cae" width="136" x="307" y="0" />
+				<box>
+					<topPen lineWidth="1.0" />
+					<leftPen lineWidth="1.0" />
+					<bottomPen lineWidth="1.0" />
+					<rightPen lineWidth="1.0" />
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isStrikeThrough="false" isUnderline="true" />
+				</textElement>
+				<textFieldExpression><![CDATA[$F{code_}]]></textFieldExpression>
+				<hyperlinkReferenceExpression><![CDATA["http://www.liferay.com/group/customer/support/-/support/ticket/" + $F{code_}]]></hyperlinkReferenceExpression>
+			</textField>
+			<textField pattern="d MMMMM yyyy">
+				<reportElement height="20" stretchType="RelativeToTallestObject" style="table-cell" uuid="118ec408-71ec-4c85-b480-5a0cf0a89950" width="112" x="443" y="0" />
+				<box>
+					<topPen lineWidth="1.0" />
+					<leftPen lineWidth="1.0" />
+					<bottomPen lineWidth="1.0" />
+					<rightPen lineWidth="1.0" />
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isStrikeThrough="false" />
+				</textElement>
+				<textFieldExpression><![CDATA[$F{supportEndDate}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="13" splitType="Stretch">
+			<textField evaluationTime="Report">
+				<reportElement height="13" uuid="375e25e8-f07a-4f15-aeb8-cc8bd588c14d" width="555" x="0" y="0" />
+				<textElement textAlignment="Right">
+					<font size="8" />
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("EEE, MMM dd yyyy HH:mm:ss").format(new Date())]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

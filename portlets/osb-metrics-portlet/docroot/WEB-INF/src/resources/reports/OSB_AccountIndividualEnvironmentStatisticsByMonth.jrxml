@@ -1,0 +1,167 @@
+<?xml version="1.0"?>
+
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bottomMargin="20" columnWidth="555" leftMargin="20" name="OSB_AccountIndividualEnvironmentStatisticsByMonth" pageHeight="842" pageWidth="595" rightMargin="20" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" topMargin="20" uuid="54a9bfad-4f49-4b5d-ad9b-415a8fb1ba68">
+	<property name="ireport.zoom" value="1.0" />
+	<property name="ireport.x" value="0" />
+	<property name="ireport.y" value="0" />
+	<style backcolor="#E9EBE9" mode="Opaque" name="table-header">
+		<box bottomPadding="1" leftPadding="2" rightPadding="2" topPadding="1">
+			<topPen lineColor="#000000" lineWidth="0.5" />
+			<leftPen lineColor="#000000" lineWidth="0.5" />
+			<bottomPen lineColor="#000000" lineWidth="0.5" />
+			<rightPen lineColor="#000000" lineWidth="0.5" />
+		</box>
+	</style>
+	<style backcolor="#FFFFFF" mode="Opaque" name="table-cell">
+		<box bottomPadding="1" leftPadding="2" rightPadding="2" topPadding="1">
+			<topPen lineColor="#000000" lineWidth="0.5" />
+			<leftPen lineColor="#000000" lineWidth="0.5" />
+			<bottomPen lineColor="#000000" lineWidth="0.5" />
+			<rightPen lineColor="#000000" lineWidth="0.5" />
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue() % 2 == 0)]]></conditionExpression>
+			<style backcolor="#F6F5F5" />
+		</conditionalStyle>
+	</style>
+	<parameter class="java.util.Date" name="startDate">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter class="java.util.Date" name="endDate">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString> <![CDATA[CALL OSB_AccountIndividualEnvironmentStatisticsByMonth($P{startDate}, $P{endDate});]]> </queryString>
+	<field class="java.sql.Date" name="createdMonthYear" />
+	<field class="java.lang.String" name="productName">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="accountType" />
+	<field class="java.lang.String" name="envType" />
+	<field class="java.lang.String" name="envName" />
+	<field class="java.lang.Long" name="ticketsCount" />
+	<group name="monthYear">
+		<groupExpression><![CDATA[$F{createdMonthYear}]]></groupExpression>
+		<groupHeader>
+			<band height="17">
+				<textField>
+					<reportElement height="15" uuid="1d84c85d-8199-4262-a88a-ca76bcf8c139" width="288" x="267" y="0" />
+					<textElement textAlignment="Right">
+						<font isBold="true" />
+					</textElement>
+					<textFieldExpression><![CDATA[new SimpleDateFormat("MMMM yyyy").format($F{createdMonthYear})]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="productName">
+		<groupExpression><![CDATA[$F{productName}]]></groupExpression>
+		<groupHeader>
+			<band height="33">
+				<textField>
+					<reportElement backcolor="#CCCCCC" height="22" mode="Opaque" uuid="bac781a0-a6d7-471e-8a29-282daf419300" width="555" x="0" y="10" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="14" />
+					</textElement>
+					<textFieldExpression><![CDATA[$F{productName}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="accountType">
+		<groupExpression><![CDATA[$F{accountType}]]></groupExpression>
+		<groupHeader>
+			<band height="46">
+				<textField>
+					<reportElement backcolor="#F0ECEC" height="20" mode="Opaque" uuid="e94b6301-b59c-4313-a6f9-072aeaaa1b7e" width="555" x="0" y="0" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="12" />
+					</textElement>
+					<textFieldExpression><![CDATA[$F{accountType}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement height="20" style="table-header" uuid="ee6d56ca-f72b-4816-a7d3-1454a2a72d93" width="100" x="174" y="26" />
+					<textElement verticalAlignment="Middle" />
+					<text><![CDATA[Environment]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="20" style="table-header" uuid="fd680068-ee3f-4f88-83a9-6e7b46977295" width="100" x="274" y="26" />
+					<textElement textAlignment="Center" verticalAlignment="Middle" />
+					<text><![CDATA[Tickets Count]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="envType">
+		<groupExpression><![CDATA[$F{envType}]]></groupExpression>
+		<groupFooter>
+			<band height="8" />
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch" />
+	</background>
+	<title>
+		<band height="68" splitType="Stretch">
+			<textField>
+				<reportElement height="27" uuid="af288590-08f3-4544-b1ee-2833ecd3798c" width="555" x="0" y="30" />
+				<textElement textAlignment="Center">
+					<font isBold="true" size="14" />
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("MMMM dd, yyyy").format($P{startDate}) + " - " + new SimpleDateFormat("MMMM dd, yyyy").format($P{endDate})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement height="30" uuid="2e8cfc6b-67ff-4eae-a8ef-396a511efd3f" width="555" x="0" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="14" />
+				</textElement>
+				<text><![CDATA[Individual Environments Statistics]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="20">
+			<textField>
+				<reportElement height="20" style="table-cell" uuid="4715ce9f-3345-44d2-93a5-6f0372f8c140" width="100" x="174" y="0" />
+				<textElement verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[$F{envName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="20" style="table-cell" uuid="3aab3ab9-c21c-417d-9888-1f19e4b6f34b" width="100" x="274" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[$F{ticketsCount}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="20" isPrintRepeatedValues="false" uuid="3a68489b-b822-4d07-96c7-c56f866de242" width="126" x="48" y="0" />
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" isUnderline="true" />
+				</textElement>
+				<textFieldExpression><![CDATA[$F{envType}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField evaluationTime="Report">
+				<reportElement height="13" uuid="38011482-76b4-465a-ac83-a6d50e1c1fa9" width="100" x="455" y="7" />
+				<textElement textAlignment="Right">
+					<font size="8" />
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("EEE, MMM dd yyyy HH:mm:ss").format(new Date())]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="13" uuid="c3599993-abcd-41fb-b401-a03c0c4e36a7" width="25" x="258" y="7" />
+				<textElement textAlignment="Right">
+					<font size="8" />
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}.toString() + " of "]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement height="13" uuid="266ec1b0-df82-4e37-8757-753e23ba9f86" width="14" x="285" y="7" />
+				<textElement>
+					<font size="8" />
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}.toString()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

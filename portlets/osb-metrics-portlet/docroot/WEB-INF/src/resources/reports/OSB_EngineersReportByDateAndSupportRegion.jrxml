@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bottomMargin="0" columnWidth="802" isFloatColumnFooter="true" leftMargin="0" name="OSB_EngineersReportByDateAndSupportTeam" orientation="Landscape" pageHeight="555" pageWidth="802" rightMargin="0" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" topMargin="0" uuid="1eca0e3a-b1c6-434c-be81-aac905b82ac7">
+	<property name="ireport.zoom" value="1.5" />
+	<property name="ireport.x" value="0" />
+	<property name="ireport.y" value="0" />
+	<parameter class="java.util.Date" name="startDate">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter class="java.util.Date" name="endDate">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter class="java.lang.String" name="supportTeam">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter class="java.lang.String" isForPrompting="false" name="SUBREPORT_DIR">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<queryString> <![CDATA[CALL OSB_EngineersListByDateAndSupportTeam($P{startDate}, $P{endDate}, $P{supportTeam});]]> </queryString>
+	<field class="java.lang.Long" name="ticketWorkerUserId" />
+	<field class="java.lang.String" name="ticketWorkerFirstName" />
+	<field class="java.lang.String" name="ticketWorkerLastName" />
+	<sortField name="ticketWorkerLastName" />
+	<sortField name="ticketWorkerFirstName" />
+	<group isStartNewPage="true" name="engineer">
+		<groupExpression><![CDATA[$F{ticketWorkerUserId}]]></groupExpression>
+		<groupHeader>
+			<band height="23">
+				<textField isStretchWithOverflow="true">
+					<reportElement height="20" mode="Transparent" stretchType="RelativeToTallestObject" uuid="a848c90f-062c-4295-8ba3-e8214179b7c2" width="409" x="0" y="0" />
+					<box bottomPadding="1" leftPadding="2" rightPadding="2" topPadding="1">
+						<topPen lineWidth="0.0" />
+						<leftPen lineWidth="0.0" />
+						<bottomPen lineWidth="0.0" />
+						<rightPen lineWidth="0.0" />
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font isBold="true" size="12" />
+					</textElement>
+					<textFieldExpression><![CDATA["  " + $F{ticketWorkerLastName} + ", " + $F{ticketWorkerFirstName}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch" />
+	</background>
+	<detail>
+		<band height="50">
+			<subreport>
+				<reportElement height="50" uuid="e9e02247-1754-47f8-9eb2-46939edafbe8" width="802" x="0" y="0" />
+				<subreportParameter name="startDate">
+					<subreportParameterExpression><![CDATA[$P{startDate}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="engineerId">
+					<subreportParameterExpression><![CDATA[$F{ticketWorkerUserId}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="endDate">
+					<subreportParameterExpression><![CDATA[$P{endDate}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="supportTeam">
+					<subreportParameterExpression><![CDATA[$P{supportTeam}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "OSB_TicketsListPerEngineerByDateAndSupportTeam.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

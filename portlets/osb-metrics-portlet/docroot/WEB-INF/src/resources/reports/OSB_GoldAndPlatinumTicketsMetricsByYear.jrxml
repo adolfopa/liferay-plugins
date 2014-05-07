@@ -1,0 +1,119 @@
+<?xml version="1.0"?>
+
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bottomMargin="20" columnWidth="555" leftMargin="20" name="OSB_GoldAndPlatinumTicketsMetricsByYear" pageHeight="842" pageWidth="595" rightMargin="20" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" topMargin="20" uuid="a1372f76-a308-4a4d-9b32-d8628c83b9be">
+	<property name="ireport.zoom" value="1.0" />
+	<property name="ireport.x" value="0" />
+	<property name="ireport.y" value="0" />
+	<parameter class="java.lang.String" name="year">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString> <![CDATA[CALL OSB_GoldAndPlatinumTicketsMetricsByYear($P{year});]]> </queryString>
+	<field class="java.lang.Integer" name="ticketYear" />
+	<field class="java.lang.String" name="offeringType">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field class="java.lang.Long" name="ticketCount" />
+	<field class="java.math.BigDecimal" name="accountCount" />
+	<field class="java.math.BigDecimal" name="averageTicketPerAccount" />
+	<group name="Year">
+		<groupExpression><![CDATA[$F{ticketYear}]]></groupExpression>
+		<groupHeader>
+			<band height="38">
+				<textField>
+					<reportElement backcolor="#BADEE4" forecolor="#FFFFFF" height="29" mode="Opaque" uuid="718dad84-6682-4069-b3c8-e02945c70177" width="555" x="0" y="9" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true" size="14" />
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ticketYear}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="offering">
+		<groupExpression><![CDATA[$F{offeringType}]]></groupExpression>
+		<groupHeader>
+			<band height="21">
+				<textField>
+					<reportElement backcolor="#6EB1F4" forecolor="#FFFFFF" height="20" mode="Opaque" uuid="04e160d7-21cd-41e0-b773-66527cddc1fb" width="555" x="0" y="0" />
+					<textElement verticalAlignment="Middle">
+						<font isBold="true" size="12" />
+					</textElement>
+					<textFieldExpression><![CDATA[$F{offeringType}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch" />
+	</background>
+	<title>
+		<band height="38" splitType="Stretch">
+			<staticText>
+				<reportElement height="34" uuid="61fafca0-deba-4161-ae48-e39009aeec7a" width="555" x="0" y="0" />
+				<textElement textAlignment="Center">
+					<font isBold="true" size="24" />
+				</textElement>
+				<text><![CDATA[Gold and Platinum Tickets Metrics]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement height="20" uuid="c594cab2-0b67-4150-b05e-23ca2e5efaea" width="167" x="0" y="0" />
+				<textElement textAlignment="Right" verticalAlignment="Middle" />
+				<text><![CDATA[Tickets Count :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement height="20" uuid="80d70bee-2c63-4f06-be0f-7574b64fc84f" width="167" x="0" y="20" />
+				<textElement textAlignment="Right" verticalAlignment="Middle" />
+				<text><![CDATA[Accounts Count :]]></text>
+			</staticText>
+			<textField>
+				<reportElement height="20" uuid="3bd7a90b-4c7a-4103-92f3-fd2c051fc034" width="100" x="167" y="20" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[$F{accountCount}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement height="20" uuid="6409961a-82c5-4de3-ae0e-91d91b50e86f" width="167" x="0" y="40" />
+				<textElement textAlignment="Right" verticalAlignment="Middle" />
+				<text><![CDATA[Average Tickets Per Account :]]></text>
+			</staticText>
+			<textField>
+				<reportElement height="20" uuid="b54da870-0db2-48a8-a55e-5c4512047835" width="100" x="167" y="40" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[$F{averageTicketPerAccount}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="20" uuid="e46bfb6f-7d7d-47d0-bdb5-a9a06ac002e1" width="100" x="167" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[$F{ticketCount}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="23">
+			<textField evaluationTime="Report">
+				<reportElement height="13" uuid="8b2cedac-6c52-49fa-9320-17a9a89fbf62" width="14" x="279" y="10" />
+				<textElement>
+					<font size="8" />
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}.toString()]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement height="13" uuid="4b019e2c-0acd-4064-8a37-4120e2bdc26e" width="100" x="457" y="10" />
+				<textElement textAlignment="Right">
+					<font size="8" />
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("EEE, MMM dd yyyy HH:mm:ss").format(new Date())]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="13" uuid="4cb860f4-7a54-4742-8dd2-03ce330a5ae5" width="25" x="254" y="10" />
+				<textElement textAlignment="Right">
+					<font size="8" />
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}.toString() + " of "]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

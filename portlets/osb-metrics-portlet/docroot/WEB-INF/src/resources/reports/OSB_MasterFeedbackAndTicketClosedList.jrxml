@@ -1,0 +1,200 @@
+<?xml version="1.0"?>
+
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bottomMargin="0" columnWidth="842" leftMargin="0" name="OSB_MasterFeedbackAndTicketClosedList" orientation="Landscape" pageHeight="595" pageWidth="842" rightMargin="0" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" topMargin="0" uuid="62bf8378-abb5-4694-a286-354b7fba0123">
+	<property name="ireport.zoom" value="1.5" />
+	<property name="ireport.x" value="0" />
+	<property name="ireport.y" value="0" />
+	<parameter class="java.util.Date" name="startDate">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter class="java.util.Date" name="endDate">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter class="java.lang.String" name="support_region" />
+	<parameter class="java.lang.String" isForPrompting="false" name="closed_month" />
+	<parameter class="java.lang.String" isForPrompting="false" name="account_code" />
+	<queryString> <![CDATA[CALL OSB_MasterFeedbackAndTicketClosedListByMonthAndSupportRegion($P{startDate}, $P{endDate}, $P{support_region});]]> </queryString>
+	<field class="java.lang.String" name="closedMonthYear">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="feedbackMonthYear" />
+	<field class="java.lang.Integer" name="feedbackOnly" />
+	<field class="java.lang.String" name="ticketLink" />
+	<field class="java.lang.String" name="code_">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field class="java.lang.Long" name="finalResolutionScore" />
+	<field class="java.lang.Long" name="responseTimeScore" />
+	<field class="java.lang.Long" name="technicalKnowledgeScore" />
+	<field class="java.lang.Long" name="professionalismScore" />
+	<field class="java.math.BigDecimal" name="averageFeedbackRating">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="feedbackComments" />
+	<background>
+		<band splitType="Stretch" />
+	</background>
+	<columnHeader>
+		<band height="29" splitType="Prevent">
+			<staticText>
+				<reportElement backcolor="#CCCCCC" height="28" mode="Opaque" uuid="94bf85de-3b31-4e69-b23f-5e47dcd6731c" width="273" x="9" y="0" />
+				<box>
+					<pen lineStyle="Double" lineWidth="1.0" />
+					<topPen lineStyle="Double" lineWidth="1.0" />
+					<leftPen lineStyle="Double" lineWidth="1.0" />
+					<bottomPen lineStyle="Double" lineWidth="1.0" />
+					<rightPen lineStyle="Double" lineWidth="1.0" />
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" />
+				</textElement>
+				<text><![CDATA[Ticket URL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement backcolor="#F1EFEF" height="28" mode="Opaque" uuid="3734f380-f900-41fe-a4c1-575317cfb975" width="38" x="281" y="0" />
+				<box>
+					<pen lineStyle="Double" lineWidth="1.0" />
+					<topPen lineStyle="Double" lineWidth="1.0" />
+					<leftPen lineStyle="Double" lineWidth="1.0" />
+					<bottomPen lineStyle="Double" lineWidth="1.0" />
+					<rightPen lineStyle="Double" lineWidth="1.0" />
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" />
+				</textElement>
+				<text><![CDATA[Final Resolution]]></text>
+			</staticText>
+			<staticText>
+				<reportElement backcolor="#CCCCCC" height="28" mode="Opaque" uuid="390ae1a7-9f4e-4589-be90-7f6adcf0a525" width="39" x="318" y="0" />
+				<box>
+					<pen lineStyle="Double" lineWidth="1.0" />
+					<topPen lineStyle="Double" lineWidth="1.0" />
+					<leftPen lineStyle="Double" lineWidth="1.0" />
+					<bottomPen lineStyle="Double" lineWidth="1.0" />
+					<rightPen lineStyle="Double" lineWidth="1.0" />
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" />
+				</textElement>
+				<text><![CDATA[Response Time]]></text>
+			</staticText>
+			<staticText>
+				<reportElement backcolor="#F1EFEF" height="28" mode="Opaque" uuid="9baeb3d3-453f-46d9-b5fe-c1687ec014e1" width="35" x="356" y="0" />
+				<box>
+					<pen lineStyle="Double" lineWidth="1.0" />
+					<topPen lineStyle="Double" lineWidth="1.0" />
+					<leftPen lineStyle="Double" lineWidth="1.0" />
+					<bottomPen lineStyle="Double" lineWidth="1.0" />
+					<rightPen lineStyle="Double" lineWidth="1.0" />
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" />
+				</textElement>
+				<text><![CDATA[Technical Knowledge]]></text>
+			</staticText>
+			<staticText>
+				<reportElement backcolor="#CCCCCC" height="28" mode="Opaque" uuid="50260e18-3e73-4ddf-b9d6-d7400804d648" width="39" x="390" y="0" />
+				<box>
+					<pen lineStyle="Double" lineWidth="1.0" />
+					<topPen lineStyle="Double" lineWidth="1.0" />
+					<leftPen lineStyle="Double" lineWidth="1.0" />
+					<bottomPen lineStyle="Double" lineWidth="1.0" />
+					<rightPen lineStyle="Double" lineWidth="1.0" />
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="5" />
+				</textElement>
+				<text><![CDATA[Professionalism]]></text>
+			</staticText>
+			<staticText>
+				<reportElement backcolor="#F1EFEF" height="28" mode="Opaque" uuid="3fff4b49-d801-4ba3-bec9-f3fb6c30c63d" width="53" x="428" y="0" />
+				<box>
+					<pen lineStyle="Double" lineWidth="1.0" />
+					<topPen lineStyle="Double" lineWidth="1.0" />
+					<leftPen lineStyle="Double" lineWidth="1.0" />
+					<bottomPen lineStyle="Double" lineWidth="1.0" />
+					<rightPen lineStyle="Double" lineWidth="1.0" />
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" />
+				</textElement>
+				<text><![CDATA[Average Feedback Rating]]></text>
+			</staticText>
+			<staticText>
+				<reportElement backcolor="#CCCCCC" height="28" mode="Opaque" uuid="8cdb1c70-4fff-44c1-ad54-e70d13557739" width="186" x="480" y="0" />
+				<box>
+					<pen lineStyle="Double" lineWidth="1.0" />
+					<topPen lineStyle="Double" lineWidth="1.0" />
+					<leftPen lineStyle="Double" lineWidth="1.0" />
+					<bottomPen lineStyle="Double" lineWidth="1.0" />
+					<rightPen lineStyle="Double" lineWidth="1.0" />
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" />
+				</textElement>
+				<text><![CDATA[comments]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="11" splitType="Prevent">
+			<printWhenExpression><![CDATA[($F{closedMonthYear}.equals($P{closed_month}) || ($F{feedbackMonthYear}.equals($P{closed_month}) && ($F{finalResolutionScore}.intValue() > 0))) && $F{code_}.equals($P{account_code})]]></printWhenExpression>
+			<textField isStretchWithOverflow="true">
+				<reportElement backcolor="#CCCCCC" height="10" isPrintWhenDetailOverflows="true" mode="Opaque" stretchType="RelativeToTallestObject" uuid="f156d629-1cd0-48e2-b276-f0b06bfee0af" width="273" x="9" y="0" />
+				<textElement verticalAlignment="Middle">
+					<font size="7" />
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ticketLink}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement backcolor="#F1EFEF" height="10" mode="Opaque" stretchType="RelativeToTallestObject" uuid="eb86b5cd-35c6-4d44-a753-3ecea2ed8a04" width="38" x="281" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" />
+				</textElement>
+				<textFieldExpression><![CDATA[(($F{finalResolutionScore} == null) || ($F{finalResolutionScore}.intValue() == 0)) ? "-" : $F{finalResolutionScore}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement backcolor="#CCCCCC" height="10" mode="Opaque" stretchType="RelativeToTallestObject" uuid="d92ed82b-2c30-4d56-85a4-1e6d49b5bf67" width="39" x="318" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" />
+				</textElement>
+				<textFieldExpression><![CDATA[(($F{responseTimeScore} == null) || ($F{responseTimeScore}.intValue() == 0)) ? "-" : $F{responseTimeScore}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement backcolor="#F1EFEF" height="10" mode="Opaque" stretchType="RelativeToTallestObject" uuid="fdc0b457-1644-475f-92d9-4cc9885bfd91" width="35" x="356" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" />
+				</textElement>
+				<textFieldExpression><![CDATA[(($F{technicalKnowledgeScore} == null) || ($F{technicalKnowledgeScore}.intValue() == 0)) ? "-" : $F{technicalKnowledgeScore}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement backcolor="#CCCCCC" height="10" mode="Opaque" stretchType="RelativeToTallestObject" uuid="6c2f51d1-2814-47ed-bd5a-21853457acbe" width="39" x="390" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" />
+				</textElement>
+				<textFieldExpression><![CDATA[(($F{professionalismScore} == null) || ($F{professionalismScore}.intValue() == 0)) ? "-" : $F{professionalismScore}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement backcolor="#CCCCCC" height="10" isPrintWhenDetailOverflows="true" mode="Opaque" stretchType="RelativeToTallestObject" uuid="9f0a99f7-7e26-4ab7-853b-5e1984ea685a" width="186" x="480" y="0" />
+				<textElement verticalAlignment="Middle">
+					<font size="7" />
+				</textElement>
+				<textFieldExpression><![CDATA[$F{feedbackComments}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement backcolor="#F1EFEF" height="10" mode="Opaque" stretchType="RelativeToTallestObject" uuid="daefe204-edd0-4574-a0b0-6793898dca25" width="52" x="428" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" />
+				</textElement>
+				<textFieldExpression><![CDATA[(($F{averageFeedbackRating} == null) || ($F{averageFeedbackRating}.intValue() == 0)) ? "-" : $F{averageFeedbackRating}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="10" stretchType="RelativeToTallestObject" uuid="947d3d1e-b16a-4f77-acf9-6988e19b5f15" width="9" x="0" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" />
+				</textElement>
+				<textFieldExpression><![CDATA[(!$F{closedMonthYear}.equals($P{closed_month}) && $F{feedbackMonthYear}.equals($P{closed_month})) ? "*" : ""]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

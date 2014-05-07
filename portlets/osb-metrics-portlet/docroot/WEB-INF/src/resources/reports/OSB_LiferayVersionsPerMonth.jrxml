@@ -1,0 +1,508 @@
+<?xml version="1.0"?>
+
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bottomMargin="20" columnWidth="802" leftMargin="20" name="OSB_LiferayVersionsPerMonth" orientation="Landscape" pageHeight="684" pageWidth="842" rightMargin="20" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" topMargin="20" uuid="81eeb8ef-1e42-4c02-bd89-67163ffae548">
+	<property name="ireport.zoom" value="1.0" />
+	<property name="ireport.x" value="0" />
+	<property name="ireport.y" value="0" />
+	<style hAlign="Center" name="Crosstab Data Text" />
+	<parameter class="java.lang.String" name="startYear">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString> <![CDATA[CALL OSB_TicketsPerLiferayVersionPerMonth($P{startYear});]]> </queryString>
+	<field class="java.lang.Long" name="ticketCount" />
+	<field class="java.lang.Long" name="accountCount" />
+	<field class="java.lang.Integer" name="createYear" />
+	<field class="java.sql.Date" name="createMonthYear" />
+	<field class="java.lang.String" name="envLFRType">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="minorVersion">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field class="java.lang.Long" name="totalTicketsPerMonth" />
+	<field class="java.lang.Long" name="totalAccountsPerMonth" />
+	<group name="createYear">
+		<groupExpression><![CDATA[$F{createYear}]]></groupExpression>
+	</group>
+	<group name="minorVersion">
+		<groupExpression><![CDATA[$F{minorVersion}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch" />
+	</background>
+	<summary>
+		<band height="49">
+			<crosstab columnBreakOffset="800" ignoreWidth="false">
+				<reportElement height="49" uuid="1ae03a26-02e3-407a-a88f-70fe473a701d" width="802" x="0" y="0" />
+				<crosstabHeaderCell>
+					<cellContents/>
+				</crosstabHeaderCell>
+				<rowGroup name="minorVersion" totalPosition="End" width="70">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{minorVersion}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents backcolor="#BFE1FF" mode="Opaque">
+							<box>
+								<pen lineColor="#000000" lineStyle="Solid" lineWidth="0.5" />
+							</box>
+							<textField>
+								<reportElement height="54" style="Crosstab Data Text" uuid="d6a5bd95-fe7d-4054-8627-fb274ba51e72" width="70" x="0" y="0" />
+								<textElement>
+									<font isBold="true" />
+								</textElement>
+								<textFieldExpression><![CDATA[$V{minorVersion}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents backcolor="#6093BF" mode="Opaque">
+							<box>
+								<pen lineColor="#000000" lineStyle="Solid" lineWidth="0.5" />
+							</box>
+							<staticText>
+								<reportElement height="26" uuid="5091b585-20ee-40ea-a84b-51bf35180d66" width="102" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle" />
+								<text><![CDATA[Total]]></text>
+							</staticText>
+							<staticText>
+								<reportElement height="13" style="Crosstab Data Text" uuid="989047ff-d76e-41f2-8141-87bcb9077d64" width="38" x="102" y="0" />
+								<box>
+									<leftPen lineWidth="0.25" />
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font size="6" />
+								</textElement>
+								<text><![CDATA[Tickets]]></text>
+							</staticText>
+							<staticText>
+								<reportElement height="13" style="Crosstab Data Text" uuid="25c537af-77d7-4e96-8200-08a24321448e" width="38" x="102" y="13" />
+								<box>
+									<topPen lineWidth="0.25" />
+									<leftPen lineWidth="0.25" />
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font size="6" />
+								</textElement>
+								<text><![CDATA[Accounts]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<rowGroup name="envLFRType" totalPosition="Start" width="70">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{envLFRType}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents backcolor="#BFE1FF" mode="Opaque">
+							<box>
+								<pen lineColor="#000000" lineStyle="Solid" lineWidth="0.5" />
+							</box>
+							<textField>
+								<reportElement height="21" style="Crosstab Data Text" uuid="ab85edae-a521-4fe0-b8d4-1d1f4de91490" width="32" x="0" y="0" />
+								<textElement verticalAlignment="Middle">
+									<font size="7" />
+								</textElement>
+								<textFieldExpression><![CDATA[$V{envLFRType}]]></textFieldExpression>
+							</textField>
+							<staticText>
+								<reportElement height="11" style="Crosstab Data Text" uuid="54baa62c-b0aa-4691-914c-f422f7232b23" width="38" x="32" y="0" />
+								<box>
+									<topPen lineWidth="0.25" />
+									<leftPen lineWidth="0.25" />
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font size="6" />
+								</textElement>
+								<text><![CDATA[Tickets]]></text>
+							</staticText>
+							<staticText>
+								<reportElement height="11" style="Crosstab Data Text" uuid="227e611d-0df3-4af5-a727-39d5a8040ff0" width="38" x="32" y="10" />
+								<box>
+									<topPen lineWidth="0.25" />
+									<leftPen lineWidth="0.25" />
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font size="6" />
+								</textElement>
+								<text><![CDATA[Accounts]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents backcolor="#E6F3FF" mode="Opaque">
+							<box>
+								<pen lineColor="#000000" lineStyle="Solid" lineWidth="0.5" />
+							</box>
+							<staticText>
+								<reportElement height="11" uuid="3ba53925-589c-4a8a-af97-323b5a0d81e7" width="32" x="0" y="22" />
+								<box>
+									<topPen lineWidth="0.25" />
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true" size="4" />
+								</textElement>
+								<text><![CDATA[% of Monthly Total]]></text>
+							</staticText>
+							<textField>
+								<reportElement height="11" style="Crosstab Data Text" uuid="e35d131f-6e48-4593-a7ff-6d0b5346a3f5" width="32" x="0" y="11" />
+								<textElement verticalAlignment="Middle">
+									<font size="6" />
+								</textElement>
+								<textFieldExpression><![CDATA[$V{minorVersion}]]></textFieldExpression>
+							</textField>
+							<staticText>
+								<reportElement height="11" style="Crosstab Data Text" uuid="dc1b9f63-7197-431e-b83f-f11304463110" width="32" x="0" y="0" />
+								<textElement verticalAlignment="Middle">
+									<font size="6" />
+								</textElement>
+								<text><![CDATA[Total]]></text>
+							</staticText>
+							<staticText>
+								<reportElement height="11" style="Crosstab Data Text" uuid="ec9f7972-7b1b-4ee7-8bd9-d39dfc042fa2" width="38" x="32" y="0" />
+								<box>
+									<topPen lineWidth="0.25" />
+									<leftPen lineWidth="0.25" />
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font size="6" />
+								</textElement>
+								<text><![CDATA[Tickets]]></text>
+							</staticText>
+							<staticText>
+								<reportElement height="11" style="Crosstab Data Text" uuid="40d41c39-165b-4cd1-b4df-92fed0c2b551" width="38" x="32" y="11" />
+								<box>
+									<topPen lineWidth="0.25" />
+									<leftPen lineWidth="0.25" />
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font size="6" />
+								</textElement>
+								<text><![CDATA[Accounts]]></text>
+							</staticText>
+							<staticText>
+								<reportElement height="11" style="Crosstab Data Text" uuid="507c07ec-9877-4d5a-bd54-7a1b55a5c090" width="38" x="32" y="22" />
+								<box>
+									<topPen lineWidth="0.25" />
+									<leftPen lineWidth="0.25" />
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font size="6" />
+								</textElement>
+								<text><![CDATA[Tickets]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<columnGroup headerPosition="Stretch" height="16" name="createYear">
+					<bucket class="java.lang.Integer">
+						<bucketExpression><![CDATA[$F{createYear}]]></bucketExpression>
+					</bucket>
+					<crosstabColumnHeader>
+						<cellContents backcolor="#BFE1FF" mode="Opaque">
+							<box>
+								<pen lineColor="#000000" lineStyle="Solid" lineWidth="0.5" />
+							</box>
+							<textField>
+								<reportElement height="16" isPrintInFirstWholeBand="true" stretchType="RelativeToTallestObject" style="Crosstab Data Text" uuid="6f8d7d26-4e89-4c3a-9980-1a985a3f7871" width="100" x="0" y="0" />
+								<textElement verticalAlignment="Middle">
+									<font isBold="true" />
+								</textElement>
+								<textFieldExpression><![CDATA[$V{createYear}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabColumnHeader>
+					<crosstabTotalColumnHeader>
+						<cellContents backcolor="#6093BF" mode="Opaque">
+							<box>
+								<pen lineColor="#000000" lineStyle="Solid" lineWidth="0.5" />
+							</box>
+							<staticText>
+								<reportElement height="60" uuid="9857ce46-339f-479a-8dd7-910858f0a4ff" width="50" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle" />
+								<text><![CDATA[Total]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalColumnHeader>
+				</columnGroup>
+				<columnGroup height="16" name="createMonthYear" totalPosition="End">
+					<bucket class="java.sql.Date">
+						<bucketExpression><![CDATA[$F{createMonthYear}]]></bucketExpression>
+					</bucket>
+					<crosstabColumnHeader>
+						<cellContents backcolor="#BFE1FF" mode="Opaque">
+							<box>
+								<pen lineColor="#000000" lineStyle="Solid" lineWidth="0.5" />
+							</box>
+							<textField pattern="MMM">
+								<reportElement height="16" style="Crosstab Data Text" uuid="71c2f238-be30-430b-b13a-9bcc9f90bc79" width="50" x="0" y="0" />
+								<textElement verticalAlignment="Middle" />
+								<textFieldExpression><![CDATA[$V{createMonthYear}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabColumnHeader>
+					<crosstabTotalColumnHeader>
+						<cellContents backcolor="#E6F3FF" mode="Opaque">
+							<box>
+								<pen lineColor="#000000" lineStyle="Solid" lineWidth="0.5" />
+							</box>
+							<staticText>
+								<reportElement height="8" printWhenGroupChanges="createYear" uuid="f9339fcd-1ab0-4847-9a2f-36c393b350cd" width="50" x="0" y="0" />
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true" size="5" />
+								</textElement>
+								<text><![CDATA[Annual Total]]></text>
+							</staticText>
+							<staticText>
+								<reportElement forecolor="#FF3333" height="8" printWhenGroupChanges="createYear" uuid="b8d3f181-f79a-4036-bc51-8aaa2d13ca2a" width="50" x="0" y="8" />
+								<box>
+									<pen lineColor="#000000" />
+									<topPen lineColor="#000000" lineWidth="0.25" />
+									<leftPen lineColor="#000000" />
+									<bottomPen lineColor="#000000" />
+									<rightPen lineColor="#000000" />
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true" size="5" />
+								</textElement>
+								<text><![CDATA[Monthly Average]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalColumnHeader>
+				</columnGroup>
+				<measure calculation="Sum" class="java.lang.Integer" name="ticketCountMeasure">
+					<measureExpression><![CDATA[$F{ticketCount}]]></measureExpression>
+				</measure>
+				<measure class="java.lang.Long" name="totalTicketsPerMonth">
+					<measureExpression><![CDATA[$F{totalTicketsPerMonth}]]></measureExpression>
+				</measure>
+				<measure class="java.lang.Integer" name="year">
+					<measureExpression><![CDATA[$F{createYear}]]></measureExpression>
+				</measure>
+				<measure calculation="Sum" class="java.lang.Integer" name="accountCountMeasure">
+					<measureExpression><![CDATA[$F{accountCount}]]></measureExpression>
+				</measure>
+				<measure class="java.lang.Long" name="totalAccountsPerMonth">
+					<measureExpression><![CDATA[$F{totalAccountsPerMonth}]]></measureExpression>
+				</measure>
+				<crosstabCell height="21" width="50">
+					<cellContents>
+						<box>
+							<pen lineColor="#000000" lineStyle="Solid" lineWidth="0.5" />
+						</box>
+						<textField>
+							<reportElement height="11" style="Crosstab Data Text" uuid="5e701621-33be-4ccd-b8f2-040dca8169b7" width="50" x="0" y="0" />
+							<textElement verticalAlignment="Middle">
+								<font size="8" />
+							</textElement>
+							<textFieldExpression><![CDATA[($V{ticketCountMeasure} == null) ? 0 : $V{ticketCountMeasure}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement backcolor="#CCCCFF" height="11" mode="Opaque" style="Crosstab Data Text" uuid="20a4e122-9804-4c86-866f-82b6808c1960" width="50" x="0" y="10" />
+							<box>
+								<pen lineWidth="0.0" />
+								<topPen lineWidth="0.0" />
+								<leftPen lineWidth="0.25" />
+								<bottomPen lineWidth="0.0" />
+								<rightPen lineWidth="0.25" />
+							</box>
+							<textElement verticalAlignment="Middle">
+								<font size="8" />
+							</textElement>
+							<textFieldExpression><![CDATA[($V{accountCountMeasure} == null) ? 0 : $V{accountCountMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell height="26" rowTotalGroup="minorVersion" width="50">
+					<cellContents backcolor="#6093BF" mode="Opaque">
+						<box>
+							<pen lineColor="#000000" lineStyle="Solid" lineWidth="0.5" />
+						</box>
+						<textField>
+							<reportElement forecolor="#FFFFFF" height="13" style="Crosstab Data Text" uuid="c9c6c768-3b1f-452b-896f-76aa11f155ec" width="50" x="0" y="0" />
+							<textElement verticalAlignment="Middle">
+								<font isBold="true" size="8" />
+							</textElement>
+							<textFieldExpression><![CDATA[$V{ticketCountMeasure}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement forecolor="#FFFFFF" height="13" style="Crosstab Data Text" uuid="66c03be2-2c88-4905-a50b-6a4353661fa2" width="50" x="0" y="13" />
+							<box>
+								<pen lineColor="#000000" />
+								<topPen lineColor="#000000" lineWidth="0.25" />
+								<leftPen lineColor="#000000" />
+								<bottomPen lineColor="#000000" />
+								<rightPen lineColor="#000000" />
+							</box>
+							<textElement verticalAlignment="Middle">
+								<font isBold="true" size="8" />
+							</textElement>
+							<textFieldExpression><![CDATA[$V{accountCountMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell columnTotalGroup="createYear" width="50">
+					<cellContents backcolor="#6093BF" mode="Opaque">
+						<box>
+							<pen lineColor="#000000" lineStyle="Solid" lineWidth="0.5" />
+						</box>
+						<textField>
+							<reportElement height="15" style="Crosstab Data Text" uuid="152b3ea8-ad5a-492f-8b02-c82a005ccd4d" width="50" x="0" y="0" />
+							<textElement/>
+							<textFieldExpression><![CDATA[$V{ticketCountMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell columnTotalGroup="createYear" rowTotalGroup="minorVersion">
+					<cellContents backcolor="#6093BF" mode="Opaque">
+						<box>
+							<pen lineColor="#000000" lineStyle="Solid" lineWidth="0.5" />
+						</box>
+						<textField>
+							<reportElement height="15" style="Crosstab Data Text" uuid="e67abb05-0703-4f1d-8d98-d607562824e3" width="50" x="0" y="0" />
+							<textElement/>
+							<textFieldExpression><![CDATA[$V{ticketCountMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell columnTotalGroup="createMonthYear" height="21" width="50">
+					<cellContents backcolor="#E6F3FF" mode="Opaque">
+						<box>
+							<pen lineColor="#000000" lineStyle="Solid" lineWidth="0.5" />
+						</box>
+						<textField>
+							<reportElement forecolor="#000000" height="11" style="Crosstab Data Text" uuid="df4dbfc0-2281-41fa-a1bd-1effca2c5713" width="50" x="0" y="0" />
+							<textElement verticalAlignment="Middle">
+								<font size="8" />
+							</textElement>
+							<textFieldExpression><![CDATA[$V{ticketCountMeasure}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement backcolor="#CCCCFF" forecolor="#000000" height="11" mode="Opaque" style="Crosstab Data Text" uuid="be46922a-f268-479c-ac59-99690af3e901" width="50" x="0" y="10" />
+							<box>
+								<leftPen lineWidth="0.5" />
+								<rightPen lineWidth="0.5" />
+							</box>
+							<textElement verticalAlignment="Middle">
+								<font size="8" />
+							</textElement>
+							<textFieldExpression><![CDATA[$V{accountCountMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell columnTotalGroup="createMonthYear" height="26" rowTotalGroup="minorVersion" width="50">
+					<cellContents backcolor="#6093BF" mode="Opaque">
+						<box>
+							<pen lineColor="#000000" lineStyle="Solid" lineWidth="0.5" />
+						</box>
+						<textField>
+							<reportElement forecolor="#FFFFFF" height="13" style="Crosstab Data Text" uuid="5cd9064c-e9c0-4f11-b2a2-6954c19b6294" width="50" x="0" y="0" />
+							<textElement verticalAlignment="Middle">
+								<font isBold="true" size="8" />
+							</textElement>
+							<textFieldExpression><![CDATA[$V{ticketCountMeasure}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement forecolor="#FFFFFF" height="13" style="Crosstab Data Text" uuid="bdad3ef6-66a1-410c-891a-a0d561862676" width="50" x="0" y="13" />
+							<box>
+								<pen lineColor="#000000" />
+								<topPen lineColor="#000000" lineWidth="0.25" />
+								<leftPen lineColor="#000000" />
+								<bottomPen lineColor="#000000" />
+								<rightPen lineColor="#000000" />
+							</box>
+							<textElement verticalAlignment="Middle">
+								<font isBold="true" size="8" />
+							</textElement>
+							<textFieldExpression><![CDATA[$V{accountCountMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell height="33" rowTotalGroup="envLFRType" width="50">
+					<cellContents backcolor="#E6F3FF" mode="Opaque">
+						<box>
+							<pen lineColor="#000000" lineStyle="Solid" lineWidth="0.5" />
+						</box>
+						<textField>
+							<reportElement height="11" style="Crosstab Data Text" uuid="ee002a16-dc05-42f8-bdbc-9e77e00b84ee" width="50" x="0" y="0" />
+							<textElement verticalAlignment="Middle">
+								<font isBold="true" size="8" />
+							</textElement>
+							<textFieldExpression><![CDATA[$V{ticketCountMeasure}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#,##0.00 %">
+							<reportElement height="11" style="Crosstab Data Text" uuid="71960bd2-34be-4370-9340-295cb8d79eec" width="50" x="0" y="22" />
+							<box>
+								<topPen lineWidth="0.25" />
+							</box>
+							<textElement verticalAlignment="Middle">
+								<font isBold="true" size="8" />
+							</textElement>
+							<textFieldExpression><![CDATA[($V{totalTicketsPerMonth} == null) ? 0 : (new Double($V{ticketCountMeasure}.doubleValue() / $V{totalTicketsPerMonth}.doubleValue()))]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement height="11" style="Crosstab Data Text" uuid="59bd6665-5a78-4175-a353-317884391dd8" width="50" x="0" y="11" />
+							<box>
+								<topPen lineWidth="0.25" />
+							</box>
+							<textElement verticalAlignment="Middle">
+								<font isBold="true" size="8" />
+							</textElement>
+							<textFieldExpression><![CDATA[$V{accountCountMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell columnTotalGroup="createYear" rowTotalGroup="envLFRType">
+					<cellContents backcolor="#6093BF" mode="Opaque">
+						<box>
+							<pen lineColor="#000000" lineStyle="Solid" lineWidth="0.5" />
+						</box>
+						<textField>
+							<reportElement height="30" style="Crosstab Data Text" uuid="8ff927b9-b076-4646-95a1-b2b897a4aeee" width="50" x="0" y="0" />
+							<textElement/>
+							<textFieldExpression><![CDATA[$V{ticketCountMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell columnTotalGroup="createMonthYear" height="33" rowTotalGroup="envLFRType" width="50">
+					<cellContents backcolor="#E6F3FF" mode="Opaque">
+						<box>
+							<pen lineColor="#000000" lineStyle="Solid" lineWidth="0.5" />
+						</box>
+						<textField>
+							<reportElement height="11" style="Crosstab Data Text" uuid="1fb39fd8-65d7-4c7b-ac22-4543506a9dd1" width="50" x="0" y="0" />
+							<textElement verticalAlignment="Middle">
+								<font isBold="true" size="8" />
+							</textElement>
+							<textFieldExpression><![CDATA[$V{ticketCountMeasure}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement height="11" style="Crosstab Data Text" uuid="11b2f749-0ab4-458e-8975-f54cc3e61e8b" width="50" x="0" y="11" />
+							<box>
+								<topPen lineWidth="0.25" />
+							</box>
+							<textElement verticalAlignment="Middle">
+								<font isBold="true" size="8" />
+							</textElement>
+							<textFieldExpression><![CDATA[$V{accountCountMeasure}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###0.00">
+							<reportElement forecolor="#FF3333" height="11" style="Crosstab Data Text" uuid="1a2e0ad1-f93c-4ade-b555-d902fabc9e51" width="50" x="0" y="22" />
+							<box>
+								<pen lineColor="#000000" />
+								<topPen lineColor="#000000" lineWidth="0.25" />
+								<leftPen lineColor="#000000" />
+								<bottomPen lineColor="#000000" />
+								<rightPen lineColor="#000000" />
+							</box>
+							<textElement verticalAlignment="Middle">
+								<font isBold="true" size="8" />
+							</textElement>
+							<textFieldExpression><![CDATA[($V{totalTicketsPerMonth} == null) ? 0 : ($V{ticketCountMeasure}.doubleValue() / (($V{year}.toString().equals(new SimpleDateFormat("yyyy").format(new Date()))) ? (new Date().getMonth() + 1) : 12))]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+			</crosstab>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,238 @@
+<?xml version="1.0"?>
+
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bottomMargin="20" columnWidth="555" leftMargin="20" name="OSB_TicketCommentsByEngineerAndDay" pageHeight="842" pageWidth="595" rightMargin="20" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" topMargin="20" uuid="7815ba6c-f612-4159-91ce-d146134b5dfa">
+	<property name="ireport.zoom" value="1.5" />
+	<property name="ireport.x" value="0" />
+	<property name="ireport.y" value="0" />
+	<style name="table">
+		<box>
+			<pen lineColor="#000000" lineWidth="1.0" />
+		</box>
+	</style>
+	<style backcolor="#73B0E6" mode="Opaque" name="table_TH">
+		<box>
+			<pen lineColor="#000000" lineWidth="0.5" />
+		</box>
+	</style>
+	<style backcolor="#CFDBE6" mode="Opaque" name="table_CH">
+		<box>
+			<pen lineColor="#000000" lineWidth="0.5" />
+		</box>
+	</style>
+	<style backcolor="#FFFFFF" mode="Opaque" name="table_TD">
+		<box>
+			<pen lineColor="#000000" lineWidth="0.5" />
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue() % 2 == 0)]]></conditionExpression>
+			<style backcolor="#F3F6F8" />
+		</conditionalStyle>
+	</style>
+	<parameter class="java.util.Date" name="startDate">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter class="java.util.Date" name="endDate">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter class="java.lang.String" name="supportTeam">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter class="java.lang.String" name="timeOffsetFromUTC">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString> <![CDATA[CALL OSB_TicketCommentsByEngineerAndDay($P{startDate}, $P{endDate}, $P{supportTeam}, $P{timeOffsetFromUTC});]]> </queryString>
+	<field class="java.sql.Date" name="lastDayOfWeek" />
+	<field class="java.sql.Date" name="commentDate">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="ticketWorkerFirstName" />
+	<field class="java.lang.String" name="ticketWorkerLastName" />
+	<field class="java.lang.Long" name="commentsCountInDay" />
+	<field class="java.sql.Time" name="firstCommentTimeInDay" />
+	<field class="java.lang.Long" name="ticketsCommentedOnInDay" />
+	<field class="java.math.BigDecimal" name="averageCommentsPerTicketPerDay" />
+	<variable calculation="Sum" class="java.lang.Long" name="commentsCountInDay_1" resetGroup="name" resetType="Group">
+		<variableExpression><![CDATA[$F{commentsCountInDay}]]></variableExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Long" name="ticketsCommentedOnInDay_1" resetGroup="name" resetType="Group">
+		<variableExpression><![CDATA[$F{ticketsCommentedOnInDay}]]></variableExpression>
+	</variable>
+	<variable calculation="Average" class="java.math.BigDecimal" name="averageCommentsPerTicketPerDay_1" resetGroup="name" resetType="Group">
+		<variableExpression><![CDATA[$F{averageCommentsPerTicketPerDay}]]></variableExpression>
+	</variable>
+	<variable calculation="Sum" class="java.math.BigDecimal" name="averageCommentsPerTicketPerDay_2" resetGroup="name" resetType="Group">
+		<variableExpression><![CDATA[$F{averageCommentsPerTicketPerDay}]]></variableExpression>
+	</variable>
+	<group isReprintHeaderOnEachPage="true" name="lastDayOfWeek">
+		<groupExpression><![CDATA[$F{lastDayOfWeek}]]></groupExpression>
+		<groupHeader>
+			<band height="21">
+				<textField>
+					<reportElement height="18" uuid="d858d00b-6819-4b86-9d8b-1707c7f497d9" width="250" x="305" y="0" />
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font isBold="true" size="12" />
+					</textElement>
+					<textFieldExpression><![CDATA["Last Day of Week : " + $F{lastDayOfWeek}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group keepTogether="true" name="name">
+		<groupExpression><![CDATA[$F{ticketWorkerLastName} + ", " + $F{ticketWorkerFirstName}]]></groupExpression>
+		<groupHeader>
+			<band height="48">
+				<textField>
+					<reportElement forecolor="#FFFFFF" height="20" style="table_TH" uuid="c70c9e38-7631-44fa-8f8c-e7bc8d5d051c" width="555" x="0" y="0" />
+					<textElement verticalAlignment="Middle">
+						<font isBold="true" isItalic="true" size="12" />
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ticketWorkerLastName} + ", " + $F{ticketWorkerFirstName}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement height="19" style="table_CH" uuid="e4db5a4e-db2e-4886-a05f-6e27ef1211f9" width="100" x="0" y="28" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" />
+					</textElement>
+					<text><![CDATA[Comment Date]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="19" style="table_CH" uuid="579c28be-3aa0-4600-9006-09c2a5851731" width="100" x="100" y="28" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" />
+					</textElement>
+					<text><![CDATA[Comment Count in Day]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="19" style="table_CH" uuid="ebbb94aa-ec08-4d35-9c70-52ada5daf118" width="122" x="200" y="28" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" />
+					</textElement>
+					<text><![CDATA[First Comment Time]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="19" style="table_CH" uuid="bb0641c8-4720-477c-acf9-c5dc5e1403c2" width="103" x="322" y="28" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" />
+					</textElement>
+					<text><![CDATA[Tickets Commented On]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="19" style="table_CH" uuid="9a1c8e44-a814-4507-9fe6-abfe3637d027" width="130" x="425" y="28" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" />
+					</textElement>
+					<text><![CDATA[Average Comments Per Ticket]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="72">
+				<textField>
+					<reportElement height="20" uuid="246d15e1-0908-4846-87d7-4cfee9a3282b" width="100" x="455" y="7" />
+					<textElement/>
+					<textFieldExpression><![CDATA[$V{commentsCountInDay_1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement height="20" uuid="e7130e69-fcde-44d9-a6ed-e8905b206983" width="100" x="455" y="27" />
+					<textElement/>
+					<textFieldExpression><![CDATA[$V{ticketsCommentedOnInDay_1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement height="20" uuid="81d43f5a-905d-4786-bfb7-b4ba852c3f6a" width="100" x="455" y="47" />
+					<textElement/>
+					<textFieldExpression><![CDATA[$V{averageCommentsPerTicketPerDay_2}.divide(new BigDecimal(5), BigDecimal.ROUND_HALF_UP)]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement height="20" uuid="0b0f0ecc-8941-49d4-a8e7-c7c52a4f2392" width="240" x="210" y="7" />
+					<textElement textAlignment="Right" />
+					<text><![CDATA[Total Comments In Week :]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="20" uuid="0831fa0c-ed89-47a2-a645-ccb20cbc5479" width="240" x="210" y="27" />
+					<textElement textAlignment="Right" />
+					<text><![CDATA[Tickets Commented On In Week :]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="20" uuid="bf694a44-ac59-49f6-894d-9bfa8be8d4c0" width="240" x="210" y="47" />
+					<textElement textAlignment="Right" />
+					<text><![CDATA[Average Comments Per Day (5 workdays) :]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch" />
+	</background>
+	<title>
+		<band height="50" splitType="Stretch">
+			<textField>
+				<reportElement forecolor="#000000" height="27" uuid="21945771-4601-4cb1-b621-6f0305963dba" width="555" x="0" y="21" />
+				<textElement textAlignment="Center">
+					<font isBold="true" size="14" />
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("MMMM dd, yyyy").format($P{startDate}) + " - " + new SimpleDateFormat("MMMM dd, yyyy").format($P{endDate})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement height="21" uuid="3320032d-c97a-463b-bf82-d8ff3567e2fa" width="555" x="0" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="14" />
+				</textElement>
+				<text><![CDATA[Ticket Comments Statistics per Engineer]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField pattern="EEE, MMM d, ''yy">
+				<reportElement height="20" style="table_TD" uuid="2b6af389-a616-4de1-afea-e273e7dd2d96" width="100" x="0" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[$F{commentDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="20" style="table_TD" uuid="23873a5b-7605-45c0-9d04-d4d670536681" width="100" x="100" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[$F{commentsCountInDay}]]></textFieldExpression>
+			</textField>
+			<textField pattern="h:mm a">
+				<reportElement height="20" style="table_TD" uuid="d4036d0c-ba2f-4665-8d00-6f01586f9953" width="122" x="200" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[$F{firstCommentTimeInDay}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="20" style="table_TD" uuid="467b382d-ce2e-4ac7-97c1-c4b6ae075f53" width="103" x="322" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[$F{ticketsCommentedOnInDay}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="20" style="table_TD" uuid="f0c38a3f-c6bc-4ecb-8fb1-3b2620f2f378" width="130" x="425" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[$F{averageCommentsPerTicketPerDay}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="13" splitType="Stretch">
+			<textField evaluationTime="Report">
+				<reportElement height="13" uuid="5fe63b52-b941-4d70-9dd8-83a45d5d9f8f" width="100" x="455" y="0" />
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="8" />
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("EEE, MMM dd yyyy HH:mm:ss").format(new Date())]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement height="13" uuid="7e293d07-d59e-4b8d-8275-916dbbe0a073" width="40" x="282" y="0" />
+				<textElement verticalAlignment="Bottom">
+					<font size="8" />
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="13" uuid="a130c4d0-9c07-4369-99d2-e34981cc948b" width="80" x="202" y="0" />
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="8" />
+				</textElement>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER} + " of "]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

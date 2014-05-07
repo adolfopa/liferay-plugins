@@ -1,0 +1,208 @@
+<?xml version="1.0"?>
+
+<definitions>
+	<definition>
+		<name>
+			<entry language-id="en_US"><![CDATA[Account Environment Statistics by Month]]></entry>
+		</name>
+		<description>
+			<entry language-id="en_US"><![CDATA[This shows account environment statistics by month.]]></entry>
+		</description>
+		<source-id><![CDATA[0]]></source-id>
+		<parameters>
+			<parameter key="startDate" type="date"><![CDATA[2014-04-01]]></parameter>
+			<parameter key="endDate" type="date"><![CDATA[2013-04-30]]></parameter>
+		</parameters>
+		<file><![CDATA[OSB_AccountEnvironmentStatisticsByMonth.jrxml]]></file>
+	</definition>
+	<definition>
+		<name>
+			<entry language-id="en_US"><![CDATA[Account Individual Environment Statistics by Month]]></entry>
+		</name>
+		<description>
+			<entry language-id="en_US"><![CDATA[This shows account individual environment statistics by month.]]></entry>
+		</description>
+		<source-id><![CDATA[0]]></source-id>
+		<parameters>
+			<parameter key="startDate" type="date"><![CDATA[2014-04-01]]></parameter>
+			<parameter key="endDate" type="date"><![CDATA[2014-04-30]]></parameter>
+		</parameters>
+		<file><![CDATA[OSB_AccountIndividualEnvironmentStatisticsByMonth.jrxml]]></file>
+	</definition>
+	<definition>
+		<name>
+			<entry language-id="en_US"><![CDATA[Account Status Statistics by Date Range]]></entry>
+		</name>
+		<description>
+			<entry language-id="en_US"><![CDATA[This shows account status statistics by date range.]]></entry>
+		</description>
+		<source-id><![CDATA[0]]></source-id>
+		<parameters>
+			<parameter key="startDate" type="date"><![CDATA[2014-04-01]]></parameter>
+			<parameter key="endDate" type="date"><![CDATA[2014-04-30]]></parameter>
+		</parameters>
+		<file><![CDATA[OSB_AccountStatusStatisticsByDateRange.jrxml]]></file>
+	</definition>
+	<definition>
+		<name>
+			<entry language-id="en_US"><![CDATA[Engineer Metrics by Month and Support Team]]></entry>
+		</name>
+		<description>
+			<entry language-id="en_US"><![CDATA[This shows engineer metrics by month and support team.]]></entry>
+		</description>
+		<source-id><![CDATA[0]]></source-id>
+		<parameters>
+			<parameter key="startDate" type="date"><![CDATA[2014-04-01]]></parameter>
+			<parameter key="endDate" type="date"><![CDATA[2014-04-30]]></parameter>
+			<parameter key="supportTeam" type="string"><![CDATA[Support-US]]></parameter>
+		</parameters>
+		<file><![CDATA[OSB_EngineerMetricsByMonthAndSupportTeam.jrxml]]></file>
+	</definition>
+	<definition>
+		<name>
+			<entry language-id="en_US"><![CDATA[Expired and Expiring Accounts]]></entry>
+		</name>
+		<description>
+			<entry language-id="en_US"><![CDATA[This shows expired and expiring accounts per sales representative.]]></entry>
+		</description>
+		<source-id><![CDATA[0]]></source-id>
+		<parameters>
+			<parameter key="startDate" type="date"><![CDATA[2014-04-01]]></parameter>
+			<parameter key="numberOfExpiringDays" type="string"><![CDATA[30]]></parameter>
+		</parameters>
+		<file><![CDATA[OSB_ExpiredAndExpiringAccounts.jrxml]]></file>
+	</definition>
+	<definition>
+		<name>
+			<entry language-id="en_US"><![CDATA[Gold and Platinum Tickets Metrics by Year]]></entry>
+		</name>
+		<description>
+			<entry language-id="en_US"><![CDATA[This shows gold and platinum tickets metrics by year.]]></entry>
+		</description>
+		<source-id><![CDATA[0]]></source-id>
+		<parameters>
+			<parameter key="year" type="string"><![CDATA[2014]]></parameter>
+		</parameters>
+		<file><![CDATA[OSB_GoldAndPlatinumTicketsMetricsByYear.jrxml]]></file>
+	</definition>
+	<definition>
+		<name>
+			<entry language-id="en_US"><![CDATA[Liferay Versions Per Account]]></entry>
+		</name>
+		<description>
+			<entry language-id="en_US"><![CDATA[This shows liferay versions per account.]]></entry>
+		</description>
+		<source-id><![CDATA[0]]></source-id>
+		<parameters />
+		<file><![CDATA[OSB_LiferayVersionsPerAccount.jrxml]]></file>
+	</definition>
+		<definition>
+		<name>
+			<entry language-id="en_US"><![CDATA[Liferay Versions Per Month]]></entry>
+		</name>
+		<description>
+			<entry language-id="en_US"><![CDATA[This shows liferay versions per month.]]></entry>
+		</description>
+		<source-id><![CDATA[0]]></source-id>
+		<parameters>
+			<parameter key="startYear" type="string"><![CDATA[2011]]></parameter>
+		</parameters>
+		<file><![CDATA[OSB_LiferayVersionsPerMonth.jrxml]]></file>
+	</definition>
+	<definition>
+		<name>
+			<entry language-id="en_US"><![CDATA[Provisioning Metrics by Month and Support Region]]></entry>
+		</name>
+		<description>
+			<entry language-id="en_US"><![CDATA[This shows provisioning (license) metrics by month and support region.]]></entry>
+		</description>
+		<source-id><![CDATA[0]]></source-id>
+		<parameters>
+			<parameter key="startDate" type="date"><![CDATA[2014-04-01]]></parameter>
+			<parameter key="endDate" type="date"><![CDATA[2014-04-30]]></parameter>
+			<parameter key="supportRegion" type="string"><![CDATA[Support-US]]></parameter>
+		</parameters>
+		<file><![CDATA[OSB_ProvisioningMetricsByMonthAndSupportRegion.jrxml]]></file>
+	</definition>
+	<definition>
+		<name>
+			<entry language-id="en_US"><![CDATA[Supported Accounts by Month]]></entry>
+		</name>
+		<description>
+			<entry language-id="en_US"><![CDATA[This shows supported accounts by month.]]></entry>
+		</description>
+		<source-id><![CDATA[0]]></source-id>
+		<parameters>
+			<parameter key="startDate" type="date"><![CDATA[2014-04-01]]></parameter>
+			<parameter key="endDate" type="date"><![CDATA[2014-04-30]]></parameter>
+		</parameters>
+		<file><![CDATA[OSB_SupportedAccountsByMonth.jrxml]]></file>
+	</definition>
+	<definition>
+		<name>
+			<entry language-id="en_US"><![CDATA[Supported Accounts Details by Month]]></entry>
+		</name>
+		<description>
+			<entry language-id="en_US"><![CDATA[This shows additional details of supported accounts by month.]]></entry>
+		</description>
+		<source-id><![CDATA[0]]></source-id>
+		<parameters>
+			<parameter key="startDate" type="date"><![CDATA[2014-04-01]]></parameter>
+			<parameter key="endDate" type="date"><![CDATA[2014-04-30]]></parameter>
+		</parameters>
+		<file><![CDATA[OSB_SupportedAccountsDetailsByMonth.jrxml]]></file>
+	</definition>
+	<definition>
+		<name>
+			<entry language-id="en_US"><![CDATA[Team Metrics by Month and Support Region]]></entry>
+		</name>
+		<description>
+			<entry language-id="en_US"><![CDATA[This shows team metrics by month and support region.]]></entry>
+		</description>
+		<source-id><![CDATA[0]]></source-id>
+		<parameters>
+			<parameter key="startDate" type="date"><![CDATA[2014-04-01]]></parameter>
+			<parameter key="endDate" type="date"><![CDATA[2014-04-30]]></parameter>
+			<parameter key="supportRegion" type="string"><![CDATA[Support-US]]></parameter>
+		</parameters>
+		<file><![CDATA[OSB_TeamMetricsByMonthAndSupportRegion.jrxml]]></file>
+	</definition>
+	<definition>
+		<name>
+			<entry language-id="en_US"><![CDATA[Ticket Comments by Engineer per Day and Week]]></entry>
+		</name>
+		<description>
+			<entry language-id="en_US"><![CDATA[This shows ticket comments by engineer per day and week.]]></entry>
+		</description>
+		<source-id><![CDATA[0]]></source-id>
+		<parameters>
+			<parameter key="startDate" type="date"><![CDATA[2014-04-01]]></parameter>
+			<parameter key="endDate" type="date"><![CDATA[2014-04-30]]></parameter>
+			<parameter key="supportTeam" type="string"><![CDATA[Support-US]]></parameter>
+			<parameter key="timeOffsetFromUTC" type="string"><![CDATA[-7]]></parameter>
+		</parameters>
+		<file><![CDATA[OSB_TicketCommentsByEngineerAndDay.jrxml]]></file>
+	</definition>
+	<definition>
+		<name>
+			<entry language-id="en_US"><![CDATA[Tickets per Liferay Version]]></entry>
+		</name>
+		<description>
+			<entry language-id="en_US"><![CDATA[This shows tickets per liferay version.]]></entry>
+		</description>
+		<source-id><![CDATA[0]]></source-id>
+		<parameters />
+		<file><![CDATA[OSB_TicketsPerLiferayVersion.jrxml]]></file>
+	</definition>
+	<definition>
+		<name>
+			<entry language-id="en_US"><![CDATA[Tickets per Liferay Version by Account]]></entry>
+		</name>
+		<description>
+			<entry language-id="en_US"><![CDATA[This shows tickets per liferay version by account.]]></entry>
+		</description>
+		<source-id><![CDATA[0]]></source-id>
+		<parameters />
+		<file><![CDATA[OSB_TicketsPerLiferayVersionByAccount.jrxml]]></file>
+	</definition>
+</definitions>

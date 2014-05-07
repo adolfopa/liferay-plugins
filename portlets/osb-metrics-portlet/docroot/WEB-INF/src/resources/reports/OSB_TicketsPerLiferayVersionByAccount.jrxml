@@ -1,0 +1,638 @@
+<?xml version="1.0"?>
+
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bottomMargin="20" columnWidth="802" leftMargin="20" name="OSB_TicketsPerLiferayVersionByAccount" orientation="Landscape" pageHeight="595" pageWidth="842" rightMargin="20" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" topMargin="20" uuid="69132f26-8b2c-4f8c-8c4c-f481f10d49d8">
+	<property name="ireport.zoom" value="1.5" />
+	<property name="ireport.x" value="0" />
+	<property name="ireport.y" value="0" />
+	<style name="table">
+		<box>
+			<pen lineColor="#000000" lineWidth="1.0" />
+		</box>
+	</style>
+	<style backcolor="#73B0E6" mode="Opaque" name="table_TH">
+		<box>
+			<pen lineColor="#000000" lineWidth="0.5" />
+		</box>
+	</style>
+	<style backcolor="#CFDBE6" mode="Opaque" name="table_CH">
+		<box>
+			<pen lineColor="#000000" lineWidth="0.5" />
+		</box>
+	</style>
+	<style backcolor="#FFFFFF" mode="Opaque" name="table_TD">
+		<box>
+			<pen lineColor="#000000" lineWidth="0.5" />
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue() % 2 == 0)]]></conditionExpression>
+			<style backcolor="#F3F6F8" />
+		</conditionalStyle>
+	</style>
+	<parameter class="java.lang.String" isForPrompting="false" name="code">
+		<defaultValueExpression><![CDATA[$F{code_}]]></defaultValueExpression>
+	</parameter>
+	<queryString> <![CDATA[CALL OSB_TicketsPerLiferayVersionByAccount();]]> </queryString>
+	<field class="java.lang.String" name="version">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field class="java.lang.String" name="code_">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field class="java.lang.Long" name="Month 1" />
+	<field class="java.lang.Long" name="Month 2" />
+	<field class="java.lang.Long" name="Month 3" />
+	<field class="java.lang.Long" name="Month 4" />
+	<field class="java.lang.Long" name="Month 5" />
+	<field class="java.lang.Long" name="Month 6" />
+	<field class="java.lang.Long" name="Month 7" />
+	<field class="java.lang.Long" name="Month 8" />
+	<field class="java.lang.Long" name="Month 9" />
+	<field class="java.lang.Long" name="Month 10" />
+	<field class="java.lang.Long" name="Month 11" />
+	<field class="java.lang.Long" name="Month 12" />
+	<field class="java.lang.Long" name="Month 13" />
+	<field class="java.lang.Long" name="Month 14" />
+	<field class="java.lang.Long" name="Month 15" />
+	<field class="java.lang.Long" name="Month 16" />
+	<field class="java.lang.Long" name="Month 17" />
+	<field class="java.lang.Long" name="Month 18" />
+	<field class="java.lang.Long" name="Month 19" />
+	<field class="java.lang.Long" name="Month 20" />
+	<field class="java.lang.Long" name="Month 21" />
+	<field class="java.lang.Long" name="Month 22" />
+	<field class="java.lang.Long" name="Month 23" />
+	<field class="java.lang.Long" name="Month 24" />
+	<field class="java.lang.Long" name="Month 24+" />
+	<field class="java.lang.Long" name="ticketsCount" />
+	<variable calculation="Sum" class="java.lang.Long" name="Month 1_1" resetGroup="account" resetType="Group">
+		<variableExpression><![CDATA[$F{Month 1}]]></variableExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Long" name="Month 2_1" resetGroup="account" resetType="Group">
+		<variableExpression><![CDATA[$F{Month 2}]]></variableExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Long" name="Month 3_1" resetGroup="account" resetType="Group">
+		<variableExpression><![CDATA[$F{Month 3}]]></variableExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Long" name="Month 4_1" resetGroup="account" resetType="Group">
+		<variableExpression><![CDATA[$F{Month 4}]]></variableExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Long" name="Month 5_1" resetGroup="account" resetType="Group">
+		<variableExpression><![CDATA[$F{Month 5}]]></variableExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Long" name="Month 6_1" resetGroup="account" resetType="Group">
+		<variableExpression><![CDATA[$F{Month 6}]]></variableExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Long" name="Month 7_1" resetGroup="account" resetType="Group">
+		<variableExpression><![CDATA[$F{Month 7}]]></variableExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Long" name="Month 8_1" resetGroup="account" resetType="Group">
+		<variableExpression><![CDATA[$F{Month 8}]]></variableExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Long" name="Month 9_1" resetGroup="account" resetType="Group">
+		<variableExpression><![CDATA[$F{Month 9}]]></variableExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Long" name="Month 10_1" resetGroup="account" resetType="Group">
+		<variableExpression><![CDATA[$F{Month 10}]]></variableExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Long" name="Month 11_1" resetGroup="account" resetType="Group">
+		<variableExpression><![CDATA[$F{Month 11}]]></variableExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Long" name="Month 12_1" resetGroup="account" resetType="Group">
+		<variableExpression><![CDATA[$F{Month 12}]]></variableExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Long" name="Month 13_1" resetGroup="account" resetType="Group">
+		<variableExpression><![CDATA[$F{Month 13}]]></variableExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Long" name="Month 14_1" resetGroup="account" resetType="Group">
+		<variableExpression><![CDATA[$F{Month 14}]]></variableExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Long" name="Month 15_1" resetGroup="account" resetType="Group">
+		<variableExpression><![CDATA[$F{Month 15}]]></variableExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Long" name="Month 16_1" resetGroup="account" resetType="Group">
+		<variableExpression><![CDATA[$F{Month 16}]]></variableExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Long" name="Month 17_1" resetGroup="account" resetType="Group">
+		<variableExpression><![CDATA[$F{Month 17}]]></variableExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Long" name="Month 18_1" resetGroup="account" resetType="Group">
+		<variableExpression><![CDATA[$F{Month 18}]]></variableExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Long" name="Month 19_1" resetGroup="account" resetType="Group">
+		<variableExpression><![CDATA[$F{Month 19}]]></variableExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Long" name="Month 20_1" resetGroup="account" resetType="Group">
+		<variableExpression><![CDATA[$F{Month 20}]]></variableExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Long" name="Month 21_1" resetGroup="account" resetType="Group">
+		<variableExpression><![CDATA[$F{Month 21}]]></variableExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Long" name="Month 22_1" resetGroup="account" resetType="Group">
+		<variableExpression><![CDATA[$F{Month 22}]]></variableExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Long" name="Month 23_1" resetGroup="account" resetType="Group">
+		<variableExpression><![CDATA[$F{Month 23}]]></variableExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Long" name="Month 24_1" resetGroup="account" resetType="Group">
+		<variableExpression><![CDATA[$F{Month 24}]]></variableExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Long" name="Month 24+_1" resetGroup="account" resetType="Group">
+		<variableExpression><![CDATA[$F{Month 24+}]]></variableExpression>
+	</variable>
+	<variable calculation="Sum" class="java.lang.Long" name="ticketsCount_1" resetGroup="account" resetType="Group">
+		<variableExpression><![CDATA[$F{ticketsCount}]]></variableExpression>
+	</variable>
+	<group name="account">
+		<groupExpression><![CDATA[$F{code_}]]></groupExpression>
+		<groupHeader>
+			<band height="50" splitType="Prevent">
+				<staticText>
+					<reportElement height="20" style="table_CH" uuid="84b4f433-486d-4f03-ba43-027e97811a46" width="142" x="0" y="30" />
+					<textElement verticalAlignment="Middle" />
+					<text><![CDATA[version]]></text>
+				</staticText>
+				<textField>
+					<reportElement backcolor="#274558" forecolor="#FFFFFF" height="20" style="table_TH" uuid="82621b74-7347-4eba-b491-1756e3960d3b" width="802" x="0" y="0" />
+					<textElement>
+						<font isBold="true" isUnderline="false" size="12" />
+					</textElement>
+					<textFieldExpression><![CDATA[ $F{code_}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement height="20" style="table_CH" uuid="d1fa2ff4-0463-46d2-ae10-c883653e4334" width="25" x="141" y="30" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="7" />
+					</textElement>
+					<text><![CDATA[Month 1]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="20" style="table_CH" uuid="85bf80f4-85bf-4943-9c9c-f0e5eb31ea80" width="25" x="165" y="30" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="7" />
+					</textElement>
+					<text><![CDATA[Month 2]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="20" style="table_CH" uuid="273cc94c-ea47-4e3e-9108-f5352a667033" width="25" x="213" y="30" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="7" />
+					</textElement>
+					<text><![CDATA[Month 4]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="20" style="table_CH" uuid="00a7a03d-3f9e-4c0b-a645-6413065b7d41" width="25" x="237" y="30" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="7" />
+					</textElement>
+					<text><![CDATA[Month 5]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="20" style="table_CH" uuid="d9cad565-9525-49aa-904c-f35ce1120a15" width="24" x="189" y="30" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="7" />
+					</textElement>
+					<text><![CDATA[Month 3]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="20" style="table_CH" uuid="d28bed01-ffaf-43c1-91b8-a10a5045c726" width="25" x="261" y="30" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="7" />
+					</textElement>
+					<text><![CDATA[Month 6]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="20" style="table_CH" uuid="fd9daac3-94ed-4c84-a550-4ee0bff378cc" width="25" x="285" y="30" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="7" />
+					</textElement>
+					<text><![CDATA[Month 7]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="20" style="table_CH" uuid="e4663717-8e24-484e-965d-3f382f427eca" width="25" x="309" y="30" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="7" />
+					</textElement>
+					<text><![CDATA[Month 8]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="20" style="table_CH" uuid="502bf961-b0fa-4310-94b4-0c1ca28e4be3" width="25" x="333" y="30" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="7" />
+					</textElement>
+					<text><![CDATA[Month 9]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="20" style="table_CH" uuid="7240d96c-0289-4948-b776-481a9a0788df" width="25" x="357" y="30" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="7" />
+					</textElement>
+					<text><![CDATA[Month 10]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="20" style="table_CH" uuid="90bd8d75-a157-4634-8f0c-8ab668157eab" width="25" x="381" y="30" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="7" />
+					</textElement>
+					<text><![CDATA[Month 11]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="20" style="table_CH" uuid="28b3c543-2750-4582-b95e-3f97f45bc593" width="25" x="405" y="30" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="7" />
+					</textElement>
+					<text><![CDATA[Month 12]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="20" style="table_CH" uuid="dfa07a36-6328-471c-986d-ed41f2f63eeb" width="25" x="429" y="30" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="7" />
+					</textElement>
+					<text><![CDATA[Month 13]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="20" style="table_CH" uuid="712c0a72-c99a-4efa-9f58-810c8bf3ce1f" width="25" x="453" y="30" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="7" />
+					</textElement>
+					<text><![CDATA[Month 14]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="20" style="table_CH" uuid="51a8cc63-1c00-4736-add7-857faee95721" width="25" x="477" y="30" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="7" />
+					</textElement>
+					<text><![CDATA[Month 15]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="20" style="table_CH" uuid="398eacf5-2af0-4eed-8c1b-c8f63a43eeb6" width="25" x="501" y="30" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="7" />
+					</textElement>
+					<text><![CDATA[Month 16]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="20" style="table_CH" uuid="2987148e-948f-4d84-9882-c5b385304e87" width="25" x="525" y="30" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="7" />
+					</textElement>
+					<text><![CDATA[Month 17]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="20" style="table_CH" uuid="b9c895db-82a5-471b-898f-566370e2eb24" width="25" x="549" y="30" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="7" />
+					</textElement>
+					<text><![CDATA[Month 18]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="20" style="table_CH" uuid="c36d3f1d-028b-4c44-9052-2956f6ba4c92" width="25" x="573" y="30" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="7" />
+					</textElement>
+					<text><![CDATA[Month 19]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="20" style="table_CH" uuid="67415b77-a9bf-4d74-baad-9fc91e467052" width="25" x="597" y="30" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="7" />
+					</textElement>
+					<text><![CDATA[Month 20]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="20" style="table_CH" uuid="741dc115-f075-47b9-ad0d-cc159da65bdc" width="25" x="645" y="30" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="7" />
+					</textElement>
+					<text><![CDATA[Month 22]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="20" style="table_CH" uuid="b4c5e4dc-1bad-444c-80f4-dfefbc70f4c0" width="24" x="621" y="30" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="7" />
+					</textElement>
+					<text><![CDATA[Month 21]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="20" style="table_CH" uuid="b066b49b-f327-4c91-905b-5f66ce7f88f9" width="25" x="669" y="30" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="7" />
+					</textElement>
+					<text><![CDATA[Month 23]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="20" style="table_CH" uuid="3d6543d6-2299-4b1c-acdd-276d6465ed72" width="25" x="693" y="30" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="7" />
+					</textElement>
+					<text><![CDATA[Month 24]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="20" style="table_CH" uuid="d64a5f79-09f6-49bd-8235-af67c1e0e376" width="25" x="717" y="30" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="7" />
+					</textElement>
+					<text><![CDATA[Month 24+]]></text>
+				</staticText>
+				<staticText>
+					<reportElement height="20" style="table_CH" uuid="ed2a962a-34c1-429d-b60c-595ecd2681ad" width="61" x="741" y="30" />
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="7" />
+					</textElement>
+					<text><![CDATA[Total]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="32">
+				<textField>
+					<reportElement height="20" style="table_TH" uuid="4ada74c1-ab7a-435f-be12-d4bda27fadf6" width="25" x="141" y="0" />
+					<textElement textAlignment="Center" verticalAlignment="Middle" />
+					<textFieldExpression><![CDATA[$V{Month 1_1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement height="20" style="table_TH" uuid="d16b22fb-2b3b-4945-9518-24ff9649ae6f" width="25" x="165" y="0" />
+					<textElement textAlignment="Center" verticalAlignment="Middle" />
+					<textFieldExpression><![CDATA[$V{Month 2_1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement height="20" style="table_TH" uuid="39585fc0-be9f-4400-bfb7-61877a3324eb" width="25" x="189" y="0" />
+					<textElement textAlignment="Center" verticalAlignment="Middle" />
+					<textFieldExpression><![CDATA[$V{Month 3_1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement height="20" style="table_TH" uuid="ed7bc0a5-8581-4ddf-a8b4-c089de734d50" width="25" x="213" y="0" />
+					<textElement textAlignment="Center" verticalAlignment="Middle" />
+					<textFieldExpression><![CDATA[$V{Month 4_1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement height="20" style="table_TH" uuid="5c5709e7-9641-4833-9581-14d5651fbdbd" width="25" x="237" y="0" />
+					<textElement textAlignment="Center" verticalAlignment="Middle" />
+					<textFieldExpression><![CDATA[$V{Month 5_1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement height="20" style="table_TH" uuid="dfc756fd-40d9-46e1-b9e2-8a439235608c" width="25" x="261" y="0" />
+					<textElement textAlignment="Center" verticalAlignment="Middle" />
+					<textFieldExpression><![CDATA[$V{Month 6_1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement height="20" style="table_TH" uuid="16bae9ec-f0dd-427b-a964-14ffdb7eb776" width="25" x="285" y="0" />
+					<textElement textAlignment="Center" verticalAlignment="Middle" />
+					<textFieldExpression><![CDATA[$V{Month 7_1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement height="20" style="table_TH" uuid="547ac086-f6d5-4c55-989e-0d119daa2f99" width="25" x="309" y="0" />
+					<textElement textAlignment="Center" verticalAlignment="Middle" />
+					<textFieldExpression><![CDATA[$V{Month 8_1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement height="20" style="table_TH" uuid="b87d40b4-5656-44c2-9093-f7726355a515" width="25" x="333" y="0" />
+					<textElement textAlignment="Center" verticalAlignment="Middle" />
+					<textFieldExpression><![CDATA[$V{Month 9_1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement height="20" style="table_TH" uuid="1e5339ca-bf12-498c-b246-5bc37a19083c" width="25" x="357" y="0" />
+					<textElement textAlignment="Center" verticalAlignment="Middle" />
+					<textFieldExpression><![CDATA[$V{Month 10_1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement height="20" style="table_TH" uuid="6e4ecbae-b9a3-41d4-9cc4-c3c9b578165d" width="25" x="381" y="0" />
+					<textElement textAlignment="Center" verticalAlignment="Middle" />
+					<textFieldExpression><![CDATA[$V{Month 11_1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement height="20" style="table_TH" uuid="5525311f-2e9c-45f8-8a9d-379cd4d48aad" width="25" x="405" y="0" />
+					<textElement textAlignment="Center" verticalAlignment="Middle" />
+					<textFieldExpression><![CDATA[$V{Month 12_1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement height="20" style="table_TH" uuid="8d5f33e7-11de-4f46-a45f-dda183e2fed2" width="25" x="429" y="0" />
+					<textElement textAlignment="Center" verticalAlignment="Middle" />
+					<textFieldExpression><![CDATA[$V{Month 13_1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement height="20" style="table_TH" uuid="5b44b48b-85ee-42f5-a272-b75e132c736b" width="25" x="453" y="0" />
+					<textElement textAlignment="Center" verticalAlignment="Middle" />
+					<textFieldExpression><![CDATA[$V{Month 14_1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement height="20" style="table_TH" uuid="202da88e-1921-4aa6-82eb-bd81d3e8f476" width="25" x="477" y="0" />
+					<textElement textAlignment="Center" verticalAlignment="Middle" />
+					<textFieldExpression><![CDATA[$V{Month 15_1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement height="20" style="table_TH" uuid="72d55c17-67ff-417c-bb08-4dc7b3bd4aff" width="25" x="501" y="0" />
+					<textElement textAlignment="Center" verticalAlignment="Middle" />
+					<textFieldExpression><![CDATA[$V{Month 16_1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement height="20" style="table_TH" uuid="86d364fe-4623-46be-bdca-00acf26c84c8" width="25" x="525" y="0" />
+					<textElement textAlignment="Center" verticalAlignment="Middle" />
+					<textFieldExpression><![CDATA[$V{Month 17_1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement height="20" style="table_TH" uuid="be763d4c-babb-4610-ac00-e660447ceadc" width="25" x="549" y="0" />
+					<textElement textAlignment="Center" verticalAlignment="Middle" />
+					<textFieldExpression><![CDATA[$V{Month 18_1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement height="20" style="table_TH" uuid="4710b0e4-4199-45ac-a0ea-017a8ee63320" width="25" x="573" y="0" />
+					<textElement textAlignment="Center" verticalAlignment="Middle" />
+					<textFieldExpression><![CDATA[$V{Month 19_1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement height="20" style="table_TH" uuid="fc9fbf0f-384a-4851-a049-4f2cda61553b" width="25" x="597" y="0" />
+					<textElement textAlignment="Center" verticalAlignment="Middle" />
+					<textFieldExpression><![CDATA[$V{Month 20_1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement height="20" style="table_TH" uuid="ebb5dabf-cc5a-4cb5-ad8d-1f5bd51c7b3e" width="25" x="621" y="0" />
+					<textElement textAlignment="Center" verticalAlignment="Middle" />
+					<textFieldExpression><![CDATA[$V{Month 21_1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement height="20" style="table_TH" uuid="0f2262b5-87d3-4f4c-b002-2d2056e89e4d" width="25" x="645" y="0" />
+					<textElement textAlignment="Center" verticalAlignment="Middle" />
+					<textFieldExpression><![CDATA[$V{Month 22_1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement height="20" style="table_TH" uuid="23f66df3-8186-4cb4-a618-5bc571841580" width="25" x="669" y="0" />
+					<textElement textAlignment="Center" verticalAlignment="Middle" />
+					<textFieldExpression><![CDATA[$V{Month 23_1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement height="20" style="table_TH" uuid="b66b6a58-af39-4525-b7ab-4f8a0aa7c248" width="25" x="693" y="0" />
+					<textElement textAlignment="Center" verticalAlignment="Middle" />
+					<textFieldExpression><![CDATA[$V{Month 24_1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement height="20" style="table_TH" uuid="de3d886c-b240-4565-a4d2-f0a9b777bee4" width="25" x="717" y="0" />
+					<textElement textAlignment="Center" verticalAlignment="Middle" />
+					<textFieldExpression><![CDATA[$V{Month 24+_1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement height="20" style="table_TH" uuid="b9eb4ea1-b5cd-45e4-9e3c-09336075a8b2" width="61" x="741" y="0" />
+					<textElement textAlignment="Center" verticalAlignment="Middle" />
+					<textFieldExpression><![CDATA[$V{ticketsCount_1}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement height="20" uuid="a5d5e9d9-a680-4029-b555-74b1a8000942" width="141" x="0" y="0" />
+					<textElement textAlignment="Right" verticalAlignment="Middle" />
+					<text><![CDATA[Total  ]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch" />
+	</background>
+	<title>
+		<band height="34" splitType="Stretch">
+			<staticText>
+				<reportElement forecolor="#000000" height="30" uuid="1e2b67a8-9a19-4e90-b751-8e5054b3388a" width="802" x="0" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" isUnderline="false" size="16" />
+				</textElement>
+				<text><![CDATA[Tickets per Liferay Version by Account]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement height="20" style="table_TD" uuid="ac6afbf7-8e09-4385-9adc-6d51bf3c70fc" width="142" x="0" y="0" />
+				<textElement verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[$F{version}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="20" style="table_TD" uuid="b3c6b2b5-6baf-4fa7-956e-06e7bedc064c" width="25" x="141" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[$F{Month 1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="20" style="table_TD" uuid="4f54d295-97b9-4d59-91fe-957dfcd6c01e" width="25" x="165" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[$F{Month 2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="20" style="table_TD" uuid="10c4c8eb-e319-4f26-8263-216dd3deedda" width="25" x="189" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[$F{Month 3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="20" style="table_TD" uuid="80fc2490-e0d2-4e6c-b1f3-ee3e9e383ffc" width="25" x="213" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[$F{Month 4}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="20" style="table_TD" uuid="a044dc9a-4345-437f-b954-23c1846cf644" width="25" x="237" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[$F{Month 5}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="20" style="table_TD" uuid="31344c13-42c2-4fb7-9823-6f933160e42a" width="25" x="261" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[$F{Month 6}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="20" style="table_TD" uuid="4476f528-e280-4fe6-9773-ac7a59a1bbf5" width="25" x="285" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[$F{Month 7}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="20" style="table_TD" uuid="5d8f51df-b1cb-41af-8dbd-7de6b52ece1a" width="25" x="309" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[$F{Month 8}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="20" style="table_TD" uuid="69b842c6-2cc9-4523-8e2b-194ce04e40e8" width="25" x="333" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[$F{Month 9}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="20" style="table_TD" uuid="38a99ff9-c836-4edd-9884-d676b8c26f38" width="25" x="357" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[$F{Month 10}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="20" style="table_TD" uuid="f5cd5c01-8d66-453a-bc04-e779f43c4d71" width="25" x="381" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[$F{Month 11}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="20" style="table_TD" uuid="c492b9a7-8a9d-4a3b-8bfb-b963ec84d06e" width="25" x="405" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[$F{Month 12}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="20" style="table_TD" uuid="3c2117cf-3565-4bc6-9e94-720880c36cdf" width="25" x="429" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[$F{Month 13}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="20" style="table_TD" uuid="5c20d238-d0f7-4c95-94d0-d44d81e06d73" width="25" x="453" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[$F{Month 14}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="20" style="table_TD" uuid="7e94e14c-baaa-4b13-963c-2e79c1c4214d" width="25" x="477" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[$F{Month 15}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="20" style="table_TD" uuid="134cbd1f-6360-48a6-9e58-0792f75e714e" width="25" x="501" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[$F{Month 16}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="20" style="table_TD" uuid="9dd49ffc-00c4-41cd-976f-8da1b4ff1e78" width="25" x="525" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[$F{Month 17}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="20" style="table_TD" uuid="cbe633c7-bfd9-4706-949d-e3d595f4b09f" width="25" x="549" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[$F{Month 18}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="20" style="table_TD" uuid="c426ade4-6efd-40d6-832c-ea784599f764" width="25" x="573" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[$F{Month 19}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="20" style="table_TD" uuid="410edb19-1d36-4f57-b6d5-0da76e1b9b87" width="25" x="597" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[$F{Month 20}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="20" style="table_TD" uuid="c225af3e-4f80-433f-abea-0214c546edab" width="25" x="621" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[$F{Month 21}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="20" style="table_TD" uuid="74274e8a-304a-4ab5-bb98-71ded0a38dc4" width="25" x="645" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[$F{Month 22}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="20" style="table_TD" uuid="2a1a0b8e-bbb1-4508-b786-c0c82afdc9e7" width="25" x="669" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[$F{Month 23}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="20" style="table_TD" uuid="69c4951f-9a1c-41f9-8aea-30a8ebd2659c" width="25" x="693" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[$F{Month 24}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="20" style="table_TD" uuid="84eee40b-ddda-4031-bb87-272dd6a34ca4" width="61" x="741" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[$F{ticketsCount}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement height="20" style="table_TD" uuid="1bbf4bc5-85b0-4bb8-baba-eda09dedd25e" width="24" x="717" y="0" />
+				<textElement textAlignment="Center" verticalAlignment="Middle" />
+				<textFieldExpression><![CDATA[$F{Month 24+}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
