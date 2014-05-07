@@ -28,6 +28,8 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.TransientValue;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.model.CompanyConstants;
+import com.liferay.portlet.documentlibrary.DuplicateFileException;
+import com.liferay.portlet.documentlibrary.DuplicateFolderNameException;
 import com.liferay.portlet.documentlibrary.NoSuchFileEntryException;
 import com.liferay.portlet.documentlibrary.NoSuchFolderException;
 import com.liferay.repository.external.CredentialsProvider;
@@ -82,7 +84,9 @@ public class SharepointWSRepository
 	public ExtRepositoryFileEntry addExtRepositoryFileEntry(
 			String extRepositoryParentFolderKey, String mimeType, String title,
 			String description, String changeLog, InputStream inputStream)
-		throws SystemException {
+		throws PortalException, SystemException {
+
+		String filePath = null;
 
 		try {
 			SharepointConnection sharepointConnection =
@@ -94,10 +98,10 @@ public class SharepointWSRepository
 
 			String parentFolderPath = parentFolderSharepointObject.getPath();
 
+			filePath = pathHelper.buildPath(parentFolderPath, title);
+
 			sharepointConnection.addFile(
 				parentFolderPath, title, changeLog, inputStream);
-
-			String filePath = pathHelper.buildPath(parentFolderPath, title);
 
 			SharepointObject fileSharepointObject =
 				sharepointConnection.getSharepointObject(filePath);
@@ -105,6 +109,8 @@ public class SharepointWSRepository
 			return new SharepointWSFileEntry(fileSharepointObject);
 		}
 		catch (SharepointException se) {
+			processAddEntryException(se, false, filePath, title);
+
 			throw new SystemException(se);
 		}
 		catch (SharepointRuntimeException sre) {
@@ -112,11 +118,42 @@ public class SharepointWSRepository
 		}
 	}
 
+	private void processAddEntryException(
+			SharepointException se, boolean folder, String path, String name)
+		throws PortalException, SystemException {
+
+		if (path != null) {
+			SharepointConnection sharepointConnection =
+				getSharepointConnection();
+
+			try {
+				SharepointObject sharepointObject =
+					sharepointConnection.getSharepointObject(path);
+
+				if (sharepointObject != null) {
+					if (folder) {
+						throw new DuplicateFolderNameException(name);
+					}
+					else {
+						throw new DuplicateFileException(name);
+					}
+				}
+			}
+			catch (SharepointException se1) {
+
+				// Ignore this exception: if it failed object does not exist
+
+			}
+		}
+	}
+
 	@Override
 	public ExtRepositoryFolder addExtRepositoryFolder(
 			String extRepositoryParentFolderKey, String name,
 			String description)
-		throws SystemException {
+		throws PortalException, SystemException {
+
+		String folderPath = null;
 
 		try {
 			SharepointConnection sharepointConnection =
@@ -128,9 +165,9 @@ public class SharepointWSRepository
 
 			String parentFolderPath = parentFolderSharepointObject.getPath();
 
-			sharepointConnection.addFolder(parentFolderPath, name);
+			folderPath = pathHelper.buildPath(parentFolderPath, name);
 
-			String folderPath = pathHelper.buildPath(parentFolderPath, name);
+			sharepointConnection.addFolder(parentFolderPath, name);
 
 			SharepointObject folderSharepointObject =
 				sharepointConnection.getSharepointObject(folderPath);
@@ -138,6 +175,8 @@ public class SharepointWSRepository
 			return new SharepointWSFolder(folderSharepointObject);
 		}
 		catch (SharepointException se) {
+			processAddEntryException(se, true, folderPath, name);
+
 			throw new SystemException(se);
 		}
 		catch (SharepointRuntimeException sre) {
