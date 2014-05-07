@@ -3,4 +3,27 @@
 
 <project name="osb-metrics-portlet" basedir="." default="deploy">
 	<import file="../build-common-portlet.xml" />
+
+	<target name="format-jrxml">
+		<for param="jrxml.full.path">
+			<path>
+				<fileset
+					dir="."
+					includes="docroot/WEB-INF/**/*.jrxml"
+				/>
+			</path>
+			<sequential>
+				<java
+					classname="com.liferay.portal.tools.XMLFormatter"
+					classpathref="portal.classpath"
+					fork="true"
+					newenvironment="true"
+				>
+					<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
+					<jvmarg value="-Dxml.formatter.file=@{jrxml.full.path}" />
+					<jvmarg value="-Dxml.formatter.strip.comments=true" />
+				</java>
+			</sequential>
+		</for>
+	</target>
 </project>
