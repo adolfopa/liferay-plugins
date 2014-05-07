@@ -115,8 +115,8 @@ public class LCSClusterNodeImpl implements LCSClusterNode {
 	}
 
 	@Override
-	public Map<String, Integer> getPatchesIdentifiers() {
-		return _patchesIdentifiers;
+	public Map<String, Integer> getPatchesStatuses() {
+		return _patchesStatuses;
 	}
 
 	@Override
@@ -282,8 +282,8 @@ public class LCSClusterNodeImpl implements LCSClusterNode {
 	}
 
 	@Override
-	public void setPatchesIdentifiers(Map<String, Integer> patchesIdentifiers) {
-		_patchesIdentifiers = patchesIdentifiers;
+	public void setPatchesStatuses(Map<String, Integer> patchesStatuses) {
+		_patchesStatuses = patchesStatuses;
 	}
 
 	@Override
@@ -346,7 +346,7 @@ public class LCSClusterNodeImpl implements LCSClusterNode {
 	private String _location;
 	private int _monitoringStatus;
 	private String _name;
-	private Map<String, Integer> _patchesIdentifiers =
+	private Map<String, Integer> _patchesStatuses =
 		new HashMap<String, Integer>();
 	private int _patchingToolStatus;
 	private int _patchingToolVersion;

@@ -50,7 +50,6 @@ public class SendPatchesCommand implements Command {
 		}
 
 		String[] installedPatches = PatcherUtil.getInstalledPatches();
-		String[] patchLevels = PatcherUtil.getPatchLevels();
 
 		Map<String, Object> payload = new HashMap<String, Object>();
 
@@ -80,19 +79,17 @@ public class SendPatchesCommand implements Command {
 				payload.put("fixedIssues", ListUtil.fromArray(fixedIssues));
 				payload.put("hashCode", installedHashCode);
 
-				Map<String, Integer> patchesIdentifiers =
+				Map<String, Integer> patchesStatuses =
 					new HashMap<String, Integer>();
 
 				for (String patch : installedPatches) {
-					patchesIdentifiers.put(
-						patch, LCSConstants.PATCHES_INSTALLED);
+					patchesStatuses.put(patch, LCSConstants.PATCHES_INSTALLED);
 				}
 
-				payload.put("patchesIdentifiers", patchesIdentifiers);
+				payload.put("patchesStatuses", patchesStatuses);
 				payload.put(
 					"patchingToolVersion",
 					PatcherUtil.getPatchingToolVersion());
-				payload.put("patchLevels", ListUtil.fromArray(patchLevels));
 
 				ResponseCommandMessage responseCommandMessage =
 					ResponseCommandMessageUtil.createResponseCommandMessage(
