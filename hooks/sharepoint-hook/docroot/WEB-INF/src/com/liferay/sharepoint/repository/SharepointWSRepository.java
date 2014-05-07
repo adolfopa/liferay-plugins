@@ -145,7 +145,7 @@ public class SharepointWSRepository
 		}
 		catch (SharepointException se) {
 
-			// Ignore this exception: if it failed object does not exist
+			// The Sharepoint object does not exist
 
 		}
 	}
