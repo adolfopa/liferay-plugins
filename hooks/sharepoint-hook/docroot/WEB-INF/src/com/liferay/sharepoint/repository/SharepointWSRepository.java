@@ -19,13 +19,10 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.repository.RepositoryException;
 import com.liferay.portal.kernel.search.Query;
 import com.liferay.portal.kernel.search.SearchContext;
-import com.liferay.portal.kernel.servlet.PortalSessionThreadLocal;
-import com.liferay.portal.kernel.util.AutoResetThreadLocal;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.TransientValue;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portlet.documentlibrary.DuplicateFileException;
@@ -42,6 +39,8 @@ import com.liferay.repository.external.ExtRepositoryFolder;
 import com.liferay.repository.external.ExtRepositoryObject;
 import com.liferay.repository.external.ExtRepositoryObjectType;
 import com.liferay.repository.external.ExtRepositorySearchResult;
+import com.liferay.repository.external.cache.ConnectionBuilder;
+import com.liferay.repository.external.cache.ConnectionCache;
 import com.liferay.repository.external.search.ExtRepositoryQueryMapper;
 import com.liferay.sharepoint.connector.SharepointConnection;
 import com.liferay.sharepoint.connector.SharepointConnection.CheckInType;
@@ -68,16 +67,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
-
 /**
  * @author Ivan Zaera
  */
 public class SharepointWSRepository
-	extends ExtRepositoryAdapter implements ExtRepository {
+	extends ExtRepositoryAdapter
+	implements ExtRepository, ConnectionBuilder<SharepointConnection> {
 
 	public SharepointWSRepository() {
 		super(null);
+
+		_connectionCache = new ConnectionCache<SharepointConnection>(
+			SharepointConnection.class, this);
 	}
 
 	@Override
@@ -187,10 +188,29 @@ public class SharepointWSRepository
 		}
 	}
 
+	public SharepointConnection buildConnection() throws RepositoryException {
+		try {
+			int serverPort = 80;
+
+			if (_protocol.equals("https")) {
+				serverPort = 443;
+			}
+
+			return SharepointConnectionFactory.getInstance(
+				_protocol, _host, serverPort, _sitePath, _libraryName,
+				_credentialsProvider.getLogin(),
+				_credentialsProvider.getPassword());
+		}
+		catch (SharepointRuntimeException sre) {
+			throw new RepositoryException(
+				"Unable to communicate with the Sharepoint server", sre);
+		}
+	}
+
 	@Override
 	public ExtRepositoryFileVersion cancelCheckOut(
 			String extRepositoryFileEntryKey)
-		throws SystemException {
+		throws PortalException, SystemException {
 
 		try {
 			SharepointConnection sharepointConnection =
@@ -218,7 +238,7 @@ public class SharepointWSRepository
 	public void checkInExtRepositoryFileEntry(
 			String extRepositoryFileEntryKey, boolean createMajorVersion,
 			String changeLog)
-		throws SystemException {
+		throws PortalException, SystemException {
 
 		try {
 			SharepointConnection sharepointConnection =
@@ -252,7 +272,7 @@ public class SharepointWSRepository
 	@Override
 	public ExtRepositoryFileEntry checkOutExtRepositoryFileEntry(
 			String extRepositoryFileEntryKey)
-		throws SystemException {
+		throws PortalException, SystemException {
 
 		try {
 			SharepointConnection sharepointConnection =
@@ -281,7 +301,7 @@ public class SharepointWSRepository
 			ExtRepositoryObjectType<T> extRepositoryObjectType,
 			String extRepositoryFileEntryKey, String newExtRepositoryFolderKey,
 			String newTitle)
-		throws SystemException {
+		throws PortalException, SystemException {
 
 		try {
 			SharepointConnection sharepointConnection =
@@ -322,7 +342,7 @@ public class SharepointWSRepository
 			ExtRepositoryObjectType<? extends ExtRepositoryObject>
 				extRepositoryObjectType,
 			String extRepositoryObjectKey)
-		throws SystemException {
+		throws PortalException, SystemException {
 
 		try {
 			SharepointConnection sharepointConnection =
@@ -352,7 +372,7 @@ public class SharepointWSRepository
 	@Override
 	public InputStream getContentStream(
 			ExtRepositoryFileEntry extRepositoryFileEntry)
-		throws SystemException {
+		throws PortalException, SystemException {
 
 		try {
 			SharepointConnection sharepointConnection =
@@ -377,7 +397,7 @@ public class SharepointWSRepository
 	@Override
 	public InputStream getContentStream(
 			ExtRepositoryFileVersion extRepositoryFileVersion)
-		throws SystemException {
+		throws PortalException, SystemException {
 
 		try {
 			SharepointConnection sharepointConnection =
@@ -402,7 +422,7 @@ public class SharepointWSRepository
 	@Override
 	public ExtRepositoryFileVersion getExtRepositoryFileVersion(
 			ExtRepositoryFileEntry extRepositoryFileEntry, String version)
-		throws SystemException {
+		throws PortalException, SystemException {
 
 		try {
 			SharepointConnection sharepointConnection =
@@ -453,7 +473,7 @@ public class SharepointWSRepository
 	@Override
 	public List<ExtRepositoryFileVersion> getExtRepositoryFileVersions(
 			ExtRepositoryFileEntry extRepositoryFileEntry)
-		throws SystemException {
+		throws PortalException, SystemException {
 
 		try {
 			SharepointConnection sharepointConnection =
@@ -572,7 +592,7 @@ public class SharepointWSRepository
 	public <T extends ExtRepositoryObject> List<T> getExtRepositoryObjects(
 			ExtRepositoryObjectType<T> extRepositoryObjectType,
 			String extRepositoryFolderKey)
-		throws SystemException {
+		throws PortalException, SystemException {
 
 		try {
 			SharepointConnection sharepointConnection =
@@ -615,7 +635,7 @@ public class SharepointWSRepository
 			ExtRepositoryObjectType<? extends ExtRepositoryObject>
 				extRepositoryObjectType,
 			String extRepositoryFolderKey)
-		throws SystemException {
+		throws PortalException, SystemException {
 
 		try {
 			SharepointConnection sharepointConnection =
@@ -644,7 +664,7 @@ public class SharepointWSRepository
 	@Override
 	public ExtRepositoryFolder getExtRepositoryParentFolder(
 			ExtRepositoryObject extRepositoryObject)
-		throws SystemException {
+		throws PortalException, SystemException {
 
 		try {
 			SharepointConnection sharepointConnection =
@@ -688,43 +708,9 @@ public class SharepointWSRepository
 	}
 
 	public SharepointConnection getSharepointConnection()
-		throws RepositoryException {
+		throws PortalException, SystemException {
 
-		SharepointConnection sharepointConnection = null;
-
-		HttpSession httpSession = PortalSessionThreadLocal.getHttpSession();
-
-		if (httpSession != null) {
-			TransientValue<SharepointConnection> transientValue =
-				(TransientValue<SharepointConnection>)
-					httpSession.getAttribute(
-						SharepointWSRepository.class.getName());
-
-			if (transientValue != null) {
-				sharepointConnection = transientValue.getValue();
-			}
-		}
-		else {
-			sharepointConnection = _sharepointConnectionThreadLocal.get();
-		}
-
-		if (sharepointConnection != null) {
-			return sharepointConnection;
-		}
-
-		sharepointConnection = buildSharepointConnection();
-
-		if (httpSession != null) {
-			TransientValue<SharepointConnection> transientValue =
-				new TransientValue<SharepointConnection>(sharepointConnection);
-
-			httpSession.setAttribute(
-				SharepointWSRepository.class.getName(), transientValue);
-		}
-
-		_sharepointConnectionThreadLocal.set(sharepointConnection);
-
-		return sharepointConnection;
+		return _connectionCache.getConnection();
 	}
 
 	public String getSharepointLogin(String liferayLogin) {
@@ -734,7 +720,7 @@ public class SharepointWSRepository
 	@Override
 	public List<String> getSubfolderKeys(
 			String extRepositoryFolderKey, boolean recurse)
-		throws SystemException {
+		throws PortalException, SystemException {
 
 		try {
 			SharepointConnection sharepointConnection =
@@ -771,7 +757,7 @@ public class SharepointWSRepository
 	public void initRepository(
 			UnicodeProperties typeSettingsProperties,
 			CredentialsProvider credentialsProvider)
-		throws SystemException {
+		throws PortalException, SystemException {
 
 		try {
 			_credentialsProvider = credentialsProvider;
@@ -805,7 +791,7 @@ public class SharepointWSRepository
 			ExtRepositoryObjectType<T> extRepositoryObjectType,
 			String extRepositoryObjectKey, String newExtRepositoryFolderKey,
 			String newTitle)
-		throws SystemException {
+		throws PortalException, SystemException {
 
 		try {
 			SharepointConnection sharepointConnection =
@@ -882,7 +868,7 @@ public class SharepointWSRepository
 	public ExtRepositoryFileEntry updateExtRepositoryFileEntry(
 			String extRepositoryFileEntryKey, String mimeType,
 			InputStream inputStream)
-		throws SystemException {
+		throws PortalException, SystemException {
 
 		try {
 			SharepointConnection sharepointConnection =
@@ -903,27 +889,6 @@ public class SharepointWSRepository
 		}
 		catch (SharepointRuntimeException sre) {
 			throw new SystemException(sre);
-		}
-	}
-
-	protected SharepointConnection buildSharepointConnection()
-		throws RepositoryException {
-
-		try {
-			int serverPort = 80;
-
-			if (_protocol.equals("https")) {
-				serverPort = 443;
-			}
-
-			return SharepointConnectionFactory.getInstance(
-				_protocol, _host, serverPort, _sitePath, _libraryName,
-				_credentialsProvider.getLogin(),
-				_credentialsProvider.getPassword());
-		}
-		catch (SharepointRuntimeException sre) {
-			throw new RepositoryException(
-				"Unable to communicate with the Sharepoint server", sre);
 		}
 	}
 
@@ -959,7 +924,7 @@ public class SharepointWSRepository
 
 	protected void getSubfolderKeys(
 			String path, List<String> extRepositoryFolderKeys)
-		throws SystemException {
+		throws PortalException, SystemException {
 
 		try {
 			SharepointConnection sharepointConnection =
@@ -1061,15 +1026,12 @@ public class SharepointWSRepository
 			ExtRepositoryObjectType.OBJECT, ObjectTypeFilter.ALL);
 	}
 
+	private ConnectionCache<SharepointConnection> _connectionCache;
 	private CredentialsProvider _credentialsProvider;
 	private String _host;
 	private String _libraryName;
 	private String _protocol;
 	private String _rootFolderKey;
-	private AutoResetThreadLocal<SharepointConnection>
-		_sharepointConnectionThreadLocal =
-			new AutoResetThreadLocal<SharepointConnection>(
-				SharepointConnection.class.getName());
 	private String _sitePath;
 
 }
