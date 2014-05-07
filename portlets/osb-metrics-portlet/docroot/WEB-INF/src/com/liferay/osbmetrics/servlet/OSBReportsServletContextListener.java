@@ -70,7 +70,7 @@ public class OSBReportsServletContextListener
 
 		ClassLoader classLoader = clazz.getClassLoader();
 
-		String dirName = "/com/liferay/osbreports/hook/util/dependencies";
+		String dirName = "/com/liferay/osbmetrics/dependencies";
 
 		Enumeration<URL> enu = classLoader.getResources(dirName);
 
@@ -93,7 +93,7 @@ public class OSBReportsServletContextListener
 				dirName + StringPool.SLASH + fileName);
 
 			File jasperFile = new File(
-				System.getProperty("catalina.home") + "/bin", fileName);
+				System.getProperty("catalina.home") + "/lib", fileName);
 
 			if (jasperFile.exists()) {
 				jasperFile.delete();
