@@ -143,7 +143,7 @@ public class SharepointWSRepository
 				throw new DuplicateFileException(name);
 			}
 		}
-		catch (SharepointException se) {
+		catch (SharepointException se1) {
 
 			// The Sharepoint object does not exist
 
