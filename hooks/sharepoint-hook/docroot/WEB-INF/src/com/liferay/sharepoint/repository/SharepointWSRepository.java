@@ -109,7 +109,7 @@ public class SharepointWSRepository
 			return new SharepointWSFileEntry(fileSharepointObject);
 		}
 		catch (SharepointException se) {
-			processAddEntryException(se, false, filePath, title);
+			processSharepointObjectException(se, false, filePath, title);
 
 			throw new SystemException(se);
 		}
@@ -118,7 +118,7 @@ public class SharepointWSRepository
 		}
 	}
 
-	protected void processAddEntryException(
+	protected void processSharepointObjectException(
 			SharepointException se, boolean folder, String path, String name)
 		throws PortalException, SystemException {
 
@@ -178,7 +178,7 @@ public class SharepointWSRepository
 			return new SharepointWSFolder(folderSharepointObject);
 		}
 		catch (SharepointException se) {
-			processAddEntryException(se, true, folderPath, name);
+			processSharepointObjectException(se, true, folderPath, name);
 
 			throw new SystemException(se);
 		}
