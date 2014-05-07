@@ -132,13 +132,15 @@ public class SharepointWSRepository
 			SharepointObject sharepointObject =
 				sharepointConnection.getSharepointObject(path);
 
-			if (sharepointObject != null) {
-				if (folder) {
-					throw new DuplicateFolderNameException(name);
-				}
-				else {
-					throw new DuplicateFileException(name);
-				}
+			if (sharepointObject == null) {
+				return;
+			}
+
+			if (folder) {
+				throw new DuplicateFolderNameException(name);
+			}
+			else {
+				throw new DuplicateFileException(name);
 			}
 		}
 		catch (SharepointException se1) {
