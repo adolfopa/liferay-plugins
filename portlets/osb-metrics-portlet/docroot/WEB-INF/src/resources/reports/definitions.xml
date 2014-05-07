@@ -11,7 +11,7 @@
 		<source-id><![CDATA[0]]></source-id>
 		<parameters>
 			<parameter key="startDate" type="date"><![CDATA[2014-04-01]]></parameter>
-			<parameter key="endDate" type="date"><![CDATA[2013-04-30]]></parameter>
+			<parameter key="endDate" type="date"><![CDATA[2014-04-30]]></parameter>
 		</parameters>
 		<file><![CDATA[OSB_AccountEnvironmentStatisticsByMonth.jrxml]]></file>
 	</definition>
