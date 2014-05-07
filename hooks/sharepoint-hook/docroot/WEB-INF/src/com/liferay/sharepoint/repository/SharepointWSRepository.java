@@ -122,28 +122,29 @@ public class SharepointWSRepository
 			SharepointException se, boolean folder, String path, String name)
 		throws PortalException, SystemException {
 
-		if (path != null) {
-			SharepointConnection sharepointConnection =
-				getSharepointConnection();
+		if (path == null) {
+			return;
+		}
 
-			try {
-				SharepointObject sharepointObject =
-					sharepointConnection.getSharepointObject(path);
+		SharepointConnection sharepointConnection = getSharepointConnection();
 
-				if (sharepointObject != null) {
-					if (folder) {
-						throw new DuplicateFolderNameException(name);
-					}
-					else {
-						throw new DuplicateFileException(name);
-					}
+		try {
+			SharepointObject sharepointObject =
+				sharepointConnection.getSharepointObject(path);
+
+			if (sharepointObject != null) {
+				if (folder) {
+					throw new DuplicateFolderNameException(name);
+				}
+				else {
+					throw new DuplicateFileException(name);
 				}
 			}
-			catch (SharepointException se1) {
+		}
+		catch (SharepointException se1) {
 
-				// Ignore this exception: if it failed object does not exist
+			// Ignore this exception: if it failed object does not exist
 
-			}
 		}
 	}
 
