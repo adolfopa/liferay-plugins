@@ -22,26 +22,10 @@ import com.liferay.util.portlet.PortletProps;
  */
 public class PortletPropsValues {
 
-	public static final boolean AUDIT_PROCESSING_SCHEDULER_INCREMENTAL =
-		GetterUtil.getBoolean(
-			PortletProps.get(
-				PortletPropsKeys.AUDIT_PROCESSING_SCHEDULER_INCREMENTAL));
-
-	public static final int AUDIT_PROCESSING_SCHEDULER_INITIAL_DELAY =
-		GetterUtil.getInteger(
-			PortletProps.get(
-				PortletPropsKeys.AUDIT_PROCESSING_SCHEDULER_INITIAL_DELAY));
-
-	public static final String AUDIT_PROCESSING_SCHEDULER_INTERVAL =
-		PortletProps.get(PortletPropsKeys.AUDIT_PROCESSING_SCHEDULER_INTERVAL);
-
 	public static final String JIRA_DB = PortletProps.get(
 		PortletPropsKeys.JIRA_DB);
 
 	public static final String LRDCOM_DB = PortletProps.get(
 		PortletPropsKeys.LRDCOM_DB);
-
-	public static final String[] SUPPORT_REGIONS = PortletProps.getArray(
-		PortletPropsKeys.SUPPORT_REGIONS);
 
 }

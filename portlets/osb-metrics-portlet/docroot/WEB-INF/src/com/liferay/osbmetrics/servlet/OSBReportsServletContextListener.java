@@ -16,17 +16,6 @@ package com.liferay.osbreports.hook.servlet;
 
 import com.liferay.osbreports.hook.importer.ReportsImporter;
 import com.liferay.osbreports.hook.importer.SQLImporter;
-import com.liferay.osbreports.hook.messaging.OSBReportsMessageListener;
-import com.liferay.osbreports.hook.util.PortletPropsValues;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.messaging.DestinationNames;
-import com.liferay.portal.kernel.messaging.Message;
-import com.liferay.portal.kernel.scheduler.CronTrigger;
-import com.liferay.portal.kernel.scheduler.SchedulerEngine;
-import com.liferay.portal.kernel.scheduler.SchedulerEngineUtil;
-import com.liferay.portal.kernel.scheduler.StorageType;
-import com.liferay.portal.kernel.scheduler.Trigger;
 import com.liferay.portal.kernel.util.BasePortalLifecycle;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.StringPool;
@@ -35,10 +24,8 @@ import java.io.File;
 
 import java.net.URL;
 
-import java.util.Calendar;
 import java.util.Enumeration;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
@@ -57,19 +44,12 @@ public class OSBReportsServletContextListener
 
 	@Override
 	public void contextInitialized(ServletContextEvent servletContextEvent) {
-		_servletContext = servletContextEvent.getServletContext();
 
 		registerPortalLifecycle();
 	}
 
 	@Override
 	protected void doPortalDestroy() {
-		try {
-			unscheduleJob();
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-		}
 	}
 
 	@Override
@@ -83,8 +63,6 @@ public class OSBReportsServletContextListener
 		reportsImporter.importReports();
 
 		initCompiledJaspers();
-
-		scheduleJob();
 	}
 
 	protected void initCompiledJaspers() throws Exception {
@@ -124,44 +102,5 @@ public class OSBReportsServletContextListener
 			FileUtil.copyFile(new File(jasperURL.toURI()), jasperFile);
 		}
 	}
-
-	protected void scheduleJob() throws Exception {
-		Calendar cal = Calendar.getInstance();
-
-		cal.add(
-			Calendar.MINUTE,
-			PortletPropsValues.AUDIT_PROCESSING_SCHEDULER_INITIAL_DELAY);
-
-		Trigger trigger = new CronTrigger(
-			OSBReportsMessageListener.class.getName(),
-			OSBReportsMessageListener.class.getName(), cal.getTime(), null,
-			PortletPropsValues.AUDIT_PROCESSING_SCHEDULER_INTERVAL);
-
-		Message message = new Message();
-
-		message.put(
-			SchedulerEngine.CONTEXT_PATH, _servletContext.getContextPath());
-		message.put(
-			SchedulerEngine.MESSAGE_LISTENER_CLASS_NAME,
-			OSBReportsMessageListener.class.getName());
-		message.put(
-			SchedulerEngine.PORTLET_ID,
-			_servletContext.getServletContextName());
-
-		SchedulerEngineUtil.schedule(
-			trigger, StorageType.MEMORY_CLUSTERED, null,
-			DestinationNames.SCHEDULER_DISPATCH, message, 0);
-	}
-
-	protected void unscheduleJob() throws Exception {
-		SchedulerEngineUtil.unschedule(
-			OSBReportsMessageListener.class.getName(),
-			StorageType.MEMORY_CLUSTERED);
-	}
-
-	private static Log _log = LogFactoryUtil.getLog(
-		OSBReportsServletContextListener.class);
-
-	private ServletContext _servletContext;
 
 }
