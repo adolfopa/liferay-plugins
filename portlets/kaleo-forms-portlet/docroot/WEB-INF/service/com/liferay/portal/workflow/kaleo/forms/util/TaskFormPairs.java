@@ -31,7 +31,7 @@ public class TaskFormPairs implements Iterable<TaskFormPair> {
 		TaskFormPairs taskFormPairs = new TaskFormPairs();
 
 		for (String taskForm : StringUtil.split(data)) {
-			String[] keyValue = StringUtil.split(taskForm, "#");
+			String[] keyValue = StringUtil.split(taskForm, StringPool.COLON);
 
 			TaskFormPair taskFormPair = new TaskFormPair(
 				keyValue[0], Long.valueOf(keyValue[1]));
