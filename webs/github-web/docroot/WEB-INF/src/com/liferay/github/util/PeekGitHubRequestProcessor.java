@@ -29,7 +29,7 @@ import org.json.JSONObject;
 /**
  * @author Brian Wing Shun Chan
  */
-public class PeekGitHubRequestProcessor implements GitHubRequestProcessor {
+public class PeekGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 
 	public void process(JSONObject payloadJSONObject) throws Exception {
 		JSONObject repositoryJSONObject = payloadJSONObject.getJSONObject(

@@ -18,11 +18,18 @@ import org.json.JSONObject;
 
 /**
  * @author Brian Wing Shun Chan
+ * @author Peter Shin
  */
-public interface GitHubRequestProcessor {
+public class WorkflowGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 
-	public void destroy();
+	public WorkflowGitHubRequestProcessor() {
+	}
 
-	public void process(JSONObject payloadJSONObject) throws Exception;
+	@Override
+	public void destroy() {
+	}
+
+	public void process(JSONObject payloadJSONObject) throws Exception {
+	}
 
 }

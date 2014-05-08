@@ -39,6 +39,13 @@ import org.json.JSONObject;
 public class GitHubServlet extends HttpServlet {
 
 	@Override
+	public void destroy() {
+		_gitHubRequestProcessor.destroy();
+
+		super.destroy();
+	}
+
+	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 		throws IOException {
 

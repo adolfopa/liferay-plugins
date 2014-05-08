@@ -14,15 +14,14 @@
 
 package com.liferay.github.util;
 
-import org.json.JSONObject;
-
 /**
  * @author Brian Wing Shun Chan
+ * @author Peter Shin
  */
-public interface GitHubRequestProcessor {
+public abstract class BaseGitHubRequestProcessor
+	implements GitHubRequestProcessor {
 
-	public void destroy();
-
-	public void process(JSONObject payloadJSONObject) throws Exception;
+	public void destroy() {
+	}
 
 }

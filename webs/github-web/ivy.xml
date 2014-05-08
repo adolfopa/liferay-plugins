@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<ivy-module
+	version="2.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd"
+>
+	<info module="github-web" organisation="com.liferay" />
+
+	<dependencies defaultconf="default">
+		<dependency name="jira-rest-java-client-core" org="com.atlassian.jira" rev="2.0.0-m26" />
+	</dependencies>
+</ivy-module>
