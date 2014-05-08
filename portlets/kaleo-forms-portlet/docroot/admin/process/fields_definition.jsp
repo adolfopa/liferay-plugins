@@ -37,10 +37,14 @@ if (ddmStructureId > 0) {
 }
 %>
 
-<h3><liferay-ui:message key="fields-definition" /></h3>
+<h3 class="kaleo-process-header"><liferay-ui:message key="fields-definition" /></h3>
+
+<p class="kaleo-process-message"><liferay-ui:message key="please-select-or-create-a-new-fields-definition-containing-all-the-fields-that-will-be-used-by-your-forms" /></p>
 
 <aui:field-wrapper>
-	<aui:a href="javascript:;" id="ddmStructureDisplay" label="<%= HtmlUtil.escape(ddmStructureName) %>" />
+	<liferay-ui:message key="selected-definition" />:
+
+	<span class="badge badge-info" id="<portlet:namespace />ddmStructureDisplay"><%= HtmlUtil.escape(ddmStructureName) %></span>
 
 	<aui:input name="ddlRecordSetId" type="hidden" value="<%= ddlRecordSetId %>" />
 	<aui:input name="ddmStructureId" type="hidden" value="<%= ddmStructureId %>" />

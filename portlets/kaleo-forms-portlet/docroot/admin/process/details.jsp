@@ -20,9 +20,11 @@
 KaleoProcess kaleoProcess = (KaleoProcess)request.getAttribute(WebKeys.KALEO_PROCESS);
 %>
 
-<h3><liferay-ui:message key="details" /></h3>
+<h3 class="kaleo-process-header"><liferay-ui:message key="details" /></h3>
 
 <liferay-ui:error exception="<%= RecordSetNameException.class %>" message="please-enter-a-valid-name" />
+
+<p class="kaleo-process-message"><liferay-ui:message key="please-type-a-name-for-your-process-and-a-description-of-what-it-does" /></p>
 
 <aui:fieldset>
 	<aui:input localized="<%= true %>" name="name" type="text" value="<%= KaleoFormsUtil.getKaleoProcessName(kaleoProcess, portletSession) %>">

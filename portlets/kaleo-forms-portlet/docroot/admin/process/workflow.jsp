@@ -37,9 +37,12 @@ if (Validator.isNotNull(workflowDefinition)) {
 }
 %>
 
-<h3><liferay-ui:message key="workflow" /></h3>
+<h3 class="kaleo-process-header"><liferay-ui:message key="workflow" /></h3>
+
+<p class="kaleo-process-message"><liferay-ui:message key="please-select-or-create-a-new-workflow-definition-to-guide-the-completion-of-forms.-you-can-associate-forms-to-workflow-tasks-on-the-next-step" /></p>
 
 <aui:field-wrapper>
+	<liferay-ui:message key="selected-workflow" />:
 
 	<%
 	String workflowDefinitionDisplay = StringPool.BLANK;
@@ -49,7 +52,7 @@ if (Validator.isNotNull(workflowDefinition)) {
 	}
 	%>
 
-	<aui:a href="javascript:;" id="workflowDefinitionDisplay" label="<%= HtmlUtil.escape(workflowDefinitionDisplay) %>" />
+	<span class="badge badge-info" id="<portlet:namespace />workflowDefinitionDisplay"><%= HtmlUtil.escape(workflowDefinitionDisplay) %></span>
 
 	<aui:input name="workflowDefinition" type="hidden" value="<%= workflowDefinition %>">
 		<aui:validator name="required" />

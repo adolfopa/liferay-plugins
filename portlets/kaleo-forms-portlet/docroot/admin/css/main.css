@@ -1,6 +1,24 @@
 .kaleo-forms-admin-portlet {
+	.kaleo-process-buttons .btn {
+		margin-left: 5px;
+	}
+
+	.kaleo-process-header {
+		line-height: 10px;
+	}
+
+	.kaleo-process-message {
+		color: #CCC;
+		font-style: italic;
+		margin-bottom: 20px;
+	}
+
 	.separator {
 		border: none;
 		margin-top: 1.5em;
+	}
+
+	.taglib-form-navigator > .form-steps > .form-navigator {
+		margin: 6px 0 20px 0;
 	}
 }
