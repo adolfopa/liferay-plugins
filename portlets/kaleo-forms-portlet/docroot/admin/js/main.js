@@ -3,6 +3,8 @@ AUI.add(
 	function(A) {
 		var AArray = A.Array;
 
+		var Lang = A.Lang;
+
 		var STEPS_MAP = {
 			DEFINITION: 2,
 			DETAILS: 1,
@@ -14,6 +16,14 @@ AUI.add(
 			{
 				ATTRS: {
 					currentURL: {
+						value: null
+					},
+
+					form: {
+						value: null
+					},
+
+					portletId: {
 						value: null
 					},
 
@@ -36,9 +46,26 @@ AUI.add(
 					initializer: function(config) {
 						var instance = this;
 
-						instance.tabView = instance.get('tabView');
+						instance.nextBtn = instance.one('.kaleo-process-next');
 
-						instance.tabView.addTarget(instance);
+						instance.prevBtn = instance.one('.kaleo-process-previous');
+
+						instance.submitBtn = instance.one('.kaleo-process-submit');
+
+						var formWizard = instance.formWizard = new Liferay.KaleoFormWizard(
+							{
+								form: instance.get('form'),
+								tabView: instance.get('tabView')
+							}
+						);
+
+						var currentStep = formWizard.get('currentStep');
+
+						if (currentStep > 1) {
+							formWizard.validateStep(currentStep);
+
+							instance.updateNavigationControls(currentStep);
+						}
 
 						instance.bindUI();
 					},
@@ -46,70 +73,102 @@ AUI.add(
 					bindUI: function() {
 						var instance = this;
 
-						instance.after('tab:selectedChange', A.bind(instance._afterTabSelectedChange, instance));
+						var form = instance.get('form');
+
+						form.formNode.on('submit', A.bind(instance._onSubmitForm, instance));
+
+						instance.formWizard.after('currentStepChange', A.bind(instance._afterCurrentStepChange, instance));
+
+						instance.nextBtn.on('click', A.bind(instance._onClickNext, instance));
+
+						instance.prevBtn.on('click', A.bind(instance._onClickPrev, instance));
 					},
 
-					_afterTabSelectedChange: function(event) {
+					_afterCurrentStepChange: function(event) {
 						var instance = this;
 
 						var namespace = instance.get('namespace');
 
-						var tabView = instance.tabView;
+						var descriptionLocalized = Liferay.component(namespace + 'description');
+						var nameLocalized = Liferay.component(namespace + 'name');
 
-						if (event.newVal === 1) {
-							var descriptionLocalized = Liferay.component(namespace + 'description');
-							var nameLocalized = Liferay.component(namespace + 'name');
+						var translatedLanguagesDescription = descriptionLocalized.get('translatedLanguages').values();
+						var translatedLanguagesName = nameLocalized.get('translatedLanguages').values();
 
-							var translatedLanguagesDescription = descriptionLocalized.get('translatedLanguages').values();
-							var translatedLanguagesName = nameLocalized.get('translatedLanguages').values();
+						var sessionMap = {
+							'translatedLanguagesDescription': translatedLanguagesDescription.join(),
+							'translatedLanguagesName': translatedLanguagesName.join()
+						};
 
-							var sessionMap = {
-								'translatedLanguagesDescription': translatedLanguagesDescription.join(),
-								'translatedLanguagesName': translatedLanguagesName.join()
-							};
+						AArray.each(
+							translatedLanguagesDescription,
+							function(item, index, collection) {
+								var val = instance.one('#description_' + item).val();
 
-							AArray.each(
-								translatedLanguagesDescription,
-								function(item, index, collection) {
-									var val = instance.one('#description_' + item).val();
-
-									sessionMap['description' + item] = val;
-								}
-							);
-
-							AArray.each(
-								translatedLanguagesName,
-								function(item, index, collection) {
-									var val = instance.one('#name_' + item).val();
-
-									sessionMap['name' + item] = val;
-								}
-							);
-
-							var ddmStructureId = instance.one('#ddmStructureId').val();
-
-							var ddmStructureName = instance.one('#ddmStructureName').val();
-
-							var workflowDefinition = instance.one('#workflowDefinition').val();
-
-							instance._saveInPortletSession(
-								A.merge(
-									sessionMap,
-									{
-										ddmStructureId: ddmStructureId,
-										ddmStructureName: ddmStructureName,
-										workflowDefinition: workflowDefinition
-									}
-								)
-							);
-
-							var activeTabIndex = tabView.indexOf(event.target);
-
-							var currentStep = activeTabIndex + 1;
-
-							if (currentStep === STEPS_MAP.FORMS) {
-								instance._showForms();
+								sessionMap['description' + item] = val;
 							}
+						);
+
+						AArray.each(
+							translatedLanguagesName,
+							function(item, index, collection) {
+								var val = instance.one('#name_' + item).val();
+
+								sessionMap['name' + item] = val;
+							}
+						);
+
+						var ddmStructureId = instance.one('#ddmStructureId').val();
+
+						var ddmStructureName = instance.one('#ddmStructureName').val();
+
+						var ddmTemplateId = instance.one('#ddmTemplateId').val();
+
+						var taskFormPairsData = instance.one('#taskFormPairsData').val();
+
+						var workflowDefinition = instance.one('#workflowDefinition').val();
+
+						instance._saveInPortletSession(
+							A.merge(
+								sessionMap,
+								{
+									ddmStructureId: ddmStructureId,
+									ddmStructureName: ddmStructureName,
+									ddmTemplateId: ddmTemplateId,
+									taskFormPairsData: taskFormPairsData,
+									workflowDefinition: workflowDefinition
+								}
+							)
+						);
+
+						var currentStep = event.newVal;
+
+						if (currentStep === STEPS_MAP.FORMS) {
+							instance._showForms();
+						}
+
+						instance.updateNavigationControls(currentStep);
+					},
+
+					_onClickNext: function(event) {
+						var instance = this;
+
+						instance.formWizard.navigate(1);
+					},
+
+					_onClickPrev: function(event) {
+						var instance = this;
+
+						instance.formWizard.navigate(-1);
+					},
+
+					_onSubmitForm: function(event) {
+						var instance = this;
+
+						event.preventDefault();
+
+						if (instance.formWizard.validateStep(STEPS_MAP.FORMS)) {
+							submitForm(event.target);
 						}
 					},
 
@@ -165,6 +224,26 @@ AUI.add(
 								resultsContainer.unplug(A.LoadingMask);
 							}
 						);
+					},
+
+					updateNavigationControls: function(currentStep) {
+						var instance = this;
+
+						if (currentStep === STEPS_MAP.DETAILS) {
+							instance.nextBtn.show();
+							instance.prevBtn.hide();
+							instance.submitBtn.hide();
+						}
+						else if (currentStep === STEPS_MAP.FORMS) {
+							instance.nextBtn.hide();
+							instance.prevBtn.show();
+							instance.submitBtn.show();
+						}
+						else {
+							instance.nextBtn.show();
+							instance.prevBtn.show();
+							instance.submitBtn.hide();
+						}
 					}
 				}
 			}
@@ -174,6 +253,6 @@ AUI.add(
 	},
 	'',
 	{
-		requires: ['aui-base', 'aui-io-request', 'aui-loading-mask-deprecated', 'aui-parse-content', 'liferay-portlet-base', 'liferay-portlet-url', 'node-load']
+		requires: ['aui-base', 'aui-loading-mask-deprecated', 'aui-parse-content', 'aui-url', 'liferay-kaleo-forms-components', 'liferay-portlet-base', 'liferay-portlet-url', 'liferay-store', 'node-load']
 	}
 );

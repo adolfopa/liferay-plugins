@@ -72,16 +72,21 @@ if (kaleoProcess != null) {
 	<liferay-ui:error exception="<%= KaleoProcessDDMTemplateIdException.class %>" message="please-enter-a-valid-initial-form" />
 
 	<liferay-util:buffer var="htmlBottom">
-		<aui:button-row>
-			<aui:button primary="<%= true %>" type="submit" />
+		<aui:button-row cssClass="kaleo-process-buttons">
+			<aui:button cssClass="hide kaleo-process-previous pull-left" icon="icon-circle-arrow-left" value="previous" />
 
-			<aui:button href="<%= redirect %>" type="cancel" />
+			<aui:button cssClass="hide kaleo-process-submit pull-right" primary="<%= true %>" type="submit" />
+
+			<aui:button cssClass="kaleo-process-next pull-right" icon="icon-circle-arrow-right" iconAlign="right" primary="<%= true %>" value="next" />
+
+			<aui:button cssClass="kaleo-process-cancel pull-right" href="<%= redirect %>" value="cancel" />
 		</aui:button-row>
 	</liferay-util:buffer>
 
 	<liferay-ui:form-navigator
 		categoryNames="<%= _CATEGORY_NAMES %>"
 		categorySections="<%= _CATEGORY_SECTIONS %>"
+		displayStyle="steps"
 		formName="fm"
 		htmlBottom="<%= htmlBottom %>"
 		jspPath="/admin/process/"
