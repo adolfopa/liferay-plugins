@@ -23,6 +23,8 @@ long kaleoProcessId = ParamUtil.getLong(request, "kaleoProcessId");
 String workflowDefinition = ParamUtil.getString(request, "workflowDefinition");
 
 String initialStateName = KaleoFormsUtil.getInitialStateName(company.getCompanyId(), workflowDefinition);
+
+TaskFormPair initialStateTaskFormPair = KaleoFormsUtil.getInitialStateTaskFormPair(kaleoProcessId, initialStateName, portletSession);
 %>
 
 <div id="<portlet:namespace />formsSearchContainer">
@@ -37,9 +39,7 @@ String initialStateName = KaleoFormsUtil.getInitialStateName(company.getCompanyI
 			<%
 			TaskFormPairs taskFormPairs = KaleoFormsUtil.getTaskFormPairs(company.getCompanyId(), kaleoProcessId, workflowDefinition, portletSession);
 
-			TaskFormPair initialStateTaskFormPair = KaleoFormsUtil.getInitialStateTaskFormPair(kaleoProcessId, initialStateName, portletSession);
-
-			taskFormPairs.add(initialStateTaskFormPair);
+			taskFormPairs.add(0, initialStateTaskFormPair);
 
 			searchContainer.setResults(taskFormPairs.list());
 			searchContainer.setTotal(taskFormPairs.size());
@@ -69,9 +69,17 @@ String initialStateName = KaleoFormsUtil.getInitialStateName(company.getCompanyI
 		}
 		%>
 
+		<liferay-util:buffer var="taskInputBuffer">
+			<c:if test="<%= taskFormsPair.equals(initialStateTaskFormPair) %>">
+				<aui:input name="ddmTemplateId" type="hidden" value="<%= ddmTemplateId == 0 ? StringPool.BLANK : String.valueOf(ddmTemplateId) %>">
+					<aui:validator name="required" />
+				</aui:input>
+			</c:if>
+		</liferay-util:buffer>
+
 		<liferay-ui:search-container-column-text
 			name="form"
-			value="<%= formName %>"
+			value="<%= formName + taskInputBuffer %>"
 		/>
 
 		<portlet:renderURL var="selectFormURL">

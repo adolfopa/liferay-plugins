@@ -24,14 +24,6 @@ KaleoProcess kaleoProcess = (KaleoProcess)request.getAttribute(WebKeys.KALEO_PRO
 long kaleoProcessId = BeanParamUtil.getLong(kaleoProcess, request, "kaleoProcessId");
 
 String workflowDefinition = KaleoFormsUtil.getWorkflowDefinition(kaleoProcess, portletSession);
-
-String initialStateName = KaleoFormsUtil.getInitialStateName(company.getCompanyId(), workflowDefinition);
-
-long ddmTemplateId = GetterUtil.getLong(portletSession.getAttribute(initialStateName));
-
-if (kaleoProcess != null) {
-	ddmTemplateId = kaleoProcess.getDDMTemplateId();
-}
 %>
 
 <h3 class="kaleo-process-header"><liferay-ui:message key="forms" /></h3>
@@ -43,10 +35,6 @@ if (kaleoProcess != null) {
 	<%
 	TaskFormPairs taskFormPairs = KaleoFormsUtil.getTaskFormPairs(company.getCompanyId(), kaleoProcessId, workflowDefinition, portletSession);
 	%>
-
-	<aui:input name="ddmTemplateId" type="hidden" value="<%= ddmTemplateId %>">
-		<aui:validator name="required" />
-	</aui:input>
 
 	<aui:input name="taskFormPairsData" type="hidden" value="<%= taskFormPairs.toString() %>" />
 </aui:field-wrapper>

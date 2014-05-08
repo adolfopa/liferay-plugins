@@ -42,6 +42,10 @@ public class TaskFormPairs implements Iterable<TaskFormPair> {
 		return taskFormPairs;
 	}
 
+	public void add(int index, TaskFormPair taskFormPair) {
+		_taskFormPairs.add(index, taskFormPair);
+	}
+
 	public void add(TaskFormPair taskFormPair) {
 		_taskFormPairs.add(taskFormPair);
 	}
