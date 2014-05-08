@@ -121,6 +121,7 @@ public class HandshakeTask implements Runnable {
 
 		handshakeMessage.put(
 			Message.KEY_BUILD_NUMBER, ReleaseInfo.getBuildNumber());
+		handshakeMessage.put(Message.KEY_HASH_CODE, key.hashCode());
 		handshakeMessage.put(
 			Message.KEY_HEARTBEAT_INTERVAL, String.valueOf(_heartbeatInterval));
 		handshakeMessage.put(Message.PORTAL_EDITION, getPortalEdition());
