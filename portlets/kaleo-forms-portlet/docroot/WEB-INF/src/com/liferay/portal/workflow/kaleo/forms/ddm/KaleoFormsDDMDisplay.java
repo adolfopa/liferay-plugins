@@ -14,19 +14,37 @@
 
 package com.liferay.portal.workflow.kaleo.forms.ddm;
 
+import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.workflow.kaleo.forms.service.permission.KaleoFormsPermission;
 import com.liferay.portlet.dynamicdatalists.model.DDLRecordSet;
+import com.liferay.portlet.dynamicdatamapping.model.DDMStructure;
+import com.liferay.portlet.dynamicdatamapping.model.DDMTemplate;
 import com.liferay.portlet.dynamicdatamapping.model.DDMTemplateConstants;
 import com.liferay.portlet.dynamicdatamapping.storage.StorageType;
 import com.liferay.portlet.dynamicdatamapping.util.BaseDDMDisplay;
+
+import java.util.Locale;
 
 /**
  * @author Marcellus Tavares
  */
 public class KaleoFormsDDMDisplay extends BaseDDMDisplay {
+
+	@Override
+	public String getEditTemplateTitle(
+		DDMStructure structure, DDMTemplate template, Locale locale) {
+
+		if ((structure != null) && (template == null)) {
+			return LanguageUtil.format(
+				locale, "new-form-for-fields-definition-x",
+				structure.getName(locale), false);
+		}
+
+		return super.getEditTemplateTitle(structure, template, locale);
+	}
 
 	@Override
 	public String getPortletId() {
