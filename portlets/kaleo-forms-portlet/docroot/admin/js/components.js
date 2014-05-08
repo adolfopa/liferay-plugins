@@ -124,8 +124,6 @@ AUI.add(
 								var field = validator.getField(fieldName);
 
 								if (panel.contains(field)) {
-									console.log(fieldName, validator.validateField(field));
-
 									validator.validateField(field);
 								}
 							}
