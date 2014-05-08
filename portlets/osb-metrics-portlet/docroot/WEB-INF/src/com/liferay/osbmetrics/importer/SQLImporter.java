@@ -51,10 +51,9 @@ public class SQLImporter {
 	protected void executeSQL(List<String> fileNames, String dirName)
 		throws Exception {
 
-		DB db = DBFactoryUtil.getDB();
 		List<String> processedFileNames = new ArrayList<String>();
 
-		StopWatch stopWatch = null;
+		DB db = DBFactoryUtil.getDB();
 
 		for (String fileName : fileNames) {
 			if (_log.isDebugEnabled()) {
@@ -78,21 +77,21 @@ public class SQLImporter {
 				tableName = "DROP VIEW IF EXISTS " + tableName;
 			}
 
-			if (_log.isDebugEnabled()) {
-				stopWatch = new StopWatch();
+			StopWatch stopWatch = new StopWatch();
 
-				stopWatch.start();
-			}
+			stopWatch.start();
 
 			db.runSQL(tableName);
 
 			if (_log.isDebugEnabled()) {
 				_log.debug(
-					"Drop sql completed in " + stopWatch.getTime() +
+					"Drop SQL completed in " + stopWatch.getTime() +
 						" seconds");
 			}
 
-			InputStream inputStream = getClassLoader().getResourceAsStream(
+			ClassLoader classLoader = getClassLoader();
+
+			InputStream inputStream = classLoader.getResourceAsStream(
 				dirName + StringPool.SLASH + fileName);
 
 			String sql = new String(FileUtil.getBytes(inputStream));
@@ -102,24 +101,22 @@ public class SQLImporter {
 			sql = replaceDatabaseName(
 				sql, "[$LRDCOM_DB$]", PortletPropsValues.LRDCOM_DB);
 
-			if (_log.isDebugEnabled()) {
-				stopWatch = new StopWatch();
+			stopWatch.reset();
 
-				stopWatch.start();
-			}
+			stopWatch.start();
 
 			try {
 				db.runSQL(sql);
 			}
 			catch (Exception e) {
-				e.printStackTrace();
+				_log.error(e, e);
 
 				continue;
 			}
 			finally {
 				if (_log.isDebugEnabled()) {
 					_log.debug(
-						"Processed sql in " + stopWatch.getTime() + " seconds");
+						"Processed SQL in " + stopWatch.getTime() + " seconds");
 				}
 			}
 
