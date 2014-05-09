@@ -864,13 +864,7 @@ AUI.add(
 										buffer.push(XMLUtil.create('notificationType', notificationType[index]));
 									}
 
-									var executionTypeValue;
-
-									if (executionType) {
-										executionTypeValue = executionType[index];
-									}
-
-									if (executionTypeValue !== 'onAssignment') {
+									if (executionType[index] != "onAssignment") {
 										instance._appendXMLAssignments(
 											buffer,
 											{
@@ -881,8 +875,8 @@ AUI.add(
 										);
 									}
 
-									if (executionTypeValue) {
-										buffer.push(XMLUtil.create('executionType', executionTypeValue));
+									if (executionType) {
+										buffer.push(XMLUtil.create('executionType', executionType[index]));
 									}
 
 									buffer.push(xmlNotification.close);
