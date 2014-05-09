@@ -35,9 +35,9 @@ import org.json.JSONObject;
  * @author Brian Wing Shun Chan
  * @author Peter Shin
  */
-public class WorkflowGitHubRequestProcessor extends BaseGitHubRequestProcessor {
+public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 
-	public WorkflowGitHubRequestProcessor() {
+	public DevOpsGitHubRequestProcessor() {
 		initProfileGitRepositories();
 
 		initScheduledExecutorServices();
@@ -77,7 +77,7 @@ public class WorkflowGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 		File profileGitRepositoryDir = getProfileGitRepositoryDir(profileName);
 
 		if (!profileGitRepositoryDir.exists()) {
-			WorkflowProcessUtil.execute(
+			DevOpsProcessUtil.execute(
 				new File(_PLUGINS_GIT_REPOSITORY_DIR_NAME),
 				"git new-workdir " + _PLUGINS_GIT_REPOSITORY_DIR_NAME +
 					" " + profileGitRepositoryDir);
@@ -96,11 +96,11 @@ public class WorkflowGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 	}
 
 	protected void initScheduledExecutorService(String profileName) {
-		final WorkflowPatchRequestProcessor workflowPatchRequestProcessor =
-			new WorkflowPatchRequestProcessor(this, profileName);
+		final DevOpsPatchRequestProcessor devOpsPatchRequestProcessor =
+			new DevOpsPatchRequestProcessor(this, profileName);
 
-		_workflowPatchRequestProcessors.put(
-			profileName, workflowPatchRequestProcessor);
+		_devOpsPatchRequestProcessors.put(
+			profileName, devOpsPatchRequestProcessor);
 
 		ScheduledExecutorService scheduledExecutorService =
 			Executors.newSingleThreadScheduledExecutor();
@@ -110,7 +110,7 @@ public class WorkflowGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 
 				@Override
 				public void run() {
-					workflowPatchRequestProcessor.process();
+					devOpsPatchRequestProcessor.process();
 				}
 
 			},
@@ -152,12 +152,12 @@ public class WorkflowGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 		"/var/peek/builder-dependencies/plugins";
 
 	private static Log _log = LogFactory.getLog(
-		WorkflowGitHubRequestProcessor.class);
+		DevOpsGitHubRequestProcessor.class);
 
+	private Map<String, DevOpsPatchRequestProcessor>
+		_devOpsPatchRequestProcessors =
+			new HashMap<String, DevOpsPatchRequestProcessor>();
 	private List<ScheduledExecutorService> _scheduledExecutorServices =
 		new ArrayList<ScheduledExecutorService>();
-	private Map<String, WorkflowPatchRequestProcessor>
-		_workflowPatchRequestProcessors =
-			new HashMap<String, WorkflowPatchRequestProcessor>();
 
 }

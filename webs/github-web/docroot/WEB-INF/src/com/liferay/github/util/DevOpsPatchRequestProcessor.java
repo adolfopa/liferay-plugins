@@ -23,13 +23,13 @@ import org.json.JSONObject;
  * @author Brian Wing Shun Chan
  * @author Peter Shin
  */
-public class WorkflowPatchRequestProcessor {
+public class DevOpsPatchRequestProcessor {
 
-	public WorkflowPatchRequestProcessor(
-		WorkflowGitHubRequestProcessor workflowGitHubRequestProcessor,
+	public DevOpsPatchRequestProcessor(
+		DevOpsGitHubRequestProcessor devOpsGitHubRequestProcessor,
 		String profileName) {
 
-		_workflowGitHubRequestProcessor = workflowGitHubRequestProcessor;
+		_devOpsGitHubRequestProcessor = devOpsGitHubRequestProcessor;
 		_profileName = profileName;
 	}
 
@@ -57,13 +57,13 @@ public class WorkflowPatchRequestProcessor {
 	}
 
 	protected void process(JSONObject payloadJSONObject) {
-		_workflowGitHubRequestProcessor.updatePeekGitRepository(_profileName);
+		_devOpsGitHubRequestProcessor.updatePeekGitRepository(_profileName);
 	}
 
+	private DevOpsGitHubRequestProcessor _devOpsGitHubRequestProcessor;
 	private Queue<JSONObject> _payloadJSONObjects =
 		new ConcurrentLinkedQueue<JSONObject>();
 	private String _profileName;
 	private boolean _running;
-	private WorkflowGitHubRequestProcessor _workflowGitHubRequestProcessor;
 
 }

@@ -20,7 +20,7 @@ import java.io.File;
  * @author Brian Wing Shun Chan
  * @author Peter Shin
  */
-public class WorkflowProcessUtil {
+public class DevOpsProcessUtil {
 
 	public static Object[] execute(File workDir, String command) {
 		return execute(workDir, command.split("\\s+"));
