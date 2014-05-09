@@ -31,6 +31,7 @@ import org.json.JSONObject;
  */
 public class PeekGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 
+	@Override
 	public void process(JSONObject payloadJSONObject) throws Exception {
 		JSONObject repositoryJSONObject = payloadJSONObject.getJSONObject(
 			"repository");

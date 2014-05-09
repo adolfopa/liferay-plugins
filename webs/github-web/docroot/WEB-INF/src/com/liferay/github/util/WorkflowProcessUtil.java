@@ -22,13 +22,11 @@ import java.io.File;
  */
 public class WorkflowProcessUtil {
 
-	public synchronized static Object[] execute(String command, File file) {
-		return execute(command.split("\\s+"), file);
+	public static Object[] execute(File workDir, String command) {
+		return execute(workDir, command.split("\\s+"));
 	}
 
-	public synchronized static Object[] execute(
-		String[] commandArray, File file) {
-
+	public static Object[] execute(File workDir, String[] commands) {
 		return null;
 	}
 

@@ -21,6 +21,7 @@ package com.liferay.github.util;
 public abstract class BaseGitHubRequestProcessor
 	implements GitHubRequestProcessor {
 
+	@Override
 	public void destroy() {
 	}
 
