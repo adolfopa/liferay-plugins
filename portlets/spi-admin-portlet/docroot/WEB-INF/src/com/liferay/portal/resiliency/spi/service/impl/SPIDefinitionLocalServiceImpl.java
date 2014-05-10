@@ -375,9 +375,8 @@ public class SPIDefinitionLocalServiceImpl
 
 			if (spiDefinition.isAlive()) {
 				spi.stop();
+				spi.destroy();
 			}
-
-			spi.destroy();
 
 			spiDefinition.deleteBaseDir();
 
