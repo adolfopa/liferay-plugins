@@ -375,6 +375,7 @@ public class SPIDefinitionLocalServiceImpl
 
 			if (spiDefinition.isAlive()) {
 				spi.stop();
+
 				spi.destroy();
 			}
 
