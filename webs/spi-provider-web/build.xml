@@ -19,7 +19,7 @@
 		<delete dir="docroot/WEB-INF/embedded-tomcat-lib/ext" />
 
 		<clean
-			module.dir="."
+			module.dir="${basedir}"
 		/>
 	</target>
 
@@ -54,7 +54,7 @@ spi-provider-web must be built from a Liferay Tomcat bundle.
 		</copy>
 
 		<war-macro
-			module.dir="."
+			module.dir="${basedir}"
 		/>
 	</target>
 </project>

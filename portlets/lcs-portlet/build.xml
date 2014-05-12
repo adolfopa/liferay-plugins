@@ -60,7 +60,7 @@
 		</delete>
 
 		<clean
-			module.dir="."
+			module.dir="${basedir}"
 		/>
 	</target>
 
@@ -86,7 +86,7 @@
 		</copy>
 
 		<compile
-			module.dir="."
+			module.dir="${basedir}"
 		/>
 
 		<antcall target="delete-dependencies" />
