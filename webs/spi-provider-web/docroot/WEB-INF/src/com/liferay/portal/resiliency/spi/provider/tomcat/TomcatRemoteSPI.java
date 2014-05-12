@@ -28,7 +28,6 @@ import java.net.MalformedURLException;
 import java.net.URI;
 
 import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 
 import java.util.Properties;
 
@@ -146,19 +145,6 @@ public class TomcatRemoteSPI extends RemoteSPI {
 	}
 
 	@Override
-	public void destroy() throws RemoteException {
-		try {
-			_tomcat.destroy();
-		}
-		catch (LifecycleException le) {
-			throw new RemoteException("Failed to destroy", le);
-		}
-		finally {
-			UnicastRemoteObject.unexportObject(this, true);
-		}
-	}
-
-	@Override
 	public String getSPIProviderName() {
 		return TomcatSPIProvider.NAME;
 	}
@@ -244,6 +230,16 @@ public class TomcatRemoteSPI extends RemoteSPI {
 		}
 
 		return contextXMLFile;
+	}
+
+	@Override
+	protected void doDestroy() throws RemoteException {
+		try {
+			_tomcat.destroy();
+		}
+		catch (LifecycleException le) {
+			throw new RemoteException("Failed to destroy", le);
+		}
 	}
 
 	private void readObject(ObjectInputStream objectInputStream)
