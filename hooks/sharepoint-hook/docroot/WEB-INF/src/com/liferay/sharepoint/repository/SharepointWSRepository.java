@@ -72,7 +72,7 @@ import java.util.Map;
  */
 public class SharepointWSRepository
 	extends ExtRepositoryAdapter
-	implements ExtRepository, ConnectionBuilder<SharepointConnection> {
+	implements ConnectionBuilder<SharepointConnection>, ExtRepository {
 
 	public SharepointWSRepository() {
 		super(null);
