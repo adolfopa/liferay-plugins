@@ -43,9 +43,8 @@ AUI.add(
 					bindUI: function() {
 						var instance = this;
 
-						instance.after('tab:selectedChange', A.bind(instance._afterTabSelectedChange, instance));
-
-						instance.on('tab:selectedChange', A.bind(instance._onTabSelectedChange, instance));
+						instance.after('tab:selectedChange', instance._afterTabSelectedChange, instance);
+						instance.on('tab:selectedChange', instance._onTabSelectedChange, instance);
 					},
 
 					_afterTabSelectedChange: function(event) {
@@ -91,9 +90,9 @@ AUI.add(
 					getTabViewPanels: function() {
 						var instance = this;
 
-						var _queries = A.TabviewBase._queries;
+						var queries = A.TabviewBase._queries;
 
-						return instance.tabView.get('contentBox').all(_queries.tabPanel);
+						return instance.tabView.get('contentBox').all(queries.tabPanel);
 					},
 
 					navigate: function(offset) {
@@ -102,7 +101,6 @@ AUI.add(
 						var tabView = instance.tabView;
 
 						var tabViewTabs = tabView.getTabs();
-
 						var activeTab = tabView.getActiveTab();
 
 						var newActiveTabIndex = tabViewTabs.indexOf(activeTab) + offset;
@@ -150,15 +148,8 @@ AUI.add(
 
 									var tabHasError = item.one('.error-field');
 
-									tabNode.toggleClass(
-										'section-error',
-										tabHasError
-									);
-
-									tabNode.toggleClass(
-										'section-success',
-										!tabHasError
-									);
+									tabNode.toggleClass('section-error', tabHasError);
+									tabNode.toggleClass('section-success', !tabHasError);
 
 									if (tabHasError) {
 										valid = false;

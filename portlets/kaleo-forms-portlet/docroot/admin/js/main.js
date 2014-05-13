@@ -47,9 +47,7 @@ AUI.add(
 						var instance = this;
 
 						instance.nextBtn = instance.one('.kaleo-process-next');
-
 						instance.prevBtn = instance.one('.kaleo-process-previous');
-
 						instance.submitBtn = instance.one('.kaleo-process-submit');
 
 						var formWizard = instance.formWizard = new Liferay.KaleoFormWizard(
@@ -75,22 +73,19 @@ AUI.add(
 
 						var form = instance.get('form');
 
-						form.formNode.on('submit', A.bind(instance._onSubmitForm, instance));
+						form.formNode.on('submit', instance._onSubmitForm, instance);
 
-						instance.formWizard.after('currentStepChange', A.bind(instance._afterCurrentStepChange, instance));
+						instance.formWizard.after('currentStepChange', instance._afterCurrentStepChange, instance);
 
-						instance.nextBtn.on('click', A.bind(instance._onClickNext, instance));
-
-						instance.prevBtn.on('click', A.bind(instance._onClickPrev, instance));
+						instance.nextBtn.on('click', instance._onClickNext, instance);
+						instance.prevBtn.on('click', instance._onClickPrev, instance);
 					},
 
 					_afterCurrentStepChange: function(event) {
 						var instance = this;
 
-						var namespace = instance.get('namespace');
-
-						var descriptionLocalized = Liferay.component(namespace + 'description');
-						var nameLocalized = Liferay.component(namespace + 'name');
+						var descriptionLocalized = Liferay.component(instance.ns('description'));
+						var nameLocalized = Liferay.component(instance.ns('name'));
 
 						var translatedLanguagesDescription = descriptionLocalized.get('translatedLanguages').values();
 						var translatedLanguagesName = nameLocalized.get('translatedLanguages').values();
@@ -119,13 +114,9 @@ AUI.add(
 						);
 
 						var ddmStructureId = instance.one('#ddmStructureId').val();
-
 						var ddmStructureName = instance.one('#ddmStructureName').val();
-
 						var ddmTemplateId = instance.one('#ddmTemplateId').val();
-
 						var taskFormPairsData = instance.one('#taskFormPairsData').val();
-
 						var workflowDefinition = instance.one('#workflowDefinition').val();
 
 						instance._saveInPortletSession(
@@ -175,29 +166,16 @@ AUI.add(
 					_saveInPortletSession: function(data) {
 						var instance = this;
 
-						var namespace = instance.get('namespace');
-
-						A.each(
-							data,
-							function(item, index, collection) {
-								collection[namespace + index] = item;
-
-								delete collection[index];
-							}
-						);
-
 						A.io.request(
 							instance.get('saveInPortletSessionURL'),
 							{
-								data: data,
+								data: instance.ns(data),
 							}
 						);
 					},
 
 					_showForms: function() {
 						var instance = this;
-
-						var namespace = instance.get('namespace');
 
 						var currentURL = instance.get('currentURL');
 
@@ -219,7 +197,7 @@ AUI.add(
 
 						resultsContainer.load(
 							formsURL.toString(),
-							'#' + namespace + 'formsSearchContainer',
+							'#' + instance.NS + 'formsSearchContainer',
 							function() {
 								resultsContainer.unplug(A.LoadingMask);
 							}
