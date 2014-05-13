@@ -238,7 +238,7 @@ public class TomcatRemoteSPI extends RemoteSPI {
 			_tomcat.destroy();
 		}
 		catch (LifecycleException le) {
-			throw new RemoteException("Failed to destroy", le);
+			throw new RemoteException("Unable to destroy", le);
 		}
 	}
 
