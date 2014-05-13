@@ -50,6 +50,8 @@ public interface SPIDefinition extends SPIDefinitionModel, PersistedModel {
 
 	public long getPingInterval();
 
+	public java.lang.String getPortalProperties();
+
 	public long getRegisterTimeout();
 
 	public int getRestartAttempts();

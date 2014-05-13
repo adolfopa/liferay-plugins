@@ -98,6 +98,13 @@ public class SPIDefinitionImpl extends SPIDefinitionBaseImpl {
 		return GetterUtil.getLong(getTypeSettingsProperty("ping-interval"));
 	}
 
+	// @Override
+	// error: method does not override or implement a method from a supertype
+	public String getPortalProperties() {
+		return GetterUtil.getString(
+			getTypeSettingsProperty("portal-properties"));
+	}
+
 	@Override
 	public long getRegisterTimeout() {
 		return GetterUtil.getLong(getTypeSettingsProperty("register-timeout"));
@@ -188,6 +195,21 @@ public class SPIDefinitionImpl extends SPIDefinitionBaseImpl {
 
 			return false;
 		}
+	}
+
+	// @Override
+	public void setPortalProperties(String portalProperties) {
+		UnicodeProperties typeSettingsProperties = getTypeSettingsProperties();
+
+		if (Validator.isNotNull(portalProperties)) {
+			typeSettingsProperties.setProperty(
+				"portal-properties", portalProperties);
+		}
+		else {
+			typeSettingsProperties.remove("portal-properties");
+		}
+
+		setTypeSettingsProperties(typeSettingsProperties);
 	}
 
 	@Override

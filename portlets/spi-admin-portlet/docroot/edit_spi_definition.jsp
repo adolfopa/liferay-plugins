@@ -46,6 +46,8 @@ boolean useDefaultNotificationOptions = Validator.isNull(notificationRecipients)
 
 UnicodeProperties typeSettingsProperties = PropertiesParamUtil.getProperties(request, "TypeSettingsProperties--");
 
+String portalProperties = typeSettingsProperties.getProperty("portal-properties");
+
 String useDefaultNotificationOptionsString = typeSettingsProperties.getProperty("use-default-notification-options");
 
 if (Validator.isNotNull(useDefaultNotificationOptionsString)) {
@@ -194,6 +196,8 @@ if (useDefaultRestartOptions) {
 			<liferay-ui:panel collapsible="<%= true %>" extended="<%= false %>" id="spiDefinitionAdvancedSPIRuntimePanel" persistState="<%= true %>" title="advanced-spi-runtime">
 				<aui:fieldset>
 					<aui:input helpMessage="java-executable-help" label="java-executable" name="TypeSettingsProperties--java-executable--" type="text" value="<%= javaExecutable %>" />
+
+					<aui:input helpMessage="spi-portal-properties-help" label="portal-properties" name="TypeSettingsProperties--portal-properties--" type="textarea" value="<%= portalProperties %>" />
 
 					<aui:input helpMessage="spi-ping-interval-help" label="spi-ping-interval" name="TypeSettingsProperties--ping-interval--" type="text" value="<%= pingInterval %>" />
 
