@@ -15,6 +15,7 @@
 package com.liferay.feedback.display.portlet;
 
 import com.liferay.compat.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
@@ -22,10 +23,11 @@ import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StreamUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.PortletPreferencesIds;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
@@ -33,7 +35,9 @@ import com.liferay.portal.service.ServiceContextThreadLocal;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
+import com.liferay.portlet.messageboards.model.MBCategory;
 import com.liferay.portlet.messageboards.model.MBMessage;
+import com.liferay.portlet.messageboards.service.MBCategoryLocalServiceUtil;
 import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
 import com.liferay.portlet.messageboards.service.MBThreadLocalServiceUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
@@ -75,14 +79,93 @@ public class FeedbackPortlet extends MVCPortlet {
 		}
 	}
 
+	protected List<ObjectValuePair<String, InputStream>> getInputStreamOVPs(
+			UploadPortletRequest uploadPortletRequest)
+		throws Exception {
+
+		List<ObjectValuePair<String, InputStream>> inputStreamOVPs =
+			new ArrayList<ObjectValuePair<String, InputStream>>();
+
+		try {
+			String fileName = uploadPortletRequest.getFileName("attachment");
+
+			if (Validator.isNull(fileName)) {
+				return inputStreamOVPs;
+			}
+
+			File file = uploadPortletRequest.getFile("attachment");
+
+			if (file == null) {
+				return inputStreamOVPs;
+			}
+
+			byte[] bytes = FileUtil.getBytes(file);
+
+			if ((bytes == null) || (bytes.length == 0)) {
+				return inputStreamOVPs;
+			}
+
+			ByteArrayInputStream byteArrayInputStream =
+				new ByteArrayInputStream(bytes);
+
+			ObjectValuePair<String, InputStream> inputStreamOVP =
+				new ObjectValuePair<String, InputStream>(
+					fileName, byteArrayInputStream);
+
+			inputStreamOVPs.add(inputStreamOVP);
+		}
+		finally {
+			for (ObjectValuePair<String, InputStream> inputStreamOVP :
+					inputStreamOVPs) {
+
+				InputStream inputStream = inputStreamOVP.getValue();
+
+				StreamUtil.cleanUp(inputStream);
+			}
+		}
+
+		return inputStreamOVPs;
+	}
+
+	protected long getMBSubcategoryId(
+			long mbCategoryId, String mbSubcategoryName)
+		throws Exception {
+
+		MBCategory mbCategory = MBCategoryLocalServiceUtil.fetchMBCategory(
+			mbCategoryId);
+
+		List<MBCategory> mbSubcategories =
+			MBCategoryLocalServiceUtil.getCategories(
+				mbCategory.getGroupId(), mbCategoryId,
+				WorkflowConstants.STATUS_APPROVED, QueryUtil.ALL_POS,
+				QueryUtil.ALL_POS);
+
+		if (!mbSubcategories.isEmpty()) {
+			for (MBCategory mbSubCategory : mbSubcategories) {
+				if (mbSubCategory.getName().equals(mbSubcategoryName)) {
+					return mbSubCategory.getCategoryId();
+				}
+			}
+		}
+
+		ServiceContext serviceContext =
+			ServiceContextThreadLocal.getServiceContext();
+
+		serviceContext.setScopeGroupId(mbCategory.getGroupId());
+		serviceContext.setUuid(PortalUUIDUtil.generate());
+
+		MBCategory mbSubCategory = MBCategoryLocalServiceUtil.addCategory(
+			mbCategory.getUserId(), mbCategory.getCategoryId(),
+			mbSubcategoryName, StringPool.BLANK, serviceContext);
+
+		return mbSubCategory.getCategoryId();
+	}
+
 	protected void updateFeedback(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-
-		List<ObjectValuePair<String, InputStream>> inputStreamOVPs =
-			new ArrayList<ObjectValuePair<String, InputStream>>();
 
 		try {
 			UploadPortletRequest uploadPortletRequest =
@@ -97,50 +180,12 @@ public class FeedbackPortlet extends MVCPortlet {
 			long groupId = ParamUtil.getLong(uploadPortletRequest, "groupId");
 			long mbCategoryId = ParamUtil.getLong(
 				uploadPortletRequest, "mbCategoryId");
-			String type = ParamUtil.getString(uploadPortletRequest, "type");
 			String body = ParamUtil.getString(uploadPortletRequest, "body");
 
-			StringBundler sb = new StringBundler(5);
-
-			sb.append(themeDisplay.translate(type));
-			sb.append(StringPool.SPACE);
-			sb.append(StringPool.DASH);
-			sb.append(StringPool.SPACE);
-			sb.append(StringUtil.shorten(body));
-
-			String subject = sb.toString();
+			String subject = StringUtil.shorten(body);
 
 			boolean anonymous = ParamUtil.getBoolean(
 				uploadPortletRequest, "anonymous");
-
-			for (int i = 1; i < 3; i++) {
-				String fileName = uploadPortletRequest.getFileName("file" + i);
-
-				if (Validator.isNull(fileName)) {
-					continue;
-				}
-
-				File file = uploadPortletRequest.getFile("file" + i);
-
-				if (file == null) {
-					continue;
-				}
-
-				byte[] bytes = FileUtil.getBytes(file);
-
-				if ((bytes == null) || (bytes.length == 0)) {
-					continue;
-				}
-
-				ByteArrayInputStream byteArrayInputStream =
-					new ByteArrayInputStream(bytes);
-
-				ObjectValuePair<String, InputStream> inputStreamOVP =
-					new ObjectValuePair<String, InputStream>(
-						fileName, byteArrayInputStream);
-
-				inputStreamOVPs.add(inputStreamOVP);
-			}
 
 			ServiceContext serviceContext =
 				ServiceContextThreadLocal.getServiceContext();
@@ -165,8 +210,17 @@ public class FeedbackPortlet extends MVCPortlet {
 
 			serviceContext.setPortletPreferencesIds(portletPreferencesIds);
 
+			String mbSubcategoryName = ParamUtil.getString(
+				uploadPortletRequest, "mbSubcategoryName");
+
+			long mbSubcategoryId = getMBSubcategoryId(
+				mbCategoryId, mbSubcategoryName);
+
+			List<ObjectValuePair<String, InputStream>> inputStreamOVPs =
+				getInputStreamOVPs(uploadPortletRequest);
+
 			MBMessage mbMessage = MBMessageLocalServiceUtil.addMessage(
-				user.getUserId(), user.getFullName(), groupId, mbCategoryId,
+				user.getUserId(), user.getFullName(), groupId, mbSubcategoryId,
 				subject, body, "plain", inputStreamOVPs, anonymous, 0, false,
 				serviceContext);
 
@@ -177,15 +231,6 @@ public class FeedbackPortlet extends MVCPortlet {
 		}
 		catch (Exception e) {
 			jsonObject.put("success", Boolean.FALSE.toString());
-		}
-		finally {
-			for (ObjectValuePair<String, InputStream> inputStreamOVP :
-					inputStreamOVPs) {
-
-				InputStream inputStream = inputStreamOVP.getValue();
-
-				StreamUtil.cleanUp(inputStream);
-			}
 		}
 
 		writeJSON(actionRequest, actionResponse, jsonObject);
