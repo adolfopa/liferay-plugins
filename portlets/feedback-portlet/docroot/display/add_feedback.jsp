@@ -31,41 +31,30 @@ String redirect = ParamUtil.getString(request, "redirect");
 	<aui:input id="type" name="type" type="hidden" value="" />
 
 	<div class="feedback-container">
-		<div class="start" id="<portlet:namespace />start">
-			<h2><liferay-ui:message key="social-office-is" /></h2>
+		<div class="feedback" id="<portlet:namespace />feedback">
+			<h4><span class="title"><liferay-ui:message key="I-would-like-to" /></span></h4>
 
-			<aui:button cssClass="btn btn-success feedback-positive" icon="icon-thumbs-up" value="positive" />
+			<aui:field-wrapper>
+				<aui:input checked="<%= true %>" inlineLabel="right" label='<%= LanguageUtil.get(pageContext, "report-a-bug") %>' name="mbSubcategoryName" type="radio" value="Bugs" />
 
-			<aui:button cssClass="btn btn-danger feedback-negative" icon="icon-thumbs-down" value="negative" />
-		</div>
+				<aui:input inlineLabel="right" label='<%= LanguageUtil.get(pageContext, "make-a-suggestion") %>' name="mbSubcategoryName" type="radio" value="Suggestions" />
 
-		<div class="feedback hide" id="<portlet:namespace />feedback">
-			<h3><span class="title"></span></h3>
-
-			<p class="subject"></p>
+				<aui:input inlineLabel="right" label='<%= LanguageUtil.get(pageContext, "leave-a-general-comment") %>' name="mbSubcategoryName" type="radio" value="General" />
+			</aui:field-wrapper>
 
 			<aui:input cssClass="body" id="body" label="" name="body" required="<%= true %>" type="textarea" />
 
-			<div class="attachments">
-				<liferay-ui:panel defaultState="closed" extended="<%= false %>" id="attachmentsPanel" persistState="<%= false %>" title="attachments">
-					<div>
-						<aui:input id="file1" label="" name="file1" size="70" type="file" />
-					</div>
-					<div>
-						<aui:input id="file2" label="" name="file2" size="70" type="file" />
-					</div>
-				</liferay-ui:panel>
-			</div>
-
 			<aui:input id="anonymous" label="Anonymous" name="anonymous" type="checkbox" />
 
-			<aui:button cssClass="btn btn-primary send-feedback" value="send-feedback" />
+			<aui:input id="attachment" label="" name="attachment" type="file" />
+
+			<aui:button cssClass="btn-primary send-feedback" value="send-feedback" />
 		</div>
 
 		<div class="confirmation hide" id="<portlet:namespace />confirmation">
-			<h3>
+			<h4>
 				<liferay-ui:message key="your-feedback-has-been-submitted" />
-			</h3>
+			</h4>
 
 			<p>
 				<liferay-ui:message key="we-appreciate-your-time-and-value-your-feedback" />
@@ -76,62 +65,6 @@ String redirect = ParamUtil.getString(request, "redirect");
 
 <aui:script use="aui-base,aui-io-request-deprecated,aui-loading-mask-deprecated">
 	var form = A.one('#<portlet:namespace />fm');
-
-	var displayFeedBack = function(feedbackType) {
-		var title = form.one('.feedback-container .feedback .title');
-		var subject = form.one('.feedback-container .feedback .subject');
-
-		if (feedbackType == '<%= FeedbackConstant.TYPE_POSITIVE %>') {
-			title.setHTML('<liferay-ui:message key="we-are-glad-you-like-it" />');
-			subject.setHTML('<%= FeedbackUtil.getFeedbackSubject(FeedbackConstant.TYPE_POSITIVE) %>');
-		}
-		else if (feedbackType == '<%= FeedbackConstant.TYPE_NEGATIVE %>') {
-			title.setHTML('<liferay-ui:message key="help-us-fix-it" />');
-			subject.setHTML('<%= FeedbackUtil.getFeedbackSubject(FeedbackConstant.TYPE_NEGATIVE) %>');
-		}
-
-		var type = form.one('#<portlet:namespace />type');
-
-		type.val(feedbackType);
-
-		var start = form.one('#<portlet:namespace />start');
-
-		if (start) {
-			start.hide();
-		}
-
-		var feedback = form.one('#<portlet:namespace />feedback');
-
-		if (feedback) {
-			feedback.show();
-
-			var body = form.one('#<portlet:namespace />body');
-
-			body.focus();
-		}
-	}
-
-	var feedbackNegative = form.one('.feedback-container .start .feedback-negative');
-
-	if (feedbackNegative) {
-		feedbackNegative.on(
-			'click',
-			function(event) {
-				displayFeedBack('<%= FeedbackConstant.TYPE_NEGATIVE %>');
-			}
-		);
-	}
-
-	var feedbackPositive = form.one('.feedback-container .start .feedback-positive');
-
-	if (feedbackPositive) {
-		feedbackPositive.on(
-			'click',
-			function(event) {
-				displayFeedBack('<%= FeedbackConstant.TYPE_POSITIVE %>');
-			}
-		);
-	}
 
 	var sendFeedback = form.one('.feedback-container .feedback .send-feedback');
 
