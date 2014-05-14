@@ -71,7 +71,7 @@ TaskFormPair initialStateTaskFormPair = KaleoFormsUtil.getInitialStateTaskFormPa
 
 		<liferay-util:buffer var="taskInputBuffer">
 			<c:if test="<%= taskFormsPair.equals(initialStateTaskFormPair) %>">
-				<aui:input name="ddmTemplateId" type="hidden" value="<%= ddmTemplateId == 0 ? StringPool.BLANK : String.valueOf(ddmTemplateId) %>">
+				<aui:input name="ddmTemplateId" type="hidden" value="<%= (ddmTemplateId == 0) ? StringPool.BLANK : String.valueOf(ddmTemplateId) %>">
 					<aui:validator name="required" />
 				</aui:input>
 			</c:if>

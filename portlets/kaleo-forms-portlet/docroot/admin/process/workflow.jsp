@@ -39,7 +39,7 @@ if (Validator.isNotNull(workflowDefinition)) {
 
 <h3 class="kaleo-process-header"><liferay-ui:message key="workflow" /></h3>
 
-<p class="kaleo-process-message"><liferay-ui:message key="please-select-or-create-a-new-workflow-definition-to-guide-the-completion-of-forms.-you-can-associate-forms-to-workflow-tasks-on-the-next-step" /></p>
+<p class="kaleo-process-message"><liferay-ui:message key="please-select-or-create-a-new-workflow-definition-to-guide-the-completion-of-forms.-you-can-associate-forms-to-workflow-tasks-in-the-next-step" /></p>
 
 <aui:field-wrapper>
 	<liferay-ui:message key="selected-workflow" />:
