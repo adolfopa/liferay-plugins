@@ -180,7 +180,7 @@ JSONArray samlSloRequestInfosJSONArray = samlSloContextJSONObject.getJSONArray("
 			var request = A.io.request(
 				'?cmd=status',
 				{
-					dataType: 'json',
+					dataType: 'JSON',
 					on: {
 						success: function(event) {
 							var logoutPending = false;

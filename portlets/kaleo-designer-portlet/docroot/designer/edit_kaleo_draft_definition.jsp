@@ -265,7 +265,7 @@
 					A.io.request(
 						contentURL,
 						{
-							dataType: 'json',
+							dataType: 'JSON',
 							on: {
 								success: callback
 							}

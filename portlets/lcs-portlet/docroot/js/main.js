@@ -73,7 +73,7 @@ AUI.add(
 								A.io.request(
 									connectURL,
 									{
-										dataType: 'json',
+										dataType: 'JSON',
 										method: 'GET',
 										on: {
 											success: function(event, id, obj) {
@@ -97,7 +97,7 @@ AUI.add(
 								A.io.request(
 									disconnectURL,
 									{
-										dataType: 'json',
+										dataType: 'JSON',
 										method: 'GET',
 										on: {
 											success: function(event, id, obj) {
@@ -275,7 +275,7 @@ AUI.add(
 						A.io.request(
 							instance._connectionStatusURL,
 							{
-								dataType: 'json',
+								dataType: 'JSON',
 								method: 'GET',
 								on: {
 									success: function(event, id, obj) {
@@ -307,7 +307,7 @@ AUI.add(
 						A.io.request(
 							instance._createURL(TYPE_SERVE_CORP_ENTRY),
 							{
-								dataType: 'json',
+								dataType: 'JSON',
 								form: {
 									id: instance._registrationForm.getDOM()
 								},
@@ -380,7 +380,7 @@ AUI.add(
 						A.io.request(
 							instance._createURL(TYPE_SERVE_LCS_CLUSTER_ENTRY),
 							{
-								dataType: 'json',
+								dataType: 'JSON',
 								form: {
 									id: form.getDOM()
 								},

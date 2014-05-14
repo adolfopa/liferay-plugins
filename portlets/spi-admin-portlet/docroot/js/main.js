@@ -174,7 +174,7 @@ AUI.add(
 										actionsMenuTrigger.setData(MENU_LIST_CONTAINER, actionsMenuNode);
 									}
 								},
-								dataType: 'html'
+								dataType: 'HTML'
 							}
 						);
 					},
