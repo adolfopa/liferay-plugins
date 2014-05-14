@@ -31,7 +31,7 @@ else {
 }
 %>
 
-<liferay-ui:icon-menu>
+<liferay-ui:icon-menu showWhenSingleIcon="<%= true %>">
 	<c:if test="<%= SPIDefinitionPermissionUtil.contains(permissionChecker, spiDefinition, ActionKeys.UPDATE) %>">
 		<portlet:renderURL var="editURL">
 			<portlet:param name="mvcPath" value="/edit_spi_definition.jsp" />
