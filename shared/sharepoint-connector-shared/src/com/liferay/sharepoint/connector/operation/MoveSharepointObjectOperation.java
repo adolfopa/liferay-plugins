@@ -57,8 +57,7 @@ public class MoveSharepointObjectOperation extends BaseOperation {
 						BatchMethod.Command.UPDATE,
 						new BatchField(
 							"ID", sharepointObject.getSharepointObjectId()),
-						new BatchField(
-							"FileRef", url.toString()),
+						new BatchField("FileRef", url.toString()),
 						new BatchField("BaseName", newName),
 						new BatchField("File_x0020_Type", newExtension))));
 		}

@@ -124,7 +124,7 @@ public class LCSUtil {
 				0, PortletKeys.MONITORING);
 
 		return PortletPreferencesFactoryUtil.fromDefaultXML(
-				portletPreferences.getPreferences());
+			portletPreferences.getPreferences());
 	}
 
 	private static JSONWebServiceClient _jsonWebServiceClient;

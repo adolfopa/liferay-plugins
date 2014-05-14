@@ -179,8 +179,7 @@ public class ServerMetricsTask implements Runnable {
 			}
 			else {
 				Set<ObjectName> objectNames = mBeanServer.queryNames(
-					new ObjectName(
-						"TomcatJDBCPool:type=ConnectionPool,*"),
+					new ObjectName("TomcatJDBCPool:type=ConnectionPool,*"),
 					null);
 
 				for (ObjectName objectName : objectNames) {
