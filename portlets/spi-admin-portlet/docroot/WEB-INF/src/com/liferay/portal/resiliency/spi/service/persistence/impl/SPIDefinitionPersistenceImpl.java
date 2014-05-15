@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.resiliency.spi.service.persistence;
+package com.liferay.portal.resiliency.spi.service.persistence.impl;
 
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
@@ -42,6 +42,7 @@ import com.liferay.portal.resiliency.spi.NoSuchDefinitionException;
 import com.liferay.portal.resiliency.spi.model.SPIDefinition;
 import com.liferay.portal.resiliency.spi.model.impl.SPIDefinitionImpl;
 import com.liferay.portal.resiliency.spi.model.impl.SPIDefinitionModelImpl;
+import com.liferay.portal.resiliency.spi.service.persistence.SPIDefinitionPersistence;
 import com.liferay.portal.security.permission.InlineSQLHelperUtil;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 

@@ -21,8 +21,10 @@ import com.liferay.portal.resiliency.spi.service.SPIDefinitionLocalServiceUtil;
 
 /**
  * @author Michael C. Han
+ * @deprecated As of 7.0.0, replaced by {@link SPIDefinitionLocalServiceUtil#getExportActionableDynamicQuery()}
  * @generated
  */
+@Deprecated
 public abstract class SPIDefinitionActionableDynamicQuery
 	extends BaseActionableDynamicQuery {
 	public SPIDefinitionActionableDynamicQuery() throws SystemException {

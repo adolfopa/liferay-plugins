@@ -76,6 +76,8 @@ public interface SPIDefinition extends SPIDefinitionModel, PersistedModel {
 	public void setNotificationRecipients(
 		java.lang.String notificationRecipients);
 
+	public void setPortalProperties(java.lang.String portalProperties);
+
 	public void setRestartAttempts(int restartAttempts);
 
 	public void setTypeSettingsProperties(

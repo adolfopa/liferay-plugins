@@ -684,6 +684,11 @@ public class SPIDefinitionWrapper implements SPIDefinition,
 	}
 
 	@Override
+	public java.lang.String getPortalProperties() {
+		return _spiDefinition.getPortalProperties();
+	}
+
+	@Override
 	public long getRegisterTimeout() {
 		return _spiDefinition.getRegisterTimeout();
 	}
@@ -738,6 +743,11 @@ public class SPIDefinitionWrapper implements SPIDefinition,
 	public void setNotificationRecipients(
 		java.lang.String notificationRecipients) {
 		_spiDefinition.setNotificationRecipients(notificationRecipients);
+	}
+
+	@Override
+	public void setPortalProperties(java.lang.String portalProperties) {
+		_spiDefinition.setPortalProperties(portalProperties);
 	}
 
 	@Override
