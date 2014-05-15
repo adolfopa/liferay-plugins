@@ -14,6 +14,7 @@
 
 package com.liferay.feedback.admin.portlet;
 
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -131,7 +132,8 @@ public class FeedbackAdminPortlet extends MVCPortlet {
 
 		List<MBCategory> mbCategories =
 			MBCategoryLocalServiceUtil.getCategories(
-				groupId, WorkflowConstants.STATUS_APPROVED);
+				groupId, 0, WorkflowConstants.STATUS_APPROVED,
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
 		jsonObject.put("mbCategories", getJsonArray(mbCategories));
 
