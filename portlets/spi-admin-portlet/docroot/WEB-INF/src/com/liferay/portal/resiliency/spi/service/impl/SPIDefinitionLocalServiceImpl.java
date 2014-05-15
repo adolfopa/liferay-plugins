@@ -221,7 +221,7 @@ public class SPIDefinitionLocalServiceImpl
 
 		try {
 			Properties properties = PropertiesUtil.load(
-				SPIConfigurationTemplate.getSPIPortalProperties());
+				spiDefinition.getPortalProperties());
 
 			Map<String, String> propertiesMap = new HashMap<String, String>();
 
