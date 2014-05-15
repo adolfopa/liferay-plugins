@@ -34,6 +34,7 @@ int maxThreads = BeanPropertiesUtil.getInteger(spiDefinition, "maxThreads", SPIC
 String name = BeanPropertiesUtil.getString(spiDefinition, "name", StringPool.BLANK);
 String notificationRecipients = BeanPropertiesUtil.getString(spiDefinition, "notificationRecipients");
 long pingInterval = BeanPropertiesUtil.getLong(spiDefinition, "pingInterval", SPIConfigurationTemplate.getSPIPingInterval());
+String portalProperties = BeanPropertiesUtil.getString(spiDefinition, "portalProperties", StringUtil.replace(SPIConfigurationTemplate.getSPIPortalProperties(), StringPool.COMMA, StringPool.RETURN_NEW_LINE));
 String[] portletIds = StringUtil.split(BeanPropertiesUtil.getString(spiDefinition, "portletIds", StringPool.BLANK));
 long registerTimeout = BeanPropertiesUtil.getLong(spiDefinition, "registerTimeout", SPIConfigurationTemplate.getSPIRegisterTimeout());
 String[] servletContextNames = StringUtil.split(BeanPropertiesUtil.getString(spiDefinition, "servletContextNames", StringPool.BLANK));
@@ -45,8 +46,6 @@ String defaultNotificationRecipients = PrefsParamUtil.getString(portletPreferenc
 boolean useDefaultNotificationOptions = Validator.isNull(notificationRecipients);
 
 UnicodeProperties typeSettingsProperties = PropertiesParamUtil.getProperties(request, "TypeSettingsProperties--");
-
-String portalProperties = typeSettingsProperties.getProperty("portal-properties");
 
 String useDefaultNotificationOptionsString = typeSettingsProperties.getProperty("use-default-notification-options");
 
@@ -197,7 +196,7 @@ if (useDefaultRestartOptions) {
 				<aui:fieldset>
 					<aui:input helpMessage="java-executable-help" label="java-executable" name="TypeSettingsProperties--java-executable--" type="text" value="<%= javaExecutable %>" />
 
-					<aui:input helpMessage="spi-portal-properties-help" label="portal-properties" name="TypeSettingsProperties--portal-properties--" type="textarea" value="<%= portalProperties %>" />
+					<aui:input helpMessage="spi-portal-properties-help" label="spi-portal-properties" name="TypeSettingsProperties--portal-properties--" type="textarea" value="<%= portalProperties %>" />
 
 					<aui:input helpMessage="spi-ping-interval-help" label="spi-ping-interval" name="TypeSettingsProperties--ping-interval--" type="text" value="<%= pingInterval %>" />
 
