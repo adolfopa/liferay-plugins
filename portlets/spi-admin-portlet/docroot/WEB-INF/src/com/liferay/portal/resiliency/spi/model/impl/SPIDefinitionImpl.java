@@ -98,8 +98,7 @@ public class SPIDefinitionImpl extends SPIDefinitionBaseImpl {
 		return GetterUtil.getLong(getTypeSettingsProperty("ping-interval"));
 	}
 
-	// @Override
-	// error: method does not override or implement a method from a supertype
+	@Override
 	public String getPortalProperties() {
 		return GetterUtil.getString(
 			getTypeSettingsProperty("portal-properties"));
@@ -197,21 +196,6 @@ public class SPIDefinitionImpl extends SPIDefinitionBaseImpl {
 		}
 	}
 
-	// @Override
-	public void setPortalProperties(String portalProperties) {
-		UnicodeProperties typeSettingsProperties = getTypeSettingsProperties();
-
-		if (Validator.isNotNull(portalProperties)) {
-			typeSettingsProperties.setProperty(
-				"portal-properties", portalProperties);
-		}
-		else {
-			typeSettingsProperties.remove("portal-properties");
-		}
-
-		setTypeSettingsProperties(typeSettingsProperties);
-	}
-
 	@Override
 	public void setMaxRestartAttempts(int maxRestartAttempts) {
 		UnicodeProperties typeSettingsProperties = getTypeSettingsProperties();
@@ -231,12 +215,27 @@ public class SPIDefinitionImpl extends SPIDefinitionBaseImpl {
 	public void setNotificationRecipients(String notificationRecipients) {
 		UnicodeProperties typeSettingsProperties = getTypeSettingsProperties();
 
-		if (Validator.isNotNull(notificationRecipients)) {
+		if (Validator.isNull(notificationRecipients)) {
+			typeSettingsProperties.remove("notification-recipients");
+		}
+		else {
 			typeSettingsProperties.setProperty(
 				"notification-recipients", notificationRecipients);
 		}
+
+		setTypeSettingsProperties(typeSettingsProperties);
+	}
+
+	@Override
+	public void setPortalProperties(String portalProperties) {
+		UnicodeProperties typeSettingsProperties = getTypeSettingsProperties();
+
+		if (Validator.isNull(portalProperties)) {
+			typeSettingsProperties.remove("portal-properties");
+		}
 		else {
-			typeSettingsProperties.remove("notification-recipients");
+			typeSettingsProperties.setProperty(
+				"portal-properties", portalProperties);
 		}
 
 		setTypeSettingsProperties(typeSettingsProperties);
