@@ -196,9 +196,9 @@ if (useDefaultRestartOptions) {
 				<aui:fieldset>
 					<aui:input helpMessage="java-executable-help" label="java-executable" name="TypeSettingsProperties--java-executable--" type="text" value="<%= javaExecutable %>" />
 
-					<aui:input helpMessage="spi-portal-properties-help" label="spi-portal-properties" name="TypeSettingsProperties--portal-properties--" type="textarea" value="<%= portalProperties %>" />
-
 					<aui:input helpMessage="spi-ping-interval-help" label="spi-ping-interval" name="TypeSettingsProperties--ping-interval--" type="text" value="<%= pingInterval %>" />
+
+					<aui:input helpMessage="spi-portal-properties-help" label="spi-portal-properties" name="TypeSettingsProperties--portal-properties--" type="textarea" value="<%= portalProperties %>" />
 
 					<aui:input helpMessage="spi-register-timeout-help" label="spi-register-timeout" name="TypeSettingsProperties--register-timeout--" type="text" value="<%= registerTimeout %>" />
 
