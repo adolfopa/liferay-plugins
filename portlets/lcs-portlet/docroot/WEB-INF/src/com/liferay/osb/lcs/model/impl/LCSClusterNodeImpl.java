@@ -45,11 +45,6 @@ public class LCSClusterNodeImpl implements LCSClusterNode {
 	}
 
 	@Override
-	public List<String> getAvailablePatchNames() {
-		return _availablePatchNames;
-	}
-
-	@Override
 	public int getBuildNumber() {
 		return _buildNumber;
 	}
@@ -67,6 +62,11 @@ public class LCSClusterNodeImpl implements LCSClusterNode {
 	@Override
 	public ExpandoBridge getExpandoBridge() {
 		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public List<String> getInstallablePatchNames() {
+		return _installablePatchNames;
 	}
 
 	@Override
@@ -202,11 +202,6 @@ public class LCSClusterNodeImpl implements LCSClusterNode {
 	}
 
 	@Override
-	public void setAvailablePatchNames(List<String> availablePatchNames) {
-		_availablePatchNames = availablePatchNames;
-	}
-
-	@Override
 	public void setBuildNumber(int buildNumber) {
 		_buildNumber = buildNumber;
 	}
@@ -239,6 +234,11 @@ public class LCSClusterNodeImpl implements LCSClusterNode {
 	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void setInstallablePatchNames(List<String> installablePatchNames) {
+		_installablePatchNames = installablePatchNames;
 	}
 
 	@Override
@@ -336,10 +336,10 @@ public class LCSClusterNodeImpl implements LCSClusterNode {
 		throw new UnsupportedOperationException();
 	}
 
-	private List<String> _availablePatchNames = new ArrayList<String>();
 	private int _buildNumber;
 	private Date _configurationModifiedDate;
 	private String _description;
+	private List<String> _installablePatchNames = new ArrayList<String>();
 	private String _key;
 	private long _lcsClusterEntryId;
 	private long _lcsClusterNodeId;
