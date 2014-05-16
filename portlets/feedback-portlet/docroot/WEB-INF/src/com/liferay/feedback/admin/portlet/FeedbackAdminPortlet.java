@@ -30,6 +30,7 @@ import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.service.permission.PortletPermissionUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.messageboards.model.MBCategory;
+import com.liferay.portlet.messageboards.model.MBCategoryConstants;
 import com.liferay.portlet.messageboards.service.MBCategoryLocalServiceUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
@@ -132,8 +133,9 @@ public class FeedbackAdminPortlet extends MVCPortlet {
 
 		List<MBCategory> mbCategories =
 			MBCategoryLocalServiceUtil.getCategories(
-				groupId, 0, WorkflowConstants.STATUS_APPROVED,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+				groupId, MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID,
+				WorkflowConstants.STATUS_APPROVED, QueryUtil.ALL_POS,
+				QueryUtil.ALL_POS);
 
 		jsonObject.put("mbCategories", getJsonArray(mbCategories));
 

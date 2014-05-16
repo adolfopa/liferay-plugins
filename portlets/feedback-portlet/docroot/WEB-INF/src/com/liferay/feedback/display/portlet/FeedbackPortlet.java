@@ -131,7 +131,7 @@ public class FeedbackPortlet extends MVCPortlet {
 			long mbCategoryId, String mbSubcategoryName)
 		throws Exception {
 
-		MBCategory mbCategory = MBCategoryLocalServiceUtil.fetchMBCategory(
+		MBCategory mbCategory = MBCategoryLocalServiceUtil.getMBCategory(
 			mbCategoryId);
 
 		List<MBCategory> mbSubcategories =
@@ -141,9 +141,11 @@ public class FeedbackPortlet extends MVCPortlet {
 				QueryUtil.ALL_POS);
 
 		if (!mbSubcategories.isEmpty()) {
-			for (MBCategory mbSubCategory : mbSubcategories) {
-				if (mbSubCategory.getName().equals(mbSubcategoryName)) {
-					return mbSubCategory.getCategoryId();
+			for (MBCategory mbSubcategory : mbSubcategories) {
+				String curMBSubcategoryName = mbCategory.getName();
+
+				if (curMBSubcategoryName.equals(mbSubcategoryName)) {
+					return mbSubcategory.getCategoryId();
 				}
 			}
 		}
@@ -154,11 +156,11 @@ public class FeedbackPortlet extends MVCPortlet {
 		serviceContext.setScopeGroupId(mbCategory.getGroupId());
 		serviceContext.setUuid(PortalUUIDUtil.generate());
 
-		MBCategory mbSubCategory = MBCategoryLocalServiceUtil.addCategory(
+		MBCategory mbSubcategory = MBCategoryLocalServiceUtil.addCategory(
 			mbCategory.getUserId(), mbCategory.getCategoryId(),
 			mbSubcategoryName, StringPool.BLANK, serviceContext);
 
-		return mbSubCategory.getCategoryId();
+		return mbSubcategory.getCategoryId();
 	}
 
 	protected void updateFeedback(

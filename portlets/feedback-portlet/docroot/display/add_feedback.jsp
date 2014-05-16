@@ -32,7 +32,7 @@ String redirect = ParamUtil.getString(request, "redirect");
 
 	<div class="feedback-container">
 		<div class="feedback" id="<portlet:namespace />feedback">
-			<h4><span class="title"><liferay-ui:message key="I-would-like-to" /></span></h4>
+			<h4><span class="title"><liferay-ui:message key="i-would-like-to" /></span></h4>
 
 			<aui:field-wrapper>
 				<aui:input checked="<%= true %>" inlineLabel="right" label='<%= LanguageUtil.get(pageContext, "report-a-bug") %>' name="mbSubcategoryName" type="radio" value="Bugs" />
