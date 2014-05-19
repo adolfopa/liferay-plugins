@@ -35,8 +35,9 @@ import java.sql.ResultSet;
  * @author Rachael Koestartyo
  */
 public class OSBTicketWorkerSQLBuilder {
+
 	public String buildSQL() throws Exception {
-		if (!hasNewDeletedOSBTicketWorkers()) {
+		if (!hasDeletedOSBTicketWorkers()) {
 			return StringPool.BLANK;
 		}
 
@@ -77,31 +78,6 @@ public class OSBTicketWorkerSQLBuilder {
 		DB db = DBFactoryUtil.getDB();
 
 		return db.buildSQL(template);
-	}
-
-	public boolean hasNewDeletedOSBTicketWorkers() throws Exception {
-		Connection con = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-
-		try {
-			con = DataAccess.getConnection();
-
-			String sql = getDeletedUsers();
-
-			ps = con.prepareStatement(sql);
-
-			rs = ps.executeQuery();
-
-			if (rs.next()) {
-				return true;
-			}
-
-			return false;
-		}
-		finally {
-			DataAccess.cleanUp(con, ps, rs);
-		}
 	}
 
 	protected String buildUserTemplate(long userId, String[] fullName)
@@ -294,6 +270,31 @@ public class OSBTicketWorkerSQLBuilder {
 			StringPool.PERIOD + fullName[2];
 
 		return screenName;
+	}
+
+	protected boolean hasDeletedOSBTicketWorkers() throws Exception {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+			con = DataAccess.getConnection();
+
+			String sql = getDeletedUsers();
+
+			ps = con.prepareStatement(sql);
+
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+				return true;
+			}
+
+			return false;
+		}
+		finally {
+			DataAccess.cleanUp(con, ps, rs);
+		}
 	}
 
 	private static final String _CLASS_NAME =
