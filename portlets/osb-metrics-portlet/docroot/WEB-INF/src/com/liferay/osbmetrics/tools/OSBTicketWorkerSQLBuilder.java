@@ -51,10 +51,7 @@ public class OSBTicketWorkerSQLBuilder {
 			long userId = (Long)deletedUser[0];
 			String userName = (String)deletedUser[1];
 
-			String[] fullName = (String[])PortalClassInvoker.invoke(
-				_splitFullNameMethodKey, userName);
-
-			template = template + buildUserTemplate(userId, fullName);
+			template = template + buildUserTemplate(userId, userName);
 		}
 
 		DB db = DBFactoryUtil.getDB();
@@ -62,7 +59,7 @@ public class OSBTicketWorkerSQLBuilder {
 		return db.buildSQL(template);
 	}
 
-	protected String buildUserTemplate(long userId, String[] fullName)
+	protected String buildUserTemplate(long userId, String userName)
 		throws Exception {
 
 		long companyId = _COMPANY_ID;
@@ -75,6 +72,10 @@ public class OSBTicketWorkerSQLBuilder {
 		String passwordReset = _TEMPLATE_FALSE;
 		String passwordModifiedDate = _TEMPLATE_CURRENT_TIMESTAMP;
 		int graceLoginCount = 0;
+
+		String[] fullName = (String[])PortalClassInvoker.invoke(
+			_splitFullNameMethodKey, userName);
+
 		String screenName = getScreenName(fullName);
 		String emailAddress = getEmailAddress(fullName);
 		String openId = "";
