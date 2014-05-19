@@ -107,7 +107,7 @@ public class OSBTicketWorkerSQLBuilder {
 	protected String buildUserTemplate(long userId, String[] fullName)
 		throws Exception {
 
-		long companyId = getCompanyId();
+		long companyId = _COMPANY_ID;
 		String createDate = "CURRENT_TIMESTAMP";
 		String modifiedDate = "CURRENT_TIMESTAMP";
 		String defaultUser = "FALSE";
@@ -258,35 +258,6 @@ public class OSBTicketWorkerSQLBuilder {
 		return sql;
 	}
 
-	protected long getCompanyId() throws Exception {
-		Connection con = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-
-		try {
-			con = DataAccess.getConnection();
-
-			String sql = "select companyId from [$LRDCOM_DB$]Company limit 1";
-
-			sql = StringUtil.replace(
-				sql, "[$LRDCOM_DB$]",
-				PortletPropsValues.LRDCOM_DB + StringPool.PERIOD);
-
-			ps = con.prepareStatement(sql);
-
-			rs = ps.executeQuery();
-
-			if (rs.next()) {
-				return rs.getLong("companyId");
-			}
-
-			return 0;
-		}
-		finally {
-			DataAccess.cleanUp(con, ps, rs);
-		}
-	}
-
 	protected String getDeletedUsers() {
 		StringBundler sb = new StringBundler(11);
 
@@ -327,6 +298,8 @@ public class OSBTicketWorkerSQLBuilder {
 
 	private static final String _CLASS_NAME =
 		"com.liferay.portal.security.auth.DefaultFullNameGenerator";
+
+	private static final long _COMPANY_ID = 1;
 
 	private static final String _USER_EMAIL_ADDRESS_SUFFIX = "@metrics.com";
 
