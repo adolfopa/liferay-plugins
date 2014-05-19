@@ -18,7 +18,6 @@ import com.liferay.compat.portal.util.PortalUtil;
 import com.liferay.lcs.oauth.OAuthUtil;
 import com.liferay.lcs.util.HandshakeManagerUtil;
 import com.liferay.lcs.util.LCSClusterNodeUtil;
-import com.liferay.lcs.util.LCSConstants;
 import com.liferay.lcs.util.LCSUtil;
 import com.liferay.osb.lcs.DuplicateLCSClusterEntryNameException;
 import com.liferay.osb.lcs.RequiredLCSClusterEntryNameException;
@@ -27,7 +26,6 @@ import com.liferay.osb.lcs.model.LCSClusterEntry;
 import com.liferay.osb.lcs.service.CorpEntryServiceUtil;
 import com.liferay.osb.lcs.service.LCSClusterEntryServiceUtil;
 import com.liferay.portal.NoSuchPortletPreferencesException;
-import com.liferay.portal.kernel.cluster.ClusterExecutorUtil;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -171,7 +169,7 @@ public class CloudServicesPortlet extends MVCPortlet {
 
 		return LCSClusterEntryServiceUtil.addLCSClusterEntry(
 			corpEntryId, name, description, location,
-			getLocalLCSClusterEntryType());
+			LCSUtil.getLocalLCSClusterEntryType());
 	}
 
 	protected void addLCSClusterNode(
@@ -317,10 +315,6 @@ public class CloudServicesPortlet extends MVCPortlet {
 				corpEntryId);
 
 		for (LCSClusterEntry lcsClusterEntry : lcsClusterEntries) {
-			if (lcsClusterEntry.getType() != getLocalLCSClusterEntryType()) {
-				continue;
-			}
-
 			jsonArray.put(getLCSClusterEntryJSONObject(lcsClusterEntry));
 		}
 
@@ -338,14 +332,6 @@ public class CloudServicesPortlet extends MVCPortlet {
 		jsonObject.put("type", lcsClusterEntry.getType());
 
 		return jsonObject;
-	}
-
-	protected int getLocalLCSClusterEntryType() {
-		if (ClusterExecutorUtil.isEnabled()) {
-			return LCSConstants.LCS_CLUSTER_ENTRY_TYPE_CLUSTER;
-		}
-
-		return LCSConstants.LCS_CLUSTER_ENTRY_TYPE_ENVIRONMENT;
 	}
 
 	protected void serveConnectionStatus(

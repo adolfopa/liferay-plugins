@@ -16,6 +16,7 @@ package com.liferay.lcs.util;
 
 import com.liferay.jsonwebserviceclient.JSONWebServiceClient;
 import com.liferay.osb.lcs.service.LCSClusterNodeServiceUtil;
+import com.liferay.portal.kernel.cluster.ClusterExecutorUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.Validator;
@@ -76,6 +77,14 @@ public class LCSUtil {
 
 			throw new RuntimeException(e);
 		}
+	}
+
+	public static int getLocalLCSClusterEntryType() {
+		if (ClusterExecutorUtil.isEnabled()) {
+			return LCSConstants.LCS_CLUSTER_ENTRY_TYPE_CLUSTER;
+		}
+
+		return LCSConstants.LCS_CLUSTER_ENTRY_TYPE_ENVIRONMENT;
 	}
 
 	public static boolean isCredentialsSet() {

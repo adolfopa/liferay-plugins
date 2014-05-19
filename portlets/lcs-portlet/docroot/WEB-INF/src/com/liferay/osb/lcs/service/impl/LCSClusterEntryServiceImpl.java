@@ -15,6 +15,7 @@
 package com.liferay.osb.lcs.service.impl;
 
 import com.liferay.lcs.service.impl.BaseLCSServiceImpl;
+import com.liferay.lcs.util.LCSUtil;
 import com.liferay.osb.lcs.DuplicateLCSClusterEntryNameException;
 import com.liferay.osb.lcs.RequiredLCSClusterEntryNameException;
 import com.liferay.osb.lcs.model.LCSClusterEntry;
@@ -99,6 +100,12 @@ public class LCSClusterEntryServiceImpl
 			<LCSClusterEntry>();
 
 		for (LCSClusterEntry lcsClusterEntry : remoteLcsClusterEntries) {
+			if (lcsClusterEntry.getType() !=
+					LCSUtil.getLocalLCSClusterEntryType()) {
+
+				continue;
+			}
+
 			localLCSClusterEntries.add(lcsClusterEntry);
 		}
 
