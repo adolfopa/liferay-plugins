@@ -19,6 +19,7 @@ import com.liferay.osbmetrics.util.PortletPropsValues;
 import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ClassResolverUtil;
 import com.liferay.portal.kernel.util.MethodKey;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -47,16 +48,55 @@ public class OSBTicketWorkerSQLBuilder {
 
 		String template = StringPool.BLANK;
 
-		for (Object[] deletedUser : deletedUsers) {
+		for (int i = 1; i <= deletedUsers.size(); i++) {
+			Object[] deletedUser = deletedUsers.get(i - 1);
+
 			long userId = (Long)deletedUser[0];
 			String userName = (String)deletedUser[1];
 
 			template = template + buildUserTemplate(userId, userName);
+			template = template + buildSupportWorkerTemplate(i, userId);
 		}
 
 		DB db = DBFactoryUtil.getDB();
 
 		return db.buildSQL(template);
+	}
+
+	protected String buildSupportWorkerTemplate(
+			long supportWorkerId, long userId)
+		throws Exception {
+
+		long supportTeamId = getOSBSupportTeamId(userId);
+		int assignedWork = 0;
+		int maxWork = 0;
+		long escalationLevel = _OSB_TICKET_ENTRY_ESCALATION_LEVEL_1;
+		int role = _OSB_SUPPORT_WORKER_ROLE_DEVELOPER;
+		int notifications = 0;
+
+		StringBundler sb = new StringBundler(4);
+
+		sb.append("insert into [$LRDCOM_DB$]OSB_SupportWorker (");
+		sb.append("supportWorkerId, userId, supportTeamId, assignedWork, ");
+		sb.append("maxWork, escalationLevel, role, notifications) values (");
+		sb.append(supportWorkerId);
+		sb.append(", ");
+		sb.append(userId);
+		sb.append(", ");
+		sb.append(supportTeamId);
+		sb.append(", ");
+		sb.append(assignedWork);
+		sb.append(", ");
+		sb.append(maxWork);
+		sb.append(", ");
+		sb.append(escalationLevel);
+		sb.append(", ");
+		sb.append(role);
+		sb.append(", ");
+		sb.append(notifications);
+		sb.append(");\n");
+
+		return replaceTokens(sb.toString());
 	}
 
 	protected String buildUserTemplate(long userId, String userName)
@@ -260,6 +300,23 @@ public class OSBTicketWorkerSQLBuilder {
 		return users;
 	}
 
+	protected long getOSBSupportTeamId(long userId) {
+		if (ArrayUtil.contains(_OSB_SUPPORT_TEAM_CN_USER_IDS, userId)) {
+			return _OSB_SUPPORT_TEAM_ID_CN;
+		}
+		else if (ArrayUtil.contains(_OSB_SUPPORT_TEAM_ES_USER_IDS, userId)) {
+			return _OSB_SUPPORT_TEAM_ID_ES;
+		}
+		else if (ArrayUtil.contains(_OSB_SUPPORT_TEAM_HU_USER_IDS, userId)) {
+			return _OSB_SUPPORT_TEAM_ID_HU;
+		}
+		else if (ArrayUtil.contains(_OSB_SUPPORT_TEAM_US_USER_IDS, userId)) {
+			return _OSB_SUPPORT_TEAM_ID_US;
+		}
+
+		return _OSB_SUPPORT_TEAM_ID_US;
+	}
+
 	protected String replaceTokens(String sql) {
 		return StringUtil.replace(
 			sql, "[$LRDCOM_DB$]", PortletPropsValues.LRDCOM_DB.concat("."));
@@ -269,6 +326,18 @@ public class OSBTicketWorkerSQLBuilder {
 		"com.liferay.portal.security.auth.DefaultFullNameGenerator";
 
 	private static final long _COMPANY_ID = 1;
+
+	private static final long _OSB_SUPPORT_TEAM_ID_CN = 6499667;
+
+	private static final long _OSB_SUPPORT_TEAM_ID_ES = 6466830;
+
+	private static final long _OSB_SUPPORT_TEAM_ID_HU = 6499676;
+
+	private static final long _OSB_SUPPORT_TEAM_ID_US = 6017547;
+
+	private static final int _OSB_SUPPORT_WORKER_ROLE_DEVELOPER = 1;
+
+	private static final long _OSB_TICKET_ENTRY_ESCALATION_LEVEL_1 = 31001;
 
 	private static final String _TEMPLATE_CURRENT_TIMESTAMP =
 		"CURRENT_TIMESTAMP";
@@ -282,6 +351,22 @@ public class OSBTicketWorkerSQLBuilder {
 	private static final String _USER_SCREEN_NAME_PREFIX = "metrics.";
 
 	private static final int _WORKFLOW_CONSTANTS_STATUS_INACTIVE = 5;
+
+	private static Long[] _OSB_SUPPORT_TEAM_CN_USER_IDS = new Long[] {
+		6641443L, 9896768L, 13461888L, 18930927L, 24347997L
+	};
+
+	private static Long[] _OSB_SUPPORT_TEAM_ES_USER_IDS = new Long[] {1603932L};
+
+	private static Long[] _OSB_SUPPORT_TEAM_HU_USER_IDS = new Long[] {
+		4892055L, 8127568L, 8587716L, 10946037L, 12550882L, 16680467L, 23027929L
+	};
+
+	private static Long[] _OSB_SUPPORT_TEAM_US_USER_IDS = new Long[] {
+		3541131L, 3554286L, 3867391L, 4059977L, 4524865L, 5053514L, 6007394L,
+		7007697L, 8896412L, 8918652L, 10356153L, 11840191L, 13772525L,
+		13949847L, 15926325L, 16099957L, 18069415L
+	};
 
 	private static MethodKey _splitFullNameMethodKey = new MethodKey(
 		ClassResolverUtil.resolveByPortalClassLoader(_CLASS_NAME),
