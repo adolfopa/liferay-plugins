@@ -78,6 +78,8 @@ import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.PropsKeys;
+import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
@@ -2001,7 +2003,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 
 			IDfLoginInfo idfLoginInfo = _dfClientX.getLoginInfo();
 
-			String password = PrincipalThreadLocal.getPassword();
+			String password = getPassword();
 
 			idfLoginInfo.setPassword(password);
 
@@ -2029,6 +2031,10 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 
 	protected String getLogin() throws RepositoryException {
 		String login = PrincipalThreadLocal.getName();
+
+		if (Validator.isNull(login)) {
+			return PropsUtil.get(PropsKeys.DL_REPOSITORY_GUEST_USERNAME);
+		}
 
 		try {
 			Company company = CompanyLocalServiceUtil.getCompany(
@@ -2114,6 +2120,16 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 		}
 
 		return null;
+	}
+
+	protected String getPassword() {
+		String login = PrincipalThreadLocal.getName();
+
+		if (Validator.isNull(login)) {
+			return PropsUtil.get(PropsKeys.DL_REPOSITORY_GUEST_PASSWORD);
+		}
+
+		return PrincipalThreadLocal.getPassword();
 	}
 
 	protected void getSubfolderIds(
