@@ -70,17 +70,6 @@ public class OSBMetricsServletContextListener
 		insertDeletedTicketWorkers();
 	}
 
-	protected void insertDeletedTicketWorkers() throws Exception {
-		OSBTicketWorkerSQLBuilder osbTicketWorkerSQLBuilder =
-			new OSBTicketWorkerSQLBuilder();
-
-		String sql = osbTicketWorkerSQLBuilder.buildSQL();
-
-		DB db = DBFactoryUtil.getDB();
-
-		db.runSQLTemplateString(sql, true, true);
-	}
-
 	protected void initCompiledJaspers() throws Exception {
 		Class<?> clazz = getClass();
 
@@ -117,6 +106,17 @@ public class OSBMetricsServletContextListener
 
 			FileUtil.copyFile(new File(jasperURL.toURI()), jasperFile);
 		}
+	}
+
+	protected void insertDeletedTicketWorkers() throws Exception {
+		OSBTicketWorkerSQLBuilder osbTicketWorkerSQLBuilder =
+			new OSBTicketWorkerSQLBuilder();
+
+		String sql = osbTicketWorkerSQLBuilder.buildSQL();
+
+		DB db = DBFactoryUtil.getDB();
+
+		db.runSQLTemplateString(sql, false, true);
 	}
 
 }

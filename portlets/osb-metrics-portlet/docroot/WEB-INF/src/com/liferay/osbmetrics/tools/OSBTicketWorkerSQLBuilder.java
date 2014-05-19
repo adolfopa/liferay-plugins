@@ -62,6 +62,13 @@ public class OSBTicketWorkerSQLBuilder {
 	protected String buildUserTemplate(long userId, String userName)
 		throws Exception {
 
+		String[] fullName = (String[])PortalClassInvoker.invoke(
+			_splitFullNameMethodKey, userName);
+
+		String firstName = fullName[0];
+		String middleName = fullName[1];
+		String lastName = fullName[2];
+
 		long companyId = _COMPANY_ID;
 		String createDate = _TEMPLATE_CURRENT_TIMESTAMP;
 		String modifiedDate = _TEMPLATE_CURRENT_TIMESTAMP;
@@ -72,12 +79,10 @@ public class OSBTicketWorkerSQLBuilder {
 		String passwordReset = _TEMPLATE_FALSE;
 		String passwordModifiedDate = _TEMPLATE_CURRENT_TIMESTAMP;
 		int graceLoginCount = 0;
-
-		String[] fullName = (String[])PortalClassInvoker.invoke(
-			_splitFullNameMethodKey, userName);
-
-		String screenName = getScreenName(fullName);
-		String emailAddress = getEmailAddress(fullName);
+		String screenName =
+			_USER_SCREEN_NAME_PREFIX + firstName +"." + lastName;
+		String emailAddress =
+			firstName + "." + lastName + _USER_EMAIL_ADDRESS_SUFFIX;
 		String openId = StringPool.BLANK;
 		long portraitId = 0;
 		String languageId = StringPool.BLANK;
@@ -90,13 +95,10 @@ public class OSBTicketWorkerSQLBuilder {
 		String lastLoginIP = StringPool.BLANK;
 		String lastFailedLoginDate = _TEMPLATE_CURRENT_TIMESTAMP;
 		int failedLoginAttempts = 0;
-		boolean lockout = false;
+		String lockout = _TEMPLATE_FALSE;
 		String lockoutDate = _TEMPLATE_CURRENT_TIMESTAMP;
 		String agreedToTermsOfUse = _TEMPLATE_TRUE;
 		String uuid_ = StringPool.BLANK;
-		String firstName = fullName[0];
-		String middleName = fullName[1];
-		String lastName = fullName[2];
 		String jobTitle = StringPool.BLANK;
 		String reminderQueryQuestion = StringPool.BLANK;
 		String reminderQueryAnswer = StringPool.BLANK;
@@ -110,19 +112,19 @@ public class OSBTicketWorkerSQLBuilder {
 
 		StringBundler sb = new StringBundler(97);
 
-		sb.append("insert into [$LRDCOM_DB$]User_ (userId,companyId,");
-		sb.append("createDate,modifiedDate,defaultUser,contactId,");
-		sb.append("password_,passwordEncrypted,passwordReset,");
-		sb.append("passwordModifiedDate,graceLoginCount,screenName,");
-		sb.append("emailAddress,openId,portraitId,languageId,timeZoneId,");
-		sb.append("greeting,comments,loginDate,loginIP,lastLoginDate,");
-		sb.append("lastLoginIP,lastFailedLoginDate,failedLoginAttempts,");
-		sb.append("lockout,lockoutDate,agreedToTermsOfUse,uuid_,");
-		sb.append("firstName,middleName,lastName,jobTitle,");
-		sb.append("reminderQueryQuestion,reminderQueryAnswer,");
-		sb.append("socialContributionEquity,socialParticipationEquity,");
-		sb.append("socialPersonalEquity,facebookId,digest,");
-		sb.append("emailAddressVerified,status) values (");
+		sb.append("insert into [$LRDCOM_DB$]User_ (userId, companyId, ");
+		sb.append("createDate, modifiedDate, defaultUser, contactId, ");
+		sb.append("password_, passwordEncrypted, passwordReset, ");
+		sb.append("passwordModifiedDate, graceLoginCount, screenName, ");
+		sb.append("emailAddress, openId, portraitId, languageId, timeZoneId, ");
+		sb.append("greeting, comments, loginDate, loginIP, lastLoginDate, ");
+		sb.append("lastLoginIP, lastFailedLoginDate, failedLoginAttempts, ");
+		sb.append("lockout, lockoutDate, agreedToTermsOfUse, uuid_, ");
+		sb.append("firstName, middleName, lastName, jobTitle, ");
+		sb.append("reminderQueryQuestion, reminderQueryAnswer, ");
+		sb.append("socialContributionEquity, socialParticipationEquity, ");
+		sb.append("socialPersonalEquity, facebookId, digest, ");
+		sb.append("emailAddressVerified, status) values (");
 		sb.append(userId);
 		sb.append(", ");
 		sb.append(companyId);
@@ -256,20 +258,6 @@ public class OSBTicketWorkerSQLBuilder {
 		}
 
 		return users;
-	}
-
-	protected String getEmailAddress(String[] fullName) {
-		String emailAddress = fullName[0] + StringPool.PERIOD + fullName[2] +
-			_USER_EMAIL_ADDRESS_SUFFIX;
-
-		return emailAddress;
-	}
-
-	protected String getScreenName(String[] fullName) {
-		String screenName = _USER_SCREEN_NAME_PREFIX + fullName[0] +
-			StringPool.PERIOD + fullName[2];
-
-		return screenName;
 	}
 
 	protected String replaceTokens(String sql) {
