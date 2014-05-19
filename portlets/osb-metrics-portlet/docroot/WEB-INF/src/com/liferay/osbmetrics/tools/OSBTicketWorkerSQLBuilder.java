@@ -34,6 +34,7 @@ import java.util.List;
 
 /**
  * @author Rachael Koestartyo
+ * @author Peter Shin
  */
 public class OSBTicketWorkerSQLBuilder {
 
@@ -65,14 +66,14 @@ public class OSBTicketWorkerSQLBuilder {
 		throws Exception {
 
 		long companyId = _COMPANY_ID;
-		String createDate = "CURRENT_TIMESTAMP";
-		String modifiedDate = "CURRENT_TIMESTAMP";
-		String defaultUser = "FALSE";
+		String createDate = _TEMPLATE_CURRENT_TIMESTAMP;
+		String modifiedDate = _TEMPLATE_CURRENT_TIMESTAMP;
+		String defaultUser = _TEMPLATE_FALSE;
 		long contactId = userId + 1;
 		String password_ = "test";
-		String passwordEncrypted = "FALSE";
-		String passwordReset = "FALSE";
-		String passwordModifiedDate = "CURRENT_TIMESTAMP";
+		String passwordEncrypted = _TEMPLATE_FALSE;
+		String passwordReset = _TEMPLATE_FALSE;
+		String passwordModifiedDate = _TEMPLATE_CURRENT_TIMESTAMP;
 		int graceLoginCount = 0;
 		String screenName = getScreenName(fullName);
 		String emailAddress = getEmailAddress(fullName);
@@ -82,15 +83,15 @@ public class OSBTicketWorkerSQLBuilder {
 		String timeZoneId = "";
 		String greeting = "";
 		String comments = "";
-		String loginDate = "CURRENT_TIMESTAMP";
+		String loginDate = _TEMPLATE_CURRENT_TIMESTAMP;
 		String loginIP = "";
-		String lastLoginDate = "CURRENT_TIMESTAMP";
+		String lastLoginDate = _TEMPLATE_CURRENT_TIMESTAMP;
 		String lastLoginIP = "";
-		String lastFailedLoginDate = "CURRENT_TIMESTAMP";
+		String lastFailedLoginDate = _TEMPLATE_CURRENT_TIMESTAMP;
 		int failedLoginAttempts = 0;
 		boolean lockout = false;
-		String lockoutDate = "CURRENT_TIMESTAMP";
-		String agreedToTermsOfUse = "TRUE";
+		String lockoutDate = _TEMPLATE_CURRENT_TIMESTAMP;
+		String agreedToTermsOfUse = _TEMPLATE_TRUE;
 		String uuid_ = "";
 		String firstName = fullName[0];
 		String middleName = fullName[1];
@@ -103,7 +104,7 @@ public class OSBTicketWorkerSQLBuilder {
 		double socialPersonalEquity = 0;
 		long facebookId = 0;
 		String digest = "";
-		String emailAddressVerified = "TRUE";
+		String emailAddressVerified = _TEMPLATE_TRUE;
 		int status = _WORKFLOW_CONSTANTS_STATUS_INACTIVE;
 
 		StringBundler sb = new StringBundler(97);
@@ -282,6 +283,13 @@ public class OSBTicketWorkerSQLBuilder {
 		"com.liferay.portal.security.auth.DefaultFullNameGenerator";
 
 	private static final long _COMPANY_ID = 1;
+
+	private static final String _TEMPLATE_CURRENT_TIMESTAMP =
+		"CURRENT_TIMESTAMP";
+
+	private static final String _TEMPLATE_FALSE = "FALSE";
+
+	private static final String _TEMPLATE_TRUE = "TRUE";
 
 	private static final String _USER_EMAIL_ADDRESS_SUFFIX = "@metrics.com";
 
