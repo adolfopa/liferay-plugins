@@ -208,13 +208,7 @@ public class OSBTicketWorkerSQLBuilder {
 		sb.append(status);
 		sb.append(");\n");
 
-		String sql = sb.toString();
-
-		sql = StringUtil.replace(
-			sql, "[$LRDCOM_DB$]",
-			PortletPropsValues.LRDCOM_DB + StringPool.PERIOD);
-
-		return sql;
+		return replaceTokens(sb.toString());
 	}
 
 	protected List<Object[]> getDeletedUsers() throws Exception {
@@ -244,9 +238,7 @@ public class OSBTicketWorkerSQLBuilder {
 			sb.append("!= 'first last' group by ");
 			sb.append("[$LRDCOM_DB$]OSB_TicketComment.userId");
 
-			String sql = StringUtil.replace(
-				sb.toString(), "[$LRDCOM_DB$]",
-				PortletPropsValues.LRDCOM_DB + ".");
+			String sql = replaceTokens(sb.toString());
 
 			ps = con.prepareStatement(sql);
 
@@ -278,6 +270,11 @@ public class OSBTicketWorkerSQLBuilder {
 			StringPool.PERIOD + fullName[2];
 
 		return screenName;
+	}
+
+	protected String replaceTokens(String sql) {
+		return StringUtil.replace(
+			sql, "[$LRDCOM_DB$]", PortletPropsValues.LRDCOM_DB.concat("."));
 	}
 
 	private static final String _CLASS_NAME =
