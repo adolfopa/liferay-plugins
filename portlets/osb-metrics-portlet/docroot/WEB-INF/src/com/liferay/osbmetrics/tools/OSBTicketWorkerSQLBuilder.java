@@ -19,8 +19,6 @@ import com.liferay.osbmetrics.util.PortletPropsValues;
 import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ClassResolverUtil;
 import com.liferay.portal.kernel.util.MethodKey;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -31,46 +29,31 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author Rachael Koestartyo
  */
 public class OSBTicketWorkerSQLBuilder {
 
 	public String buildSQL() throws Exception {
-		if (!hasDeletedOSBTicketWorkers()) {
+		List<Object[]> deletedUsers = getDeletedUsers();
+
+		if (deletedUsers.isEmpty()) {
 			return StringPool.BLANK;
 		}
 
-		Connection con = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-
 		String template = StringPool.BLANK;
 
-		try {
-			con = DataAccess.getConnection();
+		for (Object[] deletedUser : deletedUsers) {
+			long userId = (Long)deletedUser[0];
+			String userName = (String)deletedUser[1];
 
-			ps = con.prepareStatement(getDeletedUsersSQL());
+			String[] fullName = (String[])PortalClassInvoker.invoke(
+				_splitFullNameMethodKey, userName);
 
-			rs = ps.executeQuery();
-
-			while (rs.next()) {
-				long userId = rs.getLong("userId");
-
-				String userName = rs.getString("userName");
-
-				String[] fullName = (String[])PortalClassInvoker.invoke(
-						_splitFullNameMethodKey, userName);
-
-				if (_log.isDebugEnabled()) {
-					_log.debug("Writing " + userId + " " + userName);
-				}
-
-				template = template + buildUserTemplate(userId, fullName);
-			}
-		}
-		finally {
-			DataAccess.cleanUp(con, ps, rs);
+			template = template + buildUserTemplate(userId, fullName);
 		}
 
 		DB db = DBFactoryUtil.getDB();
@@ -232,26 +215,53 @@ public class OSBTicketWorkerSQLBuilder {
 		return sql;
 	}
 
-	protected String getDeletedUsersSQL() {
-		StringBundler sb = new StringBundler(14);
+	protected List<Object[]> getDeletedUsers() throws Exception {
+		List<Object[]> users = new ArrayList<Object[]>();
 
-		sb.append("select [$LRDCOM_DB$]OSB_TicketComment.userId, ");
-		sb.append("[$LRDCOM_DB$]OSB_TicketComment.userName from ");
-		sb.append("[$LRDCOM_DB$]OSB_TicketComment left outer join ");
-		sb.append("[$LRDCOM_DB$]OSB_TicketAttachment on ");
-		sb.append("[$LRDCOM_DB$]OSB_TicketComment.userId = ");
-		sb.append("[$LRDCOM_DB$]OSB_TicketAttachment.userId ");
-		sb.append("left outer join [$LRDCOM_DB$]User_ on ");
-		sb.append("[$LRDCOM_DB$]OSB_TicketAttachment.userId = ");
-		sb.append("[$LRDCOM_DB$]User_.userId where ");
-		sb.append("[$LRDCOM_DB$]User_.userId is null and ");
-		sb.append("[$LRDCOM_DB$]OSB_TicketAttachment.userId is not null ");
-		sb.append("and [$LRDCOM_DB$]OSB_TicketComment.userName ");
-		sb.append("!= 'first last' group by ");
-		sb.append("[$LRDCOM_DB$]OSB_TicketComment.userId");
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
 
-		return StringUtil.replace(
-			sb.toString(), "[$LRDCOM_DB$]", PortletPropsValues.LRDCOM_DB + ".");
+		try {
+			con = DataAccess.getConnection();
+
+			StringBundler sb = new StringBundler(14);
+
+			sb.append("select [$LRDCOM_DB$]OSB_TicketComment.userId, ");
+			sb.append("[$LRDCOM_DB$]OSB_TicketComment.userName from ");
+			sb.append("[$LRDCOM_DB$]OSB_TicketComment left outer join ");
+			sb.append("[$LRDCOM_DB$]OSB_TicketAttachment on ");
+			sb.append("[$LRDCOM_DB$]OSB_TicketComment.userId = ");
+			sb.append("[$LRDCOM_DB$]OSB_TicketAttachment.userId ");
+			sb.append("left outer join [$LRDCOM_DB$]User_ on ");
+			sb.append("[$LRDCOM_DB$]OSB_TicketAttachment.userId = ");
+			sb.append("[$LRDCOM_DB$]User_.userId where ");
+			sb.append("[$LRDCOM_DB$]User_.userId is null and ");
+			sb.append("[$LRDCOM_DB$]OSB_TicketAttachment.userId is not null ");
+			sb.append("and [$LRDCOM_DB$]OSB_TicketComment.userName ");
+			sb.append("!= 'first last' group by ");
+			sb.append("[$LRDCOM_DB$]OSB_TicketComment.userId");
+
+			String sql = StringUtil.replace(
+				sb.toString(), "[$LRDCOM_DB$]",
+				PortletPropsValues.LRDCOM_DB + ".");
+
+			ps = con.prepareStatement(sql);
+
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				long userId = rs.getLong("userId");
+				String userName = rs.getString("userName");
+
+				users.add(new Object[] {userId, userName});
+			}
+		}
+		finally {
+			DataAccess.cleanUp(con, ps, rs);
+		}
+
+		return users;
 	}
 
 	protected String getEmailAddress(String[] fullName) {
@@ -268,29 +278,6 @@ public class OSBTicketWorkerSQLBuilder {
 		return screenName;
 	}
 
-	protected boolean hasDeletedOSBTicketWorkers() throws Exception {
-		Connection con = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-
-		try {
-			con = DataAccess.getConnection();
-
-			ps = con.prepareStatement(getDeletedUsersSQL());
-
-			rs = ps.executeQuery();
-
-			if (rs.next()) {
-				return true;
-			}
-
-			return false;
-		}
-		finally {
-			DataAccess.cleanUp(con, ps, rs);
-		}
-	}
-
 	private static final String _CLASS_NAME =
 		"com.liferay.portal.security.auth.DefaultFullNameGenerator";
 
@@ -301,9 +288,6 @@ public class OSBTicketWorkerSQLBuilder {
 	private static final String _USER_SCREEN_NAME_PREFIX = "metrics.";
 
 	private static final int _WORKFLOW_CONSTANTS_STATUS_INACTIVE = 5;
-
-	private static Log _log = LogFactoryUtil.getLog(
-		OSBTicketWorkerSQLBuilder.class);
 
 	private static MethodKey _splitFullNameMethodKey = new MethodKey(
 		ClassResolverUtil.resolveByPortalClassLoader(_CLASS_NAME),
