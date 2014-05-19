@@ -1153,12 +1153,10 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 		}
 
 		try {
-			long userId = GetterUtil.getLong(login);
-
-			String authType = _extRepository.getAuthType();
+			String authType = getAuthType();
 
 			if (!authType.equals(CompanyConstants.AUTH_TYPE_ID)) {
-				User user = userLocalService.getUser(userId);
+				User user = userLocalService.getUser(GetterUtil.getLong(login));
 
 				if (authType.equals(CompanyConstants.AUTH_TYPE_EA)) {
 					login = user.getEmailAddress();
