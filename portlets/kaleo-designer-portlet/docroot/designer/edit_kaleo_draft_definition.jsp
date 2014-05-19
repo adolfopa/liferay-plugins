@@ -547,7 +547,7 @@
 					</c:choose>
 
 					<%
-					String availablePropertyModels = ParamUtil.getString(request, "availablePropertyModels");
+					String availablePropertyModels = ParamUtil.getString(request, "availablePropertyModels", "Liferay.KaleoDesigner.AVAILABLE_PROPERTY_MODELS.KALEO_FORMS_EDIT");
 					%>
 
 					<c:if test="<%= Validator.isNotNull(availablePropertyModels) %>">

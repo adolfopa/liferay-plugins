@@ -141,7 +141,7 @@ AUI.add(
 			approve: Liferay.Language.get('approve'),
 			assignments: Liferay.Language.get('assignments'),
 			assignmentType: Liferay.Language.get('assignment-type'),
-			assignToAssetCreator: Liferay.Language.get('assign-to-asset-creator'),
+			assetCreator: Liferay.Language.get('asset-creator'),
 			autoCreate: Liferay.Language.get('auto-create'),
 			beanshell: Liferay.Language.get('beanshell'),
 			cancel: Liferay.Language.get('cancel'),
@@ -176,6 +176,7 @@ AUI.add(
 			priority: Liferay.Language.get('priority'),
 			privateMessage: Liferay.Language.get('private-message'),
 			python: Liferay.Language.get('python'),
+			recipientType: Liferay.Language.get('recipient-type'),
 			regular: Liferay.Language.get('regular'),
 			remove: Liferay.Language.get('remove'),
 			resourceActions: Liferay.Language.get('resource-actions'),
@@ -254,7 +255,7 @@ AUI.add(
 					assignmentType = value.assignmentType[0];
 				}
 
-				return KaleoDesignerStrings[assignmentType || 'assignToAssetCreator'];
+				return KaleoDesignerStrings[assignmentType || 'assetCreator'];
 			},
 
 			forms: function(data) {
@@ -1724,7 +1725,7 @@ AUI.add(
 								KaleoDesignerStrings,
 								{
 									assignmentTypeLabel: KaleoDesignerStrings.assignmentType,
-									defaultAssignmentLabel: KaleoDesignerStrings.assignToAssetCreator
+									defaultAssignmentLabel: KaleoDesignerStrings.assetCreator
 								}
 							);
 						}
@@ -2164,8 +2165,8 @@ AUI.add(
 							return A.merge(
 								KaleoDesignerStrings,
 								{
-									assignmentTypeLabel: KaleoDesignerStrings.notificationType,
-									defaultAssignmentLabel: KaleoDesignerStrings.notifyAssignees
+									assignmentTypeLabel: KaleoDesignerStrings.recipientType,
+									defaultAssignmentLabel: KaleoDesignerStrings.assetCreator
 								}
 							);
 						}
