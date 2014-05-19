@@ -50,9 +50,7 @@ public class OSBTicketWorkerSQLBuilder {
 		try {
 			con = DataAccess.getConnection();
 
-			String sql = getDeletedUsers();
-
-			ps = con.prepareStatement(sql);
+			ps = con.prepareStatement(getDeletedUsersSQL());
 
 			rs = ps.executeQuery();
 
@@ -234,28 +232,26 @@ public class OSBTicketWorkerSQLBuilder {
 		return sql;
 	}
 
-	protected String getDeletedUsers() {
-		StringBundler sb = new StringBundler(11);
+	protected String getDeletedUsersSQL() {
+		StringBundler sb = new StringBundler(14);
 
-		sb.append("select OSB_TicketComment.userId, ");
-		sb.append("OSB_TicketComment.userName from ");
+		sb.append("select [$LRDCOM_DB$]OSB_TicketComment.userId, ");
+		sb.append("[$LRDCOM_DB$]OSB_TicketComment.userName from ");
 		sb.append("[$LRDCOM_DB$]OSB_TicketComment left outer join ");
 		sb.append("[$LRDCOM_DB$]OSB_TicketAttachment on ");
-		sb.append("OSB_TicketComment.userId = ");
-		sb.append("OSB_TicketAttachment.userId left outer join ");
-		sb.append("[$LRDCOM_DB$]User_ on ");
-		sb.append("OSB_TicketAttachment.userId = User_.userId where ");
-		sb.append("User_.userId is null and OSB_TicketAttachment.userId ");
-		sb.append("is not null and OSB_TicketComment.userName ");
-		sb.append("!= 'first last' group by OSB_TicketComment.userId");
+		sb.append("[$LRDCOM_DB$]OSB_TicketComment.userId = ");
+		sb.append("[$LRDCOM_DB$]OSB_TicketAttachment.userId ");
+		sb.append("left outer join [$LRDCOM_DB$]User_ on ");
+		sb.append("[$LRDCOM_DB$]OSB_TicketAttachment.userId = ");
+		sb.append("[$LRDCOM_DB$]User_.userId where ");
+		sb.append("[$LRDCOM_DB$]User_.userId is null and ");
+		sb.append("[$LRDCOM_DB$]OSB_TicketAttachment.userId is not null ");
+		sb.append("and [$LRDCOM_DB$]OSB_TicketComment.userName ");
+		sb.append("!= 'first last' group by ");
+		sb.append("[$LRDCOM_DB$]OSB_TicketComment.userId");
 
-		String sql = sb.toString();
-
-		sql = StringUtil.replace(
-			sql, "[$LRDCOM_DB$]",
-			PortletPropsValues.LRDCOM_DB + StringPool.PERIOD);
-
-		return sql;
+		return StringUtil.replace(
+			sb.toString(), "[$LRDCOM_DB$]", PortletPropsValues.LRDCOM_DB + ".");
 	}
 
 	protected String getEmailAddress(String[] fullName) {
@@ -280,9 +276,7 @@ public class OSBTicketWorkerSQLBuilder {
 		try {
 			con = DataAccess.getConnection();
 
-			String sql = getDeletedUsers();
-
-			ps = con.prepareStatement(sql);
+			ps = con.prepareStatement(getDeletedUsersSQL());
 
 			rs = ps.executeQuery();
 
