@@ -26,7 +26,7 @@ AUI.add(
 		var BUFFER_CLOSE_NODE = ['</', null, '>'];
 		var BUFFER_OPEN_NODE = ['<', null, null, '>'];
 
-		var COL_TYPES_ASSIGNMENT = ['address', 'resourceActions', 'roleId', 'roleType', 'scriptedAssignment', 'user', 'userId'];
+		var COL_TYPES_ASSIGNMENT = ['address', 'resourceActions', 'roleId', 'roleType', 'scriptedAssignment', 'taskAssignees', 'user', 'userId'];
 
 		var COL_TYPES_FIELD = ['condition', 'fork', 'join', 'state', 'task'];
 
@@ -169,7 +169,6 @@ AUI.add(
 			notificationRecipients: Liferay.Language.get('notification-recipients'),
 			notifications: Liferay.Language.get('notifications'),
 			notificationType: Liferay.Language.get('notification-type'),
-			notifyAssignees: Liferay.Language.get('notify-assignees'),
 			onAssignment: Liferay.Language.get('on-assignment'),
 			onEntry: Liferay.Language.get('on-entry'),
 			onExit: Liferay.Language.get('on-exit'),
@@ -192,6 +191,7 @@ AUI.add(
 			scriptLanguage: Liferay.Language.get('script-language'),
 			search: Liferay.Language.get('search'),
 			site: Liferay.Language.get('site'),
+			taskAssignees: Liferay.Language.get('task-assignees'),
 			taskTimers: Liferay.Language.get('task-timers'),
 			template: Liferay.Language.get('template'),
 			templateLanguage: Liferay.Language.get('template-language'),
@@ -821,6 +821,9 @@ AUI.add(
 									}
 								);
 							}
+							else if (assignmentType === 'taskAssignees') {
+								buffer.push('<assignees/>');
+							}
 							else {
 								buffer.push('<user/>');
 							}
@@ -1046,6 +1049,10 @@ AUI.add(
 										}
 									},
 									{
+										key: 'taskAssignees',
+										locator: 'assignees'
+									},
+									{
 										key: 'user',
 										schema: {
 											resultListLocator: 'user',
@@ -1222,6 +1229,10 @@ AUI.add(
 												);
 											}
 											else {
+												if (isValue(item2)) {
+													assignments.assignmentType = AArray(item1);
+												}
+
 												instance._put(assignments, item1, item2);
 											}
 										}
@@ -1646,38 +1657,7 @@ AUI.add(
 			{
 				ATTRS: {
 					assignmentsType: {
-						valueFn: function() {
-							var instance = this;
-
-							var strings = instance.getStrings();
-
-							return [
-								{
-									label: strings.defaultAssignmentLabel,
-									value: STR_BLANK
-								},
-								{
-									label: strings.resourceActions,
-									value: 'resourceActions'
-								},
-								{
-									label: strings.role,
-									value: 'roleId'
-								},
-								{
-									label: strings.roleType,
-									value: 'roleType'
-								},
-								{
-									label: strings.scriptedAssignment,
-									value: 'scriptedAssignment'
-								},
-								{
-									label: strings.user,
-									value: 'user'
-								}
-							];
-						}
+						valueFn: '_valueAssignmentsType',
 					},
 
 					roleTypes: {
@@ -2130,6 +2110,39 @@ AUI.add(
 						var instance = this;
 
 						instance.typeSelect.focus();
+					},
+
+					_valueAssignmentsType: function() {
+						var instance = this;
+
+						var strings = instance.getStrings();
+
+						return [
+							{
+								label: strings.defaultAssignmentLabel,
+								value: STR_BLANK
+							},
+							{
+								label: strings.resourceActions,
+								value: 'resourceActions'
+							},
+							{
+								label: strings.role,
+								value: 'roleId'
+							},
+							{
+								label: strings.roleType,
+								value: 'roleType'
+							},
+							{
+								label: strings.scriptedAssignment,
+								value: 'scriptedAssignment'
+							},
+							{
+								label: strings.user,
+								value: 'user'
+							}
+						];
 					}
 				}
 			}
@@ -2138,6 +2151,14 @@ AUI.add(
 		var NotificationRecipientsEditor = A.Component.create(
 			{
 				ATTRS: {
+					index: {
+						value: 0
+					},
+
+					parentEditor: {
+						value: null
+					},
+
 					strings: {
 						valueFn: function() {
 							return A.merge(
@@ -2153,7 +2174,46 @@ AUI.add(
 
 				EXTENDS: AssignmentsEditor,
 
-				NAME: 'notifications-cell-editor'
+				NAME: 'notifications-cell-editor',
+
+				prototype: {
+					initializer: function() {
+						var instance = this;
+
+						instance.after('visibleChange', instance._afterVisibleChange);
+					},
+
+					_afterVisibleChange: function(event) {
+						var instance = this;
+
+						if (!event.newVal) {
+							instance.destroy();
+						}
+					},
+
+					_valueAssignmentsType: function() {
+						var instance = this;
+
+						var parentEditor = instance.get('parentEditor');
+
+						var formValue = serializeForm(parentEditor.get('contentBox'));
+
+						var executionType = formValue.executionType[instance.get('index')];
+
+						var assignmentsTypes = NotificationRecipientsEditor.superclass._valueAssignmentsType.apply(instance, arguments);
+
+						if (executionType === 'onAssignment') {
+							assignmentsTypes.push(
+								{
+									label: KaleoDesignerStrings.taskAssignees,
+									value: 'taskAssignees'
+								}
+							);
+						}
+
+						return assignmentsTypes;
+					}
+				}
 			}
 		);
 
@@ -2441,33 +2501,30 @@ AUI.add(
 						var instance = this;
 
 						var recipients = instance.get('value.recipients') || [];
-						var recipientsEditor = anchor.getData('recipientsEditor');
 						var recipientsEditorIndex = instance.getEditRecipientsLinks().indexOf(anchor);
 						var recipientsEditorValue = recipients[recipientsEditorIndex];
 
-						if (!recipientsEditor) {
-							recipientsEditor = new NotificationRecipientsEditor(
-								{
-									on: {
-										save: function(event) {
-											var editor = this;
+						return new NotificationRecipientsEditor(
+							{
+								builder: instance.get('builder'),
+								index: recipientsEditorIndex,
+								on: {
+									save: function(event) {
+										var editor = this;
 
-											editor.set('value', editor.getValue());
-										}
-									},
-									render: anchor.ancestor('.basecelleditor'),
-									visible: false
-								}
-							);
+										var value = editor.getValue();
 
-							anchor.setData('recipientsEditor', recipientsEditor);
-						}
+										editor.set('value', value);
 
-						if (!recipientsEditor.get('value')) {
-							recipientsEditor.set('value', recipientsEditorValue);
-						}
-
-						return recipientsEditor;
+										recipients[recipientsEditorIndex] = value;
+									}
+								},
+								parentEditor: instance,
+								render: anchor.ancestor('.basecelleditor'),
+								value: recipientsEditorValue,
+								visible: false
+							}
+						);
 					},
 
 					getValue: function() {
