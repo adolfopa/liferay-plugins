@@ -46,7 +46,7 @@ public class OSBTicketWorkerSQLBuilder {
 			return StringPool.BLANK;
 		}
 
-		String template = StringPool.BLANK;
+		String sqlTemplate = StringPool.BLANK;
 
 		for (int i = 0; i < deletedUsers.size(); i++) {
 			Object[] deletedUser = deletedUsers.get(i);
@@ -54,13 +54,16 @@ public class OSBTicketWorkerSQLBuilder {
 			long userId = (Long)deletedUser[0];
 			String userName = (String)deletedUser[1];
 
-			template = template + buildUserSQLTemplate(userId, userName);
-			template = template + buildOSBSupportWorkerSQLTemplate(i + 1, userId);
+			long supportWorkerId = i + 1;
+
+			sqlTemplate = sqlTemplate + buildUserSQLTemplate(userId, userName);
+			sqlTemplate = sqlTemplate + buildOSBSupportWorkerSQLTemplate(
+				supportWorkerId, userId);
 		}
 
 		DB db = DBFactoryUtil.getDB();
 
-		return db.buildSQL(template);
+		return db.buildSQL(sqlTemplate);
 	}
 
 	protected String buildOSBSupportWorkerSQLTemplate(
@@ -109,14 +112,14 @@ public class OSBTicketWorkerSQLBuilder {
 		String lastName = fullName[2];
 
 		long companyId = _COMPANY_ID;
-		String createDate = _TEMPLATE_CURRENT_TIMESTAMP;
-		String modifiedDate = _TEMPLATE_CURRENT_TIMESTAMP;
-		String defaultUser = _TEMPLATE_FALSE;
+		String createDate = _SQL_TEMPLATE_CURRENT_TIMESTAMP;
+		String modifiedDate = _SQL_TEMPLATE_CURRENT_TIMESTAMP;
+		String defaultUser = _SQL_TEMPLATE_FALSE;
 		long contactId = userId + 1;
 		String password_ = "test";
-		String passwordEncrypted = _TEMPLATE_FALSE;
-		String passwordReset = _TEMPLATE_FALSE;
-		String passwordModifiedDate = _TEMPLATE_CURRENT_TIMESTAMP;
+		String passwordEncrypted = _SQL_TEMPLATE_FALSE;
+		String passwordReset = _SQL_TEMPLATE_FALSE;
+		String passwordModifiedDate = _SQL_TEMPLATE_CURRENT_TIMESTAMP;
 		int graceLoginCount = 0;
 		String screenName =
 			_USER_SCREEN_NAME_PREFIX + firstName +"." + lastName;
@@ -128,15 +131,15 @@ public class OSBTicketWorkerSQLBuilder {
 		String timeZoneId = StringPool.BLANK;
 		String greeting = StringPool.BLANK;
 		String comments = StringPool.BLANK;
-		String loginDate = _TEMPLATE_CURRENT_TIMESTAMP;
+		String loginDate = _SQL_TEMPLATE_CURRENT_TIMESTAMP;
 		String loginIP = StringPool.BLANK;
-		String lastLoginDate = _TEMPLATE_CURRENT_TIMESTAMP;
+		String lastLoginDate = _SQL_TEMPLATE_CURRENT_TIMESTAMP;
 		String lastLoginIP = StringPool.BLANK;
-		String lastFailedLoginDate = _TEMPLATE_CURRENT_TIMESTAMP;
+		String lastFailedLoginDate = _SQL_TEMPLATE_CURRENT_TIMESTAMP;
 		int failedLoginAttempts = 0;
-		String lockout = _TEMPLATE_FALSE;
-		String lockoutDate = _TEMPLATE_CURRENT_TIMESTAMP;
-		String agreedToTermsOfUse = _TEMPLATE_TRUE;
+		String lockout = _SQL_TEMPLATE_FALSE;
+		String lockoutDate = _SQL_TEMPLATE_CURRENT_TIMESTAMP;
+		String agreedToTermsOfUse = _SQL_TEMPLATE_TRUE;
 		String uuid_ = StringPool.BLANK;
 		String jobTitle = StringPool.BLANK;
 		String reminderQueryQuestion = StringPool.BLANK;
@@ -146,7 +149,7 @@ public class OSBTicketWorkerSQLBuilder {
 		double socialPersonalEquity = 0;
 		long facebookId = 0;
 		String digest = StringPool.BLANK;
-		String emailAddressVerified = _TEMPLATE_TRUE;
+		String emailAddressVerified = _SQL_TEMPLATE_TRUE;
 		int status = _WORKFLOW_CONSTANTS_STATUS_INACTIVE;
 
 		StringBundler sb = new StringBundler(97);
@@ -354,12 +357,12 @@ public class OSBTicketWorkerSQLBuilder {
 
 	private static final long _OSB_TICKET_ENTRY_ESCALATION_LEVEL_1 = 31001;
 
-	private static final String _TEMPLATE_CURRENT_TIMESTAMP =
+	private static final String _SQL_TEMPLATE_CURRENT_TIMESTAMP =
 		"CURRENT_TIMESTAMP";
 
-	private static final String _TEMPLATE_FALSE = "FALSE";
+	private static final String _SQL_TEMPLATE_FALSE = "FALSE";
 
-	private static final String _TEMPLATE_TRUE = "TRUE";
+	private static final String _SQL_TEMPLATE_TRUE = "TRUE";
 
 	private static final String _USER_EMAIL_ADDRESS_SUFFIX = "@metrics.com";
 
