@@ -756,9 +756,6 @@ public class SharepointWSRepository
 			CredentialsProvider credentialsProvider)
 		throws SystemException {
 
-		_connectionCache = new ConnectionCache<SharepointConnection>(
-			SharepointConnection.class, getRepositoryId(), this);
-
 		try {
 			_credentialsProvider = credentialsProvider;
 
@@ -771,6 +768,9 @@ public class SharepointWSRepository
 			_host = url.getHost();
 			_protocol = url.getProtocol();
 			_sitePath = url.getPath();
+
+			_connectionCache = new ConnectionCache<SharepointConnection>(
+				SharepointConnection.class, getRepositoryId(), this);
 
 			SharepointConnection sharepointConnection =
 				getSharepointConnection();
