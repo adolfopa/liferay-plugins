@@ -48,14 +48,14 @@ public class OSBTicketWorkerSQLBuilder {
 
 		String template = StringPool.BLANK;
 
-		for (int i = 1; i <= deletedUsers.size(); i++) {
-			Object[] deletedUser = deletedUsers.get(i - 1);
+		for (int i = 0; i < deletedUsers.size(); i++) {
+			Object[] deletedUser = deletedUsers.get(i);
 
 			long userId = (Long)deletedUser[0];
 			String userName = (String)deletedUser[1];
 
 			template = template + buildUserTemplate(userId, userName);
-			template = template + buildSupportWorkerTemplate(i, userId);
+			template = template + buildOSBSupportWorkerTemplate(i + 1, userId);
 		}
 
 		DB db = DBFactoryUtil.getDB();
@@ -63,9 +63,8 @@ public class OSBTicketWorkerSQLBuilder {
 		return db.buildSQL(template);
 	}
 
-	protected String buildSupportWorkerTemplate(
-			long supportWorkerId, long userId)
-		throws Exception {
+	protected String buildOSBSupportWorkerTemplate(
+		long supportWorkerId, long userId) {
 
 		long supportTeamId = getOSBSupportTeamId(userId);
 		int assignedWork = 0;
@@ -74,7 +73,7 @@ public class OSBTicketWorkerSQLBuilder {
 		int role = _OSB_SUPPORT_WORKER_ROLE_DEVELOPER;
 		int notifications = 0;
 
-		StringBundler sb = new StringBundler(4);
+		StringBundler sb = new StringBundler(19);
 
 		sb.append("insert into [$LRDCOM_DB$]OSB_SupportWorker (");
 		sb.append("supportWorkerId, userId, supportTeamId, assignedWork, ");
@@ -327,6 +326,16 @@ public class OSBTicketWorkerSQLBuilder {
 
 	private static final long _COMPANY_ID = 1;
 
+	private static final long[] _OSB_SUPPORT_TEAM_CN_USER_IDS = {
+		6641443, 9896768, 13461888, 18930927, 24347997
+	};
+
+	private static final long[] _OSB_SUPPORT_TEAM_ES_USER_IDS = {1603932};
+
+	private static final long[] _OSB_SUPPORT_TEAM_HU_USER_IDS = {
+		4892055, 8127568, 8587716, 10946037, 12550882, 16680467, 23027929
+	};
+
 	private static final long _OSB_SUPPORT_TEAM_ID_CN = 6499667;
 
 	private static final long _OSB_SUPPORT_TEAM_ID_ES = 6466830;
@@ -334,6 +343,12 @@ public class OSBTicketWorkerSQLBuilder {
 	private static final long _OSB_SUPPORT_TEAM_ID_HU = 6499676;
 
 	private static final long _OSB_SUPPORT_TEAM_ID_US = 6017547;
+
+	private static final long[] _OSB_SUPPORT_TEAM_US_USER_IDS = {
+		3541131, 3554286, 3867391, 4059977, 4524865, 5053514, 6007394, 7007697,
+		8896412, 8918652, 10356153, 11840191, 13772525, 13949847, 15926325,
+		16099957, 18069415
+	};
 
 	private static final int _OSB_SUPPORT_WORKER_ROLE_DEVELOPER = 1;
 
@@ -351,22 +366,6 @@ public class OSBTicketWorkerSQLBuilder {
 	private static final String _USER_SCREEN_NAME_PREFIX = "metrics.";
 
 	private static final int _WORKFLOW_CONSTANTS_STATUS_INACTIVE = 5;
-
-	private static Long[] _OSB_SUPPORT_TEAM_CN_USER_IDS = new Long[] {
-		6641443L, 9896768L, 13461888L, 18930927L, 24347997L
-	};
-
-	private static Long[] _OSB_SUPPORT_TEAM_ES_USER_IDS = new Long[] {1603932L};
-
-	private static Long[] _OSB_SUPPORT_TEAM_HU_USER_IDS = new Long[] {
-		4892055L, 8127568L, 8587716L, 10946037L, 12550882L, 16680467L, 23027929L
-	};
-
-	private static Long[] _OSB_SUPPORT_TEAM_US_USER_IDS = new Long[] {
-		3541131L, 3554286L, 3867391L, 4059977L, 4524865L, 5053514L, 6007394L,
-		7007697L, 8896412L, 8918652L, 10356153L, 11840191L, 13772525L,
-		13949847L, 15926325L, 16099957L, 18069415L
-	};
 
 	private static MethodKey _splitFullNameMethodKey = new MethodKey(
 		ClassResolverUtil.resolveByPortalClassLoader(_CLASS_NAME),
