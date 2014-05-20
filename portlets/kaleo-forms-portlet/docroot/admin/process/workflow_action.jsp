@@ -30,7 +30,7 @@ String backURL = (String)row.getParameter("backURL");
 		<portlet:param name="backURL" value="<%= backURL %>" />
 		<portlet:param name="name" value="<%= workflowDefinition.getName() %>" />
 		<portlet:param name="version" value="<%= String.valueOf(workflowDefinition.getVersion()) %>" />
-		<portlet:param name="draftVersion" value="<%= String.valueOf(workflowDefinition.getVersion()) %>" />
+		<portlet:param name="draftVersion" value="1" />
 	</portlet:renderURL>
 
 	<liferay-ui:icon
