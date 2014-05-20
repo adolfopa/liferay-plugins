@@ -48,6 +48,8 @@ public class OSBTicketWorkerSQLBuilder {
 
 		String sqlTemplate = StringPool.BLANK;
 
+		int ticketWorkerId = 0;
+
 		for (int i = 0; i < deletedUsers.size(); i++) {
 			Object[] deletedUser = deletedUsers.get(i);
 
@@ -59,6 +61,15 @@ public class OSBTicketWorkerSQLBuilder {
 			sqlTemplate = sqlTemplate + buildUserSQLTemplate(userId, userName);
 			sqlTemplate = sqlTemplate + buildOSBSupportWorkerSQLTemplate(
 				supportWorkerId, userId);
+
+			List<Long> ticketEntryIds = getTicketEntryIds(userId);
+
+			for (long ticketEntryId : ticketEntryIds) {
+				ticketWorkerId = ticketWorkerId + 1;
+
+				sqlTemplate = sqlTemplate + buildOSBTicketWorkerSQLTemplate(
+					ticketWorkerId, ticketEntryId, userId);
+			}
 		}
 
 		DB db = DBFactoryUtil.getDB();
@@ -96,6 +107,27 @@ public class OSBTicketWorkerSQLBuilder {
 		sb.append(role);
 		sb.append(", ");
 		sb.append(notifications);
+		sb.append(");\n");
+
+		return replaceTokens(sb.toString());
+	}
+
+	protected String buildOSBTicketWorkerSQLTemplate(
+		long ticketWorkerId, long ticketEntryId, long userId) {
+
+		int role = _OSB_TICKET_WORKER_ROLE_DEVELOPER;
+
+		StringBundler sb = new StringBundler(10);
+
+		sb.append("insert into [$LRDCOM_DB$]OSB_TicketWorker (");
+		sb.append("ticketWorkerId, userId, ticketEntryId, role) values (");
+		sb.append(ticketWorkerId);
+		sb.append(", ");
+		sb.append(userId);
+		sb.append(", ");
+		sb.append(ticketEntryId);
+		sb.append(", ");
+		sb.append(role);
 		sb.append(");\n");
 
 		return replaceTokens(sb.toString());
@@ -319,6 +351,56 @@ public class OSBTicketWorkerSQLBuilder {
 		return _OSB_SUPPORT_TEAM_ID_US;
 	}
 
+	protected List<Long> getTicketEntryIds(long userId) throws Exception {
+		List<Long> ticketEntryIds = new ArrayList<Long>();
+
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+			con = DataAccess.getConnection();
+
+			StringBundler sb = new StringBundler(16);
+
+			sb.append("select distinct [$LRDCOM_DB$]OSB_AuditEntry.classPK, ");
+			sb.append("[$LRDCOM_DB$]OSB_AuditEntry.userId from ");
+			sb.append("[$LRDCOM_DB$]OSB_AuditEntry where ");
+			sb.append("[$LRDCOM_DB$]OSB_AuditEntry.userId != 5 and ");
+			sb.append("[$LRDCOM_DB$]OSB_AuditEntry.userId != 8304134 and ");
+			sb.append("[$LRDCOM_DB$]OSB_AuditEntry.userId = ");
+			sb.append(userId);
+			sb.append(" and [$LRDCOM_DB$]OSB_AuditEntry.classPK in (select ");
+			sb.append("[$LRDCOM_DB$]OSB_TicketEntry.ticketEntryId from ");
+			sb.append("[$LRDCOM_DB$]OSB_TicketEntry left outer join ");
+			sb.append("[$LRDCOM_DB$]OSB_TicketWorker on ");
+			sb.append("[$LRDCOM_DB$]OSB_TicketEntry.ticketEntryId = ");
+			sb.append("[$LRDCOM_DB$]OSB_TicketWorker.ticketEntryId and (");
+			sb.append("[$LRDCOM_DB$]OSB_TicketWorker.role = 2 or ");
+			sb.append("[$LRDCOM_DB$]OSB_TicketWorker.role = 3");
+			sb.append(") where [$LRDCOM_DB$]OSB_TicketWorker.userId is null)");
+
+			String sql = sb.toString();
+
+			sql = replaceTokens(sb.toString());
+
+			ps = con.prepareStatement(sql);
+
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				long ticketEntryId = rs.getLong("classPK");
+
+				ticketEntryIds.add(ticketEntryId);
+			}
+		}
+		finally {
+			DataAccess.cleanUp(con, ps, rs);
+		}
+
+		return ticketEntryIds;
+	}
+
 	protected String replaceTokens(String sql) {
 		return StringUtil.replace(
 			sql, "[$LRDCOM_DB$]", PortletPropsValues.LRDCOM_DB.concat("."));
@@ -356,6 +438,8 @@ public class OSBTicketWorkerSQLBuilder {
 	private static final int _OSB_SUPPORT_WORKER_ROLE_DEVELOPER = 1;
 
 	private static final long _OSB_TICKET_ENTRY_ESCALATION_LEVEL_1 = 31001;
+
+	private static final int _OSB_TICKET_WORKER_ROLE_DEVELOPER = 2;
 
 	private static final String _SQL_TEMPLATE_CURRENT_TIMESTAMP =
 		"CURRENT_TIMESTAMP";
