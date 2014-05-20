@@ -20,11 +20,8 @@
 String backURL = ParamUtil.getString(request, "backURL");
 
 long ddmStructureId = ParamUtil.getLong(request, "ddmStructureId");
-
 String workflowDefinition = ParamUtil.getString(request, "workflowDefinition");
-
 String workflowTaskName = ParamUtil.getString(request, "workflowTaskName");
-
 String mode = ParamUtil.getString(request, "mode");
 %>
 

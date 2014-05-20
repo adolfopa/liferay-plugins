@@ -20,10 +20,8 @@
 String backURL = ParamUtil.getString(request, "backURL");
 
 long kaleoProcessId = ParamUtil.getLong(request, "kaleoProcessId");
-String workflowDefinition = ParamUtil.getString(request, "workflowDefinition");
-
 long ddmStructureId = KaleoFormsUtil.getKaleoProcessDDMStructureId(kaleoProcessId, portletSession);
-
+String workflowDefinition = ParamUtil.getString(request, "workflowDefinition");
 String initialStateName = KaleoFormsUtil.getInitialStateName(company.getCompanyId(), workflowDefinition);
 
 TaskFormPair initialStateTaskFormPair = KaleoFormsUtil.getInitialStateTaskFormPair(kaleoProcessId, ddmStructureId, workflowDefinition, initialStateName, portletSession);
