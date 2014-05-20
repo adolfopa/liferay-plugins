@@ -22,9 +22,11 @@ String backURL = ParamUtil.getString(request, "backURL");
 long kaleoProcessId = ParamUtil.getLong(request, "kaleoProcessId");
 String workflowDefinition = ParamUtil.getString(request, "workflowDefinition");
 
+long ddmStructureId = KaleoFormsUtil.getKaleoProcessDDMStructureId(kaleoProcessId, portletSession);
+
 String initialStateName = KaleoFormsUtil.getInitialStateName(company.getCompanyId(), workflowDefinition);
 
-TaskFormPair initialStateTaskFormPair = KaleoFormsUtil.getInitialStateTaskFormPair(kaleoProcessId, initialStateName, portletSession);
+TaskFormPair initialStateTaskFormPair = KaleoFormsUtil.getInitialStateTaskFormPair(kaleoProcessId, ddmStructureId, workflowDefinition, initialStateName, portletSession);
 %>
 
 <div id="<portlet:namespace />formsSearchContainer">
@@ -37,7 +39,7 @@ TaskFormPair initialStateTaskFormPair = KaleoFormsUtil.getInitialStateTaskFormPa
 		<liferay-ui:search-container-results>
 
 			<%
-			TaskFormPairs taskFormPairs = KaleoFormsUtil.getTaskFormPairs(company.getCompanyId(), kaleoProcessId, workflowDefinition, portletSession);
+			TaskFormPairs taskFormPairs = KaleoFormsUtil.getTaskFormPairs(company.getCompanyId(), kaleoProcessId, ddmStructureId, workflowDefinition, portletSession);
 
 			taskFormPairs.add(0, initialStateTaskFormPair);
 
@@ -85,6 +87,8 @@ TaskFormPair initialStateTaskFormPair = KaleoFormsUtil.getInitialStateTaskFormPa
 		<portlet:renderURL var="selectFormURL">
 			<portlet:param name="mvcPath" value="/admin/process/select_template.jsp" />
 			<portlet:param name="backURL" value="<%= backURL %>" />
+			<portlet:param name="ddmStructureId" value="<%= String.valueOf(ddmStructureId) %>" />
+			<portlet:param name="workflowDefinition" value="<%= workflowDefinition %>" />
 			<portlet:param name="workflowTaskName" value="<%= taskFormsPair.getWorkflowTaskName() %>" />
 			<portlet:param name="mode" value="<%= taskFormsPair.getWorkflowTaskName().equals(initialStateName) ? DDMTemplateConstants.TEMPLATE_MODE_CREATE : DDMTemplateConstants.TEMPLATE_MODE_EDIT %>" />
 		</portlet:renderURL>

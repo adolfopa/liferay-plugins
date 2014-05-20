@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -79,18 +80,31 @@ public class KaleoFormsUtil {
 	}
 
 	public static TaskFormPair getInitialStateTaskFormPair(
-			long kaleoProcessId, String initialStateName,
-			PortletSession portletSession)
+			long kaleoProcessId, long ddmStructureId, String workflowDefinition,
+			String initialStateName, PortletSession portletSession)
 		throws Exception {
 
+		String taskSessionKey = _getTaskSessionKey(
+			ddmStructureId, workflowDefinition, initialStateName);
+
 		long ddmTemplateId = GetterUtil.getLong(
-			portletSession.getAttribute(initialStateName));
+			portletSession.getAttribute(taskSessionKey));
 
 		if ((ddmTemplateId == 0) && (kaleoProcessId > 0)) {
 			KaleoProcess kaleoProcess = KaleoProcessServiceUtil.getKaleoProcess(
 				kaleoProcessId);
 
-			ddmTemplateId = kaleoProcess.getDDMTemplateId();
+			DDLRecordSet ddlRecordSet = kaleoProcess.getDDLRecordSet();
+
+			String kaleoProcessWorkflowDefinition =
+				kaleoProcess.getWorkflowDefinitionName() + "@" +
+				kaleoProcess.getWorkflowDefinitionVersion();
+
+			if ((ddlRecordSet.getDDMStructureId() == ddmStructureId) &&
+				kaleoProcessWorkflowDefinition.equals(workflowDefinition)) {
+
+				ddmTemplateId = kaleoProcess.getDDMTemplateId();
+			}
 		}
 
 		return new TaskFormPair(initialStateName, ddmTemplateId);
@@ -114,6 +128,20 @@ public class KaleoFormsUtil {
 		}
 
 		return 0;
+	}
+
+	public static long getKaleoProcessDDMStructureId(
+			long kaleoProcessId, PortletSession portletSession)
+		throws Exception {
+
+		KaleoProcess kaleoProcess = null;
+
+		if (kaleoProcessId > 0) {
+			kaleoProcess = KaleoProcessServiceUtil.getKaleoProcess(
+				kaleoProcessId);
+		}
+
+		return getKaleoProcessDDMStructureId(kaleoProcess, portletSession);
 	}
 
 	public static String getKaleoProcessDescription(
@@ -191,15 +219,16 @@ public class KaleoFormsUtil {
 	}
 
 	public static TaskFormPairs getTaskFormPairs(
-			long companyId, long kaleoProcessId, String workflowDefinition,
-			PortletSession portletSession)
+			long companyId, long kaleoProcessId, long ddmStructureId,
+			String workflowDefinition, PortletSession portletSession)
 		throws Exception {
 
 		TaskFormPairs taskFormPairs = new TaskFormPairs();
 
 		for (String taskName : _getTaskNames(companyId, workflowDefinition)) {
 			long ddmTemplateId = _getDDMTemplateId(
-				kaleoProcessId, taskName, portletSession);
+				kaleoProcessId, ddmStructureId, workflowDefinition, taskName,
+				portletSession);
 
 			TaskFormPair taskFormPair = new TaskFormPair(
 				taskName, ddmTemplateId);
@@ -244,14 +273,35 @@ public class KaleoFormsUtil {
 	}
 
 	private static long _getDDMTemplateId(
-			long kaleoProcessId, String taskName, PortletSession portletSession)
+			long kaleoProcessId, long ddmStructureId, String workflowDefinition,
+			String taskName, PortletSession portletSession)
 		throws Exception {
 
+		String taskSessionKey = _getTaskSessionKey(
+			ddmStructureId, workflowDefinition, taskName);
+
 		long ddmTemplateId = GetterUtil.getLong(
-			portletSession.getAttribute(taskName));
+			portletSession.getAttribute(taskSessionKey));
 
 		if (ddmTemplateId > 0) {
 			return ddmTemplateId;
+		}
+
+		if (kaleoProcessId > 0) {
+			KaleoProcess kaleoProcess = KaleoProcessServiceUtil.getKaleoProcess(
+				kaleoProcessId);
+
+			DDLRecordSet ddlRecordSet = kaleoProcess.getDDLRecordSet();
+
+			String kaleoProcessWorkflowDefinition =
+				kaleoProcess.getWorkflowDefinitionName() + "@" +
+				kaleoProcess.getWorkflowDefinitionVersion();
+
+			if ((ddlRecordSet.getDDMStructureId() != ddmStructureId) ||
+				!kaleoProcessWorkflowDefinition.equals(workflowDefinition)) {
+
+				return 0;
+			}
 		}
 
 		KaleoProcessLink kaleoProcessLink =
@@ -311,6 +361,18 @@ public class KaleoFormsUtil {
 			companyId, workflowDefinitionName, workflowDefinitionVersion);
 
 		return _getTaskNames(document.getRootElement());
+	}
+
+	private static String _getTaskSessionKey(
+		long ddmStructureId, String workflowDefinition, String taskName) {
+
+		StringBundler sb = new StringBundler(3);
+
+		sb.append(ddmStructureId);
+		sb.append(workflowDefinition);
+		sb.append(taskName);
+
+		return sb.toString();
 	}
 
 	private static Document _getWorkflowDefinitionDocument(

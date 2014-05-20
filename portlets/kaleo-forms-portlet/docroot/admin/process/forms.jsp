@@ -23,6 +23,8 @@ KaleoProcess kaleoProcess = (KaleoProcess)request.getAttribute(WebKeys.KALEO_PRO
 
 long kaleoProcessId = BeanParamUtil.getLong(kaleoProcess, request, "kaleoProcessId");
 
+long ddmStructureId = KaleoFormsUtil.getKaleoProcessDDMStructureId(kaleoProcess, portletSession);
+
 String workflowDefinition = KaleoFormsUtil.getWorkflowDefinition(kaleoProcess, portletSession);
 %>
 
@@ -33,7 +35,7 @@ String workflowDefinition = KaleoFormsUtil.getWorkflowDefinition(kaleoProcess, p
 <aui:field-wrapper>
 
 	<%
-	TaskFormPairs taskFormPairs = KaleoFormsUtil.getTaskFormPairs(company.getCompanyId(), kaleoProcessId, workflowDefinition, portletSession);
+	TaskFormPairs taskFormPairs = KaleoFormsUtil.getTaskFormPairs(company.getCompanyId(), kaleoProcessId, ddmStructureId, workflowDefinition, portletSession);
 	%>
 
 	<aui:input name="taskFormPairsData" type="hidden" value="<%= taskFormPairs.toString() %>" />

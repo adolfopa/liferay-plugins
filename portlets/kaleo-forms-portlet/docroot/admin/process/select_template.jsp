@@ -19,9 +19,12 @@
 <%
 String backURL = ParamUtil.getString(request, "backURL");
 
+long ddmStructureId = ParamUtil.getLong(request, "ddmStructureId");
+
+String workflowDefinition = ParamUtil.getString(request, "workflowDefinition");
+
 String workflowTaskName = ParamUtil.getString(request, "workflowTaskName");
 
-long ddmStructureId = GetterUtil.getLong(portletSession.getAttribute("ddmStructureId"));
 String mode = ParamUtil.getString(request, "mode");
 %>
 
@@ -104,7 +107,7 @@ String mode = ParamUtil.getString(request, "mode");
 						}
 					},
 					data: {
-						'<%= renderResponse.getNamespace() + workflowTaskName %>' : event.ddmtemplateid
+						'<%= renderResponse.getNamespace() + ddmStructureId + workflowDefinition + workflowTaskName %>' : event.ddmtemplateid
 					}
 				}
 			);
