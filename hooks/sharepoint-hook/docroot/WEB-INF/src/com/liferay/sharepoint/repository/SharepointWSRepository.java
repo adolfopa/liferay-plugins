@@ -76,9 +76,6 @@ public class SharepointWSRepository
 
 	public SharepointWSRepository() {
 		super(null);
-
-		_connectionCache = new ConnectionCache<SharepointConnection>(
-			SharepointConnection.class, this);
 	}
 
 	@Override
@@ -758,6 +755,9 @@ public class SharepointWSRepository
 			UnicodeProperties typeSettingsProperties,
 			CredentialsProvider credentialsProvider)
 		throws SystemException {
+
+		_connectionCache = new ConnectionCache<SharepointConnection>(
+			SharepointConnection.class, getRepositoryId(), this);
 
 		try {
 			_credentialsProvider = credentialsProvider;
