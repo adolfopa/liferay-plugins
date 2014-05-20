@@ -463,6 +463,25 @@ public class KaleoProcessClp extends BaseModelImpl<KaleoProcess>
 	}
 
 	@Override
+	public java.lang.String getWorkflowDefinition() {
+		try {
+			String methodName = "getWorkflowDefinition";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			java.lang.String returnObj = (java.lang.String)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
+	}
+
+	@Override
 	public com.liferay.portlet.dynamicdatamapping.model.DDMTemplate getDDMTemplate() {
 		try {
 			String methodName = "getDDMTemplate";

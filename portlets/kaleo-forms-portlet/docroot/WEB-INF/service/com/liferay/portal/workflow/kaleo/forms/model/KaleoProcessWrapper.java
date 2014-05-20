@@ -554,6 +554,11 @@ public class KaleoProcessWrapper implements KaleoProcess,
 	}
 
 	@Override
+	public java.lang.String getWorkflowDefinition() {
+		return _kaleoProcess.getWorkflowDefinition();
+	}
+
+	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
 			return true;

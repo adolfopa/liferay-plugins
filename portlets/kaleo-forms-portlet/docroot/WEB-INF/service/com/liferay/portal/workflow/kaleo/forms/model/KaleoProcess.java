@@ -57,4 +57,6 @@ public interface KaleoProcess extends KaleoProcessModel, PersistedModel {
 	public java.lang.String getName(java.util.Locale locale)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
+
+	public java.lang.String getWorkflowDefinition();
 }
