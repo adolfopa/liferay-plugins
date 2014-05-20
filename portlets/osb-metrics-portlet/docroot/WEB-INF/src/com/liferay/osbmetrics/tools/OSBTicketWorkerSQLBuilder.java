@@ -54,8 +54,8 @@ public class OSBTicketWorkerSQLBuilder {
 			long userId = (Long)deletedUser[0];
 			String userName = (String)deletedUser[1];
 
-			template = template + buildUserTemplate(userId, userName);
-			template = template + buildOSBSupportWorkerTemplate(i + 1, userId);
+			template = template + buildUserSQLTemplate(userId, userName);
+			template = template + buildOSBSupportWorkerSQLTemplate(i + 1, userId);
 		}
 
 		DB db = DBFactoryUtil.getDB();
@@ -63,7 +63,7 @@ public class OSBTicketWorkerSQLBuilder {
 		return db.buildSQL(template);
 	}
 
-	protected String buildOSBSupportWorkerTemplate(
+	protected String buildOSBSupportWorkerSQLTemplate(
 		long supportWorkerId, long userId) {
 
 		long supportTeamId = getOSBSupportTeamId(userId);
@@ -98,7 +98,7 @@ public class OSBTicketWorkerSQLBuilder {
 		return replaceTokens(sb.toString());
 	}
 
-	protected String buildUserTemplate(long userId, String userName)
+	protected String buildUserSQLTemplate(long userId, String userName)
 		throws Exception {
 
 		String[] fullName = (String[])PortalClassInvoker.invoke(
