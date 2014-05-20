@@ -78,4 +78,11 @@ public class KaleoProcessImpl extends KaleoProcessBaseImpl {
 		return ddlRecordSet.getName(locale);
 	}
 
+	public String getWorkflowDefinition() {
+		String workflowDefinition =
+			getWorkflowDefinitionName() + "@" + getWorkflowDefinitionVersion();
+
+		return workflowDefinition;
+	}
+
 }

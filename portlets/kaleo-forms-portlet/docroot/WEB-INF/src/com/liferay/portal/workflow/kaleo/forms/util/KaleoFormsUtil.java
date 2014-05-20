@@ -97,8 +97,7 @@ public class KaleoFormsUtil {
 			DDLRecordSet ddlRecordSet = kaleoProcess.getDDLRecordSet();
 
 			String kaleoProcessWorkflowDefinition =
-				kaleoProcess.getWorkflowDefinitionName() + "@" +
-				kaleoProcess.getWorkflowDefinitionVersion();
+				kaleoProcess.getWorkflowDefinition();
 
 			if ((ddlRecordSet.getDDMStructureId() == ddmStructureId) &&
 				kaleoProcessWorkflowDefinition.equals(workflowDefinition)) {
@@ -251,14 +250,7 @@ public class KaleoFormsUtil {
 		}
 
 		if (kaleoProcess != null) {
-			String workflowDefinitionName =
-				kaleoProcess.getWorkflowDefinitionName();
-
-			long workflowDefinitionVersion =
-				kaleoProcess.getWorkflowDefinitionVersion();
-
-			workflowDefinition =
-				workflowDefinitionName + "@" + workflowDefinitionVersion;
+			workflowDefinition = kaleoProcess.getWorkflowDefinition();
 		}
 
 		return workflowDefinition;
@@ -294,8 +286,7 @@ public class KaleoFormsUtil {
 			DDLRecordSet ddlRecordSet = kaleoProcess.getDDLRecordSet();
 
 			String kaleoProcessWorkflowDefinition =
-				kaleoProcess.getWorkflowDefinitionName() + "@" +
-				kaleoProcess.getWorkflowDefinitionVersion();
+				kaleoProcess.getWorkflowDefinition();
 
 			if ((ddlRecordSet.getDDMStructureId() != ddmStructureId) ||
 				!kaleoProcessWorkflowDefinition.equals(workflowDefinition)) {
