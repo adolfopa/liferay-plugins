@@ -28,7 +28,7 @@ AUI.add(
 
 		var COL_TYPES_ASSIGNMENT = ['address', 'resourceActions', 'roleId', 'roleType', 'scriptedAssignment', 'taskAssignees', 'user', 'userId'];
 
-		var COL_TYPES_FIELD = ['condition', 'fork', 'join', 'state', 'task'];
+		var COL_TYPES_FIELD = ['condition', 'fork', 'join', 'join-xor', 'state', 'task'];
 
 		var CSS_CELLEDITOR_ASSIGNMENT_VIEW = getClassName('celleditor', 'assignment', 'view');
 
@@ -3213,6 +3213,32 @@ AUI.add(
 
 		DiagramBuilderTypes.join = DiagramNodeJoin;
 
+		var DiagramNodeJoinXOR = A.Component.create(
+			{
+				ATTRS: {
+					cssClass: {
+						value: 'icon-db-joinxor'
+					},
+
+					type: {
+						validator: isString,
+						value: 'join-xor'
+					},
+
+					xmlType: {
+						validator: isString,
+						value: 'join-xor'
+					}
+				},
+
+				EXTENDS: DiagramNodeJoin,
+
+				NAME: 'diagram-node'
+			}
+		);
+
+		DiagramBuilderTypes['join-xor'] = DiagramNodeJoinXOR;
+
 		var DiagramNodeFork = A.Component.create(
 			{
 				ATTRS: {
@@ -3440,6 +3466,11 @@ AUI.add(
 					iconClass: 'icon-db-join',
 					label: Liferay.Language.get('join'),
 					type: 'join'
+				},
+				{
+					iconClass: 'icon-db-joinxor',
+					label: Liferay.Language.get('join-xor'),
+					type: 'join-xor'
 				},
 				{
 					iconClass: 'icon-db-start',
