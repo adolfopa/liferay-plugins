@@ -6,10 +6,49 @@
 	.diagram-builder-field {
 		position: relative;
 		width: 78px;
+
+		.diagram-builder-field-icon {
+			font-size: 32px;
+		}
 	}
 
 	.diagram-builder-fields-container {
 		margin: 0;
+	}
+
+	.diagram-builder-canvas .diagram-node {
+		font-size: 34px;
+		padding-top: 2px;
+		text-align: center;
+
+		&.icon-db-condition, &.icon-db-fork, &.icon-db-join {
+			font-size: 62px;
+			padding-top: 0;
+		}
+
+		&.icon-db-task {
+			font-size: 60px;
+			padding-top: 1px;
+
+			.diagram-node-content .yui3-widget-bd {
+				display: inline-block;
+				margin-top: -4px;
+			}
+		}
+
+		.diagram-node-content {
+			background: transparent;
+
+			.yui3-widget-bd {
+				display: inline;
+			}
+		}
+
+		.diagram-node-label {
+			font-size: 14px;
+			margin-top: 5px;
+			width: auto;
+		}
 	}
 
 	.diagram-builder-content-content {

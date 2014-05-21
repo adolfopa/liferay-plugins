@@ -2941,6 +2941,10 @@ AUI.add(
 					actions: {
 					},
 
+					cssClass: {
+						value: 'icon-db-state'
+					},
+
 					initial: {
 						setter: A.DataType.Boolean.parse,
 						value: false
@@ -2965,6 +2969,8 @@ AUI.add(
 						value: 'state'
 					}
 				},
+
+				AUGMENTS: [A.WidgetCssClass],
 
 				EXTENDS: A.DiagramNodeState,
 
@@ -3062,6 +3068,10 @@ AUI.add(
 		var DiagramNodeCondition = A.Component.create(
 			{
 				ATTRS: {
+					cssClass: {
+						value: 'icon-db-condition'
+					},
+
 					height: {
 						value: 60
 					},
@@ -3164,6 +3174,10 @@ AUI.add(
 		var DiagramNodeJoin = A.Component.create(
 			{
 				ATTRS: {
+					cssClass: {
+						value: 'icon-db-join'
+					},
+
 					height: {
 						value: 60
 					},
@@ -3202,6 +3216,10 @@ AUI.add(
 		var DiagramNodeFork = A.Component.create(
 			{
 				ATTRS: {
+					cssClass: {
+						value: 'icon-db-fork'
+					},
+
 					height: {
 						value: 60
 					},
@@ -3252,6 +3270,10 @@ AUI.add(
 		var DiagramNodeStart = A.Component.create(
 			{
 				ATTRS: {
+					cssClass: {
+						value: 'icon-db-start'
+					},
+
 					initial: {
 						value: true
 					},
@@ -3292,6 +3314,10 @@ AUI.add(
 		var DiagramNodeEnd = A.Component.create(
 			{
 				ATTRS: {
+					cssClass: {
+						value: 'icon-db-end'
+					},
+
 					metadata: {
 						value: {
 							terminal: true
@@ -3347,6 +3373,10 @@ AUI.add(
 						value: {}
 					},
 
+					cssClass: {
+						value: 'icon-db-task'
+					},
+
 					forms: {
 						value: {
 							templateName: [STR_BLANK],
@@ -3392,37 +3422,37 @@ AUI.add(
 		KaleoDesigner.AVAILABLE_FIELDS = {
 			DEFAULT: [
 				{
-					iconClass: 'diagram-node-condition-icon',
+					iconClass: 'icon-db-condition',
 					label: Liferay.Language.get('condition'),
 					type: 'condition'
 				},
 				{
-					iconClass: 'diagram-node-end-icon',
+					iconClass: 'icon-db-end',
 					label: Liferay.Language.get('end'),
 					type: 'end'
 				},
 				{
-					iconClass: 'diagram-node-fork-icon',
+					iconClass: 'icon-db-fork',
 					label: Liferay.Language.get('fork'),
 					type: 'fork'
 				},
 				{
-					iconClass: 'diagram-node-join-icon',
+					iconClass: 'icon-db-join',
 					label: Liferay.Language.get('join'),
 					type: 'join'
 				},
 				{
-					iconClass: 'diagram-node-start-icon',
+					iconClass: 'icon-db-start',
 					label: Liferay.Language.get('start'),
 					type: 'start'
 				},
 				{
-					iconClass: 'diagram-node-state-icon',
+					iconClass: 'icon-db-state',
 					label: Liferay.Language.get('state'),
 					type: 'state'
 				},
 				{
-					iconClass: 'diagram-node-task-icon',
+					iconClass: 'icon-db-task',
 					label: Liferay.Language.get('task'),
 					type: 'task'
 				}
