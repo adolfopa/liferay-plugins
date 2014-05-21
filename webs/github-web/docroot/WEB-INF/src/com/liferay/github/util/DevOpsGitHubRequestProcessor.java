@@ -59,6 +59,9 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 	public synchronized void updatePeekGitRepository(String profileName) {
 	}
 
+	public void updateProfileGitRepository(String profileName) {
+	}
+
 	protected File getProfileGitRepositoryDir(String profileName) {
 		return null;
 	}
@@ -129,6 +132,14 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 				@Override
 				public void run() {
 					for (String profileName : getProfileNames()) {
+						DevOpsPatchRequestProcessor
+							devOpsPatchRequestProcessor =
+								_devOpsPatchRequestProcessors.get(profileName);
+
+						if (devOpsPatchRequestProcessor.isRunning()) {
+							return;
+						}
+
 						updateProfileGitRepository(profileName);
 					}
 				}
@@ -140,9 +151,6 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 		for (String profileName : getProfileNames()) {
 			initScheduledExecutorService(profileName);
 		}
-	}
-
-	protected void updateProfileGitRepository(String profileName) {
 	}
 
 	private static final String _PEEK_GIT_REPOSITORY_DIR_NAME =

@@ -37,8 +37,12 @@ public class DevOpsPatchRequestProcessor {
 		_payloadJSONObjects.add(payloadJSONObject);
 	}
 
+	public boolean isRunning() {
+		return _running;
+	}
+
 	public void process() {
-		if (_running) {
+		if (isRunning()) {
 			return;
 		}
 
@@ -57,6 +61,8 @@ public class DevOpsPatchRequestProcessor {
 	}
 
 	protected void process(JSONObject payloadJSONObject) {
+		_devOpsGitHubRequestProcessor.updateProfileGitRepository(_profileName);
+
 		_devOpsGitHubRequestProcessor.updatePeekGitRepository(_profileName);
 	}
 
