@@ -27,8 +27,6 @@ import com.liferay.reports.model.Definition;
 import com.liferay.reports.model.Source;
 import com.liferay.reports.service.DefinitionLocalServiceUtil;
 import com.liferay.reports.service.SourceLocalServiceUtil;
-import com.liferay.reports.service.persistence.DefinitionExportActionableDynamicQuery;
-import com.liferay.reports.service.persistence.SourceExportActionableDynamicQuery;
 
 import java.util.List;
 
@@ -95,14 +93,16 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 
 		if (portletDataContext.getBooleanParameter(NAMESPACE, "sources")) {
 			ActionableDynamicQuery sourceActionableDynamicQuery =
-				new SourceExportActionableDynamicQuery(portletDataContext);
+				SourceLocalServiceUtil.getExportActionableDynamicQuery(
+					portletDataContext);
 
 			sourceActionableDynamicQuery.performActions();
 		}
 
 		if (portletDataContext.getBooleanParameter(NAMESPACE, "definitions")) {
 			ActionableDynamicQuery definitionActionableDynamicQuery =
-				new DefinitionExportActionableDynamicQuery(portletDataContext);
+				DefinitionLocalServiceUtil.getExportActionableDynamicQuery(
+					portletDataContext);
 
 			definitionActionableDynamicQuery.performActions();
 		}
@@ -152,12 +152,14 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 		throws Exception {
 
 		ActionableDynamicQuery sourceActionableDynamicQuery =
-			new SourceExportActionableDynamicQuery(portletDataContext);
+			SourceLocalServiceUtil.getExportActionableDynamicQuery(
+				portletDataContext);
 
 		sourceActionableDynamicQuery.performCount();
 
 		ActionableDynamicQuery definitionActionableDynamicQuery =
-			new DefinitionExportActionableDynamicQuery(portletDataContext);
+			DefinitionLocalServiceUtil.getExportActionableDynamicQuery(
+				portletDataContext);
 
 		definitionActionableDynamicQuery.performCount();
 	}
