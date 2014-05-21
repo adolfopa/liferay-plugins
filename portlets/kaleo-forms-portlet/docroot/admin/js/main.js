@@ -169,7 +169,7 @@ AUI.add(
 						A.io.request(
 							instance.get('saveInPortletSessionURL'),
 							{
-								data: instance.ns(data),
+								data: instance.ns(data)
 							}
 						);
 					},
