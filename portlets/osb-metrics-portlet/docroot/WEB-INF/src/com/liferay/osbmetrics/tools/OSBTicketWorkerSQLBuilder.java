@@ -48,8 +48,8 @@ public class OSBTicketWorkerSQLBuilder {
 
 		String sqlTemplate = StringPool.BLANK;
 
-		int supportWorkerId = 0;
-		int ticketWorkerId = 0;
+		long supportWorkerId = 0;
+		long ticketWorkerId = 0;
 
 		for (Object[] deletedUser : deletedUsers) {
 			long userId = (Long)deletedUser[0];
