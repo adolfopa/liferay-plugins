@@ -358,14 +358,16 @@ public class OSBTicketWorkerSQLBuilder {
 		try {
 			con = DataAccess.getConnection();
 
-			StringBundler sb = new StringBundler(16);
+			StringBundler sb = new StringBundler(20);
 
 			sb.append("select distinct [$LRDCOM_DB$]OSB_AuditEntry.classPK, ");
 			sb.append("[$LRDCOM_DB$]OSB_AuditEntry.userId from ");
 			sb.append("[$LRDCOM_DB$]OSB_AuditEntry where ");
-			sb.append("[$LRDCOM_DB$]OSB_AuditEntry.userId != 5 and ");
-			sb.append("[$LRDCOM_DB$]OSB_AuditEntry.userId != 8304134 and ");
-			sb.append("[$LRDCOM_DB$]OSB_AuditEntry.userId = ");
+			sb.append("[$LRDCOM_DB$]OSB_AuditEntry.userId != ");
+			sb.append(_USER_ID_GUEST);
+			sb.append(" and [$LRDCOM_DB$]OSB_AuditEntry.userId != ");
+			sb.append(_USER_ID_SPACE_ENGINEER);
+			sb.append(" and [$LRDCOM_DB$]OSB_AuditEntry.userId = ");
 			sb.append(userId);
 			sb.append(" and [$LRDCOM_DB$]OSB_AuditEntry.classPK in (select ");
 			sb.append("[$LRDCOM_DB$]OSB_TicketEntry.ticketEntryId from ");
@@ -373,8 +375,10 @@ public class OSBTicketWorkerSQLBuilder {
 			sb.append("[$LRDCOM_DB$]OSB_TicketWorker on ");
 			sb.append("[$LRDCOM_DB$]OSB_TicketEntry.ticketEntryId = ");
 			sb.append("[$LRDCOM_DB$]OSB_TicketWorker.ticketEntryId and (");
-			sb.append("[$LRDCOM_DB$]OSB_TicketWorker.role = 2 or ");
-			sb.append("[$LRDCOM_DB$]OSB_TicketWorker.role = 3");
+			sb.append("[$LRDCOM_DB$]OSB_TicketWorker.role = ");
+			sb.append(_OSB_TICKET_WORKER_ROLE_DEVELOPER);
+			sb.append(" or [$LRDCOM_DB$]OSB_TicketWorker.role = ");
+			sb.append(_OSB_TICKET_WORKER_ROLE_ESCALATED_DEVELOPER);
 			sb.append(") where [$LRDCOM_DB$]OSB_TicketWorker.userId is null)");
 
 			String sql = replaceTokens(sb.toString());
@@ -436,6 +440,8 @@ public class OSBTicketWorkerSQLBuilder {
 
 	private static final int _OSB_TICKET_WORKER_ROLE_DEVELOPER = 2;
 
+	private static final int _OSB_TICKET_WORKER_ROLE_ESCALATED_DEVELOPER = 3;
+
 	private static final String _SQL_TEMPLATE_CURRENT_TIMESTAMP =
 		"CURRENT_TIMESTAMP";
 
@@ -444,6 +450,10 @@ public class OSBTicketWorkerSQLBuilder {
 	private static final String _SQL_TEMPLATE_TRUE = "TRUE";
 
 	private static final String _USER_EMAIL_ADDRESS_SUFFIX = "@metrics.com";
+
+	private static final long _USER_ID_GUEST = 5;
+
+	private static final long _USER_ID_SPACE_ENGINEER = 8304134;
 
 	private static final String _USER_SCREEN_NAME_PREFIX = "metrics.";
 
