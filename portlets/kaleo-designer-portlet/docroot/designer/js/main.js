@@ -1658,7 +1658,7 @@ AUI.add(
 			{
 				ATTRS: {
 					assignmentsType: {
-						valueFn: '_valueAssignmentsType',
+						valueFn: '_valueAssignmentsType'
 					},
 
 					roleTypes: {
