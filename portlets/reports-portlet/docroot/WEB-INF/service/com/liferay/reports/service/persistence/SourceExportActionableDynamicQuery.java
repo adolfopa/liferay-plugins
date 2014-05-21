@@ -28,8 +28,10 @@ import com.liferay.reports.model.Source;
 
 /**
  * @author Brian Wing Shun Chan
+ * @deprecated As of 7.0.0, replaced by {@link com.liferay.reports.service.SourceLocalServiceUtil#getExportActionableDynamicQuery()}
  * @generated
  */
+@Deprecated
 public class SourceExportActionableDynamicQuery
 	extends SourceActionableDynamicQuery {
 	public SourceExportActionableDynamicQuery(

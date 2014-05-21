@@ -22,8 +22,10 @@ import com.liferay.reports.service.DefinitionLocalServiceUtil;
 
 /**
  * @author Brian Wing Shun Chan
+ * @deprecated As of 7.0.0, replaced by {@link DefinitionLocalServiceUtil#getExportActionableDynamicQuery()}
  * @generated
  */
+@Deprecated
 public abstract class DefinitionActionableDynamicQuery
 	extends BaseActionableDynamicQuery {
 	public DefinitionActionableDynamicQuery() throws SystemException {

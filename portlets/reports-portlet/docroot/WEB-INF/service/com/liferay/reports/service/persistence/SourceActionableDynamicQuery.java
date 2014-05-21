@@ -22,8 +22,10 @@ import com.liferay.reports.service.SourceLocalServiceUtil;
 
 /**
  * @author Brian Wing Shun Chan
+ * @deprecated As of 7.0.0, replaced by {@link SourceLocalServiceUtil#getExportActionableDynamicQuery()}
  * @generated
  */
+@Deprecated
 public abstract class SourceActionableDynamicQuery
 	extends BaseActionableDynamicQuery {
 	public SourceActionableDynamicQuery() throws SystemException {

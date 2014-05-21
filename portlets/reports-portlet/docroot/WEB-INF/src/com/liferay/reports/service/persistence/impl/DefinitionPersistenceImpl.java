@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.reports.service.persistence;
+package com.liferay.reports.service.persistence.impl;
 
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
@@ -46,6 +46,7 @@ import com.liferay.reports.NoSuchDefinitionException;
 import com.liferay.reports.model.Definition;
 import com.liferay.reports.model.impl.DefinitionImpl;
 import com.liferay.reports.model.impl.DefinitionModelImpl;
+import com.liferay.reports.service.persistence.DefinitionPersistence;
 
 import java.io.Serializable;
 

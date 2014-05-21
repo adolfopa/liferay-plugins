@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.reports.service.persistence;
+package com.liferay.reports.service.persistence.impl;
 
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
@@ -39,6 +39,7 @@ import com.liferay.reports.NoSuchEntryException;
 import com.liferay.reports.model.Entry;
 import com.liferay.reports.model.impl.EntryImpl;
 import com.liferay.reports.model.impl.EntryModelImpl;
+import com.liferay.reports.service.persistence.EntryPersistence;
 
 import java.io.Serializable;
 

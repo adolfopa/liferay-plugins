@@ -28,8 +28,10 @@ import com.liferay.reports.model.Definition;
 
 /**
  * @author Brian Wing Shun Chan
+ * @deprecated As of 7.0.0, replaced by {@link com.liferay.reports.service.DefinitionLocalServiceUtil#getExportActionableDynamicQuery()}
  * @generated
  */
+@Deprecated
 public class DefinitionExportActionableDynamicQuery
 	extends DefinitionActionableDynamicQuery {
 	public DefinitionExportActionableDynamicQuery(
