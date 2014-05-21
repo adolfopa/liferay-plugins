@@ -22,9 +22,19 @@ String backURL = ParamUtil.getString(request, "backURL");
 String name = ParamUtil.getString(request, "name");
 int version = ParamUtil.getInteger(request, "version");
 int draftVersion = ParamUtil.getInteger(request, "draftVersion");
+
+Portlet kaleoDesignerPortlet = PortletLocalServiceUtil.getPortletById(company.getCompanyId(), PortletKeys.KALEO_DESIGNER);
 %>
 
-<liferay-util:include page="/designer/edit_kaleo_draft_definition.jsp" portletId="2_WAR_kaleodesignerportlet">
+<liferay-util:html-top>
+	<link href="<%= PortalUtil.getStaticResourceURL(request, kaleoDesignerPortlet.getContextPath() + "/designer/css/main.css") %>" rel="stylesheet" type="text/css" />
+</liferay-util:html-top>
+
+<liferay-util:html-bottom>
+	<script defer="defer" src="<%= PortalUtil.getStaticResourceURL(request, kaleoDesignerPortlet.getContextPath() + "/designer/js/main.js") %>" type="text/javascript"></script>
+</liferay-util:html-bottom>
+
+<liferay-util:include page="/designer/edit_kaleo_draft_definition.jsp" portletId="<%= PortletKeys.KALEO_DESIGNER %>">
 	<portlet:param name="mvcPath" value="/admin/process/edit_workflow.jsp" />
 	<portlet:param name="backURL" value="<%= backURL %>" />
 	<portlet:param name="name" value="<%= name %>" />
