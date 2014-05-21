@@ -48,15 +48,14 @@ public class OSBTicketWorkerSQLBuilder {
 
 		String sqlTemplate = StringPool.BLANK;
 
+		int supportWorkerId = 0;
 		int ticketWorkerId = 0;
 
-		for (int i = 0; i < deletedUsers.size(); i++) {
-			Object[] deletedUser = deletedUsers.get(i);
-
+		for (Object[] deletedUser : deletedUsers) {
 			long userId = (Long)deletedUser[0];
 			String userName = (String)deletedUser[1];
 
-			long supportWorkerId = i + 1;
+			supportWorkerId = supportWorkerId + 1;
 
 			sqlTemplate = sqlTemplate + buildUserSQLTemplate(userId, userName);
 			sqlTemplate = sqlTemplate + buildOSBSupportWorkerSQLTemplate(
@@ -68,7 +67,7 @@ public class OSBTicketWorkerSQLBuilder {
 				ticketWorkerId = ticketWorkerId + 1;
 
 				sqlTemplate = sqlTemplate + buildOSBTicketWorkerSQLTemplate(
-					ticketWorkerId, ticketEntryId, userId);
+					userId, ticketWorkerId, ticketEntryId);
 			}
 		}
 
@@ -113,9 +112,7 @@ public class OSBTicketWorkerSQLBuilder {
 	}
 
 	protected String buildOSBTicketWorkerSQLTemplate(
-		long ticketWorkerId, long ticketEntryId, long userId) {
-
-		int role = _OSB_TICKET_WORKER_ROLE_DEVELOPER;
+		long userId, long ticketWorkerId, long ticketEntryId) {
 
 		StringBundler sb = new StringBundler(10);
 
@@ -127,7 +124,7 @@ public class OSBTicketWorkerSQLBuilder {
 		sb.append(", ");
 		sb.append(ticketEntryId);
 		sb.append(", ");
-		sb.append(role);
+		sb.append(_OSB_TICKET_WORKER_ROLE_DEVELOPER);
 		sb.append(");\n");
 
 		return replaceTokens(sb.toString());
@@ -380,9 +377,7 @@ public class OSBTicketWorkerSQLBuilder {
 			sb.append("[$LRDCOM_DB$]OSB_TicketWorker.role = 3");
 			sb.append(") where [$LRDCOM_DB$]OSB_TicketWorker.userId is null)");
 
-			String sql = sb.toString();
-
-			sql = replaceTokens(sb.toString());
+			String sql = replaceTokens(sb.toString());
 
 			ps = con.prepareStatement(sql);
 
