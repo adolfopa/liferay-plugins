@@ -16,10 +16,7 @@ package com.liferay.osbmetrics.servlet;
 
 import com.liferay.osbmetrics.importer.ReportsImporter;
 import com.liferay.osbmetrics.importer.SQLImporter;
-import com.liferay.osbmetrics.tools.OSBTicketWorkerSQLBuilder;
 import com.liferay.osbmetrics.util.OSBMetricsUtil;
-import com.liferay.portal.kernel.dao.db.DB;
-import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
 import com.liferay.portal.kernel.util.BasePortalLifecycle;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.StringPool;
@@ -68,7 +65,7 @@ public class OSBMetricsServletContextListener
 
 		initCompiledJaspers();
 
-		insertDeletedTicketWorkers();
+		OSBMetricsUtil.restoreDeletedOSBTicketWorkers();
 	}
 
 	protected void initCompiledJaspers() throws Exception {
@@ -107,19 +104,6 @@ public class OSBMetricsServletContextListener
 
 			FileUtil.copyFile(new File(jasperURL.toURI()), jasperFile);
 		}
-	}
-
-	protected void insertDeletedTicketWorkers() throws Exception {
-		OSBTicketWorkerSQLBuilder osbTicketWorkerSQLBuilder =
-			new OSBTicketWorkerSQLBuilder();
-
-		String sql = osbTicketWorkerSQLBuilder.buildSQL();
-
-		DB db = DBFactoryUtil.getDB();
-
-		db.runSQLTemplateString(sql, false, true);
-
-		OSBMetricsUtil.addOSBTicketWorkerSQLFileEntry(sql);
 	}
 
 }

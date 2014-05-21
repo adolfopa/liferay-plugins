@@ -14,6 +14,9 @@
 
 package com.liferay.osbmetrics.util;
 
+import com.liferay.osbmetrics.tools.OSBTicketWorkerSQLBuilder;
+import com.liferay.portal.kernel.dao.db.DB;
+import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
@@ -77,6 +80,19 @@ public class OSBMetricsUtil {
 		finally {
 			FileUtil.delete(file);
 		}
+	}
+
+	public static void restoreDeletedOSBTicketWorkers() throws Exception {
+		OSBTicketWorkerSQLBuilder osbTicketWorkerSQLBuilder =
+			new OSBTicketWorkerSQLBuilder();
+
+		String sql = osbTicketWorkerSQLBuilder.buildSQL();
+
+		DB db = DBFactoryUtil.getDB();
+
+		db.runSQLTemplateString(sql, false, true);
+
+		addOSBTicketWorkerSQLFileEntry(sql);
 	}
 
 	protected static Folder getOSBTicketWorkerSQLFolder() throws Exception {
