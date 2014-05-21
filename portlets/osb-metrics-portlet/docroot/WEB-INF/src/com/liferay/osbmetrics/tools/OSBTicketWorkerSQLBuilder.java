@@ -59,7 +59,7 @@ public class OSBTicketWorkerSQLBuilder {
 
 			sqlTemplate = sqlTemplate + buildUserSQLTemplate(userId, userName);
 			sqlTemplate = sqlTemplate + buildOSBSupportWorkerSQLTemplate(
-				supportWorkerId, userId);
+				userId, supportWorkerId);
 
 			List<Long> ticketEntryIds = getTicketEntryIds(userId);
 
@@ -77,7 +77,7 @@ public class OSBTicketWorkerSQLBuilder {
 	}
 
 	protected String buildOSBSupportWorkerSQLTemplate(
-		long supportWorkerId, long userId) {
+		long userId, long supportWorkerId) {
 
 		long supportTeamId = getOSBSupportTeamId(userId);
 		int assignedWork = 0;
