@@ -54,6 +54,18 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 
 	@Override
 	public void process(JSONObject payloadJSONObject) throws Exception {
+		if (!DevOpsUtil.isValidAction(payloadJSONObject)) {
+			return;
+		}
+
+		String profileName = DevOpsUtil.getProfileName(payloadJSONObject);
+
+		if (DevOpsUtil.isValidDeveloper(payloadJSONObject, profileName)) {
+			DevOpsPatchRequestProcessor devOpsPatchRequestProcessor =
+				_devOpsPatchRequestProcessors.get(profileName);
+
+			devOpsPatchRequestProcessor.addPayloadJSONObject(payloadJSONObject);
+		}
 	}
 
 	public synchronized void updatePeekGitRepository(String profileName) {
