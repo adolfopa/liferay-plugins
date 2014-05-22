@@ -14,8 +14,11 @@
 
 package com.liferay.osbmetrics.util;
 
+import com.liferay.portal.kernel.repository.model.FileEntry;
+import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.FileUtil;
+import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.GroupConstants;
@@ -23,11 +26,8 @@ import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.portlet.documentlibrary.model.DLFileEntry;
-import com.liferay.portlet.documentlibrary.model.DLFolder;
 import com.liferay.portlet.documentlibrary.model.DLFolderConstants;
-import com.liferay.portlet.documentlibrary.service.DLFileEntryLocalServiceUtil;
-import com.liferay.portlet.documentlibrary.service.DLFolderLocalServiceUtil;
+import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -41,16 +41,14 @@ import java.util.Date;
  */
 public class OSBMetricsUtil {
 
-	public static DLFileEntry createDLFileEntry(String content)
-		throws Exception {
+	public static FileEntry createFileEntry(String content) throws Exception {
+		Folder folder = getFolder(_SQL_FOLDER_NAME);
 
-		DLFolder dlFolder = getDLFolder(_SQL_FOLDER_NAME);
-
-		return createDLFileEntry(dlFolder, content, "sql");
+		return createFileEntry(folder, content, "sql");
 	}
 
-	protected static DLFileEntry createDLFileEntry(
-			DLFolder dlFolder, String content, String extension)
+	protected static FileEntry createFileEntry(
+			Folder folder, String content, String extension)
 		throws Exception {
 
 		File file = FileUtil.createTempFile(extension);
@@ -69,19 +67,21 @@ public class OSBMetricsUtil {
 		long userId = UserLocalServiceUtil.getDefaultUserId(
 			PortalUtil.getDefaultCompanyId());
 
+		String fileName = _SQL_FILE_NAME_PREFIX + now + StringPool.PERIOD +
+			extension;
+
 		ServiceContext serviceContext = new ServiceContext();
 
 		serviceContext.setAddGuestPermissions(true);
 
-		return DLFileEntryLocalServiceUtil.addFileEntry(
-			userId, dlFolder.getGroupId(), dlFolder.getGroupId(),
-			dlFolder.getFolderId(), _SQL_FILE_NAME_PREFIX + now + ".sql",
-			"text/plain", _SQL_FILE_NAME_PREFIX + now + ".sql",
-			StringPool.BLANK, StringPool.BLANK, 0L, null, file, null,
-			file.length(), serviceContext);
+		return DLAppLocalServiceUtil.addFileEntry(
+			userId, folder.getGroupId(), folder.getFolderId(), fileName,
+			MimeTypesUtil.getContentType(file),
+			FileUtil.stripExtension(fileName), StringPool.BLANK,
+			StringPool.BLANK, file, serviceContext);
 	}
 
-	protected static DLFolder getDLFolder(String folderName) throws Exception {
+	protected static Folder getFolder(String folderName) throws Exception {
 		long companyId = PortalUtil.getDefaultCompanyId();
 
 		long userId = UserLocalServiceUtil.getDefaultUserId(companyId);
@@ -91,22 +91,26 @@ public class OSBMetricsUtil {
 
 		long groupId = group.getGroupId();
 
-		ServiceContext serviceContext = new ServiceContext();
+		try {
+			Folder folder = DLAppLocalServiceUtil.getFolder(
+				groupId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
+				_SQL_FOLDER_NAME);
 
-		serviceContext.setAddGuestPermissions(true);
-
-		DLFolder dlFolder = DLFolderLocalServiceUtil.fetchFolder(
-			groupId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
-			_SQL_FOLDER_NAME);
-
-		if (dlFolder != null) {
-			return dlFolder;
+			if (folder != null) {
+				return folder;
+			}
+		}
+		catch (Exception e) {
 		}
 
-		return DLFolderLocalServiceUtil.addFolder(
-			userId, groupId, groupId, false,
-			DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, folderName,
-			StringPool.BLANK, false, serviceContext);
+		ServiceContext serviceContext = new ServiceContext();
+
+		serviceContext.setAddGroupPermissions(true);
+		serviceContext.setAddGuestPermissions(true);
+
+		return DLAppLocalServiceUtil.addFolder(
+			userId, groupId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
+			folderName, StringPool.BLANK, serviceContext);
 	}
 
 	private static final String _SQL_FILE_NAME_PREFIX = "osb_ticket_worker-";
