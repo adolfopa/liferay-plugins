@@ -223,7 +223,7 @@ public class FeedbackPortlet extends MVCPortlet {
 
 			MBMessage mbMessage = MBMessageLocalServiceUtil.addMessage(
 				user.getUserId(), user.getFullName(), groupId, mbSubcategoryId,
-				subject, body, "plain", inputStreamOVPs, anonymous, 0, false,
+				subject, body, "bbcode", inputStreamOVPs, anonymous, 0, false,
 				serviceContext);
 
 			MBThreadLocalServiceUtil.updateQuestion(
