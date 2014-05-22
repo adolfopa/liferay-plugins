@@ -63,8 +63,8 @@ public class GitHubServlet extends HttpServlet {
 
 		String payload = request.getParameter("payload");
 
-		if (_log.isDebugEnabled()) {
-			_log.debug("Payload: " + payload);
+		if (_log.isInfoEnabled()) {
+			_log.info("Payload: " + payload);
 		}
 
 		try {
