@@ -18,9 +18,9 @@
 
 <c:if test="<%= themeDisplay.isSignedIn() && !(BrowserSnifferUtil.isIe(request) && (BrowserSnifferUtil.getMajorVersion(request) < 7)) && !BrowserSnifferUtil.isMobile(request) && (groupId != 0) && (mbCategoryId != 0) %>">
 	<div class="feedback-bar" id="<portlet:namespace />feedbackBar">
-		<i class="icon-bullhorn"></i>
+		<i class="icon-plus"></i>
 
-		<%= StringUtil.toUpperCase(LanguageUtil.get(pageContext, "feedback")) %>
+		<liferay-ui:message key="feedback" />
 	</div>
 
 	<aui:script use="aui-base">
