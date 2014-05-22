@@ -30,7 +30,6 @@ import com.liferay.portlet.documentlibrary.model.DLFolderConstants;
 import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
 
 import java.io.File;
-import java.io.FileWriter;
 
 import java.text.Format;
 
@@ -41,39 +40,42 @@ import java.util.Date;
  */
 public class OSBMetricsUtil {
 
-	public static FileEntry addOSBTicketWorkerSQLFileEntry(String content)
+	public static FileEntry addOSBTicketWorkerSQLFileEntry(String sql)
 		throws Exception {
 
-		Folder folder = getOSBTicketWorkerSQLFolder();
+		File file = null;
 
-		File file = FileUtil.createTempFile("sql");
+		try {
+			file = FileUtil.createTempFile("sql");
 
-		FileWriter fileWriter = new FileWriter(file.getAbsoluteFile());
+			FileUtil.write(file, sql);
 
-		fileWriter.write(content);
+			Folder folder = getOSBTicketWorkerSQLFolder();
 
-		fileWriter.close();
+			Format dateFormat = FastDateFormatFactoryUtil.getSimpleDateFormat(
+				"yyyy-MM-dd hh-mm-ss");
 
-		Format dateFormat = FastDateFormatFactoryUtil.getSimpleDateFormat(
-			"yyyy-MM-dd hh-mm-ss");
+			String now = dateFormat.format(new Date());
 
-		String now = dateFormat.format(new Date());
+			long userId = UserLocalServiceUtil.getDefaultUserId(
+				PortalUtil.getDefaultCompanyId());
 
-		long userId = UserLocalServiceUtil.getDefaultUserId(
-			PortalUtil.getDefaultCompanyId());
+			String fileName =
+				_SQL_FILE_NAME_PREFIX + now + StringPool.PERIOD + "sql";
 
-		String fileName =
-			_SQL_FILE_NAME_PREFIX + now + StringPool.PERIOD + "sql";
+			ServiceContext serviceContext = new ServiceContext();
 
-		ServiceContext serviceContext = new ServiceContext();
+			serviceContext.setAddGuestPermissions(true);
 
-		serviceContext.setAddGuestPermissions(true);
-
-		return DLAppLocalServiceUtil.addFileEntry(
-			userId, folder.getGroupId(), folder.getFolderId(), fileName,
-			MimeTypesUtil.getContentType(file),
-			FileUtil.stripExtension(fileName), StringPool.BLANK,
-			StringPool.BLANK, file, serviceContext);
+			return DLAppLocalServiceUtil.addFileEntry(
+				userId, folder.getGroupId(), folder.getFolderId(), fileName,
+				MimeTypesUtil.getContentType(file),
+				FileUtil.stripExtension(fileName), StringPool.BLANK,
+				StringPool.BLANK, file, serviceContext);
+		}
+		finally {
+			FileUtil.delete(file);
+		}
 	}
 
 	protected static Folder getOSBTicketWorkerSQLFolder() throws Exception {
