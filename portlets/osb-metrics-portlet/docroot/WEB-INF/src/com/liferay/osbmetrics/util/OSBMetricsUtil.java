@@ -52,25 +52,26 @@ public class OSBMetricsUtil {
 
 			Folder folder = getOSBTicketWorkerSQLFolder();
 
-			Format dateFormat = FastDateFormatFactoryUtil.getSimpleDateFormat(
-				"yyyy-MM-dd hh-mm-ss");
-
-			String now = dateFormat.format(new Date());
-
-			long userId = UserLocalServiceUtil.getDefaultUserId(
-				PortalUtil.getDefaultCompanyId());
-
-			String fileName =
-				_SQL_FILE_NAME_PREFIX + now + StringPool.PERIOD + "sql";
-
 			ServiceContext serviceContext = new ServiceContext();
 
+			serviceContext.setAddGroupPermissions(true);
 			serviceContext.setAddGuestPermissions(true);
+			serviceContext.setScopeGroupId(folder.getGroupId());
+
+			Format format = FastDateFormatFactoryUtil.getSimpleDateFormat(
+				"yyyy-MM-dd_HH-mm-z");
+
+			String sourceFileName =
+				_OSB_TICKET_WORKER_SQL_FILE_NAME_PREFIX +
+					format.format(new Date()) + ".sql";
+
+			serviceContext.setAttribute("sourceFileName", sourceFileName);
 
 			return DLAppLocalServiceUtil.addFileEntry(
-				userId, folder.getGroupId(), folder.getFolderId(), fileName,
+				folder.getUserId(), folder.getRepositoryId(),
+				folder.getFolderId(), sourceFileName,
 				MimeTypesUtil.getContentType(file),
-				FileUtil.stripExtension(fileName), StringPool.BLANK,
+				FileUtil.stripExtension(sourceFileName), StringPool.BLANK,
 				StringPool.BLANK, file, serviceContext);
 		}
 		finally {
@@ -81,37 +82,40 @@ public class OSBMetricsUtil {
 	protected static Folder getOSBTicketWorkerSQLFolder() throws Exception {
 		long companyId = PortalUtil.getDefaultCompanyId();
 
-		long userId = UserLocalServiceUtil.getDefaultUserId(companyId);
-
 		Group group = GroupLocalServiceUtil.getGroup(
 			companyId, GroupConstants.GUEST);
 
-		long groupId = group.getGroupId();
+		Folder folder = null;
 
 		try {
-			Folder folder = DLAppLocalServiceUtil.getFolder(
-				groupId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
-				_SQL_FOLDER_NAME);
-
-			if (folder != null) {
-				return folder;
-			}
+			folder = DLAppLocalServiceUtil.getFolder(
+				group.getGroupId(), DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
+				_OSB_TICKET_WORKER_SQL_FOLDER_NAME);
 		}
 		catch (Exception e) {
+		}
+
+		if (folder != null) {
+			return folder;
 		}
 
 		ServiceContext serviceContext = new ServiceContext();
 
 		serviceContext.setAddGroupPermissions(true);
 		serviceContext.setAddGuestPermissions(true);
+		serviceContext.setScopeGroupId(group.getGroupId());
 
 		return DLAppLocalServiceUtil.addFolder(
-			userId, groupId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
-			_SQL_FOLDER_NAME, StringPool.BLANK, serviceContext);
+			UserLocalServiceUtil.getDefaultUserId(companyId),
+			group.getGroupId(), DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
+			_OSB_TICKET_WORKER_SQL_FOLDER_NAME, StringPool.BLANK,
+			serviceContext);
 	}
 
-	private static final String _SQL_FILE_NAME_PREFIX = "osb_ticket_worker-";
+	private static final String _OSB_TICKET_WORKER_SQL_FILE_NAME_PREFIX =
+		"osb_ticket_worker-";
 
-	private static final String _SQL_FOLDER_NAME = "OSB Ticket Worker SQL";
+	private static final String _OSB_TICKET_WORKER_SQL_FOLDER_NAME =
+		"OSB Ticket Worker SQL";
 
 }
