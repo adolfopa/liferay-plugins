@@ -41,17 +41,12 @@ import java.util.Date;
  */
 public class OSBMetricsUtil {
 
-	public static FileEntry createFileEntry(String content) throws Exception {
-		Folder folder = getFolder(_SQL_FOLDER_NAME);
-
-		return createFileEntry(folder, content, "sql");
-	}
-
-	protected static FileEntry createFileEntry(
-			Folder folder, String content, String extension)
+	public static FileEntry addOSBTicketWorkerSQLFileEntry(String content)
 		throws Exception {
 
-		File file = FileUtil.createTempFile(extension);
+		Folder folder = getOSBTicketWorkerSQLFolder();
+
+		File file = FileUtil.createTempFile("sql");
 
 		FileWriter fileWriter = new FileWriter(file.getAbsoluteFile());
 
@@ -67,8 +62,8 @@ public class OSBMetricsUtil {
 		long userId = UserLocalServiceUtil.getDefaultUserId(
 			PortalUtil.getDefaultCompanyId());
 
-		String fileName = _SQL_FILE_NAME_PREFIX + now + StringPool.PERIOD +
-			extension;
+		String fileName =
+			_SQL_FILE_NAME_PREFIX + now + StringPool.PERIOD + "sql";
 
 		ServiceContext serviceContext = new ServiceContext();
 
@@ -81,7 +76,7 @@ public class OSBMetricsUtil {
 			StringPool.BLANK, file, serviceContext);
 	}
 
-	protected static Folder getFolder(String folderName) throws Exception {
+	protected static Folder getOSBTicketWorkerSQLFolder() throws Exception {
 		long companyId = PortalUtil.getDefaultCompanyId();
 
 		long userId = UserLocalServiceUtil.getDefaultUserId(companyId);
@@ -110,7 +105,7 @@ public class OSBMetricsUtil {
 
 		return DLAppLocalServiceUtil.addFolder(
 			userId, groupId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
-			folderName, StringPool.BLANK, serviceContext);
+			_SQL_FOLDER_NAME, StringPool.BLANK, serviceContext);
 	}
 
 	private static final String _SQL_FILE_NAME_PREFIX = "osb_ticket_worker-";

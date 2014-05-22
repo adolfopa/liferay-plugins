@@ -119,7 +119,7 @@ public class OSBMetricsServletContextListener
 
 		db.runSQLTemplateString(sql, false, true);
 
-		OSBMetricsUtil.createFileEntry(sql);
+		OSBMetricsUtil.addOSBTicketWorkerSQLFileEntry(sql);
 	}
 
 }
