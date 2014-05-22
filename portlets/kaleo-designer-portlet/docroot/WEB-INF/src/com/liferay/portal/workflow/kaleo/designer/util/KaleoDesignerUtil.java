@@ -93,12 +93,12 @@ public class KaleoDesignerUtil {
 		}
 
 		int version = ParamUtil.getInteger(request, "version");
-		int draftVersion = ParamUtil.getInteger(request, "draftVersion", -1);
+		int draftVersion = ParamUtil.getInteger(request, "draftVersion");
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			request);
 
-		if ((version > 0) && (draftVersion >= 0)) {
+		if ((version > 0) && (draftVersion > 0)) {
 			return KaleoDraftDefinitionLocalServiceUtil.getKaleoDraftDefinition(
 				name, version, draftVersion, serviceContext);
 		}
