@@ -114,8 +114,12 @@ public class UserGroupBuilder extends DirectoryBuilder {
 			String screenName = LdapUtil.getRdnValue(new Dn(member), 3);
 
 			if (screenName != null) {
-				User user = UserLocalServiceUtil.getUserByScreenName(
+				User user = UserLocalServiceUtil.fetchUserByScreenName(
 					company.getCompanyId(), screenName);
+
+				if (user == null) {
+					continue;
+				}
 
 				for (UserGroup userGroup : user.getUserGroups()) {
 					if ((name != null) && !name.equals(userGroup.getName())) {

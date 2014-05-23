@@ -111,8 +111,12 @@ public class OrganizationBuilder extends DirectoryBuilder {
 			String screenName = LdapUtil.getRdnValue(new Dn(member), 3);
 
 			if (screenName != null) {
-				User user = UserLocalServiceUtil.getUserByScreenName(
+				User user = UserLocalServiceUtil.fetchUserByScreenName(
 					company.getCompanyId(), screenName);
+
+				if (user == null) {
+					continue;
+				}
 
 				for (Organization organization : user.getOrganizations()) {
 					if ((name != null) &&

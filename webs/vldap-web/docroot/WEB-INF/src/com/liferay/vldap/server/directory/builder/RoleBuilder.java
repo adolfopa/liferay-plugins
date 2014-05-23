@@ -116,8 +116,12 @@ public class RoleBuilder extends DirectoryBuilder {
 			String screenName = LdapUtil.getRdnValue(new Dn(member), 3);
 
 			if (screenName != null) {
-				User user = UserLocalServiceUtil.getUserByScreenName(
+				User user = UserLocalServiceUtil.fetchUserByScreenName(
 					company.getCompanyId(), screenName);
+
+				if (user == null) {
+					continue;
+				}
 
 				for (Role role : user.getRoles()) {
 					if ((name != null) && !name.equals(role.getName())) {
