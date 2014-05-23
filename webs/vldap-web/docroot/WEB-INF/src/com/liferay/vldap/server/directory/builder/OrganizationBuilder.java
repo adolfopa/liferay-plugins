@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
+import com.liferay.portal.kernel.util.UniqueList;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.Organization;
 import com.liferay.portal.model.User;
@@ -92,7 +93,7 @@ public class OrganizationBuilder extends DirectoryBuilder {
 			return getOrganizations(company.getCompanyId(), null, sizeLimit);
 		}
 
-		List<Organization> organizations = new ArrayList<Organization>();
+		List<Organization> organizations = new UniqueList<Organization>();
 
 		for (FilterConstraint filterConstraint : filterConstraints) {
 			if (!isValidFilterConstraint(filterConstraint)) {

@@ -14,6 +14,7 @@
 
 package com.liferay.vldap.server.directory.builder;
 
+import com.liferay.portal.kernel.util.UniqueList;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
@@ -90,7 +91,7 @@ public class CommunityBuilder extends DirectoryBuilder {
 				company.getCompanyId(), 0, sizeLimit);
 		}
 
-		List<Group> groups = new ArrayList<Group>();
+		List<Group> groups = new UniqueList<Group>();
 
 		for (FilterConstraint filterConstraint : filterConstraints) {
 			if (!isValidFilterConstraint(filterConstraint)) {

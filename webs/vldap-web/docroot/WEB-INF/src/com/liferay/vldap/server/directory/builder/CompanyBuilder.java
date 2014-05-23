@@ -14,6 +14,7 @@
 
 package com.liferay.vldap.server.directory.builder;
 
+import com.liferay.portal.kernel.util.UniqueList;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.vldap.server.directory.FilterConstraint;
@@ -73,7 +74,7 @@ public class CompanyBuilder extends DirectoryBuilder {
 			return CompanyLocalServiceUtil.getCompanies();
 		}
 
-		List<Company> companies = new ArrayList<Company>();
+		List<Company> companies = new UniqueList<Company>();
 
 		for (FilterConstraint filterConstraint : filterConstraints) {
 			if (!isValidFilterConstraint(filterConstraint)) {

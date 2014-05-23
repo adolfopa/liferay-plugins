@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
+import com.liferay.portal.kernel.util.UniqueList;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.RoleConstants;
@@ -95,7 +96,7 @@ public class RoleBuilder extends DirectoryBuilder {
 			return getRoles(company.getCompanyId(), null, null, sizeLimit);
 		}
 
-		List<Role> roles = new ArrayList<Role>();
+		List<Role> roles = new UniqueList<Role>();
 
 		for (FilterConstraint filterConstraint : filterConstraints) {
 			if (!isValidFilterConstraint(filterConstraint)) {

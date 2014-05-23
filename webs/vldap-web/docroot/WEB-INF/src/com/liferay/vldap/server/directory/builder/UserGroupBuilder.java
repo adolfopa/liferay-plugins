@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
+import com.liferay.portal.kernel.util.UniqueList;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.User;
 import com.liferay.portal.model.UserGroup;
@@ -93,7 +94,7 @@ public class UserGroupBuilder extends DirectoryBuilder {
 			return getUserGroups(company.getCompanyId(), null, null, sizeLimit);
 		}
 
-		List<UserGroup> userGroups = new ArrayList<UserGroup>();
+		List<UserGroup> userGroups = new UniqueList<UserGroup>();
 
 		for (FilterConstraint filterConstraint : filterConstraints) {
 			if (!isValidFilterConstraint(filterConstraint)) {

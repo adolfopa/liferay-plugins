@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.UniqueList;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.Group;
@@ -120,7 +121,7 @@ public class UserBuilder extends DirectoryBuilder {
 				company.getCompanyId(), 0, (int)searchBase.getSizeLimit());
 		}
 
-		List<User> users = new ArrayList<User>();
+		List<User> users = new UniqueList<User>();
 
 		LinkedHashMap<String, Object> params =
 			new LinkedHashMap<String, Object>();
