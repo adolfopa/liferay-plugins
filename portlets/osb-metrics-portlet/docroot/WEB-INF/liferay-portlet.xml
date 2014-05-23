@@ -5,7 +5,7 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<scheduler-entry>
-			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.RestoreDeletedWorkersMessageListener</scheduler-event-listener-class>
+			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.CheckOSBTicketWorkerMessageListener</scheduler-event-listener-class>
 			<trigger>
 				<cron>
 					<cron-trigger-value>0 0 15 ? * SUN</cron-trigger-value>

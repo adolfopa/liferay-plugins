@@ -55,6 +55,8 @@ public class OSBMetricsServletContextListener
 
 	@Override
 	protected void doPortalInit() throws Exception {
+		OSBMetricsUtil.checkOSBTicketWorkers();
+
 		SQLImporter sqlImporter = new SQLImporter();
 
 		sqlImporter.importSQL();
@@ -64,8 +66,6 @@ public class OSBMetricsServletContextListener
 		reportsImporter.importReports();
 
 		initCompiledJaspers();
-
-		OSBMetricsUtil.restoreDeletedOSBTicketWorkers();
 	}
 
 	protected void initCompiledJaspers() throws Exception {

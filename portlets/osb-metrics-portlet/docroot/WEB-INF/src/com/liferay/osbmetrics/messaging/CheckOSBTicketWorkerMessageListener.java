@@ -25,6 +25,7 @@ public class CheckOSBTicketWorkerMessageListener extends BaseMessageListener {
 
 	@Override
 	protected void doReceive(Message message) throws Exception {
+		OSBMetricsUtil.checkOSBTicketWorkers();
 	}
 
 }

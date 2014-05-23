@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.service.GroupLocalServiceUtil;
@@ -40,10 +41,33 @@ import java.util.Date;
 
 /**
  * @author Rachael Koestartyo
+ * @author Peter Shin
  */
 public class OSBMetricsUtil {
 
-	public static FileEntry addOSBTicketWorkerSQLFileEntry(String sql)
+	public static void checkOSBTicketWorkers() throws Exception {
+
+		// Database
+
+		OSBTicketWorkerSQLBuilder osbTicketWorkerSQLBuilder =
+			new OSBTicketWorkerSQLBuilder();
+
+		String sql = osbTicketWorkerSQLBuilder.buildSQL();
+
+		if (Validator.isNull(sql)) {
+			return;
+		}
+
+		DB db = DBFactoryUtil.getDB();
+
+		db.runSQLTemplateString(sql, false, true);
+
+		// Document library
+
+		addOSBTicketWorkerSQLFileEntry(sql);
+	}
+
+	protected static FileEntry addOSBTicketWorkerSQLFileEntry(String sql)
 		throws Exception {
 
 		File file = null;
@@ -80,19 +104,6 @@ public class OSBMetricsUtil {
 		finally {
 			FileUtil.delete(file);
 		}
-	}
-
-	public static void restoreDeletedOSBTicketWorkers() throws Exception {
-		OSBTicketWorkerSQLBuilder osbTicketWorkerSQLBuilder =
-			new OSBTicketWorkerSQLBuilder();
-
-		String sql = osbTicketWorkerSQLBuilder.buildSQL();
-
-		DB db = DBFactoryUtil.getDB();
-
-		db.runSQLTemplateString(sql, false, true);
-
-		addOSBTicketWorkerSQLFileEntry(sql);
 	}
 
 	protected static Folder getOSBTicketWorkerSQLFolder() throws Exception {
