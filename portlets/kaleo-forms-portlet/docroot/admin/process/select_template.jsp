@@ -31,7 +31,12 @@ String mode = ParamUtil.getString(request, "mode");
 />
 
 <liferay-portlet:renderURL varImpl="iteratorURL">
-	<portlet:param name="mvcPath" value="/admin/edit_kaleo_process.jsp" />
+	<portlet:param name="mvcPath" value="/admin/process/select_template.jsp" />
+	<portlet:param name="backURL" value="<%= backURL %>" />
+	<portlet:param name="ddmStructureId" value="<%= String.valueOf(ddmStructureId) %>" />
+	<portlet:param name="workflowDefinition" value="<%= workflowDefinition %>" />
+	<portlet:param name="workflowTaskName" value="<%= workflowTaskName %>" />
+	<portlet:param name="mode" value="<%= mode %>" />
 </liferay-portlet:renderURL>
 
 <liferay-ui:search-container
