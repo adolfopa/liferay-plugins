@@ -172,6 +172,14 @@ public class SyncWatchEventProcessor implements Runnable {
 			SyncFileService.moveFileSyncFile(
 				targetFilePath, parentSyncFile.getTypePK(),
 				syncWatchEvent.getSyncAccountId(), syncFile);
+
+			Path sourceFileNameFilePath = sourceFilePath.getFileName();
+
+			if (!sourceFileNameFilePath.equals(targetFilePath.getFileName())) {
+				SyncFileService.updateFileSyncFile(
+					targetFilePath, syncWatchEvent.getSyncAccountId(), syncFile,
+					false);
+			}
 		}
 
 		SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
@@ -229,6 +237,14 @@ public class SyncWatchEventProcessor implements Runnable {
 			SyncFileService.moveFolderSyncFile(
 				targetFilePath, parentSyncFile.getTypePK(),
 				syncWatchEvent.getSyncAccountId(), syncFile);
+
+			Path sourceFileNameFilePath = sourceFilePath.getFileName();
+
+			if (!sourceFileNameFilePath.equals(targetFilePath.getFileName())) {
+				SyncFileService.updateFolderSyncFile(
+					targetFilePath, syncWatchEvent.getSyncAccountId(),
+					syncFile);
+			}
 		}
 
 		SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
