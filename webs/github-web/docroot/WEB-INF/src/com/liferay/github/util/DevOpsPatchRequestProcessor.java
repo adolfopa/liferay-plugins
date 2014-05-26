@@ -65,7 +65,7 @@ public class DevOpsPatchRequestProcessor {
 		}
 	}
 
-	protected void applyPatch(
+	protected void mergePatch(
 		JSONObject payloadJSONObject, String[] sha1Hashes) {
 
 		_devOpsGitHubRequestProcessor.updatePeekGitRepository(_profileName);
@@ -119,7 +119,7 @@ public class DevOpsPatchRequestProcessor {
 
 		updateProfileGitRepository(payloadJSONObject, sha1Hashes);
 
-		applyPatch(payloadJSONObject, sha1Hashes);
+		mergePatch(payloadJSONObject, sha1Hashes);
 
 		updateJIRAIssue(payloadJSONObject, sha1Hashes);
 
