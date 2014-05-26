@@ -65,32 +65,6 @@ public class DevOpsPatchRequestProcessor {
 		}
 	}
 
-	protected void process(JSONObject payloadJSONObject) {
-		initProfileGitRepository(payloadJSONObject);
-
-		String[] sha1Hashes = getSHA1Hashes(payloadJSONObject);
-
-		if (hasProtectedPath(payloadJSONObject, sha1Hashes)) {
-			return;
-		}
-
-		if (hasMergeConflict(payloadJSONObject, sha1Hashes)) {
-			return;
-		}
-
-		if (hasCompileError(payloadJSONObject, sha1Hashes)) {
-			return;
-		}
-
-		updateProfileGitRepository(payloadJSONObject, sha1Hashes);
-
-		installPatch(payloadJSONObject, sha1Hashes);
-
-		updateJIRAIssue(payloadJSONObject, sha1Hashes);
-
-		updatePullRequest(payloadJSONObject, sha1Hashes);
-	}
-
 	protected String[] getSHA1Hashes(JSONObject payloadJSONObject) {
 		String sha1HashParent = "";
 		String sha1HashHead = "";
@@ -124,6 +98,32 @@ public class DevOpsPatchRequestProcessor {
 		JSONObject payloadJSONObject, String[] sha1Hashes) {
 
 		_devOpsGitHubRequestProcessor.updatePeekGitRepository(_profileName);
+	}
+
+	protected void process(JSONObject payloadJSONObject) {
+		initProfileGitRepository(payloadJSONObject);
+
+		String[] sha1Hashes = getSHA1Hashes(payloadJSONObject);
+
+		if (hasProtectedPath(payloadJSONObject, sha1Hashes)) {
+			return;
+		}
+
+		if (hasMergeConflict(payloadJSONObject, sha1Hashes)) {
+			return;
+		}
+
+		if (hasCompileError(payloadJSONObject, sha1Hashes)) {
+			return;
+		}
+
+		updateProfileGitRepository(payloadJSONObject, sha1Hashes);
+
+		installPatch(payloadJSONObject, sha1Hashes);
+
+		updateJIRAIssue(payloadJSONObject, sha1Hashes);
+
+		updatePullRequest(payloadJSONObject, sha1Hashes);
 	}
 
 	protected void sendEmail(JSONObject payloadJSONObject) {
