@@ -65,6 +65,12 @@ public class DevOpsPatchRequestProcessor {
 		}
 	}
 
+	protected void applyPatch(
+		JSONObject payloadJSONObject, String[] sha1Hashes) {
+
+		_devOpsGitHubRequestProcessor.updatePeekGitRepository(_profileName);
+	}
+
 	protected String[] getSHA1Hashes(JSONObject payloadJSONObject) {
 		String sha1HashParent = "";
 		String sha1HashHead = "";
@@ -92,12 +98,6 @@ public class DevOpsPatchRequestProcessor {
 
 	protected void initProfileGitRepository(JSONObject payloadJSONObject) {
 		_devOpsGitHubRequestProcessor.updateProfileGitRepository(_profileName);
-	}
-
-	protected void applyPatch(
-		JSONObject payloadJSONObject, String[] sha1Hashes) {
-
-		_devOpsGitHubRequestProcessor.updatePeekGitRepository(_profileName);
 	}
 
 	protected void process(JSONObject payloadJSONObject) {
