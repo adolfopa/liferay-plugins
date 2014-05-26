@@ -72,7 +72,7 @@ public class DevOpsPatchRequestProcessor {
 		return new String[] {sha1HashParent, sha1HashHead};
 	}
 
-	protected boolean hasBlacklistedPath(
+	protected boolean hasBlacklistedFile(
 		JSONObject payloadJSONObject, String[] sha1Hashes) {
 
 		return false;
@@ -105,7 +105,7 @@ public class DevOpsPatchRequestProcessor {
 
 		String[] sha1Hashes = getSHA1Hashes(payloadJSONObject);
 
-		if (hasBlacklistedPath(payloadJSONObject, sha1Hashes)) {
+		if (hasBlacklistedFile(payloadJSONObject, sha1Hashes)) {
 			return;
 		}
 
