@@ -84,7 +84,7 @@ public class DevOpsPatchRequestProcessor {
 		return false;
 	}
 
-	protected boolean hasProtectedPath(
+	protected boolean hasBlacklistedPath(
 		JSONObject payloadJSONObject, String[] sha1Hashes) {
 
 		return false;
@@ -105,7 +105,7 @@ public class DevOpsPatchRequestProcessor {
 
 		String[] sha1Hashes = getSHA1Hashes(payloadJSONObject);
 
-		if (hasProtectedPath(payloadJSONObject, sha1Hashes)) {
+		if (hasBlacklistedPath(payloadJSONObject, sha1Hashes)) {
 			return;
 		}
 
