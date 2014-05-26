@@ -72,6 +72,12 @@ public class DevOpsPatchRequestProcessor {
 		return new String[] {sha1HashParent, sha1HashHead};
 	}
 
+	protected boolean hasBlacklistedPath(
+		JSONObject payloadJSONObject, String[] sha1Hashes) {
+
+		return false;
+	}
+
 	protected boolean hasCompileError(
 		JSONObject payloadJSONObject, String[] sha1Hashes) {
 
@@ -79,12 +85,6 @@ public class DevOpsPatchRequestProcessor {
 	}
 
 	protected boolean hasMergeConflict(
-		JSONObject payloadJSONObject, String[] sha1Hashes) {
-
-		return false;
-	}
-
-	protected boolean hasBlacklistedPath(
 		JSONObject payloadJSONObject, String[] sha1Hashes) {
 
 		return false;
