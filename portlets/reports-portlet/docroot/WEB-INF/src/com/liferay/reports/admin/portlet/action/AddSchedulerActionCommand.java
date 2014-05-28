@@ -85,6 +85,7 @@ public class AddSchedulerActionCommand extends BaseActionCommand {
 		String portletId = PortalUtil.getPortletId(portletRequest);
 		String generatedReportsURL = ParamUtil.getString(
 			portletRequest, "generatedReportsURL");
+		String reportName = ParamUtil.getString(portletRequest, "reportName");
 
 		Date schedulerEndDate = null;
 
@@ -167,7 +168,8 @@ public class AddSchedulerActionCommand extends BaseActionCommand {
 			startCalendar.getTime(), schedulerEndDate,
 			recurrenceType != Recurrence.NO_RECURRENCE, cronText,
 			emailNotifications, emailDelivery, portletId, generatedReportsURL,
-			entryReportParametersJSONArray.toString(), serviceContext);
+			reportName, entryReportParametersJSONArray.toString(),
+			serviceContext);
 	}
 
 	protected String getCronText(

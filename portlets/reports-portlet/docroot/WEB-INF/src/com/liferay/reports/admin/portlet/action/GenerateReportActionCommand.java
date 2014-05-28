@@ -61,6 +61,7 @@ public class GenerateReportActionCommand extends BaseActionCommand {
 			portletRequest, "emailDelivery");
 		String generatedReportsURL = ParamUtil.getString(
 			portletRequest, "generatedReportsURL");
+		String reportName = ParamUtil.getString(portletRequest, "reportName");
 
 		JSONArray entryReportParametersJSONArray =
 			JSONFactoryUtil.createJSONArray();
@@ -111,8 +112,8 @@ public class GenerateReportActionCommand extends BaseActionCommand {
 		EntryServiceUtil.addEntry(
 			themeDisplay.getScopeGroupId(), definitionId, format, false, null,
 			null, false, null, emailNotifications, emailDelivery, null,
-			generatedReportsURL, entryReportParametersJSONArray.toString(),
-			serviceContext);
+			generatedReportsURL, reportName,
+			entryReportParametersJSONArray.toString(), serviceContext);
 	}
 
 }
