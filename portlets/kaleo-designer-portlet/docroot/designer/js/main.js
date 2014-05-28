@@ -37,13 +37,13 @@ AUI.add(
 		var DEFAULT_LANGUAGE = 'groovy';
 
 		var SCHEMA_MAP_RESULTS = {
-			resultListLocator: 'root',
 			resultFields: [
 				{
 					key: 'name',
 					locator: 'Name[@language-id="' + themeDisplay.getLanguageId() + '"]'
 				}
-			]
+			],
+			resultListLocator: 'root'
 		};
 
 		var SCHEMA_FIELDS_PATH = ['results', '0', 'name'];
@@ -133,19 +133,19 @@ AUI.add(
 		};
 
 		var KaleoDesignerStrings = {
-			'default': Liferay.Language.get('default'),
 			actions: Liferay.Language.get('actions'),
 			actionsType: Liferay.Language.get('actions-type'),
 			addAnchorMessage: Liferay.Language.get('add-anchor'),
 			addSection: Liferay.Language.get('add-section'),
 			approve: Liferay.Language.get('approve'),
-			assignments: Liferay.Language.get('assignments'),
-			assignmentType: Liferay.Language.get('assignment-type'),
 			assetCreator: Liferay.Language.get('asset-creator'),
+			assignmentType: Liferay.Language.get('assignment-type'),
+			assignments: Liferay.Language.get('assignments'),
 			autoCreate: Liferay.Language.get('auto-create'),
 			beanshell: Liferay.Language.get('beanshell'),
 			cancel: Liferay.Language.get('cancel'),
 			closeMessage: Liferay.Language.get('close'),
+			'default': Liferay.Language.get('default'),
 			definition: Liferay.Language.get('definition'),
 			deleteNodesMessage: Liferay.Language.get('are-you-sure-you-want-to-delete-the-selected-nodes'),
 			description: Liferay.Language.get('description'),
@@ -156,19 +156,19 @@ AUI.add(
 			email: Liferay.Language.get('email'),
 			emailAddress: Liferay.Language.get('email-address'),
 			executionType: Liferay.Language.get('execution-type'),
-			forms: Liferay.Language.get('forms'),
 			formTemplate: Liferay.Language.get('form-template'),
+			forms: Liferay.Language.get('forms'),
 			freemarker: Liferay.Language.get('freemarker'),
 			groovy: Liferay.Language.get('groovy'),
 			im: Liferay.Language.get('instant-messenger'),
-			inspectTaskMessage: Liferay.Language.get('inspect-the-task-nodes-to-assign-a-form-template'),
 			initial: Liferay.Language.get('Initial'),
+			inspectTaskMessage: Liferay.Language.get('inspect-the-task-nodes-to-assign-a-form-template'),
 			javascript: Liferay.Language.get('javascript'),
 			language: Liferay.Language.get('language'),
 			name: Liferay.Language.get('name'),
 			notificationRecipients: Liferay.Language.get('notification-recipients'),
-			notifications: Liferay.Language.get('notifications'),
 			notificationType: Liferay.Language.get('notification-type'),
+			notifications: Liferay.Language.get('notifications'),
 			onAssignment: Liferay.Language.get('on-assignment'),
 			onEntry: Liferay.Language.get('on-entry'),
 			onExit: Liferay.Language.get('on-exit'),
@@ -188,8 +188,8 @@ AUI.add(
 			save: Liferay.Language.get('save'),
 			screenName: Liferay.Language.get('screen-name'),
 			script: Liferay.Language.get('script'),
-			scriptedAssignment: Liferay.Language.get('scripted-assignment'),
 			scriptLanguage: Liferay.Language.get('script-language'),
+			scriptedAssignment: Liferay.Language.get('scripted-assignment'),
 			search: Liferay.Language.get('search'),
 			site: Liferay.Language.get('site'),
 			taskAssignees: Liferay.Language.get('task-assignees'),
@@ -199,9 +199,10 @@ AUI.add(
 			text: Liferay.Language.get('text'),
 			type: Liferay.Language.get('type'),
 			user: Liferay.Language.get('user'),
-			userNotification: Liferay.Language.get('user-notification'),
 			userId: Liferay.Language.get('user-id'),
+			userNotification: Liferay.Language.get('user-notification'),
 			velocity: Liferay.Language.get('velocity')
+
 		};
 
 		Liferay.KaleoDesignerStrings = KaleoDesignerStrings;
@@ -946,7 +947,6 @@ AUI.add(
 						return {
 							key: key || 'actions',
 							schema: {
-								resultListLocator: tagName || 'action',
 								resultFields: [
 									{
 										key: 'description',
@@ -972,7 +972,8 @@ AUI.add(
 										key: 'scriptLanguage',
 										locator: 'script-language'
 									}
-								]
+								],
+								resultListLocator: tagName || 'action'
 							}
 						};
 					},
@@ -983,7 +984,6 @@ AUI.add(
 						return {
 							key: key || 'assignments',
 							schema: {
-								resultListLocator: tagName || 'assignments',
 								resultFields: [
 									{
 										key: 'address',
@@ -992,31 +992,30 @@ AUI.add(
 									{
 										key: 'resourceActions',
 										schema: {
-											resultListLocator: 'resource-actions',
 											resultFields: [
 												{
 													key: 'resourceAction',
 													locator:'resource-action'
 												}
-											]
+											],
+											resultListLocator: 'resource-actions'
 										}
 									},
 									{
 										key: 'roleId',
 										schema: {
-											resultListLocator: 'role',
 											resultFields: [
 												{
 													key: 'roleId',
 													locator:'role-id'
 												}
-											]
+											],
+											resultListLocator: 'role'
 										}
 									},
 									{
 										key: 'roleType',
 										schema: {
-											resultListLocator: 'role',
 											resultFields: [
 												{
 													key: 'autoCreate',
@@ -1030,13 +1029,13 @@ AUI.add(
 													key: 'roleType',
 													locator:'role-type'
 												}
-											]
+											],
+											resultListLocator: 'role'
 										}
 									},
 									{
 										key: 'scriptedAssignment',
 										schema: {
-											resultListLocator: 'scripted-assignment',
 											resultFields: [
 												{
 													key: 'script',
@@ -1046,7 +1045,8 @@ AUI.add(
 													key: 'scriptLanguage',
 													locator: 'script-language'
 												}
-											]
+											],
+											resultListLocator: 'scripted-assignment'
 										}
 									},
 									{
@@ -1056,7 +1056,6 @@ AUI.add(
 									{
 										key: 'user',
 										schema: {
-											resultListLocator: 'user',
 											resultFields: [
 												{
 													key: 'emailAddress',
@@ -1070,10 +1069,12 @@ AUI.add(
 													key: 'userId',
 													locator:'user-id'
 												}
-											]
+											],
+											resultListLocator: 'user'
 										}
 									}
-								]
+								],
+								resultListLocator: tagName || 'assignments'
 							}
 						};
 					},
@@ -1087,7 +1088,6 @@ AUI.add(
 						return {
 							key: key || 'notifications',
 							schema: {
-								resultListLocator: tagName || 'notification',
 								resultFields: [
 									{
 										key: 'description',
@@ -1114,7 +1114,8 @@ AUI.add(
 										locator: 'template-language'
 									},
 									instance._getSchemaAssignments(assignmentKey, assignmentTagName)
-								]
+								],
+								resultListLocator: tagName || 'notification'
 							}
 						};
 					},
@@ -1125,7 +1126,6 @@ AUI.add(
 						return {
 							key: key || 'taskTimers',
 							schema: {
-								resultListLocator: tagNode || 'task-timer',
 								resultFields: [
 									{
 										key: 'blocking',
@@ -1145,7 +1145,8 @@ AUI.add(
 									},
 									instance._getSchemaActions('timerActions', 'timer-action'),
 									instance._getSchemaNotifications('timerNotifications', 'timer-notification', 'reassignments', 'reassignments')
-								]
+								],
+								resultListLocator: tagNode || 'task-timer'
 							}
 						};
 					},
@@ -1156,7 +1157,6 @@ AUI.add(
 						return {
 							key: key || 'transitions',
 							schema: {
-								resultListLocator: tagName || 'transition',
 								resultFields: [
 									{
 										key: 'default',
@@ -1170,7 +1170,8 @@ AUI.add(
 										key: 'target',
 										locator: 'target'
 									}
-								]
+								],
+								resultListLocator: tagName || 'transition'
 							}
 						};
 					},
@@ -1367,7 +1368,6 @@ AUI.add(
 						var instance = this;
 
 						var schema = {
-							resultListLocator: tagName,
 							resultFields: [
 								'description',
 								'initial',
@@ -1383,7 +1383,8 @@ AUI.add(
 								instance._getSchemaNotifications(),
 								instance._getSchemaTaskTimers(),
 								instance._getSchemaTransitions()
-							]
+							],
+							resultListLocator: tagName
 						};
 
 						return A.DataSchema.XML.apply(schema, instance.definitionDoc);
@@ -1577,6 +1578,14 @@ AUI.add(
 						instance._uiSetValue(instance.get('value'));
 					},
 
+					_afterEditorVisibleChange: function(event) {
+						var instance = this;
+
+						if (event.newVal) {
+							instance.syncViewsUI();
+						}
+					},
+
 					_afterRender: function() {
 						var instance = this;
 
@@ -1589,14 +1598,6 @@ AUI.add(
 						instance.syncToolbarUI();
 
 						instance.syncViewsUI();
-					},
-
-					_afterEditorVisibleChange: function(event) {
-						var instance = this;
-
-						if (event.newVal) {
-							instance.syncViewsUI();
-						}
 					},
 
 					_onClickViewMenu: function(event) {
@@ -1930,8 +1931,8 @@ AUI.add(
 
 								checkboxTpl.parse(
 									{
-										auiLabelCssClass: 'celleditor-label-checkbox',
 										auiCssClass: 'assignments-cell-editor-input',
+										auiLabelCssClass: 'celleditor-label-checkbox',
 										id: A.guid(),
 										label: strings.autoCreate,
 										name: 'autoCreate',
@@ -2320,8 +2321,8 @@ AUI.add(
 			{
 				ATTRS: {
 					executionTypes: {
-						value: [],
-						setter: executionTypesSetterFn
+						setter: executionTypesSetterFn,
+						value: []
 					},
 
 					notificationTypes: {
@@ -2629,8 +2630,8 @@ AUI.add(
 			{
 				ATTRS: {
 					executionTypes: {
-						value: [],
-						setter: executionTypesSetterFn
+						setter: executionTypesSetterFn,
+						value: []
 					},
 
 					scriptLanguages: {
@@ -3405,8 +3406,8 @@ AUI.add(
 
 					forms: {
 						value: {
-							templateName: [STR_BLANK],
-							templateId: [0]
+							templateId: [0],
+							templateName: [STR_BLANK]
 						}
 					},
 
