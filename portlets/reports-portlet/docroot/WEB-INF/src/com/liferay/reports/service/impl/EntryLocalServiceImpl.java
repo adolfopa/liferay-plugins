@@ -560,7 +560,7 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 				"[$REPORT_NAME$]"
 			},
 			new String[] {
-				fromName, fromAddress, entry.getPageURL(), reportName
+				fromAddress, fromName, entry.getPageURL(), reportName
 			}
 		);
 
@@ -571,7 +571,7 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 				"[$REPORT_NAME$]"
 			},
 			new String[] {
-				fromName, fromAddress, entry.getPageURL(), reportName
+				fromAddress, fromName, entry.getPageURL(), reportName
 			}
 		);
 
