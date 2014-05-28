@@ -68,6 +68,8 @@ Definition definition = DefinitionLocalServiceUtil.getDefinition(definitionId);
 
 	</aui:select>
 
+	<aui:input label="report-name" name="reportName" type="text" value="<%= definition.getReportName() %>" />
+
 	<%
 	String reportParameters = definition.getReportParameters();
 	%>
