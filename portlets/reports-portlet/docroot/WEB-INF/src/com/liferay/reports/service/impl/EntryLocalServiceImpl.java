@@ -56,6 +56,7 @@ import com.liferay.portal.util.SubscriptionSender;
 import com.liferay.portlet.documentlibrary.DuplicateDirectoryException;
 import com.liferay.portlet.documentlibrary.NoSuchDirectoryException;
 import com.liferay.portlet.documentlibrary.store.DLStoreUtil;
+import com.liferay.reports.DefinitionNameException;
 import com.liferay.reports.EntryEmailDeliveryException;
 import com.liferay.reports.EntryEmailNotificationsException;
 import com.liferay.reports.ReportStatus;
@@ -97,7 +98,7 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 		User user = userPersistence.findByPrimaryKey(userId);
 		Date now = new Date();
 
-		validate(emailNotifications, emailDelivery);
+		validate(emailNotifications, emailDelivery, reportName);
 
 		long entryId = counterLocalService.increment();
 
@@ -626,7 +627,8 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 			"liferay/reports_scheduler_event", message, 0);
 	}
 
-	protected void validate(String emailNotifications, String emailDelivery)
+	protected void validate(
+			String emailNotifications, String emailDelivery, String reportName)
 		throws PortalException {
 
 		for (String emailAddress : StringUtil.split(emailNotifications)) {
@@ -639,6 +641,10 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 			if (!Validator.isEmailAddress(emailAddress)) {
 				throw new EntryEmailDeliveryException();
 			}
+		}
+
+		if (Validator.isNull(reportName)) {
+			throw new DefinitionNameException();
 		}
 	}
 

@@ -53,6 +53,7 @@ String reportName = BeanParamUtil.getString(definition, request, "reportName");
 
 	<aui:input name="generatedReportsURL" type="hidden" value="<%= generatedReportsURL %>" />
 
+	<liferay-ui:error exception="<%= DefinitionNameException.class %>" message="please-enter-a-valid-name" />
 	<liferay-ui:error exception="<%= EntryEmailDeliveryException.class %>" message="please-enter-a-valid-email-address" />
 	<liferay-ui:error exception="<%= EntryEmailNotificationsException.class %>" message="please-enter-a-valid-email-address" />
 
