@@ -15,8 +15,16 @@
 package com.liferay.osbmetrics.util;
 
 import com.liferay.osbmetrics.tools.OSBTicketWorkerSQLBuilder;
+import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSONArray;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
@@ -32,18 +40,51 @@ import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.documentlibrary.model.DLFolderConstants;
 import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
+import com.liferay.reports.model.Definition;
+import com.liferay.reports.service.ClpSerializer;
+import com.liferay.reports.service.DefinitionLocalServiceUtil;
+import com.liferay.reports.service.EntryLocalServiceUtil;
 
 import java.io.File;
 
 import java.text.Format;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author Rachael Koestartyo
  * @author Peter Shin
  */
 public class OSBMetricsUtil {
+
+	public static void addReportEntry(
+			String reportFormat, String reportName, String modifiedReportName,
+			String emailAddresses, Map<String, String> reportParametersMap)
+		throws Exception {
+
+		long companyId = PortalUtil.getDefaultCompanyId();
+
+		Group group = GroupLocalServiceUtil.getGroup(
+			companyId, GroupConstants.GUEST);
+
+		long groupId = group.getGroupId();
+
+		long userId = UserLocalServiceUtil.getDefaultUserId(companyId);
+
+		Definition definition = getDefinition(reportName);
+
+		String reportParameters = getReportParameters(reportParametersMap);
+
+		ServiceContext serviceContext = new ServiceContext();
+
+		EntryLocalServiceUtil.addEntry(
+			userId, groupId, definition.getDefinitionId(), reportFormat, false,
+			null, null, false, StringPool.BLANK, StringPool.BLANK,
+			emailAddresses, StringPool.BLANK, StringPool.BLANK,
+			modifiedReportName, reportParameters, serviceContext);
+	}
 
 	public static void checkOSBTicketWorkers() throws Exception {
 
@@ -65,6 +106,23 @@ public class OSBMetricsUtil {
 		// Document library
 
 		addOSBTicketWorkerSQLFileEntry(sql);
+	}
+
+	public static Definition getDefinition(String reportName)
+		throws SystemException {
+
+		ClassLoader classLoader = (ClassLoader)PortletBeanLocatorUtil.locate(
+			ClpSerializer.getServletContextName(), "portletClassLoader");
+
+		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
+			Definition.class, classLoader);
+
+		dynamicQuery.add(RestrictionsFactoryUtil.eq("reportName", reportName));
+
+		List<Definition> definition = DefinitionLocalServiceUtil.dynamicQuery(
+			dynamicQuery);
+
+		return definition.get(0);
 	}
 
 	protected static FileEntry addOSBTicketWorkerSQLFileEntry(String sql)
@@ -137,6 +195,23 @@ public class OSBMetricsUtil {
 			group.getGroupId(), DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
 			_OSB_TICKET_WORKER_SQL_FOLDER_NAME, StringPool.BLANK,
 			serviceContext);
+	}
+
+	protected static String getReportParameters(
+		Map<String, String> reportParametersMap) {
+
+		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
+
+		for (String key : reportParametersMap.keySet()) {
+			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+			jsonObject.put("key", key);
+			jsonObject.put("value", reportParametersMap.get(key));
+
+			jsonArray.put(jsonObject);
+		}
+
+		return jsonArray.toString();
 	}
 
 	private static final String _OSB_TICKET_WORKER_SQL_FILE_NAME_PREFIX =

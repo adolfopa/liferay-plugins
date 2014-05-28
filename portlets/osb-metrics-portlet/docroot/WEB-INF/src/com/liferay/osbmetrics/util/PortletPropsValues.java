@@ -27,4 +27,8 @@ public class PortletPropsValues {
 	public static final String LRDCOM_DB = PortletProps.get(
 		PortletPropsKeys.LRDCOM_DB);
 
+	public static final String
+		REPORT_EXPIREDANDEXPIRINGACCOUNTS_EMAIL_ADDRESSES = PortletProps.get(
+			PortletPropsKeys.REPORT_EXPIREDANDEXPIRINGACCOUNTS_EMAIL_ADDRESSES);
+
 }
