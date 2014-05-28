@@ -26,8 +26,9 @@ public class SchedulerEventMessageListener extends BaseMessageListener {
 	@Override
 	protected void doReceive(Message message) throws Exception {
 		long entryId = message.getLong("entryId");
+		String reportName = message.getString("reportName");
 
-		EntryLocalServiceUtil.generateReport(entryId);
+		EntryLocalServiceUtil.generateReport(entryId, reportName);
 	}
 
 }
