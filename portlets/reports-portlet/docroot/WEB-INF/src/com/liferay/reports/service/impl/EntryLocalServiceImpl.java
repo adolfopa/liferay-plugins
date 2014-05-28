@@ -132,7 +132,7 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 		// Scheduler
 
 		if (schedulerRequest) {
-			scheduleEntry(entry);
+			scheduleEntry(entry, reportName);
 		}
 
 		// Report
@@ -599,7 +599,18 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 		subscriptionSender.flushNotificationsAsync();
 	}
 
-	protected void scheduleEntry(Entry entry) throws PortalException {
+	protected void scheduleEntry(Entry entry)
+		throws PortalException, SystemException {
+
+		Definition definition = definitionPersistence.findByPrimaryKey(
+			entry.getDefinitionId());
+
+		scheduleEntry(entry, definition.getReportName());
+	}
+
+	protected void scheduleEntry(Entry entry, String reportName)
+		throws PortalException {
+
 		Trigger trigger = TriggerFactoryUtil.buildTrigger(
 			TriggerType.CRON, entry.getJobName(),
 			entry.getSchedulerRequestName(), entry.getStartDate(),
@@ -608,6 +619,7 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 		Message message = new Message();
 
 		message.put("entryId", entry.getEntryId());
+		message.put("reportName", reportName);
 
 		SchedulerEngineHelperUtil.schedule(
 			trigger, StorageType.PERSISTED, null,
