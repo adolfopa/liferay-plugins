@@ -20,6 +20,8 @@
 long definitionId = ParamUtil.getLong(request, "definitionId");
 
 Definition definition = DefinitionLocalServiceUtil.getDefinition(definitionId);
+
+String reportName = BeanParamUtil.getString(definition, request, "reportName");
 %>
 
 <portlet:renderURL var="searchDefinitionURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">
@@ -68,7 +70,7 @@ Definition definition = DefinitionLocalServiceUtil.getDefinition(definitionId);
 
 	</aui:select>
 
-	<aui:input label="report-name" name="reportName" type="text" value="<%= definition.getReportName() %>" />
+	<aui:input name="reportName" value="<%= reportName %>" />
 
 	<%
 	String reportParameters = definition.getReportParameters();
