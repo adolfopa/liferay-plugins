@@ -39,7 +39,8 @@ public class EntryServiceImpl extends EntryServiceBaseImpl {
 			boolean schedulerRequest, Date startDate, Date endDate,
 			boolean repeating, String recurrence, String emailNotifications,
 			String emailDelivery, String portletId, String pageURL,
-			String reportParameters, ServiceContext serviceContext)
+			String reportName, String reportParameters,
+			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		DefinitionPermission.check(
@@ -48,7 +49,7 @@ public class EntryServiceImpl extends EntryServiceBaseImpl {
 		return entryLocalService.addEntry(
 			getUserId(), groupId, definitionId, format, schedulerRequest,
 			startDate, endDate, repeating, recurrence, emailNotifications,
-			emailDelivery, portletId, pageURL, reportParameters,
+			emailDelivery, portletId, pageURL, reportName, reportParameters,
 			serviceContext);
 	}
 

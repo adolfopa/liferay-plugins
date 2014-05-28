@@ -88,7 +88,8 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 			boolean schedulerRequest, Date startDate, Date endDate,
 			boolean repeating, String recurrence, String emailNotifications,
 			String emailDelivery, String portletId, String pageURL,
-			String reportParameters, ServiceContext serviceContext)
+			String reportName, String reportParameters,
+			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		// Entry
@@ -137,7 +138,7 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 		// Report
 
 		if (!schedulerRequest) {
-			generateReport(entryId);
+			generateReport(entryId, reportName);
 		}
 
 		return entry;
@@ -223,13 +224,24 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 		Definition definition = definitionPersistence.findByPrimaryKey(
 			entry.getDefinitionId());
 
+		generateReport(entryId, definition.getReportName());
+	}
+
+	public void generateReport(long entryId, String reportName)
+		throws PortalException, SystemException {
+
+		Entry entry = entryPersistence.findByPrimaryKey(entryId);
+
+		Definition definition = definitionPersistence.findByPrimaryKey(
+			entry.getDefinitionId());
+
 		String[] existingFiles = definition.getAttachmentsFiles();
 
 		byte[] templateFile = DLStoreUtil.getFileAsBytes(
 			definition.getCompanyId(), CompanyConstants.SYSTEM,
 			existingFiles[0]);
 
-		String reportName = definition.getReportName().concat(
+		reportName = reportName.concat(
 			StringPool.PERIOD).concat(entry.getFormat());
 
 		ReportDesignRetriever retriever = new MemoryReportDesignRetriever(
