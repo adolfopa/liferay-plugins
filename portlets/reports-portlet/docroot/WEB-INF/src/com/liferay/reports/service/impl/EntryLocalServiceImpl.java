@@ -242,11 +242,11 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 			definition.getCompanyId(), CompanyConstants.SYSTEM,
 			existingFiles[0]);
 
-		reportName = reportName.concat(
+		String fullReportName = reportName.concat(
 			StringPool.PERIOD).concat(entry.getFormat());
 
 		ReportDesignRetriever retriever = new MemoryReportDesignRetriever(
-			reportName, definition.getModifiedDate(), templateFile);
+			fullReportName, definition.getModifiedDate(), templateFile);
 
 		long sourceId = definition.getSourceId();
 
@@ -394,7 +394,6 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 				"MM_dd_yyyy_HH_mm");
 
 			sb.append(dateFormat.format(now));
-
 			sb.append(StringPool.PERIOD);
 			sb.append(StringUtil.extractLast(reportName, StringPool.PERIOD));
 
