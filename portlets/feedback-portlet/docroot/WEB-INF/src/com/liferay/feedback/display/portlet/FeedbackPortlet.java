@@ -127,25 +127,24 @@ public class FeedbackPortlet extends MVCPortlet {
 		return inputStreamOVPs;
 	}
 
-	protected long getMBSubcategoryId(
-			long mbCategoryId, String mbSubcategoryName)
+	protected long getSubcategoryId(long mbCategoryId, String subcategoryName)
 		throws Exception {
 
 		MBCategory mbCategory = MBCategoryLocalServiceUtil.getMBCategory(
 			mbCategoryId);
 
-		List<MBCategory> mbSubcategories =
+		List<MBCategory> subcategories =
 			MBCategoryLocalServiceUtil.getCategories(
 				mbCategory.getGroupId(), mbCategoryId,
 				WorkflowConstants.STATUS_APPROVED, QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS);
 
-		if (!mbSubcategories.isEmpty()) {
-			for (MBCategory mbSubcategory : mbSubcategories) {
-				String curMBSubcategoryName = mbCategory.getName();
+		if (!subcategories.isEmpty()) {
+			for (MBCategory subcategory : subcategories) {
+				String curSubcategoryName = subcategory.getName();
 
-				if (curMBSubcategoryName.equals(mbSubcategoryName)) {
-					return mbSubcategory.getCategoryId();
+				if (curSubcategoryName.equals(subcategoryName)) {
+					return subcategory.getCategoryId();
 				}
 			}
 		}
@@ -156,11 +155,11 @@ public class FeedbackPortlet extends MVCPortlet {
 		serviceContext.setScopeGroupId(mbCategory.getGroupId());
 		serviceContext.setUuid(PortalUUIDUtil.generate());
 
-		MBCategory mbSubcategory = MBCategoryLocalServiceUtil.addCategory(
-			mbCategory.getUserId(), mbCategory.getCategoryId(),
-			mbSubcategoryName, StringPool.BLANK, serviceContext);
+		MBCategory subcategory = MBCategoryLocalServiceUtil.addCategory(
+			mbCategory.getUserId(), mbCategory.getCategoryId(), subcategoryName,
+			StringPool.BLANK, serviceContext);
 
-		return mbSubcategory.getCategoryId();
+		return subcategory.getCategoryId();
 	}
 
 	protected void updateFeedback(
@@ -212,17 +211,17 @@ public class FeedbackPortlet extends MVCPortlet {
 
 			serviceContext.setPortletPreferencesIds(portletPreferencesIds);
 
-			String mbSubcategoryName = ParamUtil.getString(
-				uploadPortletRequest, "mbSubcategoryName");
+			String subcategoryName = ParamUtil.getString(
+				uploadPortletRequest, "subcategoryName");
 
-			long mbSubcategoryId = getMBSubcategoryId(
-				mbCategoryId, mbSubcategoryName);
+			long subcategoryId = getSubcategoryId(
+				mbCategoryId, subcategoryName);
 
 			List<ObjectValuePair<String, InputStream>> inputStreamOVPs =
 				getInputStreamOVPs(uploadPortletRequest);
 
 			MBMessage mbMessage = MBMessageLocalServiceUtil.addMessage(
-				user.getUserId(), user.getFullName(), groupId, mbSubcategoryId,
+				user.getUserId(), user.getFullName(), groupId, subcategoryId,
 				subject, body, "bbcode", inputStreamOVPs, anonymous, 0, false,
 				serviceContext);
 
