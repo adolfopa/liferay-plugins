@@ -42,14 +42,15 @@ public class ReportExpiredAndExpiringAccountsMessageListener
 	}
 
 	protected Map<String, String> getParameterMap() {
+		Map<String, String> parameterMap = new HashMap<String, String>();
+
+		parameterMap.put(
+			"numberOfExpiringDays", _PARAMETER_NUMBER_OF_EXPIRING_DAYS);
+
 		Format format = FastDateFormatFactoryUtil.getSimpleDateFormat(
 			"yyyy-MM-dd");
 
-		Map<String, String> parameterMap = new HashMap<String, String>();
-
 		parameterMap.put("startDate", format.format(new Date()));
-		parameterMap.put(
-			"numberOfExpiringDays", _PARAMETER_NUMBER_OF_EXPIRING_DAYS);
 
 		return parameterMap;
 	}
