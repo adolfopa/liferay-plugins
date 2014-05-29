@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.ProjectionFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
@@ -34,6 +35,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.GroupConstants;
+import com.liferay.portal.model.User;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
@@ -101,7 +103,7 @@ public class OSBMetricsUtil {
 		addOSBTicketWorkerSQLFileEntry(sql);
 	}
 
-	public static Definition getDefinition(String reportName)
+	public static long getDefinitionId(String reportName)
 		throws SystemException {
 
 		ClassLoader classLoader = (ClassLoader)PortletBeanLocatorUtil.locate(
@@ -110,12 +112,19 @@ public class OSBMetricsUtil {
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
 			Definition.class, classLoader);
 
+		dynamicQuery.setProjection(
+			ProjectionFactoryUtil.property("definitionId"));
+
 		dynamicQuery.add(RestrictionsFactoryUtil.eq("reportName", reportName));
 
-		List<Definition> definition = DefinitionLocalServiceUtil.dynamicQuery(
+		List<Long> definitionIds = DefinitionLocalServiceUtil.dynamicQuery(
 			dynamicQuery);
 
-		return definition.get(0);
+		if ((definitionIds == null) || definitionIds.isEmpty()) {
+			return 0;
+		}
+
+		return definitionIds.get(0);
 	}
 
 	protected static FileEntry addOSBTicketWorkerSQLFileEntry(String sql)
