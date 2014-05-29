@@ -127,24 +127,24 @@ public class FeedbackPortlet extends MVCPortlet {
 		return inputStreamOVPs;
 	}
 
-	protected long getSubcategoryId(long mbCategoryId, String subcategoryName)
+	protected long getSubcategoryId(long mbCategoryId, String mbCategoryName)
 		throws Exception {
 
 		MBCategory mbCategory = MBCategoryLocalServiceUtil.getMBCategory(
 			mbCategoryId);
 
-		List<MBCategory> subcategories =
+		List<MBCategory> mbCategories =
 			MBCategoryLocalServiceUtil.getCategories(
 				mbCategory.getGroupId(), mbCategoryId,
 				WorkflowConstants.STATUS_APPROVED, QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS);
 
-		if (!subcategories.isEmpty()) {
-			for (MBCategory subcategory : subcategories) {
-				String curSubcategoryName = subcategory.getName();
+		if (!mbCategories.isEmpty()) {
+			for (MBCategory curMBCategory : mbCategories) {
+				String curMBCategoryName = curMBCategory.getName();
 
-				if (curSubcategoryName.equals(subcategoryName)) {
-					return subcategory.getCategoryId();
+				if (curMBCategoryName.equals(mbCategoryName)) {
+					return curMBCategory.getCategoryId();
 				}
 			}
 		}
@@ -156,7 +156,7 @@ public class FeedbackPortlet extends MVCPortlet {
 		serviceContext.setUuid(PortalUUIDUtil.generate());
 
 		MBCategory subcategory = MBCategoryLocalServiceUtil.addCategory(
-			mbCategory.getUserId(), mbCategory.getCategoryId(), subcategoryName,
+			mbCategory.getUserId(), mbCategory.getCategoryId(), mbCategoryName,
 			StringPool.BLANK, serviceContext);
 
 		return subcategory.getCategoryId();
@@ -211,19 +211,16 @@ public class FeedbackPortlet extends MVCPortlet {
 
 			serviceContext.setPortletPreferencesIds(portletPreferencesIds);
 
-			String subcategoryName = ParamUtil.getString(
-				uploadPortletRequest, "subcategoryName");
-
-			long subcategoryId = getSubcategoryId(
-				mbCategoryId, subcategoryName);
+			String mbCategoryName = ParamUtil.getString(
+				uploadPortletRequest, "mbCategoryName");
 
 			List<ObjectValuePair<String, InputStream>> inputStreamOVPs =
 				getInputStreamOVPs(uploadPortletRequest);
 
 			MBMessage mbMessage = MBMessageLocalServiceUtil.addMessage(
-				user.getUserId(), user.getFullName(), groupId, subcategoryId,
-				subject, body, "bbcode", inputStreamOVPs, anonymous, 0, false,
-				serviceContext);
+				user.getUserId(), user.getFullName(), groupId,
+				getSubcategoryId(mbCategoryId, mbCategoryName), subject, body,
+				"bbcode", inputStreamOVPs, anonymous, 0, false, serviceContext);
 
 			MBThreadLocalServiceUtil.updateQuestion(
 				mbMessage.getThreadId(), true);
