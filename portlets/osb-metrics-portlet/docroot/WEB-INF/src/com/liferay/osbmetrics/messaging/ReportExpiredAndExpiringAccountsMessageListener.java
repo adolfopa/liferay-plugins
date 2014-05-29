@@ -35,8 +35,8 @@ public class ReportExpiredAndExpiringAccountsMessageListener
 	@Override
 	protected void doReceive(Message message) throws Exception {
 		OSBMetricsUtil.addReportEntry(
-			_REPORT_FORMAT, _REPORT_NAME, _MODIFIED_REPORT_NAME,
-			PortletPropsValues.REPORT_EXPIREDANDEXPIRINGACCOUNTS_EMAIL_ADDRESSES,
+			_REPORT_FORMAT, _REPORT_NAME, _NEW_REPORT_NAME,
+			PortletPropsValues.REPORT_EXPIRED_AND_EXPIRING_ACCOUNTS_EMAIL_ADDRESSES,
 			getReportParameters());
 	}
 
@@ -52,7 +52,7 @@ public class ReportExpiredAndExpiringAccountsMessageListener
 		return reportParameters;
 	}
 
-	private static final String _MODIFIED_REPORT_NAME =
+	private static final String _NEW_REPORT_NAME =
 		"Expired and Expiring Accounts";
 
 	private static final String _NUMBER_OF_EXPIRING_DAYS = "30";

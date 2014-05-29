@@ -60,30 +60,23 @@ import java.util.Map;
 public class OSBMetricsUtil {
 
 	public static void addReportEntry(
-			String reportFormat, String reportName, String modifiedReportName,
+			String reportFormat, String reportName, String newReportName,
 			String emailAddresses, Map<String, String> reportParametersMap)
 		throws Exception {
 
-		long companyId = PortalUtil.getDefaultCompanyId();
-
 		Group group = GroupLocalServiceUtil.getGroup(
-			companyId, GroupConstants.GUEST);
-
-		long groupId = group.getGroupId();
-
-		long userId = UserLocalServiceUtil.getDefaultUserId(companyId);
+			PortalUtil.getDefaultCompanyId(), GroupConstants.GUEST);
 
 		Definition definition = getDefinition(reportName);
-
-		String reportParameters = getReportParameters(reportParametersMap);
 
 		ServiceContext serviceContext = new ServiceContext();
 
 		EntryLocalServiceUtil.addEntry(
-			userId, groupId, definition.getDefinitionId(), reportFormat, false,
-			null, null, false, StringPool.BLANK, StringPool.BLANK,
-			emailAddresses, StringPool.BLANK, StringPool.BLANK,
-			modifiedReportName, reportParameters, serviceContext);
+			UserLocalServiceUtil.getDefaultUserId(group.getCompanyId()),
+			group.getGroupId(), definition.getDefinitionId(), reportFormat,
+			false, null, null, false, StringPool.BLANK, StringPool.BLANK,
+			emailAddresses, StringPool.BLANK, StringPool.BLANK, newReportName,
+			getReportParameters(reportParametersMap), serviceContext);
 	}
 
 	public static void checkOSBTicketWorkers() throws Exception {
