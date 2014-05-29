@@ -23,6 +23,8 @@ public interface PortletPropsKeys {
 
 	public static final String LRDCOM_DB = "lrdcom.db";
 
-	public static final String REPORT_EXPIRED_AND_EXPIRING_ACCOUNTS_EMAIL_ADDRESSES = "report.expired.and.expiring.accounts.email.addresses";
+	public static final String
+		REPORT_EXPIRED_AND_EXPIRING_ACCOUNTS_EMAIL_ADDRESSES =
+			"report.expired.and.expiring.accounts.email.addresses";
 
 }
