@@ -8,7 +8,7 @@
 			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.CheckOSBTicketWorkerMessageListener</scheduler-event-listener-class>
 			<trigger>
 				<cron>
-					<cron-trigger-value>0 0 15 ? * SUN</cron-trigger-value>
+					<cron-trigger-value>0 0 15 1 * ?</cron-trigger-value>
 				</cron>
 			</trigger>
 		</scheduler-entry>
@@ -16,7 +16,7 @@
 			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.ReportExpiredAndExpiringAccountsMessageListener</scheduler-event-listener-class>
 			<trigger>
 				<cron>
-					<cron-trigger-value>0 0 7 ? * FRI</cron-trigger-value>
+					<cron-trigger-value>0 0 16 1 * ?</cron-trigger-value>
 				</cron>
 			</trigger>
 		</scheduler-entry>
