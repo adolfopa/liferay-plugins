@@ -61,6 +61,6 @@ public class ReportExpiredAndExpiringAccountsMessageListener
 	private static final String _ENTRY_REPORT_NAME =
 		"Expired and Expiring Accounts";
 
-	private static final String _PARAMETER_NUMBER_OF_EXPIRING_DAYS = "30";
+	private static final String _PARAMETER_NUMBER_OF_EXPIRING_DAYS = "31";
 
 }
