@@ -70,11 +70,13 @@ public class OSBMetricsUtil {
 		User user = UserLocalServiceUtil.getDefaultUser(
 			PortalUtil.getDefaultCompanyId());
 
+		long userId = user.getUserId();
+
 		Group group = GroupLocalServiceUtil.getGroup(
 			user.getCompanyId(), GroupConstants.GUEST);
 
-		long userId = user.getUserId();
 		long groupId = group.getGroupId();
+
 		long definitionId = getReportDefinitionId(defintionReportName);
 		String format = "pdf";
 		boolean schedulerRequest = false;
