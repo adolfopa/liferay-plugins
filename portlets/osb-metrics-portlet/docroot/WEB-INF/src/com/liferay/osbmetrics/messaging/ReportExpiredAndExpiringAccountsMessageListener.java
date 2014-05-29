@@ -43,7 +43,7 @@ public class ReportExpiredAndExpiringAccountsMessageListener
 
 	protected Map<String, String> getParameterMap() {
 		Format format = FastDateFormatFactoryUtil.getSimpleDateFormat(
-			"yyyy-MM-dd_HH-mm-z");
+			"yyyy-MM-dd");
 
 		Map<String, String> parameterMap = new HashMap<String, String>();
 
