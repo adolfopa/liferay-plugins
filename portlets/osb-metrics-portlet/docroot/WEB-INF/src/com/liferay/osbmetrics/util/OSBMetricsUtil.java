@@ -62,23 +62,39 @@ import java.util.Map;
 public class OSBMetricsUtil {
 
 	public static void addReportEntry(
-			String reportFormat, String reportName, String newReportName,
-			String emailAddresses, Map<String, String> reportParametersMap)
+			String defintionReportName, String entryReportName,
+			String entryEmailDelivery,
+			Map<String, String> entryReportParameterMap)
 		throws Exception {
 
-		Group group = GroupLocalServiceUtil.getGroup(
-			PortalUtil.getDefaultCompanyId(), GroupConstants.GUEST);
+		User user = UserLocalServiceUtil.getDefaultUser(
+			PortalUtil.getDefaultCompanyId());
 
-		Definition definition = getDefinition(reportName);
+		Group group = GroupLocalServiceUtil.getGroup(
+			user.getCompanyId(), GroupConstants.GUEST);
+
+		long userId = user.getUserId();
+		long groupId = group.getGroupId();
+		long definitionId = getReportDefinitionId(defintionReportName);
+		String format = "pdf";
+		boolean schedulerRequest = false;
+		Date startDate = null;
+		Date endDate = null;
+		boolean repeating = false;
+		String recurrence = StringPool.BLANK;
+		String emailNotifications = StringPool.BLANK;
+		String emailDelivery = entryEmailDelivery;
+		String portletId = StringPool.BLANK;
+		String pageURL = StringPool.BLANK;
+		String reportName = entryReportName;
+		String reportParameters = getReportParameters(entryReportParameterMap);
 
 		ServiceContext serviceContext = new ServiceContext();
 
 		EntryLocalServiceUtil.addEntry(
-			UserLocalServiceUtil.getDefaultUserId(group.getCompanyId()),
-			group.getGroupId(), definition.getDefinitionId(), reportFormat,
-			false, null, null, false, StringPool.BLANK, StringPool.BLANK,
-			emailAddresses, StringPool.BLANK, StringPool.BLANK, newReportName,
-			getReportParameters(reportParametersMap), serviceContext);
+			userId, groupId, definitionId, format, schedulerRequest, startDate,
+			endDate, repeating, recurrence, emailNotifications, emailDelivery,
+			portletId, pageURL, reportName, reportParameters, serviceContext);
 	}
 
 	public static void checkOSBTicketWorkers() throws Exception {
@@ -101,30 +117,6 @@ public class OSBMetricsUtil {
 		// Document library
 
 		addOSBTicketWorkerSQLFileEntry(sql);
-	}
-
-	public static long getDefinitionId(String reportName)
-		throws SystemException {
-
-		ClassLoader classLoader = (ClassLoader)PortletBeanLocatorUtil.locate(
-			ClpSerializer.getServletContextName(), "portletClassLoader");
-
-		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			Definition.class, classLoader);
-
-		dynamicQuery.setProjection(
-			ProjectionFactoryUtil.property("definitionId"));
-
-		dynamicQuery.add(RestrictionsFactoryUtil.eq("reportName", reportName));
-
-		List<Long> definitionIds = DefinitionLocalServiceUtil.dynamicQuery(
-			dynamicQuery);
-
-		if ((definitionIds == null) || definitionIds.isEmpty()) {
-			return 0;
-		}
-
-		return definitionIds.get(0);
 	}
 
 	protected static FileEntry addOSBTicketWorkerSQLFileEntry(String sql)
@@ -199,16 +191,40 @@ public class OSBMetricsUtil {
 			serviceContext);
 	}
 
+	protected static long getReportDefinitionId(String reportName)
+		throws SystemException {
+
+		ClassLoader classLoader = (ClassLoader)PortletBeanLocatorUtil.locate(
+			ClpSerializer.getServletContextName(), "portletClassLoader");
+
+		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
+			Definition.class, classLoader);
+
+		dynamicQuery.setProjection(
+			ProjectionFactoryUtil.property("definitionId"));
+
+		dynamicQuery.add(RestrictionsFactoryUtil.eq("reportName", reportName));
+
+		List<Long> definitionIds = DefinitionLocalServiceUtil.dynamicQuery(
+			dynamicQuery);
+
+		if ((definitionIds == null) || definitionIds.isEmpty()) {
+			return 0;
+		}
+
+		return definitionIds.get(0);
+	}
+
 	protected static String getReportParameters(
-		Map<String, String> reportParametersMap) {
+		Map<String, String> parameterMap) {
 
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
-		for (String key : reportParametersMap.keySet()) {
+		for (String key : parameterMap.keySet()) {
 			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 			jsonObject.put("key", key);
-			jsonObject.put("value", reportParametersMap.get(key));
+			jsonObject.put("value", parameterMap.get(key));
 
 			jsonArray.put(jsonObject);
 		}

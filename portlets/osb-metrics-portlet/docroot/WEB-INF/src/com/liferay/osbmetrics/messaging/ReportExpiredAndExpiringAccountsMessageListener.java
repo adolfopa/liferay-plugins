@@ -35,30 +35,31 @@ public class ReportExpiredAndExpiringAccountsMessageListener
 	@Override
 	protected void doReceive(Message message) throws Exception {
 		OSBMetricsUtil.addReportEntry(
-			_REPORT_FORMAT, _REPORT_NAME, _NEW_REPORT_NAME,
-			PortletPropsValues.REPORT_EXPIRED_AND_EXPIRING_ACCOUNTS_EMAIL_ADDRESSES,
-			getReportParameters());
+			_DEFINITION_REPORT_NAME, _ENTRY_REPORT_NAME,
+			PortletPropsValues.
+				REPORT_EXPIRED_AND_EXPIRING_ACCOUNTS_EMAIL_ADDRESSES,
+			getParameterMap());
 	}
 
-	protected Map<String, String> getReportParameters() {
+	protected Map<String, String> getParameterMap() {
 		Format format = FastDateFormatFactoryUtil.getSimpleDateFormat(
-			"yyyy-MM-dd");
+			"yyyy-MM-dd_HH-mm-z");
 
-		Map<String, String> reportParameters = new HashMap<String, String>();
+		Map<String, String> parameterMap = new HashMap<String, String>();
 
-		reportParameters.put("startDate", format.format(new Date()));
-		reportParameters.put("numberOfExpiringDays", _NUMBER_OF_EXPIRING_DAYS);
+		parameterMap.put("startDate", format.format(new Date()));
+		parameterMap.put(
+			"numberOfExpiringDays", _PARAMETER_NUMBER_OF_EXPIRING_DAYS);
 
-		return reportParameters;
+		return parameterMap;
 	}
 
-	private static final String _NEW_REPORT_NAME =
+	private static final String _DEFINITION_REPORT_NAME =
+		"OSB_ExpiredAndExpiringAccounts";
+
+	private static final String _ENTRY_REPORT_NAME =
 		"Expired and Expiring Accounts";
 
-	private static final String _NUMBER_OF_EXPIRING_DAYS = "30";
-
-	private static final String _REPORT_FORMAT = "pdf";
-
-	private static final String _REPORT_NAME = "OSB_ExpiredAndExpiringAccounts";
+	private static final String _PARAMETER_NUMBER_OF_EXPIRING_DAYS = "30";
 
 }
