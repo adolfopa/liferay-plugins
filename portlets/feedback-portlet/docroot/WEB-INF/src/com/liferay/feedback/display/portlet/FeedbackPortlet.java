@@ -127,7 +127,7 @@ public class FeedbackPortlet extends MVCPortlet {
 		return inputStreamOVPs;
 	}
 
-	protected long getSubcategoryId(long mbCategoryId, String mbCategoryName)
+	protected long getSubMBCategoryId(long mbCategoryId, String mbCategoryName)
 		throws Exception {
 
 		MBCategory mbCategory = MBCategoryLocalServiceUtil.getMBCategory(
@@ -155,11 +155,11 @@ public class FeedbackPortlet extends MVCPortlet {
 		serviceContext.setScopeGroupId(mbCategory.getGroupId());
 		serviceContext.setUuid(PortalUUIDUtil.generate());
 
-		MBCategory subcategory = MBCategoryLocalServiceUtil.addCategory(
+		MBCategory subMBcategory = MBCategoryLocalServiceUtil.addCategory(
 			mbCategory.getUserId(), mbCategory.getCategoryId(), mbCategoryName,
 			StringPool.BLANK, serviceContext);
 
-		return subcategory.getCategoryId();
+		return subMBcategory.getCategoryId();
 	}
 
 	protected void updateFeedback(
@@ -184,6 +184,12 @@ public class FeedbackPortlet extends MVCPortlet {
 			String body = ParamUtil.getString(uploadPortletRequest, "body");
 
 			String subject = StringUtil.shorten(body);
+
+			String mbCategoryName = ParamUtil.getString(
+				uploadPortletRequest, "mbCategoryName");
+
+			List<ObjectValuePair<String, InputStream>> inputStreamOVPs =
+				getInputStreamOVPs(uploadPortletRequest);
 
 			boolean anonymous = ParamUtil.getBoolean(
 				uploadPortletRequest, "anonymous");
@@ -211,15 +217,9 @@ public class FeedbackPortlet extends MVCPortlet {
 
 			serviceContext.setPortletPreferencesIds(portletPreferencesIds);
 
-			String mbCategoryName = ParamUtil.getString(
-				uploadPortletRequest, "mbCategoryName");
-
-			List<ObjectValuePair<String, InputStream>> inputStreamOVPs =
-				getInputStreamOVPs(uploadPortletRequest);
-
 			MBMessage mbMessage = MBMessageLocalServiceUtil.addMessage(
 				user.getUserId(), user.getFullName(), groupId,
-				getSubcategoryId(mbCategoryId, mbCategoryName), subject, body,
+				getSubMBCategoryId(mbCategoryId, mbCategoryName), subject, body,
 				"bbcode", inputStreamOVPs, anonymous, 0, false, serviceContext);
 
 			MBThreadLocalServiceUtil.updateQuestion(
