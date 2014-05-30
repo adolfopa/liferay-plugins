@@ -242,11 +242,9 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 			definition.getCompanyId(), CompanyConstants.SYSTEM,
 			existingFiles[0]);
 
-		String fullReportName = reportName.concat(
-			StringPool.PERIOD).concat(entry.getFormat());
-
 		ReportDesignRetriever retriever = new MemoryReportDesignRetriever(
-			fullReportName, definition.getModifiedDate(), templateFile);
+			reportName + StringPool.PERIOD + entry.getFormat(),
+			definition.getModifiedDate(), templateFile);
 
 		long sourceId = definition.getSourceId();
 
