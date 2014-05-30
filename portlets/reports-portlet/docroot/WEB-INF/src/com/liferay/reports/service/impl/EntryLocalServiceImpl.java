@@ -392,6 +392,7 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 				"MM_dd_yyyy_HH_mm");
 
 			sb.append(dateFormat.format(now));
+
 			sb.append(StringPool.PERIOD);
 			sb.append(StringUtil.extractLast(reportName, StringPool.PERIOD));
 
