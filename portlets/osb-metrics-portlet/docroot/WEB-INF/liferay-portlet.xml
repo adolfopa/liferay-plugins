@@ -20,6 +20,54 @@
 				</cron>
 			</trigger>
 		</scheduler-entry>
+		<scheduler-entry>
+			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.BrazilReportsProvisioningMetricsMessageListener</scheduler-event-listener-class>
+			<trigger>
+				<cron>
+					<cron-trigger-value>0 0 7 2 * ?</cron-trigger-value>
+				</cron>
+			</trigger>
+		</scheduler-entry>
+		<scheduler-entry>
+			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.ChinaReportsProvisioningMetricsMessageListener</scheduler-event-listener-class>
+			<trigger>
+				<cron>
+					<cron-trigger-value>0 0 11 2 * ?</cron-trigger-value>
+				</cron>
+			</trigger>
+		</scheduler-entry>
+		<scheduler-entry>
+			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.HungaryReportsProvisioningMetricsMessageListener</scheduler-event-listener-class>
+			<trigger>
+				<cron>
+					<cron-trigger-value>0 0 15 2 * ?</cron-trigger-value>
+				</cron>
+			</trigger>
+		</scheduler-entry>
+		<scheduler-entry>
+			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.IndiaReportsProvisioningMetricsMessageListener</scheduler-event-listener-class>
+			<trigger>
+				<cron>
+					<cron-trigger-value>0 0 19 2 * ?</cron-trigger-value>
+				</cron>
+			</trigger>
+		</scheduler-entry>
+		<scheduler-entry>
+			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.SpainReportsProvisioningMetricsMessageListener</scheduler-event-listener-class>
+			<trigger>
+				<cron>
+					<cron-trigger-value>0 0 23 2 * ?</cron-trigger-value>
+				</cron>
+			</trigger>
+		</scheduler-entry>
+		<scheduler-entry>
+			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.UnitedStatesReportsProvisioningMetricsMessageListener</scheduler-event-listener-class>
+			<trigger>
+				<cron>
+					<cron-trigger-value>0 0 3 3 * ?</cron-trigger-value>
+				</cron>
+			</trigger>
+		</scheduler-entry>
 		<control-panel-entry-category>portal</control-panel-entry-category>
 		<control-panel-entry-weight>13.5</control-panel-entry-weight>
 		<css-class-wrapper>osb-metrics-portlet</css-class-wrapper>
