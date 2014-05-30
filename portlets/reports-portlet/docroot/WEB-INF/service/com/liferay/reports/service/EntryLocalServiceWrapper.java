@@ -294,14 +294,15 @@ public class EntryLocalServiceWrapper implements EntryLocalService,
 		java.util.Date startDate, java.util.Date endDate, boolean repeating,
 		java.lang.String recurrence, java.lang.String emailNotifications,
 		java.lang.String emailDelivery, java.lang.String portletId,
-		java.lang.String pageURL, java.lang.String reportParameters,
+		java.lang.String pageURL, java.lang.String reportName,
+		java.lang.String reportParameters,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _entryLocalService.addEntry(userId, groupId, definitionId,
 			format, schedulerRequest, startDate, endDate, repeating,
 			recurrence, emailNotifications, emailDelivery, portletId, pageURL,
-			reportParameters, serviceContext);
+			reportName, reportParameters, serviceContext);
 	}
 
 	@Override
@@ -335,6 +336,13 @@ public class EntryLocalServiceWrapper implements EntryLocalService,
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		_entryLocalService.generateReport(entryId);
+	}
+
+	@Override
+	public void generateReport(long entryId, java.lang.String reportName)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_entryLocalService.generateReport(entryId, reportName);
 	}
 
 	@Override

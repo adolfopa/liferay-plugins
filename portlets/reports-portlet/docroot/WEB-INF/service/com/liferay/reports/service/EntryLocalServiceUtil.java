@@ -284,14 +284,14 @@ public class EntryLocalServiceUtil {
 		java.util.Date endDate, boolean repeating, java.lang.String recurrence,
 		java.lang.String emailNotifications, java.lang.String emailDelivery,
 		java.lang.String portletId, java.lang.String pageURL,
-		java.lang.String reportParameters,
+		java.lang.String reportName, java.lang.String reportParameters,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .addEntry(userId, groupId, definitionId, format,
 			schedulerRequest, startDate, endDate, repeating, recurrence,
-			emailNotifications, emailDelivery, portletId, pageURL,
+			emailNotifications, emailDelivery, portletId, pageURL, reportName,
 			reportParameters, serviceContext);
 	}
 
@@ -326,6 +326,12 @@ public class EntryLocalServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		getService().generateReport(entryId);
+	}
+
+	public static void generateReport(long entryId, java.lang.String reportName)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().generateReport(entryId, reportName);
 	}
 
 	public static java.util.List<com.liferay.reports.model.Entry> getEntries(

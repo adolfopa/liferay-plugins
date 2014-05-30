@@ -38,7 +38,7 @@ public class EntryServiceClpInvoker {
 				"long", "long", "java.lang.String", "boolean", "java.util.Date",
 				"java.util.Date", "boolean", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.lang.String",
-				"java.lang.String", "java.lang.String",
+				"java.lang.String", "java.lang.String", "java.lang.String",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
@@ -105,7 +105,8 @@ public class EntryServiceClpInvoker {
 				(java.lang.String)arguments[10],
 				(java.lang.String)arguments[11],
 				(java.lang.String)arguments[12],
-				(com.liferay.portal.service.ServiceContext)arguments[13]);
+				(java.lang.String)arguments[13],
+				(com.liferay.portal.service.ServiceContext)arguments[14]);
 		}
 
 		if (_methodName49.equals(name) &&

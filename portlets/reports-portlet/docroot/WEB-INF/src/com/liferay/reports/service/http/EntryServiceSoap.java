@@ -67,14 +67,16 @@ public class EntryServiceSoap {
 		java.util.Date startDate, java.util.Date endDate, boolean repeating,
 		java.lang.String recurrence, java.lang.String emailNotifications,
 		java.lang.String emailDelivery, java.lang.String portletId,
-		java.lang.String pageURL, java.lang.String reportParameters,
+		java.lang.String pageURL, java.lang.String reportName,
+		java.lang.String reportParameters,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws RemoteException {
 		try {
 			com.liferay.reports.model.Entry returnValue = EntryServiceUtil.addEntry(groupId,
 					definitionId, format, schedulerRequest, startDate, endDate,
 					repeating, recurrence, emailNotifications, emailDelivery,
-					portletId, pageURL, reportParameters, serviceContext);
+					portletId, pageURL, reportName, reportParameters,
+					serviceContext);
 
 			return com.liferay.reports.model.EntrySoap.toSoapModel(returnValue);
 		}

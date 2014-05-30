@@ -38,7 +38,7 @@ public class EntryServiceClp implements EntryService {
 				"long", "long", "java.lang.String", "boolean", "java.util.Date",
 				"java.util.Date", "boolean", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.lang.String",
-				"java.lang.String", "java.lang.String",
+				"java.lang.String", "java.lang.String", "java.lang.String",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
@@ -132,7 +132,8 @@ public class EntryServiceClp implements EntryService {
 		java.util.Date startDate, java.util.Date endDate, boolean repeating,
 		java.lang.String recurrence, java.lang.String emailNotifications,
 		java.lang.String emailDelivery, java.lang.String portletId,
-		java.lang.String pageURL, java.lang.String reportParameters,
+		java.lang.String pageURL, java.lang.String reportName,
+		java.lang.String reportParameters,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -165,6 +166,8 @@ public class EntryServiceClp implements EntryService {
 					ClpSerializer.translateInput(portletId),
 						
 					ClpSerializer.translateInput(pageURL),
+						
+					ClpSerializer.translateInput(reportName),
 						
 					ClpSerializer.translateInput(reportParameters),
 						

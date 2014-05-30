@@ -119,7 +119,7 @@ public class EntryLocalServiceClpInvoker {
 				"java.util.Date", "java.util.Date", "boolean",
 				"java.lang.String", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.lang.String",
-				"com.liferay.portal.service.ServiceContext"
+				"java.lang.String", "com.liferay.portal.service.ServiceContext"
 			};
 
 		_methodName67 = "addEntryResources";
@@ -151,40 +151,44 @@ public class EntryLocalServiceClpInvoker {
 
 		_methodParameterTypes72 = new String[] { "long" };
 
-		_methodName73 = "getEntries";
+		_methodName73 = "generateReport";
 
-		_methodParameterTypes73 = new String[] {
+		_methodParameterTypes73 = new String[] { "long", "java.lang.String" };
+
+		_methodName74 = "getEntries";
+
+		_methodParameterTypes74 = new String[] {
 				"long", "java.lang.String", "java.lang.String", "java.util.Date",
 				"java.util.Date", "boolean", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName74 = "getEntriesCount";
+		_methodName75 = "getEntriesCount";
 
-		_methodParameterTypes74 = new String[] {
+		_methodParameterTypes75 = new String[] {
 				"long", "java.lang.String", "java.lang.String", "java.util.Date",
 				"java.util.Date", "boolean"
 			};
 
-		_methodName75 = "sendEmails";
+		_methodName76 = "sendEmails";
 
-		_methodParameterTypes75 = new String[] {
+		_methodParameterTypes76 = new String[] {
 				"long", "java.lang.String", "java.lang.String[][]", "boolean"
 			};
 
-		_methodName76 = "unscheduleEntry";
+		_methodName77 = "unscheduleEntry";
 
-		_methodParameterTypes76 = new String[] { "long" };
+		_methodParameterTypes77 = new String[] { "long" };
 
-		_methodName77 = "updateEntry";
+		_methodName78 = "updateEntry";
 
-		_methodParameterTypes77 = new String[] {
+		_methodParameterTypes78 = new String[] {
 				"long", "java.lang.String", "byte[][]"
 			};
 
-		_methodName78 = "updateEntryStatus";
+		_methodName79 = "updateEntryStatus";
 
-		_methodParameterTypes78 = new String[] {
+		_methodParameterTypes79 = new String[] {
 				"long", "com.liferay.reports.ReportStatus", "java.lang.String"
 			};
 	}
@@ -309,7 +313,8 @@ public class EntryLocalServiceClpInvoker {
 				(java.lang.String)arguments[11],
 				(java.lang.String)arguments[12],
 				(java.lang.String)arguments[13],
-				(com.liferay.portal.service.ServiceContext)arguments[14]);
+				(java.lang.String)arguments[14],
+				(com.liferay.portal.service.ServiceContext)arguments[15]);
 		}
 
 		if (_methodName67.equals(name) &&
@@ -357,6 +362,14 @@ public class EntryLocalServiceClpInvoker {
 
 		if (_methodName73.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes73, parameterTypes)) {
+			EntryLocalServiceUtil.generateReport(((Long)arguments[0]).longValue(),
+				(java.lang.String)arguments[1]);
+
+			return null;
+		}
+
+		if (_methodName74.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes74, parameterTypes)) {
 			return EntryLocalServiceUtil.getEntries(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
 				(java.util.Date)arguments[3], (java.util.Date)arguments[4],
@@ -366,16 +379,16 @@ public class EntryLocalServiceClpInvoker {
 				(com.liferay.portal.kernel.util.OrderByComparator)arguments[8]);
 		}
 
-		if (_methodName74.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes74, parameterTypes)) {
+		if (_methodName75.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes75, parameterTypes)) {
 			return EntryLocalServiceUtil.getEntriesCount(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
 				(java.util.Date)arguments[3], (java.util.Date)arguments[4],
 				((Boolean)arguments[5]).booleanValue());
 		}
 
-		if (_methodName75.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes75, parameterTypes)) {
+		if (_methodName76.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes76, parameterTypes)) {
 			EntryLocalServiceUtil.sendEmails(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1],
 				(java.lang.String[])arguments[2],
@@ -384,23 +397,23 @@ public class EntryLocalServiceClpInvoker {
 			return null;
 		}
 
-		if (_methodName76.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes76, parameterTypes)) {
-			EntryLocalServiceUtil.unscheduleEntry(((Long)arguments[0]).longValue());
-
-			return null;
-		}
-
 		if (_methodName77.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes77, parameterTypes)) {
-			EntryLocalServiceUtil.updateEntry(((Long)arguments[0]).longValue(),
-				(java.lang.String)arguments[1], (byte[])arguments[2]);
+			EntryLocalServiceUtil.unscheduleEntry(((Long)arguments[0]).longValue());
 
 			return null;
 		}
 
 		if (_methodName78.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes78, parameterTypes)) {
+			EntryLocalServiceUtil.updateEntry(((Long)arguments[0]).longValue(),
+				(java.lang.String)arguments[1], (byte[])arguments[2]);
+
+			return null;
+		}
+
+		if (_methodName79.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes79, parameterTypes)) {
 			EntryLocalServiceUtil.updateEntryStatus(((Long)arguments[0]).longValue(),
 				(com.liferay.reports.ReportStatus)arguments[1],
 				(java.lang.String)arguments[2]);
@@ -475,4 +488,6 @@ public class EntryLocalServiceClpInvoker {
 	private String[] _methodParameterTypes77;
 	private String _methodName78;
 	private String[] _methodParameterTypes78;
+	private String _methodName79;
+	private String[] _methodParameterTypes79;
 }

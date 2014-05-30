@@ -68,14 +68,16 @@ public class EntryServiceUtil {
 		java.util.Date startDate, java.util.Date endDate, boolean repeating,
 		java.lang.String recurrence, java.lang.String emailNotifications,
 		java.lang.String emailDelivery, java.lang.String portletId,
-		java.lang.String pageURL, java.lang.String reportParameters,
+		java.lang.String pageURL, java.lang.String reportName,
+		java.lang.String reportParameters,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .addEntry(groupId, definitionId, format, schedulerRequest,
 			startDate, endDate, repeating, recurrence, emailNotifications,
-			emailDelivery, portletId, pageURL, reportParameters, serviceContext);
+			emailDelivery, portletId, pageURL, reportName, reportParameters,
+			serviceContext);
 	}
 
 	public static void deleteAttachment(long companyId, long entryId,
