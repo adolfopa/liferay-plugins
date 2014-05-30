@@ -14,32 +14,14 @@
 
 package com.liferay.github.util;
 
-import java.io.File;
-
 /**
  * @author Brian Wing Shun Chan
  * @author Peter Shin
  */
-public class DevOpsProcessUtil {
+public class DevOpsPropsUtil {
 
-	public static Object[] execute(File workDir, String command) {
-		return execute(workDir, command.split("\\s+"));
-	}
-
-	public static Object[] execute(File workDir, String[] commands) {
-		return null;
-	}
-
-	public static String getOutput(File workDir, String command) {
-		Object[] returnValue = execute(workDir, command);
-
-		if ((returnValue == null) || (returnValue.length < 2) ||
-			(returnValue[1] == null)) {
-
-			return "";
-		}
-
-		return (String)returnValue[1];
+	public static String get(String key) {
+		return "";
 	}
 
 }

@@ -17,10 +17,15 @@ package com.liferay.github.util;
 import java.io.File;
 import java.io.IOException;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TimeZone;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -52,6 +57,10 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 		}
 	}
 
+	public File getProfileGitRepositoryDir(String profileName) {
+		return new File(_DEV_OPS_DIR_NAME + "/" + profileName + "/plugins");
+	}
+
 	@Override
 	public void process(JSONObject payloadJSONObject) throws Exception {
 		if (!DevOpsUtil.isValidAction(payloadJSONObject)) {
@@ -69,13 +78,81 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 	}
 
 	public synchronized void updatePeekGitRepository(String profileName) {
+		File workDir = new File(_PEEK_GIT_REPOSITORY_DIR_NAME);
+
+		DevOpsProcessUtil.execute(workDir, "git clean -d -f -q -x");
+
+		DevOpsProcessUtil.execute(workDir, "git fetch origin");
+
+		DevOpsProcessUtil.execute(workDir, "git rebase origin");
+
+		File redeployMarkerfile = new File(
+			_PEEK_GIT_REPOSITORY_DIR_NAME + profileName +
+				"/portal/redeploy.marker");
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append(profileName.substring(0, 1).toUpperCase());
+		sb.append(profileName.substring(1));
+		sb.append(" ");
+
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss z");
+
+		dateFormat.setTimeZone(TimeZone.getTimeZone("America/Los_Angeles"));
+
+		sb.append(dateFormat.format(new Date()));
+
+		try {
+			FileUtils.writeStringToFile(
+				redeployMarkerfile, sb.toString(), "UTF-8", false);
+		}
+		catch (IOException ioe) {
+			_log.error(ioe, ioe);
+		}
+
+		DevOpsProcessUtil.execute(
+			workDir, "git add " + profileName + "/portal/redeploy.marker");
+
+		DevOpsProcessUtil.execute(
+			workDir, "git commit -m '" + sb.toString() + "'");
+
+		DevOpsProcessUtil.execute(workDir, "git push origin");
 	}
 
 	public void updateProfileGitRepository(String profileName) {
-	}
+		File workDir = getProfileGitRepositoryDir(profileName);
 
-	protected File getProfileGitRepositoryDir(String profileName) {
-		return null;
+		DevOpsProcessUtil.execute(
+			workDir, "git clean -d -f -q -x -e .ivy -e build." +
+				System.getenv("USERNAME") + ".properties");
+
+		DevOpsProcessUtil.execute(workDir, "git reset --hard HEAD");
+
+		DevOpsProcessUtil.execute(workDir, "git fetch upstream");
+
+		String branchOutput = DevOpsProcessUtil.getOutput(
+			workDir, "git branch --list devops-" + profileName);
+
+		if (branchOutput.isEmpty()) {
+			String baseBranch = DevOpsPropsUtil.get(
+				"profile." + profileName + ".base.branch");
+
+			DevOpsProcessUtil.execute(
+				workDir, "git checkout upstream/" + baseBranch);
+
+			DevOpsProcessUtil.execute(
+				workDir, "git checkout -b devops-" + profileName);
+		}
+		else {
+			String baseBranch = DevOpsPropsUtil.get(
+				"profile." + profileName + ".base.branch");
+
+			DevOpsProcessUtil.execute(
+				workDir, "git rebase upstream/" + baseBranch);
+		}
+
+		DevOpsProcessUtil.execute(
+			workDir, "git push origin devops-" + profileName);
 	}
 
 	protected String[] getProfileNames() {
@@ -94,8 +171,8 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 		if (!profileGitRepositoryDir.exists()) {
 			DevOpsProcessUtil.execute(
 				new File(_PLUGINS_GIT_REPOSITORY_DIR_NAME),
-				"git new-workdir " + _PLUGINS_GIT_REPOSITORY_DIR_NAME +
-					" " + profileGitRepositoryDir);
+				"git new-workdir " + _PLUGINS_GIT_REPOSITORY_DIR_NAME + " " +
+					profileGitRepositoryDir);
 
 			try {
 				FileUtils.writeStringToFile(
@@ -164,6 +241,8 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 			initScheduledExecutorService(profileName);
 		}
 	}
+
+	private static final String _DEV_OPS_DIR_NAME = "/var/peek/devops";
 
 	private static final String _PEEK_GIT_REPOSITORY_DIR_NAME =
 		"/var/peek/repo";

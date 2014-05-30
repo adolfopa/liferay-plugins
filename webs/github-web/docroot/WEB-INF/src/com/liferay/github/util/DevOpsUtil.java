@@ -26,6 +26,13 @@ public class DevOpsUtil {
 		return "";
 	}
 
+	public static void githubClosePullRequest(JSONObject payloadJSONObject) {
+	}
+
+	public static void githubPostComment(
+		JSONObject payloadJSONObject, String comment) {
+	}
+
 	public static boolean isValidAction(JSONObject payloadJSONObject) {
 		return true;
 	}
