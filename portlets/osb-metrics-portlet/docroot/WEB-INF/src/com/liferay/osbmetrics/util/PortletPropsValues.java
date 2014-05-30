@@ -21,9 +21,11 @@ import com.liferay.util.portlet.PortletProps;
  */
 public class PortletPropsValues {
 
-	public static final String JIRA_DB = PortletProps.get(PortletPropsKeys.JIRA_DB);
+	public static final String JIRA_DB = PortletProps.get(
+		PortletPropsKeys.JIRA_DB);
 
-	public static final String LRDCOM_DB = PortletProps.get(PortletPropsKeys.LRDCOM_DB);
+	public static final String LRDCOM_DB = PortletProps.get(
+		PortletPropsKeys.LRDCOM_DB);
 
 	public static final String
 		REPORT_EXPIRED_AND_EXPIRING_ACCOUNTS_EMAIL_ADDRESSES = PortletProps.get(
