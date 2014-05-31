@@ -31,7 +31,6 @@ public class HungaryReportsProvisioningMetricsMessageListener
 	}
 
 	private static final String _EMAIL_ADDRESSES =
-		"support-analytics-metrics@liferay.com," +
 		"support-analytics-metrics-hu@liferay.com";
 
 	private static final String _PARAMETER_SUPPORT_REGION = "Support-HU";

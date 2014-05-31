@@ -77,6 +77,16 @@ public class OSBMetricsUtil {
 
 		long groupId = group.getGroupId();
 
+		String emailDelivery = entryEmailDelivery;
+
+		if ((emailDelivery == null) || emailDelivery.isEmpty()) {
+			emailDelivery = "support-analytics-metrics@liferay.com";
+		}
+		else {
+			emailDelivery = emailDelivery.concat(
+				",support-analytics-metrics@liferay.com");
+		}
+
 		long definitionId = getReportDefinitionId(defintionReportName);
 		String format = "pdf";
 		boolean schedulerRequest = false;
@@ -85,7 +95,6 @@ public class OSBMetricsUtil {
 		boolean repeating = false;
 		String recurrence = StringPool.BLANK;
 		String emailNotifications = StringPool.BLANK;
-		String emailDelivery = entryEmailDelivery;
 		String portletId = StringPool.BLANK;
 		String pageURL = StringPool.BLANK;
 		String reportName = entryReportName;

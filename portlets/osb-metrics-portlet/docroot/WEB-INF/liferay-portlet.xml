@@ -13,7 +13,7 @@
 			</trigger>
 		</scheduler-entry>
 		<scheduler-entry>
-			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.GlobalReportExpiredAndExpiringAccountsMessageListener</scheduler-event-listener-class>
+			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.GlobalReportsExpiredAndExpiringAccountsMessageListener</scheduler-event-listener-class>
 			<trigger>
 				<cron>
 					<cron-trigger-value>0 0 16 1 * ?</cron-trigger-value>

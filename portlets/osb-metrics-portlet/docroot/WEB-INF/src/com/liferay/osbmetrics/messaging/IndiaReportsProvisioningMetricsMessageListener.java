@@ -31,7 +31,6 @@ public class IndiaReportsProvisioningMetricsMessageListener
 	}
 
 	private static final String _EMAIL_ADDRESSES =
-		"support-analytics-metrics@liferay.com," +
 		"support-analytics-metrics-in@liferay.com";
 
 	private static final String _PARAMETER_SUPPORT_REGION = "Support-IN";
