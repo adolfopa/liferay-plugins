@@ -34,15 +34,14 @@ public class GlobalReportsExpiredAndExpiringAccountsMessageListener
 	@Override
 	protected void doReceive(Message message) throws Exception {
 		OSBMetricsUtil.addReportEntry(
-			_DEFINITION_REPORT_NAME, _ENTRY_REPORT_NAME, _EMAIL_ADDRESSES,
-			getParameterMap());
+			"OSB_ExpiredAndExpiringAccounts", "Expired and Expiring Accounts",
+			"support-analytics-sales-metrics@liferay.com", getParameterMap());
 	}
 
 	protected Map<String, String> getParameterMap() {
 		Map<String, String> parameterMap = new HashMap<String, String>();
 
-		parameterMap.put(
-			"numberOfExpiringDays", _PARAMETER_NUMBER_OF_EXPIRING_DAYS);
+		parameterMap.put("numberOfExpiringDays", "31");
 
 		Format format = FastDateFormatFactoryUtil.getSimpleDateFormat(
 			"yyyy-MM-dd");
@@ -51,16 +50,5 @@ public class GlobalReportsExpiredAndExpiringAccountsMessageListener
 
 		return parameterMap;
 	}
-
-	private static final String _DEFINITION_REPORT_NAME =
-		"OSB_ExpiredAndExpiringAccounts";
-
-	private static final String _EMAIL_ADDRESSES =
-		"support-analytics-sales-metrics@liferay.com";
-
-	private static final String _ENTRY_REPORT_NAME =
-		"Expired and Expiring Accounts";
-
-	private static final String _PARAMETER_NUMBER_OF_EXPIRING_DAYS = "31";
 
 }

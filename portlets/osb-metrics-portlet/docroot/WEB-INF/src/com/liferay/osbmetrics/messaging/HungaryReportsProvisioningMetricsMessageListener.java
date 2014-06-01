@@ -22,17 +22,12 @@ public class HungaryReportsProvisioningMetricsMessageListener
 
 	@Override
 	protected String getEmailAddresses() {
-		return _EMAIL_ADDRESSES;
+		return "support-analytics-metrics-hu@liferay.com";
 	}
 
 	@Override
 	protected String getSupportRegion() {
-		return _SUPPORT_REGION;
+		return "Support-HU";
 	}
-
-	private static final String _EMAIL_ADDRESSES =
-		"support-analytics-metrics-hu@liferay.com";
-
-	private static final String _SUPPORT_REGION = "Support-HU";
 
 }

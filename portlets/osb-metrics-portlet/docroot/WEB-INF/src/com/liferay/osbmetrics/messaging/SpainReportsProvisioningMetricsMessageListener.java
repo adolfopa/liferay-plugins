@@ -22,17 +22,12 @@ public class SpainReportsProvisioningMetricsMessageListener
 
 	@Override
 	protected String getEmailAddresses() {
-		return _EMAIL_ADDRESSES;
+		return "support-analytics-metrics-es@liferay.com";
 	}
 
 	@Override
 	protected String getSupportRegion() {
-		return _SUPPORT_REGION;
+		return "Support-ES";
 	}
-
-	private static final String _EMAIL_ADDRESSES =
-		"support-analytics-metrics-es@liferay.com";
-
-	private static final String _SUPPORT_REGION = "Support-ES";
 
 }

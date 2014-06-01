@@ -22,17 +22,12 @@ public class ChinaReportsProvisioningMetricsMessageListener
 
 	@Override
 	protected String getEmailAddresses() {
-		return _EMAIL_ADDRESSES;
+		return "support-analytics-metrics-cn@liferay.com";
 	}
 
 	@Override
 	protected String getSupportRegion() {
-		return _SUPPORT_REGION;
+		return "Support-CN";
 	}
-
-	private static final String _EMAIL_ADDRESSES =
-		"support-analytics-metrics-cn@liferay.com";
-
-	private static final String _SUPPORT_REGION = "Support-CN";
 
 }
