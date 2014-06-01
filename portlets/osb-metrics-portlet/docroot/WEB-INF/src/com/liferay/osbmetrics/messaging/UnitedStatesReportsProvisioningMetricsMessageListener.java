@@ -27,12 +27,12 @@ public class UnitedStatesReportsProvisioningMetricsMessageListener
 
 	@Override
 	protected String getSupportRegion() {
-		return _PARAMETER_SUPPORT_REGION;
+		return _SUPPORT_REGION;
 	}
 
 	private static final String _EMAIL_ADDRESSES =
 		"support-analytics-metrics-us@liferay.com";
 
-	private static final String _PARAMETER_SUPPORT_REGION = "Support-US";
+	private static final String _SUPPORT_REGION = "Support-US";
 
 }

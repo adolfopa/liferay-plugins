@@ -27,12 +27,12 @@ public class BrazilReportsProvisioningMetricsMessageListener
 
 	@Override
 	protected String getSupportRegion() {
-		return _PARAMETER_SUPPORT_REGION;
+		return _SUPPORT_REGION;
 	}
 
 	private static final String _EMAIL_ADDRESSES =
 		"support-analytics-metrics-br@liferay.com";
 
-	private static final String _PARAMETER_SUPPORT_REGION = "Support-BR";
+	private static final String _SUPPORT_REGION = "Support-BR";
 
 }
