@@ -204,6 +204,8 @@ if (Validator.isNotNull(workflowDefinition)) {
 					}
 				)
 			);
+
+			Liferay.component('<portlet:namespace/>KaleoFormsAdmin').updateNavigationControls();
 		},
 		['aui-base']
 	);

@@ -134,6 +134,8 @@ if (ddmStructureId > 0) {
 			A.one('#<portlet:namespace />ddmStructureDisplay').html(Liferay.Util.unescapeHTML(event.name));
 			A.one('#<portlet:namespace />ddmStructureId').val(event.ddmstructureid);
 			A.one('#<portlet:namespace />ddmStructureName').val(Liferay.Util.unescapeHTML(event.name));
+
+			Liferay.component('<portlet:namespace/>KaleoFormsAdmin').updateNavigationControls();
 		},
 		['aui-base']
 	);
