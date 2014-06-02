@@ -68,6 +68,54 @@
 				</cron>
 			</trigger>
 		</scheduler-entry>
+		<scheduler-entry>
+			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.BrazilReportsTeamMetricsMessageListener</scheduler-event-listener-class>
+			<trigger>
+				<cron>
+					<cron-trigger-value>0 0 0 3 * ?</cron-trigger-value>
+				</cron>
+			</trigger>
+		</scheduler-entry>
+		<scheduler-entry>
+			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.ChinaReportsTeamMetricsMessageListener</scheduler-event-listener-class>
+			<trigger>
+				<cron>
+					<cron-trigger-value>0 0 4 3 * ?</cron-trigger-value>
+				</cron>
+			</trigger>
+		</scheduler-entry>
+		<scheduler-entry>
+			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.HungaryReportsTeamMetricsMessageListener</scheduler-event-listener-class>
+			<trigger>
+				<cron>
+					<cron-trigger-value>0 0 8 3 * ?</cron-trigger-value>
+				</cron>
+			</trigger>
+		</scheduler-entry>
+		<scheduler-entry>
+			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.IndiaReportsTeamMetricsMessageListener</scheduler-event-listener-class>
+			<trigger>
+				<cron>
+					<cron-trigger-value>0 0 12 3 * ?</cron-trigger-value>
+				</cron>
+			</trigger>
+		</scheduler-entry>
+		<scheduler-entry>
+			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.SpainReportsTeamMetricsMessageListener</scheduler-event-listener-class>
+			<trigger>
+				<cron>
+					<cron-trigger-value>0 0 16 3 * ?</cron-trigger-value>
+				</cron>
+			</trigger>
+		</scheduler-entry>
+		<scheduler-entry>
+			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.UnitedStatesReportsTeamMetricsMessageListener</scheduler-event-listener-class>
+			<trigger>
+				<cron>
+					<cron-trigger-value>0 0 20 3 * ?</cron-trigger-value>
+				</cron>
+			</trigger>
+		</scheduler-entry>
 		<control-panel-entry-category>portal</control-panel-entry-category>
 		<control-panel-entry-weight>13.5</control-panel-entry-weight>
 		<css-class-wrapper>osb-metrics-portlet</css-class-wrapper>
