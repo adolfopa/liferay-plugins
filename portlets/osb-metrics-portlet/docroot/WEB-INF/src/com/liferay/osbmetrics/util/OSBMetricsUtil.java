@@ -15,11 +15,9 @@
 package com.liferay.osbmetrics.util;
 
 import com.liferay.osbmetrics.tools.OSBTicketWorkerSQLBuilder;
-import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.ProjectionFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -42,8 +40,6 @@ import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.documentlibrary.model.DLFolderConstants;
 import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
-import com.liferay.reports.model.Definition;
-import com.liferay.reports.service.ClpSerializer;
 import com.liferay.reports.service.DefinitionLocalServiceUtil;
 import com.liferay.reports.service.EntryLocalServiceUtil;
 
@@ -205,11 +201,7 @@ public class OSBMetricsUtil {
 	protected static long getReportDefinitionId(String reportName)
 		throws SystemException {
 
-		ClassLoader classLoader = (ClassLoader)PortletBeanLocatorUtil.locate(
-			ClpSerializer.getServletContextName(), "portletClassLoader");
-
-		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			Definition.class, classLoader);
+		DynamicQuery dynamicQuery = DefinitionLocalServiceUtil.dynamicQuery();
 
 		dynamicQuery.setProjection(
 			ProjectionFactoryUtil.property("definitionId"));
