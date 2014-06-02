@@ -70,7 +70,7 @@
 					<textElement verticalAlignment="Middle">
 						<font isBold="true" />
 					</textElement>
-					<textFieldExpression><![CDATA[($F{expireStatus}.equals("Expiring")) ? "Expiring Within " + $P{numberOfExpiringDays} + " Days of " + new SimpleDateFormat("MMMM d, yyyy").format($P{startDate}) : "Expired"]]></textFieldExpression>
+					<textFieldExpression><![CDATA[($F{expireStatus}.equals("Expiring")) ? "Expiring Between " + new SimpleDateFormat("MMMM d, yyyy").format($P{startDate}) + " - " + new SimpleDateFormat("MMMM d, yyyy").format(new Date($P{startDate}.getTime() + (Long.parseLong($P{numberOfExpiringDays}) * 86400000L))) : "Expired"]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement height="20" style="table-header" uuid="3f9df7aa-5ecf-4f59-ac0d-0cdb26740c69" width="307" x="0" y="22" />
