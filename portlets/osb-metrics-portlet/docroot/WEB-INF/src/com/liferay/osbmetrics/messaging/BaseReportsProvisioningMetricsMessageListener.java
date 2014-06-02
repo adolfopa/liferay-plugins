@@ -14,58 +14,20 @@
 
 package com.liferay.osbmetrics.messaging;
 
-import com.liferay.osbmetrics.util.OSBMetricsUtil;
-import com.liferay.portal.kernel.messaging.BaseMessageListener;
-import com.liferay.portal.kernel.messaging.Message;
-import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
-
-import java.text.Format;
-
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * @author Rachael Koestartyo
  */
 public abstract class BaseReportsProvisioningMetricsMessageListener
-	extends BaseMessageListener {
+	extends BaseReportMetricsMessageListener {
 
 	@Override
-	protected void doReceive(Message message) throws Exception {
-		OSBMetricsUtil.addReportEntry(
-			"OSB_ProvisioningMetricsByMonthAndSupportRegion",
-			getEntryReportName(), getEmailAddresses(), getParameterMap());
-	}
-
-	protected abstract String getEmailAddresses();
-
 	protected String getEntryReportName() {
 		return "[" + getSupportRegion() + "] Provisioning Metrics";
 	}
 
-	protected Map<String, String> getParameterMap() {
-		Map<String, String> reportParameters = new HashMap<String, String>();
-
-		Calendar calendar = Calendar.getInstance();
-
-		calendar.add(Calendar.MONTH, -1);
-
-		calendar.set(Calendar.DATE, calendar.getActualMaximum(Calendar.DATE));
-
-		Format format = FastDateFormatFactoryUtil.getSimpleDateFormat(
-			"yyyy-MM-dd");
-
-		reportParameters.put("endDate", format.format(calendar.getTime()));
-
-		calendar.set(Calendar.DATE, 1);
-
-		reportParameters.put("startDate", format.format(calendar.getTime()));
-		reportParameters.put("supportRegion", getSupportRegion());
-
-		return reportParameters;
+	@Override
+	protected String getReportDefinitionName() {
+		return "OSB_ProvisioningMetricsByMonthAndSupportRegion";
 	}
-
-	protected abstract String getSupportRegion();
 
 }
