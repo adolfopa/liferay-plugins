@@ -423,7 +423,6 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 		sendEmails(entryId, fileName, emailAddresses, true);
 
 		entry.setModifiedDate(now);
-
 		entry.setStatus(ReportStatus.COMPLETE.getValue());
 
 		entryPersistence.update(entry);
