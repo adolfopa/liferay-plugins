@@ -34,14 +34,14 @@ public abstract class BaseReportsProvisioningMetricsMessageListener
 	@Override
 	protected void doReceive(Message message) throws Exception {
 		OSBMetricsUtil.addReportEntry(
-			_DEFINITION_REPORT_NAME, getEntryReportName(), getEmailAddresses(),
-			getParameterMap());
+			"OSB_ProvisioningMetricsByMonthAndSupportRegion",
+			getEntryReportName(), getEmailAddresses(), getParameterMap());
 	}
 
 	protected abstract String getEmailAddresses();
 
 	protected String getEntryReportName() {
-		return "[" + getSupportRegion() + "] " + _ENTRY_REPORT_NAME;
+		return "[" + getSupportRegion() + "] Provisioning Metrics";
 	}
 
 	protected Map<String, String> getParameterMap() {
@@ -67,10 +67,5 @@ public abstract class BaseReportsProvisioningMetricsMessageListener
 	}
 
 	protected abstract String getSupportRegion();
-
-	private static final String _DEFINITION_REPORT_NAME =
-		"OSB_ProvisioningMetricsByMonthAndSupportRegion";
-
-	private static final String _ENTRY_REPORT_NAME = "Provisioning Metrics";
 
 }
