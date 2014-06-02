@@ -34,7 +34,8 @@ public class GlobalReportsExpiredAndExpiringAccountsMessageListener
 	@Override
 	protected void doReceive(Message message) throws Exception {
 		OSBMetricsUtil.addReportEntry(
-			"OSB_ExpiredAndExpiringAccounts", "Expired and Expiring Accounts",
+			"OSB_ExpiredAndExpiringAccounts",
+			"[Global] Expired and Expiring Accounts",
 			"support-analytics-sales-metrics@liferay.com", getParameterMap());
 	}
 

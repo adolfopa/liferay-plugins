@@ -41,7 +41,7 @@ public abstract class BaseReportsProvisioningMetricsMessageListener
 	protected abstract String getEmailAddresses();
 
 	protected String getEntryReportName() {
-		return _ENTRY_REPORT_NAME + " [" + getSupportRegion() + "]";
+		return "[" + getSupportRegion() + "] " + _ENTRY_REPORT_NAME;
 	}
 
 	protected Map<String, String> getParameterMap() {
