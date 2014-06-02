@@ -17,17 +17,17 @@ package com.liferay.osbmetrics.messaging;
 /**
  * @author Rachael Koestartyo
  */
-public class UnitedStatesReportsTeamMetricsMessageListener
-	extends BaseReportsTeamMetricsMessageListener {
+public class SpainProvisioningReportMetricsMessageListener
+	extends BaseProvisioningReportMetricsMessageListener {
 
 	@Override
 	protected String getEmailAddresses() {
-		return "support-analytics-metrics-us@liferay.com";
+		return "support-analytics-metrics-es@liferay.com";
 	}
 
 	@Override
 	protected String getSupportRegion() {
-		return "Support-US";
+		return "Support-ES";
 	}
 
 }

@@ -28,7 +28,7 @@ import java.util.Map;
 /**
  * @author Rachael Koestartyo
  */
-public class GlobalReportsExpiredAndExpiringAccountsMessageListener
+public class GlobalExpiredAndExpiringAccountsReportMetricsMessageListener
 	extends BaseMessageListener {
 
 	@Override

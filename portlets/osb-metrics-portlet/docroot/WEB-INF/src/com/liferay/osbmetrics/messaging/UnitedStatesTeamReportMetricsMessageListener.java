@@ -17,8 +17,8 @@ package com.liferay.osbmetrics.messaging;
 /**
  * @author Rachael Koestartyo
  */
-public class UnitedStatesReportsProvisioningMetricsMessageListener
-	extends BaseReportsProvisioningMetricsMessageListener {
+public class UnitedStatesTeamReportMetricsMessageListener
+	extends BaseTeamReportMetricsMessageListener {
 
 	@Override
 	protected String getEmailAddresses() {
