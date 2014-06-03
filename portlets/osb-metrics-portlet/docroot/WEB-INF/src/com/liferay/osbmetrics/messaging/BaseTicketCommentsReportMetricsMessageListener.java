@@ -42,10 +42,9 @@ public abstract class BaseTicketCommentsReportMetricsMessageListener
 		parameterMap.put("supportTeam", getSupportTeam());
 
 		TimeZone timeZone = TimeZone.getTimeZone(getTimeZoneId());
-		TimeUnit timeUnit = TimeUnit.MILLISECONDS;
-		Date now = new Date();
 
-		long hours = timeUnit.toHours(timeZone.getOffset(now.getTime()));
+		long hours = TimeUnit.MILLISECONDS.toHours(
+			timeZone.getOffset(System.currentTimeMillis()));
 
 		parameterMap.put("timeOffsetFromUTC", String.valueOf(hours));
 
