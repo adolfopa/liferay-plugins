@@ -13,7 +13,7 @@
 			</trigger>
 		</scheduler-entry>
 		<scheduler-entry>
-			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.GlobalReportsExpiredAndExpiringAccountsMessageListener</scheduler-event-listener-class>
+			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.GlobalExpiredAndExpiringAccountsReportMetricsMessageListener</scheduler-event-listener-class>
 			<trigger>
 				<cron>
 					<cron-trigger-value>0 0 16 1 * ?</cron-trigger-value>
@@ -21,7 +21,7 @@
 			</trigger>
 		</scheduler-entry>
 		<scheduler-entry>
-			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.BrazilReportsProvisioningMetricsMessageListener</scheduler-event-listener-class>
+			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.BrazilProvisioningReportMetricsMessageListener</scheduler-event-listener-class>
 			<trigger>
 				<cron>
 					<cron-trigger-value>0 0 0 2 * ?</cron-trigger-value>
@@ -29,7 +29,7 @@
 			</trigger>
 		</scheduler-entry>
 		<scheduler-entry>
-			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.ChinaReportsProvisioningMetricsMessageListener</scheduler-event-listener-class>
+			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.ChinaProvisioningReportMetricsMessageListener</scheduler-event-listener-class>
 			<trigger>
 				<cron>
 					<cron-trigger-value>0 0 4 2 * ?</cron-trigger-value>
@@ -37,7 +37,7 @@
 			</trigger>
 		</scheduler-entry>
 		<scheduler-entry>
-			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.HungaryReportsProvisioningMetricsMessageListener</scheduler-event-listener-class>
+			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.HungaryProvisioningReportMetricsMessageListener</scheduler-event-listener-class>
 			<trigger>
 				<cron>
 					<cron-trigger-value>0 0 8 2 * ?</cron-trigger-value>
@@ -45,7 +45,7 @@
 			</trigger>
 		</scheduler-entry>
 		<scheduler-entry>
-			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.IndiaReportsProvisioningMetricsMessageListener</scheduler-event-listener-class>
+			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.IndiaProvisioningReportMetricsMessageListener</scheduler-event-listener-class>
 			<trigger>
 				<cron>
 					<cron-trigger-value>0 0 12 2 * ?</cron-trigger-value>
@@ -53,7 +53,7 @@
 			</trigger>
 		</scheduler-entry>
 		<scheduler-entry>
-			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.SpainReportsProvisioningMetricsMessageListener</scheduler-event-listener-class>
+			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.SpainProvisioningReportMetricsMessageListener</scheduler-event-listener-class>
 			<trigger>
 				<cron>
 					<cron-trigger-value>0 0 16 2 * ?</cron-trigger-value>
@@ -61,7 +61,7 @@
 			</trigger>
 		</scheduler-entry>
 		<scheduler-entry>
-			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.UnitedStatesReportsProvisioningMetricsMessageListener</scheduler-event-listener-class>
+			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.UnitedStatesProvisioningReportMetricsMessageListener</scheduler-event-listener-class>
 			<trigger>
 				<cron>
 					<cron-trigger-value>0 0 20 2 * ?</cron-trigger-value>
@@ -69,7 +69,7 @@
 			</trigger>
 		</scheduler-entry>
 		<scheduler-entry>
-			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.BrazilReportsTeamMetricsMessageListener</scheduler-event-listener-class>
+			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.BrazilTeamReportMetricsMessageListener</scheduler-event-listener-class>
 			<trigger>
 				<cron>
 					<cron-trigger-value>0 0 0 3 * ?</cron-trigger-value>
@@ -77,7 +77,7 @@
 			</trigger>
 		</scheduler-entry>
 		<scheduler-entry>
-			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.ChinaReportsTeamMetricsMessageListener</scheduler-event-listener-class>
+			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.ChinaTeamReportMetricsMessageListener</scheduler-event-listener-class>
 			<trigger>
 				<cron>
 					<cron-trigger-value>0 0 4 3 * ?</cron-trigger-value>
@@ -85,7 +85,7 @@
 			</trigger>
 		</scheduler-entry>
 		<scheduler-entry>
-			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.HungaryReportsTeamMetricsMessageListener</scheduler-event-listener-class>
+			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.HungaryTeamReportMetricsMessageListener</scheduler-event-listener-class>
 			<trigger>
 				<cron>
 					<cron-trigger-value>0 0 8 3 * ?</cron-trigger-value>
@@ -93,7 +93,7 @@
 			</trigger>
 		</scheduler-entry>
 		<scheduler-entry>
-			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.IndiaReportsTeamMetricsMessageListener</scheduler-event-listener-class>
+			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.IndiaTeamReportMetricsMessageListener</scheduler-event-listener-class>
 			<trigger>
 				<cron>
 					<cron-trigger-value>0 0 12 3 * ?</cron-trigger-value>
@@ -101,7 +101,7 @@
 			</trigger>
 		</scheduler-entry>
 		<scheduler-entry>
-			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.SpainReportsTeamMetricsMessageListener</scheduler-event-listener-class>
+			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.SpainTeamReportMetricsMessageListener</scheduler-event-listener-class>
 			<trigger>
 				<cron>
 					<cron-trigger-value>0 0 16 3 * ?</cron-trigger-value>
@@ -109,7 +109,7 @@
 			</trigger>
 		</scheduler-entry>
 		<scheduler-entry>
-			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.UnitedStatesReportsTeamMetricsMessageListener</scheduler-event-listener-class>
+			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.UnitedStatesTeamReportMetricsMessageListener</scheduler-event-listener-class>
 			<trigger>
 				<cron>
 					<cron-trigger-value>0 0 20 3 * ?</cron-trigger-value>
