@@ -30,4 +30,6 @@ public abstract class BaseTeamReportMetricsMessageListener
 		return "OSB_TeamMetricsByMonthAndSupportRegion";
 	}
 
+	protected abstract String getSupportRegion();
+
 }

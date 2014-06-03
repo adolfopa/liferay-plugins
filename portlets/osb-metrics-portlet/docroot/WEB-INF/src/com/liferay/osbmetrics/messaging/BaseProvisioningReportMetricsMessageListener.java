@@ -30,4 +30,6 @@ public abstract class BaseProvisioningReportMetricsMessageListener
 		return "OSB_ProvisioningMetricsByMonthAndSupportRegion";
 	}
 
+	protected abstract String getSupportRegion();
+
 }

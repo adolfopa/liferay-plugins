@@ -59,13 +59,10 @@ public abstract class BaseReportMetricsMessageListener
 		calendar.set(Calendar.DATE, 1);
 
 		reportParameters.put("startDate", format.format(calendar.getTime()));
-		reportParameters.put("supportRegion", getSupportRegion());
 
 		return reportParameters;
 	}
 
 	protected abstract String getReportDefinitionName();
-
-	protected abstract String getSupportRegion();
 
 }
