@@ -62,6 +62,11 @@ public class KaleoFormsDDMDisplay extends BaseDDMDisplay {
 	}
 
 	@Override
+	public String getStructureName(Locale locale) {
+		return LanguageUtil.get(locale, "fields-definition");
+	}
+
+	@Override
 	public String getStructureType() {
 		return DDLRecordSet.class.getName();
 	}
