@@ -14,6 +14,8 @@
 
 package com.liferay.osbmetrics.messaging;
 
+import java.util.Map;
+
 /**
  * @author Rachael Koestartyo
  */
@@ -23,6 +25,15 @@ public abstract class BaseTeamReportMetricsMessageListener
 	@Override
 	protected String getEntryReportName() {
 		return "[" + getSupportRegion() + "] Team Metrics";
+	}
+
+	@Override
+	protected Map<String, String> getParameterMap() {
+		Map<String, String> reportParameters = super.getParameterMap();
+
+		reportParameters.put("supportRegion", getSupportRegion());
+
+		return reportParameters;
 	}
 
 	@Override

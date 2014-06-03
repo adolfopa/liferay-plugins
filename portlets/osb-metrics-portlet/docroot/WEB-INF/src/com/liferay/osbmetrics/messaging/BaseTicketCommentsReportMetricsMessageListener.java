@@ -16,7 +16,7 @@ package com.liferay.osbmetrics.messaging;
 
 import com.liferay.portal.kernel.util.StringUtil;
 
-import java.util.Calendar;
+import java.util.Date;
 import java.util.Map;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
@@ -37,6 +37,7 @@ public abstract class BaseTicketCommentsReportMetricsMessageListener
 		return "[" + getSupportTeam() + "] Engineers Ticket Comments";
 	}
 
+	@Override
 	protected Map<String, String> getParameterMap() {
 		Map<String, String> reportParameters = super.getParameterMap();
 
@@ -44,11 +45,10 @@ public abstract class BaseTicketCommentsReportMetricsMessageListener
 
 		TimeZone timeZone = TimeZone.getTimeZone(getTimeZoneId());
 
-		Calendar calendar = Calendar.getInstance();
+		long timeOffset = timeZone.getOffset(new Date().getTime());
 
-		long timeOffset = timeZone.getOffset(calendar.getTime().getTime());
-
-		reportParameters.put("timeOffsetFromUTC",
+		reportParameters.put(
+			"timeOffsetFromUTC",
 			StringUtil.valueOf(TimeUnit.MILLISECONDS.toHours(timeOffset)));
 
 		return reportParameters;
