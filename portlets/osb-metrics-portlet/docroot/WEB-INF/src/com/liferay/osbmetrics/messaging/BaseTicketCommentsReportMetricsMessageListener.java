@@ -37,9 +37,9 @@ public abstract class BaseTicketCommentsReportMetricsMessageListener
 
 	@Override
 	protected Map<String, String> getParameterMap() {
-		Map<String, String> reportParameters = super.getParameterMap();
+		Map<String, String> parameterMap = super.getParameterMap();
 
-		reportParameters.put("supportTeam", getSupportTeam());
+		parameterMap.put("supportTeam", getSupportTeam());
 
 		TimeZone timeZone = TimeZone.getTimeZone(getTimeZoneId());
 		TimeUnit timeUnit = TimeUnit.MILLISECONDS;
@@ -47,9 +47,9 @@ public abstract class BaseTicketCommentsReportMetricsMessageListener
 
 		long hours = timeUnit.toHours(timeZone.getOffset(now.getTime()));
 
-		reportParameters.put("timeOffsetFromUTC", String.valueOf(hours));
+		parameterMap.put("timeOffsetFromUTC", String.valueOf(hours));
 
-		return reportParameters;
+		return parameterMap;
 	}
 
 	@Override

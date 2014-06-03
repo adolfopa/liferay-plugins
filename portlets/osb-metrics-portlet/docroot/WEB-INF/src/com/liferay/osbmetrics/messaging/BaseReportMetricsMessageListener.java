@@ -43,7 +43,7 @@ public abstract class BaseReportMetricsMessageListener
 	protected abstract String getEntryReportName();
 
 	protected Map<String, String> getParameterMap() {
-		Map<String, String> reportParameters = new HashMap<String, String>();
+		Map<String, String> parameterMap = new HashMap<String, String>();
 
 		Calendar calendar = Calendar.getInstance();
 
@@ -54,13 +54,13 @@ public abstract class BaseReportMetricsMessageListener
 		Format format = FastDateFormatFactoryUtil.getSimpleDateFormat(
 			"yyyy-MM-dd");
 
-		reportParameters.put("endDate", format.format(calendar.getTime()));
+		parameterMap.put("endDate", format.format(calendar.getTime()));
 
 		calendar.set(Calendar.DATE, 1);
 
-		reportParameters.put("startDate", format.format(calendar.getTime()));
+		parameterMap.put("startDate", format.format(calendar.getTime()));
 
-		return reportParameters;
+		return parameterMap;
 	}
 
 	protected abstract String getReportDefinitionName();

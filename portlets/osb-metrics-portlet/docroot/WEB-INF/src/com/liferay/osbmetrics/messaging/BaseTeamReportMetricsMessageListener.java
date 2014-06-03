@@ -29,11 +29,11 @@ public abstract class BaseTeamReportMetricsMessageListener
 
 	@Override
 	protected Map<String, String> getParameterMap() {
-		Map<String, String> reportParameters = super.getParameterMap();
+		Map<String, String> parameterMap = super.getParameterMap();
 
-		reportParameters.put("supportRegion", getSupportRegion());
+		parameterMap.put("supportRegion", getSupportRegion());
 
-		return reportParameters;
+		return parameterMap;
 	}
 
 	@Override
