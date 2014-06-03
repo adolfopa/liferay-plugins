@@ -71,9 +71,9 @@ AUI.add(
 						if (event.newVal === 1) {
 							var activeTabIndex = tabView.indexOf(event.target);
 
-							instance.validateStep(activeTabIndex + 1);
+							var isValidStep = instance.validateStep(activeTabIndex);
 
-							if (instance.validator.hasErrors()) {
+							if (!isValidStep) {
 								event.preventDefault();
 							}
 						}
@@ -143,7 +143,7 @@ AUI.add(
 
 						tabViewPanels.each(
 							function(item, index, collection) {
-								if (index < (step - 1)) {
+								if (index <= (step - 1)) {
 									instance.validatePanel(item);
 
 									var tabNode = tabViewTabs.item(index);
