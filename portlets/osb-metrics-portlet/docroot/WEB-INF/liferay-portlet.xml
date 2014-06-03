@@ -117,6 +117,54 @@
 			</trigger>
 		</scheduler-entry>
 		<scheduler-entry>
+			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.BrazilEngineerReportMetricsMessageListener</scheduler-event-listener-class>
+			<trigger>
+				<cron>
+					<cron-trigger-value>0 0 0 4 * ?</cron-trigger-value>
+				</cron>
+			</trigger>
+		</scheduler-entry>
+		<scheduler-entry>
+			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.ChinaEngineerReportMetricsMessageListener</scheduler-event-listener-class>
+			<trigger>
+				<cron>
+					<cron-trigger-value>0 0 4 4 * ?</cron-trigger-value>
+				</cron>
+			</trigger>
+		</scheduler-entry>
+		<scheduler-entry>
+			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.HungaryEngineerReportMetricsMessageListener</scheduler-event-listener-class>
+			<trigger>
+				<cron>
+					<cron-trigger-value>0 0 8 4 * ?</cron-trigger-value>
+				</cron>
+			</trigger>
+		</scheduler-entry>
+		<scheduler-entry>
+			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.IndiaEngineerReportMetricsMessageListener</scheduler-event-listener-class>
+			<trigger>
+				<cron>
+					<cron-trigger-value>0 0 12 4 * ?</cron-trigger-value>
+				</cron>
+			</trigger>
+		</scheduler-entry>
+		<scheduler-entry>
+			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.SpainEngineerReportMetricsMessageListener</scheduler-event-listener-class>
+			<trigger>
+				<cron>
+					<cron-trigger-value>0 0 16 4 * ?</cron-trigger-value>
+				</cron>
+			</trigger>
+		</scheduler-entry>
+		<scheduler-entry>
+			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.UnitedStatesEngineerReportMetricsMessageListener</scheduler-event-listener-class>
+			<trigger>
+				<cron>
+					<cron-trigger-value>0 0 20 4 * ?</cron-trigger-value>
+				</cron>
+			</trigger>
+		</scheduler-entry>
+		<scheduler-entry>
 			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.BrazilTicketCommentsReportMetricsMessageListener</scheduler-event-listener-class>
 			<trigger>
 				<cron>
