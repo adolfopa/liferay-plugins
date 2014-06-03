@@ -1,3 +1,6 @@
+@import "compass";
+@import "mixins";
+
 .kaleo-forms-admin-portlet {
 	.kaleo-process-buttons .btn {
 		margin-left: 5px;
@@ -18,7 +21,50 @@
 		margin-top: 1.5em;
 	}
 
-	.taglib-form-navigator > .form-steps > .form-navigator {
+	.form .taglib-form-navigator > .form-steps > ul.form-navigator.nav {
 		margin: 6px 0 20px 0;
+
+		.tab, .tab.section-error {
+			.tab-label {
+				.message {
+					color: #8D8D8D;
+					font-size: 15px;
+				}
+
+				.number {
+					@include box-shadow(0 0 5px 0 #8D8D8D);
+					background: #F4F4F4;
+					color: #8D8D8D;
+				}
+			}
+		}
+
+		.tab.active, .tab.active.section-error, .tab.active, .tab.active.section-success {
+			.tab-label {
+				.message {
+					color: #009AE5;
+					font-size: 15px;
+					font-weight: bolder;
+				}
+
+				.number {
+					@include box-shadow(0 0 5px 0 #009AE5);
+					background: #009AE5;
+					color: #FFFFFF;
+				}
+			}
+		}
+
+		.tab.section-success .tab-label {
+			.message {
+				color: #80CCF2;
+			}
+
+			.number {
+				@include box-shadow(0 0 5px 0 #80CCF2);
+				background: #FFFFFF;
+				color: #80CCF2;
+			}
+		}
 	}
 }
