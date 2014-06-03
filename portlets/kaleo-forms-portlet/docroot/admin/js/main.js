@@ -57,13 +57,9 @@ AUI.add(
 							}
 						);
 
-						var currentStep = formWizard.get('currentStep');
+						instance.updateNavigationControls();
 
-						if (currentStep > 1) {
-							formWizard.validateStep(currentStep);
-
-							instance.updateNavigationControls(currentStep);
-						}
+						formWizard.validator.resetAllFields();
 
 						instance.bindUI();
 					},
@@ -76,6 +72,8 @@ AUI.add(
 						form.formNode.on('submit', instance._onSubmitForm, instance);
 
 						instance.formWizard.after('currentStepChange', instance._afterCurrentStepChange, instance);
+
+						instance.formWizard.validator.after(['errorField', 'validField'], instance._afterValidateField, instance);
 
 						instance.nextBtn.on('click', instance._onClickNext, instance);
 						instance.prevBtn.on('click', instance._onClickPrev, instance);
@@ -138,7 +136,41 @@ AUI.add(
 							instance._showForms();
 						}
 
-						instance.updateNavigationControls(currentStep);
+						instance.updateNavigationControls();
+
+						instance.formWizard.validator.resetAllFields();
+					},
+
+					_afterValidateField: function(event) {
+						var instance = this;
+
+						var tabView = instance.get('tabView');
+
+						var activeTab = tabView.getActiveTab();
+
+						var tabViewTabs = tabView.getTabs();
+
+						var activeTabIndex = tabViewTabs.indexOf(activeTab);
+
+						var tabViewPanels = instance.formWizard.getTabViewPanels();
+
+						var activePanel = tabViewPanels.item(activeTabIndex);
+
+						if (activePanel.contains(event.validator.field)) {
+							var isValidStep = event.type.indexOf('errorField') === -1;
+
+							instance.updateNavigationControls(isValidStep);
+						}
+					},
+
+					_isCurrentStepValid: function() {
+						var instance = this;
+
+						var formWizard = instance.formWizard;
+
+						var currentStep = formWizard.get('currentStep');
+
+						return formWizard.validateStep(currentStep);
 					},
 
 					_onClickNext: function(event) {
@@ -204,8 +236,21 @@ AUI.add(
 						);
 					},
 
-					updateNavigationControls: function(currentStep) {
+					updateNavigationControls: function(isValidStep) {
 						var instance = this;
+
+						if (isValidStep === undefined) {
+							isValidStep = instance._isCurrentStepValid();
+						}
+
+						instance.nextBtn.attr('disabled', !isValidStep);
+						instance.nextBtn.toggleClass('disabled', !isValidStep);
+						instance.submitBtn.attr('disabled', !isValidStep);
+						instance.submitBtn.toggleClass('disabled', !isValidStep);
+
+						var formWizard = instance.formWizard;
+
+						var currentStep = formWizard.get('currentStep');
 
 						if (currentStep === STEPS_MAP.DETAILS) {
 							instance.nextBtn.show();

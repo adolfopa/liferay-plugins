@@ -35,6 +35,8 @@ AUI.add(
 
 						instance.validator = instance.form.formValidator;
 
+						instance.validator.set('validateOnInput', true);
+
 						instance.validator.addTarget(instance);
 
 						instance.bindUI();

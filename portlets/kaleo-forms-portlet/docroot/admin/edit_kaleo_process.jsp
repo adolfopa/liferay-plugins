@@ -75,9 +75,9 @@ if (kaleoProcess != null) {
 		<aui:button-row cssClass="kaleo-process-buttons">
 			<aui:button cssClass="hide kaleo-process-previous pull-left" icon="icon-circle-arrow-left" value="previous" />
 
-			<aui:button cssClass="hide kaleo-process-submit pull-right" primary="<%= true %>" type="submit" />
+			<aui:button cssClass="hide kaleo-process-submit pull-right" disabled="<%= true %>" primary="<%= true %>" type="submit" />
 
-			<aui:button cssClass="kaleo-process-next pull-right" icon="icon-circle-arrow-right" iconAlign="right" primary="<%= true %>" value="next" />
+			<aui:button cssClass="kaleo-process-next pull-right" disabled="<%= true %>" icon="icon-circle-arrow-right" iconAlign="right" primary="<%= true %>" value="next" />
 
 			<aui:button cssClass="kaleo-process-cancel pull-right" href="<%= redirect %>" value="cancel" />
 		</aui:button-row>
