@@ -14,8 +14,6 @@
 
 package com.liferay.osbmetrics.messaging;
 
-import com.liferay.portal.kernel.util.StringUtil;
-
 import java.util.Date;
 import java.util.Map;
 import java.util.TimeZone;
@@ -44,12 +42,12 @@ public abstract class BaseTicketCommentsReportMetricsMessageListener
 		reportParameters.put("supportTeam", getSupportTeam());
 
 		TimeZone timeZone = TimeZone.getTimeZone(getTimeZoneId());
+		TimeUnit timeUnit = TimeUnit.MILLISECONDS;
+		Date now = new Date();
 
-		long timeOffset = timeZone.getOffset(new Date().getTime());
+		long hours = timeUnit.toHours(timeZone.getOffset(now.getTime()));
 
-		reportParameters.put(
-			"timeOffsetFromUTC",
-			StringUtil.valueOf(TimeUnit.MILLISECONDS.toHours(timeOffset)));
+		reportParameters.put("timeOffsetFromUTC", String.valueOf(hours));
 
 		return reportParameters;
 	}
