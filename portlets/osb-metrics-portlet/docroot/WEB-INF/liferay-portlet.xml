@@ -116,6 +116,54 @@
 				</cron>
 			</trigger>
 		</scheduler-entry>
+		<scheduler-entry>
+			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.BrazilTicketCommentsReportMetricsMessageListener</scheduler-event-listener-class>
+			<trigger>
+				<cron>
+					<cron-trigger-value>0 0 0 5 * ?</cron-trigger-value>
+				</cron>
+			</trigger>
+		</scheduler-entry>
+		<scheduler-entry>
+			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.ChinaTicketCommentsReportMetricsMessageListener</scheduler-event-listener-class>
+			<trigger>
+				<cron>
+					<cron-trigger-value>0 0 1 5 * ?</cron-trigger-value>
+				</cron>
+			</trigger>
+		</scheduler-entry>
+		<scheduler-entry>
+			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.HungaryTicketCommentsReportMetricsMessageListener</scheduler-event-listener-class>
+			<trigger>
+				<cron>
+					<cron-trigger-value>0 0 2 5 * ?</cron-trigger-value>
+				</cron>
+			</trigger>
+		</scheduler-entry>
+		<scheduler-entry>
+			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.IndiaTicketCommentsReportMetricsMessageListener</scheduler-event-listener-class>
+			<trigger>
+				<cron>
+					<cron-trigger-value>0 0 3 5 * ?</cron-trigger-value>
+				</cron>
+			</trigger>
+		</scheduler-entry>
+		<scheduler-entry>
+			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.SpainTicketCommentsReportMetricsMessageListener</scheduler-event-listener-class>
+			<trigger>
+				<cron>
+					<cron-trigger-value>0 0 4 5 * ?</cron-trigger-value>
+				</cron>
+			</trigger>
+		</scheduler-entry>
+		<scheduler-entry>
+			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.UnitedStatesTicketCommentsReportMetricsMessageListener</scheduler-event-listener-class>
+			<trigger>
+				<cron>
+					<cron-trigger-value>0 0 5 5 * ?</cron-trigger-value>
+				</cron>
+			</trigger>
+		</scheduler-entry>
 		<control-panel-entry-category>portal</control-panel-entry-category>
 		<control-panel-entry-weight>13.5</control-panel-entry-weight>
 		<css-class-wrapper>osb-metrics-portlet</css-class-wrapper>
