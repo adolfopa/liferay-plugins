@@ -70,7 +70,7 @@ if (Validator.isNotNull(workflowDefinition)) {
 </liferay-portlet:renderURL>
 
 <liferay-ui:search-container
-	emptyResultsMessage="no-workflow-definitions-are-defined"
+	emptyResultsMessage='<%= tabs1.equals("published") ? "there-are-no-published-definitions" : "there-are-no-unpublished-definitions" %>'
 	iteratorURL="<%= iteratorURL %>"
 	total= '<%= tabs1.equals("published") ? WorkflowDefinitionManagerUtil.getActiveWorkflowDefinitionCount(company.getCompanyId()) : KaleoDraftDefinitionLocalServiceUtil.getLatestKaleoDraftDefinitionsCount(company.getCompanyId(), 0) %>'
 >
