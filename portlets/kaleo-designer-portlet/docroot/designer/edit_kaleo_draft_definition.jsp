@@ -152,12 +152,12 @@
 								<c:if test="<%= KaleoDraftDefinitionPermission.contains(permissionChecker, kaleoDraftDefinition, ActionKeys.UPDATE) %>">
 									<aui:button onClick='<%= renderResponse.getNamespace() + "updateKaleoDraftDefinition();" %>' value="save-draft" />
 								</c:if>
-
-								<c:if test="<%= KaleoDesignerPermission.contains(permissionChecker, themeDisplay.getCompanyGroupId(), ActionKeys.PUBLISH) %>">
-									<aui:button onClick='<%= renderResponse.getNamespace() + "publishKaleoDraftDefinition();" %>' value="publish" />
-								</c:if>
 							</c:otherwise>
 						</c:choose>
+
+						<c:if test="<%= KaleoDesignerPermission.contains(permissionChecker, themeDisplay.getCompanyGroupId(), ActionKeys.PUBLISH) %>">
+							<aui:button onClick='<%= renderResponse.getNamespace() + "publishKaleoDraftDefinition();" %>' primary="<%= true %>" value="publish" />
+						</c:if>
 					</c:if>
 
 					<span class="lfr-portlet-workflowdesigner-message" id="<portlet:namespace />toolbarMessage"></span>
