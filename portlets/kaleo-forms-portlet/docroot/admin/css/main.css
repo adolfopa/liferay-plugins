@@ -32,7 +32,6 @@
 				}
 
 				.number {
-					@include box-shadow(0 0 5px 0 #8D8D8D);
 					background: #F4F4F4;
 					color: #8D8D8D;
 				}
@@ -48,9 +47,8 @@
 				}
 
 				.number {
-					@include box-shadow(0 0 5px 0 #009AE5);
 					background: #009AE5;
-					color: #FFFFFF;
+					color: #FFF;
 				}
 			}
 		}
@@ -61,10 +59,31 @@
 			}
 
 			.number {
-				@include box-shadow(0 0 5px 0 #80CCF2);
-				background: #FFFFFF;
+				background: #FFF;
 				color: #80CCF2;
 			}
+		}
+	}
+}
+
+/* ---------- Extras ---------- */
+
+.kaleo-forms-admin-portlet {
+	.form .taglib-form-navigator > .form-steps > ul.form-navigator.nav {
+		.tab, .tab.section-error {
+			.tab-label .number {
+				@include box-shadow(0 0 5px 0 #8D8D8D);
+			}
+		}
+
+		.tab.active, .tab.active.section-error, .tab.active, .tab.active.section-success {
+			.tab-label .number {
+				@include box-shadow(0 0 5px 0 #009AE5);
+			}
+		}
+
+		.tab.section-success .tab-label .number {
+			@include box-shadow(0 0 5px 0 #80CCF2);
 		}
 	}
 }

@@ -71,9 +71,9 @@ AUI.add(
 						if (event.newVal === 1) {
 							var activeTabIndex = tabView.indexOf(event.target);
 
-							var isValidStep = instance.validateStep(activeTabIndex);
+							var validatedStep = instance.validateStep(activeTabIndex);
 
-							if (!isValidStep) {
+							if (!validatedStep) {
 								event.preventDefault();
 							}
 						}

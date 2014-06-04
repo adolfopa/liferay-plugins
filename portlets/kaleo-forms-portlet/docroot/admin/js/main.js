@@ -157,9 +157,9 @@ AUI.add(
 						var activePanel = tabViewPanels.item(activeTabIndex);
 
 						if (activePanel.contains(event.validator.field)) {
-							var isValidStep = event.type.indexOf('errorField') === -1;
+							var currentStepValid = event.type.indexOf('errorField') === -1;
 
-							instance.updateNavigationControls(isValidStep);
+							instance.updateNavigationControls(currentStepValid);
 						}
 					},
 
@@ -236,17 +236,17 @@ AUI.add(
 						);
 					},
 
-					updateNavigationControls: function(isValidStep) {
+					updateNavigationControls: function(currentStepValid) {
 						var instance = this;
 
-						if (isValidStep === undefined) {
-							isValidStep = instance._isCurrentStepValid();
+						if (currentStepValid === undefined) {
+							currentStepValid = instance._isCurrentStepValid();
 						}
 
-						instance.nextBtn.attr('disabled', !isValidStep);
-						instance.nextBtn.toggleClass('disabled', !isValidStep);
-						instance.submitBtn.attr('disabled', !isValidStep);
-						instance.submitBtn.toggleClass('disabled', !isValidStep);
+						instance.nextBtn.attr('disabled', !currentStepValid);
+						instance.nextBtn.toggleClass('disabled', !currentStepValid);
+						instance.submitBtn.attr('disabled', !currentStepValid);
+						instance.submitBtn.toggleClass('disabled', !currentStepValid);
 
 						var formWizard = instance.formWizard;
 
