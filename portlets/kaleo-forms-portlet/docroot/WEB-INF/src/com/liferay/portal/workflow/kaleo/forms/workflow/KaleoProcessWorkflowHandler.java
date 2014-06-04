@@ -37,7 +37,8 @@ import java.util.Map;
 /**
  * @author Marcellus Tavares
  */
-public class KaleoProcessWorkflowHandler extends BaseWorkflowHandler {
+public class KaleoProcessWorkflowHandler
+	extends BaseWorkflowHandler<DDLRecord> {
 
 	public static final String CLASS_NAME = KaleoProcess.class.getName();
 
