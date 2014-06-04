@@ -25,7 +25,7 @@ public class GlobalLiferayVersionsPerMonthReportMetricsMessageListener
 
 	@Override
 	protected String getEmailAddresses() {
-		return "support-analytics-metrics@liferay.com";
+		return "support-analytics-lesa-metrics@liferay.com";
 	}
 
 	@Override
