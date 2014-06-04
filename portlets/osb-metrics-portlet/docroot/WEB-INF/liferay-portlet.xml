@@ -220,6 +220,14 @@
 				</cron>
 			</trigger>
 		</scheduler-entry>
+		<scheduler-entry>
+			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.GlobalAccountIndividualEnvironmentReportMetricsMessageListener</scheduler-event-listener-class>
+			<trigger>
+				<cron>
+					<cron-trigger-value>0 0 17 5 * ?</cron-trigger-value>
+				</cron>
+			</trigger>
+		</scheduler-entry>
 		<control-panel-entry-category>portal</control-panel-entry-category>
 		<control-panel-entry-weight>13.5</control-panel-entry-weight>
 		<css-class-wrapper>osb-metrics-portlet</css-class-wrapper>
