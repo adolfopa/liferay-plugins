@@ -14,9 +14,6 @@
 
 package com.liferay.osbmetrics.messaging;
 
-import com.liferay.osbmetrics.util.OSBMetricsUtil;
-import com.liferay.portal.kernel.messaging.BaseMessageListener;
-import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
 
 import java.text.Format;
@@ -29,16 +26,19 @@ import java.util.Map;
  * @author Rachael Koestartyo
  */
 public class GlobalExpiredAndExpiringAccountsReportMetricsMessageListener
-	extends BaseMessageListener {
+	extends BaseReportMetricsMessageListener {
 
 	@Override
-	protected void doReceive(Message message) throws Exception {
-		OSBMetricsUtil.addReportEntry(
-			"OSB_ExpiredAndExpiringAccounts",
-			"[Global] Expired and Expiring Accounts",
-			"support-analytics-sales-metrics@liferay.com", getParameterMap());
+	protected String getEmailAddresses() {
+		return "support-analytics-sales-metrics@liferay.com";
 	}
 
+	@Override
+	protected String getEntryReportName() {
+		return "[Global] Expired and Expiring Accounts";
+	}
+
+	@Override
 	protected Map<String, String> getParameterMap() {
 		Map<String, String> parameterMap = new HashMap<String, String>();
 
@@ -50,6 +50,11 @@ public class GlobalExpiredAndExpiringAccountsReportMetricsMessageListener
 		parameterMap.put("startDate", format.format(new Date()));
 
 		return parameterMap;
+	}
+
+	@Override
+	protected String getReportDefinitionName() {
+		return "OSB_ExpiredAndExpiringAccounts";
 	}
 
 }
