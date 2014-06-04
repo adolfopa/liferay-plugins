@@ -213,6 +213,14 @@
 			</trigger>
 		</scheduler-entry>
 		<scheduler-entry>
+			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.GlobalLiferayVersionsPerAccountReportMetricsMessageListener</scheduler-event-listener-class>
+			<trigger>
+				<cron>
+					<cron-trigger-value>0 0 6 5 * ?</cron-trigger-value>
+				</cron>
+			</trigger>
+		</scheduler-entry>
+		<scheduler-entry>
 			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.GlobalAccountEnvironmentReportMetricsMessageListener</scheduler-event-listener-class>
 			<trigger>
 				<cron>
