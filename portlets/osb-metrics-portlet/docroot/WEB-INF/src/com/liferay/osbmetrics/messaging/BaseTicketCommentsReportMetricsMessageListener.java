@@ -14,7 +14,6 @@
 
 package com.liferay.osbmetrics.messaging;
 
-import java.util.Date;
 import java.util.Map;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
