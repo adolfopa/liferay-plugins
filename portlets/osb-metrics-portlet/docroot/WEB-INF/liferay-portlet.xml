@@ -125,7 +125,7 @@
 			</trigger>
 		</scheduler-entry>
 		<scheduler-entry>
-			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.GlobalSupportedAccountsReportMetricsMessageListener</scheduler-event-listener-class>
+			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.GlobalSupportedAccountsDetailsReportMetricsMessageListener</scheduler-event-listener-class>
 			<trigger>
 				<cron>
 					<cron-trigger-value>0 0 8 3 * ?</cron-trigger-value>
@@ -133,7 +133,7 @@
 			</trigger>
 		</scheduler-entry>
 		<scheduler-entry>
-			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.GlobalSupportedAccountsDetailsReportMetricsMessageListener</scheduler-event-listener-class>
+			<scheduler-event-listener-class>com.liferay.osbmetrics.messaging.GlobalSupportedAccountsReportMetricsMessageListener</scheduler-event-listener-class>
 			<trigger>
 				<cron>
 					<cron-trigger-value>0 0 9 3 * ?</cron-trigger-value>
