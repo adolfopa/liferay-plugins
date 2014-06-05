@@ -133,12 +133,7 @@ public class HandshakeManagerImpl implements HandshakeManager {
 		setPending(true);
 		setReady(false);
 
-		if (deregister) {
-			_signoffTask.setDeregister(true);
-		}
-		else {
-			_signoffTask.setDeregister(false);
-		}
+		_signoffTask.setDeregister(deregister);
 
 		Future<?> future = _scheduledExecutorService.submit(_signoffTask);
 
