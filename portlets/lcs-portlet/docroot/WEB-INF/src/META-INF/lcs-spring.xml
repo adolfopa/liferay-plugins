@@ -85,10 +85,7 @@
 	<bean id="com.liferay.lcs.task.JVMMetricsTask" class="com.liferay.lcs.task.JVMMetricsTask" />
 	<bean id="com.liferay.lcs.task.ServerMetricsTask" class="com.liferay.lcs.task.ServerMetricsTask" />
 	<bean id="com.liferay.lcs.task.SignoffTask" class="com.liferay.lcs.task.SignoffTask">
-		<property name="handshakeReplyReads" value="#{T(com.liferay.util.portlet.PortletProps).get('communication.handshake.reply.reads')}" />
 		<property name="heartbeatInterval" value="#{T(com.liferay.util.portlet.PortletProps).get('communication.heartbeat.interval')}" />
-		<property name="stopReplyReads" value="#{T(com.liferay.util.portlet.PortletProps).get('communication.stop.reply.reads')}" />
-		<property name="stopWaitTime" value="#{T(com.liferay.util.portlet.PortletProps).get('communication.stop.wait.time')}" />
 	</bean>
 
 	<!-- Util -->
