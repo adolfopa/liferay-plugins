@@ -44,12 +44,12 @@ public class GlobalExpiredAndExpiringAccountsReportMetricsMessageListener
 
 		parameterMap.put("numberOfExpiringDays", "31");
 
+		Format format = FastDateFormatFactoryUtil.getSimpleDateFormat(
+			"yyyy-MM-dd");
+
 		Calendar calendar = Calendar.getInstance();
 
 		calendar.set(Calendar.DATE, 1);
-
-		Format format = FastDateFormatFactoryUtil.getSimpleDateFormat(
-			"yyyy-MM-dd");
 
 		parameterMap.put("startDate", format.format(calendar.getTime()));
 
