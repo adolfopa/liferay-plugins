@@ -220,12 +220,12 @@ public class KaleoFormsPortlet extends MVCPortlet {
 					themeDisplay.getUserId(), themeDisplay.getCompanyGroupId(),
 					name, titleMap, content, serviceContext);
 
-			saveInPortletSession(actionRequest, kaleoDraftDefinition);
-
 			actionRequest.setAttribute(
 				WebKeys.KALEO_DRAFT_DEFINITION_ID,
 				kaleoDraftDefinition.getKaleoDraftDefinitionId());
 			actionRequest.setAttribute(WebKeys.REDIRECT, backURL);
+
+			saveInPortletSession(actionRequest, kaleoDraftDefinition);
 		}
 		catch (Exception e) {
 			if (isSessionErrorException(e)) {
