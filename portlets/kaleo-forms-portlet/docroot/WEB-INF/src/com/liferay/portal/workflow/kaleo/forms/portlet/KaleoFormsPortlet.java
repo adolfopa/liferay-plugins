@@ -1,4 +1,4 @@
-/**
+s/**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -206,6 +206,7 @@ public class KaleoFormsPortlet extends MVCPortlet {
 
 		try {
 			String backURL = ParamUtil.getString(actionRequest, "backURL");
+
 			String name = ParamUtil.getString(actionRequest, "name");
 			Map<Locale, String> titleMap = LocalizationUtil.getLocalizationMap(
 				actionRequest, "title");
@@ -221,10 +222,10 @@ public class KaleoFormsPortlet extends MVCPortlet {
 
 			saveInPortletSession(actionRequest, kaleoDraftDefinition);
 
-			actionRequest.setAttribute(WebKeys.REDIRECT, backURL);
 			actionRequest.setAttribute(
 				WebKeys.KALEO_DRAFT_DEFINITION_ID,
 				kaleoDraftDefinition.getKaleoDraftDefinitionId());
+			actionRequest.setAttribute(WebKeys.REDIRECT, backURL);
 		}
 		catch (Exception e) {
 			if (isSessionErrorException(e)) {
