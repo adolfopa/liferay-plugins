@@ -198,8 +198,6 @@ public class KaleoFormsPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		PortletSession portletSession = actionRequest.getPortletSession();
-
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
@@ -220,15 +218,9 @@ public class KaleoFormsPortlet extends MVCPortlet {
 					themeDisplay.getUserId(), themeDisplay.getCompanyGroupId(),
 					name, titleMap, content, serviceContext);
 
-			String workflowDefinition = name.concat(
-				StringPool.AT).concat(
-					String.valueOf(kaleoDraftDefinition.getVersion()));
-
-			portletSession.setAttribute(
-				"workflowDefinition", String.valueOf(workflowDefinition));
+			saveInPortletSession(actionRequest, kaleoDraftDefinition);
 
 			actionRequest.setAttribute(WebKeys.REDIRECT, backURL);
-
 			actionRequest.setAttribute(
 				WebKeys.KALEO_DRAFT_DEFINITION_ID,
 				kaleoDraftDefinition.getKaleoDraftDefinitionId());
@@ -433,8 +425,6 @@ public class KaleoFormsPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		PortletSession portletSession = actionRequest.getPortletSession();
-
 		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
 
 		long classPK = ParamUtil.getLong(actionRequest, "classPK");
@@ -461,8 +451,7 @@ public class KaleoFormsPortlet extends MVCPortlet {
 				descriptionMap, xsd, storageType,
 				DDMStructureConstants.TYPE_DEFAULT, serviceContext);
 
-			portletSession.setAttribute(
-				"ddmStructureId", String.valueOf(ddmSructure.getStructureId()));
+			saveInPortletSession(actionRequest, ddmStructure);
 		}
 		else if (cmd.equals(Constants.UPDATE)) {
 			DDMStructureServiceUtil.updateStructure(
@@ -621,6 +610,30 @@ public class KaleoFormsPortlet extends MVCPortlet {
 
 			renderRequest.setAttribute(WebKeys.WORKFLOW_TASK, workflowTask);
 		}
+	}
+
+	protected void saveInPortletSession(
+		ActionRequest actionRequest, DDMStructure ddmStructure) {
+
+		PortletSession portletSession = actionRequest.getPortletSession();
+
+		portletSession.setAttribute(
+			"ddmStructureId", String.valueOf(ddmSructure.getStructureId()));
+	}
+
+	protected void saveInPortletSession(
+		ActionRequest actionRequest,
+		KaleoDraftDefinition kaleoDraftDefinition) {
+
+		PortletSession portletSession = actionRequest.getPortletSession();
+
+		StringBundler sb = new StringBundler(3);
+
+		sb.append(name);
+		sb.append(StringPool.AT);
+		sb.append(kaleoDraftDefinition.getVersion());
+
+		portletSession.setAttribute("workflowDefinition", sb.toString());
 	}
 
 	protected void saveInPortletSession(
