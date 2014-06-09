@@ -102,7 +102,7 @@ public class LiferayOAuthJSONWSClient {
 	}
 
 	private static String _URL_COMPANY_GET_COMPANY_BY_WEB_ID =
-		"/api/secure/jsonws/company/get-company-by-web-id/";
+		"/api/jsonws/company/get-company-by-web-id/";
 
 	private String _hostName;
 	private String _hostPort;
