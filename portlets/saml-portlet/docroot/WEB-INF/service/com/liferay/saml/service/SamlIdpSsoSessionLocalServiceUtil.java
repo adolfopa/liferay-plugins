@@ -44,11 +44,9 @@ public class SamlIdpSsoSessionLocalServiceUtil {
 	*
 	* @param samlIdpSsoSession the saml idp sso session
 	* @return the saml idp sso session that was added
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.saml.model.SamlIdpSsoSession addSamlIdpSsoSession(
-		com.liferay.saml.model.SamlIdpSsoSession samlIdpSsoSession)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.saml.model.SamlIdpSsoSession samlIdpSsoSession) {
 		return getService().addSamlIdpSsoSession(samlIdpSsoSession);
 	}
 
@@ -69,12 +67,10 @@ public class SamlIdpSsoSessionLocalServiceUtil {
 	* @param samlIdpSsoSessionId the primary key of the saml idp sso session
 	* @return the saml idp sso session that was removed
 	* @throws PortalException if a saml idp sso session with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.saml.model.SamlIdpSsoSession deleteSamlIdpSsoSession(
 		long samlIdpSsoSessionId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteSamlIdpSsoSession(samlIdpSsoSessionId);
 	}
 
@@ -83,11 +79,9 @@ public class SamlIdpSsoSessionLocalServiceUtil {
 	*
 	* @param samlIdpSsoSession the saml idp sso session
 	* @return the saml idp sso session that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.saml.model.SamlIdpSsoSession deleteSamlIdpSsoSession(
-		com.liferay.saml.model.SamlIdpSsoSession samlIdpSsoSession)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.saml.model.SamlIdpSsoSession samlIdpSsoSession) {
 		return getService().deleteSamlIdpSsoSession(samlIdpSsoSession);
 	}
 
@@ -100,12 +94,10 @@ public class SamlIdpSsoSessionLocalServiceUtil {
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return getService().dynamicQuery(dynamicQuery);
 	}
 
@@ -120,12 +112,11 @@ public class SamlIdpSsoSessionLocalServiceUtil {
 	* @param start the lower bound of the range of model instances
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		int end) {
 		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -141,14 +132,12 @@ public class SamlIdpSsoSessionLocalServiceUtil {
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getService()
 				   .dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
@@ -158,11 +147,9 @@ public class SamlIdpSsoSessionLocalServiceUtil {
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	public static long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
@@ -172,18 +159,15 @@ public class SamlIdpSsoSessionLocalServiceUtil {
 	* @param dynamicQuery the dynamic query
 	* @param projection the projection to apply to the query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	public static long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.Projection projection) {
 		return getService().dynamicQueryCount(dynamicQuery, projection);
 	}
 
 	public static com.liferay.saml.model.SamlIdpSsoSession fetchSamlIdpSsoSession(
-		long samlIdpSsoSessionId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long samlIdpSsoSessionId) {
 		return getService().fetchSamlIdpSsoSession(samlIdpSsoSessionId);
 	}
 
@@ -193,19 +177,29 @@ public class SamlIdpSsoSessionLocalServiceUtil {
 	* @param samlIdpSsoSessionId the primary key of the saml idp sso session
 	* @return the saml idp sso session
 	* @throws PortalException if a saml idp sso session with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.saml.model.SamlIdpSsoSession getSamlIdpSsoSession(
 		long samlIdpSsoSessionId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getSamlIdpSsoSession(samlIdpSsoSessionId);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return getService().getActionableDynamicQuery();
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deletePersistedModel(persistedModel);
 	}
 
 	public static com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getPersistedModel(primaryKeyObj);
 	}
 
@@ -219,11 +213,9 @@ public class SamlIdpSsoSessionLocalServiceUtil {
 	* @param start the lower bound of the range of saml idp sso sessions
 	* @param end the upper bound of the range of saml idp sso sessions (not inclusive)
 	* @return the range of saml idp sso sessions
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.saml.model.SamlIdpSsoSession> getSamlIdpSsoSessions(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return getService().getSamlIdpSsoSessions(start, end);
 	}
 
@@ -231,10 +223,8 @@ public class SamlIdpSsoSessionLocalServiceUtil {
 	* Returns the number of saml idp sso sessions.
 	*
 	* @return the number of saml idp sso sessions
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int getSamlIdpSsoSessionsCount()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int getSamlIdpSsoSessionsCount() {
 		return getService().getSamlIdpSsoSessionsCount();
 	}
 
@@ -243,11 +233,9 @@ public class SamlIdpSsoSessionLocalServiceUtil {
 	*
 	* @param samlIdpSsoSession the saml idp sso session
 	* @return the saml idp sso session that was updated
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.saml.model.SamlIdpSsoSession updateSamlIdpSsoSession(
-		com.liferay.saml.model.SamlIdpSsoSession samlIdpSsoSession)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.saml.model.SamlIdpSsoSession samlIdpSsoSession) {
 		return getService().updateSamlIdpSsoSession(samlIdpSsoSession);
 	}
 

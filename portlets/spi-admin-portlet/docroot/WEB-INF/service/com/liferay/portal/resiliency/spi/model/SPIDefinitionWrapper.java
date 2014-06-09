@@ -254,11 +254,9 @@ public class SPIDefinitionWrapper implements SPIDefinition,
 	* Returns the user uuid of this s p i definition.
 	*
 	* @return the user uuid of this s p i definition
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public java.lang.String getUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.lang.String getUserUuid() {
 		return _spiDefinition.getUserUuid();
 	}
 
@@ -632,8 +630,7 @@ public class SPIDefinitionWrapper implements SPIDefinition,
 	}
 
 	@Override
-	public void persist()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void persist() {
 		_spiDefinition.persist();
 	}
 

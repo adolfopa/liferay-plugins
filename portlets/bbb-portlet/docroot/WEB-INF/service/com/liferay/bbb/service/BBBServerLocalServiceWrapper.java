@@ -35,12 +35,10 @@ public class BBBServerLocalServiceWrapper implements BBBServerLocalService,
 	*
 	* @param bbbServer the b b b server
 	* @return the b b b server that was added
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.bbb.model.BBBServer addBBBServer(
-		com.liferay.bbb.model.BBBServer bbbServer)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.bbb.model.BBBServer bbbServer) {
 		return _bbbServerLocalService.addBBBServer(bbbServer);
 	}
 
@@ -61,7 +59,7 @@ public class BBBServerLocalServiceWrapper implements BBBServerLocalService,
 	* @param bbbServerId the primary key of the b b b server
 	* @return the b b b server that was removed
 	* @throws PortalException if a b b b server with the primary key could not be found
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.bbb.model.BBBServer deleteBBBServer(long bbbServerId)
@@ -75,7 +73,7 @@ public class BBBServerLocalServiceWrapper implements BBBServerLocalService,
 	*
 	* @param bbbServer the b b b server
 	* @return the b b b server that was removed
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.bbb.model.BBBServer deleteBBBServer(
@@ -94,13 +92,11 @@ public class BBBServerLocalServiceWrapper implements BBBServerLocalService,
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _bbbServerLocalService.dynamicQuery(dynamicQuery);
 	}
 
@@ -115,13 +111,12 @@ public class BBBServerLocalServiceWrapper implements BBBServerLocalService,
 	* @param start the lower bound of the range of model instances
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		int end) {
 		return _bbbServerLocalService.dynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -137,15 +132,13 @@ public class BBBServerLocalServiceWrapper implements BBBServerLocalService,
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return _bbbServerLocalService.dynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
 	}
@@ -155,12 +148,10 @@ public class BBBServerLocalServiceWrapper implements BBBServerLocalService,
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _bbbServerLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
@@ -170,19 +161,16 @@ public class BBBServerLocalServiceWrapper implements BBBServerLocalService,
 	* @param dynamicQuery the dynamic query
 	* @param projection the projection to apply to the query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.Projection projection) {
 		return _bbbServerLocalService.dynamicQueryCount(dynamicQuery, projection);
 	}
 
 	@Override
-	public com.liferay.bbb.model.BBBServer fetchBBBServer(long bbbServerId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public com.liferay.bbb.model.BBBServer fetchBBBServer(long bbbServerId) {
 		return _bbbServerLocalService.fetchBBBServer(bbbServerId);
 	}
 
@@ -192,20 +180,32 @@ public class BBBServerLocalServiceWrapper implements BBBServerLocalService,
 	* @param bbbServerId the primary key of the b b b server
 	* @return the b b b server
 	* @throws PortalException if a b b b server with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.bbb.model.BBBServer getBBBServer(long bbbServerId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _bbbServerLocalService.getBBBServer(bbbServerId);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return _bbbServerLocalService.getActionableDynamicQuery();
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _bbbServerLocalService.deletePersistedModel(persistedModel);
 	}
 
 	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _bbbServerLocalService.getPersistedModel(primaryKeyObj);
 	}
 
@@ -219,12 +219,10 @@ public class BBBServerLocalServiceWrapper implements BBBServerLocalService,
 	* @param start the lower bound of the range of b b b servers
 	* @param end the upper bound of the range of b b b servers (not inclusive)
 	* @return the range of b b b servers
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public java.util.List<com.liferay.bbb.model.BBBServer> getBBBServers(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return _bbbServerLocalService.getBBBServers(start, end);
 	}
 
@@ -232,11 +230,9 @@ public class BBBServerLocalServiceWrapper implements BBBServerLocalService,
 	* Returns the number of b b b servers.
 	*
 	* @return the number of b b b servers
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public int getBBBServersCount()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getBBBServersCount() {
 		return _bbbServerLocalService.getBBBServersCount();
 	}
 
@@ -245,12 +241,10 @@ public class BBBServerLocalServiceWrapper implements BBBServerLocalService,
 	*
 	* @param bbbServer the b b b server
 	* @return the b b b server that was updated
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.bbb.model.BBBServer updateBBBServer(
-		com.liferay.bbb.model.BBBServer bbbServer)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.bbb.model.BBBServer bbbServer) {
 		return _bbbServerLocalService.updateBBBServer(bbbServer);
 	}
 

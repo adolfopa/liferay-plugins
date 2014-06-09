@@ -44,11 +44,9 @@ public class WebExSiteLocalServiceUtil {
 	*
 	* @param webExSite the web ex site
 	* @return the web ex site that was added
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.meeting.webex.model.WebExSite addWebExSite(
-		com.liferay.meeting.webex.model.WebExSite webExSite)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.meeting.webex.model.WebExSite webExSite) {
 		return getService().addWebExSite(webExSite);
 	}
 
@@ -69,7 +67,7 @@ public class WebExSiteLocalServiceUtil {
 	* @param webExSiteId the primary key of the web ex site
 	* @return the web ex site that was removed
 	* @throws PortalException if a web ex site with the primary key could not be found
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	public static com.liferay.meeting.webex.model.WebExSite deleteWebExSite(
 		long webExSiteId)
@@ -84,7 +82,7 @@ public class WebExSiteLocalServiceUtil {
 	* @param webExSite the web ex site
 	* @return the web ex site that was removed
 	* @throws PortalException
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	public static com.liferay.meeting.webex.model.WebExSite deleteWebExSite(
 		com.liferay.meeting.webex.model.WebExSite webExSite)
@@ -102,12 +100,10 @@ public class WebExSiteLocalServiceUtil {
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return getService().dynamicQuery(dynamicQuery);
 	}
 
@@ -122,12 +118,11 @@ public class WebExSiteLocalServiceUtil {
 	* @param start the lower bound of the range of model instances
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		int end) {
 		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -143,14 +138,12 @@ public class WebExSiteLocalServiceUtil {
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getService()
 				   .dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
@@ -160,11 +153,9 @@ public class WebExSiteLocalServiceUtil {
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	public static long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
@@ -174,18 +165,15 @@ public class WebExSiteLocalServiceUtil {
 	* @param dynamicQuery the dynamic query
 	* @param projection the projection to apply to the query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	public static long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.Projection projection) {
 		return getService().dynamicQueryCount(dynamicQuery, projection);
 	}
 
 	public static com.liferay.meeting.webex.model.WebExSite fetchWebExSite(
-		long webExSiteId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long webExSiteId) {
 		return getService().fetchWebExSite(webExSiteId);
 	}
 
@@ -195,11 +183,9 @@ public class WebExSiteLocalServiceUtil {
 	* @param uuid the web ex site's UUID
 	* @param companyId the primary key of the company
 	* @return the matching web ex site, or <code>null</code> if a matching web ex site could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.meeting.webex.model.WebExSite fetchWebExSiteByUuidAndCompanyId(
-		java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String uuid, long companyId) {
 		return getService().fetchWebExSiteByUuidAndCompanyId(uuid, companyId);
 	}
 
@@ -209,11 +195,9 @@ public class WebExSiteLocalServiceUtil {
 	* @param uuid the web ex site's UUID
 	* @param groupId the primary key of the group
 	* @return the matching web ex site, or <code>null</code> if a matching web ex site could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.meeting.webex.model.WebExSite fetchWebExSiteByUuidAndGroupId(
-		java.lang.String uuid, long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String uuid, long groupId) {
 		return getService().fetchWebExSiteByUuidAndGroupId(uuid, groupId);
 	}
 
@@ -223,19 +207,34 @@ public class WebExSiteLocalServiceUtil {
 	* @param webExSiteId the primary key of the web ex site
 	* @return the web ex site
 	* @throws PortalException if a web ex site with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.meeting.webex.model.WebExSite getWebExSite(
 		long webExSiteId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getWebExSite(webExSiteId);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return getService().getActionableDynamicQuery();
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
+		com.liferay.portal.kernel.lar.PortletDataContext portletDataContext) {
+		return getService().getExportActionableDynamicQuery(portletDataContext);
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deletePersistedModel(persistedModel);
 	}
 
 	public static com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getPersistedModel(primaryKeyObj);
 	}
 
@@ -246,12 +245,10 @@ public class WebExSiteLocalServiceUtil {
 	* @param companyId the primary key of the company
 	* @return the matching web ex site
 	* @throws PortalException if a matching web ex site could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.meeting.webex.model.WebExSite getWebExSiteByUuidAndCompanyId(
 		java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getWebExSiteByUuidAndCompanyId(uuid, companyId);
 	}
 
@@ -262,12 +259,10 @@ public class WebExSiteLocalServiceUtil {
 	* @param groupId the primary key of the group
 	* @return the matching web ex site
 	* @throws PortalException if a matching web ex site could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.meeting.webex.model.WebExSite getWebExSiteByUuidAndGroupId(
 		java.lang.String uuid, long groupId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getWebExSiteByUuidAndGroupId(uuid, groupId);
 	}
 
@@ -281,11 +276,9 @@ public class WebExSiteLocalServiceUtil {
 	* @param start the lower bound of the range of web ex sites
 	* @param end the upper bound of the range of web ex sites (not inclusive)
 	* @return the range of web ex sites
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.meeting.webex.model.WebExSite> getWebExSites(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return getService().getWebExSites(start, end);
 	}
 
@@ -293,10 +286,8 @@ public class WebExSiteLocalServiceUtil {
 	* Returns the number of web ex sites.
 	*
 	* @return the number of web ex sites
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int getWebExSitesCount()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int getWebExSitesCount() {
 		return getService().getWebExSitesCount();
 	}
 
@@ -305,11 +296,9 @@ public class WebExSiteLocalServiceUtil {
 	*
 	* @param webExSite the web ex site
 	* @return the web ex site that was updated
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.meeting.webex.model.WebExSite updateWebExSite(
-		com.liferay.meeting.webex.model.WebExSite webExSite)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.meeting.webex.model.WebExSite webExSite) {
 		return getService().updateWebExSite(webExSite);
 	}
 

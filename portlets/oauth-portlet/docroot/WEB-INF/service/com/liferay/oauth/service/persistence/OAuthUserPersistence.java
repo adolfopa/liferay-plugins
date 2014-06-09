@@ -42,10 +42,9 @@ public interface OAuthUserPersistence extends BasePersistence<OAuthUser> {
 	*
 	* @param userId the user ID
 	* @return the matching o auth users
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.oauth.model.OAuthUser> findByUserId(
-		long userId) throws com.liferay.portal.kernel.exception.SystemException;
+		long userId);
 
 	/**
 	* Returns a range of all the o auth users where userId = &#63;.
@@ -58,11 +57,9 @@ public interface OAuthUserPersistence extends BasePersistence<OAuthUser> {
 	* @param start the lower bound of the range of o auth users
 	* @param end the upper bound of the range of o auth users (not inclusive)
 	* @return the range of matching o auth users
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.oauth.model.OAuthUser> findByUserId(
-		long userId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long userId, int start, int end);
 
 	/**
 	* Returns an ordered range of all the o auth users where userId = &#63;.
@@ -76,12 +73,10 @@ public interface OAuthUserPersistence extends BasePersistence<OAuthUser> {
 	* @param end the upper bound of the range of o auth users (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching o auth users
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.oauth.model.OAuthUser> findByUserId(
 		long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the first o auth user in the ordered set where userId = &#63;.
@@ -90,12 +85,10 @@ public interface OAuthUserPersistence extends BasePersistence<OAuthUser> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching o auth user
 	* @throws com.liferay.oauth.NoSuchUserException if a matching o auth user could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.oauth.model.OAuthUser findByUserId_First(long userId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.oauth.NoSuchUserException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.oauth.NoSuchUserException;
 
 	/**
 	* Returns the first o auth user in the ordered set where userId = &#63;.
@@ -103,11 +96,9 @@ public interface OAuthUserPersistence extends BasePersistence<OAuthUser> {
 	* @param userId the user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching o auth user, or <code>null</code> if a matching o auth user could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.oauth.model.OAuthUser fetchByUserId_First(long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the last o auth user in the ordered set where userId = &#63;.
@@ -116,12 +107,10 @@ public interface OAuthUserPersistence extends BasePersistence<OAuthUser> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching o auth user
 	* @throws com.liferay.oauth.NoSuchUserException if a matching o auth user could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.oauth.model.OAuthUser findByUserId_Last(long userId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.oauth.NoSuchUserException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.oauth.NoSuchUserException;
 
 	/**
 	* Returns the last o auth user in the ordered set where userId = &#63;.
@@ -129,11 +118,9 @@ public interface OAuthUserPersistence extends BasePersistence<OAuthUser> {
 	* @param userId the user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching o auth user, or <code>null</code> if a matching o auth user could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.oauth.model.OAuthUser fetchByUserId_Last(long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the o auth users before and after the current o auth user in the ordered set where userId = &#63;.
@@ -143,23 +130,20 @@ public interface OAuthUserPersistence extends BasePersistence<OAuthUser> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next o auth user
 	* @throws com.liferay.oauth.NoSuchUserException if a o auth user with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.oauth.model.OAuthUser[] findByUserId_PrevAndNext(
 		long oAuthUserId, long userId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.oauth.NoSuchUserException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.oauth.NoSuchUserException;
 
 	/**
 	* Returns all the o auth users that the user has permission to view where userId = &#63;.
 	*
 	* @param userId the user ID
 	* @return the matching o auth users that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.oauth.model.OAuthUser> filterFindByUserId(
-		long userId) throws com.liferay.portal.kernel.exception.SystemException;
+		long userId);
 
 	/**
 	* Returns a range of all the o auth users that the user has permission to view where userId = &#63;.
@@ -172,11 +156,9 @@ public interface OAuthUserPersistence extends BasePersistence<OAuthUser> {
 	* @param start the lower bound of the range of o auth users
 	* @param end the upper bound of the range of o auth users (not inclusive)
 	* @return the range of matching o auth users that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.oauth.model.OAuthUser> filterFindByUserId(
-		long userId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long userId, int start, int end);
 
 	/**
 	* Returns an ordered range of all the o auth users that the user has permissions to view where userId = &#63;.
@@ -190,12 +172,10 @@ public interface OAuthUserPersistence extends BasePersistence<OAuthUser> {
 	* @param end the upper bound of the range of o auth users (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching o auth users that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.oauth.model.OAuthUser> filterFindByUserId(
 		long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the o auth users before and after the current o auth user in the ordered set of o auth users that the user has permission to view where userId = &#63;.
@@ -205,53 +185,43 @@ public interface OAuthUserPersistence extends BasePersistence<OAuthUser> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next o auth user
 	* @throws com.liferay.oauth.NoSuchUserException if a o auth user with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.oauth.model.OAuthUser[] filterFindByUserId_PrevAndNext(
 		long oAuthUserId, long userId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.oauth.NoSuchUserException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.oauth.NoSuchUserException;
 
 	/**
 	* Removes all the o auth users where userId = &#63; from the database.
 	*
 	* @param userId the user ID
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByUserId(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeByUserId(long userId);
 
 	/**
 	* Returns the number of o auth users where userId = &#63;.
 	*
 	* @param userId the user ID
 	* @return the number of matching o auth users
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByUserId(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByUserId(long userId);
 
 	/**
 	* Returns the number of o auth users that the user has permission to view where userId = &#63;.
 	*
 	* @param userId the user ID
 	* @return the number of matching o auth users that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
-	public int filterCountByUserId(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int filterCountByUserId(long userId);
 
 	/**
 	* Returns all the o auth users where oAuthApplicationId = &#63;.
 	*
 	* @param oAuthApplicationId the o auth application ID
 	* @return the matching o auth users
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.oauth.model.OAuthUser> findByOAuthApplicationId(
-		long oAuthApplicationId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long oAuthApplicationId);
 
 	/**
 	* Returns a range of all the o auth users where oAuthApplicationId = &#63;.
@@ -264,11 +234,9 @@ public interface OAuthUserPersistence extends BasePersistence<OAuthUser> {
 	* @param start the lower bound of the range of o auth users
 	* @param end the upper bound of the range of o auth users (not inclusive)
 	* @return the range of matching o auth users
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.oauth.model.OAuthUser> findByOAuthApplicationId(
-		long oAuthApplicationId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long oAuthApplicationId, int start, int end);
 
 	/**
 	* Returns an ordered range of all the o auth users where oAuthApplicationId = &#63;.
@@ -282,12 +250,10 @@ public interface OAuthUserPersistence extends BasePersistence<OAuthUser> {
 	* @param end the upper bound of the range of o auth users (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching o auth users
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.oauth.model.OAuthUser> findByOAuthApplicationId(
 		long oAuthApplicationId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the first o auth user in the ordered set where oAuthApplicationId = &#63;.
@@ -296,13 +262,11 @@ public interface OAuthUserPersistence extends BasePersistence<OAuthUser> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching o auth user
 	* @throws com.liferay.oauth.NoSuchUserException if a matching o auth user could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.oauth.model.OAuthUser findByOAuthApplicationId_First(
 		long oAuthApplicationId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.oauth.NoSuchUserException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.oauth.NoSuchUserException;
 
 	/**
 	* Returns the first o auth user in the ordered set where oAuthApplicationId = &#63;.
@@ -310,12 +274,10 @@ public interface OAuthUserPersistence extends BasePersistence<OAuthUser> {
 	* @param oAuthApplicationId the o auth application ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching o auth user, or <code>null</code> if a matching o auth user could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.oauth.model.OAuthUser fetchByOAuthApplicationId_First(
 		long oAuthApplicationId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the last o auth user in the ordered set where oAuthApplicationId = &#63;.
@@ -324,13 +286,11 @@ public interface OAuthUserPersistence extends BasePersistence<OAuthUser> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching o auth user
 	* @throws com.liferay.oauth.NoSuchUserException if a matching o auth user could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.oauth.model.OAuthUser findByOAuthApplicationId_Last(
 		long oAuthApplicationId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.oauth.NoSuchUserException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.oauth.NoSuchUserException;
 
 	/**
 	* Returns the last o auth user in the ordered set where oAuthApplicationId = &#63;.
@@ -338,12 +298,10 @@ public interface OAuthUserPersistence extends BasePersistence<OAuthUser> {
 	* @param oAuthApplicationId the o auth application ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching o auth user, or <code>null</code> if a matching o auth user could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.oauth.model.OAuthUser fetchByOAuthApplicationId_Last(
 		long oAuthApplicationId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the o auth users before and after the current o auth user in the ordered set where oAuthApplicationId = &#63;.
@@ -353,24 +311,20 @@ public interface OAuthUserPersistence extends BasePersistence<OAuthUser> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next o auth user
 	* @throws com.liferay.oauth.NoSuchUserException if a o auth user with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.oauth.model.OAuthUser[] findByOAuthApplicationId_PrevAndNext(
 		long oAuthUserId, long oAuthApplicationId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.oauth.NoSuchUserException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.oauth.NoSuchUserException;
 
 	/**
 	* Returns all the o auth users that the user has permission to view where oAuthApplicationId = &#63;.
 	*
 	* @param oAuthApplicationId the o auth application ID
 	* @return the matching o auth users that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.oauth.model.OAuthUser> filterFindByOAuthApplicationId(
-		long oAuthApplicationId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long oAuthApplicationId);
 
 	/**
 	* Returns a range of all the o auth users that the user has permission to view where oAuthApplicationId = &#63;.
@@ -383,11 +337,9 @@ public interface OAuthUserPersistence extends BasePersistence<OAuthUser> {
 	* @param start the lower bound of the range of o auth users
 	* @param end the upper bound of the range of o auth users (not inclusive)
 	* @return the range of matching o auth users that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.oauth.model.OAuthUser> filterFindByOAuthApplicationId(
-		long oAuthApplicationId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long oAuthApplicationId, int start, int end);
 
 	/**
 	* Returns an ordered range of all the o auth users that the user has permissions to view where oAuthApplicationId = &#63;.
@@ -401,12 +353,10 @@ public interface OAuthUserPersistence extends BasePersistence<OAuthUser> {
 	* @param end the upper bound of the range of o auth users (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching o auth users that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.oauth.model.OAuthUser> filterFindByOAuthApplicationId(
 		long oAuthApplicationId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the o auth users before and after the current o auth user in the ordered set of o auth users that the user has permission to view where oAuthApplicationId = &#63;.
@@ -416,42 +366,34 @@ public interface OAuthUserPersistence extends BasePersistence<OAuthUser> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next o auth user
 	* @throws com.liferay.oauth.NoSuchUserException if a o auth user with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.oauth.model.OAuthUser[] filterFindByOAuthApplicationId_PrevAndNext(
 		long oAuthUserId, long oAuthApplicationId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.oauth.NoSuchUserException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.oauth.NoSuchUserException;
 
 	/**
 	* Removes all the o auth users where oAuthApplicationId = &#63; from the database.
 	*
 	* @param oAuthApplicationId the o auth application ID
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByOAuthApplicationId(long oAuthApplicationId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeByOAuthApplicationId(long oAuthApplicationId);
 
 	/**
 	* Returns the number of o auth users where oAuthApplicationId = &#63;.
 	*
 	* @param oAuthApplicationId the o auth application ID
 	* @return the number of matching o auth users
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByOAuthApplicationId(long oAuthApplicationId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByOAuthApplicationId(long oAuthApplicationId);
 
 	/**
 	* Returns the number of o auth users that the user has permission to view where oAuthApplicationId = &#63;.
 	*
 	* @param oAuthApplicationId the o auth application ID
 	* @return the number of matching o auth users that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
-	public int filterCountByOAuthApplicationId(long oAuthApplicationId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int filterCountByOAuthApplicationId(long oAuthApplicationId);
 
 	/**
 	* Returns the o auth user where accessToken = &#63; or throws a {@link com.liferay.oauth.NoSuchUserException} if it could not be found.
@@ -459,23 +401,19 @@ public interface OAuthUserPersistence extends BasePersistence<OAuthUser> {
 	* @param accessToken the access token
 	* @return the matching o auth user
 	* @throws com.liferay.oauth.NoSuchUserException if a matching o auth user could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.oauth.model.OAuthUser findByAccessToken(
 		java.lang.String accessToken)
-		throws com.liferay.oauth.NoSuchUserException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.oauth.NoSuchUserException;
 
 	/**
 	* Returns the o auth user where accessToken = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	*
 	* @param accessToken the access token
 	* @return the matching o auth user, or <code>null</code> if a matching o auth user could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.oauth.model.OAuthUser fetchByAccessToken(
-		java.lang.String accessToken)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String accessToken);
 
 	/**
 	* Returns the o auth user where accessToken = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -483,33 +421,27 @@ public interface OAuthUserPersistence extends BasePersistence<OAuthUser> {
 	* @param accessToken the access token
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching o auth user, or <code>null</code> if a matching o auth user could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.oauth.model.OAuthUser fetchByAccessToken(
-		java.lang.String accessToken, boolean retrieveFromCache)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String accessToken, boolean retrieveFromCache);
 
 	/**
 	* Removes the o auth user where accessToken = &#63; from the database.
 	*
 	* @param accessToken the access token
 	* @return the o auth user that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.oauth.model.OAuthUser removeByAccessToken(
 		java.lang.String accessToken)
-		throws com.liferay.oauth.NoSuchUserException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.oauth.NoSuchUserException;
 
 	/**
 	* Returns the number of o auth users where accessToken = &#63;.
 	*
 	* @param accessToken the access token
 	* @return the number of matching o auth users
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByAccessToken(java.lang.String accessToken)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByAccessToken(java.lang.String accessToken);
 
 	/**
 	* Returns the o auth user where userId = &#63; and oAuthApplicationId = &#63; or throws a {@link com.liferay.oauth.NoSuchUserException} if it could not be found.
@@ -518,12 +450,9 @@ public interface OAuthUserPersistence extends BasePersistence<OAuthUser> {
 	* @param oAuthApplicationId the o auth application ID
 	* @return the matching o auth user
 	* @throws com.liferay.oauth.NoSuchUserException if a matching o auth user could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.oauth.model.OAuthUser findByU_OAI(long userId,
-		long oAuthApplicationId)
-		throws com.liferay.oauth.NoSuchUserException,
-			com.liferay.portal.kernel.exception.SystemException;
+		long oAuthApplicationId) throws com.liferay.oauth.NoSuchUserException;
 
 	/**
 	* Returns the o auth user where userId = &#63; and oAuthApplicationId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
@@ -531,11 +460,9 @@ public interface OAuthUserPersistence extends BasePersistence<OAuthUser> {
 	* @param userId the user ID
 	* @param oAuthApplicationId the o auth application ID
 	* @return the matching o auth user, or <code>null</code> if a matching o auth user could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.oauth.model.OAuthUser fetchByU_OAI(long userId,
-		long oAuthApplicationId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long oAuthApplicationId);
 
 	/**
 	* Returns the o auth user where userId = &#63; and oAuthApplicationId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -544,11 +471,9 @@ public interface OAuthUserPersistence extends BasePersistence<OAuthUser> {
 	* @param oAuthApplicationId the o auth application ID
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching o auth user, or <code>null</code> if a matching o auth user could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.oauth.model.OAuthUser fetchByU_OAI(long userId,
-		long oAuthApplicationId, boolean retrieveFromCache)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long oAuthApplicationId, boolean retrieveFromCache);
 
 	/**
 	* Removes the o auth user where userId = &#63; and oAuthApplicationId = &#63; from the database.
@@ -556,12 +481,9 @@ public interface OAuthUserPersistence extends BasePersistence<OAuthUser> {
 	* @param userId the user ID
 	* @param oAuthApplicationId the o auth application ID
 	* @return the o auth user that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.oauth.model.OAuthUser removeByU_OAI(long userId,
-		long oAuthApplicationId)
-		throws com.liferay.oauth.NoSuchUserException,
-			com.liferay.portal.kernel.exception.SystemException;
+		long oAuthApplicationId) throws com.liferay.oauth.NoSuchUserException;
 
 	/**
 	* Returns the number of o auth users where userId = &#63; and oAuthApplicationId = &#63;.
@@ -569,10 +491,8 @@ public interface OAuthUserPersistence extends BasePersistence<OAuthUser> {
 	* @param userId the user ID
 	* @param oAuthApplicationId the o auth application ID
 	* @return the number of matching o auth users
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByU_OAI(long userId, long oAuthApplicationId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByU_OAI(long userId, long oAuthApplicationId);
 
 	/**
 	* Caches the o auth user in the entity cache if it is enabled.
@@ -603,15 +523,12 @@ public interface OAuthUserPersistence extends BasePersistence<OAuthUser> {
 	* @param oAuthUserId the primary key of the o auth user
 	* @return the o auth user that was removed
 	* @throws com.liferay.oauth.NoSuchUserException if a o auth user with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.oauth.model.OAuthUser remove(long oAuthUserId)
-		throws com.liferay.oauth.NoSuchUserException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.oauth.NoSuchUserException;
 
 	public com.liferay.oauth.model.OAuthUser updateImpl(
-		com.liferay.oauth.model.OAuthUser oAuthUser)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.oauth.model.OAuthUser oAuthUser);
 
 	/**
 	* Returns the o auth user with the primary key or throws a {@link com.liferay.oauth.NoSuchUserException} if it could not be found.
@@ -619,30 +536,24 @@ public interface OAuthUserPersistence extends BasePersistence<OAuthUser> {
 	* @param oAuthUserId the primary key of the o auth user
 	* @return the o auth user
 	* @throws com.liferay.oauth.NoSuchUserException if a o auth user with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.oauth.model.OAuthUser findByPrimaryKey(long oAuthUserId)
-		throws com.liferay.oauth.NoSuchUserException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.oauth.NoSuchUserException;
 
 	/**
 	* Returns the o auth user with the primary key or returns <code>null</code> if it could not be found.
 	*
 	* @param oAuthUserId the primary key of the o auth user
 	* @return the o auth user, or <code>null</code> if a o auth user with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.oauth.model.OAuthUser fetchByPrimaryKey(long oAuthUserId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public com.liferay.oauth.model.OAuthUser fetchByPrimaryKey(long oAuthUserId);
 
 	/**
 	* Returns all the o auth users.
 	*
 	* @return the o auth users
-	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.oauth.model.OAuthUser> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public java.util.List<com.liferay.oauth.model.OAuthUser> findAll();
 
 	/**
 	* Returns a range of all the o auth users.
@@ -654,11 +565,9 @@ public interface OAuthUserPersistence extends BasePersistence<OAuthUser> {
 	* @param start the lower bound of the range of o auth users
 	* @param end the upper bound of the range of o auth users (not inclusive)
 	* @return the range of o auth users
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.oauth.model.OAuthUser> findAll(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		int start, int end);
 
 	/**
 	* Returns an ordered range of all the o auth users.
@@ -671,27 +580,20 @@ public interface OAuthUserPersistence extends BasePersistence<OAuthUser> {
 	* @param end the upper bound of the range of o auth users (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of o auth users
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.oauth.model.OAuthUser> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Removes all the o auth users from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeAll();
 
 	/**
 	* Returns the number of o auth users.
 	*
 	* @return the number of o auth users
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countAll();
 }

@@ -41,11 +41,9 @@ public interface KaleoDraftDefinitionPersistence extends BasePersistence<KaleoDr
 	*
 	* @param companyId the company ID
 	* @return the matching kaleo draft definitions
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition> findByCompanyId(
-		long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long companyId);
 
 	/**
 	* Returns a range of all the kaleo draft definitions where companyId = &#63;.
@@ -58,11 +56,9 @@ public interface KaleoDraftDefinitionPersistence extends BasePersistence<KaleoDr
 	* @param start the lower bound of the range of kaleo draft definitions
 	* @param end the upper bound of the range of kaleo draft definitions (not inclusive)
 	* @return the range of matching kaleo draft definitions
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition> findByCompanyId(
-		long companyId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long companyId, int start, int end);
 
 	/**
 	* Returns an ordered range of all the kaleo draft definitions where companyId = &#63;.
@@ -76,12 +72,10 @@ public interface KaleoDraftDefinitionPersistence extends BasePersistence<KaleoDr
 	* @param end the upper bound of the range of kaleo draft definitions (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo draft definitions
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the first kaleo draft definition in the ordered set where companyId = &#63;.
@@ -90,13 +84,11 @@ public interface KaleoDraftDefinitionPersistence extends BasePersistence<KaleoDr
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo draft definition
 	* @throws com.liferay.portal.workflow.kaleo.designer.NoSuchKaleoDraftDefinitionException if a matching kaleo draft definition could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition findByCompanyId_First(
 		long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.designer.NoSuchKaleoDraftDefinitionException;
+		throws com.liferay.portal.workflow.kaleo.designer.NoSuchKaleoDraftDefinitionException;
 
 	/**
 	* Returns the first kaleo draft definition in the ordered set where companyId = &#63;.
@@ -104,12 +96,10 @@ public interface KaleoDraftDefinitionPersistence extends BasePersistence<KaleoDr
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo draft definition, or <code>null</code> if a matching kaleo draft definition could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition fetchByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the last kaleo draft definition in the ordered set where companyId = &#63;.
@@ -118,13 +108,11 @@ public interface KaleoDraftDefinitionPersistence extends BasePersistence<KaleoDr
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo draft definition
 	* @throws com.liferay.portal.workflow.kaleo.designer.NoSuchKaleoDraftDefinitionException if a matching kaleo draft definition could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition findByCompanyId_Last(
 		long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.designer.NoSuchKaleoDraftDefinitionException;
+		throws com.liferay.portal.workflow.kaleo.designer.NoSuchKaleoDraftDefinitionException;
 
 	/**
 	* Returns the last kaleo draft definition in the ordered set where companyId = &#63;.
@@ -132,12 +120,10 @@ public interface KaleoDraftDefinitionPersistence extends BasePersistence<KaleoDr
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo draft definition, or <code>null</code> if a matching kaleo draft definition could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition fetchByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the kaleo draft definitions before and after the current kaleo draft definition in the ordered set where companyId = &#63;.
@@ -147,32 +133,26 @@ public interface KaleoDraftDefinitionPersistence extends BasePersistence<KaleoDr
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo draft definition
 	* @throws com.liferay.portal.workflow.kaleo.designer.NoSuchKaleoDraftDefinitionException if a kaleo draft definition with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition[] findByCompanyId_PrevAndNext(
 		long kaleoDraftDefinitionId, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.designer.NoSuchKaleoDraftDefinitionException;
+		throws com.liferay.portal.workflow.kaleo.designer.NoSuchKaleoDraftDefinitionException;
 
 	/**
 	* Removes all the kaleo draft definitions where companyId = &#63; from the database.
 	*
 	* @param companyId the company ID
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeByCompanyId(long companyId);
 
 	/**
 	* Returns the number of kaleo draft definitions where companyId = &#63;.
 	*
 	* @param companyId the company ID
 	* @return the number of matching kaleo draft definitions
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByCompanyId(long companyId);
 
 	/**
 	* Returns all the kaleo draft definitions where companyId = &#63; and name = &#63; and version = &#63;.
@@ -181,11 +161,9 @@ public interface KaleoDraftDefinitionPersistence extends BasePersistence<KaleoDr
 	* @param name the name
 	* @param version the version
 	* @return the matching kaleo draft definitions
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition> findByC_N_V(
-		long companyId, java.lang.String name, int version)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long companyId, java.lang.String name, int version);
 
 	/**
 	* Returns a range of all the kaleo draft definitions where companyId = &#63; and name = &#63; and version = &#63;.
@@ -200,11 +178,9 @@ public interface KaleoDraftDefinitionPersistence extends BasePersistence<KaleoDr
 	* @param start the lower bound of the range of kaleo draft definitions
 	* @param end the upper bound of the range of kaleo draft definitions (not inclusive)
 	* @return the range of matching kaleo draft definitions
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition> findByC_N_V(
-		long companyId, java.lang.String name, int version, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long companyId, java.lang.String name, int version, int start, int end);
 
 	/**
 	* Returns an ordered range of all the kaleo draft definitions where companyId = &#63; and name = &#63; and version = &#63;.
@@ -220,12 +196,10 @@ public interface KaleoDraftDefinitionPersistence extends BasePersistence<KaleoDr
 	* @param end the upper bound of the range of kaleo draft definitions (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo draft definitions
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition> findByC_N_V(
 		long companyId, java.lang.String name, int version, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the first kaleo draft definition in the ordered set where companyId = &#63; and name = &#63; and version = &#63;.
@@ -236,13 +210,11 @@ public interface KaleoDraftDefinitionPersistence extends BasePersistence<KaleoDr
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo draft definition
 	* @throws com.liferay.portal.workflow.kaleo.designer.NoSuchKaleoDraftDefinitionException if a matching kaleo draft definition could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition findByC_N_V_First(
 		long companyId, java.lang.String name, int version,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.designer.NoSuchKaleoDraftDefinitionException;
+		throws com.liferay.portal.workflow.kaleo.designer.NoSuchKaleoDraftDefinitionException;
 
 	/**
 	* Returns the first kaleo draft definition in the ordered set where companyId = &#63; and name = &#63; and version = &#63;.
@@ -252,12 +224,10 @@ public interface KaleoDraftDefinitionPersistence extends BasePersistence<KaleoDr
 	* @param version the version
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo draft definition, or <code>null</code> if a matching kaleo draft definition could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition fetchByC_N_V_First(
 		long companyId, java.lang.String name, int version,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the last kaleo draft definition in the ordered set where companyId = &#63; and name = &#63; and version = &#63;.
@@ -268,13 +238,11 @@ public interface KaleoDraftDefinitionPersistence extends BasePersistence<KaleoDr
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo draft definition
 	* @throws com.liferay.portal.workflow.kaleo.designer.NoSuchKaleoDraftDefinitionException if a matching kaleo draft definition could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition findByC_N_V_Last(
 		long companyId, java.lang.String name, int version,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.designer.NoSuchKaleoDraftDefinitionException;
+		throws com.liferay.portal.workflow.kaleo.designer.NoSuchKaleoDraftDefinitionException;
 
 	/**
 	* Returns the last kaleo draft definition in the ordered set where companyId = &#63; and name = &#63; and version = &#63;.
@@ -284,12 +252,10 @@ public interface KaleoDraftDefinitionPersistence extends BasePersistence<KaleoDr
 	* @param version the version
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo draft definition, or <code>null</code> if a matching kaleo draft definition could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition fetchByC_N_V_Last(
 		long companyId, java.lang.String name, int version,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the kaleo draft definitions before and after the current kaleo draft definition in the ordered set where companyId = &#63; and name = &#63; and version = &#63;.
@@ -301,14 +267,12 @@ public interface KaleoDraftDefinitionPersistence extends BasePersistence<KaleoDr
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo draft definition
 	* @throws com.liferay.portal.workflow.kaleo.designer.NoSuchKaleoDraftDefinitionException if a kaleo draft definition with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition[] findByC_N_V_PrevAndNext(
 		long kaleoDraftDefinitionId, long companyId, java.lang.String name,
 		int version,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.designer.NoSuchKaleoDraftDefinitionException;
+		throws com.liferay.portal.workflow.kaleo.designer.NoSuchKaleoDraftDefinitionException;
 
 	/**
 	* Removes all the kaleo draft definitions where companyId = &#63; and name = &#63; and version = &#63; from the database.
@@ -316,10 +280,8 @@ public interface KaleoDraftDefinitionPersistence extends BasePersistence<KaleoDr
 	* @param companyId the company ID
 	* @param name the name
 	* @param version the version
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByC_N_V(long companyId, java.lang.String name, int version)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeByC_N_V(long companyId, java.lang.String name, int version);
 
 	/**
 	* Returns the number of kaleo draft definitions where companyId = &#63; and name = &#63; and version = &#63;.
@@ -328,10 +290,8 @@ public interface KaleoDraftDefinitionPersistence extends BasePersistence<KaleoDr
 	* @param name the name
 	* @param version the version
 	* @return the number of matching kaleo draft definitions
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByC_N_V(long companyId, java.lang.String name, int version)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByC_N_V(long companyId, java.lang.String name, int version);
 
 	/**
 	* Returns the kaleo draft definition where companyId = &#63; and name = &#63; and version = &#63; and draftVersion = &#63; or throws a {@link com.liferay.portal.workflow.kaleo.designer.NoSuchKaleoDraftDefinitionException} if it could not be found.
@@ -342,12 +302,10 @@ public interface KaleoDraftDefinitionPersistence extends BasePersistence<KaleoDr
 	* @param draftVersion the draft version
 	* @return the matching kaleo draft definition
 	* @throws com.liferay.portal.workflow.kaleo.designer.NoSuchKaleoDraftDefinitionException if a matching kaleo draft definition could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition findByC_N_V_D(
 		long companyId, java.lang.String name, int version, int draftVersion)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.designer.NoSuchKaleoDraftDefinitionException;
+		throws com.liferay.portal.workflow.kaleo.designer.NoSuchKaleoDraftDefinitionException;
 
 	/**
 	* Returns the kaleo draft definition where companyId = &#63; and name = &#63; and version = &#63; and draftVersion = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
@@ -357,11 +315,9 @@ public interface KaleoDraftDefinitionPersistence extends BasePersistence<KaleoDr
 	* @param version the version
 	* @param draftVersion the draft version
 	* @return the matching kaleo draft definition, or <code>null</code> if a matching kaleo draft definition could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition fetchByC_N_V_D(
-		long companyId, java.lang.String name, int version, int draftVersion)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long companyId, java.lang.String name, int version, int draftVersion);
 
 	/**
 	* Returns the kaleo draft definition where companyId = &#63; and name = &#63; and version = &#63; and draftVersion = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -372,12 +328,10 @@ public interface KaleoDraftDefinitionPersistence extends BasePersistence<KaleoDr
 	* @param draftVersion the draft version
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching kaleo draft definition, or <code>null</code> if a matching kaleo draft definition could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition fetchByC_N_V_D(
 		long companyId, java.lang.String name, int version, int draftVersion,
-		boolean retrieveFromCache)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		boolean retrieveFromCache);
 
 	/**
 	* Removes the kaleo draft definition where companyId = &#63; and name = &#63; and version = &#63; and draftVersion = &#63; from the database.
@@ -387,12 +341,10 @@ public interface KaleoDraftDefinitionPersistence extends BasePersistence<KaleoDr
 	* @param version the version
 	* @param draftVersion the draft version
 	* @return the kaleo draft definition that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition removeByC_N_V_D(
 		long companyId, java.lang.String name, int version, int draftVersion)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.designer.NoSuchKaleoDraftDefinitionException;
+		throws com.liferay.portal.workflow.kaleo.designer.NoSuchKaleoDraftDefinitionException;
 
 	/**
 	* Returns the number of kaleo draft definitions where companyId = &#63; and name = &#63; and version = &#63; and draftVersion = &#63;.
@@ -402,11 +354,9 @@ public interface KaleoDraftDefinitionPersistence extends BasePersistence<KaleoDr
 	* @param version the version
 	* @param draftVersion the draft version
 	* @return the number of matching kaleo draft definitions
-	* @throws SystemException if a system exception occurred
 	*/
 	public int countByC_N_V_D(long companyId, java.lang.String name,
-		int version, int draftVersion)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		int version, int draftVersion);
 
 	/**
 	* Caches the kaleo draft definition in the entity cache if it is enabled.
@@ -439,16 +389,13 @@ public interface KaleoDraftDefinitionPersistence extends BasePersistence<KaleoDr
 	* @param kaleoDraftDefinitionId the primary key of the kaleo draft definition
 	* @return the kaleo draft definition that was removed
 	* @throws com.liferay.portal.workflow.kaleo.designer.NoSuchKaleoDraftDefinitionException if a kaleo draft definition with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition remove(
 		long kaleoDraftDefinitionId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.designer.NoSuchKaleoDraftDefinitionException;
+		throws com.liferay.portal.workflow.kaleo.designer.NoSuchKaleoDraftDefinitionException;
 
 	public com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition updateImpl(
-		com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition kaleoDraftDefinition)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition kaleoDraftDefinition);
 
 	/**
 	* Returns the kaleo draft definition with the primary key or throws a {@link com.liferay.portal.workflow.kaleo.designer.NoSuchKaleoDraftDefinitionException} if it could not be found.
@@ -456,32 +403,26 @@ public interface KaleoDraftDefinitionPersistence extends BasePersistence<KaleoDr
 	* @param kaleoDraftDefinitionId the primary key of the kaleo draft definition
 	* @return the kaleo draft definition
 	* @throws com.liferay.portal.workflow.kaleo.designer.NoSuchKaleoDraftDefinitionException if a kaleo draft definition with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition findByPrimaryKey(
 		long kaleoDraftDefinitionId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.designer.NoSuchKaleoDraftDefinitionException;
+		throws com.liferay.portal.workflow.kaleo.designer.NoSuchKaleoDraftDefinitionException;
 
 	/**
 	* Returns the kaleo draft definition with the primary key or returns <code>null</code> if it could not be found.
 	*
 	* @param kaleoDraftDefinitionId the primary key of the kaleo draft definition
 	* @return the kaleo draft definition, or <code>null</code> if a kaleo draft definition with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition fetchByPrimaryKey(
-		long kaleoDraftDefinitionId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long kaleoDraftDefinitionId);
 
 	/**
 	* Returns all the kaleo draft definitions.
 	*
 	* @return the kaleo draft definitions
-	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public java.util.List<com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition> findAll();
 
 	/**
 	* Returns a range of all the kaleo draft definitions.
@@ -493,11 +434,9 @@ public interface KaleoDraftDefinitionPersistence extends BasePersistence<KaleoDr
 	* @param start the lower bound of the range of kaleo draft definitions
 	* @param end the upper bound of the range of kaleo draft definitions (not inclusive)
 	* @return the range of kaleo draft definitions
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition> findAll(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		int start, int end);
 
 	/**
 	* Returns an ordered range of all the kaleo draft definitions.
@@ -510,27 +449,20 @@ public interface KaleoDraftDefinitionPersistence extends BasePersistence<KaleoDr
 	* @param end the upper bound of the range of kaleo draft definitions (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of kaleo draft definitions
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Removes all the kaleo draft definitions from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeAll();
 
 	/**
 	* Returns the number of kaleo draft definitions.
 	*
 	* @return the number of kaleo draft definitions
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countAll();
 }

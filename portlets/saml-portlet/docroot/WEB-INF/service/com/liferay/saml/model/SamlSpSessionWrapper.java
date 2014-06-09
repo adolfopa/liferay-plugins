@@ -248,11 +248,9 @@ public class SamlSpSessionWrapper implements SamlSpSession,
 	* Returns the user uuid of this saml sp session.
 	*
 	* @return the user uuid of this saml sp session
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public java.lang.String getUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.lang.String getUserUuid() {
 		return _samlSpSession.getUserUuid();
 	}
 
@@ -615,8 +613,7 @@ public class SamlSpSessionWrapper implements SamlSpSession,
 	}
 
 	@Override
-	public void persist()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void persist() {
 		_samlSpSession.persist();
 	}
 

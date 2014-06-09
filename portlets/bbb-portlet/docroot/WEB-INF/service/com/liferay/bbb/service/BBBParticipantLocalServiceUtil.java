@@ -44,11 +44,9 @@ public class BBBParticipantLocalServiceUtil {
 	*
 	* @param bbbParticipant the b b b participant
 	* @return the b b b participant that was added
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.bbb.model.BBBParticipant addBBBParticipant(
-		com.liferay.bbb.model.BBBParticipant bbbParticipant)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.bbb.model.BBBParticipant bbbParticipant) {
 		return getService().addBBBParticipant(bbbParticipant);
 	}
 
@@ -69,12 +67,10 @@ public class BBBParticipantLocalServiceUtil {
 	* @param bbbParticipantId the primary key of the b b b participant
 	* @return the b b b participant that was removed
 	* @throws PortalException if a b b b participant with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.bbb.model.BBBParticipant deleteBBBParticipant(
 		long bbbParticipantId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteBBBParticipant(bbbParticipantId);
 	}
 
@@ -83,7 +79,7 @@ public class BBBParticipantLocalServiceUtil {
 	*
 	* @param bbbParticipant the b b b participant
 	* @return the b b b participant that was removed
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	public static com.liferay.bbb.model.BBBParticipant deleteBBBParticipant(
 		com.liferay.bbb.model.BBBParticipant bbbParticipant)
@@ -100,12 +96,10 @@ public class BBBParticipantLocalServiceUtil {
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return getService().dynamicQuery(dynamicQuery);
 	}
 
@@ -120,12 +114,11 @@ public class BBBParticipantLocalServiceUtil {
 	* @param start the lower bound of the range of model instances
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		int end) {
 		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -141,14 +134,12 @@ public class BBBParticipantLocalServiceUtil {
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getService()
 				   .dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
@@ -158,11 +149,9 @@ public class BBBParticipantLocalServiceUtil {
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	public static long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
@@ -172,18 +161,15 @@ public class BBBParticipantLocalServiceUtil {
 	* @param dynamicQuery the dynamic query
 	* @param projection the projection to apply to the query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	public static long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.Projection projection) {
 		return getService().dynamicQueryCount(dynamicQuery, projection);
 	}
 
 	public static com.liferay.bbb.model.BBBParticipant fetchBBBParticipant(
-		long bbbParticipantId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long bbbParticipantId) {
 		return getService().fetchBBBParticipant(bbbParticipantId);
 	}
 
@@ -193,19 +179,29 @@ public class BBBParticipantLocalServiceUtil {
 	* @param bbbParticipantId the primary key of the b b b participant
 	* @return the b b b participant
 	* @throws PortalException if a b b b participant with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.bbb.model.BBBParticipant getBBBParticipant(
 		long bbbParticipantId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getBBBParticipant(bbbParticipantId);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return getService().getActionableDynamicQuery();
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deletePersistedModel(persistedModel);
 	}
 
 	public static com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getPersistedModel(primaryKeyObj);
 	}
 
@@ -219,11 +215,9 @@ public class BBBParticipantLocalServiceUtil {
 	* @param start the lower bound of the range of b b b participants
 	* @param end the upper bound of the range of b b b participants (not inclusive)
 	* @return the range of b b b participants
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.bbb.model.BBBParticipant> getBBBParticipants(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return getService().getBBBParticipants(start, end);
 	}
 
@@ -231,10 +225,8 @@ public class BBBParticipantLocalServiceUtil {
 	* Returns the number of b b b participants.
 	*
 	* @return the number of b b b participants
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int getBBBParticipantsCount()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int getBBBParticipantsCount() {
 		return getService().getBBBParticipantsCount();
 	}
 
@@ -243,11 +235,9 @@ public class BBBParticipantLocalServiceUtil {
 	*
 	* @param bbbParticipant the b b b participant
 	* @return the b b b participant that was updated
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.bbb.model.BBBParticipant updateBBBParticipant(
-		com.liferay.bbb.model.BBBParticipant bbbParticipant)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.bbb.model.BBBParticipant bbbParticipant) {
 		return getService().updateBBBParticipant(bbbParticipant);
 	}
 

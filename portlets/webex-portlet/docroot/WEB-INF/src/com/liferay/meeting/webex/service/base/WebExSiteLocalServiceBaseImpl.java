@@ -25,11 +25,19 @@ import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DefaultActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.Projection;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.lar.ExportImportHelperUtil;
+import com.liferay.portal.kernel.lar.ManifestSummary;
+import com.liferay.portal.kernel.lar.PortletDataContext;
+import com.liferay.portal.kernel.lar.StagedModelDataHandlerUtil;
+import com.liferay.portal.kernel.lar.StagedModelType;
 import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -73,12 +81,10 @@ public abstract class WebExSiteLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param webExSite the web ex site
 	 * @return the web ex site that was added
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
-	public WebExSite addWebExSite(WebExSite webExSite)
-		throws SystemException {
+	public WebExSite addWebExSite(WebExSite webExSite) {
 		webExSite.setNew(true);
 
 		return webExSitePersistence.update(webExSite);
@@ -101,7 +107,7 @@ public abstract class WebExSiteLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param webExSiteId the primary key of the web ex site
 	 * @return the web ex site that was removed
 	 * @throws PortalException if a web ex site with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
@@ -116,7 +122,7 @@ public abstract class WebExSiteLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param webExSite the web ex site
 	 * @return the web ex site that was removed
 	 * @throws PortalException
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
@@ -138,12 +144,10 @@ public abstract class WebExSiteLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery) {
 		return webExSitePersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -158,12 +162,10 @@ public abstract class WebExSiteLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param start the lower bound of the range of model instances
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
 		return webExSitePersistence.findWithDynamicQuery(dynamicQuery, start,
 			end);
 	}
@@ -180,12 +182,11 @@ public abstract class WebExSiteLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return webExSitePersistence.findWithDynamicQuery(dynamicQuery, start,
 			end, orderByComparator);
 	}
@@ -195,11 +196,9 @@ public abstract class WebExSiteLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public long dynamicQueryCount(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
 		return webExSitePersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -209,17 +208,16 @@ public abstract class WebExSiteLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection) throws SystemException {
+		Projection projection) {
 		return webExSitePersistence.countWithDynamicQuery(dynamicQuery,
 			projection);
 	}
 
 	@Override
-	public WebExSite fetchWebExSite(long webExSiteId) throws SystemException {
+	public WebExSite fetchWebExSite(long webExSiteId) {
 		return webExSitePersistence.fetchByPrimaryKey(webExSiteId);
 	}
 
@@ -229,11 +227,10 @@ public abstract class WebExSiteLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param uuid the web ex site's UUID
 	 * @param  companyId the primary key of the company
 	 * @return the matching web ex site, or <code>null</code> if a matching web ex site could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public WebExSite fetchWebExSiteByUuidAndCompanyId(String uuid,
-		long companyId) throws SystemException {
+		long companyId) {
 		return webExSitePersistence.fetchByUuid_C_First(uuid, companyId, null);
 	}
 
@@ -243,11 +240,9 @@ public abstract class WebExSiteLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param uuid the web ex site's UUID
 	 * @param groupId the primary key of the group
 	 * @return the matching web ex site, or <code>null</code> if a matching web ex site could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public WebExSite fetchWebExSiteByUuidAndGroupId(String uuid, long groupId)
-		throws SystemException {
+	public WebExSite fetchWebExSiteByUuidAndGroupId(String uuid, long groupId) {
 		return webExSitePersistence.fetchByUUID_G(uuid, groupId);
 	}
 
@@ -257,17 +252,101 @@ public abstract class WebExSiteLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param webExSiteId the primary key of the web ex site
 	 * @return the web ex site
 	 * @throws PortalException if a web ex site with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public WebExSite getWebExSite(long webExSiteId)
-		throws PortalException, SystemException {
+	public WebExSite getWebExSite(long webExSiteId) throws PortalException {
 		return webExSitePersistence.findByPrimaryKey(webExSiteId);
 	}
 
 	@Override
+	public ActionableDynamicQuery getActionableDynamicQuery() {
+		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
+
+		actionableDynamicQuery.setBaseLocalService(com.liferay.meeting.webex.service.WebExSiteLocalServiceUtil.getService());
+		actionableDynamicQuery.setClass(WebExSite.class);
+		actionableDynamicQuery.setClassLoader(getClassLoader());
+
+		actionableDynamicQuery.setPrimaryKeyPropertyName("webExSiteId");
+
+		return actionableDynamicQuery;
+	}
+
+	protected void initActionableDynamicQuery(
+		ActionableDynamicQuery actionableDynamicQuery) {
+		actionableDynamicQuery.setBaseLocalService(com.liferay.meeting.webex.service.WebExSiteLocalServiceUtil.getService());
+		actionableDynamicQuery.setClass(WebExSite.class);
+		actionableDynamicQuery.setClassLoader(getClassLoader());
+
+		actionableDynamicQuery.setPrimaryKeyPropertyName("webExSiteId");
+	}
+
+	@Override
+	public ExportActionableDynamicQuery getExportActionableDynamicQuery(
+		final PortletDataContext portletDataContext) {
+		final ExportActionableDynamicQuery exportActionableDynamicQuery = new ExportActionableDynamicQuery() {
+				@Override
+				public long performCount() throws PortalException {
+					ManifestSummary manifestSummary = portletDataContext.getManifestSummary();
+
+					StagedModelType stagedModelType = getStagedModelType();
+
+					long modelAdditionCount = super.performCount();
+
+					manifestSummary.addModelAdditionCount(stagedModelType.toString(),
+						modelAdditionCount);
+
+					long modelDeletionCount = ExportImportHelperUtil.getModelDeletionCount(portletDataContext,
+							stagedModelType);
+
+					manifestSummary.addModelDeletionCount(stagedModelType.toString(),
+						modelDeletionCount);
+
+					return modelAdditionCount;
+				}
+			};
+
+		initActionableDynamicQuery(exportActionableDynamicQuery);
+
+		exportActionableDynamicQuery.setAddCriteriaMethod(new ActionableDynamicQuery.AddCriteriaMethod() {
+				@Override
+				public void addCriteria(DynamicQuery dynamicQuery) {
+					portletDataContext.addDateRangeCriteria(dynamicQuery,
+						"modifiedDate");
+				}
+			});
+
+		exportActionableDynamicQuery.setCompanyId(portletDataContext.getCompanyId());
+
+		exportActionableDynamicQuery.setGroupId(portletDataContext.getScopeGroupId());
+
+		exportActionableDynamicQuery.setPerformActionMethod(new ActionableDynamicQuery.PerformActionMethod() {
+				@Override
+				public void performAction(Object object)
+					throws PortalException {
+					WebExSite stagedModel = (WebExSite)object;
+
+					StagedModelDataHandlerUtil.exportStagedModel(portletDataContext,
+						stagedModel);
+				}
+			});
+		exportActionableDynamicQuery.setStagedModelType(new StagedModelType(
+				PortalUtil.getClassNameId(WebExSite.class.getName())));
+
+		return exportActionableDynamicQuery;
+	}
+
+	/**
+	 * @throws PortalException
+	 */
+	@Override
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
+		throws PortalException {
+		return deleteWebExSite((WebExSite)persistedModel);
+	}
+
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return webExSitePersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
@@ -278,11 +357,10 @@ public abstract class WebExSiteLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param  companyId the primary key of the company
 	 * @return the matching web ex site
 	 * @throws PortalException if a matching web ex site could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public WebExSite getWebExSiteByUuidAndCompanyId(String uuid, long companyId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return webExSitePersistence.findByUuid_C_First(uuid, companyId, null);
 	}
 
@@ -293,11 +371,10 @@ public abstract class WebExSiteLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param groupId the primary key of the group
 	 * @return the matching web ex site
 	 * @throws PortalException if a matching web ex site could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public WebExSite getWebExSiteByUuidAndGroupId(String uuid, long groupId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return webExSitePersistence.findByUUID_G(uuid, groupId);
 	}
 
@@ -311,11 +388,9 @@ public abstract class WebExSiteLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param start the lower bound of the range of web ex sites
 	 * @param end the upper bound of the range of web ex sites (not inclusive)
 	 * @return the range of web ex sites
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<WebExSite> getWebExSites(int start, int end)
-		throws SystemException {
+	public List<WebExSite> getWebExSites(int start, int end) {
 		return webExSitePersistence.findAll(start, end);
 	}
 
@@ -323,10 +398,9 @@ public abstract class WebExSiteLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * Returns the number of web ex sites.
 	 *
 	 * @return the number of web ex sites
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int getWebExSitesCount() throws SystemException {
+	public int getWebExSitesCount() {
 		return webExSitePersistence.countAll();
 	}
 
@@ -335,12 +409,10 @@ public abstract class WebExSiteLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param webExSite the web ex site
 	 * @return the web ex site that was updated
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
-	public WebExSite updateWebExSite(WebExSite webExSite)
-		throws SystemException {
+	public WebExSite updateWebExSite(WebExSite webExSite) {
 		return webExSitePersistence.update(webExSite);
 	}
 
@@ -734,7 +806,7 @@ public abstract class WebExSiteLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param sql the sql query
 	 */
-	protected void runSQL(String sql) throws SystemException {
+	protected void runSQL(String sql) {
 		try {
 			DataSource dataSource = webExSitePersistence.getDataSource();
 

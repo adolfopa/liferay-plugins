@@ -17,8 +17,6 @@ package com.liferay.meeting.webex.model.impl;
 import com.liferay.meeting.webex.model.WebExAccount;
 import com.liferay.meeting.webex.service.WebExAccountLocalServiceUtil;
 
-import com.liferay.portal.kernel.exception.SystemException;
-
 /**
  * The extended model base implementation for the WebExAccount service. Represents a row in the &quot;WebEx_WebExAccount&quot; database table, with each column mapped to a property of this class.
  *
@@ -39,7 +37,7 @@ public abstract class WebExAccountBaseImpl extends WebExAccountModelImpl
 	 * Never modify or reference this class directly. All methods that expect a web ex account model instance should use the {@link WebExAccount} interface instead.
 	 */
 	@Override
-	public void persist() throws SystemException {
+	public void persist() {
 		if (this.isNew()) {
 			WebExAccountLocalServiceUtil.addWebExAccount(this);
 		}

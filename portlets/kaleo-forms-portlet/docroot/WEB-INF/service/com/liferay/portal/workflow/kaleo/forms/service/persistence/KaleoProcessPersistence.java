@@ -41,11 +41,9 @@ public interface KaleoProcessPersistence extends BasePersistence<KaleoProcess> {
 	*
 	* @param groupId the group ID
 	* @return the matching kaleo processes
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess> findByGroupId(
-		long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long groupId);
 
 	/**
 	* Returns a range of all the kaleo processes where groupId = &#63;.
@@ -58,11 +56,9 @@ public interface KaleoProcessPersistence extends BasePersistence<KaleoProcess> {
 	* @param start the lower bound of the range of kaleo processes
 	* @param end the upper bound of the range of kaleo processes (not inclusive)
 	* @return the range of matching kaleo processes
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess> findByGroupId(
-		long groupId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long groupId, int start, int end);
 
 	/**
 	* Returns an ordered range of all the kaleo processes where groupId = &#63;.
@@ -76,12 +72,10 @@ public interface KaleoProcessPersistence extends BasePersistence<KaleoProcess> {
 	* @param end the upper bound of the range of kaleo processes (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo processes
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess> findByGroupId(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the first kaleo process in the ordered set where groupId = &#63;.
@@ -90,13 +84,11 @@ public interface KaleoProcessPersistence extends BasePersistence<KaleoProcess> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo process
 	* @throws com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessException if a matching kaleo process could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess findByGroupId_First(
 		long groupId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessException;
+		throws com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessException;
 
 	/**
 	* Returns the first kaleo process in the ordered set where groupId = &#63;.
@@ -104,12 +96,10 @@ public interface KaleoProcessPersistence extends BasePersistence<KaleoProcess> {
 	* @param groupId the group ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo process, or <code>null</code> if a matching kaleo process could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess fetchByGroupId_First(
 		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the last kaleo process in the ordered set where groupId = &#63;.
@@ -118,13 +108,11 @@ public interface KaleoProcessPersistence extends BasePersistence<KaleoProcess> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo process
 	* @throws com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessException if a matching kaleo process could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess findByGroupId_Last(
 		long groupId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessException;
+		throws com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessException;
 
 	/**
 	* Returns the last kaleo process in the ordered set where groupId = &#63;.
@@ -132,12 +120,10 @@ public interface KaleoProcessPersistence extends BasePersistence<KaleoProcess> {
 	* @param groupId the group ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo process, or <code>null</code> if a matching kaleo process could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess fetchByGroupId_Last(
 		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the kaleo processes before and after the current kaleo process in the ordered set where groupId = &#63;.
@@ -147,24 +133,20 @@ public interface KaleoProcessPersistence extends BasePersistence<KaleoProcess> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo process
 	* @throws com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessException if a kaleo process with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess[] findByGroupId_PrevAndNext(
 		long kaleoProcessId, long groupId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessException;
+		throws com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessException;
 
 	/**
 	* Returns all the kaleo processes that the user has permission to view where groupId = &#63;.
 	*
 	* @param groupId the group ID
 	* @return the matching kaleo processes that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess> filterFindByGroupId(
-		long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long groupId);
 
 	/**
 	* Returns a range of all the kaleo processes that the user has permission to view where groupId = &#63;.
@@ -177,11 +159,9 @@ public interface KaleoProcessPersistence extends BasePersistence<KaleoProcess> {
 	* @param start the lower bound of the range of kaleo processes
 	* @param end the upper bound of the range of kaleo processes (not inclusive)
 	* @return the range of matching kaleo processes that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess> filterFindByGroupId(
-		long groupId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long groupId, int start, int end);
 
 	/**
 	* Returns an ordered range of all the kaleo processes that the user has permissions to view where groupId = &#63;.
@@ -195,12 +175,10 @@ public interface KaleoProcessPersistence extends BasePersistence<KaleoProcess> {
 	* @param end the upper bound of the range of kaleo processes (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo processes that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess> filterFindByGroupId(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the kaleo processes before and after the current kaleo process in the ordered set of kaleo processes that the user has permission to view where groupId = &#63;.
@@ -210,42 +188,34 @@ public interface KaleoProcessPersistence extends BasePersistence<KaleoProcess> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo process
 	* @throws com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessException if a kaleo process with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess[] filterFindByGroupId_PrevAndNext(
 		long kaleoProcessId, long groupId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessException;
+		throws com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessException;
 
 	/**
 	* Removes all the kaleo processes where groupId = &#63; from the database.
 	*
 	* @param groupId the group ID
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByGroupId(long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeByGroupId(long groupId);
 
 	/**
 	* Returns the number of kaleo processes where groupId = &#63;.
 	*
 	* @param groupId the group ID
 	* @return the number of matching kaleo processes
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByGroupId(long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByGroupId(long groupId);
 
 	/**
 	* Returns the number of kaleo processes that the user has permission to view where groupId = &#63;.
 	*
 	* @param groupId the group ID
 	* @return the number of matching kaleo processes that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
-	public int filterCountByGroupId(long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int filterCountByGroupId(long groupId);
 
 	/**
 	* Returns the kaleo process where DDLRecordSetId = &#63; or throws a {@link com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessException} if it could not be found.
@@ -253,23 +223,19 @@ public interface KaleoProcessPersistence extends BasePersistence<KaleoProcess> {
 	* @param DDLRecordSetId the d d l record set ID
 	* @return the matching kaleo process
 	* @throws com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessException if a matching kaleo process could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess findByDDLRecordSetId(
 		long DDLRecordSetId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessException;
+		throws com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessException;
 
 	/**
 	* Returns the kaleo process where DDLRecordSetId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	*
 	* @param DDLRecordSetId the d d l record set ID
 	* @return the matching kaleo process, or <code>null</code> if a matching kaleo process could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess fetchByDDLRecordSetId(
-		long DDLRecordSetId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long DDLRecordSetId);
 
 	/**
 	* Returns the kaleo process where DDLRecordSetId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -277,33 +243,27 @@ public interface KaleoProcessPersistence extends BasePersistence<KaleoProcess> {
 	* @param DDLRecordSetId the d d l record set ID
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching kaleo process, or <code>null</code> if a matching kaleo process could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess fetchByDDLRecordSetId(
-		long DDLRecordSetId, boolean retrieveFromCache)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long DDLRecordSetId, boolean retrieveFromCache);
 
 	/**
 	* Removes the kaleo process where DDLRecordSetId = &#63; from the database.
 	*
 	* @param DDLRecordSetId the d d l record set ID
 	* @return the kaleo process that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess removeByDDLRecordSetId(
 		long DDLRecordSetId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessException;
+		throws com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessException;
 
 	/**
 	* Returns the number of kaleo processes where DDLRecordSetId = &#63;.
 	*
 	* @param DDLRecordSetId the d d l record set ID
 	* @return the number of matching kaleo processes
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByDDLRecordSetId(long DDLRecordSetId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByDDLRecordSetId(long DDLRecordSetId);
 
 	/**
 	* Caches the kaleo process in the entity cache if it is enabled.
@@ -336,16 +296,13 @@ public interface KaleoProcessPersistence extends BasePersistence<KaleoProcess> {
 	* @param kaleoProcessId the primary key of the kaleo process
 	* @return the kaleo process that was removed
 	* @throws com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessException if a kaleo process with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess remove(
 		long kaleoProcessId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessException;
+		throws com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessException;
 
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess updateImpl(
-		com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess kaleoProcess)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess kaleoProcess);
 
 	/**
 	* Returns the kaleo process with the primary key or throws a {@link com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessException} if it could not be found.
@@ -353,32 +310,26 @@ public interface KaleoProcessPersistence extends BasePersistence<KaleoProcess> {
 	* @param kaleoProcessId the primary key of the kaleo process
 	* @return the kaleo process
 	* @throws com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessException if a kaleo process with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess findByPrimaryKey(
 		long kaleoProcessId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessException;
+		throws com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessException;
 
 	/**
 	* Returns the kaleo process with the primary key or returns <code>null</code> if it could not be found.
 	*
 	* @param kaleoProcessId the primary key of the kaleo process
 	* @return the kaleo process, or <code>null</code> if a kaleo process with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess fetchByPrimaryKey(
-		long kaleoProcessId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long kaleoProcessId);
 
 	/**
 	* Returns all the kaleo processes.
 	*
 	* @return the kaleo processes
-	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public java.util.List<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess> findAll();
 
 	/**
 	* Returns a range of all the kaleo processes.
@@ -390,11 +341,9 @@ public interface KaleoProcessPersistence extends BasePersistence<KaleoProcess> {
 	* @param start the lower bound of the range of kaleo processes
 	* @param end the upper bound of the range of kaleo processes (not inclusive)
 	* @return the range of kaleo processes
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess> findAll(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		int start, int end);
 
 	/**
 	* Returns an ordered range of all the kaleo processes.
@@ -407,27 +356,20 @@ public interface KaleoProcessPersistence extends BasePersistence<KaleoProcess> {
 	* @param end the upper bound of the range of kaleo processes (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of kaleo processes
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Removes all the kaleo processes from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeAll();
 
 	/**
 	* Returns the number of kaleo processes.
 	*
 	* @return the number of kaleo processes
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countAll();
 }

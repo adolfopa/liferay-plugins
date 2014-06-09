@@ -26,6 +26,8 @@ import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DefaultActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.Projection;
@@ -72,12 +74,10 @@ public abstract class BBBServerLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param bbbServer the b b b server
 	 * @return the b b b server that was added
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
-	public BBBServer addBBBServer(BBBServer bbbServer)
-		throws SystemException {
+	public BBBServer addBBBServer(BBBServer bbbServer) {
 		bbbServer.setNew(true);
 
 		return bbbServerPersistence.update(bbbServer);
@@ -100,7 +100,7 @@ public abstract class BBBServerLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param bbbServerId the primary key of the b b b server
 	 * @return the b b b server that was removed
 	 * @throws PortalException if a b b b server with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
@@ -114,7 +114,7 @@ public abstract class BBBServerLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param bbbServer the b b b server
 	 * @return the b b b server that was removed
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
@@ -136,12 +136,10 @@ public abstract class BBBServerLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery) {
 		return bbbServerPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -156,12 +154,10 @@ public abstract class BBBServerLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param start the lower bound of the range of model instances
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
 		return bbbServerPersistence.findWithDynamicQuery(dynamicQuery, start,
 			end);
 	}
@@ -178,12 +174,11 @@ public abstract class BBBServerLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return bbbServerPersistence.findWithDynamicQuery(dynamicQuery, start,
 			end, orderByComparator);
 	}
@@ -193,11 +188,9 @@ public abstract class BBBServerLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public long dynamicQueryCount(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
 		return bbbServerPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -207,17 +200,16 @@ public abstract class BBBServerLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection) throws SystemException {
+		Projection projection) {
 		return bbbServerPersistence.countWithDynamicQuery(dynamicQuery,
 			projection);
 	}
 
 	@Override
-	public BBBServer fetchBBBServer(long bbbServerId) throws SystemException {
+	public BBBServer fetchBBBServer(long bbbServerId) {
 		return bbbServerPersistence.fetchByPrimaryKey(bbbServerId);
 	}
 
@@ -227,17 +219,46 @@ public abstract class BBBServerLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param bbbServerId the primary key of the b b b server
 	 * @return the b b b server
 	 * @throws PortalException if a b b b server with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public BBBServer getBBBServer(long bbbServerId)
-		throws PortalException, SystemException {
+	public BBBServer getBBBServer(long bbbServerId) throws PortalException {
 		return bbbServerPersistence.findByPrimaryKey(bbbServerId);
 	}
 
 	@Override
+	public ActionableDynamicQuery getActionableDynamicQuery() {
+		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
+
+		actionableDynamicQuery.setBaseLocalService(com.liferay.bbb.service.BBBServerLocalServiceUtil.getService());
+		actionableDynamicQuery.setClass(BBBServer.class);
+		actionableDynamicQuery.setClassLoader(getClassLoader());
+
+		actionableDynamicQuery.setPrimaryKeyPropertyName("bbbServerId");
+
+		return actionableDynamicQuery;
+	}
+
+	protected void initActionableDynamicQuery(
+		ActionableDynamicQuery actionableDynamicQuery) {
+		actionableDynamicQuery.setBaseLocalService(com.liferay.bbb.service.BBBServerLocalServiceUtil.getService());
+		actionableDynamicQuery.setClass(BBBServer.class);
+		actionableDynamicQuery.setClassLoader(getClassLoader());
+
+		actionableDynamicQuery.setPrimaryKeyPropertyName("bbbServerId");
+	}
+
+	/**
+	 * @throws PortalException
+	 */
+	@Override
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
+		throws PortalException {
+		return deleteBBBServer((BBBServer)persistedModel);
+	}
+
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return bbbServerPersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
@@ -251,11 +272,9 @@ public abstract class BBBServerLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param start the lower bound of the range of b b b servers
 	 * @param end the upper bound of the range of b b b servers (not inclusive)
 	 * @return the range of b b b servers
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<BBBServer> getBBBServers(int start, int end)
-		throws SystemException {
+	public List<BBBServer> getBBBServers(int start, int end) {
 		return bbbServerPersistence.findAll(start, end);
 	}
 
@@ -263,10 +282,9 @@ public abstract class BBBServerLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * Returns the number of b b b servers.
 	 *
 	 * @return the number of b b b servers
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int getBBBServersCount() throws SystemException {
+	public int getBBBServersCount() {
 		return bbbServerPersistence.countAll();
 	}
 
@@ -275,12 +293,10 @@ public abstract class BBBServerLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param bbbServer the b b b server
 	 * @return the b b b server that was updated
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
-	public BBBServer updateBBBServer(BBBServer bbbServer)
-		throws SystemException {
+	public BBBServer updateBBBServer(BBBServer bbbServer) {
 		return bbbServerPersistence.update(bbbServer);
 	}
 
@@ -655,7 +671,7 @@ public abstract class BBBServerLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param sql the sql query
 	 */
-	protected void runSQL(String sql) throws SystemException {
+	protected void runSQL(String sql) {
 		try {
 			DataSource dataSource = bbbServerPersistence.getDataSource();
 

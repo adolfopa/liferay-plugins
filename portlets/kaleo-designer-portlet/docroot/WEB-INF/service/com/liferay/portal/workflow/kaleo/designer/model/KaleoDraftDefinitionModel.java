@@ -16,10 +16,10 @@ package com.liferay.portal.workflow.kaleo.designer.model;
 
 import com.liferay.portal.LocaleException;
 import com.liferay.portal.kernel.bean.AutoEscape;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.GroupedModel;
+import com.liferay.portal.model.LocalizedModel;
 import com.liferay.portal.service.ServiceContext;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
@@ -44,7 +44,7 @@ import java.util.Map;
  * @generated
  */
 public interface KaleoDraftDefinitionModel extends BaseModel<KaleoDraftDefinition>,
-	GroupedModel {
+	GroupedModel, LocalizedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -131,10 +131,9 @@ public interface KaleoDraftDefinitionModel extends BaseModel<KaleoDraftDefinitio
 	 * Returns the user uuid of this kaleo draft definition.
 	 *
 	 * @return the user uuid of this kaleo draft definition
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public String getUserUuid() throws SystemException;
+	public String getUserUuid();
 
 	/**
 	 * Sets the user uuid of this kaleo draft definition.
@@ -383,12 +382,16 @@ public interface KaleoDraftDefinitionModel extends BaseModel<KaleoDraftDefinitio
 	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext);
 
+	@Override
 	public String[] getAvailableLanguageIds();
 
+	@Override
 	public String getDefaultLanguageId();
 
+	@Override
 	public void prepareLocalizedFieldsForImport() throws LocaleException;
 
+	@Override
 	public void prepareLocalizedFieldsForImport(Locale defaultImportLocale)
 		throws LocaleException;
 

@@ -20,6 +20,8 @@ import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DefaultActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.Projection;
@@ -77,12 +79,11 @@ public abstract class SamlSpAuthRequestLocalServiceBaseImpl
 	 *
 	 * @param samlSpAuthRequest the saml sp auth request
 	 * @return the saml sp auth request that was added
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
 	public SamlSpAuthRequest addSamlSpAuthRequest(
-		SamlSpAuthRequest samlSpAuthRequest) throws SystemException {
+		SamlSpAuthRequest samlSpAuthRequest) {
 		samlSpAuthRequest.setNew(true);
 
 		return samlSpAuthRequestPersistence.update(samlSpAuthRequest);
@@ -105,12 +106,11 @@ public abstract class SamlSpAuthRequestLocalServiceBaseImpl
 	 * @param samlSpAuthnRequestId the primary key of the saml sp auth request
 	 * @return the saml sp auth request that was removed
 	 * @throws PortalException if a saml sp auth request with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public SamlSpAuthRequest deleteSamlSpAuthRequest(long samlSpAuthnRequestId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return samlSpAuthRequestPersistence.remove(samlSpAuthnRequestId);
 	}
 
@@ -119,12 +119,11 @@ public abstract class SamlSpAuthRequestLocalServiceBaseImpl
 	 *
 	 * @param samlSpAuthRequest the saml sp auth request
 	 * @return the saml sp auth request that was removed
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public SamlSpAuthRequest deleteSamlSpAuthRequest(
-		SamlSpAuthRequest samlSpAuthRequest) throws SystemException {
+		SamlSpAuthRequest samlSpAuthRequest) {
 		return samlSpAuthRequestPersistence.remove(samlSpAuthRequest);
 	}
 
@@ -141,12 +140,10 @@ public abstract class SamlSpAuthRequestLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery) {
 		return samlSpAuthRequestPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -161,12 +158,10 @@ public abstract class SamlSpAuthRequestLocalServiceBaseImpl
 	 * @param start the lower bound of the range of model instances
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
 		return samlSpAuthRequestPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end);
 	}
@@ -183,12 +178,11 @@ public abstract class SamlSpAuthRequestLocalServiceBaseImpl
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return samlSpAuthRequestPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end, orderByComparator);
 	}
@@ -198,11 +192,9 @@ public abstract class SamlSpAuthRequestLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public long dynamicQueryCount(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
 		return samlSpAuthRequestPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -212,18 +204,16 @@ public abstract class SamlSpAuthRequestLocalServiceBaseImpl
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection) throws SystemException {
+		Projection projection) {
 		return samlSpAuthRequestPersistence.countWithDynamicQuery(dynamicQuery,
 			projection);
 	}
 
 	@Override
-	public SamlSpAuthRequest fetchSamlSpAuthRequest(long samlSpAuthnRequestId)
-		throws SystemException {
+	public SamlSpAuthRequest fetchSamlSpAuthRequest(long samlSpAuthnRequestId) {
 		return samlSpAuthRequestPersistence.fetchByPrimaryKey(samlSpAuthnRequestId);
 	}
 
@@ -233,17 +223,47 @@ public abstract class SamlSpAuthRequestLocalServiceBaseImpl
 	 * @param samlSpAuthnRequestId the primary key of the saml sp auth request
 	 * @return the saml sp auth request
 	 * @throws PortalException if a saml sp auth request with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public SamlSpAuthRequest getSamlSpAuthRequest(long samlSpAuthnRequestId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return samlSpAuthRequestPersistence.findByPrimaryKey(samlSpAuthnRequestId);
 	}
 
 	@Override
+	public ActionableDynamicQuery getActionableDynamicQuery() {
+		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
+
+		actionableDynamicQuery.setBaseLocalService(com.liferay.saml.service.SamlSpAuthRequestLocalServiceUtil.getService());
+		actionableDynamicQuery.setClass(SamlSpAuthRequest.class);
+		actionableDynamicQuery.setClassLoader(getClassLoader());
+
+		actionableDynamicQuery.setPrimaryKeyPropertyName("samlSpAuthnRequestId");
+
+		return actionableDynamicQuery;
+	}
+
+	protected void initActionableDynamicQuery(
+		ActionableDynamicQuery actionableDynamicQuery) {
+		actionableDynamicQuery.setBaseLocalService(com.liferay.saml.service.SamlSpAuthRequestLocalServiceUtil.getService());
+		actionableDynamicQuery.setClass(SamlSpAuthRequest.class);
+		actionableDynamicQuery.setClassLoader(getClassLoader());
+
+		actionableDynamicQuery.setPrimaryKeyPropertyName("samlSpAuthnRequestId");
+	}
+
+	/**
+	 * @throws PortalException
+	 */
+	@Override
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
+		throws PortalException {
+		return deleteSamlSpAuthRequest((SamlSpAuthRequest)persistedModel);
+	}
+
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return samlSpAuthRequestPersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
@@ -257,11 +277,9 @@ public abstract class SamlSpAuthRequestLocalServiceBaseImpl
 	 * @param start the lower bound of the range of saml sp auth requests
 	 * @param end the upper bound of the range of saml sp auth requests (not inclusive)
 	 * @return the range of saml sp auth requests
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<SamlSpAuthRequest> getSamlSpAuthRequests(int start, int end)
-		throws SystemException {
+	public List<SamlSpAuthRequest> getSamlSpAuthRequests(int start, int end) {
 		return samlSpAuthRequestPersistence.findAll(start, end);
 	}
 
@@ -269,10 +287,9 @@ public abstract class SamlSpAuthRequestLocalServiceBaseImpl
 	 * Returns the number of saml sp auth requests.
 	 *
 	 * @return the number of saml sp auth requests
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int getSamlSpAuthRequestsCount() throws SystemException {
+	public int getSamlSpAuthRequestsCount() {
 		return samlSpAuthRequestPersistence.countAll();
 	}
 
@@ -281,12 +298,11 @@ public abstract class SamlSpAuthRequestLocalServiceBaseImpl
 	 *
 	 * @param samlSpAuthRequest the saml sp auth request
 	 * @return the saml sp auth request that was updated
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
 	public SamlSpAuthRequest updateSamlSpAuthRequest(
-		SamlSpAuthRequest samlSpAuthRequest) throws SystemException {
+		SamlSpAuthRequest samlSpAuthRequest) {
 		return samlSpAuthRequestPersistence.update(samlSpAuthRequest);
 	}
 
@@ -775,7 +791,7 @@ public abstract class SamlSpAuthRequestLocalServiceBaseImpl
 	 *
 	 * @param sql the sql query
 	 */
-	protected void runSQL(String sql) throws SystemException {
+	protected void runSQL(String sql) {
 		try {
 			DataSource dataSource = samlSpAuthRequestPersistence.getDataSource();
 

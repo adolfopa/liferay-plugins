@@ -17,8 +17,6 @@ package com.liferay.oauth.model.impl;
 import com.liferay.oauth.model.OAuthApplication;
 import com.liferay.oauth.service.OAuthApplicationLocalServiceUtil;
 
-import com.liferay.portal.kernel.exception.SystemException;
-
 /**
  * The extended model base implementation for the OAuthApplication service. Represents a row in the &quot;OAuth_OAuthApplication&quot; database table, with each column mapped to a property of this class.
  *
@@ -39,7 +37,7 @@ public abstract class OAuthApplicationBaseImpl extends OAuthApplicationModelImpl
 	 * Never modify or reference this class directly. All methods that expect a o auth application model instance should use the {@link OAuthApplication} interface instead.
 	 */
 	@Override
-	public void persist() throws SystemException {
+	public void persist() {
 		if (this.isNew()) {
 			OAuthApplicationLocalServiceUtil.addOAuthApplication(this);
 		}

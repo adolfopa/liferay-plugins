@@ -73,12 +73,11 @@ public abstract class KaleoProcessLinkLocalServiceBaseImpl
 	 *
 	 * @param kaleoProcessLink the kaleo process link
 	 * @return the kaleo process link that was added
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
 	public KaleoProcessLink addKaleoProcessLink(
-		KaleoProcessLink kaleoProcessLink) throws SystemException {
+		KaleoProcessLink kaleoProcessLink) {
 		kaleoProcessLink.setNew(true);
 
 		return kaleoProcessLinkPersistence.update(kaleoProcessLink);
@@ -101,12 +100,11 @@ public abstract class KaleoProcessLinkLocalServiceBaseImpl
 	 * @param kaleoProcessLinkId the primary key of the kaleo process link
 	 * @return the kaleo process link that was removed
 	 * @throws PortalException if a kaleo process link with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public KaleoProcessLink deleteKaleoProcessLink(long kaleoProcessLinkId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return kaleoProcessLinkPersistence.remove(kaleoProcessLinkId);
 	}
 
@@ -115,12 +113,11 @@ public abstract class KaleoProcessLinkLocalServiceBaseImpl
 	 *
 	 * @param kaleoProcessLink the kaleo process link
 	 * @return the kaleo process link that was removed
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public KaleoProcessLink deleteKaleoProcessLink(
-		KaleoProcessLink kaleoProcessLink) throws SystemException {
+		KaleoProcessLink kaleoProcessLink) {
 		return kaleoProcessLinkPersistence.remove(kaleoProcessLink);
 	}
 
@@ -137,12 +134,10 @@ public abstract class KaleoProcessLinkLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery) {
 		return kaleoProcessLinkPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -157,12 +152,10 @@ public abstract class KaleoProcessLinkLocalServiceBaseImpl
 	 * @param start the lower bound of the range of model instances
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
 		return kaleoProcessLinkPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end);
 	}
@@ -179,12 +172,11 @@ public abstract class KaleoProcessLinkLocalServiceBaseImpl
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return kaleoProcessLinkPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end, orderByComparator);
 	}
@@ -194,11 +186,9 @@ public abstract class KaleoProcessLinkLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public long dynamicQueryCount(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
 		return kaleoProcessLinkPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -208,18 +198,16 @@ public abstract class KaleoProcessLinkLocalServiceBaseImpl
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection) throws SystemException {
+		Projection projection) {
 		return kaleoProcessLinkPersistence.countWithDynamicQuery(dynamicQuery,
 			projection);
 	}
 
 	@Override
-	public KaleoProcessLink fetchKaleoProcessLink(long kaleoProcessLinkId)
-		throws SystemException {
+	public KaleoProcessLink fetchKaleoProcessLink(long kaleoProcessLinkId) {
 		return kaleoProcessLinkPersistence.fetchByPrimaryKey(kaleoProcessLinkId);
 	}
 
@@ -229,17 +217,15 @@ public abstract class KaleoProcessLinkLocalServiceBaseImpl
 	 * @param kaleoProcessLinkId the primary key of the kaleo process link
 	 * @return the kaleo process link
 	 * @throws PortalException if a kaleo process link with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public KaleoProcessLink getKaleoProcessLink(long kaleoProcessLinkId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return kaleoProcessLinkPersistence.findByPrimaryKey(kaleoProcessLinkId);
 	}
 
 	@Override
-	public ActionableDynamicQuery getActionableDynamicQuery()
-		throws SystemException {
+	public ActionableDynamicQuery getActionableDynamicQuery() {
 		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
 
 		actionableDynamicQuery.setBaseLocalService(com.liferay.portal.workflow.kaleo.forms.service.KaleoProcessLinkLocalServiceUtil.getService());
@@ -252,8 +238,7 @@ public abstract class KaleoProcessLinkLocalServiceBaseImpl
 	}
 
 	protected void initActionableDynamicQuery(
-		ActionableDynamicQuery actionableDynamicQuery)
-		throws SystemException {
+		ActionableDynamicQuery actionableDynamicQuery) {
 		actionableDynamicQuery.setBaseLocalService(com.liferay.portal.workflow.kaleo.forms.service.KaleoProcessLinkLocalServiceUtil.getService());
 		actionableDynamicQuery.setClass(KaleoProcessLink.class);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
@@ -261,9 +246,18 @@ public abstract class KaleoProcessLinkLocalServiceBaseImpl
 		actionableDynamicQuery.setPrimaryKeyPropertyName("kaleoProcessLinkId");
 	}
 
+	/**
+	 * @throws PortalException
+	 */
+	@Override
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
+		throws PortalException {
+		return deleteKaleoProcessLink((KaleoProcessLink)persistedModel);
+	}
+
 	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return kaleoProcessLinkPersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
@@ -277,11 +271,9 @@ public abstract class KaleoProcessLinkLocalServiceBaseImpl
 	 * @param start the lower bound of the range of kaleo process links
 	 * @param end the upper bound of the range of kaleo process links (not inclusive)
 	 * @return the range of kaleo process links
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<KaleoProcessLink> getKaleoProcessLinks(int start, int end)
-		throws SystemException {
+	public List<KaleoProcessLink> getKaleoProcessLinks(int start, int end) {
 		return kaleoProcessLinkPersistence.findAll(start, end);
 	}
 
@@ -289,10 +281,9 @@ public abstract class KaleoProcessLinkLocalServiceBaseImpl
 	 * Returns the number of kaleo process links.
 	 *
 	 * @return the number of kaleo process links
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int getKaleoProcessLinksCount() throws SystemException {
+	public int getKaleoProcessLinksCount() {
 		return kaleoProcessLinkPersistence.countAll();
 	}
 
@@ -301,12 +292,11 @@ public abstract class KaleoProcessLinkLocalServiceBaseImpl
 	 *
 	 * @param kaleoProcessLink the kaleo process link
 	 * @return the kaleo process link that was updated
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
 	public KaleoProcessLink updateKaleoProcessLink(
-		KaleoProcessLink kaleoProcessLink) throws SystemException {
+		KaleoProcessLink kaleoProcessLink) {
 		return kaleoProcessLinkPersistence.update(kaleoProcessLink);
 	}
 
@@ -643,7 +633,7 @@ public abstract class KaleoProcessLinkLocalServiceBaseImpl
 	 *
 	 * @param sql the sql query
 	 */
-	protected void runSQL(String sql) throws SystemException {
+	protected void runSQL(String sql) {
 		try {
 			DataSource dataSource = kaleoProcessLinkPersistence.getDataSource();
 

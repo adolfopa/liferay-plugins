@@ -26,6 +26,8 @@ import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DefaultActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.Projection;
@@ -73,12 +75,10 @@ public abstract class BBBMeetingLocalServiceBaseImpl
 	 *
 	 * @param bbbMeeting the b b b meeting
 	 * @return the b b b meeting that was added
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
-	public BBBMeeting addBBBMeeting(BBBMeeting bbbMeeting)
-		throws SystemException {
+	public BBBMeeting addBBBMeeting(BBBMeeting bbbMeeting) {
 		bbbMeeting.setNew(true);
 
 		return bbbMeetingPersistence.update(bbbMeeting);
@@ -101,7 +101,7 @@ public abstract class BBBMeetingLocalServiceBaseImpl
 	 * @param bbbMeetingId the primary key of the b b b meeting
 	 * @return the b b b meeting that was removed
 	 * @throws PortalException if a b b b meeting with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
@@ -116,7 +116,7 @@ public abstract class BBBMeetingLocalServiceBaseImpl
 	 * @param bbbMeeting the b b b meeting
 	 * @return the b b b meeting that was removed
 	 * @throws PortalException
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
@@ -138,12 +138,10 @@ public abstract class BBBMeetingLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery) {
 		return bbbMeetingPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -158,12 +156,10 @@ public abstract class BBBMeetingLocalServiceBaseImpl
 	 * @param start the lower bound of the range of model instances
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
 		return bbbMeetingPersistence.findWithDynamicQuery(dynamicQuery, start,
 			end);
 	}
@@ -180,12 +176,11 @@ public abstract class BBBMeetingLocalServiceBaseImpl
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return bbbMeetingPersistence.findWithDynamicQuery(dynamicQuery, start,
 			end, orderByComparator);
 	}
@@ -195,11 +190,9 @@ public abstract class BBBMeetingLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public long dynamicQueryCount(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
 		return bbbMeetingPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -209,18 +202,16 @@ public abstract class BBBMeetingLocalServiceBaseImpl
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection) throws SystemException {
+		Projection projection) {
 		return bbbMeetingPersistence.countWithDynamicQuery(dynamicQuery,
 			projection);
 	}
 
 	@Override
-	public BBBMeeting fetchBBBMeeting(long bbbMeetingId)
-		throws SystemException {
+	public BBBMeeting fetchBBBMeeting(long bbbMeetingId) {
 		return bbbMeetingPersistence.fetchByPrimaryKey(bbbMeetingId);
 	}
 
@@ -230,7 +221,7 @@ public abstract class BBBMeetingLocalServiceBaseImpl
 	 * @param bbbMeetingId the primary key of the b b b meeting
 	 * @return the b b b meeting
 	 * @throws PortalException if a b b b meeting with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
 	 */
 	@Override
 	public BBBMeeting getBBBMeeting(long bbbMeetingId)
@@ -239,8 +230,39 @@ public abstract class BBBMeetingLocalServiceBaseImpl
 	}
 
 	@Override
+	public ActionableDynamicQuery getActionableDynamicQuery() {
+		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
+
+		actionableDynamicQuery.setBaseLocalService(com.liferay.bbb.service.BBBMeetingLocalServiceUtil.getService());
+		actionableDynamicQuery.setClass(BBBMeeting.class);
+		actionableDynamicQuery.setClassLoader(getClassLoader());
+
+		actionableDynamicQuery.setPrimaryKeyPropertyName("bbbMeetingId");
+
+		return actionableDynamicQuery;
+	}
+
+	protected void initActionableDynamicQuery(
+		ActionableDynamicQuery actionableDynamicQuery) {
+		actionableDynamicQuery.setBaseLocalService(com.liferay.bbb.service.BBBMeetingLocalServiceUtil.getService());
+		actionableDynamicQuery.setClass(BBBMeeting.class);
+		actionableDynamicQuery.setClassLoader(getClassLoader());
+
+		actionableDynamicQuery.setPrimaryKeyPropertyName("bbbMeetingId");
+	}
+
+	/**
+	 * @throws PortalException
+	 */
+	@Override
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
+		throws PortalException {
+		return deleteBBBMeeting((BBBMeeting)persistedModel);
+	}
+
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return bbbMeetingPersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
@@ -254,11 +276,9 @@ public abstract class BBBMeetingLocalServiceBaseImpl
 	 * @param start the lower bound of the range of b b b meetings
 	 * @param end the upper bound of the range of b b b meetings (not inclusive)
 	 * @return the range of b b b meetings
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<BBBMeeting> getBBBMeetings(int start, int end)
-		throws SystemException {
+	public List<BBBMeeting> getBBBMeetings(int start, int end) {
 		return bbbMeetingPersistence.findAll(start, end);
 	}
 
@@ -266,10 +286,9 @@ public abstract class BBBMeetingLocalServiceBaseImpl
 	 * Returns the number of b b b meetings.
 	 *
 	 * @return the number of b b b meetings
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int getBBBMeetingsCount() throws SystemException {
+	public int getBBBMeetingsCount() {
 		return bbbMeetingPersistence.countAll();
 	}
 
@@ -278,12 +297,10 @@ public abstract class BBBMeetingLocalServiceBaseImpl
 	 *
 	 * @param bbbMeeting the b b b meeting
 	 * @return the b b b meeting that was updated
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
-	public BBBMeeting updateBBBMeeting(BBBMeeting bbbMeeting)
-		throws SystemException {
+	public BBBMeeting updateBBBMeeting(BBBMeeting bbbMeeting) {
 		return bbbMeetingPersistence.update(bbbMeeting);
 	}
 
@@ -658,7 +675,7 @@ public abstract class BBBMeetingLocalServiceBaseImpl
 	 *
 	 * @param sql the sql query
 	 */
-	protected void runSQL(String sql) throws SystemException {
+	protected void runSQL(String sql) {
 		try {
 			DataSource dataSource = bbbMeetingPersistence.getDataSource();
 

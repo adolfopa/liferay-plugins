@@ -16,7 +16,6 @@ package com.liferay.saml.service.persistence;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
@@ -61,8 +60,7 @@ public class SamlIdpSpConnectionUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#countWithDynamicQuery(DynamicQuery)
 	 */
-	public static long countWithDynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public static long countWithDynamicQuery(DynamicQuery dynamicQuery) {
 		return getPersistence().countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -70,7 +68,7 @@ public class SamlIdpSpConnectionUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery)
 	 */
 	public static List<SamlIdpSpConnection> findWithDynamicQuery(
-		DynamicQuery dynamicQuery) throws SystemException {
+		DynamicQuery dynamicQuery) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -78,8 +76,7 @@ public class SamlIdpSpConnectionUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int)
 	 */
 	public static List<SamlIdpSpConnection> findWithDynamicQuery(
-		DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+		DynamicQuery dynamicQuery, int start, int end) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -88,7 +85,7 @@ public class SamlIdpSpConnectionUtil {
 	 */
 	public static List<SamlIdpSpConnection> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -98,7 +95,7 @@ public class SamlIdpSpConnectionUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
 	public static SamlIdpSpConnection update(
-		SamlIdpSpConnection samlIdpSpConnection) throws SystemException {
+		SamlIdpSpConnection samlIdpSpConnection) {
 		return getPersistence().update(samlIdpSpConnection);
 	}
 
@@ -106,8 +103,7 @@ public class SamlIdpSpConnectionUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
 	public static SamlIdpSpConnection update(
-		SamlIdpSpConnection samlIdpSpConnection, ServiceContext serviceContext)
-		throws SystemException {
+		SamlIdpSpConnection samlIdpSpConnection, ServiceContext serviceContext) {
 		return getPersistence().update(samlIdpSpConnection, serviceContext);
 	}
 
@@ -116,11 +112,9 @@ public class SamlIdpSpConnectionUtil {
 	*
 	* @param companyId the company ID
 	* @return the matching saml idp sp connections
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.saml.model.SamlIdpSpConnection> findByCompanyId(
-		long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long companyId) {
 		return getPersistence().findByCompanyId(companyId);
 	}
 
@@ -135,11 +129,9 @@ public class SamlIdpSpConnectionUtil {
 	* @param start the lower bound of the range of saml idp sp connections
 	* @param end the upper bound of the range of saml idp sp connections (not inclusive)
 	* @return the range of matching saml idp sp connections
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.saml.model.SamlIdpSpConnection> findByCompanyId(
-		long companyId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long companyId, int start, int end) {
 		return getPersistence().findByCompanyId(companyId, start, end);
 	}
 
@@ -155,12 +147,10 @@ public class SamlIdpSpConnectionUtil {
 	* @param end the upper bound of the range of saml idp sp connections (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching saml idp sp connections
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.saml.model.SamlIdpSpConnection> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findByCompanyId(companyId, start, end, orderByComparator);
 	}
@@ -172,13 +162,11 @@ public class SamlIdpSpConnectionUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching saml idp sp connection
 	* @throws com.liferay.saml.NoSuchIdpSpConnectionException if a matching saml idp sp connection could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.saml.model.SamlIdpSpConnection findByCompanyId_First(
 		long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.saml.NoSuchIdpSpConnectionException {
+		throws com.liferay.saml.NoSuchIdpSpConnectionException {
 		return getPersistence()
 				   .findByCompanyId_First(companyId, orderByComparator);
 	}
@@ -189,12 +177,10 @@ public class SamlIdpSpConnectionUtil {
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching saml idp sp connection, or <code>null</code> if a matching saml idp sp connection could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.saml.model.SamlIdpSpConnection fetchByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .fetchByCompanyId_First(companyId, orderByComparator);
 	}
@@ -206,13 +192,11 @@ public class SamlIdpSpConnectionUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching saml idp sp connection
 	* @throws com.liferay.saml.NoSuchIdpSpConnectionException if a matching saml idp sp connection could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.saml.model.SamlIdpSpConnection findByCompanyId_Last(
 		long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.saml.NoSuchIdpSpConnectionException {
+		throws com.liferay.saml.NoSuchIdpSpConnectionException {
 		return getPersistence()
 				   .findByCompanyId_Last(companyId, orderByComparator);
 	}
@@ -223,12 +207,10 @@ public class SamlIdpSpConnectionUtil {
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching saml idp sp connection, or <code>null</code> if a matching saml idp sp connection could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.saml.model.SamlIdpSpConnection fetchByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .fetchByCompanyId_Last(companyId, orderByComparator);
 	}
@@ -241,13 +223,11 @@ public class SamlIdpSpConnectionUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next saml idp sp connection
 	* @throws com.liferay.saml.NoSuchIdpSpConnectionException if a saml idp sp connection with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.saml.model.SamlIdpSpConnection[] findByCompanyId_PrevAndNext(
 		long samlIdpSpConnectionId, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.saml.NoSuchIdpSpConnectionException {
+		throws com.liferay.saml.NoSuchIdpSpConnectionException {
 		return getPersistence()
 				   .findByCompanyId_PrevAndNext(samlIdpSpConnectionId,
 			companyId, orderByComparator);
@@ -257,10 +237,8 @@ public class SamlIdpSpConnectionUtil {
 	* Removes all the saml idp sp connections where companyId = &#63; from the database.
 	*
 	* @param companyId the company ID
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeByCompanyId(long companyId) {
 		getPersistence().removeByCompanyId(companyId);
 	}
 
@@ -269,10 +247,8 @@ public class SamlIdpSpConnectionUtil {
 	*
 	* @param companyId the company ID
 	* @return the number of matching saml idp sp connections
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByCompanyId(long companyId) {
 		return getPersistence().countByCompanyId(companyId);
 	}
 
@@ -283,12 +259,10 @@ public class SamlIdpSpConnectionUtil {
 	* @param samlSpEntityId the saml sp entity ID
 	* @return the matching saml idp sp connection
 	* @throws com.liferay.saml.NoSuchIdpSpConnectionException if a matching saml idp sp connection could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.saml.model.SamlIdpSpConnection findByC_SSEI(
 		long companyId, java.lang.String samlSpEntityId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.saml.NoSuchIdpSpConnectionException {
+		throws com.liferay.saml.NoSuchIdpSpConnectionException {
 		return getPersistence().findByC_SSEI(companyId, samlSpEntityId);
 	}
 
@@ -298,11 +272,9 @@ public class SamlIdpSpConnectionUtil {
 	* @param companyId the company ID
 	* @param samlSpEntityId the saml sp entity ID
 	* @return the matching saml idp sp connection, or <code>null</code> if a matching saml idp sp connection could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.saml.model.SamlIdpSpConnection fetchByC_SSEI(
-		long companyId, java.lang.String samlSpEntityId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long companyId, java.lang.String samlSpEntityId) {
 		return getPersistence().fetchByC_SSEI(companyId, samlSpEntityId);
 	}
 
@@ -313,12 +285,10 @@ public class SamlIdpSpConnectionUtil {
 	* @param samlSpEntityId the saml sp entity ID
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching saml idp sp connection, or <code>null</code> if a matching saml idp sp connection could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.saml.model.SamlIdpSpConnection fetchByC_SSEI(
 		long companyId, java.lang.String samlSpEntityId,
-		boolean retrieveFromCache)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		boolean retrieveFromCache) {
 		return getPersistence()
 				   .fetchByC_SSEI(companyId, samlSpEntityId, retrieveFromCache);
 	}
@@ -329,12 +299,10 @@ public class SamlIdpSpConnectionUtil {
 	* @param companyId the company ID
 	* @param samlSpEntityId the saml sp entity ID
 	* @return the saml idp sp connection that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.saml.model.SamlIdpSpConnection removeByC_SSEI(
 		long companyId, java.lang.String samlSpEntityId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.saml.NoSuchIdpSpConnectionException {
+		throws com.liferay.saml.NoSuchIdpSpConnectionException {
 		return getPersistence().removeByC_SSEI(companyId, samlSpEntityId);
 	}
 
@@ -344,11 +312,9 @@ public class SamlIdpSpConnectionUtil {
 	* @param companyId the company ID
 	* @param samlSpEntityId the saml sp entity ID
 	* @return the number of matching saml idp sp connections
-	* @throws SystemException if a system exception occurred
 	*/
 	public static int countByC_SSEI(long companyId,
-		java.lang.String samlSpEntityId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String samlSpEntityId) {
 		return getPersistence().countByC_SSEI(companyId, samlSpEntityId);
 	}
 
@@ -389,18 +355,15 @@ public class SamlIdpSpConnectionUtil {
 	* @param samlIdpSpConnectionId the primary key of the saml idp sp connection
 	* @return the saml idp sp connection that was removed
 	* @throws com.liferay.saml.NoSuchIdpSpConnectionException if a saml idp sp connection with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.saml.model.SamlIdpSpConnection remove(
 		long samlIdpSpConnectionId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.saml.NoSuchIdpSpConnectionException {
+		throws com.liferay.saml.NoSuchIdpSpConnectionException {
 		return getPersistence().remove(samlIdpSpConnectionId);
 	}
 
 	public static com.liferay.saml.model.SamlIdpSpConnection updateImpl(
-		com.liferay.saml.model.SamlIdpSpConnection samlIdpSpConnection)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.saml.model.SamlIdpSpConnection samlIdpSpConnection) {
 		return getPersistence().updateImpl(samlIdpSpConnection);
 	}
 
@@ -410,12 +373,10 @@ public class SamlIdpSpConnectionUtil {
 	* @param samlIdpSpConnectionId the primary key of the saml idp sp connection
 	* @return the saml idp sp connection
 	* @throws com.liferay.saml.NoSuchIdpSpConnectionException if a saml idp sp connection with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.saml.model.SamlIdpSpConnection findByPrimaryKey(
 		long samlIdpSpConnectionId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.saml.NoSuchIdpSpConnectionException {
+		throws com.liferay.saml.NoSuchIdpSpConnectionException {
 		return getPersistence().findByPrimaryKey(samlIdpSpConnectionId);
 	}
 
@@ -424,11 +385,9 @@ public class SamlIdpSpConnectionUtil {
 	*
 	* @param samlIdpSpConnectionId the primary key of the saml idp sp connection
 	* @return the saml idp sp connection, or <code>null</code> if a saml idp sp connection with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.saml.model.SamlIdpSpConnection fetchByPrimaryKey(
-		long samlIdpSpConnectionId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long samlIdpSpConnectionId) {
 		return getPersistence().fetchByPrimaryKey(samlIdpSpConnectionId);
 	}
 
@@ -436,10 +395,8 @@ public class SamlIdpSpConnectionUtil {
 	* Returns all the saml idp sp connections.
 	*
 	* @return the saml idp sp connections
-	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<com.liferay.saml.model.SamlIdpSpConnection> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static java.util.List<com.liferay.saml.model.SamlIdpSpConnection> findAll() {
 		return getPersistence().findAll();
 	}
 
@@ -453,11 +410,9 @@ public class SamlIdpSpConnectionUtil {
 	* @param start the lower bound of the range of saml idp sp connections
 	* @param end the upper bound of the range of saml idp sp connections (not inclusive)
 	* @return the range of saml idp sp connections
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.saml.model.SamlIdpSpConnection> findAll(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return getPersistence().findAll(start, end);
 	}
 
@@ -472,22 +427,17 @@ public class SamlIdpSpConnectionUtil {
 	* @param end the upper bound of the range of saml idp sp connections (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of saml idp sp connections
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.saml.model.SamlIdpSpConnection> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
 	/**
 	* Removes all the saml idp sp connections from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeAll() {
 		getPersistence().removeAll();
 	}
 
@@ -495,10 +445,8 @@ public class SamlIdpSpConnectionUtil {
 	* Returns the number of saml idp sp connections.
 	*
 	* @return the number of saml idp sp connections
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countAll() {
 		return getPersistence().countAll();
 	}
 

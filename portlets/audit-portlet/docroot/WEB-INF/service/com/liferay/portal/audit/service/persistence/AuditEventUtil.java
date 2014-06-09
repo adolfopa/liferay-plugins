@@ -17,7 +17,6 @@ package com.liferay.portal.audit.service.persistence;
 import com.liferay.portal.audit.model.AuditEvent;
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
@@ -60,8 +59,7 @@ public class AuditEventUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#countWithDynamicQuery(DynamicQuery)
 	 */
-	public static long countWithDynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public static long countWithDynamicQuery(DynamicQuery dynamicQuery) {
 		return getPersistence().countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -69,7 +67,7 @@ public class AuditEventUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery)
 	 */
 	public static List<AuditEvent> findWithDynamicQuery(
-		DynamicQuery dynamicQuery) throws SystemException {
+		DynamicQuery dynamicQuery) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -77,8 +75,7 @@ public class AuditEventUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int)
 	 */
 	public static List<AuditEvent> findWithDynamicQuery(
-		DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+		DynamicQuery dynamicQuery, int start, int end) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -87,7 +84,7 @@ public class AuditEventUtil {
 	 */
 	public static List<AuditEvent> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -96,8 +93,7 @@ public class AuditEventUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static AuditEvent update(AuditEvent auditEvent)
-		throws SystemException {
+	public static AuditEvent update(AuditEvent auditEvent) {
 		return getPersistence().update(auditEvent);
 	}
 
@@ -105,7 +101,7 @@ public class AuditEventUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
 	public static AuditEvent update(AuditEvent auditEvent,
-		ServiceContext serviceContext) throws SystemException {
+		ServiceContext serviceContext) {
 		return getPersistence().update(auditEvent, serviceContext);
 	}
 
@@ -114,11 +110,9 @@ public class AuditEventUtil {
 	*
 	* @param companyId the company ID
 	* @return the matching audit events
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.portal.audit.model.AuditEvent> findByCompanyId(
-		long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long companyId) {
 		return getPersistence().findByCompanyId(companyId);
 	}
 
@@ -133,11 +127,9 @@ public class AuditEventUtil {
 	* @param start the lower bound of the range of audit events
 	* @param end the upper bound of the range of audit events (not inclusive)
 	* @return the range of matching audit events
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.portal.audit.model.AuditEvent> findByCompanyId(
-		long companyId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long companyId, int start, int end) {
 		return getPersistence().findByCompanyId(companyId, start, end);
 	}
 
@@ -153,12 +145,10 @@ public class AuditEventUtil {
 	* @param end the upper bound of the range of audit events (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching audit events
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.portal.audit.model.AuditEvent> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findByCompanyId(companyId, start, end, orderByComparator);
 	}
@@ -170,13 +160,11 @@ public class AuditEventUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching audit event
 	* @throws com.liferay.portal.audit.NoSuchEventException if a matching audit event could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.portal.audit.model.AuditEvent findByCompanyId_First(
 		long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.audit.NoSuchEventException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.audit.NoSuchEventException {
 		return getPersistence()
 				   .findByCompanyId_First(companyId, orderByComparator);
 	}
@@ -187,12 +175,10 @@ public class AuditEventUtil {
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching audit event, or <code>null</code> if a matching audit event could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.portal.audit.model.AuditEvent fetchByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .fetchByCompanyId_First(companyId, orderByComparator);
 	}
@@ -204,13 +190,11 @@ public class AuditEventUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching audit event
 	* @throws com.liferay.portal.audit.NoSuchEventException if a matching audit event could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.portal.audit.model.AuditEvent findByCompanyId_Last(
 		long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.audit.NoSuchEventException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.audit.NoSuchEventException {
 		return getPersistence()
 				   .findByCompanyId_Last(companyId, orderByComparator);
 	}
@@ -221,12 +205,10 @@ public class AuditEventUtil {
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching audit event, or <code>null</code> if a matching audit event could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.portal.audit.model.AuditEvent fetchByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .fetchByCompanyId_Last(companyId, orderByComparator);
 	}
@@ -239,13 +221,11 @@ public class AuditEventUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next audit event
 	* @throws com.liferay.portal.audit.NoSuchEventException if a audit event with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.portal.audit.model.AuditEvent[] findByCompanyId_PrevAndNext(
 		long auditEventId, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.audit.NoSuchEventException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.audit.NoSuchEventException {
 		return getPersistence()
 				   .findByCompanyId_PrevAndNext(auditEventId, companyId,
 			orderByComparator);
@@ -255,10 +235,8 @@ public class AuditEventUtil {
 	* Removes all the audit events where companyId = &#63; from the database.
 	*
 	* @param companyId the company ID
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeByCompanyId(long companyId) {
 		getPersistence().removeByCompanyId(companyId);
 	}
 
@@ -267,10 +245,8 @@ public class AuditEventUtil {
 	*
 	* @param companyId the company ID
 	* @return the number of matching audit events
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByCompanyId(long companyId) {
 		return getPersistence().countByCompanyId(companyId);
 	}
 
@@ -311,18 +287,14 @@ public class AuditEventUtil {
 	* @param auditEventId the primary key of the audit event
 	* @return the audit event that was removed
 	* @throws com.liferay.portal.audit.NoSuchEventException if a audit event with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.portal.audit.model.AuditEvent remove(
-		long auditEventId)
-		throws com.liferay.portal.audit.NoSuchEventException,
-			com.liferay.portal.kernel.exception.SystemException {
+		long auditEventId) throws com.liferay.portal.audit.NoSuchEventException {
 		return getPersistence().remove(auditEventId);
 	}
 
 	public static com.liferay.portal.audit.model.AuditEvent updateImpl(
-		com.liferay.portal.audit.model.AuditEvent auditEvent)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.audit.model.AuditEvent auditEvent) {
 		return getPersistence().updateImpl(auditEvent);
 	}
 
@@ -332,12 +304,9 @@ public class AuditEventUtil {
 	* @param auditEventId the primary key of the audit event
 	* @return the audit event
 	* @throws com.liferay.portal.audit.NoSuchEventException if a audit event with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.portal.audit.model.AuditEvent findByPrimaryKey(
-		long auditEventId)
-		throws com.liferay.portal.audit.NoSuchEventException,
-			com.liferay.portal.kernel.exception.SystemException {
+		long auditEventId) throws com.liferay.portal.audit.NoSuchEventException {
 		return getPersistence().findByPrimaryKey(auditEventId);
 	}
 
@@ -346,11 +315,9 @@ public class AuditEventUtil {
 	*
 	* @param auditEventId the primary key of the audit event
 	* @return the audit event, or <code>null</code> if a audit event with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.portal.audit.model.AuditEvent fetchByPrimaryKey(
-		long auditEventId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long auditEventId) {
 		return getPersistence().fetchByPrimaryKey(auditEventId);
 	}
 
@@ -358,10 +325,8 @@ public class AuditEventUtil {
 	* Returns all the audit events.
 	*
 	* @return the audit events
-	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<com.liferay.portal.audit.model.AuditEvent> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static java.util.List<com.liferay.portal.audit.model.AuditEvent> findAll() {
 		return getPersistence().findAll();
 	}
 
@@ -375,11 +340,9 @@ public class AuditEventUtil {
 	* @param start the lower bound of the range of audit events
 	* @param end the upper bound of the range of audit events (not inclusive)
 	* @return the range of audit events
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.portal.audit.model.AuditEvent> findAll(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return getPersistence().findAll(start, end);
 	}
 
@@ -394,22 +357,17 @@ public class AuditEventUtil {
 	* @param end the upper bound of the range of audit events (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of audit events
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.portal.audit.model.AuditEvent> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
 	/**
 	* Removes all the audit events from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeAll() {
 		getPersistence().removeAll();
 	}
 
@@ -417,10 +375,8 @@ public class AuditEventUtil {
 	* Returns the number of audit events.
 	*
 	* @return the number of audit events
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countAll() {
 		return getPersistence().countAll();
 	}
 

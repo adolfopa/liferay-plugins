@@ -18,15 +18,16 @@ import com.liferay.bbb.model.BBBMeeting;
 import com.liferay.bbb.service.BBBMeetingLocalServiceUtil;
 
 import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 
 /**
  * @author Shinn Lok
+ * @deprecated As of 7.0.0, replaced by {@link BBBMeetingLocalServiceUtil#getExportActionableDynamicQuery()}
  * @generated
  */
+@Deprecated
 public abstract class BBBMeetingActionableDynamicQuery
 	extends BaseActionableDynamicQuery {
-	public BBBMeetingActionableDynamicQuery() throws SystemException {
+	public BBBMeetingActionableDynamicQuery() {
 		setBaseLocalService(BBBMeetingLocalServiceUtil.getService());
 		setClass(BBBMeeting.class);
 

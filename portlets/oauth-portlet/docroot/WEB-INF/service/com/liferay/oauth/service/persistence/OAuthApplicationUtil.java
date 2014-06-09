@@ -18,7 +18,6 @@ import com.liferay.oauth.model.OAuthApplication;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
@@ -61,8 +60,7 @@ public class OAuthApplicationUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#countWithDynamicQuery(DynamicQuery)
 	 */
-	public static long countWithDynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public static long countWithDynamicQuery(DynamicQuery dynamicQuery) {
 		return getPersistence().countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -70,7 +68,7 @@ public class OAuthApplicationUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery)
 	 */
 	public static List<OAuthApplication> findWithDynamicQuery(
-		DynamicQuery dynamicQuery) throws SystemException {
+		DynamicQuery dynamicQuery) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -78,8 +76,7 @@ public class OAuthApplicationUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int)
 	 */
 	public static List<OAuthApplication> findWithDynamicQuery(
-		DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+		DynamicQuery dynamicQuery, int start, int end) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -88,7 +85,7 @@ public class OAuthApplicationUtil {
 	 */
 	public static List<OAuthApplication> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -97,8 +94,7 @@ public class OAuthApplicationUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static OAuthApplication update(OAuthApplication oAuthApplication)
-		throws SystemException {
+	public static OAuthApplication update(OAuthApplication oAuthApplication) {
 		return getPersistence().update(oAuthApplication);
 	}
 
@@ -106,7 +102,7 @@ public class OAuthApplicationUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
 	public static OAuthApplication update(OAuthApplication oAuthApplication,
-		ServiceContext serviceContext) throws SystemException {
+		ServiceContext serviceContext) {
 		return getPersistence().update(oAuthApplication, serviceContext);
 	}
 
@@ -115,11 +111,9 @@ public class OAuthApplicationUtil {
 	*
 	* @param companyId the company ID
 	* @return the matching o auth applications
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.oauth.model.OAuthApplication> findByCompanyId(
-		long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long companyId) {
 		return getPersistence().findByCompanyId(companyId);
 	}
 
@@ -134,11 +128,9 @@ public class OAuthApplicationUtil {
 	* @param start the lower bound of the range of o auth applications
 	* @param end the upper bound of the range of o auth applications (not inclusive)
 	* @return the range of matching o auth applications
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.oauth.model.OAuthApplication> findByCompanyId(
-		long companyId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long companyId, int start, int end) {
 		return getPersistence().findByCompanyId(companyId, start, end);
 	}
 
@@ -154,12 +146,10 @@ public class OAuthApplicationUtil {
 	* @param end the upper bound of the range of o auth applications (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching o auth applications
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.oauth.model.OAuthApplication> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findByCompanyId(companyId, start, end, orderByComparator);
 	}
@@ -171,13 +161,11 @@ public class OAuthApplicationUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching o auth application
 	* @throws com.liferay.oauth.NoSuchApplicationException if a matching o auth application could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.oauth.model.OAuthApplication findByCompanyId_First(
 		long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.oauth.NoSuchApplicationException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence()
 				   .findByCompanyId_First(companyId, orderByComparator);
 	}
@@ -188,12 +176,10 @@ public class OAuthApplicationUtil {
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching o auth application, or <code>null</code> if a matching o auth application could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.oauth.model.OAuthApplication fetchByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .fetchByCompanyId_First(companyId, orderByComparator);
 	}
@@ -205,13 +191,11 @@ public class OAuthApplicationUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching o auth application
 	* @throws com.liferay.oauth.NoSuchApplicationException if a matching o auth application could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.oauth.model.OAuthApplication findByCompanyId_Last(
 		long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.oauth.NoSuchApplicationException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence()
 				   .findByCompanyId_Last(companyId, orderByComparator);
 	}
@@ -222,12 +206,10 @@ public class OAuthApplicationUtil {
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching o auth application, or <code>null</code> if a matching o auth application could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.oauth.model.OAuthApplication fetchByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .fetchByCompanyId_Last(companyId, orderByComparator);
 	}
@@ -240,13 +222,11 @@ public class OAuthApplicationUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next o auth application
 	* @throws com.liferay.oauth.NoSuchApplicationException if a o auth application with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.oauth.model.OAuthApplication[] findByCompanyId_PrevAndNext(
 		long oAuthApplicationId, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.oauth.NoSuchApplicationException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence()
 				   .findByCompanyId_PrevAndNext(oAuthApplicationId, companyId,
 			orderByComparator);
@@ -257,11 +237,9 @@ public class OAuthApplicationUtil {
 	*
 	* @param companyId the company ID
 	* @return the matching o auth applications that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.oauth.model.OAuthApplication> filterFindByCompanyId(
-		long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long companyId) {
 		return getPersistence().filterFindByCompanyId(companyId);
 	}
 
@@ -276,11 +254,9 @@ public class OAuthApplicationUtil {
 	* @param start the lower bound of the range of o auth applications
 	* @param end the upper bound of the range of o auth applications (not inclusive)
 	* @return the range of matching o auth applications that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.oauth.model.OAuthApplication> filterFindByCompanyId(
-		long companyId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long companyId, int start, int end) {
 		return getPersistence().filterFindByCompanyId(companyId, start, end);
 	}
 
@@ -296,12 +272,10 @@ public class OAuthApplicationUtil {
 	* @param end the upper bound of the range of o auth applications (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching o auth applications that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.oauth.model.OAuthApplication> filterFindByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .filterFindByCompanyId(companyId, start, end,
 			orderByComparator);
@@ -315,13 +289,11 @@ public class OAuthApplicationUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next o auth application
 	* @throws com.liferay.oauth.NoSuchApplicationException if a o auth application with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.oauth.model.OAuthApplication[] filterFindByCompanyId_PrevAndNext(
 		long oAuthApplicationId, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.oauth.NoSuchApplicationException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence()
 				   .filterFindByCompanyId_PrevAndNext(oAuthApplicationId,
 			companyId, orderByComparator);
@@ -331,10 +303,8 @@ public class OAuthApplicationUtil {
 	* Removes all the o auth applications where companyId = &#63; from the database.
 	*
 	* @param companyId the company ID
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeByCompanyId(long companyId) {
 		getPersistence().removeByCompanyId(companyId);
 	}
 
@@ -343,10 +313,8 @@ public class OAuthApplicationUtil {
 	*
 	* @param companyId the company ID
 	* @return the number of matching o auth applications
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByCompanyId(long companyId) {
 		return getPersistence().countByCompanyId(companyId);
 	}
 
@@ -355,10 +323,8 @@ public class OAuthApplicationUtil {
 	*
 	* @param companyId the company ID
 	* @return the number of matching o auth applications that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int filterCountByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int filterCountByCompanyId(long companyId) {
 		return getPersistence().filterCountByCompanyId(companyId);
 	}
 
@@ -367,10 +333,9 @@ public class OAuthApplicationUtil {
 	*
 	* @param userId the user ID
 	* @return the matching o auth applications
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.oauth.model.OAuthApplication> findByUserId(
-		long userId) throws com.liferay.portal.kernel.exception.SystemException {
+		long userId) {
 		return getPersistence().findByUserId(userId);
 	}
 
@@ -385,11 +350,9 @@ public class OAuthApplicationUtil {
 	* @param start the lower bound of the range of o auth applications
 	* @param end the upper bound of the range of o auth applications (not inclusive)
 	* @return the range of matching o auth applications
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.oauth.model.OAuthApplication> findByUserId(
-		long userId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long userId, int start, int end) {
 		return getPersistence().findByUserId(userId, start, end);
 	}
 
@@ -405,12 +368,10 @@ public class OAuthApplicationUtil {
 	* @param end the upper bound of the range of o auth applications (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching o auth applications
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.oauth.model.OAuthApplication> findByUserId(
 		long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findByUserId(userId, start, end, orderByComparator);
 	}
@@ -422,13 +383,11 @@ public class OAuthApplicationUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching o auth application
 	* @throws com.liferay.oauth.NoSuchApplicationException if a matching o auth application could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.oauth.model.OAuthApplication findByUserId_First(
 		long userId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.oauth.NoSuchApplicationException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence().findByUserId_First(userId, orderByComparator);
 	}
 
@@ -438,12 +397,10 @@ public class OAuthApplicationUtil {
 	* @param userId the user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching o auth application, or <code>null</code> if a matching o auth application could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.oauth.model.OAuthApplication fetchByUserId_First(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().fetchByUserId_First(userId, orderByComparator);
 	}
 
@@ -454,13 +411,11 @@ public class OAuthApplicationUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching o auth application
 	* @throws com.liferay.oauth.NoSuchApplicationException if a matching o auth application could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.oauth.model.OAuthApplication findByUserId_Last(
 		long userId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.oauth.NoSuchApplicationException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence().findByUserId_Last(userId, orderByComparator);
 	}
 
@@ -470,12 +425,10 @@ public class OAuthApplicationUtil {
 	* @param userId the user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching o auth application, or <code>null</code> if a matching o auth application could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.oauth.model.OAuthApplication fetchByUserId_Last(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().fetchByUserId_Last(userId, orderByComparator);
 	}
 
@@ -487,13 +440,11 @@ public class OAuthApplicationUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next o auth application
 	* @throws com.liferay.oauth.NoSuchApplicationException if a o auth application with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.oauth.model.OAuthApplication[] findByUserId_PrevAndNext(
 		long oAuthApplicationId, long userId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.oauth.NoSuchApplicationException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence()
 				   .findByUserId_PrevAndNext(oAuthApplicationId, userId,
 			orderByComparator);
@@ -504,10 +455,9 @@ public class OAuthApplicationUtil {
 	*
 	* @param userId the user ID
 	* @return the matching o auth applications that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.oauth.model.OAuthApplication> filterFindByUserId(
-		long userId) throws com.liferay.portal.kernel.exception.SystemException {
+		long userId) {
 		return getPersistence().filterFindByUserId(userId);
 	}
 
@@ -522,11 +472,9 @@ public class OAuthApplicationUtil {
 	* @param start the lower bound of the range of o auth applications
 	* @param end the upper bound of the range of o auth applications (not inclusive)
 	* @return the range of matching o auth applications that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.oauth.model.OAuthApplication> filterFindByUserId(
-		long userId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long userId, int start, int end) {
 		return getPersistence().filterFindByUserId(userId, start, end);
 	}
 
@@ -542,12 +490,10 @@ public class OAuthApplicationUtil {
 	* @param end the upper bound of the range of o auth applications (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching o auth applications that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.oauth.model.OAuthApplication> filterFindByUserId(
 		long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .filterFindByUserId(userId, start, end, orderByComparator);
 	}
@@ -560,13 +506,11 @@ public class OAuthApplicationUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next o auth application
 	* @throws com.liferay.oauth.NoSuchApplicationException if a o auth application with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.oauth.model.OAuthApplication[] filterFindByUserId_PrevAndNext(
 		long oAuthApplicationId, long userId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.oauth.NoSuchApplicationException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence()
 				   .filterFindByUserId_PrevAndNext(oAuthApplicationId, userId,
 			orderByComparator);
@@ -576,10 +520,8 @@ public class OAuthApplicationUtil {
 	* Removes all the o auth applications where userId = &#63; from the database.
 	*
 	* @param userId the user ID
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByUserId(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeByUserId(long userId) {
 		getPersistence().removeByUserId(userId);
 	}
 
@@ -588,10 +530,8 @@ public class OAuthApplicationUtil {
 	*
 	* @param userId the user ID
 	* @return the number of matching o auth applications
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByUserId(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByUserId(long userId) {
 		return getPersistence().countByUserId(userId);
 	}
 
@@ -600,10 +540,8 @@ public class OAuthApplicationUtil {
 	*
 	* @param userId the user ID
 	* @return the number of matching o auth applications that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int filterCountByUserId(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int filterCountByUserId(long userId) {
 		return getPersistence().filterCountByUserId(userId);
 	}
 
@@ -613,12 +551,10 @@ public class OAuthApplicationUtil {
 	* @param consumerKey the consumer key
 	* @return the matching o auth application
 	* @throws com.liferay.oauth.NoSuchApplicationException if a matching o auth application could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.oauth.model.OAuthApplication findByConsumerKey(
 		java.lang.String consumerKey)
-		throws com.liferay.oauth.NoSuchApplicationException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence().findByConsumerKey(consumerKey);
 	}
 
@@ -627,11 +563,9 @@ public class OAuthApplicationUtil {
 	*
 	* @param consumerKey the consumer key
 	* @return the matching o auth application, or <code>null</code> if a matching o auth application could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.oauth.model.OAuthApplication fetchByConsumerKey(
-		java.lang.String consumerKey)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String consumerKey) {
 		return getPersistence().fetchByConsumerKey(consumerKey);
 	}
 
@@ -641,11 +575,9 @@ public class OAuthApplicationUtil {
 	* @param consumerKey the consumer key
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching o auth application, or <code>null</code> if a matching o auth application could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.oauth.model.OAuthApplication fetchByConsumerKey(
-		java.lang.String consumerKey, boolean retrieveFromCache)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String consumerKey, boolean retrieveFromCache) {
 		return getPersistence()
 				   .fetchByConsumerKey(consumerKey, retrieveFromCache);
 	}
@@ -655,12 +587,10 @@ public class OAuthApplicationUtil {
 	*
 	* @param consumerKey the consumer key
 	* @return the o auth application that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.oauth.model.OAuthApplication removeByConsumerKey(
 		java.lang.String consumerKey)
-		throws com.liferay.oauth.NoSuchApplicationException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence().removeByConsumerKey(consumerKey);
 	}
 
@@ -669,10 +599,8 @@ public class OAuthApplicationUtil {
 	*
 	* @param consumerKey the consumer key
 	* @return the number of matching o auth applications
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByConsumerKey(java.lang.String consumerKey)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByConsumerKey(java.lang.String consumerKey) {
 		return getPersistence().countByConsumerKey(consumerKey);
 	}
 
@@ -682,11 +610,9 @@ public class OAuthApplicationUtil {
 	* @param companyId the company ID
 	* @param name the name
 	* @return the matching o auth applications
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.oauth.model.OAuthApplication> findByC_N(
-		long companyId, java.lang.String name)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long companyId, java.lang.String name) {
 		return getPersistence().findByC_N(companyId, name);
 	}
 
@@ -702,11 +628,9 @@ public class OAuthApplicationUtil {
 	* @param start the lower bound of the range of o auth applications
 	* @param end the upper bound of the range of o auth applications (not inclusive)
 	* @return the range of matching o auth applications
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.oauth.model.OAuthApplication> findByC_N(
-		long companyId, java.lang.String name, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long companyId, java.lang.String name, int start, int end) {
 		return getPersistence().findByC_N(companyId, name, start, end);
 	}
 
@@ -723,12 +647,10 @@ public class OAuthApplicationUtil {
 	* @param end the upper bound of the range of o auth applications (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching o auth applications
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.oauth.model.OAuthApplication> findByC_N(
 		long companyId, java.lang.String name, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findByC_N(companyId, name, start, end, orderByComparator);
 	}
@@ -741,13 +663,11 @@ public class OAuthApplicationUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching o auth application
 	* @throws com.liferay.oauth.NoSuchApplicationException if a matching o auth application could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.oauth.model.OAuthApplication findByC_N_First(
 		long companyId, java.lang.String name,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.oauth.NoSuchApplicationException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence()
 				   .findByC_N_First(companyId, name, orderByComparator);
 	}
@@ -759,12 +679,10 @@ public class OAuthApplicationUtil {
 	* @param name the name
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching o auth application, or <code>null</code> if a matching o auth application could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.oauth.model.OAuthApplication fetchByC_N_First(
 		long companyId, java.lang.String name,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .fetchByC_N_First(companyId, name, orderByComparator);
 	}
@@ -777,13 +695,11 @@ public class OAuthApplicationUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching o auth application
 	* @throws com.liferay.oauth.NoSuchApplicationException if a matching o auth application could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.oauth.model.OAuthApplication findByC_N_Last(
 		long companyId, java.lang.String name,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.oauth.NoSuchApplicationException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence()
 				   .findByC_N_Last(companyId, name, orderByComparator);
 	}
@@ -795,12 +711,10 @@ public class OAuthApplicationUtil {
 	* @param name the name
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching o auth application, or <code>null</code> if a matching o auth application could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.oauth.model.OAuthApplication fetchByC_N_Last(
 		long companyId, java.lang.String name,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .fetchByC_N_Last(companyId, name, orderByComparator);
 	}
@@ -814,13 +728,11 @@ public class OAuthApplicationUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next o auth application
 	* @throws com.liferay.oauth.NoSuchApplicationException if a o auth application with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.oauth.model.OAuthApplication[] findByC_N_PrevAndNext(
 		long oAuthApplicationId, long companyId, java.lang.String name,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.oauth.NoSuchApplicationException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence()
 				   .findByC_N_PrevAndNext(oAuthApplicationId, companyId, name,
 			orderByComparator);
@@ -832,11 +744,9 @@ public class OAuthApplicationUtil {
 	* @param companyId the company ID
 	* @param name the name
 	* @return the matching o auth applications that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.oauth.model.OAuthApplication> filterFindByC_N(
-		long companyId, java.lang.String name)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long companyId, java.lang.String name) {
 		return getPersistence().filterFindByC_N(companyId, name);
 	}
 
@@ -852,11 +762,9 @@ public class OAuthApplicationUtil {
 	* @param start the lower bound of the range of o auth applications
 	* @param end the upper bound of the range of o auth applications (not inclusive)
 	* @return the range of matching o auth applications that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.oauth.model.OAuthApplication> filterFindByC_N(
-		long companyId, java.lang.String name, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long companyId, java.lang.String name, int start, int end) {
 		return getPersistence().filterFindByC_N(companyId, name, start, end);
 	}
 
@@ -873,12 +781,10 @@ public class OAuthApplicationUtil {
 	* @param end the upper bound of the range of o auth applications (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching o auth applications that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.oauth.model.OAuthApplication> filterFindByC_N(
 		long companyId, java.lang.String name, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .filterFindByC_N(companyId, name, start, end,
 			orderByComparator);
@@ -893,13 +799,11 @@ public class OAuthApplicationUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next o auth application
 	* @throws com.liferay.oauth.NoSuchApplicationException if a o auth application with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.oauth.model.OAuthApplication[] filterFindByC_N_PrevAndNext(
 		long oAuthApplicationId, long companyId, java.lang.String name,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.oauth.NoSuchApplicationException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence()
 				   .filterFindByC_N_PrevAndNext(oAuthApplicationId, companyId,
 			name, orderByComparator);
@@ -910,10 +814,8 @@ public class OAuthApplicationUtil {
 	*
 	* @param companyId the company ID
 	* @param name the name
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByC_N(long companyId, java.lang.String name)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeByC_N(long companyId, java.lang.String name) {
 		getPersistence().removeByC_N(companyId, name);
 	}
 
@@ -923,10 +825,8 @@ public class OAuthApplicationUtil {
 	* @param companyId the company ID
 	* @param name the name
 	* @return the number of matching o auth applications
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByC_N(long companyId, java.lang.String name)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByC_N(long companyId, java.lang.String name) {
 		return getPersistence().countByC_N(companyId, name);
 	}
 
@@ -936,10 +836,8 @@ public class OAuthApplicationUtil {
 	* @param companyId the company ID
 	* @param name the name
 	* @return the number of matching o auth applications that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int filterCountByC_N(long companyId, java.lang.String name)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int filterCountByC_N(long companyId, java.lang.String name) {
 		return getPersistence().filterCountByC_N(companyId, name);
 	}
 
@@ -949,11 +847,9 @@ public class OAuthApplicationUtil {
 	* @param userId the user ID
 	* @param name the name
 	* @return the matching o auth applications
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.oauth.model.OAuthApplication> findByU_N(
-		long userId, java.lang.String name)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long userId, java.lang.String name) {
 		return getPersistence().findByU_N(userId, name);
 	}
 
@@ -969,11 +865,9 @@ public class OAuthApplicationUtil {
 	* @param start the lower bound of the range of o auth applications
 	* @param end the upper bound of the range of o auth applications (not inclusive)
 	* @return the range of matching o auth applications
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.oauth.model.OAuthApplication> findByU_N(
-		long userId, java.lang.String name, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long userId, java.lang.String name, int start, int end) {
 		return getPersistence().findByU_N(userId, name, start, end);
 	}
 
@@ -990,12 +884,10 @@ public class OAuthApplicationUtil {
 	* @param end the upper bound of the range of o auth applications (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching o auth applications
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.oauth.model.OAuthApplication> findByU_N(
 		long userId, java.lang.String name, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findByU_N(userId, name, start, end, orderByComparator);
 	}
@@ -1008,13 +900,11 @@ public class OAuthApplicationUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching o auth application
 	* @throws com.liferay.oauth.NoSuchApplicationException if a matching o auth application could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.oauth.model.OAuthApplication findByU_N_First(
 		long userId, java.lang.String name,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.oauth.NoSuchApplicationException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence().findByU_N_First(userId, name, orderByComparator);
 	}
 
@@ -1025,12 +915,10 @@ public class OAuthApplicationUtil {
 	* @param name the name
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching o auth application, or <code>null</code> if a matching o auth application could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.oauth.model.OAuthApplication fetchByU_N_First(
 		long userId, java.lang.String name,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().fetchByU_N_First(userId, name, orderByComparator);
 	}
 
@@ -1042,13 +930,11 @@ public class OAuthApplicationUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching o auth application
 	* @throws com.liferay.oauth.NoSuchApplicationException if a matching o auth application could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.oauth.model.OAuthApplication findByU_N_Last(
 		long userId, java.lang.String name,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.oauth.NoSuchApplicationException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence().findByU_N_Last(userId, name, orderByComparator);
 	}
 
@@ -1059,12 +945,10 @@ public class OAuthApplicationUtil {
 	* @param name the name
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching o auth application, or <code>null</code> if a matching o auth application could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.oauth.model.OAuthApplication fetchByU_N_Last(
 		long userId, java.lang.String name,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().fetchByU_N_Last(userId, name, orderByComparator);
 	}
 
@@ -1077,13 +961,11 @@ public class OAuthApplicationUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next o auth application
 	* @throws com.liferay.oauth.NoSuchApplicationException if a o auth application with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.oauth.model.OAuthApplication[] findByU_N_PrevAndNext(
 		long oAuthApplicationId, long userId, java.lang.String name,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.oauth.NoSuchApplicationException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence()
 				   .findByU_N_PrevAndNext(oAuthApplicationId, userId, name,
 			orderByComparator);
@@ -1095,11 +977,9 @@ public class OAuthApplicationUtil {
 	* @param userId the user ID
 	* @param name the name
 	* @return the matching o auth applications that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.oauth.model.OAuthApplication> filterFindByU_N(
-		long userId, java.lang.String name)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long userId, java.lang.String name) {
 		return getPersistence().filterFindByU_N(userId, name);
 	}
 
@@ -1115,11 +995,9 @@ public class OAuthApplicationUtil {
 	* @param start the lower bound of the range of o auth applications
 	* @param end the upper bound of the range of o auth applications (not inclusive)
 	* @return the range of matching o auth applications that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.oauth.model.OAuthApplication> filterFindByU_N(
-		long userId, java.lang.String name, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long userId, java.lang.String name, int start, int end) {
 		return getPersistence().filterFindByU_N(userId, name, start, end);
 	}
 
@@ -1136,12 +1014,10 @@ public class OAuthApplicationUtil {
 	* @param end the upper bound of the range of o auth applications (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching o auth applications that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.oauth.model.OAuthApplication> filterFindByU_N(
 		long userId, java.lang.String name, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .filterFindByU_N(userId, name, start, end, orderByComparator);
 	}
@@ -1155,13 +1031,11 @@ public class OAuthApplicationUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next o auth application
 	* @throws com.liferay.oauth.NoSuchApplicationException if a o auth application with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.oauth.model.OAuthApplication[] filterFindByU_N_PrevAndNext(
 		long oAuthApplicationId, long userId, java.lang.String name,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.oauth.NoSuchApplicationException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence()
 				   .filterFindByU_N_PrevAndNext(oAuthApplicationId, userId,
 			name, orderByComparator);
@@ -1172,10 +1046,8 @@ public class OAuthApplicationUtil {
 	*
 	* @param userId the user ID
 	* @param name the name
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByU_N(long userId, java.lang.String name)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeByU_N(long userId, java.lang.String name) {
 		getPersistence().removeByU_N(userId, name);
 	}
 
@@ -1185,10 +1057,8 @@ public class OAuthApplicationUtil {
 	* @param userId the user ID
 	* @param name the name
 	* @return the number of matching o auth applications
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByU_N(long userId, java.lang.String name)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByU_N(long userId, java.lang.String name) {
 		return getPersistence().countByU_N(userId, name);
 	}
 
@@ -1198,10 +1068,8 @@ public class OAuthApplicationUtil {
 	* @param userId the user ID
 	* @param name the name
 	* @return the number of matching o auth applications that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int filterCountByU_N(long userId, java.lang.String name)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int filterCountByU_N(long userId, java.lang.String name) {
 		return getPersistence().filterCountByU_N(userId, name);
 	}
 
@@ -1242,18 +1110,15 @@ public class OAuthApplicationUtil {
 	* @param oAuthApplicationId the primary key of the o auth application
 	* @return the o auth application that was removed
 	* @throws com.liferay.oauth.NoSuchApplicationException if a o auth application with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.oauth.model.OAuthApplication remove(
 		long oAuthApplicationId)
-		throws com.liferay.oauth.NoSuchApplicationException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence().remove(oAuthApplicationId);
 	}
 
 	public static com.liferay.oauth.model.OAuthApplication updateImpl(
-		com.liferay.oauth.model.OAuthApplication oAuthApplication)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.oauth.model.OAuthApplication oAuthApplication) {
 		return getPersistence().updateImpl(oAuthApplication);
 	}
 
@@ -1263,12 +1128,10 @@ public class OAuthApplicationUtil {
 	* @param oAuthApplicationId the primary key of the o auth application
 	* @return the o auth application
 	* @throws com.liferay.oauth.NoSuchApplicationException if a o auth application with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.oauth.model.OAuthApplication findByPrimaryKey(
 		long oAuthApplicationId)
-		throws com.liferay.oauth.NoSuchApplicationException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence().findByPrimaryKey(oAuthApplicationId);
 	}
 
@@ -1277,11 +1140,9 @@ public class OAuthApplicationUtil {
 	*
 	* @param oAuthApplicationId the primary key of the o auth application
 	* @return the o auth application, or <code>null</code> if a o auth application with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.oauth.model.OAuthApplication fetchByPrimaryKey(
-		long oAuthApplicationId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long oAuthApplicationId) {
 		return getPersistence().fetchByPrimaryKey(oAuthApplicationId);
 	}
 
@@ -1289,10 +1150,8 @@ public class OAuthApplicationUtil {
 	* Returns all the o auth applications.
 	*
 	* @return the o auth applications
-	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<com.liferay.oauth.model.OAuthApplication> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static java.util.List<com.liferay.oauth.model.OAuthApplication> findAll() {
 		return getPersistence().findAll();
 	}
 
@@ -1306,11 +1165,9 @@ public class OAuthApplicationUtil {
 	* @param start the lower bound of the range of o auth applications
 	* @param end the upper bound of the range of o auth applications (not inclusive)
 	* @return the range of o auth applications
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.oauth.model.OAuthApplication> findAll(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return getPersistence().findAll(start, end);
 	}
 
@@ -1325,22 +1182,17 @@ public class OAuthApplicationUtil {
 	* @param end the upper bound of the range of o auth applications (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of o auth applications
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.oauth.model.OAuthApplication> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
 	/**
 	* Removes all the o auth applications from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeAll() {
 		getPersistence().removeAll();
 	}
 
@@ -1348,10 +1200,8 @@ public class OAuthApplicationUtil {
 	* Returns the number of o auth applications.
 	*
 	* @return the number of o auth applications
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countAll() {
 		return getPersistence().countAll();
 	}
 

@@ -14,7 +14,6 @@
 
 package com.liferay.portal.resiliency.spi.model.impl;
 
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.resiliency.spi.model.SPIDefinition;
 import com.liferay.portal.resiliency.spi.service.SPIDefinitionLocalServiceUtil;
 
@@ -38,7 +37,7 @@ public abstract class SPIDefinitionBaseImpl extends SPIDefinitionModelImpl
 	 * Never modify or reference this class directly. All methods that expect a s p i definition model instance should use the {@link SPIDefinition} interface instead.
 	 */
 	@Override
-	public void persist() throws SystemException {
+	public void persist() {
 		if (this.isNew()) {
 			SPIDefinitionLocalServiceUtil.addSPIDefinition(this);
 		}

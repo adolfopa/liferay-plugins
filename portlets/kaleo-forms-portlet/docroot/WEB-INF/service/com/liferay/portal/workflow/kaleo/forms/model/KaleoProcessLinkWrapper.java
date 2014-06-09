@@ -284,8 +284,7 @@ public class KaleoProcessLinkWrapper implements KaleoProcessLink,
 	}
 
 	@Override
-	public void persist()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void persist() {
 		_kaleoProcessLink.persist();
 	}
 

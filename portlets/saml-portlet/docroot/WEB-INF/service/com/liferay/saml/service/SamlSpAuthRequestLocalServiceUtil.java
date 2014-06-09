@@ -44,11 +44,9 @@ public class SamlSpAuthRequestLocalServiceUtil {
 	*
 	* @param samlSpAuthRequest the saml sp auth request
 	* @return the saml sp auth request that was added
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.saml.model.SamlSpAuthRequest addSamlSpAuthRequest(
-		com.liferay.saml.model.SamlSpAuthRequest samlSpAuthRequest)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.saml.model.SamlSpAuthRequest samlSpAuthRequest) {
 		return getService().addSamlSpAuthRequest(samlSpAuthRequest);
 	}
 
@@ -69,12 +67,10 @@ public class SamlSpAuthRequestLocalServiceUtil {
 	* @param samlSpAuthnRequestId the primary key of the saml sp auth request
 	* @return the saml sp auth request that was removed
 	* @throws PortalException if a saml sp auth request with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.saml.model.SamlSpAuthRequest deleteSamlSpAuthRequest(
 		long samlSpAuthnRequestId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteSamlSpAuthRequest(samlSpAuthnRequestId);
 	}
 
@@ -83,11 +79,9 @@ public class SamlSpAuthRequestLocalServiceUtil {
 	*
 	* @param samlSpAuthRequest the saml sp auth request
 	* @return the saml sp auth request that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.saml.model.SamlSpAuthRequest deleteSamlSpAuthRequest(
-		com.liferay.saml.model.SamlSpAuthRequest samlSpAuthRequest)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.saml.model.SamlSpAuthRequest samlSpAuthRequest) {
 		return getService().deleteSamlSpAuthRequest(samlSpAuthRequest);
 	}
 
@@ -100,12 +94,10 @@ public class SamlSpAuthRequestLocalServiceUtil {
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return getService().dynamicQuery(dynamicQuery);
 	}
 
@@ -120,12 +112,11 @@ public class SamlSpAuthRequestLocalServiceUtil {
 	* @param start the lower bound of the range of model instances
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		int end) {
 		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -141,14 +132,12 @@ public class SamlSpAuthRequestLocalServiceUtil {
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getService()
 				   .dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
@@ -158,11 +147,9 @@ public class SamlSpAuthRequestLocalServiceUtil {
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	public static long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
@@ -172,18 +159,15 @@ public class SamlSpAuthRequestLocalServiceUtil {
 	* @param dynamicQuery the dynamic query
 	* @param projection the projection to apply to the query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	public static long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.Projection projection) {
 		return getService().dynamicQueryCount(dynamicQuery, projection);
 	}
 
 	public static com.liferay.saml.model.SamlSpAuthRequest fetchSamlSpAuthRequest(
-		long samlSpAuthnRequestId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long samlSpAuthnRequestId) {
 		return getService().fetchSamlSpAuthRequest(samlSpAuthnRequestId);
 	}
 
@@ -193,19 +177,29 @@ public class SamlSpAuthRequestLocalServiceUtil {
 	* @param samlSpAuthnRequestId the primary key of the saml sp auth request
 	* @return the saml sp auth request
 	* @throws PortalException if a saml sp auth request with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.saml.model.SamlSpAuthRequest getSamlSpAuthRequest(
 		long samlSpAuthnRequestId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getSamlSpAuthRequest(samlSpAuthnRequestId);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return getService().getActionableDynamicQuery();
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deletePersistedModel(persistedModel);
 	}
 
 	public static com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getPersistedModel(primaryKeyObj);
 	}
 
@@ -219,11 +213,9 @@ public class SamlSpAuthRequestLocalServiceUtil {
 	* @param start the lower bound of the range of saml sp auth requests
 	* @param end the upper bound of the range of saml sp auth requests (not inclusive)
 	* @return the range of saml sp auth requests
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.saml.model.SamlSpAuthRequest> getSamlSpAuthRequests(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return getService().getSamlSpAuthRequests(start, end);
 	}
 
@@ -231,10 +223,8 @@ public class SamlSpAuthRequestLocalServiceUtil {
 	* Returns the number of saml sp auth requests.
 	*
 	* @return the number of saml sp auth requests
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int getSamlSpAuthRequestsCount()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int getSamlSpAuthRequestsCount() {
 		return getService().getSamlSpAuthRequestsCount();
 	}
 
@@ -243,11 +233,9 @@ public class SamlSpAuthRequestLocalServiceUtil {
 	*
 	* @param samlSpAuthRequest the saml sp auth request
 	* @return the saml sp auth request that was updated
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.saml.model.SamlSpAuthRequest updateSamlSpAuthRequest(
-		com.liferay.saml.model.SamlSpAuthRequest samlSpAuthRequest)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.saml.model.SamlSpAuthRequest samlSpAuthRequest) {
 		return getService().updateSamlSpAuthRequest(samlSpAuthRequest);
 	}
 

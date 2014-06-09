@@ -14,8 +14,6 @@
 
 package com.liferay.saml.model.impl;
 
-import com.liferay.portal.kernel.exception.SystemException;
-
 import com.liferay.saml.model.SamlSpAuthRequest;
 import com.liferay.saml.service.SamlSpAuthRequestLocalServiceUtil;
 
@@ -39,7 +37,7 @@ public abstract class SamlSpAuthRequestBaseImpl
 	 * Never modify or reference this class directly. All methods that expect a saml sp auth request model instance should use the {@link SamlSpAuthRequest} interface instead.
 	 */
 	@Override
-	public void persist() throws SystemException {
+	public void persist() {
 		if (this.isNew()) {
 			SamlSpAuthRequestLocalServiceUtil.addSamlSpAuthRequest(this);
 		}

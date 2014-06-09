@@ -16,7 +16,6 @@ package com.liferay.portal.workflow.kaleo.forms.model;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -264,7 +263,7 @@ public class KaleoProcessClp extends BaseModelImpl<KaleoProcess>
 	}
 
 	@Override
-	public String getUserUuid() throws SystemException {
+	public String getUserUuid() {
 		try {
 			User user = UserLocalServiceUtil.getUserById(getUserId());
 
@@ -646,7 +645,7 @@ public class KaleoProcessClp extends BaseModelImpl<KaleoProcess>
 	}
 
 	@Override
-	public void persist() throws SystemException {
+	public void persist() {
 		if (this.isNew()) {
 			KaleoProcessLocalServiceUtil.addKaleoProcess(this);
 		}

@@ -36,12 +36,10 @@ public class SamlIdpSpSessionLocalServiceWrapper
 	*
 	* @param samlIdpSpSession the saml idp sp session
 	* @return the saml idp sp session that was added
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.saml.model.SamlIdpSpSession addSamlIdpSpSession(
-		com.liferay.saml.model.SamlIdpSpSession samlIdpSpSession)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.saml.model.SamlIdpSpSession samlIdpSpSession) {
 		return _samlIdpSpSessionLocalService.addSamlIdpSpSession(samlIdpSpSession);
 	}
 
@@ -63,13 +61,11 @@ public class SamlIdpSpSessionLocalServiceWrapper
 	* @param samlIdpSpSessionId the primary key of the saml idp sp session
 	* @return the saml idp sp session that was removed
 	* @throws PortalException if a saml idp sp session with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.saml.model.SamlIdpSpSession deleteSamlIdpSpSession(
 		long samlIdpSpSessionId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _samlIdpSpSessionLocalService.deleteSamlIdpSpSession(samlIdpSpSessionId);
 	}
 
@@ -78,12 +74,10 @@ public class SamlIdpSpSessionLocalServiceWrapper
 	*
 	* @param samlIdpSpSession the saml idp sp session
 	* @return the saml idp sp session that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.saml.model.SamlIdpSpSession deleteSamlIdpSpSession(
-		com.liferay.saml.model.SamlIdpSpSession samlIdpSpSession)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.saml.model.SamlIdpSpSession samlIdpSpSession) {
 		return _samlIdpSpSessionLocalService.deleteSamlIdpSpSession(samlIdpSpSession);
 	}
 
@@ -97,13 +91,11 @@ public class SamlIdpSpSessionLocalServiceWrapper
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _samlIdpSpSessionLocalService.dynamicQuery(dynamicQuery);
 	}
 
@@ -118,13 +110,12 @@ public class SamlIdpSpSessionLocalServiceWrapper
 	* @param start the lower bound of the range of model instances
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		int end) {
 		return _samlIdpSpSessionLocalService.dynamicQuery(dynamicQuery, start,
 			end);
 	}
@@ -141,15 +132,13 @@ public class SamlIdpSpSessionLocalServiceWrapper
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return _samlIdpSpSessionLocalService.dynamicQuery(dynamicQuery, start,
 			end, orderByComparator);
 	}
@@ -159,12 +148,10 @@ public class SamlIdpSpSessionLocalServiceWrapper
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _samlIdpSpSessionLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
@@ -174,21 +161,18 @@ public class SamlIdpSpSessionLocalServiceWrapper
 	* @param dynamicQuery the dynamic query
 	* @param projection the projection to apply to the query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.Projection projection) {
 		return _samlIdpSpSessionLocalService.dynamicQueryCount(dynamicQuery,
 			projection);
 	}
 
 	@Override
 	public com.liferay.saml.model.SamlIdpSpSession fetchSamlIdpSpSession(
-		long samlIdpSpSessionId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long samlIdpSpSessionId) {
 		return _samlIdpSpSessionLocalService.fetchSamlIdpSpSession(samlIdpSpSessionId);
 	}
 
@@ -198,21 +182,33 @@ public class SamlIdpSpSessionLocalServiceWrapper
 	* @param samlIdpSpSessionId the primary key of the saml idp sp session
 	* @return the saml idp sp session
 	* @throws PortalException if a saml idp sp session with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.saml.model.SamlIdpSpSession getSamlIdpSpSession(
 		long samlIdpSpSessionId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _samlIdpSpSessionLocalService.getSamlIdpSpSession(samlIdpSpSessionId);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return _samlIdpSpSessionLocalService.getActionableDynamicQuery();
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _samlIdpSpSessionLocalService.deletePersistedModel(persistedModel);
 	}
 
 	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _samlIdpSpSessionLocalService.getPersistedModel(primaryKeyObj);
 	}
 
@@ -226,12 +222,10 @@ public class SamlIdpSpSessionLocalServiceWrapper
 	* @param start the lower bound of the range of saml idp sp sessions
 	* @param end the upper bound of the range of saml idp sp sessions (not inclusive)
 	* @return the range of saml idp sp sessions
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public java.util.List<com.liferay.saml.model.SamlIdpSpSession> getSamlIdpSpSessions(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return _samlIdpSpSessionLocalService.getSamlIdpSpSessions(start, end);
 	}
 
@@ -239,11 +233,9 @@ public class SamlIdpSpSessionLocalServiceWrapper
 	* Returns the number of saml idp sp sessions.
 	*
 	* @return the number of saml idp sp sessions
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public int getSamlIdpSpSessionsCount()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getSamlIdpSpSessionsCount() {
 		return _samlIdpSpSessionLocalService.getSamlIdpSpSessionsCount();
 	}
 
@@ -252,12 +244,10 @@ public class SamlIdpSpSessionLocalServiceWrapper
 	*
 	* @param samlIdpSpSession the saml idp sp session
 	* @return the saml idp sp session that was updated
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.saml.model.SamlIdpSpSession updateSamlIdpSpSession(
-		com.liferay.saml.model.SamlIdpSpSession samlIdpSpSession)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.saml.model.SamlIdpSpSession samlIdpSpSession) {
 		return _samlIdpSpSessionLocalService.updateSamlIdpSpSession(samlIdpSpSession);
 	}
 

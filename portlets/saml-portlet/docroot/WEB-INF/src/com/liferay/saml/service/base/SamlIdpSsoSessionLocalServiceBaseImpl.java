@@ -20,6 +20,8 @@ import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DefaultActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.Projection;
@@ -77,12 +79,11 @@ public abstract class SamlIdpSsoSessionLocalServiceBaseImpl
 	 *
 	 * @param samlIdpSsoSession the saml idp sso session
 	 * @return the saml idp sso session that was added
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
 	public SamlIdpSsoSession addSamlIdpSsoSession(
-		SamlIdpSsoSession samlIdpSsoSession) throws SystemException {
+		SamlIdpSsoSession samlIdpSsoSession) {
 		samlIdpSsoSession.setNew(true);
 
 		return samlIdpSsoSessionPersistence.update(samlIdpSsoSession);
@@ -105,12 +106,11 @@ public abstract class SamlIdpSsoSessionLocalServiceBaseImpl
 	 * @param samlIdpSsoSessionId the primary key of the saml idp sso session
 	 * @return the saml idp sso session that was removed
 	 * @throws PortalException if a saml idp sso session with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public SamlIdpSsoSession deleteSamlIdpSsoSession(long samlIdpSsoSessionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return samlIdpSsoSessionPersistence.remove(samlIdpSsoSessionId);
 	}
 
@@ -119,12 +119,11 @@ public abstract class SamlIdpSsoSessionLocalServiceBaseImpl
 	 *
 	 * @param samlIdpSsoSession the saml idp sso session
 	 * @return the saml idp sso session that was removed
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public SamlIdpSsoSession deleteSamlIdpSsoSession(
-		SamlIdpSsoSession samlIdpSsoSession) throws SystemException {
+		SamlIdpSsoSession samlIdpSsoSession) {
 		return samlIdpSsoSessionPersistence.remove(samlIdpSsoSession);
 	}
 
@@ -141,12 +140,10 @@ public abstract class SamlIdpSsoSessionLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery) {
 		return samlIdpSsoSessionPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -161,12 +158,10 @@ public abstract class SamlIdpSsoSessionLocalServiceBaseImpl
 	 * @param start the lower bound of the range of model instances
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
 		return samlIdpSsoSessionPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end);
 	}
@@ -183,12 +178,11 @@ public abstract class SamlIdpSsoSessionLocalServiceBaseImpl
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return samlIdpSsoSessionPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end, orderByComparator);
 	}
@@ -198,11 +192,9 @@ public abstract class SamlIdpSsoSessionLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public long dynamicQueryCount(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
 		return samlIdpSsoSessionPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -212,18 +204,16 @@ public abstract class SamlIdpSsoSessionLocalServiceBaseImpl
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection) throws SystemException {
+		Projection projection) {
 		return samlIdpSsoSessionPersistence.countWithDynamicQuery(dynamicQuery,
 			projection);
 	}
 
 	@Override
-	public SamlIdpSsoSession fetchSamlIdpSsoSession(long samlIdpSsoSessionId)
-		throws SystemException {
+	public SamlIdpSsoSession fetchSamlIdpSsoSession(long samlIdpSsoSessionId) {
 		return samlIdpSsoSessionPersistence.fetchByPrimaryKey(samlIdpSsoSessionId);
 	}
 
@@ -233,17 +223,47 @@ public abstract class SamlIdpSsoSessionLocalServiceBaseImpl
 	 * @param samlIdpSsoSessionId the primary key of the saml idp sso session
 	 * @return the saml idp sso session
 	 * @throws PortalException if a saml idp sso session with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public SamlIdpSsoSession getSamlIdpSsoSession(long samlIdpSsoSessionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return samlIdpSsoSessionPersistence.findByPrimaryKey(samlIdpSsoSessionId);
 	}
 
 	@Override
+	public ActionableDynamicQuery getActionableDynamicQuery() {
+		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
+
+		actionableDynamicQuery.setBaseLocalService(com.liferay.saml.service.SamlIdpSsoSessionLocalServiceUtil.getService());
+		actionableDynamicQuery.setClass(SamlIdpSsoSession.class);
+		actionableDynamicQuery.setClassLoader(getClassLoader());
+
+		actionableDynamicQuery.setPrimaryKeyPropertyName("samlIdpSsoSessionId");
+
+		return actionableDynamicQuery;
+	}
+
+	protected void initActionableDynamicQuery(
+		ActionableDynamicQuery actionableDynamicQuery) {
+		actionableDynamicQuery.setBaseLocalService(com.liferay.saml.service.SamlIdpSsoSessionLocalServiceUtil.getService());
+		actionableDynamicQuery.setClass(SamlIdpSsoSession.class);
+		actionableDynamicQuery.setClassLoader(getClassLoader());
+
+		actionableDynamicQuery.setPrimaryKeyPropertyName("samlIdpSsoSessionId");
+	}
+
+	/**
+	 * @throws PortalException
+	 */
+	@Override
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
+		throws PortalException {
+		return deleteSamlIdpSsoSession((SamlIdpSsoSession)persistedModel);
+	}
+
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return samlIdpSsoSessionPersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
@@ -257,11 +277,9 @@ public abstract class SamlIdpSsoSessionLocalServiceBaseImpl
 	 * @param start the lower bound of the range of saml idp sso sessions
 	 * @param end the upper bound of the range of saml idp sso sessions (not inclusive)
 	 * @return the range of saml idp sso sessions
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<SamlIdpSsoSession> getSamlIdpSsoSessions(int start, int end)
-		throws SystemException {
+	public List<SamlIdpSsoSession> getSamlIdpSsoSessions(int start, int end) {
 		return samlIdpSsoSessionPersistence.findAll(start, end);
 	}
 
@@ -269,10 +287,9 @@ public abstract class SamlIdpSsoSessionLocalServiceBaseImpl
 	 * Returns the number of saml idp sso sessions.
 	 *
 	 * @return the number of saml idp sso sessions
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int getSamlIdpSsoSessionsCount() throws SystemException {
+	public int getSamlIdpSsoSessionsCount() {
 		return samlIdpSsoSessionPersistence.countAll();
 	}
 
@@ -281,12 +298,11 @@ public abstract class SamlIdpSsoSessionLocalServiceBaseImpl
 	 *
 	 * @param samlIdpSsoSession the saml idp sso session
 	 * @return the saml idp sso session that was updated
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
 	public SamlIdpSsoSession updateSamlIdpSsoSession(
-		SamlIdpSsoSession samlIdpSsoSession) throws SystemException {
+		SamlIdpSsoSession samlIdpSsoSession) {
 		return samlIdpSsoSessionPersistence.update(samlIdpSsoSession);
 	}
 
@@ -775,7 +791,7 @@ public abstract class SamlIdpSsoSessionLocalServiceBaseImpl
 	 *
 	 * @param sql the sql query
 	 */
-	protected void runSQL(String sql) throws SystemException {
+	protected void runSQL(String sql) {
 		try {
 			DataSource dataSource = samlIdpSsoSessionPersistence.getDataSource();
 

@@ -15,7 +15,6 @@
 package com.liferay.saml.model;
 
 import com.liferay.portal.kernel.bean.AutoEscape;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.AuditedModel;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
@@ -112,10 +111,9 @@ public interface SamlSpIdpConnectionModel extends AuditedModel,
 	 * Returns the user uuid of this saml sp idp connection.
 	 *
 	 * @return the user uuid of this saml sp idp connection
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public String getUserUuid() throws SystemException;
+	public String getUserUuid();
 
 	/**
 	 * Sets the user uuid of this saml sp idp connection.

@@ -18,7 +18,6 @@ import com.liferay.bbb.model.BBBServer;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
@@ -61,8 +60,7 @@ public class BBBServerUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#countWithDynamicQuery(DynamicQuery)
 	 */
-	public static long countWithDynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public static long countWithDynamicQuery(DynamicQuery dynamicQuery) {
 		return getPersistence().countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -70,7 +68,7 @@ public class BBBServerUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery)
 	 */
 	public static List<BBBServer> findWithDynamicQuery(
-		DynamicQuery dynamicQuery) throws SystemException {
+		DynamicQuery dynamicQuery) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -78,8 +76,7 @@ public class BBBServerUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int)
 	 */
 	public static List<BBBServer> findWithDynamicQuery(
-		DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+		DynamicQuery dynamicQuery, int start, int end) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -88,7 +85,7 @@ public class BBBServerUtil {
 	 */
 	public static List<BBBServer> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -97,8 +94,7 @@ public class BBBServerUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static BBBServer update(BBBServer bbbServer)
-		throws SystemException {
+	public static BBBServer update(BBBServer bbbServer) {
 		return getPersistence().update(bbbServer);
 	}
 
@@ -106,7 +102,7 @@ public class BBBServerUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
 	public static BBBServer update(BBBServer bbbServer,
-		ServiceContext serviceContext) throws SystemException {
+		ServiceContext serviceContext) {
 		return getPersistence().update(bbbServer, serviceContext);
 	}
 
@@ -115,11 +111,9 @@ public class BBBServerUtil {
 	*
 	* @param active the active
 	* @return the matching b b b servers
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.bbb.model.BBBServer> findByActive(
-		boolean active)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		boolean active) {
 		return getPersistence().findByActive(active);
 	}
 
@@ -134,11 +128,9 @@ public class BBBServerUtil {
 	* @param start the lower bound of the range of b b b servers
 	* @param end the upper bound of the range of b b b servers (not inclusive)
 	* @return the range of matching b b b servers
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.bbb.model.BBBServer> findByActive(
-		boolean active, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		boolean active, int start, int end) {
 		return getPersistence().findByActive(active, start, end);
 	}
 
@@ -154,12 +146,10 @@ public class BBBServerUtil {
 	* @param end the upper bound of the range of b b b servers (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching b b b servers
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.bbb.model.BBBServer> findByActive(
 		boolean active, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findByActive(active, start, end, orderByComparator);
 	}
@@ -171,13 +161,11 @@ public class BBBServerUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching b b b server
 	* @throws com.liferay.bbb.NoSuchServerException if a matching b b b server could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.bbb.model.BBBServer findByActive_First(
 		boolean active,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.bbb.NoSuchServerException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.bbb.NoSuchServerException {
 		return getPersistence().findByActive_First(active, orderByComparator);
 	}
 
@@ -187,12 +175,10 @@ public class BBBServerUtil {
 	* @param active the active
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching b b b server, or <code>null</code> if a matching b b b server could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.bbb.model.BBBServer fetchByActive_First(
 		boolean active,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().fetchByActive_First(active, orderByComparator);
 	}
 
@@ -203,13 +189,11 @@ public class BBBServerUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching b b b server
 	* @throws com.liferay.bbb.NoSuchServerException if a matching b b b server could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.bbb.model.BBBServer findByActive_Last(
 		boolean active,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.bbb.NoSuchServerException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.bbb.NoSuchServerException {
 		return getPersistence().findByActive_Last(active, orderByComparator);
 	}
 
@@ -219,12 +203,10 @@ public class BBBServerUtil {
 	* @param active the active
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching b b b server, or <code>null</code> if a matching b b b server could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.bbb.model.BBBServer fetchByActive_Last(
 		boolean active,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().fetchByActive_Last(active, orderByComparator);
 	}
 
@@ -236,13 +218,11 @@ public class BBBServerUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next b b b server
 	* @throws com.liferay.bbb.NoSuchServerException if a b b b server with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.bbb.model.BBBServer[] findByActive_PrevAndNext(
 		long bbbServerId, boolean active,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.bbb.NoSuchServerException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.bbb.NoSuchServerException {
 		return getPersistence()
 				   .findByActive_PrevAndNext(bbbServerId, active,
 			orderByComparator);
@@ -252,10 +232,8 @@ public class BBBServerUtil {
 	* Removes all the b b b servers where active = &#63; from the database.
 	*
 	* @param active the active
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByActive(boolean active)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeByActive(boolean active) {
 		getPersistence().removeByActive(active);
 	}
 
@@ -264,10 +242,8 @@ public class BBBServerUtil {
 	*
 	* @param active the active
 	* @return the number of matching b b b servers
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByActive(boolean active)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByActive(boolean active) {
 		return getPersistence().countByActive(active);
 	}
 
@@ -306,17 +282,14 @@ public class BBBServerUtil {
 	* @param bbbServerId the primary key of the b b b server
 	* @return the b b b server that was removed
 	* @throws com.liferay.bbb.NoSuchServerException if a b b b server with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.bbb.model.BBBServer remove(long bbbServerId)
-		throws com.liferay.bbb.NoSuchServerException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.bbb.NoSuchServerException {
 		return getPersistence().remove(bbbServerId);
 	}
 
 	public static com.liferay.bbb.model.BBBServer updateImpl(
-		com.liferay.bbb.model.BBBServer bbbServer)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.bbb.model.BBBServer bbbServer) {
 		return getPersistence().updateImpl(bbbServer);
 	}
 
@@ -326,12 +299,9 @@ public class BBBServerUtil {
 	* @param bbbServerId the primary key of the b b b server
 	* @return the b b b server
 	* @throws com.liferay.bbb.NoSuchServerException if a b b b server with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.bbb.model.BBBServer findByPrimaryKey(
-		long bbbServerId)
-		throws com.liferay.bbb.NoSuchServerException,
-			com.liferay.portal.kernel.exception.SystemException {
+		long bbbServerId) throws com.liferay.bbb.NoSuchServerException {
 		return getPersistence().findByPrimaryKey(bbbServerId);
 	}
 
@@ -340,11 +310,9 @@ public class BBBServerUtil {
 	*
 	* @param bbbServerId the primary key of the b b b server
 	* @return the b b b server, or <code>null</code> if a b b b server with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.bbb.model.BBBServer fetchByPrimaryKey(
-		long bbbServerId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long bbbServerId) {
 		return getPersistence().fetchByPrimaryKey(bbbServerId);
 	}
 
@@ -352,10 +320,8 @@ public class BBBServerUtil {
 	* Returns all the b b b servers.
 	*
 	* @return the b b b servers
-	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<com.liferay.bbb.model.BBBServer> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static java.util.List<com.liferay.bbb.model.BBBServer> findAll() {
 		return getPersistence().findAll();
 	}
 
@@ -369,11 +335,9 @@ public class BBBServerUtil {
 	* @param start the lower bound of the range of b b b servers
 	* @param end the upper bound of the range of b b b servers (not inclusive)
 	* @return the range of b b b servers
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.bbb.model.BBBServer> findAll(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return getPersistence().findAll(start, end);
 	}
 
@@ -388,22 +352,17 @@ public class BBBServerUtil {
 	* @param end the upper bound of the range of b b b servers (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of b b b servers
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.bbb.model.BBBServer> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
 	/**
 	* Removes all the b b b servers from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeAll() {
 		getPersistence().removeAll();
 	}
 
@@ -411,10 +370,8 @@ public class BBBServerUtil {
 	* Returns the number of b b b servers.
 	*
 	* @return the number of b b b servers
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countAll() {
 		return getPersistence().countAll();
 	}
 

@@ -44,11 +44,9 @@ public class SourceLocalServiceUtil {
 	*
 	* @param source the source
 	* @return the source that was added
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.reports.model.Source addSource(
-		com.liferay.reports.model.Source source)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.reports.model.Source source) {
 		return getService().addSource(source);
 	}
 
@@ -68,7 +66,7 @@ public class SourceLocalServiceUtil {
 	* @param sourceId the primary key of the source
 	* @return the source that was removed
 	* @throws PortalException if a source with the primary key could not be found
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	public static com.liferay.reports.model.Source deleteSource(long sourceId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -82,7 +80,7 @@ public class SourceLocalServiceUtil {
 	* @param source the source
 	* @return the source that was removed
 	* @throws PortalException
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	public static com.liferay.reports.model.Source deleteSource(
 		com.liferay.reports.model.Source source)
@@ -100,12 +98,10 @@ public class SourceLocalServiceUtil {
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return getService().dynamicQuery(dynamicQuery);
 	}
 
@@ -120,12 +116,11 @@ public class SourceLocalServiceUtil {
 	* @param start the lower bound of the range of model instances
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		int end) {
 		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -141,14 +136,12 @@ public class SourceLocalServiceUtil {
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getService()
 				   .dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
@@ -158,11 +151,9 @@ public class SourceLocalServiceUtil {
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	public static long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
@@ -172,17 +163,14 @@ public class SourceLocalServiceUtil {
 	* @param dynamicQuery the dynamic query
 	* @param projection the projection to apply to the query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	public static long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.Projection projection) {
 		return getService().dynamicQueryCount(dynamicQuery, projection);
 	}
 
-	public static com.liferay.reports.model.Source fetchSource(long sourceId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static com.liferay.reports.model.Source fetchSource(long sourceId) {
 		return getService().fetchSource(sourceId);
 	}
 
@@ -192,11 +180,9 @@ public class SourceLocalServiceUtil {
 	* @param uuid the source's UUID
 	* @param companyId the primary key of the company
 	* @return the matching source, or <code>null</code> if a matching source could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.reports.model.Source fetchSourceByUuidAndCompanyId(
-		java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String uuid, long companyId) {
 		return getService().fetchSourceByUuidAndCompanyId(uuid, companyId);
 	}
 
@@ -206,11 +192,9 @@ public class SourceLocalServiceUtil {
 	* @param uuid the source's UUID
 	* @param groupId the primary key of the group
 	* @return the matching source, or <code>null</code> if a matching source could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.reports.model.Source fetchSourceByUuidAndGroupId(
-		java.lang.String uuid, long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String uuid, long groupId) {
 		return getService().fetchSourceByUuidAndGroupId(uuid, groupId);
 	}
 
@@ -220,7 +204,7 @@ public class SourceLocalServiceUtil {
 	* @param sourceId the primary key of the source
 	* @return the source
 	* @throws PortalException if a source with the primary key could not be found
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	public static com.liferay.reports.model.Source getSource(long sourceId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -228,21 +212,27 @@ public class SourceLocalServiceUtil {
 		return getService().getSource(sourceId);
 	}
 
-	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
 		return getService().getActionableDynamicQuery();
 	}
 
 	public static com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
-		com.liferay.portal.kernel.lar.PortletDataContext portletDataContext)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.lar.PortletDataContext portletDataContext) {
 		return getService().getExportActionableDynamicQuery(portletDataContext);
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deletePersistedModel(persistedModel);
 	}
 
 	public static com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getPersistedModel(primaryKeyObj);
 	}
 
@@ -253,7 +243,7 @@ public class SourceLocalServiceUtil {
 	* @param companyId the primary key of the company
 	* @return the matching source
 	* @throws PortalException if a matching source could not be found
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	public static com.liferay.reports.model.Source getSourceByUuidAndCompanyId(
 		java.lang.String uuid, long companyId)
@@ -269,7 +259,7 @@ public class SourceLocalServiceUtil {
 	* @param groupId the primary key of the group
 	* @return the matching source
 	* @throws PortalException if a matching source could not be found
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	public static com.liferay.reports.model.Source getSourceByUuidAndGroupId(
 		java.lang.String uuid, long groupId)
@@ -288,11 +278,9 @@ public class SourceLocalServiceUtil {
 	* @param start the lower bound of the range of sources
 	* @param end the upper bound of the range of sources (not inclusive)
 	* @return the range of sources
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.reports.model.Source> getSources(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return getService().getSources(start, end);
 	}
 
@@ -300,10 +288,8 @@ public class SourceLocalServiceUtil {
 	* Returns the number of sources.
 	*
 	* @return the number of sources
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int getSourcesCount()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int getSourcesCount() {
 		return getService().getSourcesCount();
 	}
 
@@ -312,11 +298,9 @@ public class SourceLocalServiceUtil {
 	*
 	* @param source the source
 	* @return the source that was updated
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.reports.model.Source updateSource(
-		com.liferay.reports.model.Source source)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.reports.model.Source source) {
 		return getService().updateSource(source);
 	}
 

@@ -36,12 +36,10 @@ public class OAuthApplicationLocalServiceWrapper
 	*
 	* @param oAuthApplication the o auth application
 	* @return the o auth application that was added
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.oauth.model.OAuthApplication addOAuthApplication(
-		com.liferay.oauth.model.OAuthApplication oAuthApplication)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.oauth.model.OAuthApplication oAuthApplication) {
 		return _oAuthApplicationLocalService.addOAuthApplication(oAuthApplication);
 	}
 
@@ -63,7 +61,7 @@ public class OAuthApplicationLocalServiceWrapper
 	* @param oAuthApplicationId the primary key of the o auth application
 	* @return the o auth application that was removed
 	* @throws PortalException if a o auth application with the primary key could not be found
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.oauth.model.OAuthApplication deleteOAuthApplication(
@@ -79,7 +77,7 @@ public class OAuthApplicationLocalServiceWrapper
 	* @param oAuthApplication the o auth application
 	* @return the o auth application that was removed
 	* @throws PortalException
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.oauth.model.OAuthApplication deleteOAuthApplication(
@@ -99,13 +97,11 @@ public class OAuthApplicationLocalServiceWrapper
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _oAuthApplicationLocalService.dynamicQuery(dynamicQuery);
 	}
 
@@ -120,13 +116,12 @@ public class OAuthApplicationLocalServiceWrapper
 	* @param start the lower bound of the range of model instances
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		int end) {
 		return _oAuthApplicationLocalService.dynamicQuery(dynamicQuery, start,
 			end);
 	}
@@ -143,15 +138,13 @@ public class OAuthApplicationLocalServiceWrapper
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return _oAuthApplicationLocalService.dynamicQuery(dynamicQuery, start,
 			end, orderByComparator);
 	}
@@ -161,12 +154,10 @@ public class OAuthApplicationLocalServiceWrapper
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _oAuthApplicationLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
@@ -176,21 +167,18 @@ public class OAuthApplicationLocalServiceWrapper
 	* @param dynamicQuery the dynamic query
 	* @param projection the projection to apply to the query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.Projection projection) {
 		return _oAuthApplicationLocalService.dynamicQueryCount(dynamicQuery,
 			projection);
 	}
 
 	@Override
 	public com.liferay.oauth.model.OAuthApplication fetchOAuthApplication(
-		long oAuthApplicationId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long oAuthApplicationId) {
 		return _oAuthApplicationLocalService.fetchOAuthApplication(oAuthApplicationId);
 	}
 
@@ -200,21 +188,33 @@ public class OAuthApplicationLocalServiceWrapper
 	* @param oAuthApplicationId the primary key of the o auth application
 	* @return the o auth application
 	* @throws PortalException if a o auth application with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.oauth.model.OAuthApplication getOAuthApplication(
 		long oAuthApplicationId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _oAuthApplicationLocalService.getOAuthApplication(oAuthApplicationId);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return _oAuthApplicationLocalService.getActionableDynamicQuery();
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _oAuthApplicationLocalService.deletePersistedModel(persistedModel);
 	}
 
 	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _oAuthApplicationLocalService.getPersistedModel(primaryKeyObj);
 	}
 
@@ -228,12 +228,10 @@ public class OAuthApplicationLocalServiceWrapper
 	* @param start the lower bound of the range of o auth applications
 	* @param end the upper bound of the range of o auth applications (not inclusive)
 	* @return the range of o auth applications
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public java.util.List<com.liferay.oauth.model.OAuthApplication> getOAuthApplications(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return _oAuthApplicationLocalService.getOAuthApplications(start, end);
 	}
 
@@ -241,11 +239,9 @@ public class OAuthApplicationLocalServiceWrapper
 	* Returns the number of o auth applications.
 	*
 	* @return the number of o auth applications
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public int getOAuthApplicationsCount()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getOAuthApplicationsCount() {
 		return _oAuthApplicationLocalService.getOAuthApplicationsCount();
 	}
 
@@ -254,12 +250,10 @@ public class OAuthApplicationLocalServiceWrapper
 	*
 	* @param oAuthApplication the o auth application
 	* @return the o auth application that was updated
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.oauth.model.OAuthApplication updateOAuthApplication(
-		com.liferay.oauth.model.OAuthApplication oAuthApplication)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.oauth.model.OAuthApplication oAuthApplication) {
 		return _oAuthApplicationLocalService.updateOAuthApplication(oAuthApplication);
 	}
 

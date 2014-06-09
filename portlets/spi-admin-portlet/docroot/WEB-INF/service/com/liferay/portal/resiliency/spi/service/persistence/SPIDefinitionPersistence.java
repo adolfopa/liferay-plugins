@@ -41,11 +41,9 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	*
 	* @param companyId the company ID
 	* @return the matching s p i definitions
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> findByCompanyId(
-		long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long companyId);
 
 	/**
 	* Returns a range of all the s p i definitions where companyId = &#63;.
@@ -58,11 +56,9 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	* @param start the lower bound of the range of s p i definitions
 	* @param end the upper bound of the range of s p i definitions (not inclusive)
 	* @return the range of matching s p i definitions
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> findByCompanyId(
-		long companyId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long companyId, int start, int end);
 
 	/**
 	* Returns an ordered range of all the s p i definitions where companyId = &#63;.
@@ -76,12 +72,10 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	* @param end the upper bound of the range of s p i definitions (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching s p i definitions
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the first s p i definition in the ordered set where companyId = &#63;.
@@ -90,13 +84,11 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching s p i definition
 	* @throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException if a matching s p i definition could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.resiliency.spi.model.SPIDefinition findByCompanyId_First(
 		long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.resiliency.spi.NoSuchDefinitionException;
+		throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException;
 
 	/**
 	* Returns the first s p i definition in the ordered set where companyId = &#63;.
@@ -104,12 +96,10 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching s p i definition, or <code>null</code> if a matching s p i definition could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.resiliency.spi.model.SPIDefinition fetchByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the last s p i definition in the ordered set where companyId = &#63;.
@@ -118,13 +108,11 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching s p i definition
 	* @throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException if a matching s p i definition could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.resiliency.spi.model.SPIDefinition findByCompanyId_Last(
 		long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.resiliency.spi.NoSuchDefinitionException;
+		throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException;
 
 	/**
 	* Returns the last s p i definition in the ordered set where companyId = &#63;.
@@ -132,12 +120,10 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching s p i definition, or <code>null</code> if a matching s p i definition could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.resiliency.spi.model.SPIDefinition fetchByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the s p i definitions before and after the current s p i definition in the ordered set where companyId = &#63;.
@@ -147,24 +133,20 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next s p i definition
 	* @throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException if a s p i definition with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.resiliency.spi.model.SPIDefinition[] findByCompanyId_PrevAndNext(
 		long spiDefinitionId, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.resiliency.spi.NoSuchDefinitionException;
+		throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException;
 
 	/**
 	* Returns all the s p i definitions that the user has permission to view where companyId = &#63;.
 	*
 	* @param companyId the company ID
 	* @return the matching s p i definitions that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> filterFindByCompanyId(
-		long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long companyId);
 
 	/**
 	* Returns a range of all the s p i definitions that the user has permission to view where companyId = &#63;.
@@ -177,11 +159,9 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	* @param start the lower bound of the range of s p i definitions
 	* @param end the upper bound of the range of s p i definitions (not inclusive)
 	* @return the range of matching s p i definitions that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> filterFindByCompanyId(
-		long companyId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long companyId, int start, int end);
 
 	/**
 	* Returns an ordered range of all the s p i definitions that the user has permissions to view where companyId = &#63;.
@@ -195,12 +175,10 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	* @param end the upper bound of the range of s p i definitions (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching s p i definitions that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> filterFindByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the s p i definitions before and after the current s p i definition in the ordered set of s p i definitions that the user has permission to view where companyId = &#63;.
@@ -210,42 +188,34 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next s p i definition
 	* @throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException if a s p i definition with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.resiliency.spi.model.SPIDefinition[] filterFindByCompanyId_PrevAndNext(
 		long spiDefinitionId, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.resiliency.spi.NoSuchDefinitionException;
+		throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException;
 
 	/**
 	* Removes all the s p i definitions where companyId = &#63; from the database.
 	*
 	* @param companyId the company ID
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeByCompanyId(long companyId);
 
 	/**
 	* Returns the number of s p i definitions where companyId = &#63;.
 	*
 	* @param companyId the company ID
 	* @return the number of matching s p i definitions
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByCompanyId(long companyId);
 
 	/**
 	* Returns the number of s p i definitions that the user has permission to view where companyId = &#63;.
 	*
 	* @param companyId the company ID
 	* @return the number of matching s p i definitions that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
-	public int filterCountByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int filterCountByCompanyId(long companyId);
 
 	/**
 	* Returns the s p i definition where companyId = &#63; and name = &#63; or throws a {@link com.liferay.portal.resiliency.spi.NoSuchDefinitionException} if it could not be found.
@@ -254,12 +224,10 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	* @param name the name
 	* @return the matching s p i definition
 	* @throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException if a matching s p i definition could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.resiliency.spi.model.SPIDefinition findByC_N(
 		long companyId, java.lang.String name)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.resiliency.spi.NoSuchDefinitionException;
+		throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException;
 
 	/**
 	* Returns the s p i definition where companyId = &#63; and name = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
@@ -267,11 +235,9 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	* @param companyId the company ID
 	* @param name the name
 	* @return the matching s p i definition, or <code>null</code> if a matching s p i definition could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.resiliency.spi.model.SPIDefinition fetchByC_N(
-		long companyId, java.lang.String name)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long companyId, java.lang.String name);
 
 	/**
 	* Returns the s p i definition where companyId = &#63; and name = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -280,11 +246,9 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	* @param name the name
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching s p i definition, or <code>null</code> if a matching s p i definition could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.resiliency.spi.model.SPIDefinition fetchByC_N(
-		long companyId, java.lang.String name, boolean retrieveFromCache)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long companyId, java.lang.String name, boolean retrieveFromCache);
 
 	/**
 	* Removes the s p i definition where companyId = &#63; and name = &#63; from the database.
@@ -292,12 +256,10 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	* @param companyId the company ID
 	* @param name the name
 	* @return the s p i definition that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.resiliency.spi.model.SPIDefinition removeByC_N(
 		long companyId, java.lang.String name)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.resiliency.spi.NoSuchDefinitionException;
+		throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException;
 
 	/**
 	* Returns the number of s p i definitions where companyId = &#63; and name = &#63;.
@@ -305,10 +267,8 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	* @param companyId the company ID
 	* @param name the name
 	* @return the number of matching s p i definitions
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByC_N(long companyId, java.lang.String name)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByC_N(long companyId, java.lang.String name);
 
 	/**
 	* Returns all the s p i definitions where companyId = &#63; and status = &#63;.
@@ -316,11 +276,9 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	* @param companyId the company ID
 	* @param status the status
 	* @return the matching s p i definitions
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> findByC_S(
-		long companyId, int status)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long companyId, int status);
 
 	/**
 	* Returns a range of all the s p i definitions where companyId = &#63; and status = &#63;.
@@ -334,11 +292,9 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	* @param start the lower bound of the range of s p i definitions
 	* @param end the upper bound of the range of s p i definitions (not inclusive)
 	* @return the range of matching s p i definitions
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> findByC_S(
-		long companyId, int status, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long companyId, int status, int start, int end);
 
 	/**
 	* Returns an ordered range of all the s p i definitions where companyId = &#63; and status = &#63;.
@@ -353,12 +309,10 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	* @param end the upper bound of the range of s p i definitions (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching s p i definitions
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> findByC_S(
 		long companyId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the first s p i definition in the ordered set where companyId = &#63; and status = &#63;.
@@ -368,13 +322,11 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching s p i definition
 	* @throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException if a matching s p i definition could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.resiliency.spi.model.SPIDefinition findByC_S_First(
 		long companyId, int status,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.resiliency.spi.NoSuchDefinitionException;
+		throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException;
 
 	/**
 	* Returns the first s p i definition in the ordered set where companyId = &#63; and status = &#63;.
@@ -383,12 +335,10 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	* @param status the status
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching s p i definition, or <code>null</code> if a matching s p i definition could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.resiliency.spi.model.SPIDefinition fetchByC_S_First(
 		long companyId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the last s p i definition in the ordered set where companyId = &#63; and status = &#63;.
@@ -398,13 +348,11 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching s p i definition
 	* @throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException if a matching s p i definition could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.resiliency.spi.model.SPIDefinition findByC_S_Last(
 		long companyId, int status,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.resiliency.spi.NoSuchDefinitionException;
+		throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException;
 
 	/**
 	* Returns the last s p i definition in the ordered set where companyId = &#63; and status = &#63;.
@@ -413,12 +361,10 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	* @param status the status
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching s p i definition, or <code>null</code> if a matching s p i definition could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.resiliency.spi.model.SPIDefinition fetchByC_S_Last(
 		long companyId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the s p i definitions before and after the current s p i definition in the ordered set where companyId = &#63; and status = &#63;.
@@ -429,13 +375,11 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next s p i definition
 	* @throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException if a s p i definition with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.resiliency.spi.model.SPIDefinition[] findByC_S_PrevAndNext(
 		long spiDefinitionId, long companyId, int status,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.resiliency.spi.NoSuchDefinitionException;
+		throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException;
 
 	/**
 	* Returns all the s p i definitions that the user has permission to view where companyId = &#63; and status = &#63;.
@@ -443,11 +387,9 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	* @param companyId the company ID
 	* @param status the status
 	* @return the matching s p i definitions that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> filterFindByC_S(
-		long companyId, int status)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long companyId, int status);
 
 	/**
 	* Returns a range of all the s p i definitions that the user has permission to view where companyId = &#63; and status = &#63;.
@@ -461,11 +403,9 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	* @param start the lower bound of the range of s p i definitions
 	* @param end the upper bound of the range of s p i definitions (not inclusive)
 	* @return the range of matching s p i definitions that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> filterFindByC_S(
-		long companyId, int status, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long companyId, int status, int start, int end);
 
 	/**
 	* Returns an ordered range of all the s p i definitions that the user has permissions to view where companyId = &#63; and status = &#63;.
@@ -480,12 +420,10 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	* @param end the upper bound of the range of s p i definitions (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching s p i definitions that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> filterFindByC_S(
 		long companyId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the s p i definitions before and after the current s p i definition in the ordered set of s p i definitions that the user has permission to view where companyId = &#63; and status = &#63;.
@@ -496,13 +434,11 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next s p i definition
 	* @throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException if a s p i definition with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.resiliency.spi.model.SPIDefinition[] filterFindByC_S_PrevAndNext(
 		long spiDefinitionId, long companyId, int status,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.resiliency.spi.NoSuchDefinitionException;
+		throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException;
 
 	/**
 	* Returns all the s p i definitions that the user has permission to view where companyId = &#63; and status = any &#63;.
@@ -510,11 +446,9 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	* @param companyId the company ID
 	* @param statuses the statuses
 	* @return the matching s p i definitions that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> filterFindByC_S(
-		long companyId, int[] statuses)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long companyId, int[] statuses);
 
 	/**
 	* Returns a range of all the s p i definitions that the user has permission to view where companyId = &#63; and status = any &#63;.
@@ -528,11 +462,9 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	* @param start the lower bound of the range of s p i definitions
 	* @param end the upper bound of the range of s p i definitions (not inclusive)
 	* @return the range of matching s p i definitions that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> filterFindByC_S(
-		long companyId, int[] statuses, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long companyId, int[] statuses, int start, int end);
 
 	/**
 	* Returns an ordered range of all the s p i definitions that the user has permission to view where companyId = &#63; and status = any &#63;.
@@ -547,12 +479,10 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	* @param end the upper bound of the range of s p i definitions (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching s p i definitions that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> filterFindByC_S(
 		long companyId, int[] statuses, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns all the s p i definitions where companyId = &#63; and status = any &#63;.
@@ -564,11 +494,9 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	* @param companyId the company ID
 	* @param statuses the statuses
 	* @return the matching s p i definitions
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> findByC_S(
-		long companyId, int[] statuses)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long companyId, int[] statuses);
 
 	/**
 	* Returns a range of all the s p i definitions where companyId = &#63; and status = any &#63;.
@@ -582,11 +510,9 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	* @param start the lower bound of the range of s p i definitions
 	* @param end the upper bound of the range of s p i definitions (not inclusive)
 	* @return the range of matching s p i definitions
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> findByC_S(
-		long companyId, int[] statuses, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long companyId, int[] statuses, int start, int end);
 
 	/**
 	* Returns an ordered range of all the s p i definitions where companyId = &#63; and status = any &#63;.
@@ -601,22 +527,18 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	* @param end the upper bound of the range of s p i definitions (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching s p i definitions
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> findByC_S(
 		long companyId, int[] statuses, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Removes all the s p i definitions where companyId = &#63; and status = &#63; from the database.
 	*
 	* @param companyId the company ID
 	* @param status the status
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByC_S(long companyId, int status)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeByC_S(long companyId, int status);
 
 	/**
 	* Returns the number of s p i definitions where companyId = &#63; and status = &#63;.
@@ -624,10 +546,8 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	* @param companyId the company ID
 	* @param status the status
 	* @return the number of matching s p i definitions
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByC_S(long companyId, int status)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByC_S(long companyId, int status);
 
 	/**
 	* Returns the number of s p i definitions where companyId = &#63; and status = any &#63;.
@@ -635,10 +555,8 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	* @param companyId the company ID
 	* @param statuses the statuses
 	* @return the number of matching s p i definitions
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByC_S(long companyId, int[] statuses)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByC_S(long companyId, int[] statuses);
 
 	/**
 	* Returns the number of s p i definitions that the user has permission to view where companyId = &#63; and status = &#63;.
@@ -646,10 +564,8 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	* @param companyId the company ID
 	* @param status the status
 	* @return the number of matching s p i definitions that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
-	public int filterCountByC_S(long companyId, int status)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int filterCountByC_S(long companyId, int status);
 
 	/**
 	* Returns the number of s p i definitions that the user has permission to view where companyId = &#63; and status = any &#63;.
@@ -657,10 +573,8 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	* @param companyId the company ID
 	* @param statuses the statuses
 	* @return the number of matching s p i definitions that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
-	public int filterCountByC_S(long companyId, int[] statuses)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int filterCountByC_S(long companyId, int[] statuses);
 
 	/**
 	* Returns the s p i definition where connectorAddress = &#63; and connectorPort = &#63; or throws a {@link com.liferay.portal.resiliency.spi.NoSuchDefinitionException} if it could not be found.
@@ -669,12 +583,10 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	* @param connectorPort the connector port
 	* @return the matching s p i definition
 	* @throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException if a matching s p i definition could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.resiliency.spi.model.SPIDefinition findByCA_CP(
 		java.lang.String connectorAddress, int connectorPort)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.resiliency.spi.NoSuchDefinitionException;
+		throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException;
 
 	/**
 	* Returns the s p i definition where connectorAddress = &#63; and connectorPort = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
@@ -682,11 +594,9 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	* @param connectorAddress the connector address
 	* @param connectorPort the connector port
 	* @return the matching s p i definition, or <code>null</code> if a matching s p i definition could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.resiliency.spi.model.SPIDefinition fetchByCA_CP(
-		java.lang.String connectorAddress, int connectorPort)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String connectorAddress, int connectorPort);
 
 	/**
 	* Returns the s p i definition where connectorAddress = &#63; and connectorPort = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -695,12 +605,10 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	* @param connectorPort the connector port
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching s p i definition, or <code>null</code> if a matching s p i definition could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.resiliency.spi.model.SPIDefinition fetchByCA_CP(
 		java.lang.String connectorAddress, int connectorPort,
-		boolean retrieveFromCache)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		boolean retrieveFromCache);
 
 	/**
 	* Removes the s p i definition where connectorAddress = &#63; and connectorPort = &#63; from the database.
@@ -708,12 +616,10 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	* @param connectorAddress the connector address
 	* @param connectorPort the connector port
 	* @return the s p i definition that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.resiliency.spi.model.SPIDefinition removeByCA_CP(
 		java.lang.String connectorAddress, int connectorPort)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.resiliency.spi.NoSuchDefinitionException;
+		throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException;
 
 	/**
 	* Returns the number of s p i definitions where connectorAddress = &#63; and connectorPort = &#63;.
@@ -721,10 +627,8 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	* @param connectorAddress the connector address
 	* @param connectorPort the connector port
 	* @return the number of matching s p i definitions
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByCA_CP(java.lang.String connectorAddress, int connectorPort)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByCA_CP(java.lang.String connectorAddress, int connectorPort);
 
 	/**
 	* Caches the s p i definition in the entity cache if it is enabled.
@@ -757,16 +661,13 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	* @param spiDefinitionId the primary key of the s p i definition
 	* @return the s p i definition that was removed
 	* @throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException if a s p i definition with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.resiliency.spi.model.SPIDefinition remove(
 		long spiDefinitionId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.resiliency.spi.NoSuchDefinitionException;
+		throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException;
 
 	public com.liferay.portal.resiliency.spi.model.SPIDefinition updateImpl(
-		com.liferay.portal.resiliency.spi.model.SPIDefinition spiDefinition)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.resiliency.spi.model.SPIDefinition spiDefinition);
 
 	/**
 	* Returns the s p i definition with the primary key or throws a {@link com.liferay.portal.resiliency.spi.NoSuchDefinitionException} if it could not be found.
@@ -774,32 +675,26 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	* @param spiDefinitionId the primary key of the s p i definition
 	* @return the s p i definition
 	* @throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException if a s p i definition with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.resiliency.spi.model.SPIDefinition findByPrimaryKey(
 		long spiDefinitionId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.resiliency.spi.NoSuchDefinitionException;
+		throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException;
 
 	/**
 	* Returns the s p i definition with the primary key or returns <code>null</code> if it could not be found.
 	*
 	* @param spiDefinitionId the primary key of the s p i definition
 	* @return the s p i definition, or <code>null</code> if a s p i definition with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.resiliency.spi.model.SPIDefinition fetchByPrimaryKey(
-		long spiDefinitionId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long spiDefinitionId);
 
 	/**
 	* Returns all the s p i definitions.
 	*
 	* @return the s p i definitions
-	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> findAll();
 
 	/**
 	* Returns a range of all the s p i definitions.
@@ -811,11 +706,9 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	* @param start the lower bound of the range of s p i definitions
 	* @param end the upper bound of the range of s p i definitions (not inclusive)
 	* @return the range of s p i definitions
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> findAll(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		int start, int end);
 
 	/**
 	* Returns an ordered range of all the s p i definitions.
@@ -828,27 +721,20 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	* @param end the upper bound of the range of s p i definitions (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of s p i definitions
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Removes all the s p i definitions from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeAll();
 
 	/**
 	* Returns the number of s p i definitions.
 	*
 	* @return the number of s p i definitions
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countAll();
 }

@@ -26,6 +26,8 @@ import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DefaultActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.Projection;
@@ -73,12 +75,10 @@ public abstract class BBBParticipantLocalServiceBaseImpl
 	 *
 	 * @param bbbParticipant the b b b participant
 	 * @return the b b b participant that was added
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
-	public BBBParticipant addBBBParticipant(BBBParticipant bbbParticipant)
-		throws SystemException {
+	public BBBParticipant addBBBParticipant(BBBParticipant bbbParticipant) {
 		bbbParticipant.setNew(true);
 
 		return bbbParticipantPersistence.update(bbbParticipant);
@@ -101,12 +101,11 @@ public abstract class BBBParticipantLocalServiceBaseImpl
 	 * @param bbbParticipantId the primary key of the b b b participant
 	 * @return the b b b participant that was removed
 	 * @throws PortalException if a b b b participant with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public BBBParticipant deleteBBBParticipant(long bbbParticipantId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return bbbParticipantPersistence.remove(bbbParticipantId);
 	}
 
@@ -115,7 +114,7 @@ public abstract class BBBParticipantLocalServiceBaseImpl
 	 *
 	 * @param bbbParticipant the b b b participant
 	 * @return the b b b participant that was removed
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
@@ -137,12 +136,10 @@ public abstract class BBBParticipantLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery) {
 		return bbbParticipantPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -157,12 +154,10 @@ public abstract class BBBParticipantLocalServiceBaseImpl
 	 * @param start the lower bound of the range of model instances
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
 		return bbbParticipantPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end);
 	}
@@ -179,12 +174,11 @@ public abstract class BBBParticipantLocalServiceBaseImpl
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return bbbParticipantPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end, orderByComparator);
 	}
@@ -194,11 +188,9 @@ public abstract class BBBParticipantLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public long dynamicQueryCount(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
 		return bbbParticipantPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -208,18 +200,16 @@ public abstract class BBBParticipantLocalServiceBaseImpl
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection) throws SystemException {
+		Projection projection) {
 		return bbbParticipantPersistence.countWithDynamicQuery(dynamicQuery,
 			projection);
 	}
 
 	@Override
-	public BBBParticipant fetchBBBParticipant(long bbbParticipantId)
-		throws SystemException {
+	public BBBParticipant fetchBBBParticipant(long bbbParticipantId) {
 		return bbbParticipantPersistence.fetchByPrimaryKey(bbbParticipantId);
 	}
 
@@ -229,17 +219,47 @@ public abstract class BBBParticipantLocalServiceBaseImpl
 	 * @param bbbParticipantId the primary key of the b b b participant
 	 * @return the b b b participant
 	 * @throws PortalException if a b b b participant with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public BBBParticipant getBBBParticipant(long bbbParticipantId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return bbbParticipantPersistence.findByPrimaryKey(bbbParticipantId);
 	}
 
 	@Override
+	public ActionableDynamicQuery getActionableDynamicQuery() {
+		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
+
+		actionableDynamicQuery.setBaseLocalService(com.liferay.bbb.service.BBBParticipantLocalServiceUtil.getService());
+		actionableDynamicQuery.setClass(BBBParticipant.class);
+		actionableDynamicQuery.setClassLoader(getClassLoader());
+
+		actionableDynamicQuery.setPrimaryKeyPropertyName("bbbParticipantId");
+
+		return actionableDynamicQuery;
+	}
+
+	protected void initActionableDynamicQuery(
+		ActionableDynamicQuery actionableDynamicQuery) {
+		actionableDynamicQuery.setBaseLocalService(com.liferay.bbb.service.BBBParticipantLocalServiceUtil.getService());
+		actionableDynamicQuery.setClass(BBBParticipant.class);
+		actionableDynamicQuery.setClassLoader(getClassLoader());
+
+		actionableDynamicQuery.setPrimaryKeyPropertyName("bbbParticipantId");
+	}
+
+	/**
+	 * @throws PortalException
+	 */
+	@Override
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
+		throws PortalException {
+		return deleteBBBParticipant((BBBParticipant)persistedModel);
+	}
+
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return bbbParticipantPersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
@@ -253,11 +273,9 @@ public abstract class BBBParticipantLocalServiceBaseImpl
 	 * @param start the lower bound of the range of b b b participants
 	 * @param end the upper bound of the range of b b b participants (not inclusive)
 	 * @return the range of b b b participants
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<BBBParticipant> getBBBParticipants(int start, int end)
-		throws SystemException {
+	public List<BBBParticipant> getBBBParticipants(int start, int end) {
 		return bbbParticipantPersistence.findAll(start, end);
 	}
 
@@ -265,10 +283,9 @@ public abstract class BBBParticipantLocalServiceBaseImpl
 	 * Returns the number of b b b participants.
 	 *
 	 * @return the number of b b b participants
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int getBBBParticipantsCount() throws SystemException {
+	public int getBBBParticipantsCount() {
 		return bbbParticipantPersistence.countAll();
 	}
 
@@ -277,12 +294,10 @@ public abstract class BBBParticipantLocalServiceBaseImpl
 	 *
 	 * @param bbbParticipant the b b b participant
 	 * @return the b b b participant that was updated
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
-	public BBBParticipant updateBBBParticipant(BBBParticipant bbbParticipant)
-		throws SystemException {
+	public BBBParticipant updateBBBParticipant(BBBParticipant bbbParticipant) {
 		return bbbParticipantPersistence.update(bbbParticipant);
 	}
 
@@ -657,7 +672,7 @@ public abstract class BBBParticipantLocalServiceBaseImpl
 	 *
 	 * @param sql the sql query
 	 */
-	protected void runSQL(String sql) throws SystemException {
+	protected void runSQL(String sql) {
 		try {
 			DataSource dataSource = bbbParticipantPersistence.getDataSource();
 

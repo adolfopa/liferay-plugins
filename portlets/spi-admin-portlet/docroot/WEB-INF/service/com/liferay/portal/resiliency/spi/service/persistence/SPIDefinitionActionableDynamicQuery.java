@@ -15,7 +15,6 @@
 package com.liferay.portal.resiliency.spi.service.persistence;
 
 import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.resiliency.spi.model.SPIDefinition;
 import com.liferay.portal.resiliency.spi.service.SPIDefinitionLocalServiceUtil;
 
@@ -27,7 +26,7 @@ import com.liferay.portal.resiliency.spi.service.SPIDefinitionLocalServiceUtil;
 @Deprecated
 public abstract class SPIDefinitionActionableDynamicQuery
 	extends BaseActionableDynamicQuery {
-	public SPIDefinitionActionableDynamicQuery() throws SystemException {
+	public SPIDefinitionActionableDynamicQuery() {
 		setBaseLocalService(SPIDefinitionLocalServiceUtil.getService());
 		setClass(SPIDefinition.class);
 

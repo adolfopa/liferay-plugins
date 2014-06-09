@@ -17,8 +17,6 @@ package com.liferay.oauth.model.impl;
 import com.liferay.oauth.model.OAuthUser;
 import com.liferay.oauth.service.OAuthUserLocalServiceUtil;
 
-import com.liferay.portal.kernel.exception.SystemException;
-
 /**
  * The extended model base implementation for the OAuthUser service. Represents a row in the &quot;OAuth_OAuthUser&quot; database table, with each column mapped to a property of this class.
  *
@@ -39,7 +37,7 @@ public abstract class OAuthUserBaseImpl extends OAuthUserModelImpl
 	 * Never modify or reference this class directly. All methods that expect a o auth user model instance should use the {@link OAuthUser} interface instead.
 	 */
 	@Override
-	public void persist() throws SystemException {
+	public void persist() {
 		if (this.isNew()) {
 			OAuthUserLocalServiceUtil.addOAuthUser(this);
 		}

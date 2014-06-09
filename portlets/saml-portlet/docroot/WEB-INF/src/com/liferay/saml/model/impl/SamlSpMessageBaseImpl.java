@@ -14,8 +14,6 @@
 
 package com.liferay.saml.model.impl;
 
-import com.liferay.portal.kernel.exception.SystemException;
-
 import com.liferay.saml.model.SamlSpMessage;
 import com.liferay.saml.service.SamlSpMessageLocalServiceUtil;
 
@@ -39,7 +37,7 @@ public abstract class SamlSpMessageBaseImpl extends SamlSpMessageModelImpl
 	 * Never modify or reference this class directly. All methods that expect a saml sp message model instance should use the {@link SamlSpMessage} interface instead.
 	 */
 	@Override
-	public void persist() throws SystemException {
+	public void persist() {
 		if (this.isNew()) {
 			SamlSpMessageLocalServiceUtil.addSamlSpMessage(this);
 		}

@@ -279,11 +279,9 @@ public class WebExSiteWrapper implements WebExSite, ModelWrapper<WebExSite> {
 	* Returns the user uuid of this web ex site.
 	*
 	* @return the user uuid of this web ex site
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public java.lang.String getUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.lang.String getUserUuid() {
 		return _webExSite.getUserUuid();
 	}
 
@@ -576,8 +574,7 @@ public class WebExSiteWrapper implements WebExSite, ModelWrapper<WebExSite> {
 	}
 
 	@Override
-	public void persist()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void persist() {
 		_webExSite.persist();
 	}
 

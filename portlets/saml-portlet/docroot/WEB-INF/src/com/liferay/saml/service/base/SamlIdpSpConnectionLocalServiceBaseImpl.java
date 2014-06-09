@@ -20,6 +20,8 @@ import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DefaultActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.Projection;
@@ -77,12 +79,11 @@ public abstract class SamlIdpSpConnectionLocalServiceBaseImpl
 	 *
 	 * @param samlIdpSpConnection the saml idp sp connection
 	 * @return the saml idp sp connection that was added
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
 	public SamlIdpSpConnection addSamlIdpSpConnection(
-		SamlIdpSpConnection samlIdpSpConnection) throws SystemException {
+		SamlIdpSpConnection samlIdpSpConnection) {
 		samlIdpSpConnection.setNew(true);
 
 		return samlIdpSpConnectionPersistence.update(samlIdpSpConnection);
@@ -106,12 +107,11 @@ public abstract class SamlIdpSpConnectionLocalServiceBaseImpl
 	 * @param samlIdpSpConnectionId the primary key of the saml idp sp connection
 	 * @return the saml idp sp connection that was removed
 	 * @throws PortalException if a saml idp sp connection with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public SamlIdpSpConnection deleteSamlIdpSpConnection(
-		long samlIdpSpConnectionId) throws PortalException, SystemException {
+		long samlIdpSpConnectionId) throws PortalException {
 		return samlIdpSpConnectionPersistence.remove(samlIdpSpConnectionId);
 	}
 
@@ -120,12 +120,11 @@ public abstract class SamlIdpSpConnectionLocalServiceBaseImpl
 	 *
 	 * @param samlIdpSpConnection the saml idp sp connection
 	 * @return the saml idp sp connection that was removed
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public SamlIdpSpConnection deleteSamlIdpSpConnection(
-		SamlIdpSpConnection samlIdpSpConnection) throws SystemException {
+		SamlIdpSpConnection samlIdpSpConnection) {
 		return samlIdpSpConnectionPersistence.remove(samlIdpSpConnection);
 	}
 
@@ -142,12 +141,10 @@ public abstract class SamlIdpSpConnectionLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery) {
 		return samlIdpSpConnectionPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -162,12 +159,10 @@ public abstract class SamlIdpSpConnectionLocalServiceBaseImpl
 	 * @param start the lower bound of the range of model instances
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
 		return samlIdpSpConnectionPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end);
 	}
@@ -184,12 +179,11 @@ public abstract class SamlIdpSpConnectionLocalServiceBaseImpl
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return samlIdpSpConnectionPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end, orderByComparator);
 	}
@@ -199,11 +193,9 @@ public abstract class SamlIdpSpConnectionLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public long dynamicQueryCount(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
 		return samlIdpSpConnectionPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -213,18 +205,17 @@ public abstract class SamlIdpSpConnectionLocalServiceBaseImpl
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection) throws SystemException {
+		Projection projection) {
 		return samlIdpSpConnectionPersistence.countWithDynamicQuery(dynamicQuery,
 			projection);
 	}
 
 	@Override
 	public SamlIdpSpConnection fetchSamlIdpSpConnection(
-		long samlIdpSpConnectionId) throws SystemException {
+		long samlIdpSpConnectionId) {
 		return samlIdpSpConnectionPersistence.fetchByPrimaryKey(samlIdpSpConnectionId);
 	}
 
@@ -234,17 +225,49 @@ public abstract class SamlIdpSpConnectionLocalServiceBaseImpl
 	 * @param samlIdpSpConnectionId the primary key of the saml idp sp connection
 	 * @return the saml idp sp connection
 	 * @throws PortalException if a saml idp sp connection with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public SamlIdpSpConnection getSamlIdpSpConnection(
-		long samlIdpSpConnectionId) throws PortalException, SystemException {
+		long samlIdpSpConnectionId) throws PortalException {
 		return samlIdpSpConnectionPersistence.findByPrimaryKey(samlIdpSpConnectionId);
 	}
 
 	@Override
+	public ActionableDynamicQuery getActionableDynamicQuery() {
+		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
+
+		actionableDynamicQuery.setBaseLocalService(com.liferay.saml.service.SamlIdpSpConnectionLocalServiceUtil.getService());
+		actionableDynamicQuery.setClass(SamlIdpSpConnection.class);
+		actionableDynamicQuery.setClassLoader(getClassLoader());
+
+		actionableDynamicQuery.setPrimaryKeyPropertyName(
+			"samlIdpSpConnectionId");
+
+		return actionableDynamicQuery;
+	}
+
+	protected void initActionableDynamicQuery(
+		ActionableDynamicQuery actionableDynamicQuery) {
+		actionableDynamicQuery.setBaseLocalService(com.liferay.saml.service.SamlIdpSpConnectionLocalServiceUtil.getService());
+		actionableDynamicQuery.setClass(SamlIdpSpConnection.class);
+		actionableDynamicQuery.setClassLoader(getClassLoader());
+
+		actionableDynamicQuery.setPrimaryKeyPropertyName(
+			"samlIdpSpConnectionId");
+	}
+
+	/**
+	 * @throws PortalException
+	 */
+	@Override
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
+		throws PortalException {
+		return deleteSamlIdpSpConnection((SamlIdpSpConnection)persistedModel);
+	}
+
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return samlIdpSpConnectionPersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
@@ -258,11 +281,9 @@ public abstract class SamlIdpSpConnectionLocalServiceBaseImpl
 	 * @param start the lower bound of the range of saml idp sp connections
 	 * @param end the upper bound of the range of saml idp sp connections (not inclusive)
 	 * @return the range of saml idp sp connections
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<SamlIdpSpConnection> getSamlIdpSpConnections(int start, int end)
-		throws SystemException {
+	public List<SamlIdpSpConnection> getSamlIdpSpConnections(int start, int end) {
 		return samlIdpSpConnectionPersistence.findAll(start, end);
 	}
 
@@ -270,10 +291,9 @@ public abstract class SamlIdpSpConnectionLocalServiceBaseImpl
 	 * Returns the number of saml idp sp connections.
 	 *
 	 * @return the number of saml idp sp connections
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int getSamlIdpSpConnectionsCount() throws SystemException {
+	public int getSamlIdpSpConnectionsCount() {
 		return samlIdpSpConnectionPersistence.countAll();
 	}
 
@@ -282,12 +302,11 @@ public abstract class SamlIdpSpConnectionLocalServiceBaseImpl
 	 *
 	 * @param samlIdpSpConnection the saml idp sp connection
 	 * @return the saml idp sp connection that was updated
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
 	public SamlIdpSpConnection updateSamlIdpSpConnection(
-		SamlIdpSpConnection samlIdpSpConnection) throws SystemException {
+		SamlIdpSpConnection samlIdpSpConnection) {
 		return samlIdpSpConnectionPersistence.update(samlIdpSpConnection);
 	}
 
@@ -776,7 +795,7 @@ public abstract class SamlIdpSpConnectionLocalServiceBaseImpl
 	 *
 	 * @param sql the sql query
 	 */
-	protected void runSQL(String sql) throws SystemException {
+	protected void runSQL(String sql) {
 		try {
 			DataSource dataSource = samlIdpSpConnectionPersistence.getDataSource();
 

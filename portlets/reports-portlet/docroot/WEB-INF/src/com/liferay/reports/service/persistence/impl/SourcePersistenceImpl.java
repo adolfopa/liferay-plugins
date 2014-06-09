@@ -23,7 +23,6 @@ import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.SQLQuery;
 import com.liferay.portal.kernel.dao.orm.Session;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -112,10 +111,9 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 *
 	 * @param uuid the uuid
 	 * @return the matching sources
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<Source> findByUuid(String uuid) throws SystemException {
+	public List<Source> findByUuid(String uuid) {
 		return findByUuid(uuid, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
@@ -130,11 +128,9 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 * @param start the lower bound of the range of sources
 	 * @param end the upper bound of the range of sources (not inclusive)
 	 * @return the range of matching sources
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<Source> findByUuid(String uuid, int start, int end)
-		throws SystemException {
+	public List<Source> findByUuid(String uuid, int start, int end) {
 		return findByUuid(uuid, start, end, null);
 	}
 
@@ -150,11 +146,10 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 * @param end the upper bound of the range of sources (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching sources
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<Source> findByUuid(String uuid, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -271,12 +266,10 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching source
 	 * @throws com.liferay.reports.NoSuchSourceException if a matching source could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Source findByUuid_First(String uuid,
-		OrderByComparator orderByComparator)
-		throws NoSuchSourceException, SystemException {
+		OrderByComparator orderByComparator) throws NoSuchSourceException {
 		Source source = fetchByUuid_First(uuid, orderByComparator);
 
 		if (source != null) {
@@ -301,11 +294,10 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching source, or <code>null</code> if a matching source could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Source fetchByUuid_First(String uuid,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		List<Source> list = findByUuid(uuid, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -322,12 +314,10 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching source
 	 * @throws com.liferay.reports.NoSuchSourceException if a matching source could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Source findByUuid_Last(String uuid,
-		OrderByComparator orderByComparator)
-		throws NoSuchSourceException, SystemException {
+		OrderByComparator orderByComparator) throws NoSuchSourceException {
 		Source source = fetchByUuid_Last(uuid, orderByComparator);
 
 		if (source != null) {
@@ -352,11 +342,10 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching source, or <code>null</code> if a matching source could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Source fetchByUuid_Last(String uuid,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		int count = countByUuid(uuid);
 
 		if (count == 0) {
@@ -380,12 +369,10 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next source
 	 * @throws com.liferay.reports.NoSuchSourceException if a source with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Source[] findByUuid_PrevAndNext(long sourceId, String uuid,
-		OrderByComparator orderByComparator)
-		throws NoSuchSourceException, SystemException {
+		OrderByComparator orderByComparator) throws NoSuchSourceException {
 		Source source = findByPrimaryKey(sourceId);
 
 		Session session = null;
@@ -535,10 +522,9 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 * Removes all the sources where uuid = &#63; from the database.
 	 *
 	 * @param uuid the uuid
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public void removeByUuid(String uuid) throws SystemException {
+	public void removeByUuid(String uuid) {
 		for (Source source : findByUuid(uuid, QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS, null)) {
 			remove(source);
@@ -550,10 +536,9 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 *
 	 * @param uuid the uuid
 	 * @return the number of matching sources
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int countByUuid(String uuid) throws SystemException {
+	public int countByUuid(String uuid) {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID;
 
 		Object[] finderArgs = new Object[] { uuid };
@@ -633,11 +618,10 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 * @param groupId the group ID
 	 * @return the matching source
 	 * @throws com.liferay.reports.NoSuchSourceException if a matching source could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Source findByUUID_G(String uuid, long groupId)
-		throws NoSuchSourceException, SystemException {
+		throws NoSuchSourceException {
 		Source source = fetchByUUID_G(uuid, groupId);
 
 		if (source == null) {
@@ -669,11 +653,9 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 * @param uuid the uuid
 	 * @param groupId the group ID
 	 * @return the matching source, or <code>null</code> if a matching source could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Source fetchByUUID_G(String uuid, long groupId)
-		throws SystemException {
+	public Source fetchByUUID_G(String uuid, long groupId) {
 		return fetchByUUID_G(uuid, groupId, true);
 	}
 
@@ -684,11 +666,10 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 * @param groupId the group ID
 	 * @param retrieveFromCache whether to use the finder cache
 	 * @return the matching source, or <code>null</code> if a matching source could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Source fetchByUUID_G(String uuid, long groupId,
-		boolean retrieveFromCache) throws SystemException {
+		boolean retrieveFromCache) {
 		Object[] finderArgs = new Object[] { uuid, groupId };
 
 		Object result = null;
@@ -791,11 +772,10 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 * @param uuid the uuid
 	 * @param groupId the group ID
 	 * @return the source that was removed
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Source removeByUUID_G(String uuid, long groupId)
-		throws NoSuchSourceException, SystemException {
+		throws NoSuchSourceException {
 		Source source = findByUUID_G(uuid, groupId);
 
 		return remove(source);
@@ -807,11 +787,9 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 * @param uuid the uuid
 	 * @param groupId the group ID
 	 * @return the number of matching sources
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int countByUUID_G(String uuid, long groupId)
-		throws SystemException {
+	public int countByUUID_G(String uuid, long groupId) {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID_G;
 
 		Object[] finderArgs = new Object[] { uuid, groupId };
@@ -905,11 +883,9 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 * @param uuid the uuid
 	 * @param companyId the company ID
 	 * @return the matching sources
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<Source> findByUuid_C(String uuid, long companyId)
-		throws SystemException {
+	public List<Source> findByUuid_C(String uuid, long companyId) {
 		return findByUuid_C(uuid, companyId, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
@@ -926,11 +902,10 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 * @param start the lower bound of the range of sources
 	 * @param end the upper bound of the range of sources (not inclusive)
 	 * @return the range of matching sources
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<Source> findByUuid_C(String uuid, long companyId, int start,
-		int end) throws SystemException {
+		int end) {
 		return findByUuid_C(uuid, companyId, start, end, null);
 	}
 
@@ -947,11 +922,10 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 * @param end the upper bound of the range of sources (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching sources
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<Source> findByUuid_C(String uuid, long companyId, int start,
-		int end, OrderByComparator orderByComparator) throws SystemException {
+		int end, OrderByComparator orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1078,12 +1052,10 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching source
 	 * @throws com.liferay.reports.NoSuchSourceException if a matching source could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Source findByUuid_C_First(String uuid, long companyId,
-		OrderByComparator orderByComparator)
-		throws NoSuchSourceException, SystemException {
+		OrderByComparator orderByComparator) throws NoSuchSourceException {
 		Source source = fetchByUuid_C_First(uuid, companyId, orderByComparator);
 
 		if (source != null) {
@@ -1112,11 +1084,10 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching source, or <code>null</code> if a matching source could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Source fetchByUuid_C_First(String uuid, long companyId,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		List<Source> list = findByUuid_C(uuid, companyId, 0, 1,
 				orderByComparator);
 
@@ -1135,12 +1106,10 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching source
 	 * @throws com.liferay.reports.NoSuchSourceException if a matching source could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Source findByUuid_C_Last(String uuid, long companyId,
-		OrderByComparator orderByComparator)
-		throws NoSuchSourceException, SystemException {
+		OrderByComparator orderByComparator) throws NoSuchSourceException {
 		Source source = fetchByUuid_C_Last(uuid, companyId, orderByComparator);
 
 		if (source != null) {
@@ -1169,11 +1138,10 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching source, or <code>null</code> if a matching source could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Source fetchByUuid_C_Last(String uuid, long companyId,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		int count = countByUuid_C(uuid, companyId);
 
 		if (count == 0) {
@@ -1199,12 +1167,11 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next source
 	 * @throws com.liferay.reports.NoSuchSourceException if a source with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Source[] findByUuid_C_PrevAndNext(long sourceId, String uuid,
 		long companyId, OrderByComparator orderByComparator)
-		throws NoSuchSourceException, SystemException {
+		throws NoSuchSourceException {
 		Source source = findByPrimaryKey(sourceId);
 
 		Session session = null;
@@ -1360,11 +1327,9 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 *
 	 * @param uuid the uuid
 	 * @param companyId the company ID
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public void removeByUuid_C(String uuid, long companyId)
-		throws SystemException {
+	public void removeByUuid_C(String uuid, long companyId) {
 		for (Source source : findByUuid_C(uuid, companyId, QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS, null)) {
 			remove(source);
@@ -1377,11 +1342,9 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 * @param uuid the uuid
 	 * @param companyId the company ID
 	 * @return the number of matching sources
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int countByUuid_C(String uuid, long companyId)
-		throws SystemException {
+	public int countByUuid_C(String uuid, long companyId) {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID_C;
 
 		Object[] finderArgs = new Object[] { uuid, companyId };
@@ -1473,10 +1436,9 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 *
 	 * @param groupId the group ID
 	 * @return the matching sources
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<Source> findByGroupId(long groupId) throws SystemException {
+	public List<Source> findByGroupId(long groupId) {
 		return findByGroupId(groupId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
@@ -1491,11 +1453,9 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 * @param start the lower bound of the range of sources
 	 * @param end the upper bound of the range of sources (not inclusive)
 	 * @return the range of matching sources
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<Source> findByGroupId(long groupId, int start, int end)
-		throws SystemException {
+	public List<Source> findByGroupId(long groupId, int start, int end) {
 		return findByGroupId(groupId, start, end, null);
 	}
 
@@ -1511,11 +1471,10 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 * @param end the upper bound of the range of sources (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching sources
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<Source> findByGroupId(long groupId, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1618,12 +1577,10 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching source
 	 * @throws com.liferay.reports.NoSuchSourceException if a matching source could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Source findByGroupId_First(long groupId,
-		OrderByComparator orderByComparator)
-		throws NoSuchSourceException, SystemException {
+		OrderByComparator orderByComparator) throws NoSuchSourceException {
 		Source source = fetchByGroupId_First(groupId, orderByComparator);
 
 		if (source != null) {
@@ -1648,11 +1605,10 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 * @param groupId the group ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching source, or <code>null</code> if a matching source could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Source fetchByGroupId_First(long groupId,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		List<Source> list = findByGroupId(groupId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -1669,12 +1625,10 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching source
 	 * @throws com.liferay.reports.NoSuchSourceException if a matching source could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Source findByGroupId_Last(long groupId,
-		OrderByComparator orderByComparator)
-		throws NoSuchSourceException, SystemException {
+		OrderByComparator orderByComparator) throws NoSuchSourceException {
 		Source source = fetchByGroupId_Last(groupId, orderByComparator);
 
 		if (source != null) {
@@ -1699,11 +1653,10 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 * @param groupId the group ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching source, or <code>null</code> if a matching source could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Source fetchByGroupId_Last(long groupId,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		int count = countByGroupId(groupId);
 
 		if (count == 0) {
@@ -1728,12 +1681,10 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next source
 	 * @throws com.liferay.reports.NoSuchSourceException if a source with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Source[] findByGroupId_PrevAndNext(long sourceId, long groupId,
-		OrderByComparator orderByComparator)
-		throws NoSuchSourceException, SystemException {
+		OrderByComparator orderByComparator) throws NoSuchSourceException {
 		Source source = findByPrimaryKey(sourceId);
 
 		Session session = null;
@@ -1870,11 +1821,9 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 *
 	 * @param groupId the group ID
 	 * @return the matching sources that the user has permission to view
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<Source> filterFindByGroupId(long groupId)
-		throws SystemException {
+	public List<Source> filterFindByGroupId(long groupId) {
 		return filterFindByGroupId(groupId, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
@@ -1890,11 +1839,9 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 * @param start the lower bound of the range of sources
 	 * @param end the upper bound of the range of sources (not inclusive)
 	 * @return the range of matching sources that the user has permission to view
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<Source> filterFindByGroupId(long groupId, int start, int end)
-		throws SystemException {
+	public List<Source> filterFindByGroupId(long groupId, int start, int end) {
 		return filterFindByGroupId(groupId, start, end, null);
 	}
 
@@ -1910,11 +1857,10 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 * @param end the upper bound of the range of sources (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching sources that the user has permission to view
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<Source> filterFindByGroupId(long groupId, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByGroupId(groupId, start, end, orderByComparator);
 		}
@@ -2001,12 +1947,11 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next source
 	 * @throws com.liferay.reports.NoSuchSourceException if a source with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Source[] filterFindByGroupId_PrevAndNext(long sourceId,
 		long groupId, OrderByComparator orderByComparator)
-		throws NoSuchSourceException, SystemException {
+		throws NoSuchSourceException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByGroupId_PrevAndNext(sourceId, groupId,
 				orderByComparator);
@@ -2183,10 +2128,9 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 * Removes all the sources where groupId = &#63; from the database.
 	 *
 	 * @param groupId the group ID
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public void removeByGroupId(long groupId) throws SystemException {
+	public void removeByGroupId(long groupId) {
 		for (Source source : findByGroupId(groupId, QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS, null)) {
 			remove(source);
@@ -2198,10 +2142,9 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 *
 	 * @param groupId the group ID
 	 * @return the number of matching sources
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int countByGroupId(long groupId) throws SystemException {
+	public int countByGroupId(long groupId) {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_GROUPID;
 
 		Object[] finderArgs = new Object[] { groupId };
@@ -2251,10 +2194,9 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 *
 	 * @param groupId the group ID
 	 * @return the number of matching sources that the user has permission to view
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int filterCountByGroupId(long groupId) throws SystemException {
+	public int filterCountByGroupId(long groupId) {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return countByGroupId(groupId);
 		}
@@ -2322,11 +2264,9 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 *
 	 * @param companyId the company ID
 	 * @return the matching sources
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<Source> findByCompanyId(long companyId)
-		throws SystemException {
+	public List<Source> findByCompanyId(long companyId) {
 		return findByCompanyId(companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			null);
 	}
@@ -2342,11 +2282,9 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 * @param start the lower bound of the range of sources
 	 * @param end the upper bound of the range of sources (not inclusive)
 	 * @return the range of matching sources
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<Source> findByCompanyId(long companyId, int start, int end)
-		throws SystemException {
+	public List<Source> findByCompanyId(long companyId, int start, int end) {
 		return findByCompanyId(companyId, start, end, null);
 	}
 
@@ -2362,11 +2300,10 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 * @param end the upper bound of the range of sources (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching sources
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<Source> findByCompanyId(long companyId, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -2469,12 +2406,10 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching source
 	 * @throws com.liferay.reports.NoSuchSourceException if a matching source could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Source findByCompanyId_First(long companyId,
-		OrderByComparator orderByComparator)
-		throws NoSuchSourceException, SystemException {
+		OrderByComparator orderByComparator) throws NoSuchSourceException {
 		Source source = fetchByCompanyId_First(companyId, orderByComparator);
 
 		if (source != null) {
@@ -2499,11 +2434,10 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching source, or <code>null</code> if a matching source could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Source fetchByCompanyId_First(long companyId,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		List<Source> list = findByCompanyId(companyId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -2520,12 +2454,10 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching source
 	 * @throws com.liferay.reports.NoSuchSourceException if a matching source could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Source findByCompanyId_Last(long companyId,
-		OrderByComparator orderByComparator)
-		throws NoSuchSourceException, SystemException {
+		OrderByComparator orderByComparator) throws NoSuchSourceException {
 		Source source = fetchByCompanyId_Last(companyId, orderByComparator);
 
 		if (source != null) {
@@ -2550,11 +2482,10 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching source, or <code>null</code> if a matching source could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Source fetchByCompanyId_Last(long companyId,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		int count = countByCompanyId(companyId);
 
 		if (count == 0) {
@@ -2579,12 +2510,10 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next source
 	 * @throws com.liferay.reports.NoSuchSourceException if a source with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Source[] findByCompanyId_PrevAndNext(long sourceId, long companyId,
-		OrderByComparator orderByComparator)
-		throws NoSuchSourceException, SystemException {
+		OrderByComparator orderByComparator) throws NoSuchSourceException {
 		Source source = findByPrimaryKey(sourceId);
 
 		Session session = null;
@@ -2720,10 +2649,9 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 * Removes all the sources where companyId = &#63; from the database.
 	 *
 	 * @param companyId the company ID
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public void removeByCompanyId(long companyId) throws SystemException {
+	public void removeByCompanyId(long companyId) {
 		for (Source source : findByCompanyId(companyId, QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS, null)) {
 			remove(source);
@@ -2735,10 +2663,9 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 *
 	 * @param companyId the company ID
 	 * @return the number of matching sources
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int countByCompanyId(long companyId) throws SystemException {
+	public int countByCompanyId(long companyId) {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_COMPANYID;
 
 		Object[] finderArgs = new Object[] { companyId };
@@ -2946,11 +2873,9 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 * @param sourceId the primary key of the source
 	 * @return the source that was removed
 	 * @throws com.liferay.reports.NoSuchSourceException if a source with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Source remove(long sourceId)
-		throws NoSuchSourceException, SystemException {
+	public Source remove(long sourceId) throws NoSuchSourceException {
 		return remove((Serializable)sourceId);
 	}
 
@@ -2960,11 +2885,9 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 * @param primaryKey the primary key of the source
 	 * @return the source that was removed
 	 * @throws com.liferay.reports.NoSuchSourceException if a source with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Source remove(Serializable primaryKey)
-		throws NoSuchSourceException, SystemException {
+	public Source remove(Serializable primaryKey) throws NoSuchSourceException {
 		Session session = null;
 
 		try {
@@ -2995,7 +2918,7 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	}
 
 	@Override
-	protected Source removeImpl(Source source) throws SystemException {
+	protected Source removeImpl(Source source) {
 		source = toUnwrappedModel(source);
 
 		Session session = null;
@@ -3027,8 +2950,7 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	}
 
 	@Override
-	public Source updateImpl(com.liferay.reports.model.Source source)
-		throws SystemException {
+	public Source updateImpl(com.liferay.reports.model.Source source) {
 		source = toUnwrappedModel(source);
 
 		boolean isNew = source.isNew();
@@ -3186,11 +3108,10 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 * @param primaryKey the primary key of the source
 	 * @return the source
 	 * @throws com.liferay.reports.NoSuchSourceException if a source with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Source findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchSourceException, SystemException {
+		throws NoSuchSourceException {
 		Source source = fetchByPrimaryKey(primaryKey);
 
 		if (source == null) {
@@ -3211,11 +3132,9 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 * @param sourceId the primary key of the source
 	 * @return the source
 	 * @throws com.liferay.reports.NoSuchSourceException if a source with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Source findByPrimaryKey(long sourceId)
-		throws NoSuchSourceException, SystemException {
+	public Source findByPrimaryKey(long sourceId) throws NoSuchSourceException {
 		return findByPrimaryKey((Serializable)sourceId);
 	}
 
@@ -3224,11 +3143,9 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 *
 	 * @param primaryKey the primary key of the source
 	 * @return the source, or <code>null</code> if a source with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Source fetchByPrimaryKey(Serializable primaryKey)
-		throws SystemException {
+	public Source fetchByPrimaryKey(Serializable primaryKey) {
 		Source source = (Source)EntityCacheUtil.getResult(SourceModelImpl.ENTITY_CACHE_ENABLED,
 				SourceImpl.class, primaryKey);
 
@@ -3271,10 +3188,9 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 *
 	 * @param sourceId the primary key of the source
 	 * @return the source, or <code>null</code> if a source with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Source fetchByPrimaryKey(long sourceId) throws SystemException {
+	public Source fetchByPrimaryKey(long sourceId) {
 		return fetchByPrimaryKey((Serializable)sourceId);
 	}
 
@@ -3282,10 +3198,9 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 * Returns all the sources.
 	 *
 	 * @return the sources
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<Source> findAll() throws SystemException {
+	public List<Source> findAll() {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
@@ -3299,10 +3214,9 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 * @param start the lower bound of the range of sources
 	 * @param end the upper bound of the range of sources (not inclusive)
 	 * @return the range of sources
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<Source> findAll(int start, int end) throws SystemException {
+	public List<Source> findAll(int start, int end) {
 		return findAll(start, end, null);
 	}
 
@@ -3317,11 +3231,10 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 * @param end the upper bound of the range of sources (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of sources
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<Source> findAll(int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -3403,10 +3316,9 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	/**
 	 * Removes all the sources from the database.
 	 *
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public void removeAll() throws SystemException {
+	public void removeAll() {
 		for (Source source : findAll()) {
 			remove(source);
 		}
@@ -3416,10 +3328,9 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 * Returns the number of sources.
 	 *
 	 * @return the number of sources
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int countAll() throws SystemException {
+	public int countAll() {
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
 				FINDER_ARGS_EMPTY, this);
 

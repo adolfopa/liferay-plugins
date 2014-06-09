@@ -25,6 +25,8 @@ import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DefaultActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.Projection;
@@ -73,12 +75,11 @@ public abstract class OAuthApplicationLocalServiceBaseImpl
 	 *
 	 * @param oAuthApplication the o auth application
 	 * @return the o auth application that was added
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
 	public OAuthApplication addOAuthApplication(
-		OAuthApplication oAuthApplication) throws SystemException {
+		OAuthApplication oAuthApplication) {
 		oAuthApplication.setNew(true);
 
 		return oAuthApplicationPersistence.update(oAuthApplication);
@@ -101,7 +102,7 @@ public abstract class OAuthApplicationLocalServiceBaseImpl
 	 * @param oAuthApplicationId the primary key of the o auth application
 	 * @return the o auth application that was removed
 	 * @throws PortalException if a o auth application with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
@@ -116,7 +117,7 @@ public abstract class OAuthApplicationLocalServiceBaseImpl
 	 * @param oAuthApplication the o auth application
 	 * @return the o auth application that was removed
 	 * @throws PortalException
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
@@ -139,12 +140,10 @@ public abstract class OAuthApplicationLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery) {
 		return oAuthApplicationPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -159,12 +158,10 @@ public abstract class OAuthApplicationLocalServiceBaseImpl
 	 * @param start the lower bound of the range of model instances
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
 		return oAuthApplicationPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end);
 	}
@@ -181,12 +178,11 @@ public abstract class OAuthApplicationLocalServiceBaseImpl
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return oAuthApplicationPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end, orderByComparator);
 	}
@@ -196,11 +192,9 @@ public abstract class OAuthApplicationLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public long dynamicQueryCount(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
 		return oAuthApplicationPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -210,18 +204,16 @@ public abstract class OAuthApplicationLocalServiceBaseImpl
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection) throws SystemException {
+		Projection projection) {
 		return oAuthApplicationPersistence.countWithDynamicQuery(dynamicQuery,
 			projection);
 	}
 
 	@Override
-	public OAuthApplication fetchOAuthApplication(long oAuthApplicationId)
-		throws SystemException {
+	public OAuthApplication fetchOAuthApplication(long oAuthApplicationId) {
 		return oAuthApplicationPersistence.fetchByPrimaryKey(oAuthApplicationId);
 	}
 
@@ -231,17 +223,47 @@ public abstract class OAuthApplicationLocalServiceBaseImpl
 	 * @param oAuthApplicationId the primary key of the o auth application
 	 * @return the o auth application
 	 * @throws PortalException if a o auth application with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public OAuthApplication getOAuthApplication(long oAuthApplicationId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return oAuthApplicationPersistence.findByPrimaryKey(oAuthApplicationId);
 	}
 
 	@Override
+	public ActionableDynamicQuery getActionableDynamicQuery() {
+		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
+
+		actionableDynamicQuery.setBaseLocalService(com.liferay.oauth.service.OAuthApplicationLocalServiceUtil.getService());
+		actionableDynamicQuery.setClass(OAuthApplication.class);
+		actionableDynamicQuery.setClassLoader(getClassLoader());
+
+		actionableDynamicQuery.setPrimaryKeyPropertyName("oAuthApplicationId");
+
+		return actionableDynamicQuery;
+	}
+
+	protected void initActionableDynamicQuery(
+		ActionableDynamicQuery actionableDynamicQuery) {
+		actionableDynamicQuery.setBaseLocalService(com.liferay.oauth.service.OAuthApplicationLocalServiceUtil.getService());
+		actionableDynamicQuery.setClass(OAuthApplication.class);
+		actionableDynamicQuery.setClassLoader(getClassLoader());
+
+		actionableDynamicQuery.setPrimaryKeyPropertyName("oAuthApplicationId");
+	}
+
+	/**
+	 * @throws PortalException
+	 */
+	@Override
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
+		throws PortalException {
+		return deleteOAuthApplication((OAuthApplication)persistedModel);
+	}
+
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return oAuthApplicationPersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
@@ -255,11 +277,9 @@ public abstract class OAuthApplicationLocalServiceBaseImpl
 	 * @param start the lower bound of the range of o auth applications
 	 * @param end the upper bound of the range of o auth applications (not inclusive)
 	 * @return the range of o auth applications
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<OAuthApplication> getOAuthApplications(int start, int end)
-		throws SystemException {
+	public List<OAuthApplication> getOAuthApplications(int start, int end) {
 		return oAuthApplicationPersistence.findAll(start, end);
 	}
 
@@ -267,10 +287,9 @@ public abstract class OAuthApplicationLocalServiceBaseImpl
 	 * Returns the number of o auth applications.
 	 *
 	 * @return the number of o auth applications
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int getOAuthApplicationsCount() throws SystemException {
+	public int getOAuthApplicationsCount() {
 		return oAuthApplicationPersistence.countAll();
 	}
 
@@ -279,12 +298,11 @@ public abstract class OAuthApplicationLocalServiceBaseImpl
 	 *
 	 * @param oAuthApplication the o auth application
 	 * @return the o auth application that was updated
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
 	public OAuthApplication updateOAuthApplication(
-		OAuthApplication oAuthApplication) throws SystemException {
+		OAuthApplication oAuthApplication) {
 		return oAuthApplicationPersistence.update(oAuthApplication);
 	}
 
@@ -677,7 +695,7 @@ public abstract class OAuthApplicationLocalServiceBaseImpl
 	 *
 	 * @param sql the sql query
 	 */
-	protected void runSQL(String sql) throws SystemException {
+	protected void runSQL(String sql) {
 		try {
 			DataSource dataSource = oAuthApplicationPersistence.getDataSource();
 

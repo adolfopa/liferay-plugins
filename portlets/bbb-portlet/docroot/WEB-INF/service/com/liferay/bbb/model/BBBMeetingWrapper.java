@@ -251,11 +251,9 @@ public class BBBMeetingWrapper implements BBBMeeting, ModelWrapper<BBBMeeting> {
 	* Returns the user uuid of this b b b meeting.
 	*
 	* @return the user uuid of this b b b meeting
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public java.lang.String getUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.lang.String getUserUuid() {
 		return _bbbMeeting.getUserUuid();
 	}
 
@@ -548,8 +546,7 @@ public class BBBMeetingWrapper implements BBBMeeting, ModelWrapper<BBBMeeting> {
 	}
 
 	@Override
-	public void persist()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void persist() {
 		_bbbMeeting.persist();
 	}
 

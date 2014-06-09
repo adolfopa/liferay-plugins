@@ -25,11 +25,19 @@ import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DefaultActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.Projection;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.lar.ExportImportHelperUtil;
+import com.liferay.portal.kernel.lar.ManifestSummary;
+import com.liferay.portal.kernel.lar.PortletDataContext;
+import com.liferay.portal.kernel.lar.StagedModelDataHandlerUtil;
+import com.liferay.portal.kernel.lar.StagedModelType;
 import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -74,12 +82,10 @@ public abstract class WebExAccountLocalServiceBaseImpl
 	 *
 	 * @param webExAccount the web ex account
 	 * @return the web ex account that was added
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
-	public WebExAccount addWebExAccount(WebExAccount webExAccount)
-		throws SystemException {
+	public WebExAccount addWebExAccount(WebExAccount webExAccount) {
 		webExAccount.setNew(true);
 
 		return webExAccountPersistence.update(webExAccount);
@@ -102,7 +108,7 @@ public abstract class WebExAccountLocalServiceBaseImpl
 	 * @param webExAccountId the primary key of the web ex account
 	 * @return the web ex account that was removed
 	 * @throws PortalException if a web ex account with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
@@ -117,7 +123,7 @@ public abstract class WebExAccountLocalServiceBaseImpl
 	 * @param webExAccount the web ex account
 	 * @return the web ex account that was removed
 	 * @throws PortalException
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
@@ -139,12 +145,10 @@ public abstract class WebExAccountLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery) {
 		return webExAccountPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -159,12 +163,10 @@ public abstract class WebExAccountLocalServiceBaseImpl
 	 * @param start the lower bound of the range of model instances
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
 		return webExAccountPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end);
 	}
@@ -181,12 +183,11 @@ public abstract class WebExAccountLocalServiceBaseImpl
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return webExAccountPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end, orderByComparator);
 	}
@@ -196,11 +197,9 @@ public abstract class WebExAccountLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public long dynamicQueryCount(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
 		return webExAccountPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -210,18 +209,16 @@ public abstract class WebExAccountLocalServiceBaseImpl
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection) throws SystemException {
+		Projection projection) {
 		return webExAccountPersistence.countWithDynamicQuery(dynamicQuery,
 			projection);
 	}
 
 	@Override
-	public WebExAccount fetchWebExAccount(long webExAccountId)
-		throws SystemException {
+	public WebExAccount fetchWebExAccount(long webExAccountId) {
 		return webExAccountPersistence.fetchByPrimaryKey(webExAccountId);
 	}
 
@@ -231,11 +228,10 @@ public abstract class WebExAccountLocalServiceBaseImpl
 	 * @param uuid the web ex account's UUID
 	 * @param  companyId the primary key of the company
 	 * @return the matching web ex account, or <code>null</code> if a matching web ex account could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public WebExAccount fetchWebExAccountByUuidAndCompanyId(String uuid,
-		long companyId) throws SystemException {
+		long companyId) {
 		return webExAccountPersistence.fetchByUuid_C_First(uuid, companyId, null);
 	}
 
@@ -245,11 +241,10 @@ public abstract class WebExAccountLocalServiceBaseImpl
 	 * @param uuid the web ex account's UUID
 	 * @param groupId the primary key of the group
 	 * @return the matching web ex account, or <code>null</code> if a matching web ex account could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public WebExAccount fetchWebExAccountByUuidAndGroupId(String uuid,
-		long groupId) throws SystemException {
+		long groupId) {
 		return webExAccountPersistence.fetchByUUID_G(uuid, groupId);
 	}
 
@@ -259,17 +254,102 @@ public abstract class WebExAccountLocalServiceBaseImpl
 	 * @param webExAccountId the primary key of the web ex account
 	 * @return the web ex account
 	 * @throws PortalException if a web ex account with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public WebExAccount getWebExAccount(long webExAccountId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return webExAccountPersistence.findByPrimaryKey(webExAccountId);
 	}
 
 	@Override
+	public ActionableDynamicQuery getActionableDynamicQuery() {
+		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
+
+		actionableDynamicQuery.setBaseLocalService(com.liferay.meeting.webex.service.WebExAccountLocalServiceUtil.getService());
+		actionableDynamicQuery.setClass(WebExAccount.class);
+		actionableDynamicQuery.setClassLoader(getClassLoader());
+
+		actionableDynamicQuery.setPrimaryKeyPropertyName("webExAccountId");
+
+		return actionableDynamicQuery;
+	}
+
+	protected void initActionableDynamicQuery(
+		ActionableDynamicQuery actionableDynamicQuery) {
+		actionableDynamicQuery.setBaseLocalService(com.liferay.meeting.webex.service.WebExAccountLocalServiceUtil.getService());
+		actionableDynamicQuery.setClass(WebExAccount.class);
+		actionableDynamicQuery.setClassLoader(getClassLoader());
+
+		actionableDynamicQuery.setPrimaryKeyPropertyName("webExAccountId");
+	}
+
+	@Override
+	public ExportActionableDynamicQuery getExportActionableDynamicQuery(
+		final PortletDataContext portletDataContext) {
+		final ExportActionableDynamicQuery exportActionableDynamicQuery = new ExportActionableDynamicQuery() {
+				@Override
+				public long performCount() throws PortalException {
+					ManifestSummary manifestSummary = portletDataContext.getManifestSummary();
+
+					StagedModelType stagedModelType = getStagedModelType();
+
+					long modelAdditionCount = super.performCount();
+
+					manifestSummary.addModelAdditionCount(stagedModelType.toString(),
+						modelAdditionCount);
+
+					long modelDeletionCount = ExportImportHelperUtil.getModelDeletionCount(portletDataContext,
+							stagedModelType);
+
+					manifestSummary.addModelDeletionCount(stagedModelType.toString(),
+						modelDeletionCount);
+
+					return modelAdditionCount;
+				}
+			};
+
+		initActionableDynamicQuery(exportActionableDynamicQuery);
+
+		exportActionableDynamicQuery.setAddCriteriaMethod(new ActionableDynamicQuery.AddCriteriaMethod() {
+				@Override
+				public void addCriteria(DynamicQuery dynamicQuery) {
+					portletDataContext.addDateRangeCriteria(dynamicQuery,
+						"modifiedDate");
+				}
+			});
+
+		exportActionableDynamicQuery.setCompanyId(portletDataContext.getCompanyId());
+
+		exportActionableDynamicQuery.setGroupId(portletDataContext.getScopeGroupId());
+
+		exportActionableDynamicQuery.setPerformActionMethod(new ActionableDynamicQuery.PerformActionMethod() {
+				@Override
+				public void performAction(Object object)
+					throws PortalException {
+					WebExAccount stagedModel = (WebExAccount)object;
+
+					StagedModelDataHandlerUtil.exportStagedModel(portletDataContext,
+						stagedModel);
+				}
+			});
+		exportActionableDynamicQuery.setStagedModelType(new StagedModelType(
+				PortalUtil.getClassNameId(WebExAccount.class.getName())));
+
+		return exportActionableDynamicQuery;
+	}
+
+	/**
+	 * @throws PortalException
+	 */
+	@Override
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
+		throws PortalException {
+		return deleteWebExAccount((WebExAccount)persistedModel);
+	}
+
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return webExAccountPersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
@@ -280,11 +360,10 @@ public abstract class WebExAccountLocalServiceBaseImpl
 	 * @param  companyId the primary key of the company
 	 * @return the matching web ex account
 	 * @throws PortalException if a matching web ex account could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public WebExAccount getWebExAccountByUuidAndCompanyId(String uuid,
-		long companyId) throws PortalException, SystemException {
+		long companyId) throws PortalException {
 		return webExAccountPersistence.findByUuid_C_First(uuid, companyId, null);
 	}
 
@@ -295,11 +374,10 @@ public abstract class WebExAccountLocalServiceBaseImpl
 	 * @param groupId the primary key of the group
 	 * @return the matching web ex account
 	 * @throws PortalException if a matching web ex account could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public WebExAccount getWebExAccountByUuidAndGroupId(String uuid,
-		long groupId) throws PortalException, SystemException {
+		long groupId) throws PortalException {
 		return webExAccountPersistence.findByUUID_G(uuid, groupId);
 	}
 
@@ -313,11 +391,9 @@ public abstract class WebExAccountLocalServiceBaseImpl
 	 * @param start the lower bound of the range of web ex accounts
 	 * @param end the upper bound of the range of web ex accounts (not inclusive)
 	 * @return the range of web ex accounts
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<WebExAccount> getWebExAccounts(int start, int end)
-		throws SystemException {
+	public List<WebExAccount> getWebExAccounts(int start, int end) {
 		return webExAccountPersistence.findAll(start, end);
 	}
 
@@ -325,10 +401,9 @@ public abstract class WebExAccountLocalServiceBaseImpl
 	 * Returns the number of web ex accounts.
 	 *
 	 * @return the number of web ex accounts
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int getWebExAccountsCount() throws SystemException {
+	public int getWebExAccountsCount() {
 		return webExAccountPersistence.countAll();
 	}
 
@@ -337,12 +412,10 @@ public abstract class WebExAccountLocalServiceBaseImpl
 	 *
 	 * @param webExAccount the web ex account
 	 * @return the web ex account that was updated
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
-	public WebExAccount updateWebExAccount(WebExAccount webExAccount)
-		throws SystemException {
+	public WebExAccount updateWebExAccount(WebExAccount webExAccount) {
 		return webExAccountPersistence.update(webExAccount);
 	}
 
@@ -736,7 +809,7 @@ public abstract class WebExAccountLocalServiceBaseImpl
 	 *
 	 * @param sql the sql query
 	 */
-	protected void runSQL(String sql) throws SystemException {
+	protected void runSQL(String sql) {
 		try {
 			DataSource dataSource = webExAccountPersistence.getDataSource();
 

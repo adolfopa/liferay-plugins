@@ -14,8 +14,6 @@
 
 package com.liferay.reports.model.impl;
 
-import com.liferay.portal.kernel.exception.SystemException;
-
 import com.liferay.reports.model.Definition;
 import com.liferay.reports.service.DefinitionLocalServiceUtil;
 
@@ -39,7 +37,7 @@ public abstract class DefinitionBaseImpl extends DefinitionModelImpl
 	 * Never modify or reference this class directly. All methods that expect a definition model instance should use the {@link Definition} interface instead.
 	 */
 	@Override
-	public void persist() throws SystemException {
+	public void persist() {
 		if (this.isNew()) {
 			DefinitionLocalServiceUtil.addDefinition(this);
 		}

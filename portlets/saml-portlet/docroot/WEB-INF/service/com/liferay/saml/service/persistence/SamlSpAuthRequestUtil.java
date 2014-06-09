@@ -16,7 +16,6 @@ package com.liferay.saml.service.persistence;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
@@ -61,8 +60,7 @@ public class SamlSpAuthRequestUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#countWithDynamicQuery(DynamicQuery)
 	 */
-	public static long countWithDynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public static long countWithDynamicQuery(DynamicQuery dynamicQuery) {
 		return getPersistence().countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -70,7 +68,7 @@ public class SamlSpAuthRequestUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery)
 	 */
 	public static List<SamlSpAuthRequest> findWithDynamicQuery(
-		DynamicQuery dynamicQuery) throws SystemException {
+		DynamicQuery dynamicQuery) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -78,8 +76,7 @@ public class SamlSpAuthRequestUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int)
 	 */
 	public static List<SamlSpAuthRequest> findWithDynamicQuery(
-		DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+		DynamicQuery dynamicQuery, int start, int end) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -88,7 +85,7 @@ public class SamlSpAuthRequestUtil {
 	 */
 	public static List<SamlSpAuthRequest> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -97,8 +94,7 @@ public class SamlSpAuthRequestUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static SamlSpAuthRequest update(SamlSpAuthRequest samlSpAuthRequest)
-		throws SystemException {
+	public static SamlSpAuthRequest update(SamlSpAuthRequest samlSpAuthRequest) {
 		return getPersistence().update(samlSpAuthRequest);
 	}
 
@@ -106,8 +102,7 @@ public class SamlSpAuthRequestUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
 	public static SamlSpAuthRequest update(
-		SamlSpAuthRequest samlSpAuthRequest, ServiceContext serviceContext)
-		throws SystemException {
+		SamlSpAuthRequest samlSpAuthRequest, ServiceContext serviceContext) {
 		return getPersistence().update(samlSpAuthRequest, serviceContext);
 	}
 
@@ -118,12 +113,10 @@ public class SamlSpAuthRequestUtil {
 	* @param samlSpAuthRequestKey the saml sp auth request key
 	* @return the matching saml sp auth request
 	* @throws com.liferay.saml.NoSuchSpAuthRequestException if a matching saml sp auth request could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.saml.model.SamlSpAuthRequest findBySIEI_SSARK(
 		java.lang.String samlIdpEntityId, java.lang.String samlSpAuthRequestKey)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.saml.NoSuchSpAuthRequestException {
+		throws com.liferay.saml.NoSuchSpAuthRequestException {
 		return getPersistence()
 				   .findBySIEI_SSARK(samlIdpEntityId, samlSpAuthRequestKey);
 	}
@@ -134,11 +127,9 @@ public class SamlSpAuthRequestUtil {
 	* @param samlIdpEntityId the saml idp entity ID
 	* @param samlSpAuthRequestKey the saml sp auth request key
 	* @return the matching saml sp auth request, or <code>null</code> if a matching saml sp auth request could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.saml.model.SamlSpAuthRequest fetchBySIEI_SSARK(
-		java.lang.String samlIdpEntityId, java.lang.String samlSpAuthRequestKey)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String samlIdpEntityId, java.lang.String samlSpAuthRequestKey) {
 		return getPersistence()
 				   .fetchBySIEI_SSARK(samlIdpEntityId, samlSpAuthRequestKey);
 	}
@@ -150,12 +141,10 @@ public class SamlSpAuthRequestUtil {
 	* @param samlSpAuthRequestKey the saml sp auth request key
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching saml sp auth request, or <code>null</code> if a matching saml sp auth request could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.saml.model.SamlSpAuthRequest fetchBySIEI_SSARK(
 		java.lang.String samlIdpEntityId,
-		java.lang.String samlSpAuthRequestKey, boolean retrieveFromCache)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String samlSpAuthRequestKey, boolean retrieveFromCache) {
 		return getPersistence()
 				   .fetchBySIEI_SSARK(samlIdpEntityId, samlSpAuthRequestKey,
 			retrieveFromCache);
@@ -167,12 +156,10 @@ public class SamlSpAuthRequestUtil {
 	* @param samlIdpEntityId the saml idp entity ID
 	* @param samlSpAuthRequestKey the saml sp auth request key
 	* @return the saml sp auth request that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.saml.model.SamlSpAuthRequest removeBySIEI_SSARK(
 		java.lang.String samlIdpEntityId, java.lang.String samlSpAuthRequestKey)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.saml.NoSuchSpAuthRequestException {
+		throws com.liferay.saml.NoSuchSpAuthRequestException {
 		return getPersistence()
 				   .removeBySIEI_SSARK(samlIdpEntityId, samlSpAuthRequestKey);
 	}
@@ -183,11 +170,9 @@ public class SamlSpAuthRequestUtil {
 	* @param samlIdpEntityId the saml idp entity ID
 	* @param samlSpAuthRequestKey the saml sp auth request key
 	* @return the number of matching saml sp auth requests
-	* @throws SystemException if a system exception occurred
 	*/
 	public static int countBySIEI_SSARK(java.lang.String samlIdpEntityId,
-		java.lang.String samlSpAuthRequestKey)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String samlSpAuthRequestKey) {
 		return getPersistence()
 				   .countBySIEI_SSARK(samlIdpEntityId, samlSpAuthRequestKey);
 	}
@@ -229,18 +214,15 @@ public class SamlSpAuthRequestUtil {
 	* @param samlSpAuthnRequestId the primary key of the saml sp auth request
 	* @return the saml sp auth request that was removed
 	* @throws com.liferay.saml.NoSuchSpAuthRequestException if a saml sp auth request with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.saml.model.SamlSpAuthRequest remove(
 		long samlSpAuthnRequestId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.saml.NoSuchSpAuthRequestException {
+		throws com.liferay.saml.NoSuchSpAuthRequestException {
 		return getPersistence().remove(samlSpAuthnRequestId);
 	}
 
 	public static com.liferay.saml.model.SamlSpAuthRequest updateImpl(
-		com.liferay.saml.model.SamlSpAuthRequest samlSpAuthRequest)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.saml.model.SamlSpAuthRequest samlSpAuthRequest) {
 		return getPersistence().updateImpl(samlSpAuthRequest);
 	}
 
@@ -250,12 +232,10 @@ public class SamlSpAuthRequestUtil {
 	* @param samlSpAuthnRequestId the primary key of the saml sp auth request
 	* @return the saml sp auth request
 	* @throws com.liferay.saml.NoSuchSpAuthRequestException if a saml sp auth request with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.saml.model.SamlSpAuthRequest findByPrimaryKey(
 		long samlSpAuthnRequestId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.saml.NoSuchSpAuthRequestException {
+		throws com.liferay.saml.NoSuchSpAuthRequestException {
 		return getPersistence().findByPrimaryKey(samlSpAuthnRequestId);
 	}
 
@@ -264,11 +244,9 @@ public class SamlSpAuthRequestUtil {
 	*
 	* @param samlSpAuthnRequestId the primary key of the saml sp auth request
 	* @return the saml sp auth request, or <code>null</code> if a saml sp auth request with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.saml.model.SamlSpAuthRequest fetchByPrimaryKey(
-		long samlSpAuthnRequestId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long samlSpAuthnRequestId) {
 		return getPersistence().fetchByPrimaryKey(samlSpAuthnRequestId);
 	}
 
@@ -276,10 +254,8 @@ public class SamlSpAuthRequestUtil {
 	* Returns all the saml sp auth requests.
 	*
 	* @return the saml sp auth requests
-	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<com.liferay.saml.model.SamlSpAuthRequest> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static java.util.List<com.liferay.saml.model.SamlSpAuthRequest> findAll() {
 		return getPersistence().findAll();
 	}
 
@@ -293,11 +269,9 @@ public class SamlSpAuthRequestUtil {
 	* @param start the lower bound of the range of saml sp auth requests
 	* @param end the upper bound of the range of saml sp auth requests (not inclusive)
 	* @return the range of saml sp auth requests
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.saml.model.SamlSpAuthRequest> findAll(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return getPersistence().findAll(start, end);
 	}
 
@@ -312,22 +286,17 @@ public class SamlSpAuthRequestUtil {
 	* @param end the upper bound of the range of saml sp auth requests (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of saml sp auth requests
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.saml.model.SamlSpAuthRequest> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
 	/**
 	* Removes all the saml sp auth requests from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeAll() {
 		getPersistence().removeAll();
 	}
 
@@ -335,10 +304,8 @@ public class SamlSpAuthRequestUtil {
 	* Returns the number of saml sp auth requests.
 	*
 	* @return the number of saml sp auth requests
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countAll() {
 		return getPersistence().countAll();
 	}
 

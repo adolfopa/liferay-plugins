@@ -163,11 +163,9 @@ public class OAuthUserWrapper implements OAuthUser, ModelWrapper<OAuthUser> {
 	* Returns the o auth user uuid of this o auth user.
 	*
 	* @return the o auth user uuid of this o auth user
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public java.lang.String getOAuthUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.lang.String getOAuthUserUuid() {
 		return _oAuthUser.getOAuthUserUuid();
 	}
 
@@ -225,11 +223,9 @@ public class OAuthUserWrapper implements OAuthUser, ModelWrapper<OAuthUser> {
 	* Returns the user uuid of this o auth user.
 	*
 	* @return the user uuid of this o auth user
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public java.lang.String getUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.lang.String getUserUuid() {
 		return _oAuthUser.getUserUuid();
 	}
 
@@ -462,8 +458,7 @@ public class OAuthUserWrapper implements OAuthUser, ModelWrapper<OAuthUser> {
 	}
 
 	@Override
-	public void persist()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void persist() {
 		_oAuthUser.persist();
 	}
 

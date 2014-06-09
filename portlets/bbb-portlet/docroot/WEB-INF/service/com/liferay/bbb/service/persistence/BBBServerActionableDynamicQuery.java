@@ -18,15 +18,16 @@ import com.liferay.bbb.model.BBBServer;
 import com.liferay.bbb.service.BBBServerLocalServiceUtil;
 
 import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 
 /**
  * @author Shinn Lok
+ * @deprecated As of 7.0.0, replaced by {@link BBBServerLocalServiceUtil#getExportActionableDynamicQuery()}
  * @generated
  */
+@Deprecated
 public abstract class BBBServerActionableDynamicQuery
 	extends BaseActionableDynamicQuery {
-	public BBBServerActionableDynamicQuery() throws SystemException {
+	public BBBServerActionableDynamicQuery() {
 		setBaseLocalService(BBBServerLocalServiceUtil.getService());
 		setClass(BBBServer.class);
 

@@ -44,11 +44,9 @@ public class BBBMeetingLocalServiceUtil {
 	*
 	* @param bbbMeeting the b b b meeting
 	* @return the b b b meeting that was added
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.bbb.model.BBBMeeting addBBBMeeting(
-		com.liferay.bbb.model.BBBMeeting bbbMeeting)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.bbb.model.BBBMeeting bbbMeeting) {
 		return getService().addBBBMeeting(bbbMeeting);
 	}
 
@@ -69,7 +67,7 @@ public class BBBMeetingLocalServiceUtil {
 	* @param bbbMeetingId the primary key of the b b b meeting
 	* @return the b b b meeting that was removed
 	* @throws PortalException if a b b b meeting with the primary key could not be found
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	public static com.liferay.bbb.model.BBBMeeting deleteBBBMeeting(
 		long bbbMeetingId)
@@ -84,7 +82,7 @@ public class BBBMeetingLocalServiceUtil {
 	* @param bbbMeeting the b b b meeting
 	* @return the b b b meeting that was removed
 	* @throws PortalException
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	public static com.liferay.bbb.model.BBBMeeting deleteBBBMeeting(
 		com.liferay.bbb.model.BBBMeeting bbbMeeting)
@@ -102,12 +100,10 @@ public class BBBMeetingLocalServiceUtil {
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return getService().dynamicQuery(dynamicQuery);
 	}
 
@@ -122,12 +118,11 @@ public class BBBMeetingLocalServiceUtil {
 	* @param start the lower bound of the range of model instances
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		int end) {
 		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -143,14 +138,12 @@ public class BBBMeetingLocalServiceUtil {
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getService()
 				   .dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
@@ -160,11 +153,9 @@ public class BBBMeetingLocalServiceUtil {
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	public static long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
@@ -174,18 +165,15 @@ public class BBBMeetingLocalServiceUtil {
 	* @param dynamicQuery the dynamic query
 	* @param projection the projection to apply to the query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	public static long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.Projection projection) {
 		return getService().dynamicQueryCount(dynamicQuery, projection);
 	}
 
 	public static com.liferay.bbb.model.BBBMeeting fetchBBBMeeting(
-		long bbbMeetingId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long bbbMeetingId) {
 		return getService().fetchBBBMeeting(bbbMeetingId);
 	}
 
@@ -195,7 +183,7 @@ public class BBBMeetingLocalServiceUtil {
 	* @param bbbMeetingId the primary key of the b b b meeting
 	* @return the b b b meeting
 	* @throws PortalException if a b b b meeting with the primary key could not be found
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	public static com.liferay.bbb.model.BBBMeeting getBBBMeeting(
 		long bbbMeetingId)
@@ -204,10 +192,22 @@ public class BBBMeetingLocalServiceUtil {
 		return getService().getBBBMeeting(bbbMeetingId);
 	}
 
+	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return getService().getActionableDynamicQuery();
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deletePersistedModel(persistedModel);
+	}
+
 	public static com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getPersistedModel(primaryKeyObj);
 	}
 
@@ -221,11 +221,9 @@ public class BBBMeetingLocalServiceUtil {
 	* @param start the lower bound of the range of b b b meetings
 	* @param end the upper bound of the range of b b b meetings (not inclusive)
 	* @return the range of b b b meetings
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.bbb.model.BBBMeeting> getBBBMeetings(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return getService().getBBBMeetings(start, end);
 	}
 
@@ -233,10 +231,8 @@ public class BBBMeetingLocalServiceUtil {
 	* Returns the number of b b b meetings.
 	*
 	* @return the number of b b b meetings
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int getBBBMeetingsCount()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int getBBBMeetingsCount() {
 		return getService().getBBBMeetingsCount();
 	}
 
@@ -245,11 +241,9 @@ public class BBBMeetingLocalServiceUtil {
 	*
 	* @param bbbMeeting the b b b meeting
 	* @return the b b b meeting that was updated
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.bbb.model.BBBMeeting updateBBBMeeting(
-		com.liferay.bbb.model.BBBMeeting bbbMeeting)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.bbb.model.BBBMeeting bbbMeeting) {
 		return getService().updateBBBMeeting(bbbMeeting);
 	}
 

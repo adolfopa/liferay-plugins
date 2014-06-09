@@ -16,7 +16,6 @@ package com.liferay.saml.service.persistence;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
@@ -61,8 +60,7 @@ public class SamlSpMessageUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#countWithDynamicQuery(DynamicQuery)
 	 */
-	public static long countWithDynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public static long countWithDynamicQuery(DynamicQuery dynamicQuery) {
 		return getPersistence().countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -70,7 +68,7 @@ public class SamlSpMessageUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery)
 	 */
 	public static List<SamlSpMessage> findWithDynamicQuery(
-		DynamicQuery dynamicQuery) throws SystemException {
+		DynamicQuery dynamicQuery) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -78,8 +76,7 @@ public class SamlSpMessageUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int)
 	 */
 	public static List<SamlSpMessage> findWithDynamicQuery(
-		DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+		DynamicQuery dynamicQuery, int start, int end) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -88,7 +85,7 @@ public class SamlSpMessageUtil {
 	 */
 	public static List<SamlSpMessage> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -97,8 +94,7 @@ public class SamlSpMessageUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static SamlSpMessage update(SamlSpMessage samlSpMessage)
-		throws SystemException {
+	public static SamlSpMessage update(SamlSpMessage samlSpMessage) {
 		return getPersistence().update(samlSpMessage);
 	}
 
@@ -106,7 +102,7 @@ public class SamlSpMessageUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
 	public static SamlSpMessage update(SamlSpMessage samlSpMessage,
-		ServiceContext serviceContext) throws SystemException {
+		ServiceContext serviceContext) {
 		return getPersistence().update(samlSpMessage, serviceContext);
 	}
 
@@ -117,12 +113,10 @@ public class SamlSpMessageUtil {
 	* @param samlIdpResponseKey the saml idp response key
 	* @return the matching saml sp message
 	* @throws com.liferay.saml.NoSuchSpMessageException if a matching saml sp message could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.saml.model.SamlSpMessage findBySIEI_SIRK(
 		java.lang.String samlIdpEntityId, java.lang.String samlIdpResponseKey)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.saml.NoSuchSpMessageException {
+		throws com.liferay.saml.NoSuchSpMessageException {
 		return getPersistence()
 				   .findBySIEI_SIRK(samlIdpEntityId, samlIdpResponseKey);
 	}
@@ -133,11 +127,9 @@ public class SamlSpMessageUtil {
 	* @param samlIdpEntityId the saml idp entity ID
 	* @param samlIdpResponseKey the saml idp response key
 	* @return the matching saml sp message, or <code>null</code> if a matching saml sp message could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.saml.model.SamlSpMessage fetchBySIEI_SIRK(
-		java.lang.String samlIdpEntityId, java.lang.String samlIdpResponseKey)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String samlIdpEntityId, java.lang.String samlIdpResponseKey) {
 		return getPersistence()
 				   .fetchBySIEI_SIRK(samlIdpEntityId, samlIdpResponseKey);
 	}
@@ -149,12 +141,10 @@ public class SamlSpMessageUtil {
 	* @param samlIdpResponseKey the saml idp response key
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching saml sp message, or <code>null</code> if a matching saml sp message could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.saml.model.SamlSpMessage fetchBySIEI_SIRK(
 		java.lang.String samlIdpEntityId, java.lang.String samlIdpResponseKey,
-		boolean retrieveFromCache)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		boolean retrieveFromCache) {
 		return getPersistence()
 				   .fetchBySIEI_SIRK(samlIdpEntityId, samlIdpResponseKey,
 			retrieveFromCache);
@@ -166,12 +156,10 @@ public class SamlSpMessageUtil {
 	* @param samlIdpEntityId the saml idp entity ID
 	* @param samlIdpResponseKey the saml idp response key
 	* @return the saml sp message that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.saml.model.SamlSpMessage removeBySIEI_SIRK(
 		java.lang.String samlIdpEntityId, java.lang.String samlIdpResponseKey)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.saml.NoSuchSpMessageException {
+		throws com.liferay.saml.NoSuchSpMessageException {
 		return getPersistence()
 				   .removeBySIEI_SIRK(samlIdpEntityId, samlIdpResponseKey);
 	}
@@ -182,11 +170,9 @@ public class SamlSpMessageUtil {
 	* @param samlIdpEntityId the saml idp entity ID
 	* @param samlIdpResponseKey the saml idp response key
 	* @return the number of matching saml sp messages
-	* @throws SystemException if a system exception occurred
 	*/
 	public static int countBySIEI_SIRK(java.lang.String samlIdpEntityId,
-		java.lang.String samlIdpResponseKey)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String samlIdpResponseKey) {
 		return getPersistence()
 				   .countBySIEI_SIRK(samlIdpEntityId, samlIdpResponseKey);
 	}
@@ -228,18 +214,14 @@ public class SamlSpMessageUtil {
 	* @param samlSpMessageId the primary key of the saml sp message
 	* @return the saml sp message that was removed
 	* @throws com.liferay.saml.NoSuchSpMessageException if a saml sp message with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.saml.model.SamlSpMessage remove(
-		long samlSpMessageId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.saml.NoSuchSpMessageException {
+		long samlSpMessageId) throws com.liferay.saml.NoSuchSpMessageException {
 		return getPersistence().remove(samlSpMessageId);
 	}
 
 	public static com.liferay.saml.model.SamlSpMessage updateImpl(
-		com.liferay.saml.model.SamlSpMessage samlSpMessage)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.saml.model.SamlSpMessage samlSpMessage) {
 		return getPersistence().updateImpl(samlSpMessage);
 	}
 
@@ -249,12 +231,9 @@ public class SamlSpMessageUtil {
 	* @param samlSpMessageId the primary key of the saml sp message
 	* @return the saml sp message
 	* @throws com.liferay.saml.NoSuchSpMessageException if a saml sp message with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.saml.model.SamlSpMessage findByPrimaryKey(
-		long samlSpMessageId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.saml.NoSuchSpMessageException {
+		long samlSpMessageId) throws com.liferay.saml.NoSuchSpMessageException {
 		return getPersistence().findByPrimaryKey(samlSpMessageId);
 	}
 
@@ -263,11 +242,9 @@ public class SamlSpMessageUtil {
 	*
 	* @param samlSpMessageId the primary key of the saml sp message
 	* @return the saml sp message, or <code>null</code> if a saml sp message with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.saml.model.SamlSpMessage fetchByPrimaryKey(
-		long samlSpMessageId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long samlSpMessageId) {
 		return getPersistence().fetchByPrimaryKey(samlSpMessageId);
 	}
 
@@ -275,10 +252,8 @@ public class SamlSpMessageUtil {
 	* Returns all the saml sp messages.
 	*
 	* @return the saml sp messages
-	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<com.liferay.saml.model.SamlSpMessage> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static java.util.List<com.liferay.saml.model.SamlSpMessage> findAll() {
 		return getPersistence().findAll();
 	}
 
@@ -292,11 +267,9 @@ public class SamlSpMessageUtil {
 	* @param start the lower bound of the range of saml sp messages
 	* @param end the upper bound of the range of saml sp messages (not inclusive)
 	* @return the range of saml sp messages
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.saml.model.SamlSpMessage> findAll(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return getPersistence().findAll(start, end);
 	}
 
@@ -311,22 +284,17 @@ public class SamlSpMessageUtil {
 	* @param end the upper bound of the range of saml sp messages (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of saml sp messages
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.saml.model.SamlSpMessage> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
 	/**
 	* Removes all the saml sp messages from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeAll() {
 		getPersistence().removeAll();
 	}
 
@@ -334,10 +302,8 @@ public class SamlSpMessageUtil {
 	* Returns the number of saml sp messages.
 	*
 	* @return the number of saml sp messages
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countAll() {
 		return getPersistence().countAll();
 	}
 

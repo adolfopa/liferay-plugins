@@ -50,11 +50,9 @@ public interface BBBParticipantLocalService extends BaseLocalService,
 	*
 	* @param bbbParticipant the b b b participant
 	* @return the b b b participant that was added
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.bbb.model.BBBParticipant addBBBParticipant(
-		com.liferay.bbb.model.BBBParticipant bbbParticipant)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.bbb.model.BBBParticipant bbbParticipant);
 
 	/**
 	* Creates a new b b b participant with the primary key. Does not add the b b b participant to the database.
@@ -71,19 +69,17 @@ public interface BBBParticipantLocalService extends BaseLocalService,
 	* @param bbbParticipantId the primary key of the b b b participant
 	* @return the b b b participant that was removed
 	* @throws PortalException if a b b b participant with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.bbb.model.BBBParticipant deleteBBBParticipant(
 		long bbbParticipantId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Deletes the b b b participant from the database. Also notifies the appropriate model listeners.
 	*
 	* @param bbbParticipant the b b b participant
 	* @return the b b b participant that was removed
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	public com.liferay.bbb.model.BBBParticipant deleteBBBParticipant(
 		com.liferay.bbb.model.BBBParticipant bbbParticipant)
@@ -96,12 +92,10 @@ public interface BBBParticipantLocalService extends BaseLocalService,
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
 
 	/**
 	* Performs a dynamic query on the database and returns a range of the matching rows.
@@ -114,12 +108,11 @@ public interface BBBParticipantLocalService extends BaseLocalService,
 	* @param start the lower bound of the range of model instances
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException;
+		int end);
 
 	/**
 	* Performs a dynamic query on the database and returns an ordered range of the matching rows.
@@ -133,25 +126,21 @@ public interface BBBParticipantLocalService extends BaseLocalService,
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the number of rows that match the dynamic query.
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
 
 	/**
 	* Returns the number of rows that match the dynamic query.
@@ -159,17 +148,14 @@ public interface BBBParticipantLocalService extends BaseLocalService,
 	* @param dynamicQuery the dynamic query
 	* @param projection the projection to apply to the query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.dao.orm.Projection projection);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.bbb.model.BBBParticipant fetchBBBParticipant(
-		long bbbParticipantId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long bbbParticipantId);
 
 	/**
 	* Returns the b b b participant with the primary key.
@@ -177,20 +163,28 @@ public interface BBBParticipantLocalService extends BaseLocalService,
 	* @param bbbParticipantId the primary key of the b b b participant
 	* @return the b b b participant
 	* @throws PortalException if a b b b participant with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.bbb.model.BBBParticipant getBBBParticipant(
 		long bbbParticipantId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
+
+	/**
+	* @throws PortalException
+	*/
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Returns a range of all the b b b participants.
@@ -202,33 +196,27 @@ public interface BBBParticipantLocalService extends BaseLocalService,
 	* @param start the lower bound of the range of b b b participants
 	* @param end the upper bound of the range of b b b participants (not inclusive)
 	* @return the range of b b b participants
-	* @throws SystemException if a system exception occurred
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.bbb.model.BBBParticipant> getBBBParticipants(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		int start, int end);
 
 	/**
 	* Returns the number of b b b participants.
 	*
 	* @return the number of b b b participants
-	* @throws SystemException if a system exception occurred
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getBBBParticipantsCount()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int getBBBParticipantsCount();
 
 	/**
 	* Updates the b b b participant in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*
 	* @param bbbParticipant the b b b participant
 	* @return the b b b participant that was updated
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.bbb.model.BBBParticipant updateBBBParticipant(
-		com.liferay.bbb.model.BBBParticipant bbbParticipant)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.bbb.model.BBBParticipant bbbParticipant);
 
 	/**
 	* Returns the Spring bean ID for this bean.

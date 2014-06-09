@@ -16,7 +16,6 @@ package com.liferay.reports.model;
 
 import com.liferay.portal.LocaleException;
 import com.liferay.portal.kernel.bean.AutoEscape;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.LocalizedModel;
@@ -149,10 +148,9 @@ public interface DefinitionModel extends BaseModel<Definition>, LocalizedModel,
 	 * Returns the user uuid of this definition.
 	 *
 	 * @return the user uuid of this definition
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public String getUserUuid() throws SystemException;
+	public String getUserUuid();
 
 	/**
 	 * Sets the user uuid of this definition.

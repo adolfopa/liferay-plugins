@@ -20,6 +20,8 @@ import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DefaultActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.Projection;
@@ -77,12 +79,10 @@ public abstract class SamlSpSessionLocalServiceBaseImpl
 	 *
 	 * @param samlSpSession the saml sp session
 	 * @return the saml sp session that was added
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
-	public SamlSpSession addSamlSpSession(SamlSpSession samlSpSession)
-		throws SystemException {
+	public SamlSpSession addSamlSpSession(SamlSpSession samlSpSession) {
 		samlSpSession.setNew(true);
 
 		return samlSpSessionPersistence.update(samlSpSession);
@@ -105,12 +105,11 @@ public abstract class SamlSpSessionLocalServiceBaseImpl
 	 * @param samlSpSessionId the primary key of the saml sp session
 	 * @return the saml sp session that was removed
 	 * @throws PortalException if a saml sp session with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public SamlSpSession deleteSamlSpSession(long samlSpSessionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return samlSpSessionPersistence.remove(samlSpSessionId);
 	}
 
@@ -119,12 +118,10 @@ public abstract class SamlSpSessionLocalServiceBaseImpl
 	 *
 	 * @param samlSpSession the saml sp session
 	 * @return the saml sp session that was removed
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
-	public SamlSpSession deleteSamlSpSession(SamlSpSession samlSpSession)
-		throws SystemException {
+	public SamlSpSession deleteSamlSpSession(SamlSpSession samlSpSession) {
 		return samlSpSessionPersistence.remove(samlSpSession);
 	}
 
@@ -141,12 +138,10 @@ public abstract class SamlSpSessionLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery) {
 		return samlSpSessionPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -161,12 +156,10 @@ public abstract class SamlSpSessionLocalServiceBaseImpl
 	 * @param start the lower bound of the range of model instances
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
 		return samlSpSessionPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end);
 	}
@@ -183,12 +176,11 @@ public abstract class SamlSpSessionLocalServiceBaseImpl
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return samlSpSessionPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end, orderByComparator);
 	}
@@ -198,11 +190,9 @@ public abstract class SamlSpSessionLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public long dynamicQueryCount(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
 		return samlSpSessionPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -212,18 +202,16 @@ public abstract class SamlSpSessionLocalServiceBaseImpl
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection) throws SystemException {
+		Projection projection) {
 		return samlSpSessionPersistence.countWithDynamicQuery(dynamicQuery,
 			projection);
 	}
 
 	@Override
-	public SamlSpSession fetchSamlSpSession(long samlSpSessionId)
-		throws SystemException {
+	public SamlSpSession fetchSamlSpSession(long samlSpSessionId) {
 		return samlSpSessionPersistence.fetchByPrimaryKey(samlSpSessionId);
 	}
 
@@ -233,17 +221,47 @@ public abstract class SamlSpSessionLocalServiceBaseImpl
 	 * @param samlSpSessionId the primary key of the saml sp session
 	 * @return the saml sp session
 	 * @throws PortalException if a saml sp session with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public SamlSpSession getSamlSpSession(long samlSpSessionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return samlSpSessionPersistence.findByPrimaryKey(samlSpSessionId);
 	}
 
 	@Override
+	public ActionableDynamicQuery getActionableDynamicQuery() {
+		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
+
+		actionableDynamicQuery.setBaseLocalService(com.liferay.saml.service.SamlSpSessionLocalServiceUtil.getService());
+		actionableDynamicQuery.setClass(SamlSpSession.class);
+		actionableDynamicQuery.setClassLoader(getClassLoader());
+
+		actionableDynamicQuery.setPrimaryKeyPropertyName("samlSpSessionId");
+
+		return actionableDynamicQuery;
+	}
+
+	protected void initActionableDynamicQuery(
+		ActionableDynamicQuery actionableDynamicQuery) {
+		actionableDynamicQuery.setBaseLocalService(com.liferay.saml.service.SamlSpSessionLocalServiceUtil.getService());
+		actionableDynamicQuery.setClass(SamlSpSession.class);
+		actionableDynamicQuery.setClassLoader(getClassLoader());
+
+		actionableDynamicQuery.setPrimaryKeyPropertyName("samlSpSessionId");
+	}
+
+	/**
+	 * @throws PortalException
+	 */
+	@Override
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
+		throws PortalException {
+		return deleteSamlSpSession((SamlSpSession)persistedModel);
+	}
+
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return samlSpSessionPersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
@@ -257,11 +275,9 @@ public abstract class SamlSpSessionLocalServiceBaseImpl
 	 * @param start the lower bound of the range of saml sp sessions
 	 * @param end the upper bound of the range of saml sp sessions (not inclusive)
 	 * @return the range of saml sp sessions
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<SamlSpSession> getSamlSpSessions(int start, int end)
-		throws SystemException {
+	public List<SamlSpSession> getSamlSpSessions(int start, int end) {
 		return samlSpSessionPersistence.findAll(start, end);
 	}
 
@@ -269,10 +285,9 @@ public abstract class SamlSpSessionLocalServiceBaseImpl
 	 * Returns the number of saml sp sessions.
 	 *
 	 * @return the number of saml sp sessions
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int getSamlSpSessionsCount() throws SystemException {
+	public int getSamlSpSessionsCount() {
 		return samlSpSessionPersistence.countAll();
 	}
 
@@ -281,12 +296,10 @@ public abstract class SamlSpSessionLocalServiceBaseImpl
 	 *
 	 * @param samlSpSession the saml sp session
 	 * @return the saml sp session that was updated
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
-	public SamlSpSession updateSamlSpSession(SamlSpSession samlSpSession)
-		throws SystemException {
+	public SamlSpSession updateSamlSpSession(SamlSpSession samlSpSession) {
 		return samlSpSessionPersistence.update(samlSpSession);
 	}
 
@@ -775,7 +788,7 @@ public abstract class SamlSpSessionLocalServiceBaseImpl
 	 *
 	 * @param sql the sql query
 	 */
-	protected void runSQL(String sql) throws SystemException {
+	protected void runSQL(String sql) {
 		try {
 			DataSource dataSource = samlSpSessionPersistence.getDataSource();
 

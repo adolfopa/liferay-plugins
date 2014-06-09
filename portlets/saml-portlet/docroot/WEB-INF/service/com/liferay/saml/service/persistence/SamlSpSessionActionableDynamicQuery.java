@@ -15,18 +15,19 @@
 package com.liferay.saml.service.persistence;
 
 import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 
 import com.liferay.saml.model.SamlSpSession;
 import com.liferay.saml.service.SamlSpSessionLocalServiceUtil;
 
 /**
  * @author Mika Koivisto
+ * @deprecated As of 7.0.0, replaced by {@link SamlSpSessionLocalServiceUtil#getExportActionableDynamicQuery()}
  * @generated
  */
+@Deprecated
 public abstract class SamlSpSessionActionableDynamicQuery
 	extends BaseActionableDynamicQuery {
-	public SamlSpSessionActionableDynamicQuery() throws SystemException {
+	public SamlSpSessionActionableDynamicQuery() {
 		setBaseLocalService(SamlSpSessionLocalServiceUtil.getService());
 		setClass(SamlSpSession.class);
 

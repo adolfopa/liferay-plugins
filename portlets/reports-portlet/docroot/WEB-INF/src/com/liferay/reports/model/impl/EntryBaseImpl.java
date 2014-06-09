@@ -14,8 +14,6 @@
 
 package com.liferay.reports.model.impl;
 
-import com.liferay.portal.kernel.exception.SystemException;
-
 import com.liferay.reports.model.Entry;
 import com.liferay.reports.service.EntryLocalServiceUtil;
 
@@ -38,7 +36,7 @@ public abstract class EntryBaseImpl extends EntryModelImpl implements Entry {
 	 * Never modify or reference this class directly. All methods that expect a entry model instance should use the {@link Entry} interface instead.
 	 */
 	@Override
-	public void persist() throws SystemException {
+	public void persist() {
 		if (this.isNew()) {
 			EntryLocalServiceUtil.addEntry(this);
 		}

@@ -44,11 +44,9 @@ public class OAuthApplicationLocalServiceUtil {
 	*
 	* @param oAuthApplication the o auth application
 	* @return the o auth application that was added
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.oauth.model.OAuthApplication addOAuthApplication(
-		com.liferay.oauth.model.OAuthApplication oAuthApplication)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.oauth.model.OAuthApplication oAuthApplication) {
 		return getService().addOAuthApplication(oAuthApplication);
 	}
 
@@ -69,7 +67,7 @@ public class OAuthApplicationLocalServiceUtil {
 	* @param oAuthApplicationId the primary key of the o auth application
 	* @return the o auth application that was removed
 	* @throws PortalException if a o auth application with the primary key could not be found
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	public static com.liferay.oauth.model.OAuthApplication deleteOAuthApplication(
 		long oAuthApplicationId)
@@ -84,7 +82,7 @@ public class OAuthApplicationLocalServiceUtil {
 	* @param oAuthApplication the o auth application
 	* @return the o auth application that was removed
 	* @throws PortalException
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	public static com.liferay.oauth.model.OAuthApplication deleteOAuthApplication(
 		com.liferay.oauth.model.OAuthApplication oAuthApplication)
@@ -102,12 +100,10 @@ public class OAuthApplicationLocalServiceUtil {
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return getService().dynamicQuery(dynamicQuery);
 	}
 
@@ -122,12 +118,11 @@ public class OAuthApplicationLocalServiceUtil {
 	* @param start the lower bound of the range of model instances
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		int end) {
 		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -143,14 +138,12 @@ public class OAuthApplicationLocalServiceUtil {
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getService()
 				   .dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
@@ -160,11 +153,9 @@ public class OAuthApplicationLocalServiceUtil {
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	public static long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
@@ -174,18 +165,15 @@ public class OAuthApplicationLocalServiceUtil {
 	* @param dynamicQuery the dynamic query
 	* @param projection the projection to apply to the query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	public static long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.Projection projection) {
 		return getService().dynamicQueryCount(dynamicQuery, projection);
 	}
 
 	public static com.liferay.oauth.model.OAuthApplication fetchOAuthApplication(
-		long oAuthApplicationId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long oAuthApplicationId) {
 		return getService().fetchOAuthApplication(oAuthApplicationId);
 	}
 
@@ -195,19 +183,29 @@ public class OAuthApplicationLocalServiceUtil {
 	* @param oAuthApplicationId the primary key of the o auth application
 	* @return the o auth application
 	* @throws PortalException if a o auth application with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.oauth.model.OAuthApplication getOAuthApplication(
 		long oAuthApplicationId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getOAuthApplication(oAuthApplicationId);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return getService().getActionableDynamicQuery();
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deletePersistedModel(persistedModel);
 	}
 
 	public static com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getPersistedModel(primaryKeyObj);
 	}
 
@@ -221,11 +219,9 @@ public class OAuthApplicationLocalServiceUtil {
 	* @param start the lower bound of the range of o auth applications
 	* @param end the upper bound of the range of o auth applications (not inclusive)
 	* @return the range of o auth applications
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.oauth.model.OAuthApplication> getOAuthApplications(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return getService().getOAuthApplications(start, end);
 	}
 
@@ -233,10 +229,8 @@ public class OAuthApplicationLocalServiceUtil {
 	* Returns the number of o auth applications.
 	*
 	* @return the number of o auth applications
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int getOAuthApplicationsCount()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int getOAuthApplicationsCount() {
 		return getService().getOAuthApplicationsCount();
 	}
 
@@ -245,11 +239,9 @@ public class OAuthApplicationLocalServiceUtil {
 	*
 	* @param oAuthApplication the o auth application
 	* @return the o auth application that was updated
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.oauth.model.OAuthApplication updateOAuthApplication(
-		com.liferay.oauth.model.OAuthApplication oAuthApplication)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.oauth.model.OAuthApplication oAuthApplication) {
 		return getService().updateOAuthApplication(oAuthApplication);
 	}
 

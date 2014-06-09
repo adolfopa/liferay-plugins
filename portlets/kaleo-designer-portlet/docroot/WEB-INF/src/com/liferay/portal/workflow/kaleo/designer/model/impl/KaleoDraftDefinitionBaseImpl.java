@@ -14,7 +14,6 @@
 
 package com.liferay.portal.workflow.kaleo.designer.model.impl;
 
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition;
 import com.liferay.portal.workflow.kaleo.designer.service.KaleoDraftDefinitionLocalServiceUtil;
 
@@ -38,7 +37,7 @@ public abstract class KaleoDraftDefinitionBaseImpl
 	 * Never modify or reference this class directly. All methods that expect a kaleo draft definition model instance should use the {@link KaleoDraftDefinition} interface instead.
 	 */
 	@Override
-	public void persist() throws SystemException {
+	public void persist() {
 		if (this.isNew()) {
 			KaleoDraftDefinitionLocalServiceUtil.addKaleoDraftDefinition(this);
 		}

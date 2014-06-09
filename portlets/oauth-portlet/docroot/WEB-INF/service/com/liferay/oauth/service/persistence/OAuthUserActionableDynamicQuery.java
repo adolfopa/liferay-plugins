@@ -18,15 +18,16 @@ import com.liferay.oauth.model.OAuthUser;
 import com.liferay.oauth.service.OAuthUserLocalServiceUtil;
 
 import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 
 /**
  * @author Ivica Cardic
+ * @deprecated As of 7.0.0, replaced by {@link OAuthUserLocalServiceUtil#getExportActionableDynamicQuery()}
  * @generated
  */
+@Deprecated
 public abstract class OAuthUserActionableDynamicQuery
 	extends BaseActionableDynamicQuery {
-	public OAuthUserActionableDynamicQuery() throws SystemException {
+	public OAuthUserActionableDynamicQuery() {
 		setBaseLocalService(OAuthUserLocalServiceUtil.getService());
 		setClass(OAuthUser.class);
 

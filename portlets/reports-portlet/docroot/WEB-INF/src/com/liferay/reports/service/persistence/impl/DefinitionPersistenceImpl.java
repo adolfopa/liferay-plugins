@@ -23,7 +23,6 @@ import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.SQLQuery;
 import com.liferay.portal.kernel.dao.orm.Session;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -113,10 +112,9 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 *
 	 * @param uuid the uuid
 	 * @return the matching definitions
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<Definition> findByUuid(String uuid) throws SystemException {
+	public List<Definition> findByUuid(String uuid) {
 		return findByUuid(uuid, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
@@ -131,11 +129,9 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @param start the lower bound of the range of definitions
 	 * @param end the upper bound of the range of definitions (not inclusive)
 	 * @return the range of matching definitions
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<Definition> findByUuid(String uuid, int start, int end)
-		throws SystemException {
+	public List<Definition> findByUuid(String uuid, int start, int end) {
 		return findByUuid(uuid, start, end, null);
 	}
 
@@ -151,11 +147,10 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @param end the upper bound of the range of definitions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching definitions
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<Definition> findByUuid(String uuid, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -272,12 +267,10 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching definition
 	 * @throws com.liferay.reports.NoSuchDefinitionException if a matching definition could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Definition findByUuid_First(String uuid,
-		OrderByComparator orderByComparator)
-		throws NoSuchDefinitionException, SystemException {
+		OrderByComparator orderByComparator) throws NoSuchDefinitionException {
 		Definition definition = fetchByUuid_First(uuid, orderByComparator);
 
 		if (definition != null) {
@@ -302,11 +295,10 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching definition, or <code>null</code> if a matching definition could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Definition fetchByUuid_First(String uuid,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		List<Definition> list = findByUuid(uuid, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -323,12 +315,10 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching definition
 	 * @throws com.liferay.reports.NoSuchDefinitionException if a matching definition could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Definition findByUuid_Last(String uuid,
-		OrderByComparator orderByComparator)
-		throws NoSuchDefinitionException, SystemException {
+		OrderByComparator orderByComparator) throws NoSuchDefinitionException {
 		Definition definition = fetchByUuid_Last(uuid, orderByComparator);
 
 		if (definition != null) {
@@ -353,11 +343,10 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching definition, or <code>null</code> if a matching definition could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Definition fetchByUuid_Last(String uuid,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		int count = countByUuid(uuid);
 
 		if (count == 0) {
@@ -382,12 +371,10 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next definition
 	 * @throws com.liferay.reports.NoSuchDefinitionException if a definition with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Definition[] findByUuid_PrevAndNext(long definitionId, String uuid,
-		OrderByComparator orderByComparator)
-		throws NoSuchDefinitionException, SystemException {
+		OrderByComparator orderByComparator) throws NoSuchDefinitionException {
 		Definition definition = findByPrimaryKey(definitionId);
 
 		Session session = null;
@@ -538,10 +525,9 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * Removes all the definitions where uuid = &#63; from the database.
 	 *
 	 * @param uuid the uuid
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public void removeByUuid(String uuid) throws SystemException {
+	public void removeByUuid(String uuid) {
 		for (Definition definition : findByUuid(uuid, QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS, null)) {
 			remove(definition);
@@ -553,10 +539,9 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 *
 	 * @param uuid the uuid
 	 * @return the number of matching definitions
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int countByUuid(String uuid) throws SystemException {
+	public int countByUuid(String uuid) {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID;
 
 		Object[] finderArgs = new Object[] { uuid };
@@ -636,11 +621,10 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @param groupId the group ID
 	 * @return the matching definition
 	 * @throws com.liferay.reports.NoSuchDefinitionException if a matching definition could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Definition findByUUID_G(String uuid, long groupId)
-		throws NoSuchDefinitionException, SystemException {
+		throws NoSuchDefinitionException {
 		Definition definition = fetchByUUID_G(uuid, groupId);
 
 		if (definition == null) {
@@ -672,11 +656,9 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @param uuid the uuid
 	 * @param groupId the group ID
 	 * @return the matching definition, or <code>null</code> if a matching definition could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Definition fetchByUUID_G(String uuid, long groupId)
-		throws SystemException {
+	public Definition fetchByUUID_G(String uuid, long groupId) {
 		return fetchByUUID_G(uuid, groupId, true);
 	}
 
@@ -687,11 +669,10 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @param groupId the group ID
 	 * @param retrieveFromCache whether to use the finder cache
 	 * @return the matching definition, or <code>null</code> if a matching definition could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Definition fetchByUUID_G(String uuid, long groupId,
-		boolean retrieveFromCache) throws SystemException {
+		boolean retrieveFromCache) {
 		Object[] finderArgs = new Object[] { uuid, groupId };
 
 		Object result = null;
@@ -794,11 +775,10 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @param uuid the uuid
 	 * @param groupId the group ID
 	 * @return the definition that was removed
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Definition removeByUUID_G(String uuid, long groupId)
-		throws NoSuchDefinitionException, SystemException {
+		throws NoSuchDefinitionException {
 		Definition definition = findByUUID_G(uuid, groupId);
 
 		return remove(definition);
@@ -810,11 +790,9 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @param uuid the uuid
 	 * @param groupId the group ID
 	 * @return the number of matching definitions
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int countByUUID_G(String uuid, long groupId)
-		throws SystemException {
+	public int countByUUID_G(String uuid, long groupId) {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID_G;
 
 		Object[] finderArgs = new Object[] { uuid, groupId };
@@ -909,11 +887,9 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @param uuid the uuid
 	 * @param companyId the company ID
 	 * @return the matching definitions
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<Definition> findByUuid_C(String uuid, long companyId)
-		throws SystemException {
+	public List<Definition> findByUuid_C(String uuid, long companyId) {
 		return findByUuid_C(uuid, companyId, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
@@ -930,11 +906,10 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @param start the lower bound of the range of definitions
 	 * @param end the upper bound of the range of definitions (not inclusive)
 	 * @return the range of matching definitions
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<Definition> findByUuid_C(String uuid, long companyId,
-		int start, int end) throws SystemException {
+		int start, int end) {
 		return findByUuid_C(uuid, companyId, start, end, null);
 	}
 
@@ -951,12 +926,10 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @param end the upper bound of the range of definitions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching definitions
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<Definition> findByUuid_C(String uuid, long companyId,
-		int start, int end, OrderByComparator orderByComparator)
-		throws SystemException {
+		int start, int end, OrderByComparator orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1083,12 +1056,10 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching definition
 	 * @throws com.liferay.reports.NoSuchDefinitionException if a matching definition could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Definition findByUuid_C_First(String uuid, long companyId,
-		OrderByComparator orderByComparator)
-		throws NoSuchDefinitionException, SystemException {
+		OrderByComparator orderByComparator) throws NoSuchDefinitionException {
 		Definition definition = fetchByUuid_C_First(uuid, companyId,
 				orderByComparator);
 
@@ -1118,11 +1089,10 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching definition, or <code>null</code> if a matching definition could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Definition fetchByUuid_C_First(String uuid, long companyId,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		List<Definition> list = findByUuid_C(uuid, companyId, 0, 1,
 				orderByComparator);
 
@@ -1141,12 +1111,10 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching definition
 	 * @throws com.liferay.reports.NoSuchDefinitionException if a matching definition could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Definition findByUuid_C_Last(String uuid, long companyId,
-		OrderByComparator orderByComparator)
-		throws NoSuchDefinitionException, SystemException {
+		OrderByComparator orderByComparator) throws NoSuchDefinitionException {
 		Definition definition = fetchByUuid_C_Last(uuid, companyId,
 				orderByComparator);
 
@@ -1176,11 +1144,10 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching definition, or <code>null</code> if a matching definition could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Definition fetchByUuid_C_Last(String uuid, long companyId,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		int count = countByUuid_C(uuid, companyId);
 
 		if (count == 0) {
@@ -1206,12 +1173,11 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next definition
 	 * @throws com.liferay.reports.NoSuchDefinitionException if a definition with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Definition[] findByUuid_C_PrevAndNext(long definitionId,
 		String uuid, long companyId, OrderByComparator orderByComparator)
-		throws NoSuchDefinitionException, SystemException {
+		throws NoSuchDefinitionException {
 		Definition definition = findByPrimaryKey(definitionId);
 
 		Session session = null;
@@ -1367,11 +1333,9 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 *
 	 * @param uuid the uuid
 	 * @param companyId the company ID
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public void removeByUuid_C(String uuid, long companyId)
-		throws SystemException {
+	public void removeByUuid_C(String uuid, long companyId) {
 		for (Definition definition : findByUuid_C(uuid, companyId,
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
 			remove(definition);
@@ -1384,11 +1348,9 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @param uuid the uuid
 	 * @param companyId the company ID
 	 * @return the number of matching definitions
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int countByUuid_C(String uuid, long companyId)
-		throws SystemException {
+	public int countByUuid_C(String uuid, long companyId) {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID_C;
 
 		Object[] finderArgs = new Object[] { uuid, companyId };
@@ -1481,11 +1443,9 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 *
 	 * @param groupId the group ID
 	 * @return the matching definitions
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<Definition> findByGroupId(long groupId)
-		throws SystemException {
+	public List<Definition> findByGroupId(long groupId) {
 		return findByGroupId(groupId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
@@ -1500,11 +1460,9 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @param start the lower bound of the range of definitions
 	 * @param end the upper bound of the range of definitions (not inclusive)
 	 * @return the range of matching definitions
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<Definition> findByGroupId(long groupId, int start, int end)
-		throws SystemException {
+	public List<Definition> findByGroupId(long groupId, int start, int end) {
 		return findByGroupId(groupId, start, end, null);
 	}
 
@@ -1520,11 +1478,10 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @param end the upper bound of the range of definitions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching definitions
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<Definition> findByGroupId(long groupId, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1627,12 +1584,10 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching definition
 	 * @throws com.liferay.reports.NoSuchDefinitionException if a matching definition could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Definition findByGroupId_First(long groupId,
-		OrderByComparator orderByComparator)
-		throws NoSuchDefinitionException, SystemException {
+		OrderByComparator orderByComparator) throws NoSuchDefinitionException {
 		Definition definition = fetchByGroupId_First(groupId, orderByComparator);
 
 		if (definition != null) {
@@ -1657,11 +1612,10 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @param groupId the group ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching definition, or <code>null</code> if a matching definition could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Definition fetchByGroupId_First(long groupId,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		List<Definition> list = findByGroupId(groupId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -1678,12 +1632,10 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching definition
 	 * @throws com.liferay.reports.NoSuchDefinitionException if a matching definition could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Definition findByGroupId_Last(long groupId,
-		OrderByComparator orderByComparator)
-		throws NoSuchDefinitionException, SystemException {
+		OrderByComparator orderByComparator) throws NoSuchDefinitionException {
 		Definition definition = fetchByGroupId_Last(groupId, orderByComparator);
 
 		if (definition != null) {
@@ -1708,11 +1660,10 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @param groupId the group ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching definition, or <code>null</code> if a matching definition could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Definition fetchByGroupId_Last(long groupId,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		int count = countByGroupId(groupId);
 
 		if (count == 0) {
@@ -1737,12 +1688,11 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next definition
 	 * @throws com.liferay.reports.NoSuchDefinitionException if a definition with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Definition[] findByGroupId_PrevAndNext(long definitionId,
 		long groupId, OrderByComparator orderByComparator)
-		throws NoSuchDefinitionException, SystemException {
+		throws NoSuchDefinitionException {
 		Definition definition = findByPrimaryKey(definitionId);
 
 		Session session = null;
@@ -1880,11 +1830,9 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 *
 	 * @param groupId the group ID
 	 * @return the matching definitions that the user has permission to view
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<Definition> filterFindByGroupId(long groupId)
-		throws SystemException {
+	public List<Definition> filterFindByGroupId(long groupId) {
 		return filterFindByGroupId(groupId, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
@@ -1900,11 +1848,9 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @param start the lower bound of the range of definitions
 	 * @param end the upper bound of the range of definitions (not inclusive)
 	 * @return the range of matching definitions that the user has permission to view
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<Definition> filterFindByGroupId(long groupId, int start, int end)
-		throws SystemException {
+	public List<Definition> filterFindByGroupId(long groupId, int start, int end) {
 		return filterFindByGroupId(groupId, start, end, null);
 	}
 
@@ -1920,11 +1866,10 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @param end the upper bound of the range of definitions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching definitions that the user has permission to view
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<Definition> filterFindByGroupId(long groupId, int start,
-		int end, OrderByComparator orderByComparator) throws SystemException {
+		int end, OrderByComparator orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByGroupId(groupId, start, end, orderByComparator);
 		}
@@ -2011,12 +1956,11 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next definition
 	 * @throws com.liferay.reports.NoSuchDefinitionException if a definition with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Definition[] filterFindByGroupId_PrevAndNext(long definitionId,
 		long groupId, OrderByComparator orderByComparator)
-		throws NoSuchDefinitionException, SystemException {
+		throws NoSuchDefinitionException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByGroupId_PrevAndNext(definitionId, groupId,
 				orderByComparator);
@@ -2193,10 +2137,9 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * Removes all the definitions where groupId = &#63; from the database.
 	 *
 	 * @param groupId the group ID
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public void removeByGroupId(long groupId) throws SystemException {
+	public void removeByGroupId(long groupId) {
 		for (Definition definition : findByGroupId(groupId, QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS, null)) {
 			remove(definition);
@@ -2208,10 +2151,9 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 *
 	 * @param groupId the group ID
 	 * @return the number of matching definitions
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int countByGroupId(long groupId) throws SystemException {
+	public int countByGroupId(long groupId) {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_GROUPID;
 
 		Object[] finderArgs = new Object[] { groupId };
@@ -2261,10 +2203,9 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 *
 	 * @param groupId the group ID
 	 * @return the number of matching definitions that the user has permission to view
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int filterCountByGroupId(long groupId) throws SystemException {
+	public int filterCountByGroupId(long groupId) {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return countByGroupId(groupId);
 		}
@@ -2333,11 +2274,9 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 *
 	 * @param companyId the company ID
 	 * @return the matching definitions
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<Definition> findByCompanyId(long companyId)
-		throws SystemException {
+	public List<Definition> findByCompanyId(long companyId) {
 		return findByCompanyId(companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			null);
 	}
@@ -2353,11 +2292,9 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @param start the lower bound of the range of definitions
 	 * @param end the upper bound of the range of definitions (not inclusive)
 	 * @return the range of matching definitions
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<Definition> findByCompanyId(long companyId, int start, int end)
-		throws SystemException {
+	public List<Definition> findByCompanyId(long companyId, int start, int end) {
 		return findByCompanyId(companyId, start, end, null);
 	}
 
@@ -2373,11 +2310,10 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @param end the upper bound of the range of definitions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching definitions
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<Definition> findByCompanyId(long companyId, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -2480,12 +2416,10 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching definition
 	 * @throws com.liferay.reports.NoSuchDefinitionException if a matching definition could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Definition findByCompanyId_First(long companyId,
-		OrderByComparator orderByComparator)
-		throws NoSuchDefinitionException, SystemException {
+		OrderByComparator orderByComparator) throws NoSuchDefinitionException {
 		Definition definition = fetchByCompanyId_First(companyId,
 				orderByComparator);
 
@@ -2511,11 +2445,10 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching definition, or <code>null</code> if a matching definition could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Definition fetchByCompanyId_First(long companyId,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		List<Definition> list = findByCompanyId(companyId, 0, 1,
 				orderByComparator);
 
@@ -2533,12 +2466,10 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching definition
 	 * @throws com.liferay.reports.NoSuchDefinitionException if a matching definition could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Definition findByCompanyId_Last(long companyId,
-		OrderByComparator orderByComparator)
-		throws NoSuchDefinitionException, SystemException {
+		OrderByComparator orderByComparator) throws NoSuchDefinitionException {
 		Definition definition = fetchByCompanyId_Last(companyId,
 				orderByComparator);
 
@@ -2564,11 +2495,10 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching definition, or <code>null</code> if a matching definition could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Definition fetchByCompanyId_Last(long companyId,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		int count = countByCompanyId(companyId);
 
 		if (count == 0) {
@@ -2593,12 +2523,11 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next definition
 	 * @throws com.liferay.reports.NoSuchDefinitionException if a definition with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Definition[] findByCompanyId_PrevAndNext(long definitionId,
 		long companyId, OrderByComparator orderByComparator)
-		throws NoSuchDefinitionException, SystemException {
+		throws NoSuchDefinitionException {
 		Definition definition = findByPrimaryKey(definitionId);
 
 		Session session = null;
@@ -2735,10 +2664,9 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * Removes all the definitions where companyId = &#63; from the database.
 	 *
 	 * @param companyId the company ID
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public void removeByCompanyId(long companyId) throws SystemException {
+	public void removeByCompanyId(long companyId) {
 		for (Definition definition : findByCompanyId(companyId,
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
 			remove(definition);
@@ -2750,10 +2678,9 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 *
 	 * @param companyId the company ID
 	 * @return the number of matching definitions
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int countByCompanyId(long companyId) throws SystemException {
+	public int countByCompanyId(long companyId) {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_COMPANYID;
 
 		Object[] finderArgs = new Object[] { companyId };
@@ -2967,11 +2894,10 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @param definitionId the primary key of the definition
 	 * @return the definition that was removed
 	 * @throws com.liferay.reports.NoSuchDefinitionException if a definition with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Definition remove(long definitionId)
-		throws NoSuchDefinitionException, SystemException {
+		throws NoSuchDefinitionException {
 		return remove((Serializable)definitionId);
 	}
 
@@ -2981,11 +2907,10 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @param primaryKey the primary key of the definition
 	 * @return the definition that was removed
 	 * @throws com.liferay.reports.NoSuchDefinitionException if a definition with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Definition remove(Serializable primaryKey)
-		throws NoSuchDefinitionException, SystemException {
+		throws NoSuchDefinitionException {
 		Session session = null;
 
 		try {
@@ -3017,8 +2942,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	}
 
 	@Override
-	protected Definition removeImpl(Definition definition)
-		throws SystemException {
+	protected Definition removeImpl(Definition definition) {
 		definition = toUnwrappedModel(definition);
 
 		Session session = null;
@@ -3051,8 +2975,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 
 	@Override
 	public Definition updateImpl(
-		com.liferay.reports.model.Definition definition)
-		throws SystemException {
+		com.liferay.reports.model.Definition definition) {
 		definition = toUnwrappedModel(definition);
 
 		boolean isNew = definition.isNew();
@@ -3212,11 +3135,10 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @param primaryKey the primary key of the definition
 	 * @return the definition
 	 * @throws com.liferay.reports.NoSuchDefinitionException if a definition with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Definition findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchDefinitionException, SystemException {
+		throws NoSuchDefinitionException {
 		Definition definition = fetchByPrimaryKey(primaryKey);
 
 		if (definition == null) {
@@ -3237,11 +3159,10 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @param definitionId the primary key of the definition
 	 * @return the definition
 	 * @throws com.liferay.reports.NoSuchDefinitionException if a definition with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Definition findByPrimaryKey(long definitionId)
-		throws NoSuchDefinitionException, SystemException {
+		throws NoSuchDefinitionException {
 		return findByPrimaryKey((Serializable)definitionId);
 	}
 
@@ -3250,11 +3171,9 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 *
 	 * @param primaryKey the primary key of the definition
 	 * @return the definition, or <code>null</code> if a definition with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Definition fetchByPrimaryKey(Serializable primaryKey)
-		throws SystemException {
+	public Definition fetchByPrimaryKey(Serializable primaryKey) {
 		Definition definition = (Definition)EntityCacheUtil.getResult(DefinitionModelImpl.ENTITY_CACHE_ENABLED,
 				DefinitionImpl.class, primaryKey);
 
@@ -3298,11 +3217,9 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 *
 	 * @param definitionId the primary key of the definition
 	 * @return the definition, or <code>null</code> if a definition with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Definition fetchByPrimaryKey(long definitionId)
-		throws SystemException {
+	public Definition fetchByPrimaryKey(long definitionId) {
 		return fetchByPrimaryKey((Serializable)definitionId);
 	}
 
@@ -3310,10 +3227,9 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * Returns all the definitions.
 	 *
 	 * @return the definitions
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<Definition> findAll() throws SystemException {
+	public List<Definition> findAll() {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
@@ -3327,11 +3243,9 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @param start the lower bound of the range of definitions
 	 * @param end the upper bound of the range of definitions (not inclusive)
 	 * @return the range of definitions
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<Definition> findAll(int start, int end)
-		throws SystemException {
+	public List<Definition> findAll(int start, int end) {
 		return findAll(start, end, null);
 	}
 
@@ -3346,11 +3260,10 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @param end the upper bound of the range of definitions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of definitions
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<Definition> findAll(int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -3432,10 +3345,9 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	/**
 	 * Removes all the definitions from the database.
 	 *
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public void removeAll() throws SystemException {
+	public void removeAll() {
 		for (Definition definition : findAll()) {
 			remove(definition);
 		}
@@ -3445,10 +3357,9 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * Returns the number of definitions.
 	 *
 	 * @return the number of definitions
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int countAll() throws SystemException {
+	public int countAll() {
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
 				FINDER_ARGS_EMPTY, this);
 

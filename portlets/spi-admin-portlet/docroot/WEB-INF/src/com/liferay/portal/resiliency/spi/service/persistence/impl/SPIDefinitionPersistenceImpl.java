@@ -23,7 +23,6 @@ import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.SQLQuery;
 import com.liferay.portal.kernel.dao.orm.Session;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
@@ -114,11 +113,9 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 *
 	 * @param companyId the company ID
 	 * @return the matching s p i definitions
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<SPIDefinition> findByCompanyId(long companyId)
-		throws SystemException {
+	public List<SPIDefinition> findByCompanyId(long companyId) {
 		return findByCompanyId(companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			null);
 	}
@@ -134,11 +131,10 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 * @param start the lower bound of the range of s p i definitions
 	 * @param end the upper bound of the range of s p i definitions (not inclusive)
 	 * @return the range of matching s p i definitions
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<SPIDefinition> findByCompanyId(long companyId, int start,
-		int end) throws SystemException {
+		int end) {
 		return findByCompanyId(companyId, start, end, null);
 	}
 
@@ -154,11 +150,10 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 * @param end the upper bound of the range of s p i definitions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching s p i definitions
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<SPIDefinition> findByCompanyId(long companyId, int start,
-		int end, OrderByComparator orderByComparator) throws SystemException {
+		int end, OrderByComparator orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -261,12 +256,10 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching s p i definition
 	 * @throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException if a matching s p i definition could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public SPIDefinition findByCompanyId_First(long companyId,
-		OrderByComparator orderByComparator)
-		throws NoSuchDefinitionException, SystemException {
+		OrderByComparator orderByComparator) throws NoSuchDefinitionException {
 		SPIDefinition spiDefinition = fetchByCompanyId_First(companyId,
 				orderByComparator);
 
@@ -292,11 +285,10 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching s p i definition, or <code>null</code> if a matching s p i definition could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public SPIDefinition fetchByCompanyId_First(long companyId,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		List<SPIDefinition> list = findByCompanyId(companyId, 0, 1,
 				orderByComparator);
 
@@ -314,12 +306,10 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching s p i definition
 	 * @throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException if a matching s p i definition could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public SPIDefinition findByCompanyId_Last(long companyId,
-		OrderByComparator orderByComparator)
-		throws NoSuchDefinitionException, SystemException {
+		OrderByComparator orderByComparator) throws NoSuchDefinitionException {
 		SPIDefinition spiDefinition = fetchByCompanyId_Last(companyId,
 				orderByComparator);
 
@@ -345,11 +335,10 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching s p i definition, or <code>null</code> if a matching s p i definition could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public SPIDefinition fetchByCompanyId_Last(long companyId,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		int count = countByCompanyId(companyId);
 
 		if (count == 0) {
@@ -374,12 +363,11 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next s p i definition
 	 * @throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException if a s p i definition with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public SPIDefinition[] findByCompanyId_PrevAndNext(long spiDefinitionId,
 		long companyId, OrderByComparator orderByComparator)
-		throws NoSuchDefinitionException, SystemException {
+		throws NoSuchDefinitionException {
 		SPIDefinition spiDefinition = findByPrimaryKey(spiDefinitionId);
 
 		Session session = null;
@@ -517,11 +505,9 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 *
 	 * @param companyId the company ID
 	 * @return the matching s p i definitions that the user has permission to view
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<SPIDefinition> filterFindByCompanyId(long companyId)
-		throws SystemException {
+	public List<SPIDefinition> filterFindByCompanyId(long companyId) {
 		return filterFindByCompanyId(companyId, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
@@ -537,11 +523,10 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 * @param start the lower bound of the range of s p i definitions
 	 * @param end the upper bound of the range of s p i definitions (not inclusive)
 	 * @return the range of matching s p i definitions that the user has permission to view
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<SPIDefinition> filterFindByCompanyId(long companyId, int start,
-		int end) throws SystemException {
+		int end) {
 		return filterFindByCompanyId(companyId, start, end, null);
 	}
 
@@ -557,11 +542,10 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 * @param end the upper bound of the range of s p i definitions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching s p i definitions that the user has permission to view
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<SPIDefinition> filterFindByCompanyId(long companyId, int start,
-		int end, OrderByComparator orderByComparator) throws SystemException {
+		int end, OrderByComparator orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled()) {
 			return findByCompanyId(companyId, start, end, orderByComparator);
 		}
@@ -649,13 +633,11 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next s p i definition
 	 * @throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException if a s p i definition with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public SPIDefinition[] filterFindByCompanyId_PrevAndNext(
 		long spiDefinitionId, long companyId,
-		OrderByComparator orderByComparator)
-		throws NoSuchDefinitionException, SystemException {
+		OrderByComparator orderByComparator) throws NoSuchDefinitionException {
 		if (!InlineSQLHelperUtil.isEnabled()) {
 			return findByCompanyId_PrevAndNext(spiDefinitionId, companyId,
 				orderByComparator);
@@ -832,10 +814,9 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 * Removes all the s p i definitions where companyId = &#63; from the database.
 	 *
 	 * @param companyId the company ID
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public void removeByCompanyId(long companyId) throws SystemException {
+	public void removeByCompanyId(long companyId) {
 		for (SPIDefinition spiDefinition : findByCompanyId(companyId,
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
 			remove(spiDefinition);
@@ -847,10 +828,9 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 *
 	 * @param companyId the company ID
 	 * @return the number of matching s p i definitions
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int countByCompanyId(long companyId) throws SystemException {
+	public int countByCompanyId(long companyId) {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_COMPANYID;
 
 		Object[] finderArgs = new Object[] { companyId };
@@ -900,10 +880,9 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 *
 	 * @param companyId the company ID
 	 * @return the number of matching s p i definitions that the user has permission to view
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int filterCountByCompanyId(long companyId) throws SystemException {
+	public int filterCountByCompanyId(long companyId) {
 		if (!InlineSQLHelperUtil.isEnabled()) {
 			return countByCompanyId(companyId);
 		}
@@ -963,11 +942,10 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 * @param name the name
 	 * @return the matching s p i definition
 	 * @throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException if a matching s p i definition could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public SPIDefinition findByC_N(long companyId, String name)
-		throws NoSuchDefinitionException, SystemException {
+		throws NoSuchDefinitionException {
 		SPIDefinition spiDefinition = fetchByC_N(companyId, name);
 
 		if (spiDefinition == null) {
@@ -999,11 +977,9 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 * @param companyId the company ID
 	 * @param name the name
 	 * @return the matching s p i definition, or <code>null</code> if a matching s p i definition could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public SPIDefinition fetchByC_N(long companyId, String name)
-		throws SystemException {
+	public SPIDefinition fetchByC_N(long companyId, String name) {
 		return fetchByC_N(companyId, name, true);
 	}
 
@@ -1014,11 +990,10 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 * @param name the name
 	 * @param retrieveFromCache whether to use the finder cache
 	 * @return the matching s p i definition, or <code>null</code> if a matching s p i definition could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public SPIDefinition fetchByC_N(long companyId, String name,
-		boolean retrieveFromCache) throws SystemException {
+		boolean retrieveFromCache) {
 		Object[] finderArgs = new Object[] { companyId, name };
 
 		Object result = null;
@@ -1128,11 +1103,10 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 * @param companyId the company ID
 	 * @param name the name
 	 * @return the s p i definition that was removed
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public SPIDefinition removeByC_N(long companyId, String name)
-		throws NoSuchDefinitionException, SystemException {
+		throws NoSuchDefinitionException {
 		SPIDefinition spiDefinition = findByC_N(companyId, name);
 
 		return remove(spiDefinition);
@@ -1144,11 +1118,9 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 * @param companyId the company ID
 	 * @param name the name
 	 * @return the number of matching s p i definitions
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int countByC_N(long companyId, String name)
-		throws SystemException {
+	public int countByC_N(long companyId, String name) {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_C_N;
 
 		Object[] finderArgs = new Object[] { companyId, name };
@@ -1247,11 +1219,9 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 * @param companyId the company ID
 	 * @param status the status
 	 * @return the matching s p i definitions
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<SPIDefinition> findByC_S(long companyId, int status)
-		throws SystemException {
+	public List<SPIDefinition> findByC_S(long companyId, int status) {
 		return findByC_S(companyId, status, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
@@ -1268,11 +1238,10 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 * @param start the lower bound of the range of s p i definitions
 	 * @param end the upper bound of the range of s p i definitions (not inclusive)
 	 * @return the range of matching s p i definitions
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<SPIDefinition> findByC_S(long companyId, int status, int start,
-		int end) throws SystemException {
+		int end) {
 		return findByC_S(companyId, status, start, end, null);
 	}
 
@@ -1289,11 +1258,10 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 * @param end the upper bound of the range of s p i definitions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching s p i definitions
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<SPIDefinition> findByC_S(long companyId, int status, int start,
-		int end, OrderByComparator orderByComparator) throws SystemException {
+		int end, OrderByComparator orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1406,12 +1374,10 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching s p i definition
 	 * @throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException if a matching s p i definition could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public SPIDefinition findByC_S_First(long companyId, int status,
-		OrderByComparator orderByComparator)
-		throws NoSuchDefinitionException, SystemException {
+		OrderByComparator orderByComparator) throws NoSuchDefinitionException {
 		SPIDefinition spiDefinition = fetchByC_S_First(companyId, status,
 				orderByComparator);
 
@@ -1441,11 +1407,10 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 * @param status the status
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching s p i definition, or <code>null</code> if a matching s p i definition could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public SPIDefinition fetchByC_S_First(long companyId, int status,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		List<SPIDefinition> list = findByC_S(companyId, status, 0, 1,
 				orderByComparator);
 
@@ -1464,12 +1429,10 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching s p i definition
 	 * @throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException if a matching s p i definition could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public SPIDefinition findByC_S_Last(long companyId, int status,
-		OrderByComparator orderByComparator)
-		throws NoSuchDefinitionException, SystemException {
+		OrderByComparator orderByComparator) throws NoSuchDefinitionException {
 		SPIDefinition spiDefinition = fetchByC_S_Last(companyId, status,
 				orderByComparator);
 
@@ -1499,11 +1462,10 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 * @param status the status
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching s p i definition, or <code>null</code> if a matching s p i definition could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public SPIDefinition fetchByC_S_Last(long companyId, int status,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		int count = countByC_S(companyId, status);
 
 		if (count == 0) {
@@ -1529,12 +1491,11 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next s p i definition
 	 * @throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException if a s p i definition with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public SPIDefinition[] findByC_S_PrevAndNext(long spiDefinitionId,
 		long companyId, int status, OrderByComparator orderByComparator)
-		throws NoSuchDefinitionException, SystemException {
+		throws NoSuchDefinitionException {
 		SPIDefinition spiDefinition = findByPrimaryKey(spiDefinitionId);
 
 		Session session = null;
@@ -1677,11 +1638,9 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 * @param companyId the company ID
 	 * @param status the status
 	 * @return the matching s p i definitions that the user has permission to view
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<SPIDefinition> filterFindByC_S(long companyId, int status)
-		throws SystemException {
+	public List<SPIDefinition> filterFindByC_S(long companyId, int status) {
 		return filterFindByC_S(companyId, status, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
@@ -1698,11 +1657,10 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 * @param start the lower bound of the range of s p i definitions
 	 * @param end the upper bound of the range of s p i definitions (not inclusive)
 	 * @return the range of matching s p i definitions that the user has permission to view
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<SPIDefinition> filterFindByC_S(long companyId, int status,
-		int start, int end) throws SystemException {
+		int start, int end) {
 		return filterFindByC_S(companyId, status, start, end, null);
 	}
 
@@ -1719,12 +1677,10 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 * @param end the upper bound of the range of s p i definitions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching s p i definitions that the user has permission to view
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<SPIDefinition> filterFindByC_S(long companyId, int status,
-		int start, int end, OrderByComparator orderByComparator)
-		throws SystemException {
+		int start, int end, OrderByComparator orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled()) {
 			return findByC_S(companyId, status, start, end, orderByComparator);
 		}
@@ -1817,12 +1773,11 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next s p i definition
 	 * @throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException if a s p i definition with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public SPIDefinition[] filterFindByC_S_PrevAndNext(long spiDefinitionId,
 		long companyId, int status, OrderByComparator orderByComparator)
-		throws NoSuchDefinitionException, SystemException {
+		throws NoSuchDefinitionException {
 		if (!InlineSQLHelperUtil.isEnabled()) {
 			return findByC_S_PrevAndNext(spiDefinitionId, companyId, status,
 				orderByComparator);
@@ -2005,11 +1960,9 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 * @param companyId the company ID
 	 * @param statuses the statuses
 	 * @return the matching s p i definitions that the user has permission to view
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<SPIDefinition> filterFindByC_S(long companyId, int[] statuses)
-		throws SystemException {
+	public List<SPIDefinition> filterFindByC_S(long companyId, int[] statuses) {
 		return filterFindByC_S(companyId, statuses, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
@@ -2026,11 +1979,10 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 * @param start the lower bound of the range of s p i definitions
 	 * @param end the upper bound of the range of s p i definitions (not inclusive)
 	 * @return the range of matching s p i definitions that the user has permission to view
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<SPIDefinition> filterFindByC_S(long companyId, int[] statuses,
-		int start, int end) throws SystemException {
+		int start, int end) {
 		return filterFindByC_S(companyId, statuses, start, end, null);
 	}
 
@@ -2047,12 +1999,10 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 * @param end the upper bound of the range of s p i definitions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching s p i definitions that the user has permission to view
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<SPIDefinition> filterFindByC_S(long companyId, int[] statuses,
-		int start, int end, OrderByComparator orderByComparator)
-		throws SystemException {
+		int start, int end, OrderByComparator orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled()) {
 			return findByC_S(companyId, statuses, start, end, orderByComparator);
 		}
@@ -2156,11 +2106,9 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 * @param companyId the company ID
 	 * @param statuses the statuses
 	 * @return the matching s p i definitions
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<SPIDefinition> findByC_S(long companyId, int[] statuses)
-		throws SystemException {
+	public List<SPIDefinition> findByC_S(long companyId, int[] statuses) {
 		return findByC_S(companyId, statuses, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
@@ -2177,11 +2125,10 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 * @param start the lower bound of the range of s p i definitions
 	 * @param end the upper bound of the range of s p i definitions (not inclusive)
 	 * @return the range of matching s p i definitions
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<SPIDefinition> findByC_S(long companyId, int[] statuses,
-		int start, int end) throws SystemException {
+		int start, int end) {
 		return findByC_S(companyId, statuses, start, end, null);
 	}
 
@@ -2198,12 +2145,10 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 * @param end the upper bound of the range of s p i definitions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching s p i definitions
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<SPIDefinition> findByC_S(long companyId, int[] statuses,
-		int start, int end, OrderByComparator orderByComparator)
-		throws SystemException {
+		int start, int end, OrderByComparator orderByComparator) {
 		if (statuses == null) {
 			statuses = new int[0];
 		}
@@ -2327,11 +2272,9 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 *
 	 * @param companyId the company ID
 	 * @param status the status
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public void removeByC_S(long companyId, int status)
-		throws SystemException {
+	public void removeByC_S(long companyId, int status) {
 		for (SPIDefinition spiDefinition : findByC_S(companyId, status,
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
 			remove(spiDefinition);
@@ -2344,10 +2287,9 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 * @param companyId the company ID
 	 * @param status the status
 	 * @return the number of matching s p i definitions
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int countByC_S(long companyId, int status) throws SystemException {
+	public int countByC_S(long companyId, int status) {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_C_S;
 
 		Object[] finderArgs = new Object[] { companyId, status };
@@ -2402,11 +2344,9 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 * @param companyId the company ID
 	 * @param statuses the statuses
 	 * @return the number of matching s p i definitions
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int countByC_S(long companyId, int[] statuses)
-		throws SystemException {
+	public int countByC_S(long companyId, int[] statuses) {
 		if (statuses == null) {
 			statuses = new int[0];
 		}
@@ -2479,11 +2419,9 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 * @param companyId the company ID
 	 * @param status the status
 	 * @return the number of matching s p i definitions that the user has permission to view
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int filterCountByC_S(long companyId, int status)
-		throws SystemException {
+	public int filterCountByC_S(long companyId, int status) {
 		if (!InlineSQLHelperUtil.isEnabled()) {
 			return countByC_S(companyId, status);
 		}
@@ -2534,11 +2472,9 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 * @param companyId the company ID
 	 * @param statuses the statuses
 	 * @return the number of matching s p i definitions that the user has permission to view
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int filterCountByC_S(long companyId, int[] statuses)
-		throws SystemException {
+	public int filterCountByC_S(long companyId, int[] statuses) {
 		if (!InlineSQLHelperUtil.isEnabled()) {
 			return countByC_S(companyId, statuses);
 		}
@@ -2622,11 +2558,10 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 * @param connectorPort the connector port
 	 * @return the matching s p i definition
 	 * @throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException if a matching s p i definition could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public SPIDefinition findByCA_CP(String connectorAddress, int connectorPort)
-		throws NoSuchDefinitionException, SystemException {
+		throws NoSuchDefinitionException {
 		SPIDefinition spiDefinition = fetchByCA_CP(connectorAddress,
 				connectorPort);
 
@@ -2659,11 +2594,9 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 * @param connectorAddress the connector address
 	 * @param connectorPort the connector port
 	 * @return the matching s p i definition, or <code>null</code> if a matching s p i definition could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public SPIDefinition fetchByCA_CP(String connectorAddress, int connectorPort)
-		throws SystemException {
+	public SPIDefinition fetchByCA_CP(String connectorAddress, int connectorPort) {
 		return fetchByCA_CP(connectorAddress, connectorPort, true);
 	}
 
@@ -2674,11 +2607,10 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 * @param connectorPort the connector port
 	 * @param retrieveFromCache whether to use the finder cache
 	 * @return the matching s p i definition, or <code>null</code> if a matching s p i definition could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public SPIDefinition fetchByCA_CP(String connectorAddress,
-		int connectorPort, boolean retrieveFromCache) throws SystemException {
+		int connectorPort, boolean retrieveFromCache) {
 		Object[] finderArgs = new Object[] { connectorAddress, connectorPort };
 
 		Object result = null;
@@ -2790,11 +2722,10 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 * @param connectorAddress the connector address
 	 * @param connectorPort the connector port
 	 * @return the s p i definition that was removed
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public SPIDefinition removeByCA_CP(String connectorAddress,
-		int connectorPort) throws NoSuchDefinitionException, SystemException {
+		int connectorPort) throws NoSuchDefinitionException {
 		SPIDefinition spiDefinition = findByCA_CP(connectorAddress,
 				connectorPort);
 
@@ -2807,11 +2738,9 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 * @param connectorAddress the connector address
 	 * @param connectorPort the connector port
 	 * @return the number of matching s p i definitions
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int countByCA_CP(String connectorAddress, int connectorPort)
-		throws SystemException {
+	public int countByCA_CP(String connectorAddress, int connectorPort) {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_CA_CP;
 
 		Object[] finderArgs = new Object[] { connectorAddress, connectorPort };
@@ -3091,11 +3020,10 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 * @param spiDefinitionId the primary key of the s p i definition
 	 * @return the s p i definition that was removed
 	 * @throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException if a s p i definition with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public SPIDefinition remove(long spiDefinitionId)
-		throws NoSuchDefinitionException, SystemException {
+		throws NoSuchDefinitionException {
 		return remove((Serializable)spiDefinitionId);
 	}
 
@@ -3105,11 +3033,10 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 * @param primaryKey the primary key of the s p i definition
 	 * @return the s p i definition that was removed
 	 * @throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException if a s p i definition with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public SPIDefinition remove(Serializable primaryKey)
-		throws NoSuchDefinitionException, SystemException {
+		throws NoSuchDefinitionException {
 		Session session = null;
 
 		try {
@@ -3141,8 +3068,7 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	}
 
 	@Override
-	protected SPIDefinition removeImpl(SPIDefinition spiDefinition)
-		throws SystemException {
+	protected SPIDefinition removeImpl(SPIDefinition spiDefinition) {
 		spiDefinition = toUnwrappedModel(spiDefinition);
 
 		Session session = null;
@@ -3175,8 +3101,7 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 
 	@Override
 	public SPIDefinition updateImpl(
-		com.liferay.portal.resiliency.spi.model.SPIDefinition spiDefinition)
-		throws SystemException {
+		com.liferay.portal.resiliency.spi.model.SPIDefinition spiDefinition) {
 		spiDefinition = toUnwrappedModel(spiDefinition);
 
 		boolean isNew = spiDefinition.isNew();
@@ -3300,11 +3225,10 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 * @param primaryKey the primary key of the s p i definition
 	 * @return the s p i definition
 	 * @throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException if a s p i definition with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public SPIDefinition findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchDefinitionException, SystemException {
+		throws NoSuchDefinitionException {
 		SPIDefinition spiDefinition = fetchByPrimaryKey(primaryKey);
 
 		if (spiDefinition == null) {
@@ -3325,11 +3249,10 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 * @param spiDefinitionId the primary key of the s p i definition
 	 * @return the s p i definition
 	 * @throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException if a s p i definition with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public SPIDefinition findByPrimaryKey(long spiDefinitionId)
-		throws NoSuchDefinitionException, SystemException {
+		throws NoSuchDefinitionException {
 		return findByPrimaryKey((Serializable)spiDefinitionId);
 	}
 
@@ -3338,11 +3261,9 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 *
 	 * @param primaryKey the primary key of the s p i definition
 	 * @return the s p i definition, or <code>null</code> if a s p i definition with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public SPIDefinition fetchByPrimaryKey(Serializable primaryKey)
-		throws SystemException {
+	public SPIDefinition fetchByPrimaryKey(Serializable primaryKey) {
 		SPIDefinition spiDefinition = (SPIDefinition)EntityCacheUtil.getResult(SPIDefinitionModelImpl.ENTITY_CACHE_ENABLED,
 				SPIDefinitionImpl.class, primaryKey);
 
@@ -3386,11 +3307,9 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 *
 	 * @param spiDefinitionId the primary key of the s p i definition
 	 * @return the s p i definition, or <code>null</code> if a s p i definition with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public SPIDefinition fetchByPrimaryKey(long spiDefinitionId)
-		throws SystemException {
+	public SPIDefinition fetchByPrimaryKey(long spiDefinitionId) {
 		return fetchByPrimaryKey((Serializable)spiDefinitionId);
 	}
 
@@ -3398,10 +3317,9 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 * Returns all the s p i definitions.
 	 *
 	 * @return the s p i definitions
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<SPIDefinition> findAll() throws SystemException {
+	public List<SPIDefinition> findAll() {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
@@ -3415,11 +3333,9 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 * @param start the lower bound of the range of s p i definitions
 	 * @param end the upper bound of the range of s p i definitions (not inclusive)
 	 * @return the range of s p i definitions
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<SPIDefinition> findAll(int start, int end)
-		throws SystemException {
+	public List<SPIDefinition> findAll(int start, int end) {
 		return findAll(start, end, null);
 	}
 
@@ -3434,11 +3350,10 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 * @param end the upper bound of the range of s p i definitions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of s p i definitions
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<SPIDefinition> findAll(int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -3520,10 +3435,9 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	/**
 	 * Removes all the s p i definitions from the database.
 	 *
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public void removeAll() throws SystemException {
+	public void removeAll() {
 		for (SPIDefinition spiDefinition : findAll()) {
 			remove(spiDefinition);
 		}
@@ -3533,10 +3447,9 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 * Returns the number of s p i definitions.
 	 *
 	 * @return the number of s p i definitions
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int countAll() throws SystemException {
+	public int countAll() {
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
 				FINDER_ARGS_EMPTY, this);
 

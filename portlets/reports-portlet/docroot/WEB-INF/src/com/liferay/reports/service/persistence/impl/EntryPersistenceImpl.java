@@ -21,7 +21,6 @@ import com.liferay.portal.kernel.dao.orm.FinderPath;
 import com.liferay.portal.kernel.dao.orm.Query;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.Session;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -185,11 +184,9 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 * @param entryId the primary key of the entry
 	 * @return the entry that was removed
 	 * @throws com.liferay.reports.NoSuchEntryException if a entry with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Entry remove(long entryId)
-		throws NoSuchEntryException, SystemException {
+	public Entry remove(long entryId) throws NoSuchEntryException {
 		return remove((Serializable)entryId);
 	}
 
@@ -199,11 +196,9 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 * @param primaryKey the primary key of the entry
 	 * @return the entry that was removed
 	 * @throws com.liferay.reports.NoSuchEntryException if a entry with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Entry remove(Serializable primaryKey)
-		throws NoSuchEntryException, SystemException {
+	public Entry remove(Serializable primaryKey) throws NoSuchEntryException {
 		Session session = null;
 
 		try {
@@ -234,7 +229,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	}
 
 	@Override
-	protected Entry removeImpl(Entry entry) throws SystemException {
+	protected Entry removeImpl(Entry entry) {
 		entry = toUnwrappedModel(entry);
 
 		Session session = null;
@@ -266,8 +261,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	}
 
 	@Override
-	public Entry updateImpl(com.liferay.reports.model.Entry entry)
-		throws SystemException {
+	public Entry updateImpl(com.liferay.reports.model.Entry entry) {
 		entry = toUnwrappedModel(entry);
 
 		boolean isNew = entry.isNew();
@@ -348,11 +342,10 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 * @param primaryKey the primary key of the entry
 	 * @return the entry
 	 * @throws com.liferay.reports.NoSuchEntryException if a entry with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Entry findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchEntryException, SystemException {
+		throws NoSuchEntryException {
 		Entry entry = fetchByPrimaryKey(primaryKey);
 
 		if (entry == null) {
@@ -373,11 +366,9 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 * @param entryId the primary key of the entry
 	 * @return the entry
 	 * @throws com.liferay.reports.NoSuchEntryException if a entry with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Entry findByPrimaryKey(long entryId)
-		throws NoSuchEntryException, SystemException {
+	public Entry findByPrimaryKey(long entryId) throws NoSuchEntryException {
 		return findByPrimaryKey((Serializable)entryId);
 	}
 
@@ -386,11 +377,9 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 *
 	 * @param primaryKey the primary key of the entry
 	 * @return the entry, or <code>null</code> if a entry with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Entry fetchByPrimaryKey(Serializable primaryKey)
-		throws SystemException {
+	public Entry fetchByPrimaryKey(Serializable primaryKey) {
 		Entry entry = (Entry)EntityCacheUtil.getResult(EntryModelImpl.ENTITY_CACHE_ENABLED,
 				EntryImpl.class, primaryKey);
 
@@ -433,10 +422,9 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 *
 	 * @param entryId the primary key of the entry
 	 * @return the entry, or <code>null</code> if a entry with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Entry fetchByPrimaryKey(long entryId) throws SystemException {
+	public Entry fetchByPrimaryKey(long entryId) {
 		return fetchByPrimaryKey((Serializable)entryId);
 	}
 
@@ -444,10 +432,9 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 * Returns all the entries.
 	 *
 	 * @return the entries
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<Entry> findAll() throws SystemException {
+	public List<Entry> findAll() {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
@@ -461,10 +448,9 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 * @param start the lower bound of the range of entries
 	 * @param end the upper bound of the range of entries (not inclusive)
 	 * @return the range of entries
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<Entry> findAll(int start, int end) throws SystemException {
+	public List<Entry> findAll(int start, int end) {
 		return findAll(start, end, null);
 	}
 
@@ -479,11 +465,10 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 * @param end the upper bound of the range of entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of entries
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<Entry> findAll(int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -565,10 +550,9 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	/**
 	 * Removes all the entries from the database.
 	 *
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public void removeAll() throws SystemException {
+	public void removeAll() {
 		for (Entry entry : findAll()) {
 			remove(entry);
 		}
@@ -578,10 +562,9 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 * Returns the number of entries.
 	 *
 	 * @return the number of entries
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int countAll() throws SystemException {
+	public int countAll() {
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
 				FINDER_ARGS_EMPTY, this);
 

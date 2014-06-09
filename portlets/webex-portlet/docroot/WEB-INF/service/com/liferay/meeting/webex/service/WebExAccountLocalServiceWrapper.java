@@ -35,12 +35,10 @@ public class WebExAccountLocalServiceWrapper implements WebExAccountLocalService
 	*
 	* @param webExAccount the web ex account
 	* @return the web ex account that was added
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.meeting.webex.model.WebExAccount addWebExAccount(
-		com.liferay.meeting.webex.model.WebExAccount webExAccount)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.meeting.webex.model.WebExAccount webExAccount) {
 		return _webExAccountLocalService.addWebExAccount(webExAccount);
 	}
 
@@ -62,7 +60,7 @@ public class WebExAccountLocalServiceWrapper implements WebExAccountLocalService
 	* @param webExAccountId the primary key of the web ex account
 	* @return the web ex account that was removed
 	* @throws PortalException if a web ex account with the primary key could not be found
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.meeting.webex.model.WebExAccount deleteWebExAccount(
@@ -78,7 +76,7 @@ public class WebExAccountLocalServiceWrapper implements WebExAccountLocalService
 	* @param webExAccount the web ex account
 	* @return the web ex account that was removed
 	* @throws PortalException
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.meeting.webex.model.WebExAccount deleteWebExAccount(
@@ -98,13 +96,11 @@ public class WebExAccountLocalServiceWrapper implements WebExAccountLocalService
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _webExAccountLocalService.dynamicQuery(dynamicQuery);
 	}
 
@@ -119,13 +115,12 @@ public class WebExAccountLocalServiceWrapper implements WebExAccountLocalService
 	* @param start the lower bound of the range of model instances
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		int end) {
 		return _webExAccountLocalService.dynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -141,15 +136,13 @@ public class WebExAccountLocalServiceWrapper implements WebExAccountLocalService
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return _webExAccountLocalService.dynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
 	}
@@ -159,12 +152,10 @@ public class WebExAccountLocalServiceWrapper implements WebExAccountLocalService
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _webExAccountLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
@@ -174,21 +165,18 @@ public class WebExAccountLocalServiceWrapper implements WebExAccountLocalService
 	* @param dynamicQuery the dynamic query
 	* @param projection the projection to apply to the query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.Projection projection) {
 		return _webExAccountLocalService.dynamicQueryCount(dynamicQuery,
 			projection);
 	}
 
 	@Override
 	public com.liferay.meeting.webex.model.WebExAccount fetchWebExAccount(
-		long webExAccountId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long webExAccountId) {
 		return _webExAccountLocalService.fetchWebExAccount(webExAccountId);
 	}
 
@@ -198,12 +186,10 @@ public class WebExAccountLocalServiceWrapper implements WebExAccountLocalService
 	* @param uuid the web ex account's UUID
 	* @param companyId the primary key of the company
 	* @return the matching web ex account, or <code>null</code> if a matching web ex account could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.meeting.webex.model.WebExAccount fetchWebExAccountByUuidAndCompanyId(
-		java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String uuid, long companyId) {
 		return _webExAccountLocalService.fetchWebExAccountByUuidAndCompanyId(uuid,
 			companyId);
 	}
@@ -214,12 +200,10 @@ public class WebExAccountLocalServiceWrapper implements WebExAccountLocalService
 	* @param uuid the web ex account's UUID
 	* @param groupId the primary key of the group
 	* @return the matching web ex account, or <code>null</code> if a matching web ex account could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.meeting.webex.model.WebExAccount fetchWebExAccountByUuidAndGroupId(
-		java.lang.String uuid, long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String uuid, long groupId) {
 		return _webExAccountLocalService.fetchWebExAccountByUuidAndGroupId(uuid,
 			groupId);
 	}
@@ -230,21 +214,39 @@ public class WebExAccountLocalServiceWrapper implements WebExAccountLocalService
 	* @param webExAccountId the primary key of the web ex account
 	* @return the web ex account
 	* @throws PortalException if a web ex account with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.meeting.webex.model.WebExAccount getWebExAccount(
 		long webExAccountId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _webExAccountLocalService.getWebExAccount(webExAccountId);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return _webExAccountLocalService.getActionableDynamicQuery();
+	}
+
+	@Override
+	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
+		com.liferay.portal.kernel.lar.PortletDataContext portletDataContext) {
+		return _webExAccountLocalService.getExportActionableDynamicQuery(portletDataContext);
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _webExAccountLocalService.deletePersistedModel(persistedModel);
 	}
 
 	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _webExAccountLocalService.getPersistedModel(primaryKeyObj);
 	}
 
@@ -255,13 +257,11 @@ public class WebExAccountLocalServiceWrapper implements WebExAccountLocalService
 	* @param companyId the primary key of the company
 	* @return the matching web ex account
 	* @throws PortalException if a matching web ex account could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.meeting.webex.model.WebExAccount getWebExAccountByUuidAndCompanyId(
 		java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _webExAccountLocalService.getWebExAccountByUuidAndCompanyId(uuid,
 			companyId);
 	}
@@ -273,13 +273,11 @@ public class WebExAccountLocalServiceWrapper implements WebExAccountLocalService
 	* @param groupId the primary key of the group
 	* @return the matching web ex account
 	* @throws PortalException if a matching web ex account could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.meeting.webex.model.WebExAccount getWebExAccountByUuidAndGroupId(
 		java.lang.String uuid, long groupId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _webExAccountLocalService.getWebExAccountByUuidAndGroupId(uuid,
 			groupId);
 	}
@@ -294,12 +292,10 @@ public class WebExAccountLocalServiceWrapper implements WebExAccountLocalService
 	* @param start the lower bound of the range of web ex accounts
 	* @param end the upper bound of the range of web ex accounts (not inclusive)
 	* @return the range of web ex accounts
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public java.util.List<com.liferay.meeting.webex.model.WebExAccount> getWebExAccounts(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return _webExAccountLocalService.getWebExAccounts(start, end);
 	}
 
@@ -307,11 +303,9 @@ public class WebExAccountLocalServiceWrapper implements WebExAccountLocalService
 	* Returns the number of web ex accounts.
 	*
 	* @return the number of web ex accounts
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public int getWebExAccountsCount()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getWebExAccountsCount() {
 		return _webExAccountLocalService.getWebExAccountsCount();
 	}
 
@@ -320,12 +314,10 @@ public class WebExAccountLocalServiceWrapper implements WebExAccountLocalService
 	*
 	* @param webExAccount the web ex account
 	* @return the web ex account that was updated
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.meeting.webex.model.WebExAccount updateWebExAccount(
-		com.liferay.meeting.webex.model.WebExAccount webExAccount)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.meeting.webex.model.WebExAccount webExAccount) {
 		return _webExAccountLocalService.updateWebExAccount(webExAccount);
 	}
 

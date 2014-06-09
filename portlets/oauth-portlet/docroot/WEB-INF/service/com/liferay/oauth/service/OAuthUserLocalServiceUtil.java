@@ -44,11 +44,9 @@ public class OAuthUserLocalServiceUtil {
 	*
 	* @param oAuthUser the o auth user
 	* @return the o auth user that was added
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.oauth.model.OAuthUser addOAuthUser(
-		com.liferay.oauth.model.OAuthUser oAuthUser)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.oauth.model.OAuthUser oAuthUser) {
 		return getService().addOAuthUser(oAuthUser);
 	}
 
@@ -69,12 +67,10 @@ public class OAuthUserLocalServiceUtil {
 	* @param oAuthUserId the primary key of the o auth user
 	* @return the o auth user that was removed
 	* @throws PortalException if a o auth user with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.oauth.model.OAuthUser deleteOAuthUser(
 		long oAuthUserId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteOAuthUser(oAuthUserId);
 	}
 
@@ -84,7 +80,7 @@ public class OAuthUserLocalServiceUtil {
 	* @param oAuthUser the o auth user
 	* @return the o auth user that was removed
 	* @throws PortalException
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	public static com.liferay.oauth.model.OAuthUser deleteOAuthUser(
 		com.liferay.oauth.model.OAuthUser oAuthUser)
@@ -102,12 +98,10 @@ public class OAuthUserLocalServiceUtil {
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return getService().dynamicQuery(dynamicQuery);
 	}
 
@@ -122,12 +116,11 @@ public class OAuthUserLocalServiceUtil {
 	* @param start the lower bound of the range of model instances
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		int end) {
 		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -143,14 +136,12 @@ public class OAuthUserLocalServiceUtil {
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getService()
 				   .dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
@@ -160,11 +151,9 @@ public class OAuthUserLocalServiceUtil {
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	public static long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
@@ -174,18 +163,15 @@ public class OAuthUserLocalServiceUtil {
 	* @param dynamicQuery the dynamic query
 	* @param projection the projection to apply to the query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	public static long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.Projection projection) {
 		return getService().dynamicQueryCount(dynamicQuery, projection);
 	}
 
 	public static com.liferay.oauth.model.OAuthUser fetchOAuthUser(
-		long oAuthUserId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long oAuthUserId) {
 		return getService().fetchOAuthUser(oAuthUserId);
 	}
 
@@ -195,19 +181,29 @@ public class OAuthUserLocalServiceUtil {
 	* @param oAuthUserId the primary key of the o auth user
 	* @return the o auth user
 	* @throws PortalException if a o auth user with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.oauth.model.OAuthUser getOAuthUser(
 		long oAuthUserId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getOAuthUser(oAuthUserId);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return getService().getActionableDynamicQuery();
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deletePersistedModel(persistedModel);
 	}
 
 	public static com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getPersistedModel(primaryKeyObj);
 	}
 
@@ -221,11 +217,9 @@ public class OAuthUserLocalServiceUtil {
 	* @param start the lower bound of the range of o auth users
 	* @param end the upper bound of the range of o auth users (not inclusive)
 	* @return the range of o auth users
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.oauth.model.OAuthUser> getOAuthUsers(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return getService().getOAuthUsers(start, end);
 	}
 
@@ -233,10 +227,8 @@ public class OAuthUserLocalServiceUtil {
 	* Returns the number of o auth users.
 	*
 	* @return the number of o auth users
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int getOAuthUsersCount()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int getOAuthUsersCount() {
 		return getService().getOAuthUsersCount();
 	}
 
@@ -245,11 +237,9 @@ public class OAuthUserLocalServiceUtil {
 	*
 	* @param oAuthUser the o auth user
 	* @return the o auth user that was updated
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.oauth.model.OAuthUser updateOAuthUser(
-		com.liferay.oauth.model.OAuthUser oAuthUser)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.oauth.model.OAuthUser oAuthUser) {
 		return getService().updateOAuthUser(oAuthUser);
 	}
 

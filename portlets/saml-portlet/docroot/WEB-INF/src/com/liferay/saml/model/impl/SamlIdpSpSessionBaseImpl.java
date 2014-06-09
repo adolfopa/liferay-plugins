@@ -14,8 +14,6 @@
 
 package com.liferay.saml.model.impl;
 
-import com.liferay.portal.kernel.exception.SystemException;
-
 import com.liferay.saml.model.SamlIdpSpSession;
 import com.liferay.saml.service.SamlIdpSpSessionLocalServiceUtil;
 
@@ -39,7 +37,7 @@ public abstract class SamlIdpSpSessionBaseImpl extends SamlIdpSpSessionModelImpl
 	 * Never modify or reference this class directly. All methods that expect a saml idp sp session model instance should use the {@link SamlIdpSpSession} interface instead.
 	 */
 	@Override
-	public void persist() throws SystemException {
+	public void persist() {
 		if (this.isNew()) {
 			SamlIdpSpSessionLocalServiceUtil.addSamlIdpSpSession(this);
 		}

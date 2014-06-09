@@ -16,7 +16,6 @@ package com.liferay.reports.service.persistence;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
@@ -61,16 +60,14 @@ public class SourceUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#countWithDynamicQuery(DynamicQuery)
 	 */
-	public static long countWithDynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public static long countWithDynamicQuery(DynamicQuery dynamicQuery) {
 		return getPersistence().countWithDynamicQuery(dynamicQuery);
 	}
 
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery)
 	 */
-	public static List<Source> findWithDynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public static List<Source> findWithDynamicQuery(DynamicQuery dynamicQuery) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -78,7 +75,7 @@ public class SourceUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int)
 	 */
 	public static List<Source> findWithDynamicQuery(DynamicQuery dynamicQuery,
-		int start, int end) throws SystemException {
+		int start, int end) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -86,8 +83,7 @@ public class SourceUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int, OrderByComparator)
 	 */
 	public static List<Source> findWithDynamicQuery(DynamicQuery dynamicQuery,
-		int start, int end, OrderByComparator orderByComparator)
-		throws SystemException {
+		int start, int end, OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -96,15 +92,14 @@ public class SourceUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static Source update(Source source) throws SystemException {
+	public static Source update(Source source) {
 		return getPersistence().update(source);
 	}
 
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
-	public static Source update(Source source, ServiceContext serviceContext)
-		throws SystemException {
+	public static Source update(Source source, ServiceContext serviceContext) {
 		return getPersistence().update(source, serviceContext);
 	}
 
@@ -113,11 +108,9 @@ public class SourceUtil {
 	*
 	* @param uuid the uuid
 	* @return the matching sources
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.reports.model.Source> findByUuid(
-		java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String uuid) {
 		return getPersistence().findByUuid(uuid);
 	}
 
@@ -132,11 +125,9 @@ public class SourceUtil {
 	* @param start the lower bound of the range of sources
 	* @param end the upper bound of the range of sources (not inclusive)
 	* @return the range of matching sources
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.reports.model.Source> findByUuid(
-		java.lang.String uuid, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String uuid, int start, int end) {
 		return getPersistence().findByUuid(uuid, start, end);
 	}
 
@@ -152,12 +143,10 @@ public class SourceUtil {
 	* @param end the upper bound of the range of sources (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching sources
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.reports.model.Source> findByUuid(
 		java.lang.String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().findByUuid(uuid, start, end, orderByComparator);
 	}
 
@@ -168,13 +157,11 @@ public class SourceUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching source
 	* @throws com.liferay.reports.NoSuchSourceException if a matching source could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.reports.model.Source findByUuid_First(
 		java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.reports.NoSuchSourceException {
+		throws com.liferay.reports.NoSuchSourceException {
 		return getPersistence().findByUuid_First(uuid, orderByComparator);
 	}
 
@@ -184,12 +171,10 @@ public class SourceUtil {
 	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching source, or <code>null</code> if a matching source could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.reports.model.Source fetchByUuid_First(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().fetchByUuid_First(uuid, orderByComparator);
 	}
 
@@ -200,13 +185,11 @@ public class SourceUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching source
 	* @throws com.liferay.reports.NoSuchSourceException if a matching source could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.reports.model.Source findByUuid_Last(
 		java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.reports.NoSuchSourceException {
+		throws com.liferay.reports.NoSuchSourceException {
 		return getPersistence().findByUuid_Last(uuid, orderByComparator);
 	}
 
@@ -216,12 +199,10 @@ public class SourceUtil {
 	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching source, or <code>null</code> if a matching source could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.reports.model.Source fetchByUuid_Last(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().fetchByUuid_Last(uuid, orderByComparator);
 	}
 
@@ -233,13 +214,11 @@ public class SourceUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next source
 	* @throws com.liferay.reports.NoSuchSourceException if a source with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.reports.model.Source[] findByUuid_PrevAndNext(
 		long sourceId, java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.reports.NoSuchSourceException {
+		throws com.liferay.reports.NoSuchSourceException {
 		return getPersistence()
 				   .findByUuid_PrevAndNext(sourceId, uuid, orderByComparator);
 	}
@@ -248,10 +227,8 @@ public class SourceUtil {
 	* Removes all the sources where uuid = &#63; from the database.
 	*
 	* @param uuid the uuid
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByUuid(java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeByUuid(java.lang.String uuid) {
 		getPersistence().removeByUuid(uuid);
 	}
 
@@ -260,10 +237,8 @@ public class SourceUtil {
 	*
 	* @param uuid the uuid
 	* @return the number of matching sources
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByUuid(java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByUuid(java.lang.String uuid) {
 		return getPersistence().countByUuid(uuid);
 	}
 
@@ -274,12 +249,10 @@ public class SourceUtil {
 	* @param groupId the group ID
 	* @return the matching source
 	* @throws com.liferay.reports.NoSuchSourceException if a matching source could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.reports.model.Source findByUUID_G(
 		java.lang.String uuid, long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.reports.NoSuchSourceException {
+		throws com.liferay.reports.NoSuchSourceException {
 		return getPersistence().findByUUID_G(uuid, groupId);
 	}
 
@@ -289,11 +262,9 @@ public class SourceUtil {
 	* @param uuid the uuid
 	* @param groupId the group ID
 	* @return the matching source, or <code>null</code> if a matching source could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.reports.model.Source fetchByUUID_G(
-		java.lang.String uuid, long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String uuid, long groupId) {
 		return getPersistence().fetchByUUID_G(uuid, groupId);
 	}
 
@@ -304,11 +275,9 @@ public class SourceUtil {
 	* @param groupId the group ID
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching source, or <code>null</code> if a matching source could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.reports.model.Source fetchByUUID_G(
-		java.lang.String uuid, long groupId, boolean retrieveFromCache)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String uuid, long groupId, boolean retrieveFromCache) {
 		return getPersistence().fetchByUUID_G(uuid, groupId, retrieveFromCache);
 	}
 
@@ -318,12 +287,10 @@ public class SourceUtil {
 	* @param uuid the uuid
 	* @param groupId the group ID
 	* @return the source that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.reports.model.Source removeByUUID_G(
 		java.lang.String uuid, long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.reports.NoSuchSourceException {
+		throws com.liferay.reports.NoSuchSourceException {
 		return getPersistence().removeByUUID_G(uuid, groupId);
 	}
 
@@ -333,10 +300,8 @@ public class SourceUtil {
 	* @param uuid the uuid
 	* @param groupId the group ID
 	* @return the number of matching sources
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByUUID_G(java.lang.String uuid, long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByUUID_G(java.lang.String uuid, long groupId) {
 		return getPersistence().countByUUID_G(uuid, groupId);
 	}
 
@@ -346,11 +311,9 @@ public class SourceUtil {
 	* @param uuid the uuid
 	* @param companyId the company ID
 	* @return the matching sources
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.reports.model.Source> findByUuid_C(
-		java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String uuid, long companyId) {
 		return getPersistence().findByUuid_C(uuid, companyId);
 	}
 
@@ -366,11 +329,9 @@ public class SourceUtil {
 	* @param start the lower bound of the range of sources
 	* @param end the upper bound of the range of sources (not inclusive)
 	* @return the range of matching sources
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.reports.model.Source> findByUuid_C(
-		java.lang.String uuid, long companyId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String uuid, long companyId, int start, int end) {
 		return getPersistence().findByUuid_C(uuid, companyId, start, end);
 	}
 
@@ -387,12 +348,10 @@ public class SourceUtil {
 	* @param end the upper bound of the range of sources (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching sources
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.reports.model.Source> findByUuid_C(
 		java.lang.String uuid, long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findByUuid_C(uuid, companyId, start, end, orderByComparator);
 	}
@@ -405,13 +364,11 @@ public class SourceUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching source
 	* @throws com.liferay.reports.NoSuchSourceException if a matching source could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.reports.model.Source findByUuid_C_First(
 		java.lang.String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.reports.NoSuchSourceException {
+		throws com.liferay.reports.NoSuchSourceException {
 		return getPersistence()
 				   .findByUuid_C_First(uuid, companyId, orderByComparator);
 	}
@@ -423,12 +380,10 @@ public class SourceUtil {
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching source, or <code>null</code> if a matching source could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.reports.model.Source fetchByUuid_C_First(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .fetchByUuid_C_First(uuid, companyId, orderByComparator);
 	}
@@ -441,13 +396,11 @@ public class SourceUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching source
 	* @throws com.liferay.reports.NoSuchSourceException if a matching source could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.reports.model.Source findByUuid_C_Last(
 		java.lang.String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.reports.NoSuchSourceException {
+		throws com.liferay.reports.NoSuchSourceException {
 		return getPersistence()
 				   .findByUuid_C_Last(uuid, companyId, orderByComparator);
 	}
@@ -459,12 +412,10 @@ public class SourceUtil {
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching source, or <code>null</code> if a matching source could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.reports.model.Source fetchByUuid_C_Last(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .fetchByUuid_C_Last(uuid, companyId, orderByComparator);
 	}
@@ -478,13 +429,11 @@ public class SourceUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next source
 	* @throws com.liferay.reports.NoSuchSourceException if a source with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.reports.model.Source[] findByUuid_C_PrevAndNext(
 		long sourceId, java.lang.String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.reports.NoSuchSourceException {
+		throws com.liferay.reports.NoSuchSourceException {
 		return getPersistence()
 				   .findByUuid_C_PrevAndNext(sourceId, uuid, companyId,
 			orderByComparator);
@@ -495,10 +444,8 @@ public class SourceUtil {
 	*
 	* @param uuid the uuid
 	* @param companyId the company ID
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByUuid_C(java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeByUuid_C(java.lang.String uuid, long companyId) {
 		getPersistence().removeByUuid_C(uuid, companyId);
 	}
 
@@ -508,10 +455,8 @@ public class SourceUtil {
 	* @param uuid the uuid
 	* @param companyId the company ID
 	* @return the number of matching sources
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByUuid_C(java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByUuid_C(java.lang.String uuid, long companyId) {
 		return getPersistence().countByUuid_C(uuid, companyId);
 	}
 
@@ -520,11 +465,9 @@ public class SourceUtil {
 	*
 	* @param groupId the group ID
 	* @return the matching sources
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.reports.model.Source> findByGroupId(
-		long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long groupId) {
 		return getPersistence().findByGroupId(groupId);
 	}
 
@@ -539,11 +482,9 @@ public class SourceUtil {
 	* @param start the lower bound of the range of sources
 	* @param end the upper bound of the range of sources (not inclusive)
 	* @return the range of matching sources
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.reports.model.Source> findByGroupId(
-		long groupId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long groupId, int start, int end) {
 		return getPersistence().findByGroupId(groupId, start, end);
 	}
 
@@ -559,12 +500,10 @@ public class SourceUtil {
 	* @param end the upper bound of the range of sources (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching sources
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.reports.model.Source> findByGroupId(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findByGroupId(groupId, start, end, orderByComparator);
 	}
@@ -576,13 +515,11 @@ public class SourceUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching source
 	* @throws com.liferay.reports.NoSuchSourceException if a matching source could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.reports.model.Source findByGroupId_First(
 		long groupId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.reports.NoSuchSourceException {
+		throws com.liferay.reports.NoSuchSourceException {
 		return getPersistence().findByGroupId_First(groupId, orderByComparator);
 	}
 
@@ -592,12 +529,10 @@ public class SourceUtil {
 	* @param groupId the group ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching source, or <code>null</code> if a matching source could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.reports.model.Source fetchByGroupId_First(
 		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().fetchByGroupId_First(groupId, orderByComparator);
 	}
 
@@ -608,13 +543,11 @@ public class SourceUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching source
 	* @throws com.liferay.reports.NoSuchSourceException if a matching source could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.reports.model.Source findByGroupId_Last(
 		long groupId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.reports.NoSuchSourceException {
+		throws com.liferay.reports.NoSuchSourceException {
 		return getPersistence().findByGroupId_Last(groupId, orderByComparator);
 	}
 
@@ -624,12 +557,10 @@ public class SourceUtil {
 	* @param groupId the group ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching source, or <code>null</code> if a matching source could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.reports.model.Source fetchByGroupId_Last(
 		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().fetchByGroupId_Last(groupId, orderByComparator);
 	}
 
@@ -641,13 +572,11 @@ public class SourceUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next source
 	* @throws com.liferay.reports.NoSuchSourceException if a source with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.reports.model.Source[] findByGroupId_PrevAndNext(
 		long sourceId, long groupId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.reports.NoSuchSourceException {
+		throws com.liferay.reports.NoSuchSourceException {
 		return getPersistence()
 				   .findByGroupId_PrevAndNext(sourceId, groupId,
 			orderByComparator);
@@ -658,11 +587,9 @@ public class SourceUtil {
 	*
 	* @param groupId the group ID
 	* @return the matching sources that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.reports.model.Source> filterFindByGroupId(
-		long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long groupId) {
 		return getPersistence().filterFindByGroupId(groupId);
 	}
 
@@ -677,11 +604,9 @@ public class SourceUtil {
 	* @param start the lower bound of the range of sources
 	* @param end the upper bound of the range of sources (not inclusive)
 	* @return the range of matching sources that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.reports.model.Source> filterFindByGroupId(
-		long groupId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long groupId, int start, int end) {
 		return getPersistence().filterFindByGroupId(groupId, start, end);
 	}
 
@@ -697,12 +622,10 @@ public class SourceUtil {
 	* @param end the upper bound of the range of sources (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching sources that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.reports.model.Source> filterFindByGroupId(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .filterFindByGroupId(groupId, start, end, orderByComparator);
 	}
@@ -715,13 +638,11 @@ public class SourceUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next source
 	* @throws com.liferay.reports.NoSuchSourceException if a source with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.reports.model.Source[] filterFindByGroupId_PrevAndNext(
 		long sourceId, long groupId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.reports.NoSuchSourceException {
+		throws com.liferay.reports.NoSuchSourceException {
 		return getPersistence()
 				   .filterFindByGroupId_PrevAndNext(sourceId, groupId,
 			orderByComparator);
@@ -731,10 +652,8 @@ public class SourceUtil {
 	* Removes all the sources where groupId = &#63; from the database.
 	*
 	* @param groupId the group ID
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByGroupId(long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeByGroupId(long groupId) {
 		getPersistence().removeByGroupId(groupId);
 	}
 
@@ -743,10 +662,8 @@ public class SourceUtil {
 	*
 	* @param groupId the group ID
 	* @return the number of matching sources
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByGroupId(long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByGroupId(long groupId) {
 		return getPersistence().countByGroupId(groupId);
 	}
 
@@ -755,10 +672,8 @@ public class SourceUtil {
 	*
 	* @param groupId the group ID
 	* @return the number of matching sources that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int filterCountByGroupId(long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int filterCountByGroupId(long groupId) {
 		return getPersistence().filterCountByGroupId(groupId);
 	}
 
@@ -767,11 +682,9 @@ public class SourceUtil {
 	*
 	* @param companyId the company ID
 	* @return the matching sources
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.reports.model.Source> findByCompanyId(
-		long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long companyId) {
 		return getPersistence().findByCompanyId(companyId);
 	}
 
@@ -786,11 +699,9 @@ public class SourceUtil {
 	* @param start the lower bound of the range of sources
 	* @param end the upper bound of the range of sources (not inclusive)
 	* @return the range of matching sources
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.reports.model.Source> findByCompanyId(
-		long companyId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long companyId, int start, int end) {
 		return getPersistence().findByCompanyId(companyId, start, end);
 	}
 
@@ -806,12 +717,10 @@ public class SourceUtil {
 	* @param end the upper bound of the range of sources (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching sources
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.reports.model.Source> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findByCompanyId(companyId, start, end, orderByComparator);
 	}
@@ -823,13 +732,11 @@ public class SourceUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching source
 	* @throws com.liferay.reports.NoSuchSourceException if a matching source could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.reports.model.Source findByCompanyId_First(
 		long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.reports.NoSuchSourceException {
+		throws com.liferay.reports.NoSuchSourceException {
 		return getPersistence()
 				   .findByCompanyId_First(companyId, orderByComparator);
 	}
@@ -840,12 +747,10 @@ public class SourceUtil {
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching source, or <code>null</code> if a matching source could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.reports.model.Source fetchByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .fetchByCompanyId_First(companyId, orderByComparator);
 	}
@@ -857,13 +762,11 @@ public class SourceUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching source
 	* @throws com.liferay.reports.NoSuchSourceException if a matching source could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.reports.model.Source findByCompanyId_Last(
 		long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.reports.NoSuchSourceException {
+		throws com.liferay.reports.NoSuchSourceException {
 		return getPersistence()
 				   .findByCompanyId_Last(companyId, orderByComparator);
 	}
@@ -874,12 +777,10 @@ public class SourceUtil {
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching source, or <code>null</code> if a matching source could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.reports.model.Source fetchByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .fetchByCompanyId_Last(companyId, orderByComparator);
 	}
@@ -892,13 +793,11 @@ public class SourceUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next source
 	* @throws com.liferay.reports.NoSuchSourceException if a source with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.reports.model.Source[] findByCompanyId_PrevAndNext(
 		long sourceId, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.reports.NoSuchSourceException {
+		throws com.liferay.reports.NoSuchSourceException {
 		return getPersistence()
 				   .findByCompanyId_PrevAndNext(sourceId, companyId,
 			orderByComparator);
@@ -908,10 +807,8 @@ public class SourceUtil {
 	* Removes all the sources where companyId = &#63; from the database.
 	*
 	* @param companyId the company ID
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeByCompanyId(long companyId) {
 		getPersistence().removeByCompanyId(companyId);
 	}
 
@@ -920,10 +817,8 @@ public class SourceUtil {
 	*
 	* @param companyId the company ID
 	* @return the number of matching sources
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByCompanyId(long companyId) {
 		return getPersistence().countByCompanyId(companyId);
 	}
 
@@ -962,17 +857,14 @@ public class SourceUtil {
 	* @param sourceId the primary key of the source
 	* @return the source that was removed
 	* @throws com.liferay.reports.NoSuchSourceException if a source with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.reports.model.Source remove(long sourceId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.reports.NoSuchSourceException {
+		throws com.liferay.reports.NoSuchSourceException {
 		return getPersistence().remove(sourceId);
 	}
 
 	public static com.liferay.reports.model.Source updateImpl(
-		com.liferay.reports.model.Source source)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.reports.model.Source source) {
 		return getPersistence().updateImpl(source);
 	}
 
@@ -982,12 +874,9 @@ public class SourceUtil {
 	* @param sourceId the primary key of the source
 	* @return the source
 	* @throws com.liferay.reports.NoSuchSourceException if a source with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.reports.model.Source findByPrimaryKey(
-		long sourceId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.reports.NoSuchSourceException {
+		long sourceId) throws com.liferay.reports.NoSuchSourceException {
 		return getPersistence().findByPrimaryKey(sourceId);
 	}
 
@@ -996,11 +885,9 @@ public class SourceUtil {
 	*
 	* @param sourceId the primary key of the source
 	* @return the source, or <code>null</code> if a source with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.reports.model.Source fetchByPrimaryKey(
-		long sourceId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long sourceId) {
 		return getPersistence().fetchByPrimaryKey(sourceId);
 	}
 
@@ -1008,10 +895,8 @@ public class SourceUtil {
 	* Returns all the sources.
 	*
 	* @return the sources
-	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<com.liferay.reports.model.Source> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static java.util.List<com.liferay.reports.model.Source> findAll() {
 		return getPersistence().findAll();
 	}
 
@@ -1025,11 +910,9 @@ public class SourceUtil {
 	* @param start the lower bound of the range of sources
 	* @param end the upper bound of the range of sources (not inclusive)
 	* @return the range of sources
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.reports.model.Source> findAll(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return getPersistence().findAll(start, end);
 	}
 
@@ -1044,22 +927,17 @@ public class SourceUtil {
 	* @param end the upper bound of the range of sources (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of sources
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.reports.model.Source> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
 	/**
 	* Removes all the sources from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeAll() {
 		getPersistence().removeAll();
 	}
 
@@ -1067,10 +945,8 @@ public class SourceUtil {
 	* Returns the number of sources.
 	*
 	* @return the number of sources
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countAll() {
 		return getPersistence().countAll();
 	}
 

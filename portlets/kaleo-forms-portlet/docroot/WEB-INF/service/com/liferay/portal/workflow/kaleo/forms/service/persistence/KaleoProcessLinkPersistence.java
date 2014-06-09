@@ -41,11 +41,9 @@ public interface KaleoProcessLinkPersistence extends BasePersistence<KaleoProces
 	*
 	* @param kaleoProcessId the kaleo process ID
 	* @return the matching kaleo process links
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink> findByKaleoProcessId(
-		long kaleoProcessId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long kaleoProcessId);
 
 	/**
 	* Returns a range of all the kaleo process links where kaleoProcessId = &#63;.
@@ -58,11 +56,9 @@ public interface KaleoProcessLinkPersistence extends BasePersistence<KaleoProces
 	* @param start the lower bound of the range of kaleo process links
 	* @param end the upper bound of the range of kaleo process links (not inclusive)
 	* @return the range of matching kaleo process links
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink> findByKaleoProcessId(
-		long kaleoProcessId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long kaleoProcessId, int start, int end);
 
 	/**
 	* Returns an ordered range of all the kaleo process links where kaleoProcessId = &#63;.
@@ -76,12 +72,10 @@ public interface KaleoProcessLinkPersistence extends BasePersistence<KaleoProces
 	* @param end the upper bound of the range of kaleo process links (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo process links
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink> findByKaleoProcessId(
 		long kaleoProcessId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the first kaleo process link in the ordered set where kaleoProcessId = &#63;.
@@ -90,13 +84,11 @@ public interface KaleoProcessLinkPersistence extends BasePersistence<KaleoProces
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo process link
 	* @throws com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessLinkException if a matching kaleo process link could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink findByKaleoProcessId_First(
 		long kaleoProcessId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessLinkException;
+		throws com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessLinkException;
 
 	/**
 	* Returns the first kaleo process link in the ordered set where kaleoProcessId = &#63;.
@@ -104,12 +96,10 @@ public interface KaleoProcessLinkPersistence extends BasePersistence<KaleoProces
 	* @param kaleoProcessId the kaleo process ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo process link, or <code>null</code> if a matching kaleo process link could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink fetchByKaleoProcessId_First(
 		long kaleoProcessId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the last kaleo process link in the ordered set where kaleoProcessId = &#63;.
@@ -118,13 +108,11 @@ public interface KaleoProcessLinkPersistence extends BasePersistence<KaleoProces
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo process link
 	* @throws com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessLinkException if a matching kaleo process link could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink findByKaleoProcessId_Last(
 		long kaleoProcessId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessLinkException;
+		throws com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessLinkException;
 
 	/**
 	* Returns the last kaleo process link in the ordered set where kaleoProcessId = &#63;.
@@ -132,12 +120,10 @@ public interface KaleoProcessLinkPersistence extends BasePersistence<KaleoProces
 	* @param kaleoProcessId the kaleo process ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo process link, or <code>null</code> if a matching kaleo process link could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink fetchByKaleoProcessId_Last(
 		long kaleoProcessId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the kaleo process links before and after the current kaleo process link in the ordered set where kaleoProcessId = &#63;.
@@ -147,32 +133,26 @@ public interface KaleoProcessLinkPersistence extends BasePersistence<KaleoProces
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo process link
 	* @throws com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessLinkException if a kaleo process link with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink[] findByKaleoProcessId_PrevAndNext(
 		long kaleoProcessLinkId, long kaleoProcessId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessLinkException;
+		throws com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessLinkException;
 
 	/**
 	* Removes all the kaleo process links where kaleoProcessId = &#63; from the database.
 	*
 	* @param kaleoProcessId the kaleo process ID
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByKaleoProcessId(long kaleoProcessId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeByKaleoProcessId(long kaleoProcessId);
 
 	/**
 	* Returns the number of kaleo process links where kaleoProcessId = &#63;.
 	*
 	* @param kaleoProcessId the kaleo process ID
 	* @return the number of matching kaleo process links
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByKaleoProcessId(long kaleoProcessId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByKaleoProcessId(long kaleoProcessId);
 
 	/**
 	* Returns the kaleo process link where kaleoProcessId = &#63; and workflowTaskName = &#63; or throws a {@link com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessLinkException} if it could not be found.
@@ -181,12 +161,10 @@ public interface KaleoProcessLinkPersistence extends BasePersistence<KaleoProces
 	* @param workflowTaskName the workflow task name
 	* @return the matching kaleo process link
 	* @throws com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessLinkException if a matching kaleo process link could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink findByKPI_WTN(
 		long kaleoProcessId, java.lang.String workflowTaskName)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessLinkException;
+		throws com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessLinkException;
 
 	/**
 	* Returns the kaleo process link where kaleoProcessId = &#63; and workflowTaskName = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
@@ -194,11 +172,9 @@ public interface KaleoProcessLinkPersistence extends BasePersistence<KaleoProces
 	* @param kaleoProcessId the kaleo process ID
 	* @param workflowTaskName the workflow task name
 	* @return the matching kaleo process link, or <code>null</code> if a matching kaleo process link could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink fetchByKPI_WTN(
-		long kaleoProcessId, java.lang.String workflowTaskName)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long kaleoProcessId, java.lang.String workflowTaskName);
 
 	/**
 	* Returns the kaleo process link where kaleoProcessId = &#63; and workflowTaskName = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -207,12 +183,10 @@ public interface KaleoProcessLinkPersistence extends BasePersistence<KaleoProces
 	* @param workflowTaskName the workflow task name
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching kaleo process link, or <code>null</code> if a matching kaleo process link could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink fetchByKPI_WTN(
 		long kaleoProcessId, java.lang.String workflowTaskName,
-		boolean retrieveFromCache)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		boolean retrieveFromCache);
 
 	/**
 	* Removes the kaleo process link where kaleoProcessId = &#63; and workflowTaskName = &#63; from the database.
@@ -220,12 +194,10 @@ public interface KaleoProcessLinkPersistence extends BasePersistence<KaleoProces
 	* @param kaleoProcessId the kaleo process ID
 	* @param workflowTaskName the workflow task name
 	* @return the kaleo process link that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink removeByKPI_WTN(
 		long kaleoProcessId, java.lang.String workflowTaskName)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessLinkException;
+		throws com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessLinkException;
 
 	/**
 	* Returns the number of kaleo process links where kaleoProcessId = &#63; and workflowTaskName = &#63;.
@@ -233,11 +205,9 @@ public interface KaleoProcessLinkPersistence extends BasePersistence<KaleoProces
 	* @param kaleoProcessId the kaleo process ID
 	* @param workflowTaskName the workflow task name
 	* @return the number of matching kaleo process links
-	* @throws SystemException if a system exception occurred
 	*/
 	public int countByKPI_WTN(long kaleoProcessId,
-		java.lang.String workflowTaskName)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String workflowTaskName);
 
 	/**
 	* Caches the kaleo process link in the entity cache if it is enabled.
@@ -270,16 +240,13 @@ public interface KaleoProcessLinkPersistence extends BasePersistence<KaleoProces
 	* @param kaleoProcessLinkId the primary key of the kaleo process link
 	* @return the kaleo process link that was removed
 	* @throws com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessLinkException if a kaleo process link with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink remove(
 		long kaleoProcessLinkId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessLinkException;
+		throws com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessLinkException;
 
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink updateImpl(
-		com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink kaleoProcessLink)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink kaleoProcessLink);
 
 	/**
 	* Returns the kaleo process link with the primary key or throws a {@link com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessLinkException} if it could not be found.
@@ -287,32 +254,26 @@ public interface KaleoProcessLinkPersistence extends BasePersistence<KaleoProces
 	* @param kaleoProcessLinkId the primary key of the kaleo process link
 	* @return the kaleo process link
 	* @throws com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessLinkException if a kaleo process link with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink findByPrimaryKey(
 		long kaleoProcessLinkId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessLinkException;
+		throws com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessLinkException;
 
 	/**
 	* Returns the kaleo process link with the primary key or returns <code>null</code> if it could not be found.
 	*
 	* @param kaleoProcessLinkId the primary key of the kaleo process link
 	* @return the kaleo process link, or <code>null</code> if a kaleo process link with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink fetchByPrimaryKey(
-		long kaleoProcessLinkId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long kaleoProcessLinkId);
 
 	/**
 	* Returns all the kaleo process links.
 	*
 	* @return the kaleo process links
-	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public java.util.List<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink> findAll();
 
 	/**
 	* Returns a range of all the kaleo process links.
@@ -324,11 +285,9 @@ public interface KaleoProcessLinkPersistence extends BasePersistence<KaleoProces
 	* @param start the lower bound of the range of kaleo process links
 	* @param end the upper bound of the range of kaleo process links (not inclusive)
 	* @return the range of kaleo process links
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink> findAll(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		int start, int end);
 
 	/**
 	* Returns an ordered range of all the kaleo process links.
@@ -341,27 +300,20 @@ public interface KaleoProcessLinkPersistence extends BasePersistence<KaleoProces
 	* @param end the upper bound of the range of kaleo process links (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of kaleo process links
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Removes all the kaleo process links from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeAll();
 
 	/**
 	* Returns the number of kaleo process links.
 	*
 	* @return the number of kaleo process links
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countAll();
 }

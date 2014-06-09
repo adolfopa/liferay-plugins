@@ -18,7 +18,6 @@ import com.liferay.meeting.webex.model.WebExSite;
 
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.lar.ExportImportHelperUtil;
 import com.liferay.portal.kernel.lar.ManifestSummary;
 import com.liferay.portal.kernel.lar.PortletDataContext;
@@ -28,12 +27,14 @@ import com.liferay.portal.util.PortalUtil;
 
 /**
  * @author Anant Singh
+ * @deprecated As of 7.0.0, replaced by {@link com.liferay.meeting.webex.service.WebExSiteLocalServiceUtil#getExportActionableDynamicQuery()}
  * @generated
  */
+@Deprecated
 public class WebExSiteExportActionableDynamicQuery
 	extends WebExSiteActionableDynamicQuery {
 	public WebExSiteExportActionableDynamicQuery(
-		PortletDataContext portletDataContext) throws SystemException {
+		PortletDataContext portletDataContext) {
 		_portletDataContext = portletDataContext;
 
 		setCompanyId(_portletDataContext.getCompanyId());
@@ -42,7 +43,7 @@ public class WebExSiteExportActionableDynamicQuery
 	}
 
 	@Override
-	public long performCount() throws PortalException, SystemException {
+	public long performCount() throws PortalException {
 		ManifestSummary manifestSummary = _portletDataContext.getManifestSummary();
 
 		StagedModelType stagedModelType = getStagedModelType();
@@ -72,9 +73,7 @@ public class WebExSiteExportActionableDynamicQuery
 	}
 
 	@Override
-	@SuppressWarnings("unused")
-	protected void performAction(Object object)
-		throws PortalException, SystemException {
+	protected void performAction(Object object) throws PortalException {
 		WebExSite stagedModel = (WebExSite)object;
 
 		StagedModelDataHandlerUtil.exportStagedModel(_portletDataContext,

@@ -36,12 +36,10 @@ public class SPIDefinitionLocalServiceWrapper
 	*
 	* @param spiDefinition the s p i definition
 	* @return the s p i definition that was added
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.portal.resiliency.spi.model.SPIDefinition addSPIDefinition(
-		com.liferay.portal.resiliency.spi.model.SPIDefinition spiDefinition)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.resiliency.spi.model.SPIDefinition spiDefinition) {
 		return _spiDefinitionLocalService.addSPIDefinition(spiDefinition);
 	}
 
@@ -63,7 +61,7 @@ public class SPIDefinitionLocalServiceWrapper
 	* @param spiDefinitionId the primary key of the s p i definition
 	* @return the s p i definition that was removed
 	* @throws PortalException if a s p i definition with the primary key could not be found
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.portal.resiliency.spi.model.SPIDefinition deleteSPIDefinition(
@@ -79,7 +77,7 @@ public class SPIDefinitionLocalServiceWrapper
 	* @param spiDefinition the s p i definition
 	* @return the s p i definition that was removed
 	* @throws PortalException
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.portal.resiliency.spi.model.SPIDefinition deleteSPIDefinition(
@@ -99,13 +97,11 @@ public class SPIDefinitionLocalServiceWrapper
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _spiDefinitionLocalService.dynamicQuery(dynamicQuery);
 	}
 
@@ -120,13 +116,12 @@ public class SPIDefinitionLocalServiceWrapper
 	* @param start the lower bound of the range of model instances
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		int end) {
 		return _spiDefinitionLocalService.dynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -142,15 +137,13 @@ public class SPIDefinitionLocalServiceWrapper
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return _spiDefinitionLocalService.dynamicQuery(dynamicQuery, start,
 			end, orderByComparator);
 	}
@@ -160,12 +153,10 @@ public class SPIDefinitionLocalServiceWrapper
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _spiDefinitionLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
@@ -175,21 +166,18 @@ public class SPIDefinitionLocalServiceWrapper
 	* @param dynamicQuery the dynamic query
 	* @param projection the projection to apply to the query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.Projection projection) {
 		return _spiDefinitionLocalService.dynamicQueryCount(dynamicQuery,
 			projection);
 	}
 
 	@Override
 	public com.liferay.portal.resiliency.spi.model.SPIDefinition fetchSPIDefinition(
-		long spiDefinitionId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long spiDefinitionId) {
 		return _spiDefinitionLocalService.fetchSPIDefinition(spiDefinitionId);
 	}
 
@@ -199,7 +187,7 @@ public class SPIDefinitionLocalServiceWrapper
 	* @param spiDefinitionId the primary key of the s p i definition
 	* @return the s p i definition
 	* @throws PortalException if a s p i definition with the primary key could not be found
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.portal.resiliency.spi.model.SPIDefinition getSPIDefinition(
@@ -210,16 +198,24 @@ public class SPIDefinitionLocalServiceWrapper
 	}
 
 	@Override
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
 		return _spiDefinitionLocalService.getActionableDynamicQuery();
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _spiDefinitionLocalService.deletePersistedModel(persistedModel);
 	}
 
 	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _spiDefinitionLocalService.getPersistedModel(primaryKeyObj);
 	}
 
@@ -233,12 +229,10 @@ public class SPIDefinitionLocalServiceWrapper
 	* @param start the lower bound of the range of s p i definitions
 	* @param end the upper bound of the range of s p i definitions (not inclusive)
 	* @return the range of s p i definitions
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> getSPIDefinitions(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return _spiDefinitionLocalService.getSPIDefinitions(start, end);
 	}
 
@@ -246,11 +240,9 @@ public class SPIDefinitionLocalServiceWrapper
 	* Returns the number of s p i definitions.
 	*
 	* @return the number of s p i definitions
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public int getSPIDefinitionsCount()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getSPIDefinitionsCount() {
 		return _spiDefinitionLocalService.getSPIDefinitionsCount();
 	}
 
@@ -259,12 +251,10 @@ public class SPIDefinitionLocalServiceWrapper
 	*
 	* @param spiDefinition the s p i definition
 	* @return the s p i definition that was updated
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.portal.resiliency.spi.model.SPIDefinition updateSPIDefinition(
-		com.liferay.portal.resiliency.spi.model.SPIDefinition spiDefinition)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.resiliency.spi.model.SPIDefinition spiDefinition) {
 		return _spiDefinitionLocalService.updateSPIDefinition(spiDefinition);
 	}
 

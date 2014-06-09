@@ -18,15 +18,16 @@ import com.liferay.meeting.webex.model.WebExAccount;
 import com.liferay.meeting.webex.service.WebExAccountLocalServiceUtil;
 
 import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 
 /**
  * @author Anant Singh
+ * @deprecated As of 7.0.0, replaced by {@link WebExAccountLocalServiceUtil#getExportActionableDynamicQuery()}
  * @generated
  */
+@Deprecated
 public abstract class WebExAccountActionableDynamicQuery
 	extends BaseActionableDynamicQuery {
-	public WebExAccountActionableDynamicQuery() throws SystemException {
+	public WebExAccountActionableDynamicQuery() {
 		setBaseLocalService(WebExAccountLocalServiceUtil.getService());
 		setClass(WebExAccount.class);
 

@@ -17,8 +17,6 @@ package com.liferay.bbb.model.impl;
 import com.liferay.bbb.model.BBBServer;
 import com.liferay.bbb.service.BBBServerLocalServiceUtil;
 
-import com.liferay.portal.kernel.exception.SystemException;
-
 /**
  * The extended model base implementation for the BBBServer service. Represents a row in the &quot;BBBServer&quot; database table, with each column mapped to a property of this class.
  *
@@ -39,7 +37,7 @@ public abstract class BBBServerBaseImpl extends BBBServerModelImpl
 	 * Never modify or reference this class directly. All methods that expect a b b b server model instance should use the {@link BBBServer} interface instead.
 	 */
 	@Override
-	public void persist() throws SystemException {
+	public void persist() {
 		if (this.isNew()) {
 			BBBServerLocalServiceUtil.addBBBServer(this);
 		}

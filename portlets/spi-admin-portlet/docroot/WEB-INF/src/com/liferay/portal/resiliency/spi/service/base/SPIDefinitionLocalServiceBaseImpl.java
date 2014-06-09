@@ -75,12 +75,10 @@ public abstract class SPIDefinitionLocalServiceBaseImpl
 	 *
 	 * @param spiDefinition the s p i definition
 	 * @return the s p i definition that was added
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
-	public SPIDefinition addSPIDefinition(SPIDefinition spiDefinition)
-		throws SystemException {
+	public SPIDefinition addSPIDefinition(SPIDefinition spiDefinition) {
 		spiDefinition.setNew(true);
 
 		return spiDefinitionPersistence.update(spiDefinition);
@@ -103,7 +101,7 @@ public abstract class SPIDefinitionLocalServiceBaseImpl
 	 * @param spiDefinitionId the primary key of the s p i definition
 	 * @return the s p i definition that was removed
 	 * @throws PortalException if a s p i definition with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
@@ -118,7 +116,7 @@ public abstract class SPIDefinitionLocalServiceBaseImpl
 	 * @param spiDefinition the s p i definition
 	 * @return the s p i definition that was removed
 	 * @throws PortalException
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
@@ -140,12 +138,10 @@ public abstract class SPIDefinitionLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery) {
 		return spiDefinitionPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -160,12 +156,10 @@ public abstract class SPIDefinitionLocalServiceBaseImpl
 	 * @param start the lower bound of the range of model instances
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
 		return spiDefinitionPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end);
 	}
@@ -182,12 +176,11 @@ public abstract class SPIDefinitionLocalServiceBaseImpl
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return spiDefinitionPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end, orderByComparator);
 	}
@@ -197,11 +190,9 @@ public abstract class SPIDefinitionLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public long dynamicQueryCount(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
 		return spiDefinitionPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -211,18 +202,16 @@ public abstract class SPIDefinitionLocalServiceBaseImpl
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection) throws SystemException {
+		Projection projection) {
 		return spiDefinitionPersistence.countWithDynamicQuery(dynamicQuery,
 			projection);
 	}
 
 	@Override
-	public SPIDefinition fetchSPIDefinition(long spiDefinitionId)
-		throws SystemException {
+	public SPIDefinition fetchSPIDefinition(long spiDefinitionId) {
 		return spiDefinitionPersistence.fetchByPrimaryKey(spiDefinitionId);
 	}
 
@@ -232,7 +221,7 @@ public abstract class SPIDefinitionLocalServiceBaseImpl
 	 * @param spiDefinitionId the primary key of the s p i definition
 	 * @return the s p i definition
 	 * @throws PortalException if a s p i definition with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
 	 */
 	@Override
 	public SPIDefinition getSPIDefinition(long spiDefinitionId)
@@ -241,8 +230,7 @@ public abstract class SPIDefinitionLocalServiceBaseImpl
 	}
 
 	@Override
-	public ActionableDynamicQuery getActionableDynamicQuery()
-		throws SystemException {
+	public ActionableDynamicQuery getActionableDynamicQuery() {
 		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
 
 		actionableDynamicQuery.setBaseLocalService(com.liferay.portal.resiliency.spi.service.SPIDefinitionLocalServiceUtil.getService());
@@ -255,8 +243,7 @@ public abstract class SPIDefinitionLocalServiceBaseImpl
 	}
 
 	protected void initActionableDynamicQuery(
-		ActionableDynamicQuery actionableDynamicQuery)
-		throws SystemException {
+		ActionableDynamicQuery actionableDynamicQuery) {
 		actionableDynamicQuery.setBaseLocalService(com.liferay.portal.resiliency.spi.service.SPIDefinitionLocalServiceUtil.getService());
 		actionableDynamicQuery.setClass(SPIDefinition.class);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
@@ -264,9 +251,18 @@ public abstract class SPIDefinitionLocalServiceBaseImpl
 		actionableDynamicQuery.setPrimaryKeyPropertyName("spiDefinitionId");
 	}
 
+	/**
+	 * @throws PortalException
+	 */
+	@Override
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
+		throws PortalException {
+		return deleteSPIDefinition((SPIDefinition)persistedModel);
+	}
+
 	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return spiDefinitionPersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
@@ -280,11 +276,9 @@ public abstract class SPIDefinitionLocalServiceBaseImpl
 	 * @param start the lower bound of the range of s p i definitions
 	 * @param end the upper bound of the range of s p i definitions (not inclusive)
 	 * @return the range of s p i definitions
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<SPIDefinition> getSPIDefinitions(int start, int end)
-		throws SystemException {
+	public List<SPIDefinition> getSPIDefinitions(int start, int end) {
 		return spiDefinitionPersistence.findAll(start, end);
 	}
 
@@ -292,10 +286,9 @@ public abstract class SPIDefinitionLocalServiceBaseImpl
 	 * Returns the number of s p i definitions.
 	 *
 	 * @return the number of s p i definitions
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int getSPIDefinitionsCount() throws SystemException {
+	public int getSPIDefinitionsCount() {
 		return spiDefinitionPersistence.countAll();
 	}
 
@@ -304,12 +297,10 @@ public abstract class SPIDefinitionLocalServiceBaseImpl
 	 *
 	 * @param spiDefinition the s p i definition
 	 * @return the s p i definition that was updated
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
-	public SPIDefinition updateSPIDefinition(SPIDefinition spiDefinition)
-		throws SystemException {
+	public SPIDefinition updateSPIDefinition(SPIDefinition spiDefinition) {
 		return spiDefinitionPersistence.update(spiDefinition);
 	}
 
@@ -684,7 +675,7 @@ public abstract class SPIDefinitionLocalServiceBaseImpl
 	 *
 	 * @param sql the sql query
 	 */
-	protected void runSQL(String sql) throws SystemException {
+	protected void runSQL(String sql) {
 		try {
 			DataSource dataSource = spiDefinitionPersistence.getDataSource();
 

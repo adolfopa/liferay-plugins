@@ -15,7 +15,6 @@
 package com.liferay.reports.service.persistence;
 
 import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 
 import com.liferay.reports.model.Source;
 import com.liferay.reports.service.SourceLocalServiceUtil;
@@ -28,7 +27,7 @@ import com.liferay.reports.service.SourceLocalServiceUtil;
 @Deprecated
 public abstract class SourceActionableDynamicQuery
 	extends BaseActionableDynamicQuery {
-	public SourceActionableDynamicQuery() throws SystemException {
+	public SourceActionableDynamicQuery() {
 		setBaseLocalService(SourceLocalServiceUtil.getService());
 		setClass(Source.class);
 

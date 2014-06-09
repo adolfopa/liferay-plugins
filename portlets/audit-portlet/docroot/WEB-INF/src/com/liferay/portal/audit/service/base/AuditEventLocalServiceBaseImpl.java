@@ -23,6 +23,8 @@ import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DefaultActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.Projection;
@@ -70,12 +72,10 @@ public abstract class AuditEventLocalServiceBaseImpl
 	 *
 	 * @param auditEvent the audit event
 	 * @return the audit event that was added
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
-	public AuditEvent addAuditEvent(AuditEvent auditEvent)
-		throws SystemException {
+	public AuditEvent addAuditEvent(AuditEvent auditEvent) {
 		auditEvent.setNew(true);
 
 		return auditEventPersistence.update(auditEvent);
@@ -98,12 +98,11 @@ public abstract class AuditEventLocalServiceBaseImpl
 	 * @param auditEventId the primary key of the audit event
 	 * @return the audit event that was removed
 	 * @throws PortalException if a audit event with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public AuditEvent deleteAuditEvent(long auditEventId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return auditEventPersistence.remove(auditEventId);
 	}
 
@@ -112,12 +111,10 @@ public abstract class AuditEventLocalServiceBaseImpl
 	 *
 	 * @param auditEvent the audit event
 	 * @return the audit event that was removed
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
-	public AuditEvent deleteAuditEvent(AuditEvent auditEvent)
-		throws SystemException {
+	public AuditEvent deleteAuditEvent(AuditEvent auditEvent) {
 		return auditEventPersistence.remove(auditEvent);
 	}
 
@@ -134,12 +131,10 @@ public abstract class AuditEventLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery) {
 		return auditEventPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -154,12 +149,10 @@ public abstract class AuditEventLocalServiceBaseImpl
 	 * @param start the lower bound of the range of model instances
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
 		return auditEventPersistence.findWithDynamicQuery(dynamicQuery, start,
 			end);
 	}
@@ -176,12 +169,11 @@ public abstract class AuditEventLocalServiceBaseImpl
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return auditEventPersistence.findWithDynamicQuery(dynamicQuery, start,
 			end, orderByComparator);
 	}
@@ -191,11 +183,9 @@ public abstract class AuditEventLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public long dynamicQueryCount(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
 		return auditEventPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -205,11 +195,10 @@ public abstract class AuditEventLocalServiceBaseImpl
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection) throws SystemException {
+		Projection projection) {
 		return auditEventPersistence.countWithDynamicQuery(dynamicQuery,
 			projection);
 	}
@@ -226,17 +215,47 @@ public abstract class AuditEventLocalServiceBaseImpl
 	 * @param auditEventId the primary key of the audit event
 	 * @return the audit event
 	 * @throws PortalException if a audit event with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public AuditEvent getAuditEvent(long auditEventId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return auditEventPersistence.findByPrimaryKey(auditEventId);
 	}
 
 	@Override
+	public ActionableDynamicQuery getActionableDynamicQuery() {
+		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
+
+		actionableDynamicQuery.setBaseLocalService(com.liferay.portal.audit.service.AuditEventLocalServiceUtil.getService());
+		actionableDynamicQuery.setClass(AuditEvent.class);
+		actionableDynamicQuery.setClassLoader(getClassLoader());
+
+		actionableDynamicQuery.setPrimaryKeyPropertyName("auditEventId");
+
+		return actionableDynamicQuery;
+	}
+
+	protected void initActionableDynamicQuery(
+		ActionableDynamicQuery actionableDynamicQuery) {
+		actionableDynamicQuery.setBaseLocalService(com.liferay.portal.audit.service.AuditEventLocalServiceUtil.getService());
+		actionableDynamicQuery.setClass(AuditEvent.class);
+		actionableDynamicQuery.setClassLoader(getClassLoader());
+
+		actionableDynamicQuery.setPrimaryKeyPropertyName("auditEventId");
+	}
+
+	/**
+	 * @throws PortalException
+	 */
+	@Override
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
+		throws PortalException {
+		return deleteAuditEvent((AuditEvent)persistedModel);
+	}
+
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return auditEventPersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
@@ -250,11 +269,9 @@ public abstract class AuditEventLocalServiceBaseImpl
 	 * @param start the lower bound of the range of audit events
 	 * @param end the upper bound of the range of audit events (not inclusive)
 	 * @return the range of audit events
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<AuditEvent> getAuditEvents(int start, int end)
-		throws SystemException {
+	public List<AuditEvent> getAuditEvents(int start, int end) {
 		return auditEventPersistence.findAll(start, end);
 	}
 
@@ -262,10 +279,9 @@ public abstract class AuditEventLocalServiceBaseImpl
 	 * Returns the number of audit events.
 	 *
 	 * @return the number of audit events
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int getAuditEventsCount() throws SystemException {
+	public int getAuditEventsCount() {
 		return auditEventPersistence.countAll();
 	}
 
@@ -274,12 +290,10 @@ public abstract class AuditEventLocalServiceBaseImpl
 	 *
 	 * @param auditEvent the audit event
 	 * @return the audit event that was updated
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
-	public AuditEvent updateAuditEvent(AuditEvent auditEvent)
-		throws SystemException {
+	public AuditEvent updateAuditEvent(AuditEvent auditEvent) {
 		return auditEventPersistence.update(auditEvent);
 	}
 
@@ -540,7 +554,7 @@ public abstract class AuditEventLocalServiceBaseImpl
 	 *
 	 * @param sql the sql query
 	 */
-	protected void runSQL(String sql) throws SystemException {
+	protected void runSQL(String sql) {
 		try {
 			DataSource dataSource = auditEventPersistence.getDataSource();
 

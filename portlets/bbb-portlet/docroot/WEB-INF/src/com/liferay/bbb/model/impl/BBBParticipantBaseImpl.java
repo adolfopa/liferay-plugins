@@ -17,8 +17,6 @@ package com.liferay.bbb.model.impl;
 import com.liferay.bbb.model.BBBParticipant;
 import com.liferay.bbb.service.BBBParticipantLocalServiceUtil;
 
-import com.liferay.portal.kernel.exception.SystemException;
-
 /**
  * The extended model base implementation for the BBBParticipant service. Represents a row in the &quot;BBBParticipant&quot; database table, with each column mapped to a property of this class.
  *
@@ -39,7 +37,7 @@ public abstract class BBBParticipantBaseImpl extends BBBParticipantModelImpl
 	 * Never modify or reference this class directly. All methods that expect a b b b participant model instance should use the {@link BBBParticipant} interface instead.
 	 */
 	@Override
-	public void persist() throws SystemException {
+	public void persist() {
 		if (this.isNew()) {
 			BBBParticipantLocalServiceUtil.addBBBParticipant(this);
 		}

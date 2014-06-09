@@ -20,7 +20,6 @@ import com.liferay.oauth.model.OAuthUserSoap;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
@@ -270,7 +269,7 @@ public class OAuthUserModelImpl extends BaseModelImpl<OAuthUser>
 	}
 
 	@Override
-	public String getOAuthUserUuid() throws SystemException {
+	public String getOAuthUserUuid() {
 		try {
 			User user = UserLocalServiceUtil.getUserById(getOAuthUserId());
 
@@ -316,7 +315,7 @@ public class OAuthUserModelImpl extends BaseModelImpl<OAuthUser>
 	}
 
 	@Override
-	public String getUserUuid() throws SystemException {
+	public String getUserUuid() {
 		try {
 			User user = UserLocalServiceUtil.getUserById(getUserId());
 

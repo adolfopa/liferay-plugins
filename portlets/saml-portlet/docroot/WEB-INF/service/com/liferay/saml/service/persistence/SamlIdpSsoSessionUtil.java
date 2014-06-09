@@ -16,7 +16,6 @@ package com.liferay.saml.service.persistence;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
@@ -61,8 +60,7 @@ public class SamlIdpSsoSessionUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#countWithDynamicQuery(DynamicQuery)
 	 */
-	public static long countWithDynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public static long countWithDynamicQuery(DynamicQuery dynamicQuery) {
 		return getPersistence().countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -70,7 +68,7 @@ public class SamlIdpSsoSessionUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery)
 	 */
 	public static List<SamlIdpSsoSession> findWithDynamicQuery(
-		DynamicQuery dynamicQuery) throws SystemException {
+		DynamicQuery dynamicQuery) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -78,8 +76,7 @@ public class SamlIdpSsoSessionUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int)
 	 */
 	public static List<SamlIdpSsoSession> findWithDynamicQuery(
-		DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+		DynamicQuery dynamicQuery, int start, int end) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -88,7 +85,7 @@ public class SamlIdpSsoSessionUtil {
 	 */
 	public static List<SamlIdpSsoSession> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -97,8 +94,7 @@ public class SamlIdpSsoSessionUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static SamlIdpSsoSession update(SamlIdpSsoSession samlIdpSsoSession)
-		throws SystemException {
+	public static SamlIdpSsoSession update(SamlIdpSsoSession samlIdpSsoSession) {
 		return getPersistence().update(samlIdpSsoSession);
 	}
 
@@ -106,8 +102,7 @@ public class SamlIdpSsoSessionUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
 	public static SamlIdpSsoSession update(
-		SamlIdpSsoSession samlIdpSsoSession, ServiceContext serviceContext)
-		throws SystemException {
+		SamlIdpSsoSession samlIdpSsoSession, ServiceContext serviceContext) {
 		return getPersistence().update(samlIdpSsoSession, serviceContext);
 	}
 
@@ -117,12 +112,10 @@ public class SamlIdpSsoSessionUtil {
 	* @param samlIdpSsoSessionKey the saml idp sso session key
 	* @return the matching saml idp sso session
 	* @throws com.liferay.saml.NoSuchIdpSsoSessionException if a matching saml idp sso session could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.saml.model.SamlIdpSsoSession findBySamlIdpSsoSessionKey(
 		java.lang.String samlIdpSsoSessionKey)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.saml.NoSuchIdpSsoSessionException {
+		throws com.liferay.saml.NoSuchIdpSsoSessionException {
 		return getPersistence().findBySamlIdpSsoSessionKey(samlIdpSsoSessionKey);
 	}
 
@@ -131,11 +124,9 @@ public class SamlIdpSsoSessionUtil {
 	*
 	* @param samlIdpSsoSessionKey the saml idp sso session key
 	* @return the matching saml idp sso session, or <code>null</code> if a matching saml idp sso session could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.saml.model.SamlIdpSsoSession fetchBySamlIdpSsoSessionKey(
-		java.lang.String samlIdpSsoSessionKey)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String samlIdpSsoSessionKey) {
 		return getPersistence().fetchBySamlIdpSsoSessionKey(samlIdpSsoSessionKey);
 	}
 
@@ -145,11 +136,9 @@ public class SamlIdpSsoSessionUtil {
 	* @param samlIdpSsoSessionKey the saml idp sso session key
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching saml idp sso session, or <code>null</code> if a matching saml idp sso session could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.saml.model.SamlIdpSsoSession fetchBySamlIdpSsoSessionKey(
-		java.lang.String samlIdpSsoSessionKey, boolean retrieveFromCache)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String samlIdpSsoSessionKey, boolean retrieveFromCache) {
 		return getPersistence()
 				   .fetchBySamlIdpSsoSessionKey(samlIdpSsoSessionKey,
 			retrieveFromCache);
@@ -160,12 +149,10 @@ public class SamlIdpSsoSessionUtil {
 	*
 	* @param samlIdpSsoSessionKey the saml idp sso session key
 	* @return the saml idp sso session that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.saml.model.SamlIdpSsoSession removeBySamlIdpSsoSessionKey(
 		java.lang.String samlIdpSsoSessionKey)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.saml.NoSuchIdpSsoSessionException {
+		throws com.liferay.saml.NoSuchIdpSsoSessionException {
 		return getPersistence()
 				   .removeBySamlIdpSsoSessionKey(samlIdpSsoSessionKey);
 	}
@@ -175,11 +162,9 @@ public class SamlIdpSsoSessionUtil {
 	*
 	* @param samlIdpSsoSessionKey the saml idp sso session key
 	* @return the number of matching saml idp sso sessions
-	* @throws SystemException if a system exception occurred
 	*/
 	public static int countBySamlIdpSsoSessionKey(
-		java.lang.String samlIdpSsoSessionKey)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String samlIdpSsoSessionKey) {
 		return getPersistence().countBySamlIdpSsoSessionKey(samlIdpSsoSessionKey);
 	}
 
@@ -220,18 +205,15 @@ public class SamlIdpSsoSessionUtil {
 	* @param samlIdpSsoSessionId the primary key of the saml idp sso session
 	* @return the saml idp sso session that was removed
 	* @throws com.liferay.saml.NoSuchIdpSsoSessionException if a saml idp sso session with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.saml.model.SamlIdpSsoSession remove(
 		long samlIdpSsoSessionId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.saml.NoSuchIdpSsoSessionException {
+		throws com.liferay.saml.NoSuchIdpSsoSessionException {
 		return getPersistence().remove(samlIdpSsoSessionId);
 	}
 
 	public static com.liferay.saml.model.SamlIdpSsoSession updateImpl(
-		com.liferay.saml.model.SamlIdpSsoSession samlIdpSsoSession)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.saml.model.SamlIdpSsoSession samlIdpSsoSession) {
 		return getPersistence().updateImpl(samlIdpSsoSession);
 	}
 
@@ -241,12 +223,10 @@ public class SamlIdpSsoSessionUtil {
 	* @param samlIdpSsoSessionId the primary key of the saml idp sso session
 	* @return the saml idp sso session
 	* @throws com.liferay.saml.NoSuchIdpSsoSessionException if a saml idp sso session with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.saml.model.SamlIdpSsoSession findByPrimaryKey(
 		long samlIdpSsoSessionId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.saml.NoSuchIdpSsoSessionException {
+		throws com.liferay.saml.NoSuchIdpSsoSessionException {
 		return getPersistence().findByPrimaryKey(samlIdpSsoSessionId);
 	}
 
@@ -255,11 +235,9 @@ public class SamlIdpSsoSessionUtil {
 	*
 	* @param samlIdpSsoSessionId the primary key of the saml idp sso session
 	* @return the saml idp sso session, or <code>null</code> if a saml idp sso session with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.saml.model.SamlIdpSsoSession fetchByPrimaryKey(
-		long samlIdpSsoSessionId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long samlIdpSsoSessionId) {
 		return getPersistence().fetchByPrimaryKey(samlIdpSsoSessionId);
 	}
 
@@ -267,10 +245,8 @@ public class SamlIdpSsoSessionUtil {
 	* Returns all the saml idp sso sessions.
 	*
 	* @return the saml idp sso sessions
-	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<com.liferay.saml.model.SamlIdpSsoSession> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static java.util.List<com.liferay.saml.model.SamlIdpSsoSession> findAll() {
 		return getPersistence().findAll();
 	}
 
@@ -284,11 +260,9 @@ public class SamlIdpSsoSessionUtil {
 	* @param start the lower bound of the range of saml idp sso sessions
 	* @param end the upper bound of the range of saml idp sso sessions (not inclusive)
 	* @return the range of saml idp sso sessions
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.saml.model.SamlIdpSsoSession> findAll(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return getPersistence().findAll(start, end);
 	}
 
@@ -303,22 +277,17 @@ public class SamlIdpSsoSessionUtil {
 	* @param end the upper bound of the range of saml idp sso sessions (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of saml idp sso sessions
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.saml.model.SamlIdpSsoSession> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
 	/**
 	* Removes all the saml idp sso sessions from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeAll() {
 		getPersistence().removeAll();
 	}
 
@@ -326,10 +295,8 @@ public class SamlIdpSsoSessionUtil {
 	* Returns the number of saml idp sso sessions.
 	*
 	* @return the number of saml idp sso sessions
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countAll() {
 		return getPersistence().countAll();
 	}
 

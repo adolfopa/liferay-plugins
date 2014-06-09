@@ -17,8 +17,6 @@ package com.liferay.bbb.model.impl;
 import com.liferay.bbb.model.BBBMeeting;
 import com.liferay.bbb.service.BBBMeetingLocalServiceUtil;
 
-import com.liferay.portal.kernel.exception.SystemException;
-
 /**
  * The extended model base implementation for the BBBMeeting service. Represents a row in the &quot;BBBMeeting&quot; database table, with each column mapped to a property of this class.
  *
@@ -39,7 +37,7 @@ public abstract class BBBMeetingBaseImpl extends BBBMeetingModelImpl
 	 * Never modify or reference this class directly. All methods that expect a b b b meeting model instance should use the {@link BBBMeeting} interface instead.
 	 */
 	@Override
-	public void persist() throws SystemException {
+	public void persist() {
 		if (this.isNew()) {
 			BBBMeetingLocalServiceUtil.addBBBMeeting(this);
 		}

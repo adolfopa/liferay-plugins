@@ -247,11 +247,9 @@ public class KaleoDraftDefinitionWrapper implements KaleoDraftDefinition,
 	* Returns the user uuid of this kaleo draft definition.
 	*
 	* @return the user uuid of this kaleo draft definition
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public java.lang.String getUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.lang.String getUserUuid() {
 		return _kaleoDraftDefinition.getUserUuid();
 	}
 
@@ -668,8 +666,7 @@ public class KaleoDraftDefinitionWrapper implements KaleoDraftDefinition,
 	}
 
 	@Override
-	public void persist()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void persist() {
 		_kaleoDraftDefinition.persist();
 	}
 

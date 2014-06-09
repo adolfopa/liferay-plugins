@@ -88,72 +88,82 @@ public class SamlSpSessionLocalServiceClpInvoker {
 
 		_methodParameterTypes11 = new String[] { "long" };
 
-		_methodName12 = "getPersistedModel";
+		_methodName12 = "getActionableDynamicQuery";
 
-		_methodParameterTypes12 = new String[] { "java.io.Serializable" };
+		_methodParameterTypes12 = new String[] {  };
 
-		_methodName13 = "getSamlSpSessions";
+		_methodName14 = "deletePersistedModel";
 
-		_methodParameterTypes13 = new String[] { "int", "int" };
+		_methodParameterTypes14 = new String[] {
+				"com.liferay.portal.model.PersistedModel"
+			};
 
-		_methodName14 = "getSamlSpSessionsCount";
+		_methodName15 = "getPersistedModel";
 
-		_methodParameterTypes14 = new String[] {  };
+		_methodParameterTypes15 = new String[] { "java.io.Serializable" };
 
-		_methodName15 = "updateSamlSpSession";
+		_methodName16 = "getSamlSpSessions";
 
-		_methodParameterTypes15 = new String[] {
+		_methodParameterTypes16 = new String[] { "int", "int" };
+
+		_methodName17 = "getSamlSpSessionsCount";
+
+		_methodParameterTypes17 = new String[] {  };
+
+		_methodName18 = "updateSamlSpSession";
+
+		_methodParameterTypes18 = new String[] {
 				"com.liferay.saml.model.SamlSpSession"
 			};
 
-		_methodName62 = "getBeanIdentifier";
+		_methodName65 = "getBeanIdentifier";
 
-		_methodParameterTypes62 = new String[] {  };
+		_methodParameterTypes65 = new String[] {  };
 
-		_methodName63 = "setBeanIdentifier";
+		_methodName66 = "setBeanIdentifier";
 
-		_methodParameterTypes63 = new String[] { "java.lang.String" };
+		_methodParameterTypes66 = new String[] { "java.lang.String" };
 
-		_methodName68 = "addSamlSpSession";
+		_methodName71 = "addSamlSpSession";
 
-		_methodParameterTypes68 = new String[] {
+		_methodParameterTypes71 = new String[] {
 				"java.lang.String", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.lang.String",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName69 = "fetchSamlSpSessionByJSessionId";
-
-		_methodParameterTypes69 = new String[] { "java.lang.String" };
-
-		_methodName70 = "fetchSamlSpSessionBySamlSpSessionKey";
-
-		_methodParameterTypes70 = new String[] { "java.lang.String" };
-
-		_methodName71 = "fetchSamlSpSessionBySessionIndex";
-
-		_methodParameterTypes71 = new String[] { "java.lang.String" };
-
-		_methodName72 = "getSamlSpSessionByJSessionId";
+		_methodName72 = "fetchSamlSpSessionByJSessionId";
 
 		_methodParameterTypes72 = new String[] { "java.lang.String" };
 
-		_methodName73 = "getSamlSpSessionBySamlSpSessionKey";
+		_methodName73 = "fetchSamlSpSessionBySamlSpSessionKey";
 
 		_methodParameterTypes73 = new String[] { "java.lang.String" };
 
-		_methodName74 = "getSamlSpSessionBySessionIndex";
+		_methodName74 = "fetchSamlSpSessionBySessionIndex";
 
 		_methodParameterTypes74 = new String[] { "java.lang.String" };
 
-		_methodName75 = "getSamlSpSessions";
+		_methodName75 = "getSamlSpSessionByJSessionId";
 
 		_methodParameterTypes75 = new String[] { "java.lang.String" };
 
-		_methodName76 = "updateSamlSpSession";
+		_methodName76 = "getSamlSpSessionBySamlSpSessionKey";
 
-		_methodParameterTypes76 = new String[] {
+		_methodParameterTypes76 = new String[] { "java.lang.String" };
+
+		_methodName77 = "getSamlSpSessionBySessionIndex";
+
+		_methodParameterTypes77 = new String[] { "java.lang.String" };
+
+		_methodName78 = "getSamlSpSessions";
+
+		_methodParameterTypes78 = new String[] { "java.lang.String" };
+
+		_methodName79 = "updateSamlSpSession";
+
+		_methodParameterTypes79 = new String[] {
 				"long", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.lang.String",
@@ -231,39 +241,49 @@ public class SamlSpSessionLocalServiceClpInvoker {
 
 		if (_methodName12.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes12, parameterTypes)) {
-			return SamlSpSessionLocalServiceUtil.getPersistedModel((java.io.Serializable)arguments[0]);
-		}
-
-		if (_methodName13.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes13, parameterTypes)) {
-			return SamlSpSessionLocalServiceUtil.getSamlSpSessions(((Integer)arguments[0]).intValue(),
-				((Integer)arguments[1]).intValue());
+			return SamlSpSessionLocalServiceUtil.getActionableDynamicQuery();
 		}
 
 		if (_methodName14.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes14, parameterTypes)) {
-			return SamlSpSessionLocalServiceUtil.getSamlSpSessionsCount();
+			return SamlSpSessionLocalServiceUtil.deletePersistedModel((com.liferay.portal.model.PersistedModel)arguments[0]);
 		}
 
 		if (_methodName15.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes15, parameterTypes)) {
+			return SamlSpSessionLocalServiceUtil.getPersistedModel((java.io.Serializable)arguments[0]);
+		}
+
+		if (_methodName16.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes16, parameterTypes)) {
+			return SamlSpSessionLocalServiceUtil.getSamlSpSessions(((Integer)arguments[0]).intValue(),
+				((Integer)arguments[1]).intValue());
+		}
+
+		if (_methodName17.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes17, parameterTypes)) {
+			return SamlSpSessionLocalServiceUtil.getSamlSpSessionsCount();
+		}
+
+		if (_methodName18.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes18, parameterTypes)) {
 			return SamlSpSessionLocalServiceUtil.updateSamlSpSession((com.liferay.saml.model.SamlSpSession)arguments[0]);
 		}
 
-		if (_methodName62.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes62, parameterTypes)) {
+		if (_methodName65.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes65, parameterTypes)) {
 			return SamlSpSessionLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName63.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes63, parameterTypes)) {
+		if (_methodName66.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes66, parameterTypes)) {
 			SamlSpSessionLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName68.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes68, parameterTypes)) {
+		if (_methodName71.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes71, parameterTypes)) {
 			return SamlSpSessionLocalServiceUtil.addSamlSpSession((java.lang.String)arguments[0],
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
 				(java.lang.String)arguments[3], (java.lang.String)arguments[4],
@@ -272,43 +292,43 @@ public class SamlSpSessionLocalServiceClpInvoker {
 				(com.liferay.portal.service.ServiceContext)arguments[8]);
 		}
 
-		if (_methodName69.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes69, parameterTypes)) {
-			return SamlSpSessionLocalServiceUtil.fetchSamlSpSessionByJSessionId((java.lang.String)arguments[0]);
-		}
-
-		if (_methodName70.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes70, parameterTypes)) {
-			return SamlSpSessionLocalServiceUtil.fetchSamlSpSessionBySamlSpSessionKey((java.lang.String)arguments[0]);
-		}
-
-		if (_methodName71.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes71, parameterTypes)) {
-			return SamlSpSessionLocalServiceUtil.fetchSamlSpSessionBySessionIndex((java.lang.String)arguments[0]);
-		}
-
 		if (_methodName72.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes72, parameterTypes)) {
-			return SamlSpSessionLocalServiceUtil.getSamlSpSessionByJSessionId((java.lang.String)arguments[0]);
+			return SamlSpSessionLocalServiceUtil.fetchSamlSpSessionByJSessionId((java.lang.String)arguments[0]);
 		}
 
 		if (_methodName73.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes73, parameterTypes)) {
-			return SamlSpSessionLocalServiceUtil.getSamlSpSessionBySamlSpSessionKey((java.lang.String)arguments[0]);
+			return SamlSpSessionLocalServiceUtil.fetchSamlSpSessionBySamlSpSessionKey((java.lang.String)arguments[0]);
 		}
 
 		if (_methodName74.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes74, parameterTypes)) {
-			return SamlSpSessionLocalServiceUtil.getSamlSpSessionBySessionIndex((java.lang.String)arguments[0]);
+			return SamlSpSessionLocalServiceUtil.fetchSamlSpSessionBySessionIndex((java.lang.String)arguments[0]);
 		}
 
 		if (_methodName75.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes75, parameterTypes)) {
-			return SamlSpSessionLocalServiceUtil.getSamlSpSessions((java.lang.String)arguments[0]);
+			return SamlSpSessionLocalServiceUtil.getSamlSpSessionByJSessionId((java.lang.String)arguments[0]);
 		}
 
 		if (_methodName76.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes76, parameterTypes)) {
+			return SamlSpSessionLocalServiceUtil.getSamlSpSessionBySamlSpSessionKey((java.lang.String)arguments[0]);
+		}
+
+		if (_methodName77.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes77, parameterTypes)) {
+			return SamlSpSessionLocalServiceUtil.getSamlSpSessionBySessionIndex((java.lang.String)arguments[0]);
+		}
+
+		if (_methodName78.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes78, parameterTypes)) {
+			return SamlSpSessionLocalServiceUtil.getSamlSpSessions((java.lang.String)arguments[0]);
+		}
+
+		if (_methodName79.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes79, parameterTypes)) {
 			return SamlSpSessionLocalServiceUtil.updateSamlSpSession(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
 				(java.lang.String)arguments[3], (java.lang.String)arguments[4],
@@ -346,22 +366,20 @@ public class SamlSpSessionLocalServiceClpInvoker {
 	private String[] _methodParameterTypes11;
 	private String _methodName12;
 	private String[] _methodParameterTypes12;
-	private String _methodName13;
-	private String[] _methodParameterTypes13;
 	private String _methodName14;
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
-	private String _methodName62;
-	private String[] _methodParameterTypes62;
-	private String _methodName63;
-	private String[] _methodParameterTypes63;
-	private String _methodName68;
-	private String[] _methodParameterTypes68;
-	private String _methodName69;
-	private String[] _methodParameterTypes69;
-	private String _methodName70;
-	private String[] _methodParameterTypes70;
+	private String _methodName16;
+	private String[] _methodParameterTypes16;
+	private String _methodName17;
+	private String[] _methodParameterTypes17;
+	private String _methodName18;
+	private String[] _methodParameterTypes18;
+	private String _methodName65;
+	private String[] _methodParameterTypes65;
+	private String _methodName66;
+	private String[] _methodParameterTypes66;
 	private String _methodName71;
 	private String[] _methodParameterTypes71;
 	private String _methodName72;
@@ -374,4 +392,10 @@ public class SamlSpSessionLocalServiceClpInvoker {
 	private String[] _methodParameterTypes75;
 	private String _methodName76;
 	private String[] _methodParameterTypes76;
+	private String _methodName77;
+	private String[] _methodParameterTypes77;
+	private String _methodName78;
+	private String[] _methodParameterTypes78;
+	private String _methodName79;
+	private String[] _methodParameterTypes79;
 }

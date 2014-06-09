@@ -18,7 +18,6 @@ import com.liferay.meeting.webex.model.WebExAccount;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
@@ -61,8 +60,7 @@ public class WebExAccountUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#countWithDynamicQuery(DynamicQuery)
 	 */
-	public static long countWithDynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public static long countWithDynamicQuery(DynamicQuery dynamicQuery) {
 		return getPersistence().countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -70,7 +68,7 @@ public class WebExAccountUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery)
 	 */
 	public static List<WebExAccount> findWithDynamicQuery(
-		DynamicQuery dynamicQuery) throws SystemException {
+		DynamicQuery dynamicQuery) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -78,8 +76,7 @@ public class WebExAccountUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int)
 	 */
 	public static List<WebExAccount> findWithDynamicQuery(
-		DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+		DynamicQuery dynamicQuery, int start, int end) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -88,7 +85,7 @@ public class WebExAccountUtil {
 	 */
 	public static List<WebExAccount> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -97,8 +94,7 @@ public class WebExAccountUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static WebExAccount update(WebExAccount webExAccount)
-		throws SystemException {
+	public static WebExAccount update(WebExAccount webExAccount) {
 		return getPersistence().update(webExAccount);
 	}
 
@@ -106,7 +102,7 @@ public class WebExAccountUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
 	public static WebExAccount update(WebExAccount webExAccount,
-		ServiceContext serviceContext) throws SystemException {
+		ServiceContext serviceContext) {
 		return getPersistence().update(webExAccount, serviceContext);
 	}
 
@@ -115,11 +111,9 @@ public class WebExAccountUtil {
 	*
 	* @param uuid the uuid
 	* @return the matching web ex accounts
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.meeting.webex.model.WebExAccount> findByUuid(
-		java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String uuid) {
 		return getPersistence().findByUuid(uuid);
 	}
 
@@ -134,11 +128,9 @@ public class WebExAccountUtil {
 	* @param start the lower bound of the range of web ex accounts
 	* @param end the upper bound of the range of web ex accounts (not inclusive)
 	* @return the range of matching web ex accounts
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.meeting.webex.model.WebExAccount> findByUuid(
-		java.lang.String uuid, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String uuid, int start, int end) {
 		return getPersistence().findByUuid(uuid, start, end);
 	}
 
@@ -154,12 +146,10 @@ public class WebExAccountUtil {
 	* @param end the upper bound of the range of web ex accounts (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching web ex accounts
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.meeting.webex.model.WebExAccount> findByUuid(
 		java.lang.String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().findByUuid(uuid, start, end, orderByComparator);
 	}
 
@@ -170,13 +160,11 @@ public class WebExAccountUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching web ex account
 	* @throws com.liferay.meeting.webex.NoSuchAccountException if a matching web ex account could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.meeting.webex.model.WebExAccount findByUuid_First(
 		java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.meeting.webex.NoSuchAccountException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.meeting.webex.NoSuchAccountException {
 		return getPersistence().findByUuid_First(uuid, orderByComparator);
 	}
 
@@ -186,12 +174,10 @@ public class WebExAccountUtil {
 	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching web ex account, or <code>null</code> if a matching web ex account could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.meeting.webex.model.WebExAccount fetchByUuid_First(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().fetchByUuid_First(uuid, orderByComparator);
 	}
 
@@ -202,13 +188,11 @@ public class WebExAccountUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching web ex account
 	* @throws com.liferay.meeting.webex.NoSuchAccountException if a matching web ex account could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.meeting.webex.model.WebExAccount findByUuid_Last(
 		java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.meeting.webex.NoSuchAccountException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.meeting.webex.NoSuchAccountException {
 		return getPersistence().findByUuid_Last(uuid, orderByComparator);
 	}
 
@@ -218,12 +202,10 @@ public class WebExAccountUtil {
 	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching web ex account, or <code>null</code> if a matching web ex account could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.meeting.webex.model.WebExAccount fetchByUuid_Last(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().fetchByUuid_Last(uuid, orderByComparator);
 	}
 
@@ -235,13 +217,11 @@ public class WebExAccountUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next web ex account
 	* @throws com.liferay.meeting.webex.NoSuchAccountException if a web ex account with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.meeting.webex.model.WebExAccount[] findByUuid_PrevAndNext(
 		long webExAccountId, java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.meeting.webex.NoSuchAccountException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.meeting.webex.NoSuchAccountException {
 		return getPersistence()
 				   .findByUuid_PrevAndNext(webExAccountId, uuid,
 			orderByComparator);
@@ -251,10 +231,8 @@ public class WebExAccountUtil {
 	* Removes all the web ex accounts where uuid = &#63; from the database.
 	*
 	* @param uuid the uuid
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByUuid(java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeByUuid(java.lang.String uuid) {
 		getPersistence().removeByUuid(uuid);
 	}
 
@@ -263,10 +241,8 @@ public class WebExAccountUtil {
 	*
 	* @param uuid the uuid
 	* @return the number of matching web ex accounts
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByUuid(java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByUuid(java.lang.String uuid) {
 		return getPersistence().countByUuid(uuid);
 	}
 
@@ -277,12 +253,10 @@ public class WebExAccountUtil {
 	* @param groupId the group ID
 	* @return the matching web ex account
 	* @throws com.liferay.meeting.webex.NoSuchAccountException if a matching web ex account could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.meeting.webex.model.WebExAccount findByUUID_G(
 		java.lang.String uuid, long groupId)
-		throws com.liferay.meeting.webex.NoSuchAccountException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.meeting.webex.NoSuchAccountException {
 		return getPersistence().findByUUID_G(uuid, groupId);
 	}
 
@@ -292,11 +266,9 @@ public class WebExAccountUtil {
 	* @param uuid the uuid
 	* @param groupId the group ID
 	* @return the matching web ex account, or <code>null</code> if a matching web ex account could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.meeting.webex.model.WebExAccount fetchByUUID_G(
-		java.lang.String uuid, long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String uuid, long groupId) {
 		return getPersistence().fetchByUUID_G(uuid, groupId);
 	}
 
@@ -307,11 +279,9 @@ public class WebExAccountUtil {
 	* @param groupId the group ID
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching web ex account, or <code>null</code> if a matching web ex account could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.meeting.webex.model.WebExAccount fetchByUUID_G(
-		java.lang.String uuid, long groupId, boolean retrieveFromCache)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String uuid, long groupId, boolean retrieveFromCache) {
 		return getPersistence().fetchByUUID_G(uuid, groupId, retrieveFromCache);
 	}
 
@@ -321,12 +291,10 @@ public class WebExAccountUtil {
 	* @param uuid the uuid
 	* @param groupId the group ID
 	* @return the web ex account that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.meeting.webex.model.WebExAccount removeByUUID_G(
 		java.lang.String uuid, long groupId)
-		throws com.liferay.meeting.webex.NoSuchAccountException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.meeting.webex.NoSuchAccountException {
 		return getPersistence().removeByUUID_G(uuid, groupId);
 	}
 
@@ -336,10 +304,8 @@ public class WebExAccountUtil {
 	* @param uuid the uuid
 	* @param groupId the group ID
 	* @return the number of matching web ex accounts
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByUUID_G(java.lang.String uuid, long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByUUID_G(java.lang.String uuid, long groupId) {
 		return getPersistence().countByUUID_G(uuid, groupId);
 	}
 
@@ -349,11 +315,9 @@ public class WebExAccountUtil {
 	* @param uuid the uuid
 	* @param companyId the company ID
 	* @return the matching web ex accounts
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.meeting.webex.model.WebExAccount> findByUuid_C(
-		java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String uuid, long companyId) {
 		return getPersistence().findByUuid_C(uuid, companyId);
 	}
 
@@ -369,11 +333,9 @@ public class WebExAccountUtil {
 	* @param start the lower bound of the range of web ex accounts
 	* @param end the upper bound of the range of web ex accounts (not inclusive)
 	* @return the range of matching web ex accounts
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.meeting.webex.model.WebExAccount> findByUuid_C(
-		java.lang.String uuid, long companyId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String uuid, long companyId, int start, int end) {
 		return getPersistence().findByUuid_C(uuid, companyId, start, end);
 	}
 
@@ -390,12 +352,10 @@ public class WebExAccountUtil {
 	* @param end the upper bound of the range of web ex accounts (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching web ex accounts
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.meeting.webex.model.WebExAccount> findByUuid_C(
 		java.lang.String uuid, long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findByUuid_C(uuid, companyId, start, end, orderByComparator);
 	}
@@ -408,13 +368,11 @@ public class WebExAccountUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching web ex account
 	* @throws com.liferay.meeting.webex.NoSuchAccountException if a matching web ex account could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.meeting.webex.model.WebExAccount findByUuid_C_First(
 		java.lang.String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.meeting.webex.NoSuchAccountException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.meeting.webex.NoSuchAccountException {
 		return getPersistence()
 				   .findByUuid_C_First(uuid, companyId, orderByComparator);
 	}
@@ -426,12 +384,10 @@ public class WebExAccountUtil {
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching web ex account, or <code>null</code> if a matching web ex account could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.meeting.webex.model.WebExAccount fetchByUuid_C_First(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .fetchByUuid_C_First(uuid, companyId, orderByComparator);
 	}
@@ -444,13 +400,11 @@ public class WebExAccountUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching web ex account
 	* @throws com.liferay.meeting.webex.NoSuchAccountException if a matching web ex account could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.meeting.webex.model.WebExAccount findByUuid_C_Last(
 		java.lang.String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.meeting.webex.NoSuchAccountException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.meeting.webex.NoSuchAccountException {
 		return getPersistence()
 				   .findByUuid_C_Last(uuid, companyId, orderByComparator);
 	}
@@ -462,12 +416,10 @@ public class WebExAccountUtil {
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching web ex account, or <code>null</code> if a matching web ex account could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.meeting.webex.model.WebExAccount fetchByUuid_C_Last(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .fetchByUuid_C_Last(uuid, companyId, orderByComparator);
 	}
@@ -481,13 +433,11 @@ public class WebExAccountUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next web ex account
 	* @throws com.liferay.meeting.webex.NoSuchAccountException if a web ex account with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.meeting.webex.model.WebExAccount[] findByUuid_C_PrevAndNext(
 		long webExAccountId, java.lang.String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.meeting.webex.NoSuchAccountException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.meeting.webex.NoSuchAccountException {
 		return getPersistence()
 				   .findByUuid_C_PrevAndNext(webExAccountId, uuid, companyId,
 			orderByComparator);
@@ -498,10 +448,8 @@ public class WebExAccountUtil {
 	*
 	* @param uuid the uuid
 	* @param companyId the company ID
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByUuid_C(java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeByUuid_C(java.lang.String uuid, long companyId) {
 		getPersistence().removeByUuid_C(uuid, companyId);
 	}
 
@@ -511,10 +459,8 @@ public class WebExAccountUtil {
 	* @param uuid the uuid
 	* @param companyId the company ID
 	* @return the number of matching web ex accounts
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByUuid_C(java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByUuid_C(java.lang.String uuid, long companyId) {
 		return getPersistence().countByUuid_C(uuid, companyId);
 	}
 
@@ -524,11 +470,9 @@ public class WebExAccountUtil {
 	* @param groupId the group ID
 	* @param webExSiteId the web ex site ID
 	* @return the matching web ex accounts
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.meeting.webex.model.WebExAccount> findByG_W(
-		long groupId, long webExSiteId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long groupId, long webExSiteId) {
 		return getPersistence().findByG_W(groupId, webExSiteId);
 	}
 
@@ -544,11 +488,9 @@ public class WebExAccountUtil {
 	* @param start the lower bound of the range of web ex accounts
 	* @param end the upper bound of the range of web ex accounts (not inclusive)
 	* @return the range of matching web ex accounts
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.meeting.webex.model.WebExAccount> findByG_W(
-		long groupId, long webExSiteId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long groupId, long webExSiteId, int start, int end) {
 		return getPersistence().findByG_W(groupId, webExSiteId, start, end);
 	}
 
@@ -565,12 +507,10 @@ public class WebExAccountUtil {
 	* @param end the upper bound of the range of web ex accounts (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching web ex accounts
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.meeting.webex.model.WebExAccount> findByG_W(
 		long groupId, long webExSiteId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findByG_W(groupId, webExSiteId, start, end,
 			orderByComparator);
@@ -584,13 +524,11 @@ public class WebExAccountUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching web ex account
 	* @throws com.liferay.meeting.webex.NoSuchAccountException if a matching web ex account could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.meeting.webex.model.WebExAccount findByG_W_First(
 		long groupId, long webExSiteId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.meeting.webex.NoSuchAccountException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.meeting.webex.NoSuchAccountException {
 		return getPersistence()
 				   .findByG_W_First(groupId, webExSiteId, orderByComparator);
 	}
@@ -602,12 +540,10 @@ public class WebExAccountUtil {
 	* @param webExSiteId the web ex site ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching web ex account, or <code>null</code> if a matching web ex account could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.meeting.webex.model.WebExAccount fetchByG_W_First(
 		long groupId, long webExSiteId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .fetchByG_W_First(groupId, webExSiteId, orderByComparator);
 	}
@@ -620,13 +556,11 @@ public class WebExAccountUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching web ex account
 	* @throws com.liferay.meeting.webex.NoSuchAccountException if a matching web ex account could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.meeting.webex.model.WebExAccount findByG_W_Last(
 		long groupId, long webExSiteId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.meeting.webex.NoSuchAccountException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.meeting.webex.NoSuchAccountException {
 		return getPersistence()
 				   .findByG_W_Last(groupId, webExSiteId, orderByComparator);
 	}
@@ -638,12 +572,10 @@ public class WebExAccountUtil {
 	* @param webExSiteId the web ex site ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching web ex account, or <code>null</code> if a matching web ex account could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.meeting.webex.model.WebExAccount fetchByG_W_Last(
 		long groupId, long webExSiteId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .fetchByG_W_Last(groupId, webExSiteId, orderByComparator);
 	}
@@ -657,13 +589,11 @@ public class WebExAccountUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next web ex account
 	* @throws com.liferay.meeting.webex.NoSuchAccountException if a web ex account with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.meeting.webex.model.WebExAccount[] findByG_W_PrevAndNext(
 		long webExAccountId, long groupId, long webExSiteId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.meeting.webex.NoSuchAccountException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.meeting.webex.NoSuchAccountException {
 		return getPersistence()
 				   .findByG_W_PrevAndNext(webExAccountId, groupId, webExSiteId,
 			orderByComparator);
@@ -675,11 +605,9 @@ public class WebExAccountUtil {
 	* @param groupId the group ID
 	* @param webExSiteId the web ex site ID
 	* @return the matching web ex accounts that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.meeting.webex.model.WebExAccount> filterFindByG_W(
-		long groupId, long webExSiteId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long groupId, long webExSiteId) {
 		return getPersistence().filterFindByG_W(groupId, webExSiteId);
 	}
 
@@ -695,11 +623,9 @@ public class WebExAccountUtil {
 	* @param start the lower bound of the range of web ex accounts
 	* @param end the upper bound of the range of web ex accounts (not inclusive)
 	* @return the range of matching web ex accounts that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.meeting.webex.model.WebExAccount> filterFindByG_W(
-		long groupId, long webExSiteId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long groupId, long webExSiteId, int start, int end) {
 		return getPersistence().filterFindByG_W(groupId, webExSiteId, start, end);
 	}
 
@@ -716,12 +642,10 @@ public class WebExAccountUtil {
 	* @param end the upper bound of the range of web ex accounts (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching web ex accounts that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.meeting.webex.model.WebExAccount> filterFindByG_W(
 		long groupId, long webExSiteId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .filterFindByG_W(groupId, webExSiteId, start, end,
 			orderByComparator);
@@ -736,13 +660,11 @@ public class WebExAccountUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next web ex account
 	* @throws com.liferay.meeting.webex.NoSuchAccountException if a web ex account with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.meeting.webex.model.WebExAccount[] filterFindByG_W_PrevAndNext(
 		long webExAccountId, long groupId, long webExSiteId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.meeting.webex.NoSuchAccountException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.meeting.webex.NoSuchAccountException {
 		return getPersistence()
 				   .filterFindByG_W_PrevAndNext(webExAccountId, groupId,
 			webExSiteId, orderByComparator);
@@ -753,10 +675,8 @@ public class WebExAccountUtil {
 	*
 	* @param groupId the group ID
 	* @param webExSiteId the web ex site ID
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByG_W(long groupId, long webExSiteId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeByG_W(long groupId, long webExSiteId) {
 		getPersistence().removeByG_W(groupId, webExSiteId);
 	}
 
@@ -766,10 +686,8 @@ public class WebExAccountUtil {
 	* @param groupId the group ID
 	* @param webExSiteId the web ex site ID
 	* @return the number of matching web ex accounts
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByG_W(long groupId, long webExSiteId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByG_W(long groupId, long webExSiteId) {
 		return getPersistence().countByG_W(groupId, webExSiteId);
 	}
 
@@ -779,10 +697,8 @@ public class WebExAccountUtil {
 	* @param groupId the group ID
 	* @param webExSiteId the web ex site ID
 	* @return the number of matching web ex accounts that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int filterCountByG_W(long groupId, long webExSiteId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int filterCountByG_W(long groupId, long webExSiteId) {
 		return getPersistence().filterCountByG_W(groupId, webExSiteId);
 	}
 
@@ -823,18 +739,15 @@ public class WebExAccountUtil {
 	* @param webExAccountId the primary key of the web ex account
 	* @return the web ex account that was removed
 	* @throws com.liferay.meeting.webex.NoSuchAccountException if a web ex account with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.meeting.webex.model.WebExAccount remove(
 		long webExAccountId)
-		throws com.liferay.meeting.webex.NoSuchAccountException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.meeting.webex.NoSuchAccountException {
 		return getPersistence().remove(webExAccountId);
 	}
 
 	public static com.liferay.meeting.webex.model.WebExAccount updateImpl(
-		com.liferay.meeting.webex.model.WebExAccount webExAccount)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.meeting.webex.model.WebExAccount webExAccount) {
 		return getPersistence().updateImpl(webExAccount);
 	}
 
@@ -844,12 +757,10 @@ public class WebExAccountUtil {
 	* @param webExAccountId the primary key of the web ex account
 	* @return the web ex account
 	* @throws com.liferay.meeting.webex.NoSuchAccountException if a web ex account with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.meeting.webex.model.WebExAccount findByPrimaryKey(
 		long webExAccountId)
-		throws com.liferay.meeting.webex.NoSuchAccountException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.meeting.webex.NoSuchAccountException {
 		return getPersistence().findByPrimaryKey(webExAccountId);
 	}
 
@@ -858,11 +769,9 @@ public class WebExAccountUtil {
 	*
 	* @param webExAccountId the primary key of the web ex account
 	* @return the web ex account, or <code>null</code> if a web ex account with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.meeting.webex.model.WebExAccount fetchByPrimaryKey(
-		long webExAccountId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long webExAccountId) {
 		return getPersistence().fetchByPrimaryKey(webExAccountId);
 	}
 
@@ -870,10 +779,8 @@ public class WebExAccountUtil {
 	* Returns all the web ex accounts.
 	*
 	* @return the web ex accounts
-	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<com.liferay.meeting.webex.model.WebExAccount> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static java.util.List<com.liferay.meeting.webex.model.WebExAccount> findAll() {
 		return getPersistence().findAll();
 	}
 
@@ -887,11 +794,9 @@ public class WebExAccountUtil {
 	* @param start the lower bound of the range of web ex accounts
 	* @param end the upper bound of the range of web ex accounts (not inclusive)
 	* @return the range of web ex accounts
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.meeting.webex.model.WebExAccount> findAll(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return getPersistence().findAll(start, end);
 	}
 
@@ -906,22 +811,17 @@ public class WebExAccountUtil {
 	* @param end the upper bound of the range of web ex accounts (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of web ex accounts
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.meeting.webex.model.WebExAccount> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
 	/**
 	* Removes all the web ex accounts from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeAll() {
 		getPersistence().removeAll();
 	}
 
@@ -929,10 +829,8 @@ public class WebExAccountUtil {
 	* Returns the number of web ex accounts.
 	*
 	* @return the number of web ex accounts
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countAll() {
 		return getPersistence().countAll();
 	}
 

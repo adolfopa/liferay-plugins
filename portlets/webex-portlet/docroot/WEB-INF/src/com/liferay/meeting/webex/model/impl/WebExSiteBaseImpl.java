@@ -17,8 +17,6 @@ package com.liferay.meeting.webex.model.impl;
 import com.liferay.meeting.webex.model.WebExSite;
 import com.liferay.meeting.webex.service.WebExSiteLocalServiceUtil;
 
-import com.liferay.portal.kernel.exception.SystemException;
-
 /**
  * The extended model base implementation for the WebExSite service. Represents a row in the &quot;WebEx_WebExSite&quot; database table, with each column mapped to a property of this class.
  *
@@ -39,7 +37,7 @@ public abstract class WebExSiteBaseImpl extends WebExSiteModelImpl
 	 * Never modify or reference this class directly. All methods that expect a web ex site model instance should use the {@link WebExSite} interface instead.
 	 */
 	@Override
-	public void persist() throws SystemException {
+	public void persist() {
 		if (this.isNew()) {
 			WebExSiteLocalServiceUtil.addWebExSite(this);
 		}

@@ -25,6 +25,8 @@ import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DefaultActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.Projection;
@@ -71,12 +73,10 @@ public abstract class OAuthUserLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param oAuthUser the o auth user
 	 * @return the o auth user that was added
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
-	public OAuthUser addOAuthUser(OAuthUser oAuthUser)
-		throws SystemException {
+	public OAuthUser addOAuthUser(OAuthUser oAuthUser) {
 		oAuthUser.setNew(true);
 
 		return oAuthUserPersistence.update(oAuthUser);
@@ -99,12 +99,11 @@ public abstract class OAuthUserLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param oAuthUserId the primary key of the o auth user
 	 * @return the o auth user that was removed
 	 * @throws PortalException if a o auth user with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public OAuthUser deleteOAuthUser(long oAuthUserId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return oAuthUserPersistence.remove(oAuthUserId);
 	}
 
@@ -114,7 +113,7 @@ public abstract class OAuthUserLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param oAuthUser the o auth user
 	 * @return the o auth user that was removed
 	 * @throws PortalException
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
@@ -136,12 +135,10 @@ public abstract class OAuthUserLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery) {
 		return oAuthUserPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -156,12 +153,10 @@ public abstract class OAuthUserLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param start the lower bound of the range of model instances
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
 		return oAuthUserPersistence.findWithDynamicQuery(dynamicQuery, start,
 			end);
 	}
@@ -178,12 +173,11 @@ public abstract class OAuthUserLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return oAuthUserPersistence.findWithDynamicQuery(dynamicQuery, start,
 			end, orderByComparator);
 	}
@@ -193,11 +187,9 @@ public abstract class OAuthUserLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public long dynamicQueryCount(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
 		return oAuthUserPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -207,17 +199,16 @@ public abstract class OAuthUserLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection) throws SystemException {
+		Projection projection) {
 		return oAuthUserPersistence.countWithDynamicQuery(dynamicQuery,
 			projection);
 	}
 
 	@Override
-	public OAuthUser fetchOAuthUser(long oAuthUserId) throws SystemException {
+	public OAuthUser fetchOAuthUser(long oAuthUserId) {
 		return oAuthUserPersistence.fetchByPrimaryKey(oAuthUserId);
 	}
 
@@ -227,17 +218,46 @@ public abstract class OAuthUserLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param oAuthUserId the primary key of the o auth user
 	 * @return the o auth user
 	 * @throws PortalException if a o auth user with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public OAuthUser getOAuthUser(long oAuthUserId)
-		throws PortalException, SystemException {
+	public OAuthUser getOAuthUser(long oAuthUserId) throws PortalException {
 		return oAuthUserPersistence.findByPrimaryKey(oAuthUserId);
 	}
 
 	@Override
+	public ActionableDynamicQuery getActionableDynamicQuery() {
+		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
+
+		actionableDynamicQuery.setBaseLocalService(com.liferay.oauth.service.OAuthUserLocalServiceUtil.getService());
+		actionableDynamicQuery.setClass(OAuthUser.class);
+		actionableDynamicQuery.setClassLoader(getClassLoader());
+
+		actionableDynamicQuery.setPrimaryKeyPropertyName("oAuthUserId");
+
+		return actionableDynamicQuery;
+	}
+
+	protected void initActionableDynamicQuery(
+		ActionableDynamicQuery actionableDynamicQuery) {
+		actionableDynamicQuery.setBaseLocalService(com.liferay.oauth.service.OAuthUserLocalServiceUtil.getService());
+		actionableDynamicQuery.setClass(OAuthUser.class);
+		actionableDynamicQuery.setClassLoader(getClassLoader());
+
+		actionableDynamicQuery.setPrimaryKeyPropertyName("oAuthUserId");
+	}
+
+	/**
+	 * @throws PortalException
+	 */
+	@Override
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
+		throws PortalException {
+		return deleteOAuthUser((OAuthUser)persistedModel);
+	}
+
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return oAuthUserPersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
@@ -251,11 +271,9 @@ public abstract class OAuthUserLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param start the lower bound of the range of o auth users
 	 * @param end the upper bound of the range of o auth users (not inclusive)
 	 * @return the range of o auth users
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<OAuthUser> getOAuthUsers(int start, int end)
-		throws SystemException {
+	public List<OAuthUser> getOAuthUsers(int start, int end) {
 		return oAuthUserPersistence.findAll(start, end);
 	}
 
@@ -263,10 +281,9 @@ public abstract class OAuthUserLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * Returns the number of o auth users.
 	 *
 	 * @return the number of o auth users
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int getOAuthUsersCount() throws SystemException {
+	public int getOAuthUsersCount() {
 		return oAuthUserPersistence.countAll();
 	}
 
@@ -275,12 +292,10 @@ public abstract class OAuthUserLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param oAuthUser the o auth user
 	 * @return the o auth user that was updated
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
-	public OAuthUser updateOAuthUser(OAuthUser oAuthUser)
-		throws SystemException {
+	public OAuthUser updateOAuthUser(OAuthUser oAuthUser) {
 		return oAuthUserPersistence.update(oAuthUser);
 	}
 
@@ -617,7 +632,7 @@ public abstract class OAuthUserLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param sql the sql query
 	 */
-	protected void runSQL(String sql) throws SystemException {
+	protected void runSQL(String sql) {
 		try {
 			DataSource dataSource = oAuthUserPersistence.getDataSource();
 

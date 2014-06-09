@@ -15,7 +15,6 @@
 package com.liferay.oauth.model;
 
 import com.liferay.portal.kernel.bean.AutoEscape;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.AuditedModel;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
@@ -79,9 +78,8 @@ public interface OAuthUserModel extends AuditedModel, BaseModel<OAuthUser> {
 	 * Returns the o auth user uuid of this o auth user.
 	 *
 	 * @return the o auth user uuid of this o auth user
-	 * @throws SystemException if a system exception occurred
 	 */
-	public String getOAuthUserUuid() throws SystemException;
+	public String getOAuthUserUuid();
 
 	/**
 	 * Sets the o auth user uuid of this o auth user.
@@ -126,10 +124,9 @@ public interface OAuthUserModel extends AuditedModel, BaseModel<OAuthUser> {
 	 * Returns the user uuid of this o auth user.
 	 *
 	 * @return the user uuid of this o auth user
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public String getUserUuid() throws SystemException;
+	public String getUserUuid();
 
 	/**
 	 * Sets the user uuid of this o auth user.

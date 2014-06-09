@@ -78,12 +78,10 @@ public abstract class KaleoProcessLocalServiceBaseImpl
 	 *
 	 * @param kaleoProcess the kaleo process
 	 * @return the kaleo process that was added
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
-	public KaleoProcess addKaleoProcess(KaleoProcess kaleoProcess)
-		throws SystemException {
+	public KaleoProcess addKaleoProcess(KaleoProcess kaleoProcess) {
 		kaleoProcess.setNew(true);
 
 		return kaleoProcessPersistence.update(kaleoProcess);
@@ -106,7 +104,7 @@ public abstract class KaleoProcessLocalServiceBaseImpl
 	 * @param kaleoProcessId the primary key of the kaleo process
 	 * @return the kaleo process that was removed
 	 * @throws PortalException if a kaleo process with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
@@ -121,7 +119,7 @@ public abstract class KaleoProcessLocalServiceBaseImpl
 	 * @param kaleoProcess the kaleo process
 	 * @return the kaleo process that was removed
 	 * @throws PortalException
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
@@ -143,12 +141,10 @@ public abstract class KaleoProcessLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery) {
 		return kaleoProcessPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -163,12 +159,10 @@ public abstract class KaleoProcessLocalServiceBaseImpl
 	 * @param start the lower bound of the range of model instances
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
 		return kaleoProcessPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end);
 	}
@@ -185,12 +179,11 @@ public abstract class KaleoProcessLocalServiceBaseImpl
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return kaleoProcessPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end, orderByComparator);
 	}
@@ -200,11 +193,9 @@ public abstract class KaleoProcessLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public long dynamicQueryCount(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
 		return kaleoProcessPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -214,18 +205,16 @@ public abstract class KaleoProcessLocalServiceBaseImpl
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection) throws SystemException {
+		Projection projection) {
 		return kaleoProcessPersistence.countWithDynamicQuery(dynamicQuery,
 			projection);
 	}
 
 	@Override
-	public KaleoProcess fetchKaleoProcess(long kaleoProcessId)
-		throws SystemException {
+	public KaleoProcess fetchKaleoProcess(long kaleoProcessId) {
 		return kaleoProcessPersistence.fetchByPrimaryKey(kaleoProcessId);
 	}
 
@@ -235,7 +224,7 @@ public abstract class KaleoProcessLocalServiceBaseImpl
 	 * @param kaleoProcessId the primary key of the kaleo process
 	 * @return the kaleo process
 	 * @throws PortalException if a kaleo process with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
 	 */
 	@Override
 	public KaleoProcess getKaleoProcess(long kaleoProcessId)
@@ -244,8 +233,7 @@ public abstract class KaleoProcessLocalServiceBaseImpl
 	}
 
 	@Override
-	public ActionableDynamicQuery getActionableDynamicQuery()
-		throws SystemException {
+	public ActionableDynamicQuery getActionableDynamicQuery() {
 		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
 
 		actionableDynamicQuery.setBaseLocalService(com.liferay.portal.workflow.kaleo.forms.service.KaleoProcessLocalServiceUtil.getService());
@@ -258,8 +246,7 @@ public abstract class KaleoProcessLocalServiceBaseImpl
 	}
 
 	protected void initActionableDynamicQuery(
-		ActionableDynamicQuery actionableDynamicQuery)
-		throws SystemException {
+		ActionableDynamicQuery actionableDynamicQuery) {
 		actionableDynamicQuery.setBaseLocalService(com.liferay.portal.workflow.kaleo.forms.service.KaleoProcessLocalServiceUtil.getService());
 		actionableDynamicQuery.setClass(KaleoProcess.class);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
@@ -267,9 +254,18 @@ public abstract class KaleoProcessLocalServiceBaseImpl
 		actionableDynamicQuery.setPrimaryKeyPropertyName("kaleoProcessId");
 	}
 
+	/**
+	 * @throws PortalException
+	 */
+	@Override
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
+		throws PortalException {
+		return deleteKaleoProcess((KaleoProcess)persistedModel);
+	}
+
 	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return kaleoProcessPersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
@@ -283,11 +279,9 @@ public abstract class KaleoProcessLocalServiceBaseImpl
 	 * @param start the lower bound of the range of kaleo processes
 	 * @param end the upper bound of the range of kaleo processes (not inclusive)
 	 * @return the range of kaleo processes
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<KaleoProcess> getKaleoProcesses(int start, int end)
-		throws SystemException {
+	public List<KaleoProcess> getKaleoProcesses(int start, int end) {
 		return kaleoProcessPersistence.findAll(start, end);
 	}
 
@@ -295,10 +289,9 @@ public abstract class KaleoProcessLocalServiceBaseImpl
 	 * Returns the number of kaleo processes.
 	 *
 	 * @return the number of kaleo processes
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int getKaleoProcessesCount() throws SystemException {
+	public int getKaleoProcessesCount() {
 		return kaleoProcessPersistence.countAll();
 	}
 
@@ -307,12 +300,10 @@ public abstract class KaleoProcessLocalServiceBaseImpl
 	 *
 	 * @param kaleoProcess the kaleo process
 	 * @return the kaleo process that was updated
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
-	public KaleoProcess updateKaleoProcess(KaleoProcess kaleoProcess)
-		throws SystemException {
+	public KaleoProcess updateKaleoProcess(KaleoProcess kaleoProcess) {
 		return kaleoProcessPersistence.update(kaleoProcess);
 	}
 
@@ -839,7 +830,7 @@ public abstract class KaleoProcessLocalServiceBaseImpl
 	 *
 	 * @param sql the sql query
 	 */
-	protected void runSQL(String sql) throws SystemException {
+	protected void runSQL(String sql) {
 		try {
 			DataSource dataSource = kaleoProcessPersistence.getDataSource();
 

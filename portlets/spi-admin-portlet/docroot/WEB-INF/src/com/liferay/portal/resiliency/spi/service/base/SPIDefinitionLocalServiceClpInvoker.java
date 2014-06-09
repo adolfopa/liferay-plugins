@@ -92,110 +92,116 @@ public class SPIDefinitionLocalServiceClpInvoker {
 
 		_methodParameterTypes12 = new String[] {  };
 
-		_methodName14 = "getPersistedModel";
+		_methodName14 = "deletePersistedModel";
 
-		_methodParameterTypes14 = new String[] { "java.io.Serializable" };
+		_methodParameterTypes14 = new String[] {
+				"com.liferay.portal.model.PersistedModel"
+			};
 
-		_methodName15 = "getSPIDefinitions";
+		_methodName15 = "getPersistedModel";
 
-		_methodParameterTypes15 = new String[] { "int", "int" };
+		_methodParameterTypes15 = new String[] { "java.io.Serializable" };
 
-		_methodName16 = "getSPIDefinitionsCount";
+		_methodName16 = "getSPIDefinitions";
 
-		_methodParameterTypes16 = new String[] {  };
+		_methodParameterTypes16 = new String[] { "int", "int" };
 
-		_methodName17 = "updateSPIDefinition";
+		_methodName17 = "getSPIDefinitionsCount";
 
-		_methodParameterTypes17 = new String[] {
+		_methodParameterTypes17 = new String[] {  };
+
+		_methodName18 = "updateSPIDefinition";
+
+		_methodParameterTypes18 = new String[] {
 				"com.liferay.portal.resiliency.spi.model.SPIDefinition"
 			};
 
-		_methodName52 = "getBeanIdentifier";
+		_methodName53 = "getBeanIdentifier";
 
-		_methodParameterTypes52 = new String[] {  };
+		_methodParameterTypes53 = new String[] {  };
 
-		_methodName53 = "setBeanIdentifier";
+		_methodName54 = "setBeanIdentifier";
 
-		_methodParameterTypes53 = new String[] { "java.lang.String" };
+		_methodParameterTypes54 = new String[] { "java.lang.String" };
 
-		_methodName58 = "addSPIDefinition";
+		_methodName59 = "addSPIDefinition";
 
-		_methodParameterTypes58 = new String[] {
+		_methodParameterTypes59 = new String[] {
 				"long", "java.lang.String", "java.lang.String", "int",
 				"java.lang.String", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.lang.String",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName59 = "deleteSPIDefinition";
-
-		_methodParameterTypes59 = new String[] { "long" };
-
 		_methodName60 = "deleteSPIDefinition";
 
-		_methodParameterTypes60 = new String[] {
+		_methodParameterTypes60 = new String[] { "long" };
+
+		_methodName61 = "deleteSPIDefinition";
+
+		_methodParameterTypes61 = new String[] {
 				"com.liferay.portal.resiliency.spi.model.SPIDefinition"
 			};
 
-		_methodName61 = "getPortletIdsAndServletContextNames";
+		_methodName62 = "getPortletIdsAndServletContextNames";
 
-		_methodParameterTypes61 = new String[] {  };
-
-		_methodName62 = "getSPIDefinition";
-
-		_methodParameterTypes62 = new String[] { "long" };
+		_methodParameterTypes62 = new String[] {  };
 
 		_methodName63 = "getSPIDefinition";
 
-		_methodParameterTypes63 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes63 = new String[] { "long" };
 
-		_methodName64 = "getSPIDefinitions";
+		_methodName64 = "getSPIDefinition";
 
-		_methodParameterTypes64 = new String[] {  };
+		_methodParameterTypes64 = new String[] { "long", "java.lang.String" };
 
 		_methodName65 = "getSPIDefinitions";
 
-		_methodParameterTypes65 = new String[] { "long", "int" };
+		_methodParameterTypes65 = new String[] {  };
 
 		_methodName66 = "getSPIDefinitions";
 
-		_methodParameterTypes66 = new String[] { "long", "int[][]" };
+		_methodParameterTypes66 = new String[] { "long", "int" };
 
-		_methodName67 = "startSPI";
+		_methodName67 = "getSPIDefinitions";
 
-		_methodParameterTypes67 = new String[] { "long" };
+		_methodParameterTypes67 = new String[] { "long", "int[][]" };
 
-		_methodName68 = "startSPIinBackground";
+		_methodName68 = "startSPI";
 
-		_methodParameterTypes68 = new String[] { "long", "long" };
+		_methodParameterTypes68 = new String[] { "long" };
 
 		_methodName69 = "startSPIinBackground";
 
-		_methodParameterTypes69 = new String[] { "long", "long", "boolean" };
+		_methodParameterTypes69 = new String[] { "long", "long" };
 
-		_methodName70 = "stopSPI";
+		_methodName70 = "startSPIinBackground";
 
-		_methodParameterTypes70 = new String[] { "long" };
+		_methodParameterTypes70 = new String[] { "long", "long", "boolean" };
 
-		_methodName71 = "stopSPIinBackground";
+		_methodName71 = "stopSPI";
 
-		_methodParameterTypes71 = new String[] { "long", "long" };
+		_methodParameterTypes71 = new String[] { "long" };
 
-		_methodName72 = "updateSPIDefinition";
+		_methodName72 = "stopSPIinBackground";
 
-		_methodParameterTypes72 = new String[] { "long", "int", "java.lang.String" };
+		_methodParameterTypes72 = new String[] { "long", "long" };
 
 		_methodName73 = "updateSPIDefinition";
 
-		_methodParameterTypes73 = new String[] {
+		_methodParameterTypes73 = new String[] { "long", "int", "java.lang.String" };
+
+		_methodName74 = "updateSPIDefinition";
+
+		_methodParameterTypes74 = new String[] {
 				"long", "long", "java.lang.String", "int", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.lang.String",
 				"java.lang.String", "com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName74 = "updateTypeSettings";
+		_methodName75 = "updateTypeSettings";
 
-		_methodParameterTypes74 = new String[] {
+		_methodParameterTypes75 = new String[] {
 				"long", "long", "java.lang.String",
 				"com.liferay.portal.service.ServiceContext"
 			};
@@ -276,39 +282,44 @@ public class SPIDefinitionLocalServiceClpInvoker {
 
 		if (_methodName14.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes14, parameterTypes)) {
-			return SPIDefinitionLocalServiceUtil.getPersistedModel((java.io.Serializable)arguments[0]);
+			return SPIDefinitionLocalServiceUtil.deletePersistedModel((com.liferay.portal.model.PersistedModel)arguments[0]);
 		}
 
 		if (_methodName15.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes15, parameterTypes)) {
-			return SPIDefinitionLocalServiceUtil.getSPIDefinitions(((Integer)arguments[0]).intValue(),
-				((Integer)arguments[1]).intValue());
+			return SPIDefinitionLocalServiceUtil.getPersistedModel((java.io.Serializable)arguments[0]);
 		}
 
 		if (_methodName16.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes16, parameterTypes)) {
-			return SPIDefinitionLocalServiceUtil.getSPIDefinitionsCount();
+			return SPIDefinitionLocalServiceUtil.getSPIDefinitions(((Integer)arguments[0]).intValue(),
+				((Integer)arguments[1]).intValue());
 		}
 
 		if (_methodName17.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes17, parameterTypes)) {
-			return SPIDefinitionLocalServiceUtil.updateSPIDefinition((com.liferay.portal.resiliency.spi.model.SPIDefinition)arguments[0]);
+			return SPIDefinitionLocalServiceUtil.getSPIDefinitionsCount();
 		}
 
-		if (_methodName52.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
-			return SPIDefinitionLocalServiceUtil.getBeanIdentifier();
+		if (_methodName18.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes18, parameterTypes)) {
+			return SPIDefinitionLocalServiceUtil.updateSPIDefinition((com.liferay.portal.resiliency.spi.model.SPIDefinition)arguments[0]);
 		}
 
 		if (_methodName53.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
+			return SPIDefinitionLocalServiceUtil.getBeanIdentifier();
+		}
+
+		if (_methodName54.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
 			SPIDefinitionLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName58.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
+		if (_methodName59.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
 			return SPIDefinitionLocalServiceUtil.addSPIDefinition(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
 				((Integer)arguments[3]).intValue(),
@@ -318,91 +329,91 @@ public class SPIDefinitionLocalServiceClpInvoker {
 				(com.liferay.portal.service.ServiceContext)arguments[9]);
 		}
 
-		if (_methodName59.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
-			return SPIDefinitionLocalServiceUtil.deleteSPIDefinition(((Long)arguments[0]).longValue());
-		}
-
 		if (_methodName60.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes60, parameterTypes)) {
-			return SPIDefinitionLocalServiceUtil.deleteSPIDefinition((com.liferay.portal.resiliency.spi.model.SPIDefinition)arguments[0]);
+			return SPIDefinitionLocalServiceUtil.deleteSPIDefinition(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName61.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes61, parameterTypes)) {
-			return SPIDefinitionLocalServiceUtil.getPortletIdsAndServletContextNames();
+			return SPIDefinitionLocalServiceUtil.deleteSPIDefinition((com.liferay.portal.resiliency.spi.model.SPIDefinition)arguments[0]);
 		}
 
 		if (_methodName62.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes62, parameterTypes)) {
-			return SPIDefinitionLocalServiceUtil.getSPIDefinition(((Long)arguments[0]).longValue());
+			return SPIDefinitionLocalServiceUtil.getPortletIdsAndServletContextNames();
 		}
 
 		if (_methodName63.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes63, parameterTypes)) {
-			return SPIDefinitionLocalServiceUtil.getSPIDefinition(((Long)arguments[0]).longValue(),
-				(java.lang.String)arguments[1]);
+			return SPIDefinitionLocalServiceUtil.getSPIDefinition(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName64.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes64, parameterTypes)) {
-			return SPIDefinitionLocalServiceUtil.getSPIDefinitions();
+			return SPIDefinitionLocalServiceUtil.getSPIDefinition(((Long)arguments[0]).longValue(),
+				(java.lang.String)arguments[1]);
 		}
 
 		if (_methodName65.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes65, parameterTypes)) {
-			return SPIDefinitionLocalServiceUtil.getSPIDefinitions(((Long)arguments[0]).longValue(),
-				((Integer)arguments[1]).intValue());
+			return SPIDefinitionLocalServiceUtil.getSPIDefinitions();
 		}
 
 		if (_methodName66.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes66, parameterTypes)) {
 			return SPIDefinitionLocalServiceUtil.getSPIDefinitions(((Long)arguments[0]).longValue(),
-				(int[])arguments[1]);
+				((Integer)arguments[1]).intValue());
 		}
 
 		if (_methodName67.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes67, parameterTypes)) {
+			return SPIDefinitionLocalServiceUtil.getSPIDefinitions(((Long)arguments[0]).longValue(),
+				(int[])arguments[1]);
+		}
+
+		if (_methodName68.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes68, parameterTypes)) {
 			SPIDefinitionLocalServiceUtil.startSPI(((Long)arguments[0]).longValue());
 
 			return null;
 		}
 
-		if (_methodName68.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes68, parameterTypes)) {
+		if (_methodName69.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes69, parameterTypes)) {
 			return SPIDefinitionLocalServiceUtil.startSPIinBackground(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
 		}
 
-		if (_methodName69.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes69, parameterTypes)) {
+		if (_methodName70.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes70, parameterTypes)) {
 			return SPIDefinitionLocalServiceUtil.startSPIinBackground(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Boolean)arguments[2]).booleanValue());
 		}
 
-		if (_methodName70.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes70, parameterTypes)) {
+		if (_methodName71.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes71, parameterTypes)) {
 			SPIDefinitionLocalServiceUtil.stopSPI(((Long)arguments[0]).longValue());
 
 			return null;
 		}
 
-		if (_methodName71.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes71, parameterTypes)) {
+		if (_methodName72.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes72, parameterTypes)) {
 			return SPIDefinitionLocalServiceUtil.stopSPIinBackground(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
 		}
 
-		if (_methodName72.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes72, parameterTypes)) {
+		if (_methodName73.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes73, parameterTypes)) {
 			return SPIDefinitionLocalServiceUtil.updateSPIDefinition(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
 				(java.lang.String)arguments[2]);
 		}
 
-		if (_methodName73.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes73, parameterTypes)) {
+		if (_methodName74.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes74, parameterTypes)) {
 			return SPIDefinitionLocalServiceUtil.updateSPIDefinition(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2],
@@ -413,8 +424,8 @@ public class SPIDefinitionLocalServiceClpInvoker {
 				(com.liferay.portal.service.ServiceContext)arguments[9]);
 		}
 
-		if (_methodName74.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes74, parameterTypes)) {
+		if (_methodName75.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes75, parameterTypes)) {
 			return SPIDefinitionLocalServiceUtil.updateTypeSettings(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2],
@@ -458,12 +469,12 @@ public class SPIDefinitionLocalServiceClpInvoker {
 	private String[] _methodParameterTypes16;
 	private String _methodName17;
 	private String[] _methodParameterTypes17;
-	private String _methodName52;
-	private String[] _methodParameterTypes52;
+	private String _methodName18;
+	private String[] _methodParameterTypes18;
 	private String _methodName53;
 	private String[] _methodParameterTypes53;
-	private String _methodName58;
-	private String[] _methodParameterTypes58;
+	private String _methodName54;
+	private String[] _methodParameterTypes54;
 	private String _methodName59;
 	private String[] _methodParameterTypes59;
 	private String _methodName60;
@@ -496,4 +507,6 @@ public class SPIDefinitionLocalServiceClpInvoker {
 	private String[] _methodParameterTypes73;
 	private String _methodName74;
 	private String[] _methodParameterTypes74;
+	private String _methodName75;
+	private String[] _methodParameterTypes75;
 }

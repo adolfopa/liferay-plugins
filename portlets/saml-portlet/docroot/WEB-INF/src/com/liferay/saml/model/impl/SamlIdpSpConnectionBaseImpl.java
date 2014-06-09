@@ -14,8 +14,6 @@
 
 package com.liferay.saml.model.impl;
 
-import com.liferay.portal.kernel.exception.SystemException;
-
 import com.liferay.saml.model.SamlIdpSpConnection;
 import com.liferay.saml.service.SamlIdpSpConnectionLocalServiceUtil;
 
@@ -39,7 +37,7 @@ public abstract class SamlIdpSpConnectionBaseImpl
 	 * Never modify or reference this class directly. All methods that expect a saml idp sp connection model instance should use the {@link SamlIdpSpConnection} interface instead.
 	 */
 	@Override
-	public void persist() throws SystemException {
+	public void persist() {
 		if (this.isNew()) {
 			SamlIdpSpConnectionLocalServiceUtil.addSamlIdpSpConnection(this);
 		}

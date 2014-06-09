@@ -17,15 +17,16 @@ package com.liferay.portal.audit.service.persistence;
 import com.liferay.portal.audit.model.AuditEvent;
 import com.liferay.portal.audit.service.AuditEventLocalServiceUtil;
 import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 
 /**
  * @author Brian Wing Shun Chan
+ * @deprecated As of 7.0.0, replaced by {@link AuditEventLocalServiceUtil#getExportActionableDynamicQuery()}
  * @generated
  */
+@Deprecated
 public abstract class AuditEventActionableDynamicQuery
 	extends BaseActionableDynamicQuery {
-	public AuditEventActionableDynamicQuery() throws SystemException {
+	public AuditEventActionableDynamicQuery() {
 		setBaseLocalService(AuditEventLocalServiceUtil.getService());
 		setClass(AuditEvent.class);
 

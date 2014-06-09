@@ -15,7 +15,6 @@
 package com.liferay.bbb.model;
 
 import com.liferay.portal.kernel.bean.AutoEscape;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.GroupedModel;
@@ -127,10 +126,9 @@ public interface BBBMeetingModel extends BaseModel<BBBMeeting>, GroupedModel {
 	 * Returns the user uuid of this b b b meeting.
 	 *
 	 * @return the user uuid of this b b b meeting
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public String getUserUuid() throws SystemException;
+	public String getUserUuid();
 
 	/**
 	 * Sets the user uuid of this b b b meeting.

@@ -210,11 +210,9 @@ public class BBBServerWrapper implements BBBServer, ModelWrapper<BBBServer> {
 	* Returns the user uuid of this b b b server.
 	*
 	* @return the user uuid of this b b b server
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public java.lang.String getUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.lang.String getUserUuid() {
 		return _bbbServer.getUserUuid();
 	}
 
@@ -477,8 +475,7 @@ public class BBBServerWrapper implements BBBServer, ModelWrapper<BBBServer> {
 	}
 
 	@Override
-	public void persist()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void persist() {
 		_bbbServer.persist();
 	}
 

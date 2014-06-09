@@ -270,11 +270,9 @@ public class SamlIdpSpConnectionWrapper implements SamlIdpSpConnection,
 	* Returns the user uuid of this saml idp sp connection.
 	*
 	* @return the user uuid of this saml idp sp connection
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public java.lang.String getUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.lang.String getUserUuid() {
 		return _samlIdpSpConnection.getUserUuid();
 	}
 
@@ -719,8 +717,7 @@ public class SamlIdpSpConnectionWrapper implements SamlIdpSpConnection,
 	}
 
 	@Override
-	public void persist()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void persist() {
 		_samlIdpSpConnection.persist();
 	}
 

@@ -16,7 +16,6 @@ package com.liferay.portal.audit.model.impl;
 
 import com.liferay.portal.audit.model.AuditEvent;
 import com.liferay.portal.audit.service.AuditEventLocalServiceUtil;
-import com.liferay.portal.kernel.exception.SystemException;
 
 /**
  * The extended model base implementation for the AuditEvent service. Represents a row in the &quot;Audit_AuditEvent&quot; database table, with each column mapped to a property of this class.
@@ -38,7 +37,7 @@ public abstract class AuditEventBaseImpl extends AuditEventModelImpl
 	 * Never modify or reference this class directly. All methods that expect a audit event model instance should use the {@link AuditEvent} interface instead.
 	 */
 	@Override
-	public void persist() throws SystemException {
+	public void persist() {
 		if (this.isNew()) {
 			AuditEventLocalServiceUtil.addAuditEvent(this);
 		}

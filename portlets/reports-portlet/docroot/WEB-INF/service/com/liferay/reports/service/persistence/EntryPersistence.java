@@ -66,15 +66,12 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param entryId the primary key of the entry
 	* @return the entry that was removed
 	* @throws com.liferay.reports.NoSuchEntryException if a entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.reports.model.Entry remove(long entryId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.reports.NoSuchEntryException;
+		throws com.liferay.reports.NoSuchEntryException;
 
 	public com.liferay.reports.model.Entry updateImpl(
-		com.liferay.reports.model.Entry entry)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.reports.model.Entry entry);
 
 	/**
 	* Returns the entry with the primary key or throws a {@link com.liferay.reports.NoSuchEntryException} if it could not be found.
@@ -82,30 +79,24 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param entryId the primary key of the entry
 	* @return the entry
 	* @throws com.liferay.reports.NoSuchEntryException if a entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.reports.model.Entry findByPrimaryKey(long entryId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.reports.NoSuchEntryException;
+		throws com.liferay.reports.NoSuchEntryException;
 
 	/**
 	* Returns the entry with the primary key or returns <code>null</code> if it could not be found.
 	*
 	* @param entryId the primary key of the entry
 	* @return the entry, or <code>null</code> if a entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.reports.model.Entry fetchByPrimaryKey(long entryId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public com.liferay.reports.model.Entry fetchByPrimaryKey(long entryId);
 
 	/**
 	* Returns all the entries.
 	*
 	* @return the entries
-	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.reports.model.Entry> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public java.util.List<com.liferay.reports.model.Entry> findAll();
 
 	/**
 	* Returns a range of all the entries.
@@ -117,10 +108,9 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param start the lower bound of the range of entries
 	* @param end the upper bound of the range of entries (not inclusive)
 	* @return the range of entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.reports.model.Entry> findAll(int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException;
+		int end);
 
 	/**
 	* Returns an ordered range of all the entries.
@@ -133,27 +123,20 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param end the upper bound of the range of entries (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.reports.model.Entry> findAll(int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Removes all the entries from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeAll();
 
 	/**
 	* Returns the number of entries.
 	*
 	* @return the number of entries
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countAll();
 }

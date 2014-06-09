@@ -20,6 +20,8 @@ import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DefaultActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.Projection;
@@ -77,12 +79,10 @@ public abstract class SamlSpMessageLocalServiceBaseImpl
 	 *
 	 * @param samlSpMessage the saml sp message
 	 * @return the saml sp message that was added
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
-	public SamlSpMessage addSamlSpMessage(SamlSpMessage samlSpMessage)
-		throws SystemException {
+	public SamlSpMessage addSamlSpMessage(SamlSpMessage samlSpMessage) {
 		samlSpMessage.setNew(true);
 
 		return samlSpMessagePersistence.update(samlSpMessage);
@@ -105,12 +105,11 @@ public abstract class SamlSpMessageLocalServiceBaseImpl
 	 * @param samlSpMessageId the primary key of the saml sp message
 	 * @return the saml sp message that was removed
 	 * @throws PortalException if a saml sp message with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public SamlSpMessage deleteSamlSpMessage(long samlSpMessageId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return samlSpMessagePersistence.remove(samlSpMessageId);
 	}
 
@@ -119,12 +118,10 @@ public abstract class SamlSpMessageLocalServiceBaseImpl
 	 *
 	 * @param samlSpMessage the saml sp message
 	 * @return the saml sp message that was removed
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
-	public SamlSpMessage deleteSamlSpMessage(SamlSpMessage samlSpMessage)
-		throws SystemException {
+	public SamlSpMessage deleteSamlSpMessage(SamlSpMessage samlSpMessage) {
 		return samlSpMessagePersistence.remove(samlSpMessage);
 	}
 
@@ -141,12 +138,10 @@ public abstract class SamlSpMessageLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery) {
 		return samlSpMessagePersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -161,12 +156,10 @@ public abstract class SamlSpMessageLocalServiceBaseImpl
 	 * @param start the lower bound of the range of model instances
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
 		return samlSpMessagePersistence.findWithDynamicQuery(dynamicQuery,
 			start, end);
 	}
@@ -183,12 +176,11 @@ public abstract class SamlSpMessageLocalServiceBaseImpl
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return samlSpMessagePersistence.findWithDynamicQuery(dynamicQuery,
 			start, end, orderByComparator);
 	}
@@ -198,11 +190,9 @@ public abstract class SamlSpMessageLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public long dynamicQueryCount(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
 		return samlSpMessagePersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -212,18 +202,16 @@ public abstract class SamlSpMessageLocalServiceBaseImpl
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection) throws SystemException {
+		Projection projection) {
 		return samlSpMessagePersistence.countWithDynamicQuery(dynamicQuery,
 			projection);
 	}
 
 	@Override
-	public SamlSpMessage fetchSamlSpMessage(long samlSpMessageId)
-		throws SystemException {
+	public SamlSpMessage fetchSamlSpMessage(long samlSpMessageId) {
 		return samlSpMessagePersistence.fetchByPrimaryKey(samlSpMessageId);
 	}
 
@@ -233,17 +221,47 @@ public abstract class SamlSpMessageLocalServiceBaseImpl
 	 * @param samlSpMessageId the primary key of the saml sp message
 	 * @return the saml sp message
 	 * @throws PortalException if a saml sp message with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public SamlSpMessage getSamlSpMessage(long samlSpMessageId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return samlSpMessagePersistence.findByPrimaryKey(samlSpMessageId);
 	}
 
 	@Override
+	public ActionableDynamicQuery getActionableDynamicQuery() {
+		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
+
+		actionableDynamicQuery.setBaseLocalService(com.liferay.saml.service.SamlSpMessageLocalServiceUtil.getService());
+		actionableDynamicQuery.setClass(SamlSpMessage.class);
+		actionableDynamicQuery.setClassLoader(getClassLoader());
+
+		actionableDynamicQuery.setPrimaryKeyPropertyName("samlSpMessageId");
+
+		return actionableDynamicQuery;
+	}
+
+	protected void initActionableDynamicQuery(
+		ActionableDynamicQuery actionableDynamicQuery) {
+		actionableDynamicQuery.setBaseLocalService(com.liferay.saml.service.SamlSpMessageLocalServiceUtil.getService());
+		actionableDynamicQuery.setClass(SamlSpMessage.class);
+		actionableDynamicQuery.setClassLoader(getClassLoader());
+
+		actionableDynamicQuery.setPrimaryKeyPropertyName("samlSpMessageId");
+	}
+
+	/**
+	 * @throws PortalException
+	 */
+	@Override
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
+		throws PortalException {
+		return deleteSamlSpMessage((SamlSpMessage)persistedModel);
+	}
+
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return samlSpMessagePersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
@@ -257,11 +275,9 @@ public abstract class SamlSpMessageLocalServiceBaseImpl
 	 * @param start the lower bound of the range of saml sp messages
 	 * @param end the upper bound of the range of saml sp messages (not inclusive)
 	 * @return the range of saml sp messages
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<SamlSpMessage> getSamlSpMessages(int start, int end)
-		throws SystemException {
+	public List<SamlSpMessage> getSamlSpMessages(int start, int end) {
 		return samlSpMessagePersistence.findAll(start, end);
 	}
 
@@ -269,10 +285,9 @@ public abstract class SamlSpMessageLocalServiceBaseImpl
 	 * Returns the number of saml sp messages.
 	 *
 	 * @return the number of saml sp messages
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int getSamlSpMessagesCount() throws SystemException {
+	public int getSamlSpMessagesCount() {
 		return samlSpMessagePersistence.countAll();
 	}
 
@@ -281,12 +296,10 @@ public abstract class SamlSpMessageLocalServiceBaseImpl
 	 *
 	 * @param samlSpMessage the saml sp message
 	 * @return the saml sp message that was updated
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
-	public SamlSpMessage updateSamlSpMessage(SamlSpMessage samlSpMessage)
-		throws SystemException {
+	public SamlSpMessage updateSamlSpMessage(SamlSpMessage samlSpMessage) {
 		return samlSpMessagePersistence.update(samlSpMessage);
 	}
 
@@ -775,7 +788,7 @@ public abstract class SamlSpMessageLocalServiceBaseImpl
 	 *
 	 * @param sql the sql query
 	 */
-	protected void runSQL(String sql) throws SystemException {
+	protected void runSQL(String sql) {
 		try {
 			DataSource dataSource = samlSpMessagePersistence.getDataSource();
 
