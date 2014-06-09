@@ -629,13 +629,10 @@ public class KaleoFormsPortlet extends MVCPortlet {
 
 		PortletSession portletSession = actionRequest.getPortletSession();
 
-		StringBundler sb = new StringBundler(3);
-
-		sb.append(kaleoDraftDefinition.getName());
-		sb.append(StringPool.AT);
-		sb.append(kaleoDraftDefinition.getVersion());
-
-		portletSession.setAttribute("workflowDefinition", sb.toString());
+		portletSession.setAttribute(
+			"workflowDefinition",
+			kaleoDraftDefinition.getName() + StringPool.AT +
+				kaleoDraftDefinition.getVersion());
 	}
 
 	protected void saveInPortletSession(
