@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.kernel.workflow.WorkflowException;
@@ -197,12 +198,15 @@ public class KaleoFormsPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
+		PortletSession portletSession = actionRequest.getPortletSession();
+
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
 		String content = null;
 
 		try {
+			String backURL = ParamUtil.getString(actionRequest, "backURL");
 			String name = ParamUtil.getString(actionRequest, "name");
 			Map<Locale, String> titleMap = LocalizationUtil.getLocalizationMap(
 				actionRequest, "title");
@@ -215,6 +219,15 @@ public class KaleoFormsPortlet extends MVCPortlet {
 				KaleoDraftDefinitionServiceUtil.publishKaleoDraftDefinition(
 					themeDisplay.getUserId(), themeDisplay.getCompanyGroupId(),
 					name, titleMap, content, serviceContext);
+
+			String workflowDefinition = name.concat(
+				StringPool.AT).concat(
+					String.valueOf(kaleoDraftDefinition.getVersion()));
+
+			portletSession.setAttribute(
+				"workflowDefinition", String.valueOf(workflowDefinition));
+
+			actionRequest.setAttribute(WebKeys.REDIRECT, backURL);
 
 			actionRequest.setAttribute(
 				WebKeys.KALEO_DRAFT_DEFINITION_ID,
@@ -420,6 +433,8 @@ public class KaleoFormsPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
+		PortletSession portletSession = actionRequest.getPortletSession();
+
 		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
 
 		long classPK = ParamUtil.getLong(actionRequest, "classPK");
@@ -441,10 +456,13 @@ public class KaleoFormsPortlet extends MVCPortlet {
 			DDMStructure.class.getName(), actionRequest);
 
 		if (cmd.equals(Constants.ADD)) {
-			DDMStructureServiceUtil.addStructure(
+			DDMStructure ddmSructure = DDMStructureServiceUtil.addStructure(
 				groupId, parentStructureId, scopeClassNameId, null, nameMap,
 				descriptionMap, xsd, storageType,
 				DDMStructureConstants.TYPE_DEFAULT, serviceContext);
+
+			portletSession.setAttribute(
+				"ddmStructureId", String.valueOf(ddmSructure.getStructureId()));
 		}
 		else if (cmd.equals(Constants.UPDATE)) {
 			DDMStructureServiceUtil.updateStructure(
