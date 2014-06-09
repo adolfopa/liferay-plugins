@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -446,7 +447,7 @@ public class KaleoFormsPortlet extends MVCPortlet {
 			DDMStructure.class.getName(), actionRequest);
 
 		if (cmd.equals(Constants.ADD)) {
-			DDMStructure ddmSructure = DDMStructureServiceUtil.addStructure(
+			DDMStructure ddmStructure = DDMStructureServiceUtil.addStructure(
 				groupId, parentStructureId, scopeClassNameId, null, nameMap,
 				descriptionMap, xsd, storageType,
 				DDMStructureConstants.TYPE_DEFAULT, serviceContext);
@@ -618,7 +619,7 @@ public class KaleoFormsPortlet extends MVCPortlet {
 		PortletSession portletSession = actionRequest.getPortletSession();
 
 		portletSession.setAttribute(
-			"ddmStructureId", String.valueOf(ddmSructure.getStructureId()));
+			"ddmStructureId", String.valueOf(ddmStructure.getStructureId()));
 	}
 
 	protected void saveInPortletSession(
@@ -629,7 +630,7 @@ public class KaleoFormsPortlet extends MVCPortlet {
 
 		StringBundler sb = new StringBundler(3);
 
-		sb.append(name);
+		sb.append(kaleoDraftDefinition.getName());
 		sb.append(StringPool.AT);
 		sb.append(kaleoDraftDefinition.getVersion());
 
