@@ -81,30 +81,24 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 		File workDir = new File(_PEEK_GIT_REPOSITORY_DIR_NAME);
 
 		DevOpsProcessUtil.execute(workDir, "git clean -d -f -q -x");
-
-		DevOpsProcessUtil.execute(workDir, "git fetch origin");
-
-		DevOpsProcessUtil.execute(workDir, "git rebase origin");
-
-		File redeployMarkerfile = new File(
-			_PEEK_GIT_REPOSITORY_DIR_NAME + profileName +
-				"/portal/redeploy.marker");
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append(profileName.substring(0, 1).toUpperCase());
-		sb.append(profileName.substring(1));
-		sb.append(" ");
+		DevOpsProcessUtil.execute(workDir, "git reset --hard HEAD");
+		DevOpsProcessUtil.execute(workDir, "git co master");
+		DevOpsProcessUtil.execute(workDir, "git fetch -f origin");
+		DevOpsProcessUtil.execute(workDir, "git pull -f origin master");
 
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss z");
 
 		dateFormat.setTimeZone(TimeZone.getTimeZone("America/Los_Angeles"));
-
-		sb.append(dateFormat.format(new Date()));
+		
+		String commitMessage =
+			profileName + " " + dateFormat.format(new Date());
 
 		try {
 			FileUtils.writeStringToFile(
-				redeployMarkerfile, sb.toString(), "UTF-8", false);
+				new File(
+				_PEEK_GIT_REPOSITORY_DIR_NAME + profileName +
+					"/portal/redeploy.marker"),
+				commitMessage, "UTF-8", false);
 		}
 		catch (IOException ioe) {
 			_log.error(ioe, ioe);
@@ -112,10 +106,8 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 
 		DevOpsProcessUtil.execute(
 			workDir, "git add " + profileName + "/portal/redeploy.marker");
-
 		DevOpsProcessUtil.execute(
-			workDir, "git commit -m '" + sb.toString() + "'");
-
+			workDir, "git commit -m \"" + commitMessage + "\"");
 		DevOpsProcessUtil.execute(workDir, "git push origin");
 	}
 
@@ -123,11 +115,10 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 		File workDir = getProfileGitRepositoryDir(profileName);
 
 		DevOpsProcessUtil.execute(
-			workDir, "git clean -d -f -q -x -e .ivy -e build." +
-				System.getenv("USERNAME") + ".properties");
-
+			workDir,
+			"git clean -d -e .ivy -e build." + System.getenv("USERNAME") +
+				".properties -f -q -x");
 		DevOpsProcessUtil.execute(workDir, "git reset --hard HEAD");
-
 		DevOpsProcessUtil.execute(workDir, "git fetch upstream");
 
 		DevOpsProcessUtil.Result result = DevOpsProcessUtil.execute(
@@ -154,7 +145,7 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 		}
 
 		DevOpsProcessUtil.execute(
-			workDir, "git push origin devops-" + profileName);
+			workDir, "git push devops devops-" + profileName);
 	}
 
 	protected String[] getProfileNames() {
@@ -244,7 +235,7 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 		}
 	}
 
-	private static final String _DEV_OPS_DIR_NAME = "/var/peek/devops";
+	private static final String _DEV_OPS_DIR_NAME = "/tmp/devops";
 
 	private static final String _PEEK_GIT_REPOSITORY_DIR_NAME =
 		"/var/peek/repo";
