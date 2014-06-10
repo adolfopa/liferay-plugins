@@ -118,6 +118,7 @@ if (ddmStructureId > 0) {
 
 		<liferay-ui:search-container-column-jsp
 			align="right"
+			cssClass="entry-action"
 			path="/admin/process/structure_action.jsp"
 		/>
 	</liferay-ui:search-container-row>

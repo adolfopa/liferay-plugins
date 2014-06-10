@@ -154,6 +154,7 @@ headerTitle = headerTitle.concat(StringPool.COLON + StringPool.SPACE + ddlRecord
 
 							<liferay-ui:search-container-column-jsp
 								align="right"
+								cssClass="entry-action"
 								path="/display/workflow_task_action.jsp"
 							/>
 						</liferay-ui:search-container-row>

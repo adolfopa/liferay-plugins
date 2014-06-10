@@ -122,6 +122,7 @@
 			/>
 
 			<liferay-ui:search-container-column-jsp
+				cssClass="entry-action"
 				path="/admin/report/requested_report_actions.jsp"
 			/>
 		</liferay-ui:search-container-row>

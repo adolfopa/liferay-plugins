@@ -94,6 +94,7 @@ String driverUrl = ParamUtil.getString(request, "driverUrl");
 			/>
 
 			<liferay-ui:search-container-column-jsp
+				cssClass="entry-action"
 				path="/admin/data_source/data_source_actions.jsp"
 			/>
 		</liferay-ui:search-container-row>

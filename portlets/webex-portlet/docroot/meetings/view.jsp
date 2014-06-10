@@ -56,7 +56,10 @@
 			property="login"
 		/>
 
-		<liferay-ui:search-container-column-jsp path="/meetings/site_action.jsp" />
+		<liferay-ui:search-container-column-jsp
+			cssClass="entry-action"
+			path="/meetings/site_action.jsp"
+		/>
 	</liferay-ui:search-container-row>
 
 	<c:if test="<%= WebExPermission.contains(permissionChecker, themeDisplay.getScopeGroupId(), ActionKeys.ADD_SITE) %>">

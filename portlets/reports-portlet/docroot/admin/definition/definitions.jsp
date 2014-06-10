@@ -102,6 +102,7 @@ String reportName = ParamUtil.getString(request, "reportName");
 			/>
 
 			<liferay-ui:search-container-column-jsp
+				cssClass="entry-action"
 				path="/admin/definition/definition_actions.jsp"
 			/>
 		</liferay-ui:search-container-row>

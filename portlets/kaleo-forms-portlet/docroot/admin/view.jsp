@@ -55,6 +55,7 @@
 
 		<liferay-ui:search-container-column-jsp
 			align="right"
+			cssClass="entry-action"
 			path="/admin/kaleo_process_action.jsp"
 		/>
 	</liferay-ui:search-container-row>

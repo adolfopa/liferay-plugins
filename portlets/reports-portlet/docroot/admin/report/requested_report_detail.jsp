@@ -171,6 +171,7 @@ request.setAttribute("entry", entry);
 		/>
 
 		<liferay-ui:search-container-column-jsp
+			cssClass="entry-action"
 			path="/admin/report/report_file_actions.jsp"
 		/>
 	</liferay-ui:search-container-row>

@@ -127,6 +127,7 @@ if (Validator.isNotNull(workflowDefinition)) {
 
 				<liferay-ui:search-container-column-jsp
 					align="right"
+					cssClass="entry-action"
 					path="/admin/process/workflow_action.jsp"
 				/>
 			</liferay-ui:search-container-row>
@@ -178,6 +179,7 @@ if (Validator.isNotNull(workflowDefinition)) {
 
 				<liferay-ui:search-container-column-jsp
 					align="right"
+					cssClass="entry-action"
 					path="/admin/process/kaleo_draft_definition_action.jsp"
 				/>
 			</liferay-ui:search-container-row>

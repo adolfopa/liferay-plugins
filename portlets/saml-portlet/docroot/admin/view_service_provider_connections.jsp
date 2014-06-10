@@ -64,6 +64,7 @@ portletURL.setParameter("tabs1", "service-provider-connections");
 
 		<liferay-ui:search-container-column-jsp
 			align="right"
+			cssClass="entry-action"
 			path="/admin/service_provider_connection_action.jsp"
 			valign="top"
 		/>
