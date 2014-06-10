@@ -22,24 +22,40 @@ import java.io.File;
  */
 public class DevOpsProcessUtil {
 
-	public static Object[] execute(File workDir, String command) {
+	public static Result execute(File workDir, String command) {
 		return execute(workDir, command.split("\\s+"));
 	}
 
-	public static Object[] execute(File workDir, String[] commands) {
-		return null;
+	public static Result execute(File workDir, String[] commands) {
+		Result result = new Result();
+
+		result.setExitCode(0);
+		result.setOutput("");
+
+		return result;
 	}
 
-	public static String getOutput(File workDir, String command) {
-		Object[] returnValue = execute(workDir, command);
+	public static class Result {
 
-		if ((returnValue == null) || (returnValue.length < 2) ||
-			(returnValue[1] == null)) {
-
-			return "";
+		public int getExitCode() {
+			return _exitCode;
 		}
 
-		return (String)returnValue[1];
+		public String getOutput() {
+			return _output;
+		}
+
+		public void setExitCode(int exitCode) {
+			_exitCode = exitCode;
+		}
+
+		public void setOutput(String output) {
+			_output = output;
+		}
+
+		private int _exitCode;
+		private String _output = "";
+
 	}
 
 }

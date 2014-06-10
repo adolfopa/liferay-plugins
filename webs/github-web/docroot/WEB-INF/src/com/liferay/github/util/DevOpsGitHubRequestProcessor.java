@@ -130,10 +130,12 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 
 		DevOpsProcessUtil.execute(workDir, "git fetch upstream");
 
-		String branchOutput = DevOpsProcessUtil.getOutput(
+		DevOpsProcessUtil.Result result = DevOpsProcessUtil.execute(
 			workDir, "git branch --list devops-" + profileName);
 
-		if (branchOutput.isEmpty()) {
+		String output = result.getOutput();
+
+		if (output.isEmpty()) {
 			String baseBranch = DevOpsPropsUtil.get(
 				"profile." + profileName + ".base.branch");
 

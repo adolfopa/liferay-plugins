@@ -81,7 +81,7 @@ public class DevOpsPatchRequestProcessor {
 		File workDir = _devOpsGitHubRequestProcessor.getProfileGitRepositoryDir(
 			_profileName);
 
-		String configOutput = DevOpsProcessUtil.getOutput(
+		DevOpsProcessUtil.Result gitConfigResult = DevOpsProcessUtil.execute(
 			workDir, "git config --get remote.devops.url");
 
 		JSONObject pullRequestJSONObject = payloadJSONObject.getJSONObject(
@@ -90,7 +90,8 @@ public class DevOpsPatchRequestProcessor {
 		int pullRequestNumber = pullRequestJSONObject.getInt("number");
 
 		DevOpsProcessUtil.execute(
-			workDir, "git fetch " + configOutput + " refs/pull/" +
+			workDir,
+			"git fetch " + gitConfigResult.getOutput() + " refs/pull/" +
 				pullRequestNumber + "/head:" + "pull-request-" +
 					pullRequestNumber);
 
@@ -106,14 +107,16 @@ public class DevOpsPatchRequestProcessor {
 				workDir, "git rebase origin/devops-" + _profileName);
 		}
 
-		String sha1HashParent = DevOpsProcessUtil.getOutput(
+		DevOpsProcessUtil.Result gitMergeBaseResult = DevOpsProcessUtil.execute(
 			workDir,
 			"git merge-base origin/" + baseRef + " pull-request-" +
 				pullRequestNumber);
-		String sha1HashHead = DevOpsProcessUtil.getOutput(
+		DevOpsProcessUtil.Result revParseResult = DevOpsProcessUtil.execute(
 			workDir, "git rev-parse HEAD");
 
-		return new String[] {sha1HashParent, sha1HashHead};
+		return new String[] {
+			gitMergeBaseResult.getOutput(), revParseResult.getOutput()
+		};
 	}
 
 	protected boolean hasBlacklistedFile(
@@ -126,11 +129,13 @@ public class DevOpsPatchRequestProcessor {
 			"profile." + _profileName + ".blacklist.files");
 
 		for (String blacklistFile : blacklistFiles.split(",")) {
-			String diffOutput = DevOpsProcessUtil.getOutput(
+			DevOpsProcessUtil.Result result = DevOpsProcessUtil.execute(
 				workDir, "git diff " + sha1Hashes[0] + ".." + sha1Hashes[1] +
 					" --name-only -- " + blacklistFile);
 
-			if (!diffOutput.isEmpty()) {
+			String output = result.getOutput();
+
+			if (!output.isEmpty()) {
 				String comment = MessageFormat.format(
 					DevOpsPropsUtil.get("comment.modified.blacklisted.file"),
 					blacklistFiles.replaceAll(",", " or "));
@@ -175,15 +180,20 @@ public class DevOpsPatchRequestProcessor {
 				pluginDir = "webs/" + plugin;
 			}
 
-			String logOutput = DevOpsProcessUtil.getOutput(
+			DevOpsProcessUtil.Result gitLogResult = DevOpsProcessUtil.execute(
 				workDir,
 				"git log " + sha1Hashes[0] + ".." + sha1Hashes[1] +
 					" --oneline -- " + pluginDir);
 
+			String logOutput = gitLogResult.getOutput();
+
 			if (logOutput.isEmpty()) {
-				logOutput = DevOpsProcessUtil.getOutput(
-					workDir, "git log " + sha1Hashes[0] + ".." + sha1Hashes[1] +
+				gitLogResult = DevOpsProcessUtil.execute(
+					workDir,
+					"git log " + sha1Hashes[0] + ".." + sha1Hashes[1] +
 						" --oneline -- shared");
+
+				logOutput = gitLogResult.getOutput();
 
 				if (logOutput.isEmpty()) {
 					continue;
@@ -193,15 +203,16 @@ public class DevOpsPatchRequestProcessor {
 			File pluginWorkDir = new File(
 				workDir.getPath() + "/plugins/" + pluginDir);
 
-			Object[] returnValue = DevOpsProcessUtil.execute(
-				pluginWorkDir, "ant direct-deploy");
+			DevOpsProcessUtil.Result antDirectDeployResult =
+				DevOpsProcessUtil.execute(pluginWorkDir, "ant direct-deploy");
 
-			if ((Integer)returnValue[0] == 0) {
+			if (antDirectDeployResult.getExitCode() == 0) {
 				continue;
 			}
 
 			String comment = MessageFormat.format(
-				DevOpsPropsUtil.get("comment.compile.error"), returnValue[1]);
+				DevOpsPropsUtil.get("comment.compile.error"),
+				antDirectDeployResult.getOutput());
 
 			DevOpsUtil.githubPostComment(payloadJSONObject, comment);
 
@@ -220,10 +231,12 @@ public class DevOpsPatchRequestProcessor {
 		String pluginsGitBranch = DevOpsPeekPropsUtil.get(
 			_profileName, "plugins.git.branch");
 
-		String branchOutput = DevOpsProcessUtil.getOutput(
+		DevOpsProcessUtil.Result gitBranchResult = DevOpsProcessUtil.execute(
 			workDir, "git branch --list " + pluginsGitBranch);
 
-		if (branchOutput.isEmpty()) {
+		String gitBranchOutput = gitBranchResult.getOutput();
+
+		if (gitBranchOutput.isEmpty()) {
 			DevOpsProcessUtil.execute(
 				workDir, "git checkout origin/" + pluginsGitBranch);
 
@@ -231,12 +244,14 @@ public class DevOpsPatchRequestProcessor {
 				workDir, "git checkout -b " + pluginsGitBranch);
 		}
 
-		String rebaseOutput = DevOpsProcessUtil.getOutput(
+		DevOpsProcessUtil.Result gitRebaseResult = DevOpsProcessUtil.execute(
 			workDir,
 			"git rebase --onto " + pluginsGitBranch + " " + sha1Hashes[0] +
 				" " + sha1Hashes[1]);
 
-		if (rebaseOutput.isEmpty()) {
+		String gitRebaseOutput = gitRebaseResult.getOutput();
+
+		if (gitRebaseOutput.isEmpty()) {
 			return false;
 		}
 
@@ -311,10 +326,12 @@ public class DevOpsPatchRequestProcessor {
 		String pluginsGitBranch = DevOpsPeekPropsUtil.get(
 			_profileName, "plugins.git.branch");
 
-		String branchOutput = DevOpsProcessUtil.getOutput(
+		DevOpsProcessUtil.Result result = DevOpsProcessUtil.execute(
 			workDir, "git branch --list " + pluginsGitBranch);
 
-		if (branchOutput.isEmpty()) {
+		String output = result.getOutput();
+
+		if (output.isEmpty()) {
 			DevOpsProcessUtil.execute(
 				workDir, "git branch -D " + pluginsGitBranch);
 		}
