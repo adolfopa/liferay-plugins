@@ -94,32 +94,37 @@ if (kaleoProcess != null) {
 	/>
 
 	<aui:script use="liferay-component,liferay-form,liferay-kaleo-forms-admin">
-		Liferay.after(
-			'form:registered',
-			function(event) {
-				var form = Liferay.Form.get('<portlet:namespace />fm');
+		var afterFormRegistered = function(event) {
+			var form = Liferay.Form.get('<portlet:namespace />fm');
 
-				if (form === event.form) {
-					Liferay.component(
-						'<portlet:namespace/>KaleoFormsAdmin',
-						function() {
-							return new Liferay.KaleoFormsAdmin(
-								{
-									currentURL: '<%= currentURL %>',
-									form: form,
-									namespace: '<portlet:namespace />',
-									portletId: '<%= PortalUtil.getPortletId(request) %>',
-									saveInPortletSessionURL: '<portlet:resourceURL id="saveInPortletSession" />',
-									tabView: Liferay.component('<portlet:namespace />fmTabview')
-								}
-							);
-						}
-					);
+			if (form === event.form) {
+				Liferay.component(
+					'<portlet:namespace/>KaleoFormsAdmin',
+					function() {
+						return new Liferay.KaleoFormsAdmin(
+							{
+								currentURL: '<%= currentURL %>',
+								form: form,
+								namespace: '<portlet:namespace />',
+								portletId: '<%= PortalUtil.getPortletId(request) %>',
+								saveInPortletSessionURL: '<portlet:resourceURL id="saveInPortletSession" />',
+								tabView: Liferay.component('<portlet:namespace />fmTabview')
+							}
+						);
+					}
+				);
 
-					Liferay.component('<portlet:namespace/>KaleoFormsAdmin');
-				}
+				Liferay.component('<portlet:namespace/>KaleoFormsAdmin').syncUI();
 			}
-		);
+		}
+
+		Liferay.after('form:registered', afterFormRegistered);
+
+		var clearAfterFormRegistered = function(event) {
+			Liferay.detach('form:registered', afterFormRegistered);
+		};
+
+		Liferay.on('destroyPortlet', clearAfterFormRegistered);
 	</aui:script>
 </aui:form>
 
