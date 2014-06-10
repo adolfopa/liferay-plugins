@@ -22,15 +22,11 @@ import org.json.JSONObject;
  */
 public class DevOpsUtil {
 
+	public static void closePullRequest(JSONObject payloadJSONObject) {
+	}
+
 	public static String getProfileName(JSONObject payloadJSONObject) {
 		return "";
-	}
-
-	public static void githubClosePullRequest(JSONObject payloadJSONObject) {
-	}
-
-	public static void githubPostComment(
-		JSONObject payloadJSONObject, String comment) {
 	}
 
 	public static boolean isValidAction(JSONObject payloadJSONObject) {
@@ -41,6 +37,10 @@ public class DevOpsUtil {
 		JSONObject payloadJSONObject, String profileName) {
 
 		return true;
+	}
+
+	public static void postPullRequestComment(
+		JSONObject payloadJSONObject, String comment) {
 	}
 
 }

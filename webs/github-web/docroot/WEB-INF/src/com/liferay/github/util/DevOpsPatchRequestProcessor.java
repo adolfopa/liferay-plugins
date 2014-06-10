@@ -104,12 +104,12 @@ public class DevOpsPatchRequestProcessor {
 
 		if (baseRef.equals("devops-" + _profileName)) {
 			DevOpsProcessUtil.execute(
-				workDir, "git rebase origin/devops-" + _profileName);
+				workDir, "git rebase devops/devops-" + _profileName);
 		}
 
 		DevOpsProcessUtil.Result gitMergeBaseResult = DevOpsProcessUtil.execute(
 			workDir,
-			"git merge-base origin/" + baseRef + " pull-request-" +
+			"git merge-base devops/" + baseRef + " pull-request-" +
 				pullRequestNumber);
 		DevOpsProcessUtil.Result revParseResult = DevOpsProcessUtil.execute(
 			workDir, "git rev-parse HEAD");
@@ -125,22 +125,23 @@ public class DevOpsPatchRequestProcessor {
 		File workDir = _devOpsGitHubRequestProcessor.getProfileGitRepositoryDir(
 			_profileName);
 
-		String blacklistFiles = DevOpsPropsUtil.get(
+		String blacklistFileNames = DevOpsPropsUtil.get(
 			"profile." + _profileName + ".blacklist.files");
 
-		for (String blacklistFile : blacklistFiles.split(",")) {
+		for (String blacklistFileName : blacklistFileNames.split(",")) {
 			DevOpsProcessUtil.Result result = DevOpsProcessUtil.execute(
-				workDir, "git diff " + sha1Hashes[0] + ".." + sha1Hashes[1] +
-					" --name-only -- " + blacklistFile);
+				workDir,
+				"git diff " + sha1Hashes[0] + ".." + sha1Hashes[1] +
+					" --name-only -- " + blacklistFileName);
 
 			String output = result.getOutput();
 
 			if (!output.isEmpty()) {
 				String comment = MessageFormat.format(
 					DevOpsPropsUtil.get("comment.modified.blacklisted.file"),
-					blacklistFiles.replaceAll(",", " or "));
+					blacklistFileNames.replaceAll(",", " or "));
 
-				DevOpsUtil.githubPostComment(payloadJSONObject, comment);
+				DevOpsUtil.postPullRequestComment(payloadJSONObject, comment);
 
 				return true;
 			}
@@ -214,7 +215,7 @@ public class DevOpsPatchRequestProcessor {
 				DevOpsPropsUtil.get("comment.compile.error"),
 				antDirectDeployResult.getOutput());
 
-			DevOpsUtil.githubPostComment(payloadJSONObject, comment);
+			DevOpsUtil.postPullRequestComment(payloadJSONObject, comment);
 
 			return true;
 		}
@@ -238,8 +239,7 @@ public class DevOpsPatchRequestProcessor {
 
 		if (gitBranchOutput.isEmpty()) {
 			DevOpsProcessUtil.execute(
-				workDir, "git checkout origin/" + pluginsGitBranch);
-
+				workDir, "git checkout devops/" + pluginsGitBranch);
 			DevOpsProcessUtil.execute(
 				workDir, "git checkout -b " + pluginsGitBranch);
 		}
@@ -260,7 +260,7 @@ public class DevOpsPatchRequestProcessor {
 		String comment = MessageFormat.format(
 			DevOpsPropsUtil.get("comment.merge.conflict"), pluginsGitBranch);
 
-		DevOpsUtil.githubPostComment(payloadJSONObject, comment);
+		DevOpsUtil.postPullRequestComment(payloadJSONObject, comment);
 
 		return true;
 	}
@@ -274,7 +274,7 @@ public class DevOpsPatchRequestProcessor {
 
 		_devOpsGitHubRequestProcessor.updatePeekGitRepository(_profileName);
 
-		DevOpsUtil.githubPostComment(
+		DevOpsUtil.postPullRequestComment(
 			payloadJSONObject, DevOpsPropsUtil.get("comment.updating.servers"));
 	}
 
@@ -318,9 +318,9 @@ public class DevOpsPatchRequestProcessor {
 			_profileName);
 
 		DevOpsProcessUtil.execute(
-			workDir, "git clean -d -f -q -x -e .ivy -e build." +
+			workDir,
+			"git clean -d -f -q -x -e .ivy -e build." +
 				System.getenv("USERNAME") + ".properties");
-
 		DevOpsProcessUtil.execute(workDir, "git reset --hard HEAD");
 
 		String pluginsGitBranch = DevOpsPeekPropsUtil.get(
@@ -337,16 +337,13 @@ public class DevOpsPatchRequestProcessor {
 		}
 
 		DevOpsProcessUtil.execute(
-			workDir, "git checkout origin/" + pluginsGitBranch);
-
+			workDir, "git checkout devops/" + pluginsGitBranch);
 		DevOpsProcessUtil.execute(
 			workDir, "git checkout -b " + pluginsGitBranch);
-
 		DevOpsProcessUtil.execute(
 			workDir,
 			"git rebase --onto " + pluginsGitBranch + " " + sha1Hashes[0] +
 				" " + sha1Hashes[1]);
-
 		DevOpsProcessUtil.execute(
 			workDir, "git push origin " + pluginsGitBranch);
 	}
@@ -354,20 +351,10 @@ public class DevOpsPatchRequestProcessor {
 	protected void updatePullRequest(
 		JSONObject payloadJSONObject, String[] sha1Hashes) {
 
-		String sleepMillis = DevOpsPropsUtil.get(
-			"profile." + _profileName + ".sleep.millis");
-
-		try {
-			Thread.sleep(Integer.valueOf(sleepMillis));
-		}
-		catch (InterruptedException ie) {
-			_log.error(ie, ie);
-		}
-
-		DevOpsUtil.githubPostComment(
+		DevOpsUtil.postPullRequestComment(
 			payloadJSONObject, DevOpsPropsUtil.get("comment.patch.installed"));
 
-		DevOpsUtil.githubClosePullRequest(payloadJSONObject);
+		DevOpsUtil.closePullRequest(payloadJSONObject);
 	}
 
 	private static Log _log = LogFactory.getLog(
