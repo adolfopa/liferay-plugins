@@ -58,7 +58,6 @@ AUI.add(
 						);
 
 						instance.bindUI();
-
 						instance.syncUI();
 					},
 
