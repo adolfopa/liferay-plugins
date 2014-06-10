@@ -57,11 +57,9 @@ AUI.add(
 							}
 						);
 
-						instance.updateNavigationControls();
-
-						formWizard.validator.resetAllFields();
-
 						instance.bindUI();
+
+						instance.syncUI();
 					},
 
 					bindUI: function() {
@@ -77,6 +75,14 @@ AUI.add(
 
 						instance.nextBtn.on('click', instance._onClickNext, instance);
 						instance.prevBtn.on('click', instance._onClickPrev, instance);
+					},
+
+					syncUI: function() {
+						var instance = this;
+
+						instance.updateNavigationControls();
+
+						instance.formWizard.validator.resetAllFields();
 					},
 
 					_afterCurrentStepChange: function(event) {
@@ -136,9 +142,7 @@ AUI.add(
 							instance._showForms();
 						}
 
-						instance.updateNavigationControls();
-
-						instance.formWizard.validator.resetAllFields();
+						instance.syncUI();
 					},
 
 					_afterValidateField: function(event) {
