@@ -89,7 +89,7 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss z");
 
 		dateFormat.setTimeZone(TimeZone.getTimeZone("America/Los_Angeles"));
-		
+
 		String commitMessage =
 			profileName + " " + dateFormat.format(new Date());
 
