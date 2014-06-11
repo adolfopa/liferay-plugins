@@ -147,7 +147,7 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 			workDir, "git push devops devops-" + profileName);
 	}
 
-	protected String getGitHubUserLogin() {
+	protected String getProfileGitHubUserLogin() {
 		return null;
 	}
 
@@ -182,7 +182,7 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 			DevOpsProcessUtil.execute(
 				profileGitRepositoryDir,
 				"git remote add devops git@github.com:" +
-					getGitHubUserLogin() + "/liferay-plugins-ee.git");
+					getProfileGitHubUserLogin() + "/liferay-plugins-ee.git");
 		}
 
 		try {
