@@ -160,22 +160,24 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 	protected void initProfileGitRepository(String profileName) {
 		File profileGitRepositoryDir = getProfileGitRepositoryDir(profileName);
 
-		if (!profileGitRepositoryDir.exists()) {
-			DevOpsProcessUtil.execute(
-				new File(_PLUGINS_GIT_REPOSITORY_DIR_NAME),
-				"git new-workdir " + _PLUGINS_GIT_REPOSITORY_DIR_NAME + " " +
-					profileGitRepositoryDir);
+		if (profileGitRepositoryDir.exists()) {
+			return;
+		}
 
-			try {
-				FileUtils.writeStringToFile(
-					new File(
-						profileGitRepositoryDir + "/build." +
-							System.getenv("USERNAME") + ".properties"),
-					"app.server.dir=/opt/java/liferay/tomcat", "UTF-8", false);
-			}
-			catch (IOException ioe) {
-				_log.error(ioe, ioe);
-			}
+		DevOpsProcessUtil.execute(
+			new File(_PLUGINS_GIT_REPOSITORY_DIR_NAME),
+			"git new-workdir " + _PLUGINS_GIT_REPOSITORY_DIR_NAME + " " +
+				profileGitRepositoryDir);
+
+		try {
+			FileUtils.writeStringToFile(
+				new File(
+					profileGitRepositoryDir + "/build." +
+						System.getenv("USERNAME") + ".properties"),
+				"app.server.dir=/opt/java/liferay/tomcat", "UTF-8", false);
+		}
+		catch (IOException ioe) {
+			_log.error(ioe, ioe);
 		}
 	}
 
