@@ -359,7 +359,7 @@ public class DevOpsPatchRequestProcessor {
 			}
 
 			DevOpsProcessUtil.Result result = DevOpsProcessUtil.execute(
-				new File(_TEMP_DIR_NAME),
+				new File("/tmp"),
 				"test -e peek_redeploy.lock && echo \"Lock exists.\"");
 
 			String output = result.getOutput();
@@ -374,8 +374,6 @@ public class DevOpsPatchRequestProcessor {
 
 		DevOpsUtil.closePullRequest(payloadJSONObject);
 	}
-
-	private static final String _TEMP_DIR_NAME = "/tmp";
 
 	private static Log _log = LogFactory.getLog(
 		DevOpsPatchRequestProcessor.class);
