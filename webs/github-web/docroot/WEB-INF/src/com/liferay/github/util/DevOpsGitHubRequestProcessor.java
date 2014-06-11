@@ -147,6 +147,10 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 			workDir, "git push devops devops-" + profileName);
 	}
 
+	protected String getGitHubUserLogin() {
+		return null;
+	}
+
 	protected String[] getProfileNames() {
 		return new String[0];
 	}
@@ -168,6 +172,18 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 			new File(_PLUGINS_GIT_REPOSITORY_DIR_NAME),
 			"git new-workdir " + _PLUGINS_GIT_REPOSITORY_DIR_NAME + " " +
 				profileGitRepositoryDir);
+
+		DevOpsProcessUtil.Result result = DevOpsProcessUtil.execute(
+			profileGitRepositoryDir, "git config --get remote.devops.url");
+
+		String output = result.getOutput();
+
+		if (output.isEmpty()) {
+			DevOpsProcessUtil.execute(
+				profileGitRepositoryDir,
+				"git remote add devops git@github.com:" +
+					getGitHubUserLogin() + "/liferay-plugins-ee.git");
+		}
 
 		try {
 			FileUtils.writeStringToFile(
