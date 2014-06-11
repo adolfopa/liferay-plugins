@@ -345,7 +345,7 @@ public class DevOpsPatchRequestProcessor {
 			"git rebase --onto " + pluginsGitBranch + " " + sha1Hashes[0] +
 				" " + sha1Hashes[1]);
 		DevOpsProcessUtil.execute(
-			workDir, "git push origin " + pluginsGitBranch);
+			workDir, "git push devops " + pluginsGitBranch);
 	}
 
 	protected void updatePullRequest(
