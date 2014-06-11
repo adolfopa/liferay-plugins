@@ -131,10 +131,9 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 				"profile." + profileName + ".base.branch");
 
 			DevOpsProcessUtil.execute(
-				workDir, "git checkout upstream/" + baseBranch);
-
-			DevOpsProcessUtil.execute(
-				workDir, "git checkout -b devops-" + profileName);
+				workDir,
+				"git checkout -b devops-" + profileName + " upstream/" +
+					baseBranch);
 		}
 		else {
 			String baseBranch = DevOpsPropsUtil.get(

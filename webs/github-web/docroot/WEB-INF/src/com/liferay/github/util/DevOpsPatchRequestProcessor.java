@@ -239,9 +239,9 @@ public class DevOpsPatchRequestProcessor {
 
 		if (gitBranchOutput.isEmpty()) {
 			DevOpsProcessUtil.execute(
-				workDir, "git checkout devops/" + pluginsGitBranch);
-			DevOpsProcessUtil.execute(
-				workDir, "git checkout -b " + pluginsGitBranch);
+				workDir,
+				"git checkout -b " + pluginsGitBranch + " devops/" +
+					pluginsGitBranch);
 		}
 
 		DevOpsProcessUtil.Result gitRebaseResult = DevOpsProcessUtil.execute(
@@ -337,9 +337,9 @@ public class DevOpsPatchRequestProcessor {
 		}
 
 		DevOpsProcessUtil.execute(
-			workDir, "git checkout devops/" + pluginsGitBranch);
-		DevOpsProcessUtil.execute(
-			workDir, "git checkout -b " + pluginsGitBranch);
+			workDir,
+			"git checkout -b " + pluginsGitBranch + " devops/" +
+				pluginsGitBranch);
 		DevOpsProcessUtil.execute(
 			workDir,
 			"git rebase --onto " + pluginsGitBranch + " " + sha1Hashes[0] +
