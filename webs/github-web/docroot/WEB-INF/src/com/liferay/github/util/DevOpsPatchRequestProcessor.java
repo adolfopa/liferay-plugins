@@ -358,11 +358,11 @@ public class DevOpsPatchRequestProcessor {
 			catch (InterruptedException ie) {
 			}
 
-			DevOpsProcessUtil.Result testResult = DevOpsProcessUtil.execute(
+			DevOpsProcessUtil.Result result = DevOpsProcessUtil.execute(
 				new File(_TEMP_DIR_NAME),
 				"test -e peek_redeploy.lock && echo \"Lock exists.\"");
 
-			String output = testResult.getOutput();
+			String output = result.getOutput();
 
 			if (output.isEmpty()) {
 				break;
