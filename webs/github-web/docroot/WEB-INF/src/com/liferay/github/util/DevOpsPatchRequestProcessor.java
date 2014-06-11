@@ -351,11 +351,31 @@ public class DevOpsPatchRequestProcessor {
 	protected void updatePullRequest(
 		JSONObject payloadJSONObject, String[] sha1Hashes) {
 
+		for (int i = 0; i < 180; i++) {
+			try {
+				Thread.sleep(5000);
+			}
+			catch (InterruptedException ie) {
+			}
+
+			DevOpsProcessUtil.Result testResult = DevOpsProcessUtil.execute(
+				new File(_REDEPLOY_LOCK_PARENT_DIR),
+				"test -e peek_redeploy.lock && echo 'Lock exists'");
+
+			String output = testResult.getOutput();
+
+			if (output.isEmpty()) {
+				break;
+			}
+		}
+
 		DevOpsUtil.postPullRequestComment(
 			payloadJSONObject, DevOpsPropsUtil.get("comment.patch.installed"));
 
 		DevOpsUtil.closePullRequest(payloadJSONObject);
 	}
+
+	private static final String _REDEPLOY_LOCK_PARENT_DIR = "/tmp";
 
 	private static Log _log = LogFactory.getLog(
 		DevOpsPatchRequestProcessor.class);
