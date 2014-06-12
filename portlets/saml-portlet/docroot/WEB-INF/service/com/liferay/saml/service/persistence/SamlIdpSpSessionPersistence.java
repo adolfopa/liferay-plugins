@@ -269,6 +269,10 @@ public interface SamlIdpSpSessionPersistence extends BasePersistence<SamlIdpSpSe
 	public com.liferay.saml.model.SamlIdpSpSession fetchByPrimaryKey(
 		long samlIdpSpSessionId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.saml.model.SamlIdpSpSession> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the saml idp sp sessions.
 	*

@@ -775,6 +775,11 @@ public class WebExAccountUtil {
 		return getPersistence().fetchByPrimaryKey(webExAccountId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.meeting.webex.model.WebExAccount> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the web ex accounts.
 	*

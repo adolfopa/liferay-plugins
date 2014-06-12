@@ -49,7 +49,12 @@ import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * The persistence implementation for the o auth user service.
@@ -2688,6 +2693,98 @@ public class OAuthUserPersistenceImpl extends BasePersistenceImpl<OAuthUser>
 		return fetchByPrimaryKey((Serializable)oAuthUserId);
 	}
 
+	@Override
+	public Map<Serializable, OAuthUser> fetchByPrimaryKeys(
+		Set<Serializable> primaryKeys) {
+		if (primaryKeys.isEmpty()) {
+			return Collections.emptyMap();
+		}
+
+		Map<Serializable, OAuthUser> map = new HashMap<Serializable, OAuthUser>();
+
+		if (primaryKeys.size() == 1) {
+			Iterator<Serializable> iterator = primaryKeys.iterator();
+
+			Serializable primaryKey = iterator.next();
+
+			OAuthUser oAuthUser = fetchByPrimaryKey(primaryKey);
+
+			if (oAuthUser != null) {
+				map.put(primaryKey, oAuthUser);
+			}
+
+			return map;
+		}
+
+		Set<Serializable> uncachedPrimaryKeys = null;
+
+		for (Serializable primaryKey : primaryKeys) {
+			OAuthUser oAuthUser = (OAuthUser)EntityCacheUtil.getResult(OAuthUserModelImpl.ENTITY_CACHE_ENABLED,
+					OAuthUserImpl.class, primaryKey);
+
+			if (oAuthUser == null) {
+				if (uncachedPrimaryKeys == null) {
+					uncachedPrimaryKeys = new HashSet<Serializable>();
+				}
+
+				uncachedPrimaryKeys.add(primaryKey);
+			}
+			else {
+				map.put(primaryKey, oAuthUser);
+			}
+		}
+
+		if (uncachedPrimaryKeys == null) {
+			return map;
+		}
+
+		StringBundler query = new StringBundler((uncachedPrimaryKeys.size() * 2) +
+				1);
+
+		query.append(_SQL_SELECT_OAUTHUSER_WHERE_PKS_IN);
+
+		for (Serializable primaryKey : uncachedPrimaryKeys) {
+			query.append(String.valueOf(primaryKey));
+
+			query.append(StringPool.COMMA);
+		}
+
+		query.setIndex(query.index() - 1);
+
+		query.append(StringPool.CLOSE_PARENTHESIS);
+
+		String sql = query.toString();
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Query q = session.createQuery(sql);
+
+			for (OAuthUser oAuthUser : (List<OAuthUser>)q.list()) {
+				map.put(oAuthUser.getPrimaryKeyObj(), oAuthUser);
+
+				cacheResult(oAuthUser);
+
+				uncachedPrimaryKeys.remove(oAuthUser.getPrimaryKeyObj());
+			}
+
+			for (Serializable primaryKey : uncachedPrimaryKeys) {
+				EntityCacheUtil.putResult(OAuthUserModelImpl.ENTITY_CACHE_ENABLED,
+					OAuthUserImpl.class, primaryKey, _nullOAuthUser);
+			}
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+
+		return map;
+	}
+
 	/**
 	 * Returns all the o auth users.
 	 *
@@ -2888,6 +2985,7 @@ public class OAuthUserPersistenceImpl extends BasePersistenceImpl<OAuthUser>
 	}
 
 	private static final String _SQL_SELECT_OAUTHUSER = "SELECT oAuthUser FROM OAuthUser oAuthUser";
+	private static final String _SQL_SELECT_OAUTHUSER_WHERE_PKS_IN = "SELECT oAuthUser FROM OAuthUser oAuthUser WHERE oAuthUserId IN (";
 	private static final String _SQL_SELECT_OAUTHUSER_WHERE = "SELECT oAuthUser FROM OAuthUser oAuthUser WHERE ";
 	private static final String _SQL_COUNT_OAUTHUSER = "SELECT COUNT(oAuthUser) FROM OAuthUser oAuthUser";
 	private static final String _SQL_COUNT_OAUTHUSER_WHERE = "SELECT COUNT(oAuthUser) FROM OAuthUser oAuthUser WHERE ";

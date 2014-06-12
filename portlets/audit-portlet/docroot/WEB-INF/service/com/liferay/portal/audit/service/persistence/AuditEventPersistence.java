@@ -210,6 +210,10 @@ public interface AuditEventPersistence extends BasePersistence<AuditEvent> {
 	public com.liferay.portal.audit.model.AuditEvent fetchByPrimaryKey(
 		long auditEventId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.portal.audit.model.AuditEvent> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the audit events.
 	*

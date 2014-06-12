@@ -745,6 +745,11 @@ public class OAuthUserUtil {
 		return getPersistence().fetchByPrimaryKey(oAuthUserId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.oauth.model.OAuthUser> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the o auth users.
 	*

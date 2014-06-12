@@ -628,6 +628,10 @@ public interface BBBMeetingPersistence extends BasePersistence<BBBMeeting> {
 	*/
 	public com.liferay.bbb.model.BBBMeeting fetchByPrimaryKey(long bbbMeetingId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.bbb.model.BBBMeeting> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the b b b meetings.
 	*

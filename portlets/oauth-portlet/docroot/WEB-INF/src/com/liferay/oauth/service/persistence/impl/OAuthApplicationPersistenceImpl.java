@@ -50,7 +50,12 @@ import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * The persistence implementation for the o auth application service.
@@ -4365,6 +4370,99 @@ public class OAuthApplicationPersistenceImpl extends BasePersistenceImpl<OAuthAp
 		return fetchByPrimaryKey((Serializable)oAuthApplicationId);
 	}
 
+	@Override
+	public Map<Serializable, OAuthApplication> fetchByPrimaryKeys(
+		Set<Serializable> primaryKeys) {
+		if (primaryKeys.isEmpty()) {
+			return Collections.emptyMap();
+		}
+
+		Map<Serializable, OAuthApplication> map = new HashMap<Serializable, OAuthApplication>();
+
+		if (primaryKeys.size() == 1) {
+			Iterator<Serializable> iterator = primaryKeys.iterator();
+
+			Serializable primaryKey = iterator.next();
+
+			OAuthApplication oAuthApplication = fetchByPrimaryKey(primaryKey);
+
+			if (oAuthApplication != null) {
+				map.put(primaryKey, oAuthApplication);
+			}
+
+			return map;
+		}
+
+		Set<Serializable> uncachedPrimaryKeys = null;
+
+		for (Serializable primaryKey : primaryKeys) {
+			OAuthApplication oAuthApplication = (OAuthApplication)EntityCacheUtil.getResult(OAuthApplicationModelImpl.ENTITY_CACHE_ENABLED,
+					OAuthApplicationImpl.class, primaryKey);
+
+			if (oAuthApplication == null) {
+				if (uncachedPrimaryKeys == null) {
+					uncachedPrimaryKeys = new HashSet<Serializable>();
+				}
+
+				uncachedPrimaryKeys.add(primaryKey);
+			}
+			else {
+				map.put(primaryKey, oAuthApplication);
+			}
+		}
+
+		if (uncachedPrimaryKeys == null) {
+			return map;
+		}
+
+		StringBundler query = new StringBundler((uncachedPrimaryKeys.size() * 2) +
+				1);
+
+		query.append(_SQL_SELECT_OAUTHAPPLICATION_WHERE_PKS_IN);
+
+		for (Serializable primaryKey : uncachedPrimaryKeys) {
+			query.append(String.valueOf(primaryKey));
+
+			query.append(StringPool.COMMA);
+		}
+
+		query.setIndex(query.index() - 1);
+
+		query.append(StringPool.CLOSE_PARENTHESIS);
+
+		String sql = query.toString();
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Query q = session.createQuery(sql);
+
+			for (OAuthApplication oAuthApplication : (List<OAuthApplication>)q.list()) {
+				map.put(oAuthApplication.getPrimaryKeyObj(), oAuthApplication);
+
+				cacheResult(oAuthApplication);
+
+				uncachedPrimaryKeys.remove(oAuthApplication.getPrimaryKeyObj());
+			}
+
+			for (Serializable primaryKey : uncachedPrimaryKeys) {
+				EntityCacheUtil.putResult(OAuthApplicationModelImpl.ENTITY_CACHE_ENABLED,
+					OAuthApplicationImpl.class, primaryKey,
+					_nullOAuthApplication);
+			}
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+
+		return map;
+	}
+
 	/**
 	 * Returns all the o auth applications.
 	 *
@@ -4565,6 +4663,7 @@ public class OAuthApplicationPersistenceImpl extends BasePersistenceImpl<OAuthAp
 	}
 
 	private static final String _SQL_SELECT_OAUTHAPPLICATION = "SELECT oAuthApplication FROM OAuthApplication oAuthApplication";
+	private static final String _SQL_SELECT_OAUTHAPPLICATION_WHERE_PKS_IN = "SELECT oAuthApplication FROM OAuthApplication oAuthApplication WHERE oAuthApplicationId IN (";
 	private static final String _SQL_SELECT_OAUTHAPPLICATION_WHERE = "SELECT oAuthApplication FROM OAuthApplication oAuthApplication WHERE ";
 	private static final String _SQL_COUNT_OAUTHAPPLICATION = "SELECT COUNT(oAuthApplication) FROM OAuthApplication oAuthApplication";
 	private static final String _SQL_COUNT_OAUTHAPPLICATION_WHERE = "SELECT COUNT(oAuthApplication) FROM OAuthApplication oAuthApplication WHERE ";

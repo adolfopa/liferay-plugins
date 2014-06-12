@@ -46,7 +46,12 @@ import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * The persistence implementation for the kaleo draft definition service.
@@ -1961,6 +1966,100 @@ public class KaleoDraftDefinitionPersistenceImpl extends BasePersistenceImpl<Kal
 		return fetchByPrimaryKey((Serializable)kaleoDraftDefinitionId);
 	}
 
+	@Override
+	public Map<Serializable, KaleoDraftDefinition> fetchByPrimaryKeys(
+		Set<Serializable> primaryKeys) {
+		if (primaryKeys.isEmpty()) {
+			return Collections.emptyMap();
+		}
+
+		Map<Serializable, KaleoDraftDefinition> map = new HashMap<Serializable, KaleoDraftDefinition>();
+
+		if (primaryKeys.size() == 1) {
+			Iterator<Serializable> iterator = primaryKeys.iterator();
+
+			Serializable primaryKey = iterator.next();
+
+			KaleoDraftDefinition kaleoDraftDefinition = fetchByPrimaryKey(primaryKey);
+
+			if (kaleoDraftDefinition != null) {
+				map.put(primaryKey, kaleoDraftDefinition);
+			}
+
+			return map;
+		}
+
+		Set<Serializable> uncachedPrimaryKeys = null;
+
+		for (Serializable primaryKey : primaryKeys) {
+			KaleoDraftDefinition kaleoDraftDefinition = (KaleoDraftDefinition)EntityCacheUtil.getResult(KaleoDraftDefinitionModelImpl.ENTITY_CACHE_ENABLED,
+					KaleoDraftDefinitionImpl.class, primaryKey);
+
+			if (kaleoDraftDefinition == null) {
+				if (uncachedPrimaryKeys == null) {
+					uncachedPrimaryKeys = new HashSet<Serializable>();
+				}
+
+				uncachedPrimaryKeys.add(primaryKey);
+			}
+			else {
+				map.put(primaryKey, kaleoDraftDefinition);
+			}
+		}
+
+		if (uncachedPrimaryKeys == null) {
+			return map;
+		}
+
+		StringBundler query = new StringBundler((uncachedPrimaryKeys.size() * 2) +
+				1);
+
+		query.append(_SQL_SELECT_KALEODRAFTDEFINITION_WHERE_PKS_IN);
+
+		for (Serializable primaryKey : uncachedPrimaryKeys) {
+			query.append(String.valueOf(primaryKey));
+
+			query.append(StringPool.COMMA);
+		}
+
+		query.setIndex(query.index() - 1);
+
+		query.append(StringPool.CLOSE_PARENTHESIS);
+
+		String sql = query.toString();
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Query q = session.createQuery(sql);
+
+			for (KaleoDraftDefinition kaleoDraftDefinition : (List<KaleoDraftDefinition>)q.list()) {
+				map.put(kaleoDraftDefinition.getPrimaryKeyObj(),
+					kaleoDraftDefinition);
+
+				cacheResult(kaleoDraftDefinition);
+
+				uncachedPrimaryKeys.remove(kaleoDraftDefinition.getPrimaryKeyObj());
+			}
+
+			for (Serializable primaryKey : uncachedPrimaryKeys) {
+				EntityCacheUtil.putResult(KaleoDraftDefinitionModelImpl.ENTITY_CACHE_ENABLED,
+					KaleoDraftDefinitionImpl.class, primaryKey,
+					_nullKaleoDraftDefinition);
+			}
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+
+		return map;
+	}
+
 	/**
 	 * Returns all the kaleo draft definitions.
 	 *
@@ -2161,6 +2260,7 @@ public class KaleoDraftDefinitionPersistenceImpl extends BasePersistenceImpl<Kal
 	}
 
 	private static final String _SQL_SELECT_KALEODRAFTDEFINITION = "SELECT kaleoDraftDefinition FROM KaleoDraftDefinition kaleoDraftDefinition";
+	private static final String _SQL_SELECT_KALEODRAFTDEFINITION_WHERE_PKS_IN = "SELECT kaleoDraftDefinition FROM KaleoDraftDefinition kaleoDraftDefinition WHERE kaleoDraftDefinitionId IN (";
 	private static final String _SQL_SELECT_KALEODRAFTDEFINITION_WHERE = "SELECT kaleoDraftDefinition FROM KaleoDraftDefinition kaleoDraftDefinition WHERE ";
 	private static final String _SQL_COUNT_KALEODRAFTDEFINITION = "SELECT COUNT(kaleoDraftDefinition) FROM KaleoDraftDefinition kaleoDraftDefinition";
 	private static final String _SQL_COUNT_KALEODRAFTDEFINITION_WHERE = "SELECT COUNT(kaleoDraftDefinition) FROM KaleoDraftDefinition kaleoDraftDefinition WHERE ";

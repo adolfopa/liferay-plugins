@@ -49,7 +49,12 @@ import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * The persistence implementation for the s p i definition service.
@@ -3313,6 +3318,98 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 		return fetchByPrimaryKey((Serializable)spiDefinitionId);
 	}
 
+	@Override
+	public Map<Serializable, SPIDefinition> fetchByPrimaryKeys(
+		Set<Serializable> primaryKeys) {
+		if (primaryKeys.isEmpty()) {
+			return Collections.emptyMap();
+		}
+
+		Map<Serializable, SPIDefinition> map = new HashMap<Serializable, SPIDefinition>();
+
+		if (primaryKeys.size() == 1) {
+			Iterator<Serializable> iterator = primaryKeys.iterator();
+
+			Serializable primaryKey = iterator.next();
+
+			SPIDefinition spiDefinition = fetchByPrimaryKey(primaryKey);
+
+			if (spiDefinition != null) {
+				map.put(primaryKey, spiDefinition);
+			}
+
+			return map;
+		}
+
+		Set<Serializable> uncachedPrimaryKeys = null;
+
+		for (Serializable primaryKey : primaryKeys) {
+			SPIDefinition spiDefinition = (SPIDefinition)EntityCacheUtil.getResult(SPIDefinitionModelImpl.ENTITY_CACHE_ENABLED,
+					SPIDefinitionImpl.class, primaryKey);
+
+			if (spiDefinition == null) {
+				if (uncachedPrimaryKeys == null) {
+					uncachedPrimaryKeys = new HashSet<Serializable>();
+				}
+
+				uncachedPrimaryKeys.add(primaryKey);
+			}
+			else {
+				map.put(primaryKey, spiDefinition);
+			}
+		}
+
+		if (uncachedPrimaryKeys == null) {
+			return map;
+		}
+
+		StringBundler query = new StringBundler((uncachedPrimaryKeys.size() * 2) +
+				1);
+
+		query.append(_SQL_SELECT_SPIDEFINITION_WHERE_PKS_IN);
+
+		for (Serializable primaryKey : uncachedPrimaryKeys) {
+			query.append(String.valueOf(primaryKey));
+
+			query.append(StringPool.COMMA);
+		}
+
+		query.setIndex(query.index() - 1);
+
+		query.append(StringPool.CLOSE_PARENTHESIS);
+
+		String sql = query.toString();
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Query q = session.createQuery(sql);
+
+			for (SPIDefinition spiDefinition : (List<SPIDefinition>)q.list()) {
+				map.put(spiDefinition.getPrimaryKeyObj(), spiDefinition);
+
+				cacheResult(spiDefinition);
+
+				uncachedPrimaryKeys.remove(spiDefinition.getPrimaryKeyObj());
+			}
+
+			for (Serializable primaryKey : uncachedPrimaryKeys) {
+				EntityCacheUtil.putResult(SPIDefinitionModelImpl.ENTITY_CACHE_ENABLED,
+					SPIDefinitionImpl.class, primaryKey, _nullSPIDefinition);
+			}
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+
+		return map;
+	}
+
 	/**
 	 * Returns all the s p i definitions.
 	 *
@@ -3513,6 +3610,7 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	}
 
 	private static final String _SQL_SELECT_SPIDEFINITION = "SELECT spiDefinition FROM SPIDefinition spiDefinition";
+	private static final String _SQL_SELECT_SPIDEFINITION_WHERE_PKS_IN = "SELECT spiDefinition FROM SPIDefinition spiDefinition WHERE spiDefinitionId IN (";
 	private static final String _SQL_SELECT_SPIDEFINITION_WHERE = "SELECT spiDefinition FROM SPIDefinition spiDefinition WHERE ";
 	private static final String _SQL_COUNT_SPIDEFINITION = "SELECT COUNT(spiDefinition) FROM SPIDefinition spiDefinition";
 	private static final String _SQL_COUNT_SPIDEFINITION_WHERE = "SELECT COUNT(spiDefinition) FROM SPIDefinition spiDefinition WHERE ";

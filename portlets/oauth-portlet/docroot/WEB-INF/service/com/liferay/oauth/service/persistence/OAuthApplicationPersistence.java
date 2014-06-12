@@ -898,6 +898,10 @@ public interface OAuthApplicationPersistence extends BasePersistence<OAuthApplic
 	public com.liferay.oauth.model.OAuthApplication fetchByPrimaryKey(
 		long oAuthApplicationId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.oauth.model.OAuthApplication> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the o auth applications.
 	*

@@ -834,6 +834,11 @@ public class BBBMeetingUtil {
 		return getPersistence().fetchByPrimaryKey(bbbMeetingId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.bbb.model.BBBMeeting> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the b b b meetings.
 	*

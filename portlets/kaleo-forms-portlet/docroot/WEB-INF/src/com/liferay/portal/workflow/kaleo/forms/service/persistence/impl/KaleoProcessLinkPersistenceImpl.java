@@ -46,7 +46,12 @@ import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * The persistence implementation for the kaleo process link service.
@@ -1269,6 +1274,99 @@ public class KaleoProcessLinkPersistenceImpl extends BasePersistenceImpl<KaleoPr
 		return fetchByPrimaryKey((Serializable)kaleoProcessLinkId);
 	}
 
+	@Override
+	public Map<Serializable, KaleoProcessLink> fetchByPrimaryKeys(
+		Set<Serializable> primaryKeys) {
+		if (primaryKeys.isEmpty()) {
+			return Collections.emptyMap();
+		}
+
+		Map<Serializable, KaleoProcessLink> map = new HashMap<Serializable, KaleoProcessLink>();
+
+		if (primaryKeys.size() == 1) {
+			Iterator<Serializable> iterator = primaryKeys.iterator();
+
+			Serializable primaryKey = iterator.next();
+
+			KaleoProcessLink kaleoProcessLink = fetchByPrimaryKey(primaryKey);
+
+			if (kaleoProcessLink != null) {
+				map.put(primaryKey, kaleoProcessLink);
+			}
+
+			return map;
+		}
+
+		Set<Serializable> uncachedPrimaryKeys = null;
+
+		for (Serializable primaryKey : primaryKeys) {
+			KaleoProcessLink kaleoProcessLink = (KaleoProcessLink)EntityCacheUtil.getResult(KaleoProcessLinkModelImpl.ENTITY_CACHE_ENABLED,
+					KaleoProcessLinkImpl.class, primaryKey);
+
+			if (kaleoProcessLink == null) {
+				if (uncachedPrimaryKeys == null) {
+					uncachedPrimaryKeys = new HashSet<Serializable>();
+				}
+
+				uncachedPrimaryKeys.add(primaryKey);
+			}
+			else {
+				map.put(primaryKey, kaleoProcessLink);
+			}
+		}
+
+		if (uncachedPrimaryKeys == null) {
+			return map;
+		}
+
+		StringBundler query = new StringBundler((uncachedPrimaryKeys.size() * 2) +
+				1);
+
+		query.append(_SQL_SELECT_KALEOPROCESSLINK_WHERE_PKS_IN);
+
+		for (Serializable primaryKey : uncachedPrimaryKeys) {
+			query.append(String.valueOf(primaryKey));
+
+			query.append(StringPool.COMMA);
+		}
+
+		query.setIndex(query.index() - 1);
+
+		query.append(StringPool.CLOSE_PARENTHESIS);
+
+		String sql = query.toString();
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Query q = session.createQuery(sql);
+
+			for (KaleoProcessLink kaleoProcessLink : (List<KaleoProcessLink>)q.list()) {
+				map.put(kaleoProcessLink.getPrimaryKeyObj(), kaleoProcessLink);
+
+				cacheResult(kaleoProcessLink);
+
+				uncachedPrimaryKeys.remove(kaleoProcessLink.getPrimaryKeyObj());
+			}
+
+			for (Serializable primaryKey : uncachedPrimaryKeys) {
+				EntityCacheUtil.putResult(KaleoProcessLinkModelImpl.ENTITY_CACHE_ENABLED,
+					KaleoProcessLinkImpl.class, primaryKey,
+					_nullKaleoProcessLink);
+			}
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+
+		return map;
+	}
+
 	/**
 	 * Returns all the kaleo process links.
 	 *
@@ -1469,6 +1567,7 @@ public class KaleoProcessLinkPersistenceImpl extends BasePersistenceImpl<KaleoPr
 	}
 
 	private static final String _SQL_SELECT_KALEOPROCESSLINK = "SELECT kaleoProcessLink FROM KaleoProcessLink kaleoProcessLink";
+	private static final String _SQL_SELECT_KALEOPROCESSLINK_WHERE_PKS_IN = "SELECT kaleoProcessLink FROM KaleoProcessLink kaleoProcessLink WHERE kaleoProcessLinkId IN (";
 	private static final String _SQL_SELECT_KALEOPROCESSLINK_WHERE = "SELECT kaleoProcessLink FROM KaleoProcessLink kaleoProcessLink WHERE ";
 	private static final String _SQL_COUNT_KALEOPROCESSLINK = "SELECT COUNT(kaleoProcessLink) FROM KaleoProcessLink kaleoProcessLink";
 	private static final String _SQL_COUNT_KALEOPROCESSLINK_WHERE = "SELECT COUNT(kaleoProcessLink) FROM KaleoProcessLink kaleoProcessLink WHERE ";

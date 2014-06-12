@@ -417,6 +417,10 @@ public interface KaleoDraftDefinitionPersistence extends BasePersistence<KaleoDr
 	public com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition fetchByPrimaryKey(
 		long kaleoDraftDefinitionId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the kaleo draft definitions.
 	*

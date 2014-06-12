@@ -324,6 +324,10 @@ public interface KaleoProcessPersistence extends BasePersistence<KaleoProcess> {
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess fetchByPrimaryKey(
 		long kaleoProcessId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the kaleo processes.
 	*

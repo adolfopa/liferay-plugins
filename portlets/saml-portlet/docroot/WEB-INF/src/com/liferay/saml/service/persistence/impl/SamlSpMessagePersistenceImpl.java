@@ -47,7 +47,12 @@ import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * The persistence implementation for the saml sp message service.
@@ -796,6 +801,98 @@ public class SamlSpMessagePersistenceImpl extends BasePersistenceImpl<SamlSpMess
 		return fetchByPrimaryKey((Serializable)samlSpMessageId);
 	}
 
+	@Override
+	public Map<Serializable, SamlSpMessage> fetchByPrimaryKeys(
+		Set<Serializable> primaryKeys) {
+		if (primaryKeys.isEmpty()) {
+			return Collections.emptyMap();
+		}
+
+		Map<Serializable, SamlSpMessage> map = new HashMap<Serializable, SamlSpMessage>();
+
+		if (primaryKeys.size() == 1) {
+			Iterator<Serializable> iterator = primaryKeys.iterator();
+
+			Serializable primaryKey = iterator.next();
+
+			SamlSpMessage samlSpMessage = fetchByPrimaryKey(primaryKey);
+
+			if (samlSpMessage != null) {
+				map.put(primaryKey, samlSpMessage);
+			}
+
+			return map;
+		}
+
+		Set<Serializable> uncachedPrimaryKeys = null;
+
+		for (Serializable primaryKey : primaryKeys) {
+			SamlSpMessage samlSpMessage = (SamlSpMessage)EntityCacheUtil.getResult(SamlSpMessageModelImpl.ENTITY_CACHE_ENABLED,
+					SamlSpMessageImpl.class, primaryKey);
+
+			if (samlSpMessage == null) {
+				if (uncachedPrimaryKeys == null) {
+					uncachedPrimaryKeys = new HashSet<Serializable>();
+				}
+
+				uncachedPrimaryKeys.add(primaryKey);
+			}
+			else {
+				map.put(primaryKey, samlSpMessage);
+			}
+		}
+
+		if (uncachedPrimaryKeys == null) {
+			return map;
+		}
+
+		StringBundler query = new StringBundler((uncachedPrimaryKeys.size() * 2) +
+				1);
+
+		query.append(_SQL_SELECT_SAMLSPMESSAGE_WHERE_PKS_IN);
+
+		for (Serializable primaryKey : uncachedPrimaryKeys) {
+			query.append(String.valueOf(primaryKey));
+
+			query.append(StringPool.COMMA);
+		}
+
+		query.setIndex(query.index() - 1);
+
+		query.append(StringPool.CLOSE_PARENTHESIS);
+
+		String sql = query.toString();
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Query q = session.createQuery(sql);
+
+			for (SamlSpMessage samlSpMessage : (List<SamlSpMessage>)q.list()) {
+				map.put(samlSpMessage.getPrimaryKeyObj(), samlSpMessage);
+
+				cacheResult(samlSpMessage);
+
+				uncachedPrimaryKeys.remove(samlSpMessage.getPrimaryKeyObj());
+			}
+
+			for (Serializable primaryKey : uncachedPrimaryKeys) {
+				EntityCacheUtil.putResult(SamlSpMessageModelImpl.ENTITY_CACHE_ENABLED,
+					SamlSpMessageImpl.class, primaryKey, _nullSamlSpMessage);
+			}
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+
+		return map;
+	}
+
 	/**
 	 * Returns all the saml sp messages.
 	 *
@@ -996,6 +1093,7 @@ public class SamlSpMessagePersistenceImpl extends BasePersistenceImpl<SamlSpMess
 	}
 
 	private static final String _SQL_SELECT_SAMLSPMESSAGE = "SELECT samlSpMessage FROM SamlSpMessage samlSpMessage";
+	private static final String _SQL_SELECT_SAMLSPMESSAGE_WHERE_PKS_IN = "SELECT samlSpMessage FROM SamlSpMessage samlSpMessage WHERE samlSpMessageId IN (";
 	private static final String _SQL_SELECT_SAMLSPMESSAGE_WHERE = "SELECT samlSpMessage FROM SamlSpMessage samlSpMessage WHERE ";
 	private static final String _SQL_COUNT_SAMLSPMESSAGE = "SELECT COUNT(samlSpMessage) FROM SamlSpMessage samlSpMessage";
 	private static final String _SQL_COUNT_SAMLSPMESSAGE_WHERE = "SELECT COUNT(samlSpMessage) FROM SamlSpMessage samlSpMessage WHERE ";

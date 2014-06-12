@@ -211,6 +211,10 @@ public interface BBBParticipantPersistence extends BasePersistence<BBBParticipan
 	public com.liferay.bbb.model.BBBParticipant fetchByPrimaryKey(
 		long bbbParticipantId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.bbb.model.BBBParticipant> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the b b b participants.
 	*

@@ -47,7 +47,12 @@ import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * The persistence implementation for the saml idp sp session service.
@@ -1287,6 +1292,99 @@ public class SamlIdpSpSessionPersistenceImpl extends BasePersistenceImpl<SamlIdp
 		return fetchByPrimaryKey((Serializable)samlIdpSpSessionId);
 	}
 
+	@Override
+	public Map<Serializable, SamlIdpSpSession> fetchByPrimaryKeys(
+		Set<Serializable> primaryKeys) {
+		if (primaryKeys.isEmpty()) {
+			return Collections.emptyMap();
+		}
+
+		Map<Serializable, SamlIdpSpSession> map = new HashMap<Serializable, SamlIdpSpSession>();
+
+		if (primaryKeys.size() == 1) {
+			Iterator<Serializable> iterator = primaryKeys.iterator();
+
+			Serializable primaryKey = iterator.next();
+
+			SamlIdpSpSession samlIdpSpSession = fetchByPrimaryKey(primaryKey);
+
+			if (samlIdpSpSession != null) {
+				map.put(primaryKey, samlIdpSpSession);
+			}
+
+			return map;
+		}
+
+		Set<Serializable> uncachedPrimaryKeys = null;
+
+		for (Serializable primaryKey : primaryKeys) {
+			SamlIdpSpSession samlIdpSpSession = (SamlIdpSpSession)EntityCacheUtil.getResult(SamlIdpSpSessionModelImpl.ENTITY_CACHE_ENABLED,
+					SamlIdpSpSessionImpl.class, primaryKey);
+
+			if (samlIdpSpSession == null) {
+				if (uncachedPrimaryKeys == null) {
+					uncachedPrimaryKeys = new HashSet<Serializable>();
+				}
+
+				uncachedPrimaryKeys.add(primaryKey);
+			}
+			else {
+				map.put(primaryKey, samlIdpSpSession);
+			}
+		}
+
+		if (uncachedPrimaryKeys == null) {
+			return map;
+		}
+
+		StringBundler query = new StringBundler((uncachedPrimaryKeys.size() * 2) +
+				1);
+
+		query.append(_SQL_SELECT_SAMLIDPSPSESSION_WHERE_PKS_IN);
+
+		for (Serializable primaryKey : uncachedPrimaryKeys) {
+			query.append(String.valueOf(primaryKey));
+
+			query.append(StringPool.COMMA);
+		}
+
+		query.setIndex(query.index() - 1);
+
+		query.append(StringPool.CLOSE_PARENTHESIS);
+
+		String sql = query.toString();
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Query q = session.createQuery(sql);
+
+			for (SamlIdpSpSession samlIdpSpSession : (List<SamlIdpSpSession>)q.list()) {
+				map.put(samlIdpSpSession.getPrimaryKeyObj(), samlIdpSpSession);
+
+				cacheResult(samlIdpSpSession);
+
+				uncachedPrimaryKeys.remove(samlIdpSpSession.getPrimaryKeyObj());
+			}
+
+			for (Serializable primaryKey : uncachedPrimaryKeys) {
+				EntityCacheUtil.putResult(SamlIdpSpSessionModelImpl.ENTITY_CACHE_ENABLED,
+					SamlIdpSpSessionImpl.class, primaryKey,
+					_nullSamlIdpSpSession);
+			}
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+
+		return map;
+	}
+
 	/**
 	 * Returns all the saml idp sp sessions.
 	 *
@@ -1487,6 +1585,7 @@ public class SamlIdpSpSessionPersistenceImpl extends BasePersistenceImpl<SamlIdp
 	}
 
 	private static final String _SQL_SELECT_SAMLIDPSPSESSION = "SELECT samlIdpSpSession FROM SamlIdpSpSession samlIdpSpSession";
+	private static final String _SQL_SELECT_SAMLIDPSPSESSION_WHERE_PKS_IN = "SELECT samlIdpSpSession FROM SamlIdpSpSession samlIdpSpSession WHERE samlIdpSpSessionId IN (";
 	private static final String _SQL_SELECT_SAMLIDPSPSESSION_WHERE = "SELECT samlIdpSpSession FROM SamlIdpSpSession samlIdpSpSession WHERE ";
 	private static final String _SQL_COUNT_SAMLIDPSPSESSION = "SELECT COUNT(samlIdpSpSession) FROM SamlIdpSpSession samlIdpSpSession";
 	private static final String _SQL_COUNT_SAMLIDPSPSESSION_WHERE = "SELECT COUNT(samlIdpSpSession) FROM SamlIdpSpSession samlIdpSpSession WHERE ";

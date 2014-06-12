@@ -268,6 +268,10 @@ public interface SamlSpIdpConnectionPersistence extends BasePersistence<SamlSpId
 	public com.liferay.saml.model.SamlSpIdpConnection fetchByPrimaryKey(
 		long samlSpIdpConnectionId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.saml.model.SamlSpIdpConnection> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the saml sp idp connections.
 	*

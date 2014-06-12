@@ -147,6 +147,10 @@ public interface SamlSpMessagePersistence extends BasePersistence<SamlSpMessage>
 	public com.liferay.saml.model.SamlSpMessage fetchByPrimaryKey(
 		long samlSpMessageId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.saml.model.SamlSpMessage> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the saml sp messages.
 	*

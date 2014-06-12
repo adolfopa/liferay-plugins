@@ -316,6 +316,11 @@ public class BBBServerUtil {
 		return getPersistence().fetchByPrimaryKey(bbbServerId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.bbb.model.BBBServer> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the b b b servers.
 	*

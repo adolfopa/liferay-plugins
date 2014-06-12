@@ -48,7 +48,12 @@ import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * The persistence implementation for the b b b meeting service.
@@ -2803,6 +2808,98 @@ public class BBBMeetingPersistenceImpl extends BasePersistenceImpl<BBBMeeting>
 		return fetchByPrimaryKey((Serializable)bbbMeetingId);
 	}
 
+	@Override
+	public Map<Serializable, BBBMeeting> fetchByPrimaryKeys(
+		Set<Serializable> primaryKeys) {
+		if (primaryKeys.isEmpty()) {
+			return Collections.emptyMap();
+		}
+
+		Map<Serializable, BBBMeeting> map = new HashMap<Serializable, BBBMeeting>();
+
+		if (primaryKeys.size() == 1) {
+			Iterator<Serializable> iterator = primaryKeys.iterator();
+
+			Serializable primaryKey = iterator.next();
+
+			BBBMeeting bbbMeeting = fetchByPrimaryKey(primaryKey);
+
+			if (bbbMeeting != null) {
+				map.put(primaryKey, bbbMeeting);
+			}
+
+			return map;
+		}
+
+		Set<Serializable> uncachedPrimaryKeys = null;
+
+		for (Serializable primaryKey : primaryKeys) {
+			BBBMeeting bbbMeeting = (BBBMeeting)EntityCacheUtil.getResult(BBBMeetingModelImpl.ENTITY_CACHE_ENABLED,
+					BBBMeetingImpl.class, primaryKey);
+
+			if (bbbMeeting == null) {
+				if (uncachedPrimaryKeys == null) {
+					uncachedPrimaryKeys = new HashSet<Serializable>();
+				}
+
+				uncachedPrimaryKeys.add(primaryKey);
+			}
+			else {
+				map.put(primaryKey, bbbMeeting);
+			}
+		}
+
+		if (uncachedPrimaryKeys == null) {
+			return map;
+		}
+
+		StringBundler query = new StringBundler((uncachedPrimaryKeys.size() * 2) +
+				1);
+
+		query.append(_SQL_SELECT_BBBMEETING_WHERE_PKS_IN);
+
+		for (Serializable primaryKey : uncachedPrimaryKeys) {
+			query.append(String.valueOf(primaryKey));
+
+			query.append(StringPool.COMMA);
+		}
+
+		query.setIndex(query.index() - 1);
+
+		query.append(StringPool.CLOSE_PARENTHESIS);
+
+		String sql = query.toString();
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Query q = session.createQuery(sql);
+
+			for (BBBMeeting bbbMeeting : (List<BBBMeeting>)q.list()) {
+				map.put(bbbMeeting.getPrimaryKeyObj(), bbbMeeting);
+
+				cacheResult(bbbMeeting);
+
+				uncachedPrimaryKeys.remove(bbbMeeting.getPrimaryKeyObj());
+			}
+
+			for (Serializable primaryKey : uncachedPrimaryKeys) {
+				EntityCacheUtil.putResult(BBBMeetingModelImpl.ENTITY_CACHE_ENABLED,
+					BBBMeetingImpl.class, primaryKey, _nullBBBMeeting);
+			}
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+
+		return map;
+	}
+
 	/**
 	 * Returns all the b b b meetings.
 	 *
@@ -3003,6 +3100,7 @@ public class BBBMeetingPersistenceImpl extends BasePersistenceImpl<BBBMeeting>
 	}
 
 	private static final String _SQL_SELECT_BBBMEETING = "SELECT bbbMeeting FROM BBBMeeting bbbMeeting";
+	private static final String _SQL_SELECT_BBBMEETING_WHERE_PKS_IN = "SELECT bbbMeeting FROM BBBMeeting bbbMeeting WHERE bbbMeetingId IN (";
 	private static final String _SQL_SELECT_BBBMEETING_WHERE = "SELECT bbbMeeting FROM BBBMeeting bbbMeeting WHERE ";
 	private static final String _SQL_COUNT_BBBMEETING = "SELECT COUNT(bbbMeeting) FROM BBBMeeting bbbMeeting";
 	private static final String _SQL_COUNT_BBBMEETING_WHERE = "SELECT COUNT(bbbMeeting) FROM BBBMeeting bbbMeeting WHERE ";

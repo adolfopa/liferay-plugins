@@ -241,6 +241,11 @@ public class SamlIdpSsoSessionUtil {
 		return getPersistence().fetchByPrimaryKey(samlIdpSsoSessionId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.saml.model.SamlIdpSsoSession> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the saml idp sso sessions.
 	*

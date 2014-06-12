@@ -891,6 +891,11 @@ public class SourceUtil {
 		return getPersistence().fetchByPrimaryKey(sourceId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.reports.model.Source> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the sources.
 	*

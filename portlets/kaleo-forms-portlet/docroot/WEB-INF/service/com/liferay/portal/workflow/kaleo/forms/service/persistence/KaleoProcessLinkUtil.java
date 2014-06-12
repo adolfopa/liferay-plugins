@@ -392,6 +392,11 @@ public class KaleoProcessLinkUtil {
 		return getPersistence().fetchByPrimaryKey(kaleoProcessLinkId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the kaleo process links.
 	*

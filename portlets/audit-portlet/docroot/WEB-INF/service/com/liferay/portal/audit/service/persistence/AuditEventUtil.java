@@ -321,6 +321,11 @@ public class AuditEventUtil {
 		return getPersistence().fetchByPrimaryKey(auditEventId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.portal.audit.model.AuditEvent> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the audit events.
 	*

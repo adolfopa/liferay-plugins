@@ -250,6 +250,11 @@ public class SamlSpAuthRequestUtil {
 		return getPersistence().fetchByPrimaryKey(samlSpAuthnRequestId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.saml.model.SamlSpAuthRequest> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the saml sp auth requests.
 	*

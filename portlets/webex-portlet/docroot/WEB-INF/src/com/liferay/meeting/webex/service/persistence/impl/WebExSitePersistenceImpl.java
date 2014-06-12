@@ -51,7 +51,11 @@ import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -2961,6 +2965,98 @@ public class WebExSitePersistenceImpl extends BasePersistenceImpl<WebExSite>
 		return fetchByPrimaryKey((Serializable)webExSiteId);
 	}
 
+	@Override
+	public Map<Serializable, WebExSite> fetchByPrimaryKeys(
+		Set<Serializable> primaryKeys) {
+		if (primaryKeys.isEmpty()) {
+			return Collections.emptyMap();
+		}
+
+		Map<Serializable, WebExSite> map = new HashMap<Serializable, WebExSite>();
+
+		if (primaryKeys.size() == 1) {
+			Iterator<Serializable> iterator = primaryKeys.iterator();
+
+			Serializable primaryKey = iterator.next();
+
+			WebExSite webExSite = fetchByPrimaryKey(primaryKey);
+
+			if (webExSite != null) {
+				map.put(primaryKey, webExSite);
+			}
+
+			return map;
+		}
+
+		Set<Serializable> uncachedPrimaryKeys = null;
+
+		for (Serializable primaryKey : primaryKeys) {
+			WebExSite webExSite = (WebExSite)EntityCacheUtil.getResult(WebExSiteModelImpl.ENTITY_CACHE_ENABLED,
+					WebExSiteImpl.class, primaryKey);
+
+			if (webExSite == null) {
+				if (uncachedPrimaryKeys == null) {
+					uncachedPrimaryKeys = new HashSet<Serializable>();
+				}
+
+				uncachedPrimaryKeys.add(primaryKey);
+			}
+			else {
+				map.put(primaryKey, webExSite);
+			}
+		}
+
+		if (uncachedPrimaryKeys == null) {
+			return map;
+		}
+
+		StringBundler query = new StringBundler((uncachedPrimaryKeys.size() * 2) +
+				1);
+
+		query.append(_SQL_SELECT_WEBEXSITE_WHERE_PKS_IN);
+
+		for (Serializable primaryKey : uncachedPrimaryKeys) {
+			query.append(String.valueOf(primaryKey));
+
+			query.append(StringPool.COMMA);
+		}
+
+		query.setIndex(query.index() - 1);
+
+		query.append(StringPool.CLOSE_PARENTHESIS);
+
+		String sql = query.toString();
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Query q = session.createQuery(sql);
+
+			for (WebExSite webExSite : (List<WebExSite>)q.list()) {
+				map.put(webExSite.getPrimaryKeyObj(), webExSite);
+
+				cacheResult(webExSite);
+
+				uncachedPrimaryKeys.remove(webExSite.getPrimaryKeyObj());
+			}
+
+			for (Serializable primaryKey : uncachedPrimaryKeys) {
+				EntityCacheUtil.putResult(WebExSiteModelImpl.ENTITY_CACHE_ENABLED,
+					WebExSiteImpl.class, primaryKey, _nullWebExSite);
+			}
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+
+		return map;
+	}
+
 	/**
 	 * Returns all the web ex sites.
 	 *
@@ -3166,6 +3262,7 @@ public class WebExSitePersistenceImpl extends BasePersistenceImpl<WebExSite>
 	}
 
 	private static final String _SQL_SELECT_WEBEXSITE = "SELECT webExSite FROM WebExSite webExSite";
+	private static final String _SQL_SELECT_WEBEXSITE_WHERE_PKS_IN = "SELECT webExSite FROM WebExSite webExSite WHERE webExSiteId IN (";
 	private static final String _SQL_SELECT_WEBEXSITE_WHERE = "SELECT webExSite FROM WebExSite webExSite WHERE ";
 	private static final String _SQL_COUNT_WEBEXSITE = "SELECT COUNT(webExSite) FROM WebExSite webExSite";
 	private static final String _SQL_COUNT_WEBEXSITE_WHERE = "SELECT COUNT(webExSite) FROM WebExSite webExSite WHERE ";

@@ -896,6 +896,11 @@ public class SPIDefinitionUtil {
 		return getPersistence().fetchByPrimaryKey(spiDefinitionId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.portal.resiliency.spi.model.SPIDefinition> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the s p i definitions.
 	*

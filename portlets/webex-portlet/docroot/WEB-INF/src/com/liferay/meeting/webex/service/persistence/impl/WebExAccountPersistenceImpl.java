@@ -51,7 +51,11 @@ import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -2784,6 +2788,98 @@ public class WebExAccountPersistenceImpl extends BasePersistenceImpl<WebExAccoun
 		return fetchByPrimaryKey((Serializable)webExAccountId);
 	}
 
+	@Override
+	public Map<Serializable, WebExAccount> fetchByPrimaryKeys(
+		Set<Serializable> primaryKeys) {
+		if (primaryKeys.isEmpty()) {
+			return Collections.emptyMap();
+		}
+
+		Map<Serializable, WebExAccount> map = new HashMap<Serializable, WebExAccount>();
+
+		if (primaryKeys.size() == 1) {
+			Iterator<Serializable> iterator = primaryKeys.iterator();
+
+			Serializable primaryKey = iterator.next();
+
+			WebExAccount webExAccount = fetchByPrimaryKey(primaryKey);
+
+			if (webExAccount != null) {
+				map.put(primaryKey, webExAccount);
+			}
+
+			return map;
+		}
+
+		Set<Serializable> uncachedPrimaryKeys = null;
+
+		for (Serializable primaryKey : primaryKeys) {
+			WebExAccount webExAccount = (WebExAccount)EntityCacheUtil.getResult(WebExAccountModelImpl.ENTITY_CACHE_ENABLED,
+					WebExAccountImpl.class, primaryKey);
+
+			if (webExAccount == null) {
+				if (uncachedPrimaryKeys == null) {
+					uncachedPrimaryKeys = new HashSet<Serializable>();
+				}
+
+				uncachedPrimaryKeys.add(primaryKey);
+			}
+			else {
+				map.put(primaryKey, webExAccount);
+			}
+		}
+
+		if (uncachedPrimaryKeys == null) {
+			return map;
+		}
+
+		StringBundler query = new StringBundler((uncachedPrimaryKeys.size() * 2) +
+				1);
+
+		query.append(_SQL_SELECT_WEBEXACCOUNT_WHERE_PKS_IN);
+
+		for (Serializable primaryKey : uncachedPrimaryKeys) {
+			query.append(String.valueOf(primaryKey));
+
+			query.append(StringPool.COMMA);
+		}
+
+		query.setIndex(query.index() - 1);
+
+		query.append(StringPool.CLOSE_PARENTHESIS);
+
+		String sql = query.toString();
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Query q = session.createQuery(sql);
+
+			for (WebExAccount webExAccount : (List<WebExAccount>)q.list()) {
+				map.put(webExAccount.getPrimaryKeyObj(), webExAccount);
+
+				cacheResult(webExAccount);
+
+				uncachedPrimaryKeys.remove(webExAccount.getPrimaryKeyObj());
+			}
+
+			for (Serializable primaryKey : uncachedPrimaryKeys) {
+				EntityCacheUtil.putResult(WebExAccountModelImpl.ENTITY_CACHE_ENABLED,
+					WebExAccountImpl.class, primaryKey, _nullWebExAccount);
+			}
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+
+		return map;
+	}
+
 	/**
 	 * Returns all the web ex accounts.
 	 *
@@ -2989,6 +3085,7 @@ public class WebExAccountPersistenceImpl extends BasePersistenceImpl<WebExAccoun
 	}
 
 	private static final String _SQL_SELECT_WEBEXACCOUNT = "SELECT webExAccount FROM WebExAccount webExAccount";
+	private static final String _SQL_SELECT_WEBEXACCOUNT_WHERE_PKS_IN = "SELECT webExAccount FROM WebExAccount webExAccount WHERE webExAccountId IN (";
 	private static final String _SQL_SELECT_WEBEXACCOUNT_WHERE = "SELECT webExAccount FROM WebExAccount webExAccount WHERE ";
 	private static final String _SQL_COUNT_WEBEXACCOUNT = "SELECT COUNT(webExAccount) FROM WebExAccount webExAccount";
 	private static final String _SQL_COUNT_WEBEXACCOUNT_WHERE = "SELECT COUNT(webExAccount) FROM WebExAccount webExAccount WHERE ";

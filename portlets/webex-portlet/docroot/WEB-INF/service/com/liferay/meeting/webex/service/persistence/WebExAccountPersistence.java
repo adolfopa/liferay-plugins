@@ -591,6 +591,10 @@ public interface WebExAccountPersistence extends BasePersistence<WebExAccount> {
 	public com.liferay.meeting.webex.model.WebExAccount fetchByPrimaryKey(
 		long webExAccountId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.meeting.webex.model.WebExAccount> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the web ex accounts.
 	*

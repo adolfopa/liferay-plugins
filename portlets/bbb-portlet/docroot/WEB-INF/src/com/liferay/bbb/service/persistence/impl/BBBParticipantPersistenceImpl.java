@@ -47,7 +47,11 @@ import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -943,6 +947,98 @@ public class BBBParticipantPersistenceImpl extends BasePersistenceImpl<BBBPartic
 		return fetchByPrimaryKey((Serializable)bbbParticipantId);
 	}
 
+	@Override
+	public Map<Serializable, BBBParticipant> fetchByPrimaryKeys(
+		Set<Serializable> primaryKeys) {
+		if (primaryKeys.isEmpty()) {
+			return Collections.emptyMap();
+		}
+
+		Map<Serializable, BBBParticipant> map = new HashMap<Serializable, BBBParticipant>();
+
+		if (primaryKeys.size() == 1) {
+			Iterator<Serializable> iterator = primaryKeys.iterator();
+
+			Serializable primaryKey = iterator.next();
+
+			BBBParticipant bbbParticipant = fetchByPrimaryKey(primaryKey);
+
+			if (bbbParticipant != null) {
+				map.put(primaryKey, bbbParticipant);
+			}
+
+			return map;
+		}
+
+		Set<Serializable> uncachedPrimaryKeys = null;
+
+		for (Serializable primaryKey : primaryKeys) {
+			BBBParticipant bbbParticipant = (BBBParticipant)EntityCacheUtil.getResult(BBBParticipantModelImpl.ENTITY_CACHE_ENABLED,
+					BBBParticipantImpl.class, primaryKey);
+
+			if (bbbParticipant == null) {
+				if (uncachedPrimaryKeys == null) {
+					uncachedPrimaryKeys = new HashSet<Serializable>();
+				}
+
+				uncachedPrimaryKeys.add(primaryKey);
+			}
+			else {
+				map.put(primaryKey, bbbParticipant);
+			}
+		}
+
+		if (uncachedPrimaryKeys == null) {
+			return map;
+		}
+
+		StringBundler query = new StringBundler((uncachedPrimaryKeys.size() * 2) +
+				1);
+
+		query.append(_SQL_SELECT_BBBPARTICIPANT_WHERE_PKS_IN);
+
+		for (Serializable primaryKey : uncachedPrimaryKeys) {
+			query.append(String.valueOf(primaryKey));
+
+			query.append(StringPool.COMMA);
+		}
+
+		query.setIndex(query.index() - 1);
+
+		query.append(StringPool.CLOSE_PARENTHESIS);
+
+		String sql = query.toString();
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Query q = session.createQuery(sql);
+
+			for (BBBParticipant bbbParticipant : (List<BBBParticipant>)q.list()) {
+				map.put(bbbParticipant.getPrimaryKeyObj(), bbbParticipant);
+
+				cacheResult(bbbParticipant);
+
+				uncachedPrimaryKeys.remove(bbbParticipant.getPrimaryKeyObj());
+			}
+
+			for (Serializable primaryKey : uncachedPrimaryKeys) {
+				EntityCacheUtil.putResult(BBBParticipantModelImpl.ENTITY_CACHE_ENABLED,
+					BBBParticipantImpl.class, primaryKey, _nullBBBParticipant);
+			}
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+
+		return map;
+	}
+
 	/**
 	 * Returns all the b b b participants.
 	 *
@@ -1148,6 +1244,7 @@ public class BBBParticipantPersistenceImpl extends BasePersistenceImpl<BBBPartic
 	}
 
 	private static final String _SQL_SELECT_BBBPARTICIPANT = "SELECT bbbParticipant FROM BBBParticipant bbbParticipant";
+	private static final String _SQL_SELECT_BBBPARTICIPANT_WHERE_PKS_IN = "SELECT bbbParticipant FROM BBBParticipant bbbParticipant WHERE bbbParticipantId IN (";
 	private static final String _SQL_SELECT_BBBPARTICIPANT_WHERE = "SELECT bbbParticipant FROM BBBParticipant bbbParticipant WHERE ";
 	private static final String _SQL_COUNT_BBBPARTICIPANT = "SELECT COUNT(bbbParticipant) FROM BBBParticipant bbbParticipant";
 	private static final String _SQL_COUNT_BBBPARTICIPANT_WHERE = "SELECT COUNT(bbbParticipant) FROM BBBParticipant bbbParticipant WHERE ";

@@ -248,6 +248,11 @@ public class SamlSpMessageUtil {
 		return getPersistence().fetchByPrimaryKey(samlSpMessageId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.saml.model.SamlSpMessage> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the saml sp messages.
 	*

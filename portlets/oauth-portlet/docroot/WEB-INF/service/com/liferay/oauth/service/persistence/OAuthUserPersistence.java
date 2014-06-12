@@ -548,6 +548,10 @@ public interface OAuthUserPersistence extends BasePersistence<OAuthUser> {
 	*/
 	public com.liferay.oauth.model.OAuthUser fetchByPrimaryKey(long oAuthUserId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.oauth.model.OAuthUser> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the o auth users.
 	*

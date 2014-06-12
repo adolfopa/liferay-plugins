@@ -205,6 +205,10 @@ public interface BBBServerPersistence extends BasePersistence<BBBServer> {
 	*/
 	public com.liferay.bbb.model.BBBServer fetchByPrimaryKey(long bbbServerId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.bbb.model.BBBServer> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the b b b servers.
 	*

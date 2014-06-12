@@ -1146,6 +1146,11 @@ public class OAuthApplicationUtil {
 		return getPersistence().fetchByPrimaryKey(oAuthApplicationId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.oauth.model.OAuthApplication> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the o auth applications.
 	*

@@ -51,7 +51,11 @@ import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -3194,6 +3198,98 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 		return fetchByPrimaryKey((Serializable)sourceId);
 	}
 
+	@Override
+	public Map<Serializable, Source> fetchByPrimaryKeys(
+		Set<Serializable> primaryKeys) {
+		if (primaryKeys.isEmpty()) {
+			return Collections.emptyMap();
+		}
+
+		Map<Serializable, Source> map = new HashMap<Serializable, Source>();
+
+		if (primaryKeys.size() == 1) {
+			Iterator<Serializable> iterator = primaryKeys.iterator();
+
+			Serializable primaryKey = iterator.next();
+
+			Source source = fetchByPrimaryKey(primaryKey);
+
+			if (source != null) {
+				map.put(primaryKey, source);
+			}
+
+			return map;
+		}
+
+		Set<Serializable> uncachedPrimaryKeys = null;
+
+		for (Serializable primaryKey : primaryKeys) {
+			Source source = (Source)EntityCacheUtil.getResult(SourceModelImpl.ENTITY_CACHE_ENABLED,
+					SourceImpl.class, primaryKey);
+
+			if (source == null) {
+				if (uncachedPrimaryKeys == null) {
+					uncachedPrimaryKeys = new HashSet<Serializable>();
+				}
+
+				uncachedPrimaryKeys.add(primaryKey);
+			}
+			else {
+				map.put(primaryKey, source);
+			}
+		}
+
+		if (uncachedPrimaryKeys == null) {
+			return map;
+		}
+
+		StringBundler query = new StringBundler((uncachedPrimaryKeys.size() * 2) +
+				1);
+
+		query.append(_SQL_SELECT_SOURCE_WHERE_PKS_IN);
+
+		for (Serializable primaryKey : uncachedPrimaryKeys) {
+			query.append(String.valueOf(primaryKey));
+
+			query.append(StringPool.COMMA);
+		}
+
+		query.setIndex(query.index() - 1);
+
+		query.append(StringPool.CLOSE_PARENTHESIS);
+
+		String sql = query.toString();
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Query q = session.createQuery(sql);
+
+			for (Source source : (List<Source>)q.list()) {
+				map.put(source.getPrimaryKeyObj(), source);
+
+				cacheResult(source);
+
+				uncachedPrimaryKeys.remove(source.getPrimaryKeyObj());
+			}
+
+			for (Serializable primaryKey : uncachedPrimaryKeys) {
+				EntityCacheUtil.putResult(SourceModelImpl.ENTITY_CACHE_ENABLED,
+					SourceImpl.class, primaryKey, _nullSource);
+			}
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+
+		return map;
+	}
+
 	/**
 	 * Returns all the sources.
 	 *
@@ -3399,6 +3495,7 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	}
 
 	private static final String _SQL_SELECT_SOURCE = "SELECT source FROM Source source";
+	private static final String _SQL_SELECT_SOURCE_WHERE_PKS_IN = "SELECT source FROM Source source WHERE sourceId IN (";
 	private static final String _SQL_SELECT_SOURCE_WHERE = "SELECT source FROM Source source WHERE ";
 	private static final String _SQL_COUNT_SOURCE = "SELECT COUNT(source) FROM Source source";
 	private static final String _SQL_COUNT_SOURCE_WHERE = "SELECT COUNT(source) FROM Source source WHERE ";

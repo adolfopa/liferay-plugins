@@ -618,6 +618,10 @@ public interface WebExSitePersistence extends BasePersistence<WebExSite> {
 	public com.liferay.meeting.webex.model.WebExSite fetchByPrimaryKey(
 		long webExSiteId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.meeting.webex.model.WebExSite> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the web ex sites.
 	*

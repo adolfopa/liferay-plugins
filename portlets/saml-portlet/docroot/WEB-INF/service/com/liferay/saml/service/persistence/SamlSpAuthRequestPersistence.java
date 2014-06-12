@@ -151,6 +151,10 @@ public interface SamlSpAuthRequestPersistence extends BasePersistence<SamlSpAuth
 	public com.liferay.saml.model.SamlSpAuthRequest fetchByPrimaryKey(
 		long samlSpAuthnRequestId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.saml.model.SamlSpAuthRequest> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the saml sp auth requests.
 	*

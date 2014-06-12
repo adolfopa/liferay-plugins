@@ -47,7 +47,12 @@ import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * The persistence implementation for the saml sp auth request service.
@@ -801,6 +806,99 @@ public class SamlSpAuthRequestPersistenceImpl extends BasePersistenceImpl<SamlSp
 		return fetchByPrimaryKey((Serializable)samlSpAuthnRequestId);
 	}
 
+	@Override
+	public Map<Serializable, SamlSpAuthRequest> fetchByPrimaryKeys(
+		Set<Serializable> primaryKeys) {
+		if (primaryKeys.isEmpty()) {
+			return Collections.emptyMap();
+		}
+
+		Map<Serializable, SamlSpAuthRequest> map = new HashMap<Serializable, SamlSpAuthRequest>();
+
+		if (primaryKeys.size() == 1) {
+			Iterator<Serializable> iterator = primaryKeys.iterator();
+
+			Serializable primaryKey = iterator.next();
+
+			SamlSpAuthRequest samlSpAuthRequest = fetchByPrimaryKey(primaryKey);
+
+			if (samlSpAuthRequest != null) {
+				map.put(primaryKey, samlSpAuthRequest);
+			}
+
+			return map;
+		}
+
+		Set<Serializable> uncachedPrimaryKeys = null;
+
+		for (Serializable primaryKey : primaryKeys) {
+			SamlSpAuthRequest samlSpAuthRequest = (SamlSpAuthRequest)EntityCacheUtil.getResult(SamlSpAuthRequestModelImpl.ENTITY_CACHE_ENABLED,
+					SamlSpAuthRequestImpl.class, primaryKey);
+
+			if (samlSpAuthRequest == null) {
+				if (uncachedPrimaryKeys == null) {
+					uncachedPrimaryKeys = new HashSet<Serializable>();
+				}
+
+				uncachedPrimaryKeys.add(primaryKey);
+			}
+			else {
+				map.put(primaryKey, samlSpAuthRequest);
+			}
+		}
+
+		if (uncachedPrimaryKeys == null) {
+			return map;
+		}
+
+		StringBundler query = new StringBundler((uncachedPrimaryKeys.size() * 2) +
+				1);
+
+		query.append(_SQL_SELECT_SAMLSPAUTHREQUEST_WHERE_PKS_IN);
+
+		for (Serializable primaryKey : uncachedPrimaryKeys) {
+			query.append(String.valueOf(primaryKey));
+
+			query.append(StringPool.COMMA);
+		}
+
+		query.setIndex(query.index() - 1);
+
+		query.append(StringPool.CLOSE_PARENTHESIS);
+
+		String sql = query.toString();
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Query q = session.createQuery(sql);
+
+			for (SamlSpAuthRequest samlSpAuthRequest : (List<SamlSpAuthRequest>)q.list()) {
+				map.put(samlSpAuthRequest.getPrimaryKeyObj(), samlSpAuthRequest);
+
+				cacheResult(samlSpAuthRequest);
+
+				uncachedPrimaryKeys.remove(samlSpAuthRequest.getPrimaryKeyObj());
+			}
+
+			for (Serializable primaryKey : uncachedPrimaryKeys) {
+				EntityCacheUtil.putResult(SamlSpAuthRequestModelImpl.ENTITY_CACHE_ENABLED,
+					SamlSpAuthRequestImpl.class, primaryKey,
+					_nullSamlSpAuthRequest);
+			}
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+
+		return map;
+	}
+
 	/**
 	 * Returns all the saml sp auth requests.
 	 *
@@ -1001,6 +1099,7 @@ public class SamlSpAuthRequestPersistenceImpl extends BasePersistenceImpl<SamlSp
 	}
 
 	private static final String _SQL_SELECT_SAMLSPAUTHREQUEST = "SELECT samlSpAuthRequest FROM SamlSpAuthRequest samlSpAuthRequest";
+	private static final String _SQL_SELECT_SAMLSPAUTHREQUEST_WHERE_PKS_IN = "SELECT samlSpAuthRequest FROM SamlSpAuthRequest samlSpAuthRequest WHERE samlSpAuthnRequestId IN (";
 	private static final String _SQL_SELECT_SAMLSPAUTHREQUEST_WHERE = "SELECT samlSpAuthRequest FROM SamlSpAuthRequest samlSpAuthRequest WHERE ";
 	private static final String _SQL_COUNT_SAMLSPAUTHREQUEST = "SELECT COUNT(samlSpAuthRequest) FROM SamlSpAuthRequest samlSpAuthRequest";
 	private static final String _SQL_COUNT_SAMLSPAUTHREQUEST_WHERE = "SELECT COUNT(samlSpAuthRequest) FROM SamlSpAuthRequest samlSpAuthRequest WHERE ";

@@ -685,6 +685,10 @@ public interface SourcePersistence extends BasePersistence<Source> {
 	*/
 	public com.liferay.reports.model.Source fetchByPrimaryKey(long sourceId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.reports.model.Source> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the sources.
 	*
