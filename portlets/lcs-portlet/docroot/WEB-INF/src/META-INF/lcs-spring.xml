@@ -93,6 +93,7 @@
 	<bean id="com.liferay.lcs.util.HandshakeManager" class="com.liferay.lcs.util.HandshakeManagerImpl">
 		<property name="handshakeWaitTime" value="#{T(com.liferay.util.portlet.PortletProps).get('communication.handshake.wait.time')}" />
 		<property name="heartbeatInterval" value="#{T(com.liferay.util.portlet.PortletProps).get('communication.heartbeat.interval')}" />
+		<property name="LCSGatewayUnavailableWaitTime" value="#{T(com.liferay.util.portlet.PortletProps).get('communication.lcs.gateway.unavailable.wait.time')}" />
 	</bean>
 	<bean id="com.liferay.lcs.util.HandshakeManagerUtil" class="com.liferay.lcs.util.HandshakeManagerUtil">
 		<property name="handshakeManager" ref="com.liferay.lcs.util.HandshakeManager" />

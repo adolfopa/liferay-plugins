@@ -31,6 +31,8 @@ public interface HandshakeManager {
 
 	public List<ScheduledFuture<?>> getScheduledFutures();
 
+	public void handleLCSGatewayUnavailable();
+
 	public boolean isPending();
 
 	boolean isReady();

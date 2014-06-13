@@ -17,6 +17,8 @@ package com.liferay.lcs.util;
 import com.liferay.lcs.task.HandshakeTask;
 import com.liferay.lcs.task.SignoffTask;
 import com.liferay.portal.kernel.bean.BeanReference;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -73,6 +75,27 @@ public class HandshakeManagerImpl implements HandshakeManager {
 	}
 
 	@Override
+	public void handleLCSGatewayUnavailable() {
+		if (!isReady()) {
+			return;
+		}
+
+		_log.warn("LCS Gateway unavailable. Stoping communication.");
+
+		setReady(false);
+
+		_scheduledExecutorService.schedule(
+			new Runnable() {
+
+				@Override
+				public void run() {
+					setReady(true);
+				}
+
+			}, _lcsGatewayUnavailableWaitTime, TimeUnit.MILLISECONDS);
+	}
+
+	@Override
 	public synchronized boolean isPending() {
 		return _pending;
 	}
@@ -95,6 +118,12 @@ public class HandshakeManagerImpl implements HandshakeManager {
 	public void setHeartbeatInterval(long heartbeatInterval) {
 		_lcsConnectionMetadata.put(
 			"heartbeatInterval", String.valueOf(heartbeatInterval));
+	}
+
+	public void setLCSGatewayUnavailableWaitTime(
+		int lcsGatewayUnavailableWaitTime) {
+
+		_lcsGatewayUnavailableWaitTime = lcsGatewayUnavailableWaitTime;
 	}
 
 	@Override
@@ -140,6 +169,8 @@ public class HandshakeManagerImpl implements HandshakeManager {
 		return future;
 	}
 
+	private static Log _log = LogFactoryUtil.getLog(HandshakeManagerImpl.class);
+
 	private static ScheduledExecutorService _scheduledExecutorService =
 		Executors.newScheduledThreadPool(3);
 
@@ -148,6 +179,7 @@ public class HandshakeManagerImpl implements HandshakeManager {
 
 	private Map<String, String> _lcsConnectionMetadata =
 		new HashMap<String, String>();
+	private int _lcsGatewayUnavailableWaitTime;
 	private boolean _pending;
 	private boolean _ready;
 	private List<ScheduledFuture<?>> _scheduledFutures =

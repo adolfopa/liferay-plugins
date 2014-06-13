@@ -40,6 +40,10 @@ public class HandshakeManagerUtil {
 		return getHandshakeManager().getScheduledFutures();
 	}
 
+	public static void handleLCSGatewayUnavailable() {
+		_handshakeManager.handleLCSGatewayUnavailable();
+	}
+
 	public static boolean isPending() {
 		return getHandshakeManager().isPending();
 	}
