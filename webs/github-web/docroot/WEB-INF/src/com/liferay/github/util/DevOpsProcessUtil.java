@@ -53,7 +53,7 @@ public class DevOpsProcessUtil {
 			_output = output;
 		}
 
-		private int _exitCode;
+		private int _exitCode = -1;
 		private String _output = "";
 
 	}
