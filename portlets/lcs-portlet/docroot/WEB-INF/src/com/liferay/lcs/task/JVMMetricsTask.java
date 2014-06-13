@@ -14,6 +14,7 @@
 
 package com.liferay.lcs.task;
 
+import com.liferay.jsonwebserviceclient.JSONWebServiceUnavailableException;
 import com.liferay.lcs.messaging.MetricsMessage;
 import com.liferay.lcs.service.LCSGatewayService;
 import com.liferay.lcs.util.HandshakeManager;
@@ -22,9 +23,9 @@ import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 
-import com.yammer.metrics.core.VirtualMachineMetrics;
 import com.yammer.metrics.core.VirtualMachineMetrics.BufferPoolStats;
 import com.yammer.metrics.core.VirtualMachineMetrics.GarbageCollectorStats;
+import com.yammer.metrics.core.VirtualMachineMetrics;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -43,6 +44,10 @@ public class JVMMetricsTask implements Runnable {
 		}
 		catch (Exception e) {
 			_log.error(e, e);
+
+			if (e.getCause() instanceof JSONWebServiceUnavailableException) {
+				_handshakeManager.handleLCSGatewayUnavailable();
+			}
 		}
 	}
 

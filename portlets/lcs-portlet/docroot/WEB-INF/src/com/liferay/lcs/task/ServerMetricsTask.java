@@ -14,8 +14,10 @@
 
 package com.liferay.lcs.task;
 
+import com.liferay.jsonwebserviceclient.JSONWebServiceUnavailableException;
 import com.liferay.lcs.messaging.MetricsMessage;
 import com.liferay.lcs.service.LCSGatewayService;
+import com.liferay.lcs.util.HandshakeManager;
 import com.liferay.lcs.util.KeyGenerator;
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.log.Log;
@@ -48,10 +50,22 @@ public class ServerMetricsTask implements Runnable {
 		}
 		catch (Exception e) {
 			_log.error(e, e);
+
+			if (e.getCause() instanceof JSONWebServiceUnavailableException) {
+				_handshakeManager.handleLCSGatewayUnavailable();
+			}
 		}
 	}
 
 	protected void doRun() throws Exception {
+		if (!_handshakeManager.isReady()) {
+			if (_log.isDebugEnabled()) {
+				_log.debug("Waiting for handshake manager");
+			}
+
+			return;
+		}
+
 		MetricsMessage metricsMessage = new MetricsMessage();
 
 		metricsMessage.setCreateTime(System.currentTimeMillis());
@@ -217,6 +231,9 @@ public class ServerMetricsTask implements Runnable {
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(ServerMetricsTask.class);
+
+	@BeanReference(type = HandshakeManager.class)
+	private HandshakeManager _handshakeManager;
 
 	@BeanReference(type = KeyGenerator.class)
 	private KeyGenerator _keyGenerator;

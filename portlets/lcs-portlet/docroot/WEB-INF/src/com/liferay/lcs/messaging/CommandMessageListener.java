@@ -14,9 +14,11 @@
 
 package com.liferay.lcs.messaging;
 
+import com.liferay.jsonwebserviceclient.JSONWebServiceUnavailableException;
 import com.liferay.lcs.command.Command;
 import com.liferay.lcs.security.DigitalSignature;
 import com.liferay.lcs.service.LCSGatewayService;
+import com.liferay.lcs.util.HandshakeManager;
 import com.liferay.lcs.util.ResponseCommandMessageUtil;
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.log.Log;
@@ -68,6 +70,12 @@ public class CommandMessageListener implements MessageListener {
 			}
 			catch (Exception e) {
 				_log.error(e);
+
+				if (e.getCause() instanceof
+						JSONWebServiceUnavailableException) {
+
+					_handshakeManager.handleLCSGatewayUnavailable();
+				}
 			}
 		}
 	}
@@ -83,6 +91,9 @@ public class CommandMessageListener implements MessageListener {
 
 	@BeanReference(type = DigitalSignature.class)
 	private DigitalSignature _digitalSignature;
+
+	@BeanReference(type = HandshakeManager.class)
+	private HandshakeManager _handshakeManager;
 
 	@BeanReference(type = LCSGatewayService.class)
 	private LCSGatewayService _lcsGatewayService;

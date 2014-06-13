@@ -14,6 +14,7 @@
 
 package com.liferay.lcs.task;
 
+import com.liferay.jsonwebserviceclient.JSONWebServiceUnavailableException;
 import com.liferay.lcs.messaging.Message;
 import com.liferay.lcs.messaging.RequestCommandMessage;
 import com.liferay.lcs.service.LCSGatewayService;
@@ -39,6 +40,10 @@ public class CommandMessageTask implements Runnable {
 		}
 		catch (Exception e) {
 			_log.error(e, e);
+
+			if (e.getCause() instanceof JSONWebServiceUnavailableException) {
+				_handshakeManager.handleLCSGatewayUnavailable();
+			}
 		}
 	}
 

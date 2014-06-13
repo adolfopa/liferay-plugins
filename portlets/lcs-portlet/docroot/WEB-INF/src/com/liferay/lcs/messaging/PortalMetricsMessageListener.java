@@ -14,8 +14,9 @@
 
 package com.liferay.lcs.messaging;
 
+import com.liferay.jsonwebserviceclient.JSONWebServiceUnavailableException;
 import com.liferay.lcs.service.LCSGatewayService;
-import com.liferay.lcs.util.HandshakeManagerUtil;
+import com.liferay.lcs.util.HandshakeManager;
 import com.liferay.lcs.util.KeyGenerator;
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.log.Log;
@@ -39,7 +40,7 @@ public class PortalMetricsMessageListener implements MessageListener {
 
 	@Override
 	public void receive(Message message) {
-		if (!HandshakeManagerUtil.isReady()) {
+		if (!_handshakeManager.isReady()) {
 			if (_log.isDebugEnabled()) {
 				_log.debug("Waiting for handshake manager");
 			}
@@ -89,6 +90,10 @@ public class PortalMetricsMessageListener implements MessageListener {
 		}
 		catch (Exception e) {
 			_log.error(e, e);
+
+			if (e.getCause() instanceof JSONWebServiceUnavailableException) {
+				_handshakeManager.handleLCSGatewayUnavailable();
+			}
 		}
 	}
 
@@ -155,6 +160,9 @@ public class PortalMetricsMessageListener implements MessageListener {
 
 	private static Log _log = LogFactoryUtil.getLog(
 		PortalMetricsMessageListener.class);
+
+	@BeanReference(type = HandshakeManager.class)
+	private HandshakeManager _handshakeManager;
 
 	@BeanReference(type = KeyGenerator.class)
 	private KeyGenerator _keyGenerator;
