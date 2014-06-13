@@ -23,21 +23,22 @@ import org.apache.commons.logging.LogFactory;
 
 /**
  * @author Brian Wing Shun Chan
+ * @author Peter Shin
  */
-public class GitHubPropsUtil {
+public class DevOpsPropsUtil {
 
 	public static String get(String key) {
 		return _instance._get(key);
 	}
 
-	private GitHubPropsUtil() {
+	private DevOpsPropsUtil() {
 		try {
 			Class<?> clazz = getClass();
 
 			ClassLoader classLoader = clazz.getClassLoader();
 
 			_properties.load(
-				classLoader.getResourceAsStream("/github.properties"));
+				classLoader.getResourceAsStream("/devops.properties"));
 		}
 		catch (IOException ioe) {
 			_log.error(ioe, ioe);
@@ -48,9 +49,9 @@ public class GitHubPropsUtil {
 		return _properties.getProperty(key);
 	}
 
-	private static Log _log = LogFactory.getLog(GitHubPropsUtil.class);
+	private static Log _log = LogFactory.getLog(DevOpsPropsUtil.class);
 
-	private static GitHubPropsUtil _instance = new GitHubPropsUtil();
+	private static DevOpsPropsUtil _instance = new DevOpsPropsUtil();
 
 	private Properties _properties = new Properties();
 

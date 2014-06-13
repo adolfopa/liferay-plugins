@@ -14,6 +14,18 @@
 
 package com.liferay.github.util;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+
+import java.util.Map;
+import java.util.Properties;
+import java.util.concurrent.ConcurrentHashMap;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 /**
  * @author Brian Wing Shun Chan
  * @author Peter Shin
@@ -21,7 +33,69 @@ package com.liferay.github.util;
 public class DevOpsPeekPropsUtil {
 
 	public static String get(String profileName, String key) {
-		return "";
+		return _instance._get(profileName, key);
 	}
+
+	private DevOpsPeekPropsUtil() {
+		InputStream inputStream = null;
+
+		try {
+			inputStream = new FileInputStream(
+				_PEEK_GIT_REPOSITORY_DIR_NAME + "/build.properties");
+		}
+		catch (FileNotFoundException fnfe) {
+			_log.error(fnfe, fnfe);
+		}
+
+		Properties defaultProperties = new Properties();
+
+		try {
+			defaultProperties.load(inputStream);
+		}
+		catch (IOException ioe) {
+			_log.error(ioe, ioe);
+		}
+
+		String profileNames = DevOpsPropsUtil.get("profile.names");
+
+		for (String profileName : profileNames.split(",")) {
+			try {
+				inputStream = new FileInputStream(
+					_PEEK_GIT_REPOSITORY_DIR_NAME + "/build." + profileName +
+						".properties");
+			}
+			catch (FileNotFoundException fnfe) {
+				_log.error(fnfe, fnfe);
+			}
+
+			Properties properties = new Properties(defaultProperties);
+
+			try {
+				properties.load(inputStream);
+			}
+			catch (IOException ioe) {
+				_log.error(ioe, ioe);
+			}
+			finally {
+				_propertiesToProfileNameMap.put(profileName, properties);
+			}
+		}
+	}
+
+	private String _get(String profileName, String key) {
+		Properties properties = _propertiesToProfileNameMap.get(profileName);
+
+		return properties.getProperty(key);
+	}
+
+	private static final String _PEEK_GIT_REPOSITORY_DIR_NAME =
+		"/var/peek/repo";
+
+	private static Log _log = LogFactory.getLog(DevOpsPeekPropsUtil.class);
+
+	private static DevOpsPeekPropsUtil _instance = new DevOpsPeekPropsUtil();
+
+	private Map<String, Properties> _propertiesToProfileNameMap =
+		new ConcurrentHashMap<String, Properties>();
 
 }
