@@ -190,7 +190,7 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 				new File(
 					profileGitRepositoryDir + "/build." +
 						System.getenv("USERNAME") + ".properties"),
-				"app.server.dir=" + _APP_SERVER_DIR, "UTF-8", false);
+				"app.server.dir=" + _APP_SERVER_DIR_NAME, "UTF-8", false);
 		}
 		catch (IOException ioe) {
 			_log.error(ioe, ioe);
@@ -252,7 +252,8 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 		}
 	}
 
-	private static final String _APP_SERVER_DIR = "/opt/java/liferay/tomcat";
+	private static final String _APP_SERVER_DIR_NAME =
+		"/opt/java/liferay/tomcat";
 
 	private static final String _DEV_OPS_DIR_NAME = "/tmp/devops";
 
