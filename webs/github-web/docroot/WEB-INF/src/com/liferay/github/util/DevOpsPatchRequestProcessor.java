@@ -125,10 +125,10 @@ public class DevOpsPatchRequestProcessor {
 		File workDir = _devOpsGitHubRequestProcessor.getProfileGitRepositoryDir(
 			_profileName);
 
-		String blacklistFileNames = DevOpsPropsUtil.get(
-			"profile." + _profileName + ".blacklist.files");
+		String blacklistPathNames = DevOpsPropsUtil.get(
+			"profile." + _profileName + ".blacklist.path.names");
 
-		for (String blacklistFileName : blacklistFileNames.split(",")) {
+		for (String blacklistFileName : blacklistPathNames.split(",")) {
 			DevOpsProcessUtil.Result result = DevOpsProcessUtil.execute(
 				workDir,
 				"git diff " + sha1Hashes[0] + ".." + sha1Hashes[1] +
@@ -138,8 +138,9 @@ public class DevOpsPatchRequestProcessor {
 
 			if (!output.isEmpty()) {
 				String comment = MessageFormat.format(
-					DevOpsPropsUtil.get("comment.modified.blacklisted.file"),
-					blacklistFileNames.replaceAll(",", " or "));
+					DevOpsPropsUtil.get(
+						"github.comment.modified.blacklist.files"),
+					blacklistPathNames.replaceAll(",", " or "));
 
 				DevOpsUtil.postPullRequestComment(payloadJSONObject, comment);
 
@@ -212,7 +213,7 @@ public class DevOpsPatchRequestProcessor {
 			}
 
 			String comment = MessageFormat.format(
-				DevOpsPropsUtil.get("comment.compile.error"),
+				DevOpsPropsUtil.get("github.comment.compile.error"),
 				antDirectDeployResult.getOutput());
 
 			DevOpsUtil.postPullRequestComment(payloadJSONObject, comment);
@@ -258,7 +259,8 @@ public class DevOpsPatchRequestProcessor {
 		DevOpsProcessUtil.execute(workDir, "git rebase --abort");
 
 		String comment = MessageFormat.format(
-			DevOpsPropsUtil.get("comment.merge.conflict"), pluginsGitBranch);
+			DevOpsPropsUtil.get("github.comment.merge.conflict"),
+			pluginsGitBranch);
 
 		DevOpsUtil.postPullRequestComment(payloadJSONObject, comment);
 
@@ -275,7 +277,8 @@ public class DevOpsPatchRequestProcessor {
 		_devOpsGitHubRequestProcessor.updatePeekGitRepository(_profileName);
 
 		DevOpsUtil.postPullRequestComment(
-			payloadJSONObject, DevOpsPropsUtil.get("comment.updating.servers"));
+			payloadJSONObject,
+			DevOpsPropsUtil.get("github.comment.updating.servers"));
 	}
 
 	protected void process(JSONObject payloadJSONObject) throws Exception {
@@ -370,7 +373,8 @@ public class DevOpsPatchRequestProcessor {
 		}
 
 		DevOpsUtil.postPullRequestComment(
-			payloadJSONObject, DevOpsPropsUtil.get("comment.patch.installed"));
+			payloadJSONObject,
+			DevOpsPropsUtil.get("github.comment.patch.installed"));
 
 		DevOpsUtil.closePullRequest(payloadJSONObject);
 	}
