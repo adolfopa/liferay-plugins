@@ -77,13 +77,13 @@ public class DevOpsPeekPropsUtil {
 				_log.error(ioe, ioe);
 			}
 			finally {
-				_propertiesToProfileNameMap.put(profileName, properties);
+				_propertiesMap.put(profileName, properties);
 			}
 		}
 	}
 
 	private String _get(String profileName, String key) {
-		Properties properties = _propertiesToProfileNameMap.get(profileName);
+		Properties properties = _propertiesMap.get(profileName);
 
 		return properties.getProperty(key);
 	}
@@ -95,7 +95,7 @@ public class DevOpsPeekPropsUtil {
 
 	private static DevOpsPeekPropsUtil _instance = new DevOpsPeekPropsUtil();
 
-	private Map<String, Properties> _propertiesToProfileNameMap =
+	private Map<String, Properties> _propertiesMap =
 		new ConcurrentHashMap<String, Properties>();
 
 }
