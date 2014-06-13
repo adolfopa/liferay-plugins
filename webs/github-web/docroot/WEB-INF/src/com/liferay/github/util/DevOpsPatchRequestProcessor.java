@@ -125,22 +125,22 @@ public class DevOpsPatchRequestProcessor {
 		File workDir = _devOpsGitHubRequestProcessor.getProfileGitRepositoryDir(
 			_profileName);
 
-		String blacklistPathNames = DevOpsPropsUtil.get(
-			"profile." + _profileName + ".blacklist.path.names");
+		String blacklistPaths = DevOpsPropsUtil.get(
+			"profile." + _profileName + ".blacklist.paths");
 
-		for (String blacklistFileName : blacklistPathNames.split(",")) {
+		for (String blacklistPath : blacklistPaths.split(",")) {
 			DevOpsProcessUtil.Result result = DevOpsProcessUtil.execute(
 				workDir,
 				"git diff " + sha1Hashes[0] + ".." + sha1Hashes[1] +
-					" --name-only -- " + blacklistFileName);
+					" --name-only -- " + blacklistPath);
 
 			String output = result.getOutput();
 
 			if (!output.isEmpty()) {
 				String comment = MessageFormat.format(
 					DevOpsPropsUtil.get(
-						"github.comment.modified.blacklist.files"),
-					blacklistPathNames.replaceAll(",", " or "));
+						"github.comment.modified.blacklist.paths"),
+					blacklistPaths.replaceAll(",", " or "));
 
 				DevOpsUtil.postPullRequestComment(payloadJSONObject, comment);
 
