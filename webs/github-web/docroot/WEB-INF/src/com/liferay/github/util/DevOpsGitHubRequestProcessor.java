@@ -42,7 +42,7 @@ import org.json.JSONObject;
  */
 public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 
-	public DevOpsGitHubRequestProcessor() {
+	public DevOpsGitHubRequestProcessor() throws Exception {
 		initProfileGitRepositories();
 
 		initScheduledExecutorServices();
@@ -77,7 +77,9 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 		}
 	}
 
-	public synchronized void updatePeekGitRepository(String profileName) {
+	public synchronized void updatePeekGitRepository(String profileName)
+		throws Exception {
+
 		File workDir = new File(_PEEK_GIT_REPOSITORY_DIR_NAME);
 
 		DevOpsProcessUtil.execute(workDir, "git clean -d -f -q -x");
@@ -111,7 +113,9 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 		DevOpsProcessUtil.execute(workDir, "git push origin");
 	}
 
-	public void updateProfileGitRepository(String profileName) {
+	public void updateProfileGitRepository(String profileName)
+		throws Exception {
+
 		File workDir = getProfileGitRepositoryDir(profileName);
 
 		DevOpsProcessUtil.execute(
@@ -152,13 +156,15 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 		return new String[0];
 	}
 
-	protected void initProfileGitRepositories() {
+	protected void initProfileGitRepositories() throws Exception {
 		for (String profileName : getProfileNames()) {
 			initProfileGitRepository(profileName);
 		}
 	}
 
-	protected void initProfileGitRepository(String profileName) {
+	protected void initProfileGitRepository(String profileName)
+		throws Exception {
+
 		File profileGitRepositoryDir = getProfileGitRepositoryDir(profileName);
 
 		if (profileGitRepositoryDir.exists()) {
@@ -236,7 +242,12 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 							return;
 						}
 
-						updateProfileGitRepository(profileName);
+						try {
+							updateProfileGitRepository(profileName);
+						}
+						catch (Exception e) {
+							_log.error(e, e);
+						}
 					}
 				}
 

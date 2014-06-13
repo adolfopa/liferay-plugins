@@ -22,11 +22,15 @@ import java.io.File;
  */
 public class DevOpsProcessUtil {
 
-	public static Result execute(File workDir, String command) {
+	public static Result execute(File workDir, String command)
+		throws Exception {
+
 		return execute(workDir, command.split("\\s+"));
 	}
 
-	public static Result execute(File workDir, String[] commands) {
+	public static Result execute(File workDir, String[] commands)
+		throws Exception {
+
 		Result result = new Result();
 
 		result.setExitCode(0);

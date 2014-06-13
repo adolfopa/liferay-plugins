@@ -120,7 +120,8 @@ public class DevOpsPatchRequestProcessor {
 	}
 
 	protected boolean hasBlacklistedFile(
-		JSONObject payloadJSONObject, String[] sha1Hashes) {
+			JSONObject payloadJSONObject, String[] sha1Hashes)
+		throws Exception {
 
 		File workDir = _devOpsGitHubRequestProcessor.getProfileGitRepositoryDir(
 			_profileName);
@@ -152,7 +153,8 @@ public class DevOpsPatchRequestProcessor {
 	}
 
 	protected boolean hasCompileError(
-		JSONObject payloadJSONObject, String[] sha1Hashes) {
+			JSONObject payloadJSONObject, String[] sha1Hashes)
+		throws Exception {
 
 		File workDir = _devOpsGitHubRequestProcessor.getProfileGitRepositoryDir(
 			_profileName);
@@ -225,7 +227,8 @@ public class DevOpsPatchRequestProcessor {
 	}
 
 	protected boolean hasMergeConflict(
-		JSONObject payloadJSONObject, String[] sha1Hashes) {
+			JSONObject payloadJSONObject, String[] sha1Hashes)
+		throws Exception {
 
 		File workDir = _devOpsGitHubRequestProcessor.getProfileGitRepositoryDir(
 			_profileName);
@@ -267,12 +270,14 @@ public class DevOpsPatchRequestProcessor {
 		return true;
 	}
 
-	protected void initProfileGitRepository(JSONObject payloadJSONObject) {
+	protected void initProfileGitRepository(JSONObject payloadJSONObject)
+		throws Exception {
+
 		_devOpsGitHubRequestProcessor.updateProfileGitRepository(_profileName);
 	}
 
-	protected void mergePatch(
-		JSONObject payloadJSONObject, String[] sha1Hashes) {
+	protected void mergePatch(JSONObject payloadJSONObject, String[] sha1Hashes)
+		throws Exception {
 
 		_devOpsGitHubRequestProcessor.updatePeekGitRepository(_profileName);
 
@@ -315,7 +320,8 @@ public class DevOpsPatchRequestProcessor {
 	}
 
 	protected void updateProfileGitRepository(
-		JSONObject payloadJSONObject, String[] sha1Hashes) {
+			JSONObject payloadJSONObject, String[] sha1Hashes)
+		throws Exception {
 
 		File workDir = _devOpsGitHubRequestProcessor.getProfileGitRepositoryDir(
 			_profileName);
@@ -352,7 +358,8 @@ public class DevOpsPatchRequestProcessor {
 	}
 
 	protected void updatePullRequest(
-		JSONObject payloadJSONObject, String[] sha1Hashes) {
+			JSONObject payloadJSONObject, String[] sha1Hashes)
+		throws Exception {
 
 		for (int i = 0; i < 180; i++) {
 			try {
