@@ -169,8 +169,8 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 		}
 
 		DevOpsProcessUtil.execute(
-			new File(_PLUGINS_GIT_REPOSITORY_DIR_NAME),
-			"git new-workdir " + _PLUGINS_GIT_REPOSITORY_DIR_NAME + " " +
+			new File(_PEEK_PLUGINS_GIT_REPOSITORY_DIR_NAME),
+			"git new-workdir " + _PEEK_PLUGINS_GIT_REPOSITORY_DIR_NAME + " " +
 				profileGitRepositoryDir);
 
 		DevOpsProcessUtil.Result result = DevOpsProcessUtil.execute(
@@ -257,7 +257,7 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 	private static final String _PEEK_GIT_REPOSITORY_DIR_NAME =
 		"/var/peek/repo";
 
-	private static final String _PLUGINS_GIT_REPOSITORY_DIR_NAME =
+	private static final String _PEEK_PLUGINS_GIT_REPOSITORY_DIR_NAME =
 		"/var/peek/builder-dependencies/plugins";
 
 	private static Log _log = LogFactory.getLog(
