@@ -80,7 +80,9 @@ public class HandshakeManagerImpl implements HandshakeManager {
 			return;
 		}
 
-		_log.warn("LCS Gateway unavailable. Stoping communication.");
+		if (_log.isWarnEnabled()) {
+			_log.warn("LCS Gateway unavailable. Stoping communication.");
+		}
 
 		setReady(false);
 
