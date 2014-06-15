@@ -137,24 +137,28 @@ public class BBBParticipantLocalServiceClpInvoker {
 				"com.liferay.bbb.model.BBBParticipant"
 			};
 
-		_methodName61 = "getBBBParticipants";
+		_methodName61 = "fetchBBBParticipant";
 
-		_methodParameterTypes61 = new String[] { "long" };
+		_methodParameterTypes61 = new String[] { "long", "java.lang.String" };
 
-		_methodName62 = "getBBBParticipantsCount";
+		_methodName62 = "getBBBParticipants";
 
 		_methodParameterTypes62 = new String[] { "long" };
 
-		_methodName63 = "updateBBBParticipant";
+		_methodName63 = "getBBBParticipantsCount";
 
-		_methodParameterTypes63 = new String[] {
+		_methodParameterTypes63 = new String[] { "long" };
+
+		_methodName64 = "updateBBBParticipant";
+
+		_methodParameterTypes64 = new String[] {
 				"long", "long", "java.lang.String", "java.lang.String", "int",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName64 = "updateStatus";
+		_methodName65 = "updateStatus";
 
-		_methodParameterTypes64 = new String[] { "long", "int" };
+		_methodParameterTypes65 = new String[] { "long", "int" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -286,16 +290,22 @@ public class BBBParticipantLocalServiceClpInvoker {
 
 		if (_methodName61.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes61, parameterTypes)) {
-			return BBBParticipantLocalServiceUtil.getBBBParticipants(((Long)arguments[0]).longValue());
+			return BBBParticipantLocalServiceUtil.fetchBBBParticipant(((Long)arguments[0]).longValue(),
+				(java.lang.String)arguments[1]);
 		}
 
 		if (_methodName62.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes62, parameterTypes)) {
-			return BBBParticipantLocalServiceUtil.getBBBParticipantsCount(((Long)arguments[0]).longValue());
+			return BBBParticipantLocalServiceUtil.getBBBParticipants(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName63.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes63, parameterTypes)) {
+			return BBBParticipantLocalServiceUtil.getBBBParticipantsCount(((Long)arguments[0]).longValue());
+		}
+
+		if (_methodName64.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes64, parameterTypes)) {
 			return BBBParticipantLocalServiceUtil.updateBBBParticipant(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2], (java.lang.String)arguments[3],
@@ -303,8 +313,8 @@ public class BBBParticipantLocalServiceClpInvoker {
 				(com.liferay.portal.service.ServiceContext)arguments[5]);
 		}
 
-		if (_methodName64.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes64, parameterTypes)) {
+		if (_methodName65.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes65, parameterTypes)) {
 			return BBBParticipantLocalServiceUtil.updateStatus(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue());
 		}
@@ -364,4 +374,6 @@ public class BBBParticipantLocalServiceClpInvoker {
 	private String[] _methodParameterTypes63;
 	private String _methodName64;
 	private String[] _methodParameterTypes64;
+	private String _methodName65;
+	private String[] _methodParameterTypes65;
 }

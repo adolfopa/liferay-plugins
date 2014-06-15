@@ -156,6 +156,60 @@ public interface BBBParticipantPersistence extends BasePersistence<BBBParticipan
 	public int countByBbbMeetingId(long bbbMeetingId);
 
 	/**
+	* Returns the b b b participant where bbbMeetingId = &#63; and emailAddress = &#63; or throws a {@link com.liferay.bbb.NoSuchParticipantException} if it could not be found.
+	*
+	* @param bbbMeetingId the bbb meeting ID
+	* @param emailAddress the email address
+	* @return the matching b b b participant
+	* @throws com.liferay.bbb.NoSuchParticipantException if a matching b b b participant could not be found
+	*/
+	public com.liferay.bbb.model.BBBParticipant findByBMI_EA(
+		long bbbMeetingId, java.lang.String emailAddress)
+		throws com.liferay.bbb.NoSuchParticipantException;
+
+	/**
+	* Returns the b b b participant where bbbMeetingId = &#63; and emailAddress = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	*
+	* @param bbbMeetingId the bbb meeting ID
+	* @param emailAddress the email address
+	* @return the matching b b b participant, or <code>null</code> if a matching b b b participant could not be found
+	*/
+	public com.liferay.bbb.model.BBBParticipant fetchByBMI_EA(
+		long bbbMeetingId, java.lang.String emailAddress);
+
+	/**
+	* Returns the b b b participant where bbbMeetingId = &#63; and emailAddress = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	*
+	* @param bbbMeetingId the bbb meeting ID
+	* @param emailAddress the email address
+	* @param retrieveFromCache whether to use the finder cache
+	* @return the matching b b b participant, or <code>null</code> if a matching b b b participant could not be found
+	*/
+	public com.liferay.bbb.model.BBBParticipant fetchByBMI_EA(
+		long bbbMeetingId, java.lang.String emailAddress,
+		boolean retrieveFromCache);
+
+	/**
+	* Removes the b b b participant where bbbMeetingId = &#63; and emailAddress = &#63; from the database.
+	*
+	* @param bbbMeetingId the bbb meeting ID
+	* @param emailAddress the email address
+	* @return the b b b participant that was removed
+	*/
+	public com.liferay.bbb.model.BBBParticipant removeByBMI_EA(
+		long bbbMeetingId, java.lang.String emailAddress)
+		throws com.liferay.bbb.NoSuchParticipantException;
+
+	/**
+	* Returns the number of b b b participants where bbbMeetingId = &#63; and emailAddress = &#63;.
+	*
+	* @param bbbMeetingId the bbb meeting ID
+	* @param emailAddress the email address
+	* @return the number of matching b b b participants
+	*/
+	public int countByBMI_EA(long bbbMeetingId, java.lang.String emailAddress);
+
+	/**
 	* Caches the b b b participant in the entity cache if it is enabled.
 	*
 	* @param bbbParticipant the b b b participant
