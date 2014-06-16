@@ -222,8 +222,9 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 	}
 
 	protected File getProfileAppServerDir(String profileName) {
-		return new File(
-			getProfileLiferayDir(profileName).getPath() + "/tomcat");
+		File profileLiferayDir = getProfileLiferayDir(profileName);
+
+		return new File(profileLiferayDir.getPath() + "/tomcat");
 	}
 
 	protected String getProfileGitHubUserLogin() {
