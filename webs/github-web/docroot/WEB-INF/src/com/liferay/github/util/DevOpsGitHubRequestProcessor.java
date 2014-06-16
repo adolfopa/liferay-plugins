@@ -17,6 +17,7 @@ package com.liferay.github.util;
 import java.io.File;
 
 import java.text.DateFormat;
+import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 
 import java.util.ArrayList;
@@ -73,6 +74,16 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 				_devOpsPatchRequestProcessors.get(profileName);
 
 			devOpsPatchRequestProcessor.addPayloadJSONObject(payloadJSONObject);
+		}
+		else {
+			String gitHubUserLogins = DevOpsPropsUtil.get(
+				"profile." + profileName + ".github.user.logins");
+
+			String comment = MessageFormat.format(
+				DevOpsPropsUtil.get("github.comment.code.review"),
+				gitHubUserLogins.replaceAll(",", " or "));
+
+			DevOpsUtil.postPullRequestComment(payloadJSONObject, comment);
 		}
 	}
 
