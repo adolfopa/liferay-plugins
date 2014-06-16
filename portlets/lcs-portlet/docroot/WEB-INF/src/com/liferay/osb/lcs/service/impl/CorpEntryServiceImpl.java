@@ -17,6 +17,7 @@ package com.liferay.osb.lcs.service.impl;
 import com.liferay.lcs.service.impl.BaseLCSServiceImpl;
 import com.liferay.osb.lcs.model.CorpEntryIdentifier;
 import com.liferay.osb.lcs.service.CorpEntryService;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 
 import java.util.List;
@@ -49,6 +50,13 @@ public class CorpEntryServiceImpl
 	@Override
 	public List<CorpEntryIdentifier> getCorpEntryIdentifiers(
 		boolean checkLCSClusterUser) {
+
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public List<CorpEntryIdentifier> getLocalCorpEntryIdentifiers()
+		throws PortalException, SystemException {
 
 		throw new UnsupportedOperationException();
 	}
