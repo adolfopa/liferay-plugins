@@ -14,7 +14,9 @@
 
 package com.liferay.github.util;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 
 import java.text.DateFormat;
 import java.text.MessageFormat;
@@ -43,9 +45,75 @@ import org.json.JSONObject;
 public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 
 	public DevOpsGitHubRequestProcessor() throws Exception {
-		initProfileGitRepositories();
+		initProfiles();
 
 		initScheduledExecutorServices();
+	}
+
+	public void buildProfileBundle(String profileName) throws Exception {
+		File workDir = new File(
+			_PEEK_GIT_REPOSITORY_DIR_NAME + "/" + profileName);
+
+		DevOpsProcessUtil.execute(
+			workDir,
+			"rsync -az --delete " + _LIFERAY_ORIGINAL_DIR_NAME + "/ " +
+				getProfileLiferayDir(profileName).getPath());
+
+		File fixPacksFile = new File(
+			_PEEK_GIT_REPOSITORY_DIR_NAME + "/" + profileName +
+				"/artifacts/liferay/fix-packs.txt");
+
+		if (!fixPacksFile.exists()) {
+			return;
+		}
+
+		BufferedReader bufferedReader = null;
+
+		try {
+			bufferedReader = new BufferedReader(new FileReader(fixPacksFile));
+
+			String line = null;
+
+			while ((line = bufferedReader.readLine()) != null) {
+				line = line.trim();
+
+				if (line.length() == 0) {
+					continue;
+				}
+
+				StringBuilder sb = new StringBuilder();
+
+				sb.append("wget -nv http://mirrors.lax.liferay.com");
+				sb.append("/files.liferay.com/private/ee/fix-packs/");
+
+				String fixPacksVersion = DevOpsPropsUtil.get(
+					"profile." + profileName + ".fix.packs.version");
+
+				sb.append(fixPacksVersion);
+				sb.append("/");
+				sb.append(line);
+				sb.append("-");
+				sb.append(fixPacksVersion.replaceAll(".", ""));
+				sb.append(".zip -P ");
+
+				File profileAppServerDir = getProfileAppServerDir(profileName);
+
+				sb.append(profileAppServerDir.getPath());
+				sb.append("/patching-tool/patches");
+
+				DevOpsProcessUtil.execute(profileAppServerDir, sb.toString());
+			}
+		}
+		finally {
+			if (bufferedReader != null) {
+				bufferedReader.close();
+			}
+		}
+
+		DevOpsProcessUtil.execute(
+			workDir,
+			getProfileAppServerDir(profileName).getPath() +
+				"/patching-tool/patching-tool.sh install");
 	}
 
 	@Override
@@ -153,20 +221,23 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 			workDir, "git push devops devops-" + profileName);
 	}
 
+	protected File getProfileAppServerDir(String profileName) {
+		return new File(
+			getProfileLiferayDir(profileName).getPath() + "/tomcat");
+	}
+
 	protected String getProfileGitHubUserLogin() {
 		return DevOpsPropsUtil.get("profile.github.user.login");
+	}
+
+	protected File getProfileLiferayDir(String profileName) {
+		return new File(_DEV_OPS_DIR_NAME + "/" + profileName + "/liferay");
 	}
 
 	protected String[] getProfileNames() {
 		String profileNames = DevOpsPropsUtil.get("profile.names");
 
 		return profileNames.split(",");
-	}
-
-	protected void initProfileGitRepositories() throws Exception {
-		for (String profileName : getProfileNames()) {
-			initProfileGitRepository(profileName);
-		}
 	}
 
 	protected void initProfileGitRepository(String profileName)
@@ -199,7 +270,16 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 			new File(
 				profileGitRepositoryDir + "/build." +
 					System.getenv("USERNAME") + ".properties"),
-			"app.server.dir=" + _APP_SERVER_DIR_NAME, "UTF-8", false);
+			"app.server.dir=" + getProfileAppServerDir(profileName).getPath(),
+			"UTF-8", false);
+	}
+
+	protected void initProfiles() throws Exception {
+		for (String profileName : getProfileNames()) {
+			initProfileGitRepository(profileName);
+
+			buildProfileBundle(profileName);
+		}
 	}
 
 	protected void initScheduledExecutorService(String profileName) {
@@ -262,10 +342,10 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 		}
 	}
 
-	private static final String _APP_SERVER_DIR_NAME =
-		"/opt/java/liferay/tomcat";
-
 	private static final String _DEV_OPS_DIR_NAME = "/tmp/devops";
+
+	private static final String _LIFERAY_ORIGINAL_DIR_NAME =
+		"/opt/java/liferay.original";
 
 	private static final String _PEEK_GIT_REPOSITORY_DIR_NAME =
 		"/var/peek/repo";

@@ -159,6 +159,8 @@ public class DevOpsPatchRequestProcessor {
 			JSONObject payloadJSONObject, String[] sha1Hashes)
 		throws Exception {
 
+		_devOpsGitHubRequestProcessor.buildProfileBundle(_profileName);
+
 		File workDir = _devOpsGitHubRequestProcessor.getProfileGitRepositoryDir(
 			_profileName);
 
