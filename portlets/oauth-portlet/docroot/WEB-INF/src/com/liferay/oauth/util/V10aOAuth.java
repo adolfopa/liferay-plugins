@@ -378,11 +378,11 @@ public class V10aOAuth implements OAuth {
 				_notifyCluster(key, oAuthAccessor);
 
 				if (_log.isDebugEnabled()) {
-					_log.debug("Cluster notified with OAuthAccessor.");
+					_log.debug("Notified cluster");
 				}
 			}
 			catch (Exception se) {
-				_log.error("Failed to notify cluster with OAuthAccessor.", se);
+				_log.error("Unable to notify cluster", se);
 			}
 		}
 	}

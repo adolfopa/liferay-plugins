@@ -33,8 +33,7 @@ public class V10aOAuthDebugCacheListener implements CacheListener {
 			PortalCache portalCache, Serializable key, Object value)
 		throws PortalCacheException {
 
-		logDebug("EntryEvicted", key, value);
-
+		logDebug("Entry evicted", key, value);
 	}
 
 	@Override
@@ -42,7 +41,7 @@ public class V10aOAuthDebugCacheListener implements CacheListener {
 			PortalCache portalCache, Serializable key, Object value)
 		throws PortalCacheException {
 
-		logDebug("EntryExpired", key, value);
+		logDebug("Entry expired", key, value);
 	}
 
 	@Override
@@ -50,7 +49,7 @@ public class V10aOAuthDebugCacheListener implements CacheListener {
 			PortalCache portalCache, Serializable key, Object value)
 		throws PortalCacheException {
 
-		logDebug("EntryPut", key, value);
+		logDebug("Entry put", key, value);
 	}
 
 	@Override
@@ -58,7 +57,7 @@ public class V10aOAuthDebugCacheListener implements CacheListener {
 			PortalCache portalCache, Serializable key, Object value)
 		throws PortalCacheException {
 
-		logDebug("EntryRemoved", key, value);
+		logDebug("Entry removed", key, value);
 	}
 
 	@Override
@@ -66,8 +65,7 @@ public class V10aOAuthDebugCacheListener implements CacheListener {
 			PortalCache portalCache, Serializable key, Object value)
 		throws PortalCacheException {
 
-		logDebug("EntryUpdated", key, value);
-
+		logDebug("Entry updated", key, value);
 	}
 
 	@Override
@@ -75,9 +73,8 @@ public class V10aOAuthDebugCacheListener implements CacheListener {
 		throws PortalCacheException {
 
 		if (_log.isDebugEnabled()) {
-			_log.debug("RemoveAll: " + portalCache.getName());
+			_log.debug("Remove all " + portalCache.getName());
 		}
-
 	}
 
 	protected void logDebug(String method, Serializable key, Object value) {
@@ -94,7 +91,7 @@ public class V10aOAuthDebugCacheListener implements CacheListener {
 		StringBundler sb = new StringBundler(7);
 
 		sb.append(method);
-		sb.append(":");
+		sb.append("  ");
 		sb.append(key);
 		sb.append(":");
 		sb.append(oAuthAccessor.getRequestToken());
