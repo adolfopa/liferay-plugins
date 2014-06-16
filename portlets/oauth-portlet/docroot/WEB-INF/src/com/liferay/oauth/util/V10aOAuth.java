@@ -64,6 +64,11 @@ public class V10aOAuth implements OAuth {
 
 	public V10aOAuth(OAuthValidator oAuthValidator) {
 		_oAuthValidator = oAuthValidator;
+
+		if (_log.isDebugEnabled()) {
+			_portalCache.registerCacheListener(
+				new V10aOAuthDebugCacheListener());
+		}
 	}
 
 	@Override
