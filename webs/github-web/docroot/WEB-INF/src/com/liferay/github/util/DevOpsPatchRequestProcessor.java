@@ -166,31 +166,32 @@ public class DevOpsPatchRequestProcessor {
 			_profileName, "plugins.includes.portal");
 
 		for (String plugin : plugins.split(",")) {
-			String pluginDir = plugin.trim();
+			String pluginName = plugin.trim();
+			String pluginPath = "";
 
-			if (plugin.endsWith("-ext")) {
-				pluginDir = "ext/" + plugin;
+			if (pluginName.endsWith("-ext")) {
+				pluginPath = "ext/" + pluginName;
 			}
-			else if (plugin.endsWith("-hook")) {
-				pluginDir = "hooks/" + plugin;
+			else if (pluginName.endsWith("-hook")) {
+				pluginPath = "hooks/" + pluginName;
 			}
-			else if (plugin.endsWith("-layouttpl")) {
-				pluginDir = "layouttpl/" + plugin;
+			else if (pluginName.endsWith("-layouttpl")) {
+				pluginPath = "layouttpl/" + pluginName;
 			}
-			else if (plugin.endsWith("-portlet")) {
-				pluginDir = "portlets/" + plugin;
+			else if (pluginName.endsWith("-portlet")) {
+				pluginPath = "portlets/" + pluginName;
 			}
-			else if (plugin.endsWith("-theme")) {
-				pluginDir = "themes/" + plugin;
+			else if (pluginName.endsWith("-theme")) {
+				pluginPath = "themes/" + pluginName;
 			}
-			else if (plugin.endsWith("-web")) {
-				pluginDir = "webs/" + plugin;
+			else if (pluginName.endsWith("-web")) {
+				pluginPath = "webs/" + pluginName;
 			}
 
 			DevOpsProcessUtil.Result gitLogResult = DevOpsProcessUtil.execute(
 				workDir,
 				"git log " + sha1Hashes[0] + ".." + sha1Hashes[1] +
-					" --oneline -- " + pluginDir);
+					" --oneline -- " + pluginPath);
 
 			String logOutput = gitLogResult.getOutput();
 
@@ -207,8 +208,7 @@ public class DevOpsPatchRequestProcessor {
 				}
 			}
 
-			File pluginWorkDir = new File(
-				workDir.getPath() + "/plugins/" + pluginDir);
+			File pluginWorkDir = new File(workDir.getPath() + "/" + pluginPath);
 
 			DevOpsProcessUtil.Result antDirectDeployResult =
 				DevOpsProcessUtil.execute(pluginWorkDir, "ant direct-deploy");

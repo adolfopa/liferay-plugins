@@ -170,7 +170,7 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 		DevOpsProcessUtil.execute(
 			new File(_PEEK_PLUGINS_GIT_REPOSITORY_DIR_NAME),
 			"git new-workdir " + _PEEK_PLUGINS_GIT_REPOSITORY_DIR_NAME + " " +
-				profileGitRepositoryDir);
+				profileGitRepositoryDir.getPath());
 
 		DevOpsProcessUtil.Result result = DevOpsProcessUtil.execute(
 			profileGitRepositoryDir, "git config --get remote.devops.url");
