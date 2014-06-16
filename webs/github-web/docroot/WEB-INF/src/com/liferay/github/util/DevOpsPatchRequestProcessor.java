@@ -375,10 +375,9 @@ public class DevOpsPatchRequestProcessor {
 			int responseCode = 0;
 
 			try {
-				String profileServerURL = DevOpsPropsUtil.get(
-					"profile." + _profileName + ".server.url");
-
-				URL url = new URL(profileServerURL);
+				URL url = new URL(
+					DevOpsPropsUtil.get(
+						"profile." + _profileName + ".server.url"));
 
 				HttpURLConnection httpURLConnection =
 					(HttpURLConnection)url.openConnection();
