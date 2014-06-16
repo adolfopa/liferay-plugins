@@ -166,8 +166,9 @@ public class DevOpsPatchRequestProcessor {
 			_profileName, "plugins.includes.portal");
 
 		for (String plugin : plugins.split(",")) {
-			String pluginName = plugin.trim();
 			String pluginPath = "";
+
+			String pluginName = plugin.trim();
 
 			if (pluginName.endsWith("-ext")) {
 				pluginPath = "ext/" + pluginName;
