@@ -15,7 +15,6 @@
 package com.liferay.github.util;
 
 import java.io.File;
-import java.io.IOException;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -95,16 +94,11 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 		String commitMessage =
 			profileName + " " + dateFormat.format(new Date());
 
-		try {
-			FileUtils.writeStringToFile(
-				new File(
+		FileUtils.writeStringToFile(
+			new File(
 				_PEEK_GIT_REPOSITORY_DIR_NAME + profileName +
 					"/portal/redeploy.marker"),
-				commitMessage, "UTF-8", false);
-		}
-		catch (IOException ioe) {
-			_log.error(ioe, ioe);
-		}
+			commitMessage, "UTF-8", false);
 
 		DevOpsProcessUtil.execute(
 			workDir, "git add " + profileName + "/portal/redeploy.marker");
@@ -188,16 +182,11 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 					getProfileGitHubUserLogin() + "/liferay-plugins-ee.git");
 		}
 
-		try {
-			FileUtils.writeStringToFile(
-				new File(
-					profileGitRepositoryDir + "/build." +
-						System.getenv("USERNAME") + ".properties"),
-				"app.server.dir=" + _APP_SERVER_DIR_NAME, "UTF-8", false);
-		}
-		catch (IOException ioe) {
-			_log.error(ioe, ioe);
-		}
+		FileUtils.writeStringToFile(
+			new File(
+				profileGitRepositoryDir + "/build." +
+					System.getenv("USERNAME") + ".properties"),
+			"app.server.dir=" + _APP_SERVER_DIR_NAME, "UTF-8", false);
 	}
 
 	protected void initScheduledExecutorService(String profileName) {
