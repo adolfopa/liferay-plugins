@@ -143,11 +143,13 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 	}
 
 	protected String getProfileGitHubUserLogin() {
-		return null;
+		return DevOpsPropsUtil.get("profile.github.user.login");
 	}
 
 	protected String[] getProfileNames() {
-		return new String[0];
+		String profileNames = DevOpsPropsUtil.get("profile.names");
+
+		return profileNames.split(",");
 	}
 
 	protected void initProfileGitRepositories() throws Exception {
