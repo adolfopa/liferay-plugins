@@ -16,6 +16,9 @@ package com.liferay.github.util;
 
 import java.io.File;
 
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 import java.text.MessageFormat;
 
 import java.util.Queue;
@@ -358,8 +361,9 @@ public class DevOpsPatchRequestProcessor {
 	}
 
 	protected void updatePullRequest(
-			JSONObject payloadJSONObject, String[] sha1Hashes)
-		throws Exception {
+		JSONObject payloadJSONObject, String[] sha1Hashes) {
+
+		boolean restartingServer = false;
 
 		for (int i = 0; i < 180; i++) {
 			try {
@@ -368,13 +372,32 @@ public class DevOpsPatchRequestProcessor {
 			catch (InterruptedException ie) {
 			}
 
-			DevOpsProcessUtil.Result result = DevOpsProcessUtil.execute(
-				new File("/tmp"),
-				"test -e peek_redeploy.lock && echo \"Lock exists.\"");
+			int responseCode = 0;
 
-			String output = result.getOutput();
+			try {
+				String profileServerURL = DevOpsPropsUtil.get(
+					"profile." + _profileName + ".server.url");
 
-			if (output.isEmpty()) {
+				URL url = new URL(profileServerURL);
+
+				HttpURLConnection httpURLConnection =
+					(HttpURLConnection)url.openConnection();
+
+				responseCode = httpURLConnection.getResponseCode();
+			}
+			catch (Exception e) {
+				continue;
+			}
+
+			if (responseCode != HttpURLConnection.HTTP_OK) {
+				restartingServer = true;
+			}
+
+			if (!restartingServer) {
+				continue;
+			}
+
+			if (responseCode == HttpURLConnection.HTTP_OK) {
 				break;
 			}
 		}
