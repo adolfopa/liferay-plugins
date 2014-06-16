@@ -5,4 +5,7 @@
 		<param-name>portalContextConfigLocation</param-name>
 		<param-value>/WEB-INF/classes/META-INF/oauth-spring.xml</param-value>
 	</context-param>
+	<listener>
+		<listener-class>com.liferay.oauth.servlet.OAuthServletContextListener</listener-class>
+	</listener>
 </web-app>
