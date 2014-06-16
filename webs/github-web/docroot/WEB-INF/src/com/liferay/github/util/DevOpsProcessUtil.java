@@ -14,7 +14,12 @@
 
 package com.liferay.github.util;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.InputStreamReader;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Brian Wing Shun Chan
@@ -25,18 +30,80 @@ public class DevOpsProcessUtil {
 	public static Result execute(File workDir, String command)
 		throws Exception {
 
-		return execute(workDir, command.split("\\s+"));
+		List<String> commands = new ArrayList<String>();
+
+		do {
+			command = command.trim();
+
+			int beginIndex = 0;
+			int endIndex = 0;
+
+			if (command.startsWith("\"")) {
+				beginIndex = 1;
+				endIndex = command.indexOf("\"", beginIndex);
+			}
+			else if (command.startsWith("'")) {
+				beginIndex = 1;
+				endIndex = command.indexOf("'", beginIndex);
+			}
+			else {
+				endIndex = command.indexOf(" ");
+			}
+
+			commands.add(command.substring(beginIndex, endIndex));
+
+			command = command.substring(endIndex + 1);
+		}
+		while (!command.isEmpty());
+
+		return execute(workDir, commands.toArray(new String[commands.size()]));
 	}
 
 	public static Result execute(File workDir, String[] commands)
 		throws Exception {
 
-		Result result = new Result();
+		BufferedReader bufferedReader = null;
 
-		result.setExitCode(0);
-		result.setOutput("");
+		try {
+			ProcessBuilder processBuilder = new ProcessBuilder(commands);
 
-		return result;
+			processBuilder.directory(workDir);
+			processBuilder.redirectErrorStream(true);
+
+			Process process = processBuilder.start();
+
+			bufferedReader = new BufferedReader(
+				new InputStreamReader(process.getInputStream()));
+
+			String line = null;
+			StringBuilder sb = new StringBuilder();
+
+			while ((line = bufferedReader.readLine()) != null) {
+				line = line.trim();
+
+				if (line.length() == 0) {
+					continue;
+				}
+
+				if (sb.length() != 0) {
+					sb.append("\n");
+				}
+
+				sb.append(line);
+			}
+
+			Result result = new Result();
+
+			result.setExitCode(process.waitFor());
+			result.setOutput(sb.toString());
+
+			return result;
+		}
+		finally {
+			if (bufferedReader != null) {
+				bufferedReader.close();
+			}
+		}
 	}
 
 	public static class Result {
