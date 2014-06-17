@@ -32,7 +32,7 @@ import java.util.List;
  * @author Mika Koivisto
  * @author Brian Wing Shun Chan
  */
-public class UserListener extends BaseModelListener<User> {
+public class UserModelListener extends BaseModelListener<User> {
 
 	public void onBeforeCreate(User user) throws ModelListenerException {
 		auditOnCreateOrRemove(EventTypes.ADD, user);

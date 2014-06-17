@@ -36,7 +36,7 @@ import java.util.List;
  * @author Mika Koivisto
  * @author Brian Wing Shun Chan
  */
-public class RoleListener extends BaseModelListener<Role> {
+public class RoleModelListener extends BaseModelListener<Role> {
 
 	@Override
 	public void onBeforeAddAssociation(

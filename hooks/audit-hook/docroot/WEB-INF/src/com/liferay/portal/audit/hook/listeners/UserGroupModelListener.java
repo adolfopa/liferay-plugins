@@ -35,7 +35,7 @@ import java.util.List;
  * @author Mika Koivisto
  * @author Brian Wing Shun Chan
  */
-public class UserGroupListener extends BaseModelListener<UserGroup> {
+public class UserGroupModelListener extends BaseModelListener<UserGroup> {
 
 	@Override
 	public void onBeforeAddAssociation(

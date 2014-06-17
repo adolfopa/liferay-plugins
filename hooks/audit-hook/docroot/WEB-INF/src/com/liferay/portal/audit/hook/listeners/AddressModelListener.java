@@ -32,7 +32,7 @@ import java.util.List;
  * @author Mika Koivisto
  * @author Brian Wing Shun Chan
  */
-public class AddressListener extends BaseModelListener<Address> {
+public class AddressModelListener extends BaseModelListener<Address> {
 
 	public void onBeforeUpdate(Address newAddress)
 		throws ModelListenerException {

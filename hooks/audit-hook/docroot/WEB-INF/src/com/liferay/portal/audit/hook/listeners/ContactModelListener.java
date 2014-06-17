@@ -32,7 +32,7 @@ import java.util.List;
  * @author Mika Koivisto
  * @author Brian Wing Shun Chan
  */
-public class ContactListener extends BaseModelListener<Contact> {
+public class ContactModelListener extends BaseModelListener<Contact> {
 
 	public void onBeforeUpdate(Contact newContact)
 		throws ModelListenerException {

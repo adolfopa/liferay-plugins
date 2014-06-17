@@ -30,7 +30,8 @@ import com.liferay.portal.model.UserGroupRole;
  * @author Mika Koivisto
  * @author Brian Wing Shun Chan
  */
-public class UserGroupRoleListener extends BaseModelListener<UserGroupRole> {
+public class UserGroupRoleModelListener
+	extends BaseModelListener<UserGroupRole> {
 
 	public void onBeforeCreate(UserGroupRole userGroupRole)
 		throws ModelListenerException {
