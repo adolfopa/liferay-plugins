@@ -39,5 +39,20 @@
 		<security-role-ref>
 			<role-name>user</role-name>
 		</security-role-ref>
+		<supported-public-render-parameter>layoutCorpEntryId</supported-public-render-parameter>
+		<supported-public-render-parameter>layoutLCSClusterEntryId</supported-public-render-parameter>
+		<supported-public-render-parameter>layoutLCSClusterNodeId</supported-public-render-parameter>
 	</portlet>
+	<public-render-parameter>
+		<identifier>layoutCorpEntryId</identifier>
+		<qname xmlns:x="http://www.liferay.com/public-render-parameters">x:layoutCorpEntryId</qname>
+	</public-render-parameter>
+	<public-render-parameter>
+		<identifier>layoutLCSClusterEntryId</identifier>
+		<qname xmlns:x="http://www.liferay.com/public-render-parameters">x:layoutLCSClusterEntryId</qname>
+	</public-render-parameter>
+	<public-render-parameter>
+		<identifier>layoutLCSClusterNodeId</identifier>
+		<qname xmlns:x="http://www.liferay.com/public-render-parameters">x:layoutLCSClusterNodeId</qname>
+	</public-render-parameter>
 </portlet-app>

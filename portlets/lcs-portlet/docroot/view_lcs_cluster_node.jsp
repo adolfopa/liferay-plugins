@@ -33,66 +33,22 @@ for (CorpEntryIdentifier currentCorpEntryIdentifier : CorpEntryServiceUtil.getCo
 		break;
 	}
 }
+
+String connectionStatus = "connected";
+
+if (!ready && !pending) {
+	connectionStatus = "disconnected";
+} else if (!ready && pending) {
+	connectionStatus = "synchronizing";
+}
 %>
 
-<div class="lcs-header">
-	<div class="lcs-connection-status">
-		<c:choose>
-			<c:when test="<%= ready %>">
-				<div class="lcs-connection-icon lcs-icon-connected">
-					<liferay-ui:icon-help message='<%= LanguageUtil.get(pageContext, "connected-help") %>' />
-				</div>
+<div class="lcs-connection-status <%= connectionStatus %>">
+	<span class="lcs-connection-icon"></span>
 
-				<div class="lcs-connection-label"><liferay-ui:message key="connected" /></div>
-			</c:when>
-			<c:when test="<%= !ready && !pending %>">
-				<div class="lcs-connection-icon lcs-icon-disconnected">
-					<liferay-ui:icon-help message='<%= LanguageUtil.get(pageContext, "disconnected-help") %>' />
-				</div>
+	<span class="lcs-connection-label"><%= HtmlUtil.escape(LanguageUtil.get(pageContext, connectionStatus)) %></span>
 
-				<div class="lcs-connection-label"><liferay-ui:message key="disconnected" /></div>
-			</c:when>
-			<c:when test="<%= !ready && pending %>">
-				<div class="lcs-connection-icon lcs-icon-pending">
-					<liferay-ui:icon-help message='<%= LanguageUtil.get(pageContext, "synchronizing-help") %>' />
-				</div>
-
-				<div class="lcs-connection-label"><liferay-ui:message key="synchronizing" /></div>
-			</c:when>
-		</c:choose>
-	</div>
-
-	<div class="lcs-header-title">
-		<div class="lcs-project">
-			<%= HtmlUtil.escape(corpEntryIdentifier.getName()) %>
-		</div>
-
-		<div class="lcs-portal">
-			<liferay-ui:message key="visit" />:
-
-			<%
-			String lcsPortalURL = "http://" + PortletProps.get("osb.lcs.portlet.host.name");
-
-			String lcsPortalPort = PortletProps.get("osb.lcs.portlet.host.port");
-
-			if (!lcsPortalPort.equals("80")) {
-				lcsPortalURL = lcsPortalURL + ":" + lcsPortalPort;
-			}
-			%>
-
-			<aui:a href="<%= lcsPortalURL %>" label="cloud-dashboard" target="_blank" />
-		</div>
-	</div>
-</div>
-
-<div class="lcs-environment">
-	<h3><liferay-ui:message key="environment" /></h3>
-
-	<dl>
-		<dd>
-			<%= HtmlUtil.escape(lcsClusterEntry.getName()) %>
-		</dd>
-	</dl>
+	<liferay-ui:icon-help message='<%= LanguageUtil.get(pageContext, connectionStatus + "-help") %>' />
 </div>
 
 <div class="lcs-info">
@@ -175,34 +131,48 @@ for (CorpEntryIdentifier currentCorpEntryIdentifier : CorpEntryServiceUtil.getCo
 		</dl>
 	</div>
 
-	<div class="lcs-server-info">
-		<h3><liferay-ui:message key="server" /></h3>
+	<div class="lcs-portal-info">
+		<h3><liferay-ui:message key="visit-cloud-portal" /></h3>
 
 		<dl>
 			<dt>
-				<liferay-ui:message key="name" />
+				<liferay-ui:message key="project" />
 			</dt>
 			<dd>
-				<%= HtmlUtil.escape(lcsClusterNode.getName()) %>
-			</dd>
-			<dt>
-				<liferay-ui:message key="location" />
-			</dt>
-			<dd>
-				<%= HtmlUtil.escape(lcsClusterNode.getLocation()) %>
-			</dd>
-			<dt>
-				<liferay-ui:message key="description" />
-			</dt>
-			<dd>
-				<%= HtmlUtil.escape(lcsClusterNode.getDescription()) %>
+				<aui:a href="<%= LCSPortalUtil.getCorpEntryPageURL(request, corpEntryIdentifier) %>" target="_blank">
+					<%= HtmlUtil.escape(corpEntryIdentifier.getName()) %>
+				</aui:a>
 			</dd>
 		</dl>
+		<dl>
+			<dt>
+				<liferay-ui:message key="environment" />
+			</dt>
+			<dd>
+				<aui:a href="<%= LCSPortalUtil.getLCSClusterEntryPageURL(request, corpEntryIdentifier, lcsClusterNode) %>" target="_blank">
+					<%= HtmlUtil.escape(lcsClusterEntry.getName()) %>
+				</aui:a>
+			</dd>
+		</dl>
+		<dl>
+			<dt>
+				<liferay-ui:message key="server" />
+			</dt>
+			<dd>
+				<aui:a href="<%= LCSPortalUtil.getLCSClusterNodePageURL(request, corpEntryIdentifier, lcsClusterNode) %>" target="_blank">
+					<%= HtmlUtil.escape(lcsClusterNode.getName()) %>
+				</aui:a>
+			</dd>
+		</dl>
+	</div>
 
-		<c:if test="<%= ClusterExecutorUtil.isEnabled() %>">
+	<c:if test="<%= ClusterExecutorUtil.isEnabled() %>">
+		<div class="lcs-cluster-info">
+			<h3><liferay-ui:message key="cluster" /></h3>
+
 			<dl>
 				<dt>
-					<liferay-ui:message key="nodes" />
+					<liferay-ui:message key="cluster-node-ids" />
 				</dt>
 				<dd>
 
@@ -218,8 +188,8 @@ for (CorpEntryIdentifier currentCorpEntryIdentifier : CorpEntryServiceUtil.getCo
 
 				</dd>
 			</dl>
-		</c:if>
-	</div>
+		</div>
+	</c:if>
 </div>
 
 <aui:button-row>

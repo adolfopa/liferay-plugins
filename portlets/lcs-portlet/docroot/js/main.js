@@ -3,13 +3,13 @@ AUI.add(
 	function(A) {
 		var Lang = A.Lang;
 
-		var CSS_ICON_CONNECTED = 'lcs-icon-connected';
+		var CSS_CONNECTED = 'connected';
 
-		var CSS_ICON_DISCONNECTED = 'lcs-icon-disconnected';
-
-		var CSS_ICON_PENDING = 'lcs-icon-pending';
+		var CSS_DISCONNECTED = 'disconnected';
 
 		var CSS_LCS_CLUSTER_ENTRY_DIALOG = 'lcs-cluster-entry-dialog';
+
+		var CSS_SYNCHRONIZING = 'synchronizing';
 
 		var STR_CLICK = 'click';
 
@@ -433,7 +433,6 @@ AUI.add(
 
 						var connectionStatusNode = instance.one('.lcs-connection-status');
 
-						var connectionStatusIconNode = connectionStatusNode.one('.lcs-connection-icon');
 						var connectionStatusLabelNode = connectionStatusNode.one('.lcs-connection-label');
 						var connectionStatusTooltipNode = connectionStatusNode.one('.tooltip-text');
 
@@ -452,9 +451,9 @@ AUI.add(
 								tooltip.addClass('tooltip-hidden');
 							}
 
-							connectionStatusIconNode.removeClass(CSS_ICON_CONNECTED);
-							connectionStatusIconNode.removeClass(CSS_ICON_DISCONNECTED);
-							connectionStatusIconNode.addClass(CSS_ICON_PENDING);
+							connectionStatusNode.removeClass(CSS_CONNECTED);
+							connectionStatusNode.removeClass(CSS_DISCONNECTED);
+							connectionStatusNode.addClass(CSS_SYNCHRONIZING);
 
 							connectionStatusLabelNode.html(instance._labelPending);
 							connectionStatusTooltipNode.html(instance._labelPendingHelp);
@@ -462,13 +461,13 @@ AUI.add(
 						else {
 							alertContainerNode.hide();
 
-							connectionStatusIconNode.removeClass(CSS_ICON_PENDING);
+							connectionStatusNode.removeClass(CSS_SYNCHRONIZING);
 
 							if (ready) {
 								connectButton.hide();
 								disconnectButton.show();
 
-								connectionStatusIconNode.addClass(CSS_ICON_CONNECTED);
+								connectionStatusNode.addClass(CSS_CONNECTED);
 
 								connectionStatusLabelNode.html(instance._labelConnected);
 								connectionStatusTooltipNode.html(instance._labelConnectedHelp);
@@ -477,7 +476,7 @@ AUI.add(
 								connectButton.show();
 								disconnectButton.hide();
 
-								connectionStatusIconNode.addClass(CSS_ICON_DISCONNECTED);
+								connectionStatusNode.addClass(CSS_DISCONNECTED);
 
 								connectionStatusLabelNode.html(instance._labelDisconnected);
 								connectionStatusTooltipNode.html(instance._labelDisconnectedHelp);

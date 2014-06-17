@@ -36,67 +36,37 @@ span.lcs-alert {
 		width: auto;
 	}
 
-	.lcs-header {
+	.lcs-connection-status {
 		color: $text-lightgrey;
-		padding-bottom: 25px;
+		font-size: 20px;
+		line-height: 29px;
+		padding: 10px;
 
-		&:after {
-			clear: both;
-			content: '';
-			display: block;
-			visibility: hidden;
+		&.connected .lcs-connection-icon {
+			background-image: url(../images/connection_green.png);
 		}
 
-		.lcs-connection-status {
-			float: left;
-			margin-right: 25px;
-
-			.lcs-connection-icon {
-				height: 29px;
-				margin: 0 auto 2px;
-				position: relative;
-				width: 29px;
-
-				&.lcs-icon-disconnected {
-					background-image: url(../images/connection_red.png);
-				}
-
-				&.lcs-icon-pending {
-					background-image: url(../images/connection_orange.png);
-				}
-
-				&.lcs-icon-connected {
-					background-image: url(../images/connection_green.png);
-				}
-
-				.taglib-icon-help {
-					position: absolute;
-					right: -20px;
-					top: -2px;
-				}
-			}
-
-			.lcs-connection-label {
-				font-size: 12px;
-				line-height: 12px;
-				text-align: center;
-			}
+		&.disconnected .lcs-connection-icon {
+			background-image: url(../images/connection_red.png);
 		}
 
-		.lcs-header-title {
-			float: left;
+		&.synchronizing .lcs-connection-icon {
+			background-image: url(../images/connection_orange.png);
+		}
 
-			.lcs-project {
-				color: $text-blue;
-				font-size: 20px;
-				line-height: 20px;
-				margin-bottom: 4px;
-			}
+		& > span {
+			display: inline-block;
+			vertical-align: middle;
+		}
 
-			.lcs-portal {
-				font-size: 15px;
-				line-height: 15px;
-			}
+		.lcs-connection-icon {
+			height: 29px;
+			position: relative;
+			width: 29px;
+		}
+
+		.taglib-icon-help img {
+			margin-bottom: 8px;
 		}
 	}
 
@@ -108,13 +78,7 @@ span.lcs-alert {
 			visibility: hidden;
 		}
 
-		.lcs-connection-info {
-			float: left;
-			width: 300px;
-			word-wrap: break-word;
-		}
-
-		.lcs-server-info {
+		& > div {
 			float: left;
 			width: 300px;
 			word-wrap: break-word;

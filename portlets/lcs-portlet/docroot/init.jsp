@@ -26,6 +26,7 @@
 page import="com.liferay.lcs.oauth.OAuthUtil" %><%@
 page import="com.liferay.lcs.util.HandshakeManagerUtil" %><%@
 page import="com.liferay.lcs.util.KeyGeneratorUtil" %><%@
+page import="com.liferay.lcs.util.LCSPortalUtil" %><%@
 page import="com.liferay.lcs.util.LCSUtil" %><%@
 page import="com.liferay.osb.lcs.DuplicateLCSClusterNodeNameException" %><%@
 page import="com.liferay.osb.lcs.RequiredLCSClusterNodeNameException" %><%@
@@ -45,8 +46,7 @@ page import="com.liferay.portal.kernel.util.FastDateFormatFactoryUtil" %><%@
 page import="com.liferay.portal.kernel.util.GetterUtil" %><%@
 page import="com.liferay.portal.kernel.util.HtmlUtil" %><%@
 page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
-page import="com.liferay.portal.kernel.util.StringPool" %><%@
-page import="com.liferay.util.portlet.PortletProps" %>
+page import="com.liferay.portal.kernel.util.StringPool" %>
 
 <%@ page import="java.text.Format" %>
 
