@@ -29,6 +29,7 @@ import com.liferay.portal.patcher.PatcherUtil;
 
 import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -36,6 +37,10 @@ import java.net.URL;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipException;
+import java.util.zip.ZipFile;
+import java.util.zip.ZipInputStream;
 
 /**
  * @author Ivica Cardic
@@ -107,6 +112,21 @@ public class DownloadPatchesCommand implements Command {
 				return;
 			}
 
+			if (!isValidZipFile(file)) {
+				responsePayload.clear();
+
+				responsePayload.put(fileName, LCSConstants.PATCHES_ERROR);
+
+				responseCommandMessage =
+					ResponseCommandMessageUtil.createResponseCommandMessage(
+						requestCommandMessage, responsePayload,
+						"File " + file + " is corrupted");
+
+				_lcsGatewayService.sendMessage(responseCommandMessage);
+
+				return;
+			}
+
 			if (_log.isInfoEnabled()) {
 				_log.info("Downloaded patch " + fileName);
 			}
@@ -120,6 +140,56 @@ public class DownloadPatchesCommand implements Command {
 					requestCommandMessage, responsePayload);
 
 			_lcsGatewayService.sendMessage(responseCommandMessage);
+		}
+	}
+
+	private boolean isValidZipFile(File file) {
+		ZipFile zipfile = null;
+		ZipInputStream zipInputStream = null;
+
+		try {
+			zipfile = new ZipFile(file);
+
+			FileInputStream fileInputStream = new FileInputStream(file);
+
+			zipInputStream = new ZipInputStream(fileInputStream);
+
+			ZipEntry zipEntry = zipInputStream.getNextEntry();
+
+			if (zipEntry == null) {
+				return false;
+			}
+
+			while (zipEntry != null) {
+				zipfile.getInputStream(zipEntry);
+
+				zipEntry.getCompressedSize();
+				zipEntry.getCrc();
+				zipEntry.getName();
+
+				zipEntry = zipInputStream.getNextEntry();
+			}
+
+			return true;
+		}
+		catch (ZipException ze) {
+			return false;
+		}
+		catch (IOException ioe) {
+			return false;
+		}
+		finally {
+			try {
+				if (zipfile != null) {
+					zipfile.close();
+				}
+
+				if (zipInputStream != null) {
+					zipInputStream.close();
+				}
+			}
+			catch (IOException ioe) {
+			}
 		}
 	}
 
