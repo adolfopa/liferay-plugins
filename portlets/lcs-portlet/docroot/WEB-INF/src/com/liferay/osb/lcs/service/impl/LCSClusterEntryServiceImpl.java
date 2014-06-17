@@ -192,7 +192,9 @@ public class LCSClusterEntryServiceImpl
 			corpEntryId);
 
 		for (LCSClusterEntry lcsClusterEntry : lcsClusterEntries) {
-			if (lcsClusterEntryName.equals(lcsClusterEntry.getName())) {
+			if (lcsClusterEntryName.equalsIgnoreCase(
+					lcsClusterEntry.getName())) {
+
 				throw new DuplicateLCSClusterEntryNameException();
 			}
 		}
