@@ -269,6 +269,11 @@ public class DocumentumFileEntry extends DocumentumModel implements FileEntry {
 		return DLUtil.getFileIcon(getExtension());
 	}
 
+	@Override
+	public String getIconCssClass() {
+		return DLUtil.getFileIconCssClass(getExtension());
+	}
+
 	public String getImageType() {
 		return null;
 	}
