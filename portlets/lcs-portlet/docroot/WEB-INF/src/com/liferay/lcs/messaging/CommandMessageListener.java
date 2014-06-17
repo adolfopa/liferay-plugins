@@ -49,6 +49,8 @@ public class CommandMessageListener implements MessageListener {
 				command.execute(requestCommandMessage);
 			}
 			catch (Exception e) {
+				_log.error(e, e);
+
 				error = e.getMessage();
 			}
 		}
