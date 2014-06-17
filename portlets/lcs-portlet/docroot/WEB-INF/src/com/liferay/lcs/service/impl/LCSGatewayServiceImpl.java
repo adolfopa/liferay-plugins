@@ -23,6 +23,8 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.security.auth.PrincipalException;
 
+import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +36,21 @@ import javax.security.auth.login.CredentialException;
  */
 public class LCSGatewayServiceImpl
 	extends BaseLCSServiceImpl implements LCSGatewayService {
+
+	@Override
+	public void deleteMessages(String key)
+		throws PortalException, SystemException {
+
+		try {
+			doGet(_URL_LCS_GATEWAY_DELETE_MESSAGES, "key", key);
+		}
+		catch (CredentialException ce) {
+			throw new PrincipalException(ce);
+		}
+		catch (IOException ioe) {
+			throw new SystemException(ioe);
+		}
+	}
 
 	@Override
 	public List<Message> getMessages(String key)
@@ -90,6 +107,9 @@ public class LCSGatewayServiceImpl
 
 	private static final String _URL_LCS_GATEWAY =
 		"/osb-lcs-gateway-web/api/jsonws/lcsgateway";
+
+	private static final String _URL_LCS_GATEWAY_DELETE_MESSAGES =
+		LCSGatewayServiceImpl._URL_LCS_GATEWAY + "/delete-messages";
 
 	private static final String _URL_LCS_GATEWAY_GET_MESSAGES =
 		LCSGatewayServiceImpl._URL_LCS_GATEWAY + "/get-messages";

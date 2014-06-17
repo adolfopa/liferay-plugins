@@ -26,6 +26,9 @@ import java.util.List;
  */
 public interface LCSGatewayService {
 
+	public void deleteMessages(String key)
+		throws PortalException, SystemException;
+
 	public List<Message> getMessages(String key)
 		throws PortalException, SystemException;
 

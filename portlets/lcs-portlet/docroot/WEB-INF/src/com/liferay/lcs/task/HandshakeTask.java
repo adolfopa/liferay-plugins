@@ -117,6 +117,8 @@ public class HandshakeTask implements Runnable {
 			_log.info("Initiate handshake");
 		}
 
+		_lcsGatewayService.deleteMessages(key);
+
 		HandshakeMessage handshakeMessage = new HandshakeMessage();
 
 		handshakeMessage.put(
