@@ -14,6 +14,16 @@
 
 package com.liferay.github.util;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 import org.json.JSONObject;
 
 /**
@@ -145,8 +155,55 @@ public class DevOpsUtil {
 		return executePost(sb.toString(), dataJSONObject);
 	}
 
-	protected static JSONObject executePost(String url, JSONObject jsonObject) {
-		return null;
+	protected static JSONObject executePost(String url, JSONObject jsonObject)
+		throws Exception {
+
+		BufferedReader bufferedReader = null;
+		BufferedWriter bufferedWriter = null;
+
+		try {
+			URL postURL = new URL(url);
+
+			HttpURLConnection httpURLConnection =
+				(HttpURLConnection)postURL.openConnection();
+
+			httpURLConnection.setDoOutput(true);
+			httpURLConnection.setRequestMethod("POST");
+
+			DevOpsProcessUtil.Result result = DevOpsProcessUtil.execute(
+				new File(DevOpsConstants.PEEK_PLUGINS_GIT_REPOSITORY_DIR_NAME),
+				"git config github.oauth-token");
+
+			httpURLConnection.setRequestProperty(
+				"Authorization", "token " + result.getOutput());
+
+			bufferedWriter = new BufferedWriter(
+				new OutputStreamWriter(httpURLConnection.getOutputStream()));
+
+			bufferedWriter.write(jsonObject.toString());
+
+			bufferedReader = new BufferedReader(
+				new InputStreamReader(
+					(InputStream)httpURLConnection.getContent()));
+
+			String line = null;
+			StringBuilder sb = new StringBuilder();
+
+			while ((line = bufferedReader.readLine()) != null) {
+				sb.append(line);
+			}
+
+			return new JSONObject(sb.toString());
+		}
+		finally {
+			if (bufferedReader != null) {
+				bufferedReader.close();
+			}
+
+			if (bufferedWriter != null) {
+				bufferedWriter.close();
+			}
+		}
 	}
 
 }
