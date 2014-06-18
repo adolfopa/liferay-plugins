@@ -61,6 +61,10 @@ if ((kaleoProcessLinkId > 0) && !workflowTask.isCompleted() && _isAssignedToUser
 }
 
 long[] pooledActorsIds = WorkflowTaskManagerUtil.getPooledActorsIds(company.getCompanyId(), workflowTask.getWorkflowTaskId());
+
+Map<String,Object> data = new HashMap<String,Object>();
+
+data.put("navigation", Boolean.TRUE);
 %>
 
 <liferay-ui:icon-menu showExpanded="<%= row == null %>" showWhenSingleIcon="<%= row == null %>">
@@ -74,6 +78,7 @@ long[] pooledActorsIds = WorkflowTaskManagerUtil.getPooledActorsIds(company.getC
 
 		<liferay-ui:icon
 			cssClass='<%= "workflow-task-" + randomId + " task-change-status-link" %>'
+			data="<%= data %>"
 			id='<%= randomId + "completeForm" %>'
 			image="page"
 			message="complete-form"
@@ -97,6 +102,7 @@ long[] pooledActorsIds = WorkflowTaskManagerUtil.getPooledActorsIds(company.getC
 
 			<liferay-ui:icon
 				cssClass='<%= "workflow-task-" + randomId + " task-change-status-link" %>'
+				data="<%= data %>"
 				id='<%= randomId + HtmlUtil.escapeAttribute(transitionName) + "taskChangeStatusLink" %>'
 				image="../aui/random"
 				message="<%= HtmlUtil.escape(transitionName) %>"
@@ -119,6 +125,7 @@ long[] pooledActorsIds = WorkflowTaskManagerUtil.getPooledActorsIds(company.getC
 
 		<liferay-ui:icon
 			cssClass='<%= "workflow-task-" + randomId + " task-assign-to-me-link" %>'
+			data="<%= data %>"
 			id='<%= randomId + "taskAssignToMeLink" %>'
 			image="assign"
 			message="assign-to-me"
@@ -135,6 +142,7 @@ long[] pooledActorsIds = WorkflowTaskManagerUtil.getPooledActorsIds(company.getC
 
 		<liferay-ui:icon
 			cssClass='<%= "workflow-task-" + randomId + " task-assign-link" %>'
+			data="<%= data %>"
 			id='<%= randomId + "taskAssignLink" %>'
 			image="assign"
 			message="assign-to-..."
@@ -151,6 +159,7 @@ long[] pooledActorsIds = WorkflowTaskManagerUtil.getPooledActorsIds(company.getC
 
 		<liferay-ui:icon
 			cssClass='<%= "workflow-task-" + randomId + " task-due-date-link" %>'
+			data="<%= data %>"
 			id='<%= randomId + "taskDueDateLink" %>'
 			image="time"
 			message="update-due-date"

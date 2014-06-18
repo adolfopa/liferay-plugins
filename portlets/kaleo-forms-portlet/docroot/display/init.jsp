@@ -24,6 +24,7 @@ page import="com.liferay.portal.kernel.workflow.WorkflowInstanceManagerUtil" %><
 page import="com.liferay.portal.kernel.workflow.WorkflowLog" %><%@
 page import="com.liferay.portal.kernel.workflow.WorkflowLogManagerUtil" %><%@
 page import="com.liferay.portal.kernel.workflow.WorkflowTask" %><%@
+page import="com.liferay.portal.kernel.workflow.WorkflowTaskDueDateException" %><%@
 page import="com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil" %><%@
 page import="com.liferay.portal.kernel.workflow.comparator.WorkflowComparatorFactoryUtil" %><%@
 page import="com.liferay.portal.model.Role" %><%@
@@ -31,6 +32,7 @@ page import="com.liferay.portal.model.User" %><%@
 page import="com.liferay.portal.security.auth.PrincipalException" %><%@
 page import="com.liferay.portal.service.RoleLocalServiceUtil" %><%@
 page import="com.liferay.portal.service.UserLocalServiceUtil" %><%@
+page import="com.liferay.portal.service.WorkflowInstanceLinkLocalServiceUtil" %><%@
 page import="com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessException" %><%@
 page import="com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink" %><%@
 page import="com.liferay.portal.workflow.kaleo.forms.service.KaleoProcessLinkLocalServiceUtil" %><%@
@@ -39,6 +41,8 @@ page import="com.liferay.portlet.dynamicdatamapping.NoSuchTemplateException" %><
 page import="com.liferay.util.PwdGenerator" %>
 
 <%@ page import="java.io.Serializable" %>
+
+<%@ page import="java.util.HashMap" %>
 
 <%!
 private boolean _hasOtherAssignees(long[] pooledActorsIds, WorkflowTask workflowTask, User user) {

@@ -121,7 +121,13 @@ headerTitle = headerTitle.concat(StringPool.COLON + StringPool.SPACE + ddlRecord
 								<portlet:param name="workflowTaskId" value="<%= StringUtil.valueOf(workflowTask.getWorkflowTaskId()) %>" />
 							</portlet:actionURL>
 
-							<%= StringPool.DASH %> (<span class="workflow-task task-due-date-link"><aui:a href="<%= updateDueDateURL %>" id='<%= randomId + "taskDueDateLink" %>' label="change" />)
+							<%
+							Map<String,Object> data = new HashMap<String,Object>();
+
+							data.put("navigation", Boolean.TRUE);
+							%>
+
+							<%= StringPool.DASH %> (<span class="workflow-task task-due-date-link"><aui:a data='<%= data %>' href='<%= updateDueDateURL %>' id='<%= randomId + "taskDueDateLink" %>' label="change" />)
 						</c:if>
 					</aui:field-wrapper>
 				</div>
