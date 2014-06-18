@@ -62,7 +62,7 @@ public class LCSUtil {
 		StringBundler sb = new StringBundler(6);
 
 		sb.append(getLCSPortalURL());
-		sb.append(PortletProps.get("osb.lcs.portlet.page.corp.entry"));
+		sb.append(PortletProps.get("osb.lcs.portlet.layout.corp.entry"));
 		sb.append("?p_p_id=5_WAR_osblcsportlet&");
 		sb.append(getPublicRenderParameterName(request, "layoutCorpEntryId"));
 		sb.append(StringPool.EQUAL);
@@ -117,7 +117,7 @@ public class LCSUtil {
 		StringBundler sb = new StringBundler(10);
 
 		sb.append(getLCSPortalURL());
-		sb.append(PortletProps.get("osb.lcs.portlet.page.lcs.cluster.entry"));
+		sb.append(PortletProps.get("osb.lcs.portlet.layout.lcs.cluster.entry"));
 		sb.append("?p_p_id=5_WAR_osblcsportlet&");
 		sb.append(getPublicRenderParameterName(request, "layoutCorpEntryId"));
 		sb.append(StringPool.EQUAL);
@@ -139,7 +139,7 @@ public class LCSUtil {
 		StringBundler sb = new StringBundler(14);
 
 		sb.append(getLCSPortalURL());
-		sb.append(PortletProps.get("osb.lcs.portlet.page.lcs.cluster.node"));
+		sb.append(PortletProps.get("osb.lcs.portlet.layout.lcs.cluster.node"));
 		sb.append("?p_p_id=5_WAR_osblcsportlet&");
 		sb.append(getPublicRenderParameterName(request, "layoutCorpEntryId"));
 		sb.append(StringPool.EQUAL);
