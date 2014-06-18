@@ -37,7 +37,7 @@
 					</portlet:renderURL>
 
 					<liferay-ui:icon
-						image="add"
+						iconCssClass="icon-plus"
 						message="<%= HtmlUtil.escape(kaleoProcess.getName(locale)) %>"
 						url="<%= submitURL %>"
 					/>

@@ -43,7 +43,7 @@ else {
 		</portlet:actionURL>
 
 		<liferay-ui:icon
-			image="undo"
+			iconCssClass="icon-undo"
 			message="withdraw-submission"
 			url="<%= deleteURL %>"
 		/>

@@ -31,7 +31,8 @@ KaleoProcess kaleoProcess = (KaleoProcess)row.getObject();
 		</portlet:renderURL>
 
 		<liferay-ui:icon
-			image="view"
+			iconCssClass="icon-search"
+			message="view"
 			url="<%= viewURL %>"
 		/>
 	</c:if>
@@ -53,7 +54,8 @@ KaleoProcess kaleoProcess = (KaleoProcess)row.getObject();
 		%>
 
 		<liferay-ui:icon
-			image="export"
+			iconCssClass="icon-arrow-down"
+			message="export"
 			url="<%= sb.toString() %>"
 		/>
 	</c:if>
@@ -67,7 +69,8 @@ KaleoProcess kaleoProcess = (KaleoProcess)row.getObject();
 		</portlet:renderURL>
 
 		<liferay-ui:icon
-			image="edit"
+			iconCssClass="icon-edit"
+			message="edit"
 			method="get"
 			url="<%= editURL %>"
 		/>
@@ -83,7 +86,8 @@ KaleoProcess kaleoProcess = (KaleoProcess)row.getObject();
 		/>
 
 		<liferay-ui:icon
-			image="permissions"
+			iconCssClass="icon-lock"
+			message="permissions"
 			method="get"
 			url="<%= permissionsURL %>"
 			useDialog="<%= true %>"

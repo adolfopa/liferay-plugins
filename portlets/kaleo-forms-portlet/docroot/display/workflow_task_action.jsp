@@ -79,8 +79,8 @@ List<String> transitionNames = WorkflowTaskManagerUtil.getNextTransitionNames(co
 		<liferay-ui:icon
 			cssClass='<%= "workflow-task-" + randomId + " task-change-status-link" %>'
 			data="<%= data %>"
+			iconCssClass="icon-file-text"
 			id='<%= randomId + "completeForm" %>'
-			image="page"
 			message="complete-form"
 			method="get"
 			url="<%= completeFormURL %>"
@@ -103,8 +103,8 @@ List<String> transitionNames = WorkflowTaskManagerUtil.getNextTransitionNames(co
 			<liferay-ui:icon
 				cssClass='<%= "workflow-task-" + randomId + " task-change-status-link" %>'
 				data="<%= data %>"
+				iconCssClass="icon-random"
 				id='<%= randomId + HtmlUtil.escapeAttribute(transitionName) + "taskChangeStatusLink" %>'
-				image="../aui/random"
 				message="<%= HtmlUtil.escape(transitionName) %>"
 				method="get"
 				url="<%= completeWorkflowTaskURL %>"
@@ -126,8 +126,8 @@ List<String> transitionNames = WorkflowTaskManagerUtil.getNextTransitionNames(co
 		<liferay-ui:icon
 			cssClass='<%= "workflow-task-" + randomId + " task-assign-to-me-link" %>'
 			data="<%= data %>"
+			iconCssClass="icon-signin"
 			id='<%= randomId + "taskAssignToMeLink" %>'
-			image="assign"
 			message="assign-to-me"
 			method="get"
 			url="<%= assignToMeURL %>"
@@ -143,8 +143,8 @@ List<String> transitionNames = WorkflowTaskManagerUtil.getNextTransitionNames(co
 		<liferay-ui:icon
 			cssClass='<%= "workflow-task-" + randomId + " task-assign-link" %>'
 			data="<%= data %>"
+			iconCssClass="icon-signin"
 			id='<%= randomId + "taskAssignLink" %>'
-			image="assign"
 			message="assign-to-..."
 			method="get"
 			url="<%= assignURL %>"
@@ -160,8 +160,8 @@ List<String> transitionNames = WorkflowTaskManagerUtil.getNextTransitionNames(co
 		<liferay-ui:icon
 			cssClass='<%= "workflow-task-" + randomId + " task-due-date-link" %>'
 			data="<%= data %>"
+			iconCssClass="icon-time"
 			id='<%= randomId + "taskDueDateLink" %>'
-			image="time"
 			message="update-due-date"
 			method="get"
 			url="<%= updateDueDateURL %>"
