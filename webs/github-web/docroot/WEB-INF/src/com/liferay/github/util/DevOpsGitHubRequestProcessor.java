@@ -52,17 +52,17 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 
 	public void buildProfileBundle(String profileName) throws Exception {
 		File workDir = new File(
-			_PEEK_GIT_REPOSITORY_DIR_NAME + "/" + profileName);
+			DevOpsConstants.PEEK_GIT_REPOSITORY_DIR_NAME + "/" + profileName);
 
 		File profileLiferayDir = getProfileLiferayDir(profileName);
 
 		DevOpsProcessUtil.execute(
 			workDir,
-			"rsync -az --delete " + _LIFERAY_ORIGINAL_DIR_NAME + "/ " +
-				profileLiferayDir.getPath());
+			"rsync -az --delete " + DevOpsConstants.LIFERAY_ORIGINAL_DIR_NAME +
+				"/ " + profileLiferayDir.getPath());
 
 		File fixPacksFile = new File(
-			_PEEK_GIT_REPOSITORY_DIR_NAME + "/" + profileName +
+			DevOpsConstants.PEEK_GIT_REPOSITORY_DIR_NAME + "/" + profileName +
 				"/artifacts/liferay/fix-packs.txt");
 
 		if (!fixPacksFile.exists()) {
@@ -127,7 +127,8 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 	}
 
 	public File getProfileGitRepositoryDir(String profileName) {
-		return new File(_DEV_OPS_DIR_NAME + "/" + profileName + "/plugins");
+		return new File(
+			DevOpsConstants.DEV_OPS_DIR_NAME + "/" + profileName + "/plugins");
 	}
 
 	@Override
@@ -159,7 +160,7 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 	public synchronized void updatePeekGitRepository(String profileName)
 		throws Exception {
 
-		File workDir = new File(_PEEK_GIT_REPOSITORY_DIR_NAME);
+		File workDir = new File(DevOpsConstants.PEEK_GIT_REPOSITORY_DIR_NAME);
 
 		DevOpsProcessUtil.execute(workDir, "git clean -d -f -q -x");
 		DevOpsProcessUtil.execute(workDir, "git reset --hard HEAD");
@@ -176,7 +177,7 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 
 		FileUtils.writeStringToFile(
 			new File(
-				_PEEK_GIT_REPOSITORY_DIR_NAME + profileName +
+				DevOpsConstants.PEEK_GIT_REPOSITORY_DIR_NAME + profileName +
 					"/portal/redeploy.marker"),
 			commitMessage, "UTF-8", false);
 
@@ -233,7 +234,8 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 	}
 
 	protected File getProfileLiferayDir(String profileName) {
-		return new File(_DEV_OPS_DIR_NAME + "/" + profileName + "/liferay");
+		return new File(
+			DevOpsConstants.DEV_OPS_DIR_NAME + "/" + profileName + "/liferay");
 	}
 
 	protected String[] getProfileNames() {
@@ -252,9 +254,10 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 		}
 
 		DevOpsProcessUtil.execute(
-			new File(_PEEK_PLUGINS_GIT_REPOSITORY_DIR_NAME),
-			"git new-workdir " + _PEEK_PLUGINS_GIT_REPOSITORY_DIR_NAME + " " +
-				profileGitRepositoryDir.getPath());
+			new File(DevOpsConstants.PEEK_PLUGINS_GIT_REPOSITORY_DIR_NAME),
+			"git new-workdir " +
+				DevOpsConstants.PEEK_PLUGINS_GIT_REPOSITORY_DIR_NAME + " " +
+					profileGitRepositoryDir.getPath());
 
 		DevOpsProcessUtil.Result result = DevOpsProcessUtil.execute(
 			profileGitRepositoryDir, "git config --get remote.devops.url");
@@ -344,17 +347,6 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 			initScheduledExecutorService(profileName);
 		}
 	}
-
-	private static final String _DEV_OPS_DIR_NAME = "/tmp/devops";
-
-	private static final String _LIFERAY_ORIGINAL_DIR_NAME =
-		"/opt/java/liferay.original";
-
-	private static final String _PEEK_GIT_REPOSITORY_DIR_NAME =
-		"/var/peek/repo";
-
-	private static final String _PEEK_PLUGINS_GIT_REPOSITORY_DIR_NAME =
-		"/var/peek/builder-dependencies/plugins";
 
 	private static Log _log = LogFactory.getLog(
 		DevOpsGitHubRequestProcessor.class);

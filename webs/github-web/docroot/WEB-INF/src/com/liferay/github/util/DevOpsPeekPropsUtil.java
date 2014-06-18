@@ -41,7 +41,8 @@ public class DevOpsPeekPropsUtil {
 
 		try {
 			inputStream = new FileInputStream(
-				_PEEK_GIT_REPOSITORY_DIR_NAME + "/build.properties");
+				DevOpsConstants.PEEK_GIT_REPOSITORY_DIR_NAME +
+					"/build.properties");
 		}
 		catch (FileNotFoundException fnfe) {
 			_log.error(fnfe, fnfe);
@@ -61,8 +62,8 @@ public class DevOpsPeekPropsUtil {
 		for (String profileName : profileNames.split(",")) {
 			try {
 				inputStream = new FileInputStream(
-					_PEEK_GIT_REPOSITORY_DIR_NAME + "/build." + profileName +
-						".properties");
+					DevOpsConstants.PEEK_GIT_REPOSITORY_DIR_NAME + "/build." +
+						profileName + ".properties");
 			}
 			catch (FileNotFoundException fnfe) {
 				_log.error(fnfe, fnfe);
@@ -87,9 +88,6 @@ public class DevOpsPeekPropsUtil {
 
 		return properties.getProperty(key);
 	}
-
-	private static final String _PEEK_GIT_REPOSITORY_DIR_NAME =
-		"/var/peek/repo";
 
 	private static Log _log = LogFactory.getLog(DevOpsPeekPropsUtil.class);
 

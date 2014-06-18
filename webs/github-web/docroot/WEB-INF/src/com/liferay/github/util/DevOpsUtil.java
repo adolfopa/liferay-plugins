@@ -27,7 +27,7 @@ public class DevOpsUtil {
 
 		StringBuilder sb = new StringBuilder();
 
-		sb.append(_GITHUB_API_URL);
+		sb.append(DevOpsConstants.GITHUB_API_URL);
 		sb.append("/repos/");
 
 		JSONObject pullRequestJSONObject = payloadJSONObject.getJSONObject(
@@ -123,7 +123,7 @@ public class DevOpsUtil {
 
 		StringBuilder sb = new StringBuilder();
 
-		sb.append(_GITHUB_API_URL);
+		sb.append(DevOpsConstants.GITHUB_API_URL);
 		sb.append("/repos/");
 
 		JSONObject pullRequestJSONObject = payloadJSONObject.getJSONObject(
@@ -148,7 +148,5 @@ public class DevOpsUtil {
 	protected static JSONObject executePost(String url, JSONObject jsonObject) {
 		return null;
 	}
-
-	private static final String _GITHUB_API_URL = "https://api.github.com";
 
 }
