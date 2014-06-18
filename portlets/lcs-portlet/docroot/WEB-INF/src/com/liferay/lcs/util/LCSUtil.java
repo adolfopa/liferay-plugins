@@ -55,7 +55,7 @@ public class LCSUtil {
 
 	public static final int CREDENTIALS_SET = 3;
 
-	public static String getCorpEntryPageURL(
+	public static String getCorpEntryLayoutURL(
 			HttpServletRequest request, CorpEntryIdentifier corpEntryIdentifier)
 		throws Exception {
 
@@ -114,7 +114,7 @@ public class LCSUtil {
 		}
 	}
 
-	public static String getLCSClusterEntryPageURL(
+	public static String getLCSClusterEntryLayoutURL(
 			HttpServletRequest request, CorpEntryIdentifier corpEntryIdentifier,
 			LCSClusterNode lcsClusterNode)
 		throws Exception {
@@ -142,7 +142,7 @@ public class LCSUtil {
 		return sb.toString();
 	}
 
-	public static String getLCSClusterNodePageURL(
+	public static String getLCSClusterNodeLayoutURL(
 			HttpServletRequest request, CorpEntryIdentifier corpEntryIdentifier,
 			LCSClusterNode lcsClusterNode)
 		throws Exception {
