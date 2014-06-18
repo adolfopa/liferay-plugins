@@ -54,10 +54,12 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 		File workDir = new File(
 			_PEEK_GIT_REPOSITORY_DIR_NAME + "/" + profileName);
 
+		File profileLiferayDir = getProfileLiferayDir(profileName);
+
 		DevOpsProcessUtil.execute(
 			workDir,
 			"rsync -az --delete " + _LIFERAY_ORIGINAL_DIR_NAME + "/ " +
-				getProfileLiferayDir(profileName).getPath());
+				profileLiferayDir.getPath());
 
 		File fixPacksFile = new File(
 			_PEEK_GIT_REPOSITORY_DIR_NAME + "/" + profileName +
@@ -66,6 +68,8 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 		if (!fixPacksFile.exists()) {
 			return;
 		}
+
+		File profileAppServerDir = getProfileAppServerDir(profileName);
 
 		BufferedReader bufferedReader = null;
 
@@ -95,9 +99,6 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 				sb.append("-");
 				sb.append(fixPacksVersion.replaceAll(".", ""));
 				sb.append(".zip -P ");
-
-				File profileAppServerDir = getProfileAppServerDir(profileName);
-
 				sb.append(profileAppServerDir.getPath());
 				sb.append("/patching-tool/patches");
 
@@ -112,7 +113,7 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 
 		DevOpsProcessUtil.execute(
 			workDir,
-			getProfileAppServerDir(profileName).getPath() +
+			profileAppServerDir.getPath() +
 				"/patching-tool/patching-tool.sh install");
 	}
 
@@ -267,12 +268,13 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 					getProfileGitHubUserLogin() + "/liferay-plugins-ee.git");
 		}
 
+		File profileAppServerDir = getProfileAppServerDir(profileName);
+
 		FileUtils.writeStringToFile(
 			new File(
 				profileGitRepositoryDir + "/build." +
 					System.getenv("USERNAME") + ".properties"),
-			"app.server.dir=" + getProfileAppServerDir(profileName).getPath(),
-			"UTF-8", false);
+			"app.server.dir=" + profileAppServerDir.getPath(), "UTF-8", false);
 	}
 
 	protected void initProfiles() throws Exception {
