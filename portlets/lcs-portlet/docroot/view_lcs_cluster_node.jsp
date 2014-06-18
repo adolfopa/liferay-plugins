@@ -38,7 +38,8 @@ String connectionStatus = "connected";
 
 if (!ready && !pending) {
 	connectionStatus = "disconnected";
-} else if (!ready && pending) {
+}
+else if (!ready && pending) {
 	connectionStatus = "synchronizing";
 }
 %>
@@ -46,7 +47,7 @@ if (!ready && !pending) {
 <div class="lcs-connection-status <%= connectionStatus %>">
 	<span class="lcs-connection-icon"></span>
 
-	<span class="lcs-connection-label"><%= HtmlUtil.escape(LanguageUtil.get(pageContext, connectionStatus)) %></span>
+	<span class="lcs-connection-label"><%= LanguageUtil.get(pageContext, connectionStatus) %></span>
 
 	<liferay-ui:icon-help message='<%= LanguageUtil.get(pageContext, connectionStatus + "-help") %>' />
 </div>
@@ -139,9 +140,7 @@ if (!ready && !pending) {
 				<liferay-ui:message key="project" />
 			</dt>
 			<dd>
-				<aui:a href="<%= LCSPortalUtil.getCorpEntryPageURL(request, corpEntryIdentifier) %>" target="_blank">
-					<%= HtmlUtil.escape(corpEntryIdentifier.getName()) %>
-				</aui:a>
+				<aui:a href="<%= LCSPortalUtil.getCorpEntryPageURL(request, corpEntryIdentifier) %>" label="<%= HtmlUtil.escape(corpEntryIdentifier.getName()) %>" target="_blank" />
 			</dd>
 		</dl>
 		<dl>
@@ -149,9 +148,7 @@ if (!ready && !pending) {
 				<liferay-ui:message key="environment" />
 			</dt>
 			<dd>
-				<aui:a href="<%= LCSPortalUtil.getLCSClusterEntryPageURL(request, corpEntryIdentifier, lcsClusterNode) %>" target="_blank">
-					<%= HtmlUtil.escape(lcsClusterEntry.getName()) %>
-				</aui:a>
+				<aui:a href="<%= LCSPortalUtil.getLCSClusterEntryPageURL(request, corpEntryIdentifier, lcsClusterNode) %>" label="<%= HtmlUtil.escape(lcsClusterEntry.getName()) %>" target="_blank" />
 			</dd>
 		</dl>
 		<dl>
@@ -159,9 +156,7 @@ if (!ready && !pending) {
 				<liferay-ui:message key="server" />
 			</dt>
 			<dd>
-				<aui:a href="<%= LCSPortalUtil.getLCSClusterNodePageURL(request, corpEntryIdentifier, lcsClusterNode) %>" target="_blank">
-					<%= HtmlUtil.escape(lcsClusterNode.getName()) %>
-				</aui:a>
+				<aui:a href="<%= LCSPortalUtil.getLCSClusterNodePageURL(request, corpEntryIdentifier, lcsClusterNode) %>" label="<%= HtmlUtil.escape(lcsClusterNode.getName()) %>" target="_blank" />
 			</dd>
 		</dl>
 	</div>

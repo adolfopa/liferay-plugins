@@ -113,19 +113,18 @@ public class LCSPortalUtil {
 	}
 
 	public static String getLCSPortalURL() {
-		StringBundler sb = new StringBundler();
+		String lcsPortalURL = Http.HTTP_WITH_SLASH.concat(
+			PortletProps.get("osb.lcs.portlet.host.name"));
 
-		sb.append(Http.HTTP_WITH_SLASH);
-		sb.append(PortletProps.get("osb.lcs.portlet.host.name"));
+		String osbLCSPortletHostPort = PortletProps.get(
+			"osb.lcs.portlet.host.port");
 
-		String lcsPortalPort = PortletProps.get("osb.lcs.portlet.host.port");
-
-		if (!Validator.equals(lcsPortalPort, "80")) {
-			sb.append(StringPool.COLON);
-			sb.append(lcsPortalPort);
+		if (Validator.equals(osbLCSPortletHostPort, Http.HTTP_PORT)) {
+			return lcsPortalURL;
 		}
 
-		return sb.toString();
+		return lcsPortalURL.concat(StringPool.COLON).concat(
+			osbLCSPortletHostPort);
 	}
 
 	protected static String getPublicRenderParameterName(
