@@ -140,7 +140,9 @@ else if (!ready && pending) {
 				<liferay-ui:message key="project" />
 			</dt>
 			<dd>
-				<aui:a href="<%= LCSUtil.getCorpEntryPageURL(request, corpEntryIdentifier) %>" label="<%= HtmlUtil.escape(corpEntryIdentifier.getName()) %>" target="_blank" />
+				<aui:a href="<%= LCSUtil.getCorpEntryPageURL(request, corpEntryIdentifier) %>" target="_blank">
+					<%= HtmlUtil.escape(corpEntryIdentifier.getName()) %>
+				</aui:a>
 			</dd>
 		</dl>
 		<dl>
@@ -148,7 +150,9 @@ else if (!ready && pending) {
 				<liferay-ui:message key="environment" />
 			</dt>
 			<dd>
-				<aui:a href="<%= LCSUtil.getLCSClusterEntryPageURL(request, corpEntryIdentifier, lcsClusterNode) %>" label="<%= HtmlUtil.escape(lcsClusterEntry.getName()) %>" target="_blank" />
+				<aui:a href="<%= LCSUtil.getLCSClusterEntryPageURL(request, corpEntryIdentifier, lcsClusterNode) %>" target="_blank">
+					<%= HtmlUtil.escape(lcsClusterEntry.getName()) %>
+				</aui:a>
 			</dd>
 		</dl>
 		<dl>
@@ -156,7 +160,9 @@ else if (!ready && pending) {
 				<liferay-ui:message key="server" />
 			</dt>
 			<dd>
-				<aui:a href="<%= LCSUtil.getLCSClusterNodePageURL(request, corpEntryIdentifier, lcsClusterNode) %>" label="<%= HtmlUtil.escape(lcsClusterNode.getName()) %>" target="_blank" />
+				<aui:a href="<%= LCSUtil.getLCSClusterNodePageURL(request, corpEntryIdentifier, lcsClusterNode) %>" target="_blank">
+					<%= HtmlUtil.escape(lcsClusterNode.getName()) %>
+				</aui:a>
 			</dd>
 		</dl>
 	</div>
