@@ -14,18 +14,32 @@
 
 package com.liferay.lcs.util;
 
+import com.liferay.compat.portal.util.PortalUtil;
 import com.liferay.jsonwebserviceclient.JSONWebServiceClient;
+import com.liferay.osb.lcs.model.CorpEntryIdentifier;
+import com.liferay.osb.lcs.model.LCSClusterNode;
 import com.liferay.osb.lcs.service.LCSClusterNodeServiceUtil;
 import com.liferay.portal.kernel.cluster.ClusterExecutorUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.Http;
+import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.xml.QName;
 import com.liferay.portal.model.CompanyConstants;
+import com.liferay.portal.model.Portlet;
 import com.liferay.portal.model.PortletPreferences;
+import com.liferay.portal.model.PublicRenderParameter;
+import com.liferay.portal.service.PortletLocalServiceUtil;
 import com.liferay.portal.service.PortletPreferencesLocalServiceUtil;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
+import com.liferay.portlet.PortletQNameUtil;
+import com.liferay.util.portlet.PortletProps;
 
 import javax.security.auth.login.CredentialException;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author Igor Beslic
@@ -40,6 +54,26 @@ public class LCSUtil {
 	public static final int CREDENTIALS_NOT_AVAILABLE = 0;
 
 	public static final int CREDENTIALS_SET = 3;
+
+	public static String getCorpEntryPageURL(
+			HttpServletRequest request, CorpEntryIdentifier corpEntryIdentifier)
+		throws Exception {
+
+		StringBundler sb = new StringBundler(10);
+
+		sb.append(getLCSPortalURL());
+		sb.append(PortletProps.get("osb.lcs.portlet.page.corp.entry"));
+		sb.append(StringPool.QUESTION);
+		sb.append(PARAM_PORTLET_ID);
+		sb.append(StringPool.EQUAL);
+		sb.append(NAVIGATION_PORTLET_ID);
+		sb.append(StringPool.AMPERSAND);
+		sb.append(getPublicRenderParameterName(request, PARAM_CORP_ENTRY));
+		sb.append(StringPool.EQUAL);
+		sb.append(corpEntryIdentifier.getCorpEntryId());
+
+		return sb.toString();
+	}
 
 	public static int getCredentialsStatus() {
 		javax.portlet.PortletPreferences jxPortletPreferences = null;
@@ -77,6 +111,78 @@ public class LCSUtil {
 
 			throw new RuntimeException(e);
 		}
+	}
+
+	public static String getLCSClusterEntryPageURL(
+			HttpServletRequest request, CorpEntryIdentifier corpEntryIdentifier,
+			LCSClusterNode lcsClusterNode)
+		throws Exception {
+
+		StringBundler sb = new StringBundler(14);
+
+		sb.append(getLCSPortalURL());
+		sb.append(PortletProps.get("osb.lcs.portlet.page.lcs.cluster.entry"));
+		sb.append(StringPool.QUESTION);
+		sb.append(PARAM_PORTLET_ID);
+		sb.append(StringPool.EQUAL);
+		sb.append(NAVIGATION_PORTLET_ID);
+		sb.append(StringPool.AMPERSAND);
+		sb.append(getPublicRenderParameterName(request, PARAM_CORP_ENTRY));
+		sb.append(StringPool.EQUAL);
+		sb.append(corpEntryIdentifier.getCorpEntryId());
+		sb.append(StringPool.AMPERSAND);
+		sb.append(
+			getPublicRenderParameterName(request, PARAM_LCS_CLUSTER_ENTRY));
+		sb.append(StringPool.EQUAL);
+		sb.append(lcsClusterNode.getLcsClusterEntryId());
+
+		return sb.toString();
+	}
+
+	public static String getLCSClusterNodePageURL(
+			HttpServletRequest request, CorpEntryIdentifier corpEntryIdentifier,
+			LCSClusterNode lcsClusterNode)
+		throws Exception {
+
+		StringBundler sb = new StringBundler(18);
+
+		sb.append(getLCSPortalURL());
+		sb.append(PortletProps.get("osb.lcs.portlet.page.lcs.cluster.node"));
+		sb.append(StringPool.QUESTION);
+		sb.append(PARAM_PORTLET_ID);
+		sb.append(StringPool.EQUAL);
+		sb.append(NAVIGATION_PORTLET_ID);
+		sb.append(StringPool.AMPERSAND);
+		sb.append(getPublicRenderParameterName(request, PARAM_CORP_ENTRY));
+		sb.append(StringPool.EQUAL);
+		sb.append(corpEntryIdentifier.getCorpEntryId());
+		sb.append(StringPool.AMPERSAND);
+		sb.append(
+			getPublicRenderParameterName(request, PARAM_LCS_CLUSTER_ENTRY));
+		sb.append(StringPool.EQUAL);
+		sb.append(lcsClusterNode.getLcsClusterEntryId());
+		sb.append(StringPool.AMPERSAND);
+		sb.append(
+			getPublicRenderParameterName(request, PARAM_LCS_CLUSTER_NODE));
+		sb.append(StringPool.EQUAL);
+		sb.append(lcsClusterNode.getLcsClusterNodeId());
+
+		return sb.toString();
+	}
+
+	public static String getLCSPortalURL() {
+		String lcsPortalURL = Http.HTTP_WITH_SLASH.concat(
+			PortletProps.get("osb.lcs.portlet.host.name"));
+
+		String osbLCSPortletHostPort = PortletProps.get(
+			"osb.lcs.portlet.host.port");
+
+		if (Validator.equals(osbLCSPortletHostPort, Http.HTTP_PORT)) {
+			return lcsPortalURL;
+		}
+
+		return lcsPortalURL.concat(StringPool.COLON).concat(
+			osbLCSPortletHostPort);
 	}
 
 	public static int getLocalLCSClusterEntryType() {
@@ -135,6 +241,37 @@ public class LCSUtil {
 		return PortletPreferencesFactoryUtil.fromDefaultXML(
 			portletPreferences.getPreferences());
 	}
+
+	protected static String getPublicRenderParameterName(
+			HttpServletRequest request, String parameterName)
+		throws Exception {
+
+		Portlet portlet = PortletLocalServiceUtil.getPortletById(
+			PortalUtil.getCompanyId(request), PortalUtil.getPortletId(request));
+
+		PublicRenderParameter publicRenderParameter =
+			portlet.getPublicRenderParameter(parameterName);
+
+		if (publicRenderParameter == null) {
+			return parameterName;
+		}
+
+		QName qName = publicRenderParameter.getQName();
+
+		return PortletQNameUtil.getPublicRenderParameterName(qName);
+	}
+
+	private static final String NAVIGATION_PORTLET_ID = "5_WAR_osblcsportlet";
+
+	private static final String PARAM_CORP_ENTRY = "layoutCorpEntryId";
+
+	private static final String PARAM_LCS_CLUSTER_ENTRY =
+		"layoutLCSClusterEntryId";
+
+	private static final String PARAM_LCS_CLUSTER_NODE =
+		"layoutLCSClusterNodeId";
+
+	private static final String PARAM_PORTLET_ID = "p_p_id";
 
 	private static JSONWebServiceClient _jsonWebServiceClient;
 

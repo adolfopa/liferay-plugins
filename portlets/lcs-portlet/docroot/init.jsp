@@ -26,7 +26,6 @@
 page import="com.liferay.lcs.oauth.OAuthUtil" %><%@
 page import="com.liferay.lcs.util.HandshakeManagerUtil" %><%@
 page import="com.liferay.lcs.util.KeyGeneratorUtil" %><%@
-page import="com.liferay.lcs.util.LCSPortalUtil" %><%@
 page import="com.liferay.lcs.util.LCSUtil" %><%@
 page import="com.liferay.osb.lcs.DuplicateLCSClusterNodeNameException" %><%@
 page import="com.liferay.osb.lcs.RequiredLCSClusterNodeNameException" %><%@
