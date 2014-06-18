@@ -162,10 +162,10 @@ public class DevOpsUtil {
 		BufferedWriter bufferedWriter = null;
 
 		try {
-			URL postURL = new URL(url);
+			URL urlObject = new URL(url);
 
 			HttpURLConnection httpURLConnection =
-				(HttpURLConnection)postURL.openConnection();
+				(HttpURLConnection)urlObject.openConnection();
 
 			httpURLConnection.setDoOutput(true);
 			httpURLConnection.setRequestMethod("POST");
