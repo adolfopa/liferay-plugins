@@ -59,17 +59,12 @@ public class LCSUtil {
 			HttpServletRequest request, CorpEntryIdentifier corpEntryIdentifier)
 		throws Exception {
 
-		StringBundler sb = new StringBundler(10);
+		StringBundler sb = new StringBundler(6);
 
 		sb.append(getLCSPortalURL());
 		sb.append(PortletProps.get("osb.lcs.portlet.page.corp.entry"));
-		sb.append(StringPool.QUESTION);
-		sb.append(_PARAM_P_P_ID);
-		sb.append(StringPool.EQUAL);
-		sb.append(_NAVIGATION_PORTLET_ID);
-		sb.append(StringPool.AMPERSAND);
-		sb.append(
-			getPublicRenderParameterName(request, _PARAM_LAYOUT_CORP_ENTRY_ID));
+		sb.append("?p_p_id=5_WAR_osblcsportlet&");
+		sb.append(getPublicRenderParameterName(request, "layoutCorpEntryId"));
 		sb.append(StringPool.EQUAL);
 		sb.append(corpEntryIdentifier.getCorpEntryId());
 
@@ -119,23 +114,17 @@ public class LCSUtil {
 			LCSClusterNode lcsClusterNode)
 		throws Exception {
 
-		StringBundler sb = new StringBundler(14);
+		StringBundler sb = new StringBundler(10);
 
 		sb.append(getLCSPortalURL());
 		sb.append(PortletProps.get("osb.lcs.portlet.page.lcs.cluster.entry"));
-		sb.append(StringPool.QUESTION);
-		sb.append(_PARAM_P_P_ID);
-		sb.append(StringPool.EQUAL);
-		sb.append(_NAVIGATION_PORTLET_ID);
-		sb.append(StringPool.AMPERSAND);
-		sb.append(
-			getPublicRenderParameterName(request, _PARAM_LAYOUT_CORP_ENTRY_ID));
+		sb.append("?p_p_id=5_WAR_osblcsportlet&");
+		sb.append(getPublicRenderParameterName(request, "layoutCorpEntryId"));
 		sb.append(StringPool.EQUAL);
 		sb.append(corpEntryIdentifier.getCorpEntryId());
 		sb.append(StringPool.AMPERSAND);
 		sb.append(
-			getPublicRenderParameterName(
-				request, _PARAM_LAYOUT_LCS_CLUSTER_ENTRY_ID));
+			getPublicRenderParameterName(request, "layoutLCSClusterEntryId"));
 		sb.append(StringPool.EQUAL);
 		sb.append(lcsClusterNode.getLcsClusterEntryId());
 
@@ -147,29 +136,22 @@ public class LCSUtil {
 			LCSClusterNode lcsClusterNode)
 		throws Exception {
 
-		StringBundler sb = new StringBundler(18);
+		StringBundler sb = new StringBundler(14);
 
 		sb.append(getLCSPortalURL());
 		sb.append(PortletProps.get("osb.lcs.portlet.page.lcs.cluster.node"));
-		sb.append(StringPool.QUESTION);
-		sb.append(_PARAM_P_P_ID);
-		sb.append(StringPool.EQUAL);
-		sb.append(_NAVIGATION_PORTLET_ID);
-		sb.append(StringPool.AMPERSAND);
-		sb.append(
-			getPublicRenderParameterName(request, _PARAM_LAYOUT_CORP_ENTRY_ID));
+		sb.append("?p_p_id=5_WAR_osblcsportlet&");
+		sb.append(getPublicRenderParameterName(request, "layoutCorpEntryId"));
 		sb.append(StringPool.EQUAL);
 		sb.append(corpEntryIdentifier.getCorpEntryId());
 		sb.append(StringPool.AMPERSAND);
 		sb.append(
-			getPublicRenderParameterName(
-				request, _PARAM_LAYOUT_LCS_CLUSTER_ENTRY_ID));
+			getPublicRenderParameterName(request, "layoutLCSClusterEntryId"));
 		sb.append(StringPool.EQUAL);
 		sb.append(lcsClusterNode.getLcsClusterEntryId());
 		sb.append(StringPool.AMPERSAND);
 		sb.append(
-			getPublicRenderParameterName(
-				request, _PARAM_LAYOUT_LCS_CLUSTER_NODE_ID));
+			getPublicRenderParameterName(request, "layoutLCSClusterNodeId"));
 		sb.append(StringPool.EQUAL);
 		sb.append(lcsClusterNode.getLcsClusterNodeId());
 
@@ -266,19 +248,6 @@ public class LCSUtil {
 
 		return PortletQNameUtil.getPublicRenderParameterName(qName);
 	}
-
-	private static final String _NAVIGATION_PORTLET_ID = "5_WAR_osblcsportlet";
-
-	private static final String _PARAM_LAYOUT_CORP_ENTRY_ID =
-		"layoutCorpEntryId";
-
-	private static final String _PARAM_LAYOUT_LCS_CLUSTER_ENTRY_ID =
-		"layoutLCSClusterEntryId";
-
-	private static final String _PARAM_LAYOUT_LCS_CLUSTER_NODE_ID =
-		"layoutLCSClusterNodeId";
-
-	private static final String _PARAM_P_P_ID = "p_p_id";
 
 	private static JSONWebServiceClient _jsonWebServiceClient;
 
