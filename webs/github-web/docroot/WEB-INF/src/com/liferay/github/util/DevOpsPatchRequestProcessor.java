@@ -364,7 +364,8 @@ public class DevOpsPatchRequestProcessor {
 	}
 
 	protected void updatePullRequest(
-		JSONObject payloadJSONObject, String[] sha1Hashes) {
+			JSONObject payloadJSONObject, String[] sha1Hashes)
+		throws Exception {
 
 		boolean restartingServer = false;
 
