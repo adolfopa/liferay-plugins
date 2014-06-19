@@ -52,7 +52,9 @@ if (kaleoProcessLink != null) {
 	kaleoProcessLinkId = kaleoProcessLink.getKaleoProcessLinkId();
 }
 
-List<String> transitionNames = WorkflowTaskManagerUtil.getNextTransitionNames(company.getCompanyId(), user.getUserId(), workflowTask.getWorkflowTaskId());
+Map<String, Object> data = new HashMap<String, Object>();
+
+data.put("navigation", Boolean.TRUE);
 
 boolean showCompleteFormButton = false;
 
@@ -62,9 +64,7 @@ if ((kaleoProcessLinkId > 0) && !workflowTask.isCompleted() && _isAssignedToUser
 
 long[] pooledActorsIds = WorkflowTaskManagerUtil.getPooledActorsIds(company.getCompanyId(), workflowTask.getWorkflowTaskId());
 
-Map<String,Object> data = new HashMap<String,Object>();
-
-data.put("navigation", Boolean.TRUE);
+List<String> transitionNames = WorkflowTaskManagerUtil.getNextTransitionNames(company.getCompanyId(), user.getUserId(), workflowTask.getWorkflowTaskId());
 %>
 
 <liferay-ui:icon-menu showExpanded="<%= row == null %>" showWhenSingleIcon="<%= row == null %>">
