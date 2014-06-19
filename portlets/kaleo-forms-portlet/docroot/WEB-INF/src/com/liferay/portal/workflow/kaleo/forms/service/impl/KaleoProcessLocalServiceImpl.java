@@ -93,13 +93,7 @@ public class KaleoProcessLocalServiceImpl
 
 		// Workflow
 
-		workflowDefinitionLinkLocalService.deleteWorkflowDefinitionLink(
-			kaleoProcess.getCompanyId(), kaleoProcess.getGroupId(),
-			KaleoProcess.class.getName(), kaleoProcess.getPrimaryKey(), 0);
-
-		workflowInstanceLinkLocalService.deleteWorkflowInstanceLinks(
-			kaleoProcess.getCompanyId(), kaleoProcess.getGroupId(),
-			KaleoProcess.class.getName(), kaleoProcess.getPrimaryKey());
+		deleteKaleoProcessData(kaleoProcess);
 
 		// Dynamic data lists record set
 
