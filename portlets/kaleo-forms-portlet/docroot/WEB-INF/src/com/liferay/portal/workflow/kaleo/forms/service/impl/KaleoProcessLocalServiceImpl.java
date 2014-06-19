@@ -119,11 +119,8 @@ public class KaleoProcessLocalServiceImpl
 		return deleteKaleoProcess(kaleoProcess);
 	}
 
-	public void deleteKaleoProcessData(long kaleoProcessId)
+	public void deleteKaleoProcessData(KaleoProcess kaleoProcess)
 		throws PortalException, SystemException {
-
-		KaleoProcess kaleoProcess = kaleoProcessPersistence.findByPrimaryKey(
-			kaleoProcessId);
 
 		workflowDefinitionLinkLocalService.deleteWorkflowDefinitionLink(
 			kaleoProcess.getCompanyId(), kaleoProcess.getGroupId(),
@@ -139,6 +136,15 @@ public class KaleoProcessLocalServiceImpl
 
 			ddlRecordLocalService.deleteRecord(ddlRecord.getRecordId());
 		}
+	}
+
+	public void deleteKaleoProcessData(long kaleoProcessId)
+		throws PortalException, SystemException {
+
+		KaleoProcess kaleoProcess = kaleoProcessPersistence.findByPrimaryKey(
+			kaleoProcessId);
+
+		deleteKaleoProcessData(kaleoProcess);
 	}
 
 	public KaleoProcess getDDLRecordSetKaleoProcess(long ddlRecordSetId)
