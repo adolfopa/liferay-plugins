@@ -27,9 +27,9 @@ KaleoProcess kaleoProcess = (KaleoProcess)request.getAttribute(WebKeys.KALEO_PRO
 <p class="kaleo-process-message"><liferay-ui:message key="please-type-a-name-for-your-process-and-a-description-of-what-it-does" /></p>
 
 <aui:fieldset>
-	<aui:input localized="<%= true %>" name="name" type="text" value="<%= KaleoFormsUtil.getKaleoProcessName(kaleoProcess, portletSession) %>">
+	<aui:input cssClass="lfr-input-text" localized="<%= true %>" name="name" type="text" value="<%= KaleoFormsUtil.getKaleoProcessName(kaleoProcess, portletSession) %>">
 		<aui:validator name="required" />
 	</aui:input>
 
-	<aui:input localized="<%= true %>" name="description" type="textarea" value="<%= KaleoFormsUtil.getKaleoProcessDescription(kaleoProcess, portletSession) %>" />
+	<aui:input cssClass="lfr-input-text" localized="<%= true %>" name="description" type="textarea" value="<%= KaleoFormsUtil.getKaleoProcessDescription(kaleoProcess, portletSession) %>" />
 </aui:fieldset>

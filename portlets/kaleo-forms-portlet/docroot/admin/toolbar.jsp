@@ -21,7 +21,7 @@ String toolbarItem = ParamUtil.getString(request, "toolbarItem", "view-all");
 %>
 
 <aui:nav-bar>
-	<aui:nav>
+	<aui:nav cssClass="navbar-nav">
 		<portlet:renderURL var="viewProcessURL" />
 
 		<aui:nav-item href="<%= viewProcessURL %>" label="view-all" selected='<%= toolbarItem.equals("view-all") %>' />
