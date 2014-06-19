@@ -68,7 +68,7 @@ TaskFormPair initialStateTaskFormPair = KaleoFormsUtil.getInitialStateTaskFormPa
 
 				formName = ddmTemplate.getName(locale);
 			}
-			catch(PortalException pe) {
+			catch (PortalException pe) {
 			}
 		}
 		%>
