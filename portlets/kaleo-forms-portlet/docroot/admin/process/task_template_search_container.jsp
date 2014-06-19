@@ -63,15 +63,19 @@ TaskFormPair initialStateTaskFormPair = KaleoFormsUtil.getInitialStateTaskFormPa
 		String formName = StringPool.BLANK;
 
 		if (ddmTemplateId > 0) {
-			DDMTemplate ddmTemplate = DDMTemplateLocalServiceUtil.getTemplate(ddmTemplateId);
+			try {
+				DDMTemplate ddmTemplate = DDMTemplateLocalServiceUtil.getTemplate(ddmTemplateId);
 
-			formName = ddmTemplate.getName(locale);
+				formName = ddmTemplate.getName(locale);
+			}
+			catch(PortalException pe) {
+			}
 		}
 		%>
 
 		<liferay-util:buffer var="taskInputBuffer">
 			<c:if test="<%= taskFormsPair.equals(initialStateTaskFormPair) %>">
-				<aui:input name="ddmTemplateId" type="hidden" value="<%= (ddmTemplateId == 0) ? StringPool.BLANK : String.valueOf(ddmTemplateId) %>">
+				<aui:input name="ddmTemplateId" type="hidden" value="<%= Validator.isNull(formName) ? StringPool.BLANK : String.valueOf(ddmTemplateId) %>">
 					<aui:validator name="required" />
 				</aui:input>
 			</c:if>

@@ -45,4 +45,13 @@ DDMTemplate ddmTemplate = (DDMTemplate)row.getObject();
 		onClick="<%= taglibOnClick %>"
 		url="javascript:;"
 	/>
+
+	<liferay-portlet:actionURL portletName="<%= PortletKeys.DYNAMIC_DATA_MAPPING %>" var="deleteURL">
+		<portlet:param name="struts_action" value="/dynamic_data_mapping/edit_template" />
+		<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
+		<portlet:param name="redirect" value="<%= currentURL %>" />
+		<portlet:param name="templateId" value="<%= String.valueOf(ddmTemplate.getTemplateId()) %>" />
+	</liferay-portlet:actionURL>
+
+	<liferay-ui:icon-delete url="<%= deleteURL %>" />
 </liferay-ui:icon-menu>
