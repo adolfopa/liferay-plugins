@@ -285,6 +285,13 @@ public class KaleoProcessLocalServiceUtil {
 			taskFormPairs, serviceContext);
 	}
 
+	public static void deleteKaleoProcessData(
+		com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess kaleoProcess)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().deleteKaleoProcessData(kaleoProcess);
+	}
+
 	public static void deleteKaleoProcessData(long kaleoProcessId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {

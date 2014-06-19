@@ -135,30 +135,36 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 
 		_methodName22 = "deleteKaleoProcessData";
 
-		_methodParameterTypes22 = new String[] { "long" };
+		_methodParameterTypes22 = new String[] {
+				"com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess"
+			};
 
-		_methodName23 = "getDDLRecordSetKaleoProcess";
+		_methodName23 = "deleteKaleoProcessData";
 
 		_methodParameterTypes23 = new String[] { "long" };
 
-		_methodName24 = "getKaleoProcesses";
+		_methodName24 = "getDDLRecordSetKaleoProcess";
 
 		_methodParameterTypes24 = new String[] { "long" };
 
 		_methodName25 = "getKaleoProcesses";
 
-		_methodParameterTypes25 = new String[] {
+		_methodParameterTypes25 = new String[] { "long" };
+
+		_methodName26 = "getKaleoProcesses";
+
+		_methodParameterTypes26 = new String[] {
 				"long", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName26 = "getKaleoProcessesCount";
+		_methodName27 = "getKaleoProcessesCount";
 
-		_methodParameterTypes26 = new String[] { "long" };
+		_methodParameterTypes27 = new String[] { "long" };
 
-		_methodName27 = "updateKaleoProcess";
+		_methodName28 = "updateKaleoProcess";
 
-		_methodParameterTypes27 = new String[] {
+		_methodParameterTypes28 = new String[] {
 				"long", "long", "java.lang.String", "long",
 				"com.liferay.portal.workflow.kaleo.forms.util.TaskFormPairs",
 				"com.liferay.portal.service.ServiceContext"
@@ -775,12 +781,43 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 	}
 
 	@Override
-	public void deleteKaleoProcessData(long kaleoProcessId)
+	public void deleteKaleoProcessData(
+		com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess kaleoProcess)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		try {
 			_invokableLocalService.invokeMethod(_methodName22,
-				_methodParameterTypes22, new Object[] { kaleoProcessId });
+				_methodParameterTypes22,
+				new Object[] { ClpSerializer.translateInput(kaleoProcess) });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
+	@Override
+	public void deleteKaleoProcessData(long kaleoProcessId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		try {
+			_invokableLocalService.invokeMethod(_methodName23,
+				_methodParameterTypes23, new Object[] { kaleoProcessId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -811,8 +848,8 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName23,
-					_methodParameterTypes23, new Object[] { ddlRecordSetId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName24,
+					_methodParameterTypes24, new Object[] { ddlRecordSetId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -844,8 +881,8 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName24,
-					_methodParameterTypes24, new Object[] { groupId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName25,
+					_methodParameterTypes25, new Object[] { groupId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -874,8 +911,8 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName25,
-					_methodParameterTypes25,
+			returnObj = _invokableLocalService.invokeMethod(_methodName26,
+					_methodParameterTypes26,
 					new Object[] {
 						groupId,
 						
@@ -911,8 +948,8 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName26,
-					_methodParameterTypes26, new Object[] { groupId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName27,
+					_methodParameterTypes27, new Object[] { groupId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -945,8 +982,8 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName27,
-					_methodParameterTypes27,
+			returnObj = _invokableLocalService.invokeMethod(_methodName28,
+					_methodParameterTypes28,
 					new Object[] {
 						kaleoProcessId,
 						
@@ -1039,4 +1076,6 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 	private String[] _methodParameterTypes26;
 	private String _methodName27;
 	private String[] _methodParameterTypes27;
+	private String _methodName28;
+	private String[] _methodParameterTypes28;
 }

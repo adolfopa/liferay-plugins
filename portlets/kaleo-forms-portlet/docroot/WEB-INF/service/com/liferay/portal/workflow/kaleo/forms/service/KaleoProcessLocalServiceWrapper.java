@@ -300,6 +300,14 @@ public class KaleoProcessLocalServiceWrapper implements KaleoProcessLocalService
 	}
 
 	@Override
+	public void deleteKaleoProcessData(
+		com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess kaleoProcess)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_kaleoProcessLocalService.deleteKaleoProcessData(kaleoProcess);
+	}
+
+	@Override
 	public void deleteKaleoProcessData(long kaleoProcessId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
