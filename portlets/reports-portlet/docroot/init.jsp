@@ -30,7 +30,6 @@ page import="com.liferay.portal.kernel.bi.reporting.ReportDataSourceType" %><%@
 page import="com.liferay.portal.kernel.bi.reporting.ReportFormat" %><%@
 page import="com.liferay.portal.kernel.dao.orm.QueryUtil" %><%@
 page import="com.liferay.portal.kernel.dao.search.DisplayTerms" %><%@
-page import="com.liferay.taglib.search.ResultRow" %><%@
 page import="com.liferay.portal.kernel.dao.search.SearchContainer" %><%@
 page import="com.liferay.portal.kernel.json.JSONArray" %><%@
 page import="com.liferay.portal.kernel.json.JSONFactoryUtil" %><%@
@@ -83,7 +82,8 @@ page import="com.liferay.reports.service.permission.DefinitionPermission" %><%@
 page import="com.liferay.reports.service.permission.EntryPermission" %><%@
 page import="com.liferay.reports.service.permission.SourcePermission" %><%@
 page import="com.liferay.reports.util.PortletKeys" %><%@
-page import="com.liferay.reports.util.ReportsUtil" %>
+page import="com.liferay.reports.util.ReportsUtil" %><%@
+page import="com.liferay.taglib.search.ResultRow" %>
 
 <%@ page import="java.text.Format" %>
 

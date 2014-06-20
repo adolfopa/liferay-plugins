@@ -23,8 +23,7 @@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %><%@
 taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %><%@
 taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
-<%@ page import="com.liferay.taglib.search.ResultRow" %><%@
-page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
+<%@ page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
 page import="com.liferay.portal.kernel.util.PropertiesParamUtil" %><%@
 page import="com.liferay.portal.kernel.util.PropsUtil" %><%@
 page import="com.liferay.portal.kernel.util.StringPool" %><%@
@@ -51,7 +50,8 @@ page import="com.liferay.saml.service.SamlSpIdpConnectionLocalServiceUtil" %><%@
 page import="com.liferay.saml.util.CertificateUtil" %><%@
 page import="com.liferay.saml.util.PortletPrefsPropsUtil" %><%@
 page import="com.liferay.saml.util.PortletPropsKeys" %><%@
-page import="com.liferay.saml.util.SamlUtil" %>
+page import="com.liferay.saml.util.SamlUtil" %><%@
+page import="com.liferay.taglib.search.ResultRow" %>
 
 <%@ page import="java.security.InvalidParameterException" %><%@
 page import="java.security.cert.X509Certificate" %>
