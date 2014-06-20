@@ -28,7 +28,7 @@ String eventTypeAction = StringPool.BLANK;
 if (auditEventId > 0) {
 	auditEvent = AuditEventLocalServiceUtil.fetchAuditEvent(auditEventId);
 
-	eventTypeAction = (String)PortalClassInvoker.invoke(false, new MethodKey(ClassResolverUtil.resolve("com.liferay.portal.security.permission.ResourceActionsUtil", PortalClassLoaderUtil.getClassLoader()), "getAction", PageContext.class, String.class), pageContext, auditEvent.getEventType());
+	eventTypeAction = (String)PortalClassInvoker.invoke(false, new MethodKey(ClassResolverUtil.resolve("com.liferay.portal.security.permission.ResourceActionsUtil", PortalClassLoaderUtil.getClassLoader()), "getAction", HttpServletRequest.class, String.class), pageContext, auditEvent.getEventType());
 }
 %>
 
@@ -59,7 +59,7 @@ if (auditEventId > 0) {
 			</aui:field-wrapper>
 
 			<aui:field-wrapper label="resource-name">
-				<%= (String)PortalClassInvoker.invoke(false, new MethodKey(ClassResolverUtil.resolve("com.liferay.portal.security.permission.ResourceActionsUtil", PortalClassLoaderUtil.getClassLoader()), "getModelResource", PageContext.class, String.class), pageContext, auditEvent.getClassName()) %>
+				<%= (String)PortalClassInvoker.invoke(false, new MethodKey(ClassResolverUtil.resolve("com.liferay.portal.security.permission.ResourceActionsUtil", PortalClassLoaderUtil.getClassLoader()), "getModelResource", HttpServletRequest.class, String.class), pageContext, auditEvent.getClassName()) %>
 
 				(<%= auditEvent.getClassName() %>)
 			</aui:field-wrapper>
