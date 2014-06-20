@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <classpath>
+	<classpathentry excluding="**/.svn/**|.svn/" kind="src" path="docroot/WEB-INF/service" />
 	<classpathentry excluding="**/.svn/**|.svn/" kind="src" path="docroot/WEB-INF/src" />
 	<classpathentry kind="src" path="/portal-6.2.x" />
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER" />
@@ -12,8 +13,6 @@
 	<classpathentry kind="lib" path="/portal-6.2.x/lib/global/portlet.jar" />
 	<classpathentry kind="lib" path="/portal-6.2.x/lib/portal/commons-logging.jar" />
 	<classpathentry kind="lib" path="/portal-6.2.x/lib/portal/flexjson.jar" />
-	<classpathentry kind="lib" path="/portal-6.2.x/lib/portal/httpclient.jar" />
-	<classpathentry kind="lib" path="/portal-6.2.x/lib/portal/httpcore.jar" />
 	<classpathentry kind="lib" path="/portal-6.2.x/lib/portal/jabsorb.jar" />
 	<classpathentry kind="lib" path="/portal-6.2.x/lib/portal/json-java.jar" />
 	<classpathentry kind="lib" path="/portal-6.2.x/lib/portal/jstl-api.jar" />
@@ -26,6 +25,8 @@
 	<classpathentry kind="lib" path="/portal-6.2.x/util-slf4j/util-slf4j.jar" />
 	<classpathentry kind="lib" path="/portal-6.2.x/util-taglib/util-taglib.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/commons-codec.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/httpclient.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/httpcore.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/json-web-service-client-shared.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/lcs-shared.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/metrics-core.jar" />
