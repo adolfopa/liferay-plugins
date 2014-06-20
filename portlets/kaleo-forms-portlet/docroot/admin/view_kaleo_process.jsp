@@ -100,7 +100,7 @@ for (int i = 0; i < results.size(); i++) {
 		row.addText(HtmlUtil.escape(value));
 	}
 
-	row.addText(LanguageUtil.get(pageContext, WorkflowConstants.getStatusLabel(ddlRecord.getStatus())));
+	row.addText(LanguageUtil.get(request, WorkflowConstants.getStatusLabel(ddlRecord.getStatus())));
 	row.addDate(ddlRecord.getModifiedDate());
 	row.addText(HtmlUtil.escape(PortalUtil.getUserName(ddlRecord.getUserId(), ddlRecord.getUserName())));
 

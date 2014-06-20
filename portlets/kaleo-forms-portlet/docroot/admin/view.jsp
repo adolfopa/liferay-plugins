@@ -98,7 +98,7 @@ KaleoFormsUtil.cleanUpPortletSession(portletSession);
 						toolbars: {
 							footer: [
 								{
-									label: '<%= UnicodeLanguageUtil.get(pageContext, "ok") %>',
+									label: '<%= UnicodeLanguageUtil.get(request, "ok") %>',
 									on: {
 										click: function() {
 											submitForm(form, url, false);
@@ -106,7 +106,7 @@ KaleoFormsUtil.cleanUpPortletSession(portletSession);
 									}
 								},
 								{
-									label: '<%= UnicodeLanguageUtil.get(pageContext, "cancel") %>',
+									label: '<%= UnicodeLanguageUtil.get(request, "cancel") %>',
 									on: {
 										click: function() {
 											dialog.hide();
@@ -116,7 +116,7 @@ KaleoFormsUtil.cleanUpPortletSession(portletSession);
 							]
 						}
 					},
-					title: '<%= UnicodeLanguageUtil.get(pageContext, "export") %>'
+					title: '<%= UnicodeLanguageUtil.get(request, "export") %>'
 				}
 			)
 		},

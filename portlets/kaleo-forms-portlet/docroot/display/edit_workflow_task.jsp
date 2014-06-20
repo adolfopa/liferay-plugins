@@ -38,7 +38,7 @@ KaleoProcess kaleoProcess = KaleoProcessLocalServiceUtil.getDDLRecordSetKaleoPro
 
 DDLRecordSet ddlRecordSet = kaleoProcess.getDDLRecordSet();
 
-String headerTitle = LanguageUtil.get(pageContext, workflowTask.getName());
+String headerTitle = LanguageUtil.get(request, workflowTask.getName());
 
 headerTitle = headerTitle.concat(StringPool.COLON + StringPool.SPACE + ddlRecordSet.getName(locale));
 %>
@@ -99,7 +99,7 @@ headerTitle = headerTitle.concat(StringPool.COLON + StringPool.SPACE + ddlRecord
 
 				<div class="lfr-asset-status">
 					<aui:field-wrapper label="state">
-						<%= LanguageUtil.get(pageContext, HtmlUtil.escape(WorkflowInstanceLinkLocalServiceUtil.getState(companyId, groupId, className, classPK))) %>
+						<%= LanguageUtil.get(request, HtmlUtil.escape(WorkflowInstanceLinkLocalServiceUtil.getState(companyId, groupId, className, classPK))) %>
 					</aui:field-wrapper>
 				</div>
 			</aui:column>
@@ -113,7 +113,7 @@ headerTitle = headerTitle.concat(StringPool.COLON + StringPool.SPACE + ddlRecord
 
 				<div class="lfr-asset-due-date">
 					<aui:field-wrapper label="due-date">
-						<%= (workflowTask.getDueDate() == null) ? LanguageUtil.get(pageContext, "never") : dateFormatDateTime.format(workflowTask.getDueDate()) %>
+						<%= (workflowTask.getDueDate() == null) ? LanguageUtil.get(request, "never") : dateFormatDateTime.format(workflowTask.getDueDate()) %>
 
 						<c:if test="<%= !workflowTask.isCompleted() %>">
 							<portlet:actionURL name="updateWorkflowTask" var="updateDueDateURL">
@@ -197,18 +197,18 @@ headerTitle = headerTitle.concat(StringPool.COLON + StringPool.SPACE + ddlRecord
 						<div class="task-activity-message">
 							<c:choose>
 								<c:when test="<%= workflowLog.getType() == WorkflowLog.TASK_COMPLETION %>">
-									<%= LanguageUtil.format(pageContext, "x-completed-the-task-x", new Object[] {HtmlUtil.escape(actorName), HtmlUtil.escape(workflowLog.getState())}) %>
+									<%= LanguageUtil.format(request, "x-completed-the-task-x", new Object[] {HtmlUtil.escape(actorName), HtmlUtil.escape(workflowLog.getState())}) %>
 								</c:when>
 								<c:when test="<%= workflowLog.getType() == WorkflowLog.TASK_UPDATE %>">
-									<%= LanguageUtil.format(pageContext, "x-updated-the-due-date", HtmlUtil.escape(actorName)) %>
+									<%= LanguageUtil.format(request, "x-updated-the-due-date", HtmlUtil.escape(actorName)) %>
 								</c:when>
 								<c:when test="<%= (workflowLog.getType() == WorkflowLog.TRANSITION) %>">
-									<%= LanguageUtil.format(pageContext, "x-changed-the-state-from-x-to-x", new Object[] {HtmlUtil.escape(actorName), HtmlUtil.escape(workflowLog.getPreviousState()), HtmlUtil.escape(workflowLog.getState())}) %>
+									<%= LanguageUtil.format(request, "x-changed-the-state-from-x-to-x", new Object[] {HtmlUtil.escape(actorName), HtmlUtil.escape(workflowLog.getPreviousState()), HtmlUtil.escape(workflowLog.getState())}) %>
 								</c:when>
 								<c:otherwise>
 									<c:choose>
 										<c:when test="<%= (workflowLog.getPreviousUserId() == 0) && (curUser != null) %>">
-											<%= LanguageUtil.format(pageContext, curUser.isMale() ? "x-assigned-the-task-to-himself" : "x-assigned-the-task-to-herself", HtmlUtil.escape(curUser.getFullName())) %>
+											<%= LanguageUtil.format(request, curUser.isMale() ? "x-assigned-the-task-to-himself" : "x-assigned-the-task-to-herself", HtmlUtil.escape(curUser.getFullName())) %>
 										</c:when>
 										<c:otherwise>
 
@@ -219,7 +219,7 @@ headerTitle = headerTitle.concat(StringPool.COLON + StringPool.SPACE + ddlRecord
 												previousActorName = PortalUtil.getUserName(workflowLog.getPreviousUserId(), StringPool.BLANK);
 											%>
 
-												<%= LanguageUtil.format(pageContext, "task-assigned-to-x.-previous-assignee-was-x", new Object[] {HtmlUtil.escape(actorName), HtmlUtil.escape(previousActorName)}) %>
+												<%= LanguageUtil.format(request, "task-assigned-to-x.-previous-assignee-was-x", new Object[] {HtmlUtil.escape(actorName), HtmlUtil.escape(previousActorName)}) %>
 
 											<%
 											}
@@ -227,7 +227,7 @@ headerTitle = headerTitle.concat(StringPool.COLON + StringPool.SPACE + ddlRecord
 												previousActorName = curRole.getDescriptiveName();
 											%>
 
-												<%= LanguageUtil.format(pageContext, "task-initially-assigned-to-the-x-role", new Object[] {HtmlUtil.escape(actorName)}) %>
+												<%= LanguageUtil.format(request, "task-initially-assigned-to-the-x-role", new Object[] {HtmlUtil.escape(actorName)}) %>
 
 											<%
 											}
@@ -261,7 +261,7 @@ headerTitle = headerTitle.concat(StringPool.COLON + StringPool.SPACE + ddlRecord
 			/>
 
 			<div class="task-name">
-				<%= LanguageUtil.get(pageContext, HtmlUtil.escape(workflowTask.getName())) %>
+				<%= LanguageUtil.get(request, HtmlUtil.escape(workflowTask.getName())) %>
 			</div>
 		</div>
 

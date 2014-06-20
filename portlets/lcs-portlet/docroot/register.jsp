@@ -132,11 +132,11 @@
 	lcsPortlet.initializeRegisterPage(
 		{
 			addLCSClusterEntryURL: '<%= addLCSClusterEntryURL %>',
-			errorDuplicateEnvironment: '<%= UnicodeLanguageUtil.get(pageContext, "please-enter-an-unique-environment-name") %>',
-			errorGenericEnvironment: '<%= UnicodeLanguageUtil.get(pageContext, "your-request-failed-to-complete") %>',
-			errorRequiredEnvironmentName: '<%= UnicodeLanguageUtil.get(pageContext, "environment-name-is-required") %>',
-			labelNewEnvironment: '<%= UnicodeLanguageUtil.get(pageContext, "new-environment") %>',
-			msgNoEnvironmentsCreated: '<%= UnicodeLanguageUtil.get(pageContext, "there-are-no-environments-created-yet") %>',
+			errorDuplicateEnvironment: '<%= UnicodeLanguageUtil.get(request, "please-enter-an-unique-environment-name") %>',
+			errorGenericEnvironment: '<%= UnicodeLanguageUtil.get(request, "your-request-failed-to-complete") %>',
+			errorRequiredEnvironmentName: '<%= UnicodeLanguageUtil.get(request, "environment-name-is-required") %>',
+			labelNewEnvironment: '<%= UnicodeLanguageUtil.get(request, "new-environment") %>',
+			msgNoEnvironmentsCreated: '<%= UnicodeLanguageUtil.get(request, "there-are-no-environments-created-yet") %>',
 			serveCorpEntryURL: '<portlet:resourceURL id="serveCorpEntry" />',
 			serveLCSClusterEntryURL: '<portlet:resourceURL id="serveLCSClusterEntry" />'
 		}

@@ -61,7 +61,7 @@ request.setAttribute("view_account.jsp-webExAccount", webExAccount);
 			<liferay-ui:icon
 				cssClass="folder-avatar"
 				image="../file_system/large/spreadsheet"
-				message='<%= LanguageUtil.get(pageContext, "account") %>'
+				message='<%= LanguageUtil.get(request, "account") %>'
 			/>
 
 			<div class="account-name">

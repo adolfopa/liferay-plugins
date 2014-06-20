@@ -83,7 +83,7 @@ request.setAttribute("view_site.jsp-webExSite", webExSite);
 			<liferay-ui:icon
 				cssClass="folder-avatar"
 				image="../file_system/large/default"
-				message='<%= LanguageUtil.get(pageContext, "site") %>'
+				message='<%= LanguageUtil.get(request, "site") %>'
 			/>
 
 			<div class="site-name">

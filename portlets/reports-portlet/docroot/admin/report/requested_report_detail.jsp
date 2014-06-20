@@ -100,7 +100,7 @@ String status = entry.getStatus();
 				StringBundler sb = new StringBundler((entry.getEndDate() != null) ? 18 : 12);
 
 				sb.append("<br />");
-				sb.append(LanguageUtil.get(pageContext, "scheduler-from"));
+				sb.append(LanguageUtil.get(request, "scheduler-from"));
 				sb.append(StringPool.BLANK);
 				sb.append(StringPool.COLON);
 				sb.append(StringPool.BLANK);
@@ -108,7 +108,7 @@ String status = entry.getStatus();
 
 				if (entry.getEndDate() != null) {
 					sb.append("<br />");
-					sb.append(LanguageUtil.get(pageContext, "scheduler-to"));
+					sb.append(LanguageUtil.get(request, "scheduler-to"));
 					sb.append(StringPool.BLANK);
 					sb.append(StringPool.COLON);
 					sb.append(StringPool.BLANK);
@@ -116,7 +116,7 @@ String status = entry.getStatus();
 				}
 
 				sb.append("<br />");
-				sb.append(LanguageUtil.get(pageContext, "scheduler-crontext"));
+				sb.append(LanguageUtil.get(request, "scheduler-crontext"));
 				sb.append(StringPool.BLANK);
 				sb.append(StringPool.COLON);
 				sb.append(StringPool.BLANK);

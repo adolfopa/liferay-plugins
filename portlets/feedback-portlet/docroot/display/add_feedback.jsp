@@ -35,11 +35,11 @@ String redirect = ParamUtil.getString(request, "redirect");
 			<h4><span class="title"><liferay-ui:message key="i-would-like-to" /></span></h4>
 
 			<aui:field-wrapper>
-				<aui:input checked="<%= true %>" inlineLabel="right" label='<%= LanguageUtil.get(pageContext, "report-a-bug") %>' name="mbCategoryName" type="radio" value="Bugs" />
+				<aui:input checked="<%= true %>" inlineLabel="right" label='<%= LanguageUtil.get(request, "report-a-bug") %>' name="mbCategoryName" type="radio" value="Bugs" />
 
-				<aui:input inlineLabel="right" label='<%= LanguageUtil.get(pageContext, "make-a-suggestion") %>' name="mbCategoryName" type="radio" value="Suggestions" />
+				<aui:input inlineLabel="right" label='<%= LanguageUtil.get(request, "make-a-suggestion") %>' name="mbCategoryName" type="radio" value="Suggestions" />
 
-				<aui:input inlineLabel="right" label='<%= LanguageUtil.get(pageContext, "leave-a-general-comment") %>' name="mbCategoryName" type="radio" value="General" />
+				<aui:input inlineLabel="right" label='<%= LanguageUtil.get(request, "leave-a-general-comment") %>' name="mbCategoryName" type="radio" value="General" />
 			</aui:field-wrapper>
 
 			<aui:input cssClass="body" id="body" label="" name="body" required="<%= true %>" type="textarea" />
@@ -88,7 +88,7 @@ String redirect = ParamUtil.getString(request, "redirect");
 
 				var loadingMask = new A.LoadingMask(
 					{
-						'strings.loading': '<%= UnicodeLanguageUtil.get(pageContext, "sending-feedback") %>',
+						'strings.loading': '<%= UnicodeLanguageUtil.get(request, "sending-feedback") %>',
 						target: A.one('.feedback-portlet .feedback-container')
 					}
 				);

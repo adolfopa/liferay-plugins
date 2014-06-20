@@ -132,7 +132,7 @@ request.setAttribute("view_meeting.jsp-meeting", meeting);
 			<liferay-ui:icon
 				cssClass="folder-avatar"
 				image="../file_system/large/calendar"
-				message='<%= LanguageUtil.get(pageContext, "meeting") %>'
+				message='<%= LanguageUtil.get(request, "meeting") %>'
 			/>
 
 			<div class="meeting-name">

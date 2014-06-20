@@ -35,7 +35,7 @@
 						<portlet:param name="redirect" value="<%= currentURL %>" />
 					</portlet:renderURL>
 
-					Liferay.Feedbacks.getPopup('<%= addFeedbackURL %>', '<portlet:namespace />Dialog', '<%= UnicodeLanguageUtil.get(pageContext, "social-office-feedback") %>', true, 500, 570);
+					Liferay.Feedbacks.getPopup('<%= addFeedbackURL %>', '<portlet:namespace />Dialog', '<%= UnicodeLanguageUtil.get(request, "social-office-feedback") %>', true, 500, 570);
 				}
 			)
 		}

@@ -47,9 +47,9 @@ else if (!ready && pending) {
 <div class="lcs-connection-status <%= connectionStatus %>">
 	<span class="lcs-connection-icon"></span>
 
-	<span class="lcs-connection-label"><%= LanguageUtil.get(pageContext, connectionStatus) %></span>
+	<span class="lcs-connection-label"><%= LanguageUtil.get(request, connectionStatus) %></span>
 
-	<liferay-ui:icon-help message='<%= LanguageUtil.get(pageContext, connectionStatus + "-help") %>' />
+	<liferay-ui:icon-help message='<%= LanguageUtil.get(request, connectionStatus + "-help") %>' />
 </div>
 
 <div class="lcs-info">
@@ -194,15 +194,15 @@ else if (!ready && pending) {
 </div>
 
 <aui:button-row>
-	<aui:button cssClass='<%= "btn-success " + (ready ? "hide" : StringPool.BLANK) %>' disabled="<%= pending %>" name="connect" title='<%= LanguageUtil.get(pageContext, "connect-help") %>' value="connect" />
+	<aui:button cssClass='<%= "btn-success " + (ready ? "hide" : StringPool.BLANK) %>' disabled="<%= pending %>" name="connect" title='<%= LanguageUtil.get(request, "connect-help") %>' value="connect" />
 
-	<aui:button cssClass='<%= ready ? StringPool.BLANK : "hide" %>' disabled="<%= pending %>" name="disconnect" title='<%= LanguageUtil.get(pageContext, "disconnect-help") %>' value="disconnect" />
+	<aui:button cssClass='<%= ready ? StringPool.BLANK : "hide" %>' disabled="<%= pending %>" name="disconnect" title='<%= LanguageUtil.get(request, "disconnect-help") %>' value="disconnect" />
 
 	<liferay-portlet:actionURL name="resetCredentials" var="resetCredentialsURL">
 		<portlet:param name="redirect" value="<%= currentURL %>" />
 	</liferay-portlet:actionURL>
 
-	<aui:button disabled="<%= pending %>" href="<%= resetCredentialsURL %>" name="resetCredentials" title='<%= LanguageUtil.get(pageContext, "reset-credentials-help") %>' value="reset-credentials" />
+	<aui:button disabled="<%= pending %>" href="<%= resetCredentialsURL %>" name="resetCredentials" title='<%= LanguageUtil.get(request, "reset-credentials-help") %>' value="reset-credentials" />
 </aui:button-row>
 
 <div class="alert alert-info lcs-synchronizing-alert <%= pending ? StringPool.BLANK : "hide" %>" id="<portlet:namespace />connectionAlertContainer">
@@ -221,12 +221,12 @@ else if (!ready && pending) {
 			connectURL: '<portlet:resourceURL id="connect" />',
 			connectionStatusURL: '<portlet:resourceURL id="serveConnectionStatus" />',
 			disconnectURL: '<portlet:resourceURL id="disconnect" />',
-			labelConnected: '<%= UnicodeLanguageUtil.get(pageContext, "connected") %>',
-			labelConnectedHelp: '<%= UnicodeLanguageUtil.get(pageContext, "connected-help") %>',
-			labelDisconnected: '<%= UnicodeLanguageUtil.get(pageContext, "disconnected") %>',
-			labelDisconnectedHelp: '<%= UnicodeLanguageUtil.get(pageContext, "disconnected-help") %>',
-			labelPending: '<%= UnicodeLanguageUtil.get(pageContext, "synchronizing") %>',
-			labelPendingHelp: '<%= UnicodeLanguageUtil.get(pageContext, "synchronizing-help") %>',
+			labelConnected: '<%= UnicodeLanguageUtil.get(request, "connected") %>',
+			labelConnectedHelp: '<%= UnicodeLanguageUtil.get(request, "connected-help") %>',
+			labelDisconnected: '<%= UnicodeLanguageUtil.get(request, "disconnected") %>',
+			labelDisconnectedHelp: '<%= UnicodeLanguageUtil.get(request, "disconnected-help") %>',
+			labelPending: '<%= UnicodeLanguageUtil.get(request, "synchronizing") %>',
+			labelPendingHelp: '<%= UnicodeLanguageUtil.get(request, "synchronizing-help") %>',
 			pending: '<%= pending %>'
 		}
 	);

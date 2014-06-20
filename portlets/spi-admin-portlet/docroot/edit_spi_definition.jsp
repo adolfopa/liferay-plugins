@@ -71,7 +71,7 @@ if (useDefaultRestartOptions) {
 <liferay-ui:header
 	backURL="<%= redirect %>"
 	localizeTitle="<%= (spiDefinition == null) %>"
-	title='<%= (spiDefinition == null) ? LanguageUtil.get(pageContext, "add-spi") : name + " (" + LanguageUtil.get(pageContext, SPIAdminConstants.getStatusLabel(status)) + ")" %>'
+	title='<%= (spiDefinition == null) ? LanguageUtil.get(request, "add-spi") : name + " (" + LanguageUtil.get(request, SPIAdminConstants.getStatusLabel(status)) + ")" %>'
 />
 
 <c:if test="<%= (status == SPIAdminConstants.STATUS_STARTED) || (status == SPIAdminConstants.STATUS_STARTING) %>">
@@ -293,5 +293,5 @@ if (useDefaultRestartOptions) {
 </aui:script>
 
 <%
-PortalUtil.addPortletBreadcrumbEntry(request, (spiDefinition != null) ? name : LanguageUtil.get(pageContext, "add-spi"), currentURL);
+PortalUtil.addPortletBreadcrumbEntry(request, (spiDefinition != null) ? name : LanguageUtil.get(request, "add-spi"), currentURL);
 %>

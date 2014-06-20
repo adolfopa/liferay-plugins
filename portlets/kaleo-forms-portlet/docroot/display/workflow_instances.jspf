@@ -63,7 +63,7 @@ portletURL.setParameter("tabs2", tabs2);
 		>
 
 			<%
-			buffer.append(LanguageUtil.get(pageContext, HtmlUtil.escape(workflowInstance.getState())));
+			buffer.append(LanguageUtil.get(request, HtmlUtil.escape(workflowInstance.getState())));
 			%>
 
 		</liferay-ui:search-container-column-text>
@@ -77,7 +77,7 @@ portletURL.setParameter("tabs2", tabs2);
 				<liferay-ui:search-container-column-text
 					href="<%= rowURL %>"
 					name="last-activity-date"
-					value='<%= LanguageUtil.get(pageContext, "never") %>'
+					value='<%= LanguageUtil.get(request, "never") %>'
 				/>
 			</c:when>
 			<c:otherwise>
@@ -98,7 +98,7 @@ portletURL.setParameter("tabs2", tabs2);
 			<c:when test="<%= workflowInstance.getEndDate() == null %>">
 				<liferay-ui:search-container-column-text
 					name="end-date"
-					value='<%= LanguageUtil.get(pageContext, "never") %>'
+					value='<%= LanguageUtil.get(request, "never") %>'
 				/>
 			</c:when>
 			<c:otherwise>

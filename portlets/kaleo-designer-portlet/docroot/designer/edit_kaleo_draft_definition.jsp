@@ -98,7 +98,7 @@
 
 				<c:if test="<%= kaleoDraftDefinition != null %>">
 					<liferay-ui:panel-container extended="<%= false %>" id="kaleoDesignerDetailsPanelContainer" persistState="<%= true %>">
-						<liferay-ui:panel collapsible="<%= true %>" cssClass="lfr-portlet-workflowdesigner-panel" extended="<%= false %>" id="kaleoDesignerSectionPanel" persistState="<%= true %>" title='<%= LanguageUtil.get(pageContext, "details") %>'>
+						<liferay-ui:panel collapsible="<%= true %>" cssClass="lfr-portlet-workflowdesigner-panel" extended="<%= false %>" id="kaleoDesignerSectionPanel" persistState="<%= true %>" title='<%= LanguageUtil.get(request, "details") %>'>
 							<div class="lfr-portlet-workflowdesigner-details-view">
 								<c:if test="<%= workflowDefinition != null %>">
 									<liferay-portlet:renderURL portletName="151" var="workflowDefinitionEditURL">

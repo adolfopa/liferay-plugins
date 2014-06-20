@@ -80,23 +80,23 @@ if (auditEventId > 0) {
 			</aui:field-wrapper>
 
 			<aui:field-wrapper label="client-host">
-				<%= Validator.isNotNull(auditEvent.getClientHost()) ? auditEvent.getClientHost() : LanguageUtil.get(pageContext, "none") %>
+				<%= Validator.isNotNull(auditEvent.getClientHost()) ? auditEvent.getClientHost() : LanguageUtil.get(request, "none") %>
 			</aui:field-wrapper>
 
 			<aui:field-wrapper label="client-ip">
-				<%= Validator.isNotNull(auditEvent.getClientIP()) ? auditEvent.getClientIP() : LanguageUtil.get(pageContext, "none") %>
+				<%= Validator.isNotNull(auditEvent.getClientIP()) ? auditEvent.getClientIP() : LanguageUtil.get(request, "none") %>
 			</aui:field-wrapper>
 
 			<aui:field-wrapper label="server-name">
-				<%= Validator.isNotNull(auditEvent.getServerName()) ? auditEvent.getServerName() : LanguageUtil.get(pageContext, "none") %>
+				<%= Validator.isNotNull(auditEvent.getServerName()) ? auditEvent.getServerName() : LanguageUtil.get(request, "none") %>
 			</aui:field-wrapper>
 
 			<aui:field-wrapper label="session-id">
-				<%= Validator.isNotNull(auditEvent.getSessionID()) ? auditEvent.getSessionID() : LanguageUtil.get(pageContext, "none") %>
+				<%= Validator.isNotNull(auditEvent.getSessionID()) ? auditEvent.getSessionID() : LanguageUtil.get(request, "none") %>
 			</aui:field-wrapper>
 
 			<aui:field-wrapper label="additional-information">
-				<%= Validator.isNotNull(auditEvent.getAdditionalInfo()) ? auditEvent.getAdditionalInfo() : LanguageUtil.get(pageContext, "none") %>
+				<%= Validator.isNotNull(auditEvent.getAdditionalInfo()) ? auditEvent.getAdditionalInfo() : LanguageUtil.get(request, "none") %>
 			</aui:field-wrapper>
 		</aui:column>
 	</c:otherwise>

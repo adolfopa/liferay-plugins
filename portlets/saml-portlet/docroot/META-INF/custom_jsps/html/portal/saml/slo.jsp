@@ -99,27 +99,27 @@ JSONArray samlSloRequestInfosJSONArray = samlSloContextJSONObject.getJSONArray("
 		2: {
 			cssClass: 'portlet-msg-success-label',
 			retry: false,
-			title: '<%= UnicodeLanguageUtil.get(pageContext, "single-sign-out-completed-successfully") %>'
+			title: '<%= UnicodeLanguageUtil.get(request, "single-sign-out-completed-successfully") %>'
 		},
 		3: {
 			cssClass: 'portlet-msg-error-label',
 			retry: true,
-			title: '<%= UnicodeLanguageUtil.get(pageContext, "single-sign-out-request-failed") %>'
+			title: '<%= UnicodeLanguageUtil.get(request, "single-sign-out-request-failed") %>'
 		},
 		4: {
 			cssClass: 'portlet-msg-no-support-label',
 			retry: false,
-			title: '<%= UnicodeLanguageUtil.get(pageContext, "this-service-provider-does-not-support-single-sign-out") %>'
+			title: '<%= UnicodeLanguageUtil.get(request, "this-service-provider-does-not-support-single-sign-out") %>'
 		},
 		5: {
 			cssClass: 'portlet-msg-timed-out-label',
 			retry: true,
-			title: '<%= UnicodeLanguageUtil.get(pageContext, "single-sign-out-request-timed-out") %>'
+			title: '<%= UnicodeLanguageUtil.get(request, "single-sign-out-request-timed-out") %>'
 		},
 		defaultStatus: {
 			cssClass: 'portlet-msg-progress-label',
 			retry: false,
-			title: '<%= UnicodeLanguageUtil.get(pageContext, "single-sign-out-in-progress") %>'
+			title: '<%= UnicodeLanguageUtil.get(request, "single-sign-out-in-progress") %>'
 		}
 	};
 
@@ -127,7 +127,7 @@ JSONArray samlSloRequestInfosJSONArray = samlSloContextJSONObject.getJSONArray("
 		'<tpl for="items">',
 			'<div class="saml-sp" id="samlSp{$i}">' +
 				'<span class="portlet-msg-progress-label saml-sp-label">{name}</span>' +
-				'<a class="hide saml-sp-retry" data-entityId="{entityId}" href="javascript:;"><%= UnicodeLanguageUtil.get(pageContext, "retry") %></a>' +
+				'<a class="hide saml-sp-retry" data-entityId="{entityId}" href="javascript:;"><%= UnicodeLanguageUtil.get(request, "retry") %></a>' +
 				'<iframe class="hide-accessible" src="?cmd=logout&entityId={entityId}"></iframe>' +
 			'</div>' +
 		'</tpl>'
