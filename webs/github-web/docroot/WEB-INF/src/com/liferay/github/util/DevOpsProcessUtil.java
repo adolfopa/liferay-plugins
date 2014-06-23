@@ -21,6 +21,9 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 /**
  * @author Brian Wing Shun Chan
  * @author Peter Shin
@@ -73,6 +76,20 @@ public class DevOpsProcessUtil {
 		BufferedReader bufferedReader = null;
 
 		try {
+			if (_log.isInfoEnabled()) {
+				StringBuilder sb = new StringBuilder();
+
+				for (int i = 0; i < commands.length; i++) {
+					sb.append(commands[i]);
+
+					if ((i + 1) < commands.length) {
+						sb.append(" ");
+					}
+				}
+
+				_log.info("Command: " + sb.toString());
+			}
+
 			ProcessBuilder processBuilder = new ProcessBuilder(commands);
 
 			processBuilder.directory(workDir);
@@ -105,6 +122,11 @@ public class DevOpsProcessUtil {
 			result.setExitCode(process.waitFor());
 			result.setOutput(sb.toString());
 
+			if (_log.isInfoEnabled()) {
+				_log.info("Exit Code: " + result.getExitCode());
+				_log.info("Output: " + result.getOutput());
+			}
+
 			return result;
 		}
 		finally {
@@ -136,5 +158,7 @@ public class DevOpsProcessUtil {
 		private String _output = "";
 
 	}
+
+	private static Log _log = LogFactory.getLog(DevOpsProcessUtil.class);
 
 }
