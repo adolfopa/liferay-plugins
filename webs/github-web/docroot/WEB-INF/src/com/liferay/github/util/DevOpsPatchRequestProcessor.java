@@ -259,9 +259,7 @@ public class DevOpsPatchRequestProcessor {
 			"git rebase --onto " + pluginsGitBranch + " " + sha1Hashes[0] +
 				" " + sha1Hashes[1]);
 
-		String gitRebaseOutput = gitRebaseResult.getOutput();
-
-		if (gitRebaseOutput.isEmpty()) {
+		if (gitRebaseResult.getExitCode() == 0) {
 			return false;
 		}
 
