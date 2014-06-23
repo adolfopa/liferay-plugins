@@ -198,6 +198,7 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 			"git clean -d -e .ivy -e build." + System.getProperty("user.name") +
 				".properties -f -q -x");
 		DevOpsProcessUtil.execute(workDir, "git reset --hard HEAD");
+		DevOpsProcessUtil.execute(workDir, "git fetch devops");
 		DevOpsProcessUtil.execute(workDir, "git fetch upstream");
 
 		DevOpsProcessUtil.Result result = DevOpsProcessUtil.execute(
