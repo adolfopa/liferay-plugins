@@ -339,7 +339,7 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 					}
 				}
 
-			}, 1, 480, TimeUnit.MINUTES);
+			}, 0, 480, TimeUnit.MINUTES);
 
 		_scheduledExecutorServices.add(scheduledExecutorService);
 
