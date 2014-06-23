@@ -327,14 +327,10 @@ public class DevOpsPatchRequestProcessor {
 			JSONObject payloadJSONObject, String[] sha1Hashes)
 		throws Exception {
 
+		initProfileGitRepository(payloadJSONObject);
+
 		File workDir = _devOpsGitHubRequestProcessor.getProfileGitRepositoryDir(
 			_profileName);
-
-		DevOpsProcessUtil.execute(
-			workDir,
-			"git clean -d -f -q -x -e .ivy -e build." +
-				System.getProperty("user.name") + ".properties");
-		DevOpsProcessUtil.execute(workDir, "git reset --hard HEAD");
 
 		String pluginsGitBranch = DevOpsPeekPropsUtil.get(
 			_profileName, "plugins.git.branch");
