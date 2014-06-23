@@ -195,7 +195,7 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 
 		DevOpsProcessUtil.execute(
 			workDir,
-			"git clean -d -e .ivy -e build." + System.getenv("USERNAME") +
+			"git clean -d -e .ivy -e build." + System.getProperty("user.name") +
 				".properties -f -q -x");
 		DevOpsProcessUtil.execute(workDir, "git reset --hard HEAD");
 		DevOpsProcessUtil.execute(workDir, "git fetch upstream");
@@ -276,7 +276,7 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 		FileUtils.writeStringToFile(
 			new File(
 				profileGitRepositoryDir + "/build." +
-					System.getenv("USERNAME") + ".properties"),
+					System.getProperty("user.name") + ".properties"),
 			"app.server.dir=" + profileAppServerDir.getPath(), "UTF-8", false);
 	}
 

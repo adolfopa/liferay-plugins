@@ -335,7 +335,7 @@ public class DevOpsPatchRequestProcessor {
 		DevOpsProcessUtil.execute(
 			workDir,
 			"git clean -d -f -q -x -e .ivy -e build." +
-				System.getenv("USERNAME") + ".properties");
+				System.getProperty("user.name") + ".properties");
 		DevOpsProcessUtil.execute(workDir, "git reset --hard HEAD");
 
 		String pluginsGitBranch = DevOpsPeekPropsUtil.get(
