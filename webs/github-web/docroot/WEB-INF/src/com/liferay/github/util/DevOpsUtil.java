@@ -118,6 +118,10 @@ public class DevOpsUtil {
 		String gitHubUserLogins = DevOpsPropsUtil.get(
 			"profile." + profileName + ".github.user.logins");
 
+		if (gitHubUserLogins == null) {
+			return false;
+		}
+
 		for (String gitHubUserLogin : gitHubUserLogins.split(",")) {
 			if (gitHubUserLogin.equals(userJSONObject.getString("login"))) {
 				return true;
