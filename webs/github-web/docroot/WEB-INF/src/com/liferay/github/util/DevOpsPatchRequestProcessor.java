@@ -226,6 +226,8 @@ public class DevOpsPatchRequestProcessor {
 
 			DevOpsUtil.postPullRequestComment(payloadJSONObject, comment);
 
+			DevOpsUtil.closePullRequest(payloadJSONObject);
+
 			return true;
 		}
 
@@ -282,6 +284,8 @@ public class DevOpsPatchRequestProcessor {
 			sb.toString());
 
 		DevOpsUtil.postPullRequestComment(payloadJSONObject, comment);
+
+		DevOpsUtil.closePullRequest(payloadJSONObject);
 
 		return true;
 	}
