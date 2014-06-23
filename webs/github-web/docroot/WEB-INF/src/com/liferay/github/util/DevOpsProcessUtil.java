@@ -46,13 +46,21 @@ public class DevOpsProcessUtil {
 				beginIndex = 1;
 				endIndex = command.indexOf("'", beginIndex);
 			}
-			else {
+			else if (command.contains(" ")) {
 				endIndex = command.indexOf(" ");
+			}
+			else {
+				endIndex = command.length();
 			}
 
 			commands.add(command.substring(beginIndex, endIndex));
 
-			command = command.substring(endIndex + 1);
+			if (endIndex != command.length()) {
+				command = command.substring(endIndex + 1);
+			}
+			else {
+				command = command.substring(endIndex);
+			}
 		}
 		while (!command.isEmpty());
 
