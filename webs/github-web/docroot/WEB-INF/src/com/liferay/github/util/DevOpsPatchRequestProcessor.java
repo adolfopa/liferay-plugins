@@ -78,6 +78,21 @@ public class DevOpsPatchRequestProcessor {
 		}
 	}
 
+	protected void cleanUp(JSONObject payloadJSONObject) throws Exception {
+		File workDir = _devOpsGitHubRequestProcessor.getProfileGitRepositoryDir(
+			_profileName);
+
+		JSONObject pullRequestJSONObject = payloadJSONObject.getJSONObject(
+			"pull_request");
+
+		int pullRequestNumber = pullRequestJSONObject.getInt("number");
+
+		DevOpsProcessUtil.execute(
+			workDir, "git branch -D pull-request-" + pullRequestNumber);
+		DevOpsProcessUtil.execute(
+			workDir, "git push devops :pull-request-" + pullRequestNumber);
+	}
+
 	protected String[] getSHA1Hashes(JSONObject payloadJSONObject)
 		throws Exception {
 
@@ -228,6 +243,8 @@ public class DevOpsPatchRequestProcessor {
 
 			DevOpsUtil.closePullRequest(payloadJSONObject);
 
+			cleanUp(payloadJSONObject);
+
 			return true;
 		}
 
@@ -286,6 +303,8 @@ public class DevOpsPatchRequestProcessor {
 		DevOpsUtil.postPullRequestComment(payloadJSONObject, comment);
 
 		DevOpsUtil.closePullRequest(payloadJSONObject);
+
+		cleanUp(payloadJSONObject);
 
 		return true;
 	}
@@ -420,6 +439,8 @@ public class DevOpsPatchRequestProcessor {
 			DevOpsPropsUtil.get("github.comment.patch.installed"));
 
 		DevOpsUtil.closePullRequest(payloadJSONObject);
+
+		cleanUp(payloadJSONObject);
 	}
 
 	private static Log _log = LogFactory.getLog(
