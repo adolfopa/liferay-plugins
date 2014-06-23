@@ -24,6 +24,8 @@ public class DevOpsConstants {
 
 	public static final String GITHUB_API_URL = "https://api.github.com";
 
+	public static final String GITHUB_URL = "https://github.com";
+
 	public static final String LIFERAY_ORIGINAL_DIR_NAME =
 		"/opt/java/liferay.original";
 

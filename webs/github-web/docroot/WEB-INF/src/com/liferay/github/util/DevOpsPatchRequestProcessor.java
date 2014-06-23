@@ -265,9 +265,21 @@ public class DevOpsPatchRequestProcessor {
 
 		DevOpsProcessUtil.execute(workDir, "git rebase --abort");
 
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("[");
+		sb.append(pluginsGitBranch);
+		sb.append("](");
+		sb.append(DevOpsConstants.GITHUB_URL);
+		sb.append("/");
+		sb.append(DevOpsPropsUtil.get("profile.github.user.login"));
+		sb.append("/liferay-plugins-ee/tree/");
+		sb.append(pluginsGitBranch);
+		sb.append(")");
+
 		String comment = MessageFormat.format(
 			DevOpsPropsUtil.get("github.comment.merge.conflict"),
-			pluginsGitBranch);
+			sb.toString());
 
 		DevOpsUtil.postPullRequestComment(payloadJSONObject, comment);
 
