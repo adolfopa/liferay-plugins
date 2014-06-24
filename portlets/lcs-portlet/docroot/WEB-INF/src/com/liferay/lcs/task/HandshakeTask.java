@@ -29,6 +29,8 @@ import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.sender.SingleDestinationMessageSender;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.ReleaseInfo;
 import com.liferay.portal.license.util.LicenseManagerUtil;
 
@@ -126,6 +128,18 @@ public class HandshakeTask implements Runnable {
 		handshakeMessage.put(Message.KEY_HASH_CODE, key.hashCode());
 		handshakeMessage.put(
 			Message.KEY_HEARTBEAT_INTERVAL, String.valueOf(_heartbeatInterval));
+
+		if (_MONITORING_FILTER) {
+			handshakeMessage.put(
+				Message.KEY_MONITORING_STATUS,
+				LCSConstants.MONITORING_AVAILABLE);
+		}
+		else {
+			handshakeMessage.put(
+				Message.KEY_MONITORING_STATUS,
+				LCSConstants.MONITORING_UNAVAILABLE);
+		}
+
 		handshakeMessage.put(Message.PORTAL_EDITION, getPortalEdition());
 		handshakeMessage.setKey(key);
 
@@ -255,6 +269,10 @@ public class HandshakeTask implements Runnable {
 
 		return receivedHandshakeResponse;
 	}
+
+	private static final boolean _MONITORING_FILTER = GetterUtil.getBoolean(
+		PropsUtil.get(
+			"com.liferay.portal.servlet.filters.monitoring.MonitoringFilter"));
 
 	private static Log _log = LogFactoryUtil.getLog(HandshakeTask.class);
 
