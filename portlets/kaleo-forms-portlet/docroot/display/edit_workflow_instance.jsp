@@ -254,7 +254,7 @@ headerTitle = headerTitle.concat(StringPool.COLON + StringPool.SPACE + ddlRecord
 			<liferay-ui:icon
 				cssClass="lfr-asset-avatar"
 				image="../file_system/large/task"
-				message="download"
+				message="review"
 			/>
 
 			<div class="lfr-asset-name">

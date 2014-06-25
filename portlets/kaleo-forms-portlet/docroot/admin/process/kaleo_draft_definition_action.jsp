@@ -34,7 +34,7 @@ String backURL = (String)row.getParameter("backURL");
 	</portlet:renderURL>
 
 	<liferay-ui:icon
-		image="edit"
+		iconCssClass="icon-edit"
 		url="<%= editURL %>"
 	/>
 </liferay-ui:icon-menu>

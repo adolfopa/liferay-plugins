@@ -33,7 +33,7 @@ String redirect = (String)row.getParameter("redirect");
 	</portlet:renderURL>
 
 	<liferay-ui:icon
-		image="../aui/edit"
+		iconCssClass="icon-edit"
 		message="edit"
 		url="<%= editURL %>"
 	/>
@@ -43,7 +43,7 @@ String redirect = (String)row.getParameter("redirect");
 	%>
 
 	<liferay-ui:icon
-		image="../aui/check"
+		iconCssClass="icon-check"
 		message="choose"
 		onClick="<%= taglibOnClick %>"
 		url="javascript:;"

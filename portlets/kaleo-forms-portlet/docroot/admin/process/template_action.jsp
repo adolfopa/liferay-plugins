@@ -29,7 +29,7 @@ DDMTemplate ddmTemplate = (DDMTemplate)row.getObject();
 	%>
 
 	<liferay-ui:icon
-		image="../aui/edit"
+		iconCssClass="icon-edit"
 		message="edit"
 		onClick="<%= taglibOnClick %>"
 		url="javascript:;"
@@ -40,7 +40,7 @@ DDMTemplate ddmTemplate = (DDMTemplate)row.getObject();
 	%>
 
 	<liferay-ui:icon
-		image="../aui/check"
+		iconCssClass="icon-check"
 		message="choose"
 		onClick="<%= taglibOnClick %>"
 		url="javascript:;"
