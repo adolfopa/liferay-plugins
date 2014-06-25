@@ -142,18 +142,9 @@
 
 				<aui:button-row>
 					<c:if test="<%= editable %>">
-						<c:choose>
-							<c:when test="<%= kaleoDraftDefinition == null %>">
-								<c:if test="<%= KaleoDesignerPermission.contains(permissionChecker, themeDisplay.getCompanyGroupId(), ActionKeys.ADD_DRAFT) %>">
-									<aui:button onClick='<%= renderResponse.getNamespace() + "updateKaleoDraftDefinition();" %>' value="add-draft" />
-								</c:if>
-							</c:when>
-							<c:otherwise>
-								<c:if test="<%= KaleoDraftDefinitionPermission.contains(permissionChecker, kaleoDraftDefinition, ActionKeys.UPDATE) %>">
-									<aui:button onClick='<%= renderResponse.getNamespace() + "updateKaleoDraftDefinition();" %>' value="save-draft" />
-								</c:if>
-							</c:otherwise>
-						</c:choose>
+						<c:if test="<%= KaleoDesignerPermission.contains(permissionChecker, themeDisplay.getCompanyGroupId(), ActionKeys.ADD_DRAFT) || ((kaleoDraftDefinition != null) && KaleoDraftDefinitionPermission.contains(permissionChecker, kaleoDraftDefinition, ActionKeys.UPDATE)) %>">
+							<aui:button onClick='<%= renderResponse.getNamespace() + "updateKaleoDraftDefinition();" %>' value="save-as-draft" />
+						</c:if>
 
 						<c:if test="<%= KaleoDesignerPermission.contains(permissionChecker, themeDisplay.getCompanyGroupId(), ActionKeys.PUBLISH) %>">
 							<aui:button onClick='<%= renderResponse.getNamespace() + "publishKaleoDraftDefinition();" %>' primary="<%= true %>" value="publish" />
