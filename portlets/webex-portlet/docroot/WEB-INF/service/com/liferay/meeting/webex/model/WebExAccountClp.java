@@ -604,6 +604,10 @@ public class WebExAccountClp extends BaseModelImpl<WebExAccount>
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -720,6 +724,7 @@ public class WebExAccountClp extends BaseModelImpl<WebExAccount>
 	private String _login;
 	private String _password;
 	private BaseModel<?> _webExAccountRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.meeting.webex.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

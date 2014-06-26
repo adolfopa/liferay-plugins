@@ -813,6 +813,10 @@ public class SamlSpIdpConnectionClp extends BaseModelImpl<SamlSpIdpConnection>
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -978,6 +982,7 @@ public class SamlSpIdpConnectionClp extends BaseModelImpl<SamlSpIdpConnection>
 	private boolean _signAuthnRequest;
 	private String _userAttributeMappings;
 	private BaseModel<?> _samlSpIdpConnectionRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.saml.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

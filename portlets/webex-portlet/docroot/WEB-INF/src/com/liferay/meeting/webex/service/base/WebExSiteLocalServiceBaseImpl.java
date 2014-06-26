@@ -341,7 +341,7 @@ public abstract class WebExSiteLocalServiceBaseImpl extends BaseLocalServiceImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteWebExSite((WebExSite)persistedModel);
+		return webExSiteLocalService.deleteWebExSite((WebExSite)persistedModel);
 	}
 
 	@Override

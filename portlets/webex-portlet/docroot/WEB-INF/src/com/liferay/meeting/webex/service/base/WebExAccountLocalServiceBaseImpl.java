@@ -344,7 +344,7 @@ public abstract class WebExAccountLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteWebExAccount((WebExAccount)persistedModel);
+		return webExAccountLocalService.deleteWebExAccount((WebExAccount)persistedModel);
 	}
 
 	@Override

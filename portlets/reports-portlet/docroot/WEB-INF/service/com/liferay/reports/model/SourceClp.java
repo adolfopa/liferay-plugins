@@ -829,6 +829,10 @@ public class SourceClp extends BaseModelImpl<Source> implements Source {
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -960,6 +964,7 @@ public class SourceClp extends BaseModelImpl<Source> implements Source {
 	private String _driverUserName;
 	private String _driverPassword;
 	private BaseModel<?> _sourceRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.reports.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

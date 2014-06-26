@@ -250,7 +250,7 @@ public abstract class AuditEventLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteAuditEvent((AuditEvent)persistedModel);
+		return auditEventLocalService.deleteAuditEvent((AuditEvent)persistedModel);
 	}
 
 	@Override

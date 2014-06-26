@@ -339,7 +339,7 @@ public abstract class SourceLocalServiceBaseImpl extends BaseLocalServiceImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteSource((Source)persistedModel);
+		return sourceLocalService.deleteSource((Source)persistedModel);
 	}
 
 	@Override

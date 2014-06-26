@@ -256,7 +256,7 @@ public abstract class SamlSpMessageLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteSamlSpMessage((SamlSpMessage)persistedModel);
+		return samlSpMessageLocalService.deleteSamlSpMessage((SamlSpMessage)persistedModel);
 	}
 
 	@Override

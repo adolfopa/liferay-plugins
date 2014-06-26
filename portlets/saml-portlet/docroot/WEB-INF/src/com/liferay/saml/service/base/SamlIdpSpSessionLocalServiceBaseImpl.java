@@ -258,7 +258,7 @@ public abstract class SamlIdpSpSessionLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteSamlIdpSpSession((SamlIdpSpSession)persistedModel);
+		return samlIdpSpSessionLocalService.deleteSamlIdpSpSession((SamlIdpSpSession)persistedModel);
 	}
 
 	@Override

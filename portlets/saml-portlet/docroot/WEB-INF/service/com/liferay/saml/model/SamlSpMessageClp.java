@@ -405,6 +405,10 @@ public class SamlSpMessageClp extends BaseModelImpl<SamlSpMessage>
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -486,6 +490,7 @@ public class SamlSpMessageClp extends BaseModelImpl<SamlSpMessage>
 	private String _samlIdpResponseKey;
 	private Date _expirationDate;
 	private BaseModel<?> _samlSpMessageRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.saml.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

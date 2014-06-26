@@ -252,7 +252,7 @@ public abstract class OAuthUserLocalServiceBaseImpl extends BaseLocalServiceImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteOAuthUser((OAuthUser)persistedModel);
+		return oAuthUserLocalService.deleteOAuthUser((OAuthUser)persistedModel);
 	}
 
 	@Override

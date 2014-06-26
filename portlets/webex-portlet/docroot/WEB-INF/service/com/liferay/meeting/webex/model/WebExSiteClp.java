@@ -678,6 +678,10 @@ public class WebExSiteClp extends BaseModelImpl<WebExSite> implements WebExSite 
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -815,6 +819,7 @@ public class WebExSiteClp extends BaseModelImpl<WebExSite> implements WebExSite 
 	private String _partnerKey;
 	private long _siteKey;
 	private BaseModel<?> _webExSiteRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.meeting.webex.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

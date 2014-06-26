@@ -1167,6 +1167,10 @@ public class SPIDefinitionClp extends BaseModelImpl<SPIDefinition>
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -1318,6 +1322,7 @@ public class SPIDefinitionClp extends BaseModelImpl<SPIDefinition>
 	private int _status;
 	private String _statusMessage;
 	private BaseModel<?> _spiDefinitionRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.portal.resiliency.spi.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

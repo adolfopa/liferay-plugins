@@ -683,6 +683,10 @@ public class AuditEventClp extends BaseModelImpl<AuditEvent>
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -827,6 +831,7 @@ public class AuditEventClp extends BaseModelImpl<AuditEvent>
 	private String _sessionID;
 	private String _additionalInfo;
 	private BaseModel<?> _auditEventRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.portal.audit.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

@@ -360,6 +360,10 @@ public class SamlSpAuthRequestClp extends BaseModelImpl<SamlSpAuthRequest>
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -434,6 +438,7 @@ public class SamlSpAuthRequestClp extends BaseModelImpl<SamlSpAuthRequest>
 	private String _samlIdpEntityId;
 	private String _samlSpAuthRequestKey;
 	private BaseModel<?> _samlSpAuthRequestRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.saml.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

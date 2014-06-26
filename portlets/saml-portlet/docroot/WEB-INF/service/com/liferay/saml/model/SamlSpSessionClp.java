@@ -693,6 +693,10 @@ public class SamlSpSessionClp extends BaseModelImpl<SamlSpSession>
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -837,6 +841,7 @@ public class SamlSpSessionClp extends BaseModelImpl<SamlSpSession>
 	private String _sessionIndex;
 	private boolean _terminated;
 	private BaseModel<?> _samlSpSessionRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.saml.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

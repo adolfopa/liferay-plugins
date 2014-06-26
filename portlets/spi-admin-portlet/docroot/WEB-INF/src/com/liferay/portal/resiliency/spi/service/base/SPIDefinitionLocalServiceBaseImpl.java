@@ -257,7 +257,7 @@ public abstract class SPIDefinitionLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteSPIDefinition((SPIDefinition)persistedModel);
+		return spiDefinitionLocalService.deleteSPIDefinition((SPIDefinition)persistedModel);
 	}
 
 	@Override

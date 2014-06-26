@@ -260,7 +260,7 @@ public abstract class KaleoProcessLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteKaleoProcess((KaleoProcess)persistedModel);
+		return kaleoProcessLocalService.deleteKaleoProcess((KaleoProcess)persistedModel);
 	}
 
 	@Override

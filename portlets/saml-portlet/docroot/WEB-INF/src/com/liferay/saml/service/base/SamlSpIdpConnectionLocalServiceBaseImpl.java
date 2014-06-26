@@ -262,7 +262,7 @@ public abstract class SamlSpIdpConnectionLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteSamlSpIdpConnection((SamlSpIdpConnection)persistedModel);
+		return samlSpIdpConnectionLocalService.deleteSamlSpIdpConnection((SamlSpIdpConnection)persistedModel);
 	}
 
 	@Override

@@ -716,6 +716,10 @@ public class KaleoProcessClp extends BaseModelImpl<KaleoProcess>
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -832,6 +836,7 @@ public class KaleoProcessClp extends BaseModelImpl<KaleoProcess>
 	private String _WorkflowDefinitionName;
 	private long _WorkflowDefinitionVersion;
 	private BaseModel<?> _kaleoProcessRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.portal.workflow.kaleo.forms.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

@@ -258,7 +258,7 @@ public abstract class SamlSpAuthRequestLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteSamlSpAuthRequest((SamlSpAuthRequest)persistedModel);
+		return samlSpAuthRequestLocalService.deleteSamlSpAuthRequest((SamlSpAuthRequest)persistedModel);
 	}
 
 	@Override
