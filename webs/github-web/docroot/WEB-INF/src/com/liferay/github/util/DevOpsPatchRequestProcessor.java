@@ -229,7 +229,8 @@ public class DevOpsPatchRequestProcessor {
 			File pluginWorkDir = new File(workDir.getPath() + "/" + pluginPath);
 
 			DevOpsProcessUtil.Result antDirectDeployResult =
-				DevOpsProcessUtil.execute(pluginWorkDir, "ant direct-deploy");
+				DevOpsProcessUtil.execute(
+					pluginWorkDir, "/opt/java/ant/bin/ant direct-deploy");
 
 			if (antDirectDeployResult.getExitCode() == 0) {
 				continue;
