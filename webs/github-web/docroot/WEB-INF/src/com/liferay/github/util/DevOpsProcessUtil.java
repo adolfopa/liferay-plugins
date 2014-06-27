@@ -20,6 +20,7 @@ import java.io.InputStreamReader;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -94,6 +95,10 @@ public class DevOpsProcessUtil {
 
 			processBuilder.directory(workDir);
 			processBuilder.redirectErrorStream(true);
+
+			Map<String, String> environment = processBuilder.environment();
+
+			environment.put("HOME", "/root");
 
 			Process process = processBuilder.start();
 
