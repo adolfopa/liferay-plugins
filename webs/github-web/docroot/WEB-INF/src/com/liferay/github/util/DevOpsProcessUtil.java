@@ -94,11 +94,12 @@ public class DevOpsProcessUtil {
 			ProcessBuilder processBuilder = new ProcessBuilder(commands);
 
 			processBuilder.directory(workDir);
-			processBuilder.redirectErrorStream(true);
 
 			Map<String, String> environment = processBuilder.environment();
 
 			environment.put("HOME", "/root");
+
+			processBuilder.redirectErrorStream(true);
 
 			Process process = processBuilder.start();
 
