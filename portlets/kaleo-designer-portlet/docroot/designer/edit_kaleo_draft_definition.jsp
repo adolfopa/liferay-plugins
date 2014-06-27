@@ -777,7 +777,7 @@
 								if (item.get('type') === 'task') {
 									var workflowTaskName = item.get('name');
 
-									var getDDMTemplate = Liferay.Util.getOpener()["<%= HtmlUtil.escapeJS(portletResourceNamespace) %>getDDMTemplate"];
+									var getDDMTemplate = Liferay.Util.getOpener()['<%= HtmlUtil.escapeJS(portletResourceNamespace) %>getDDMTemplate'];
 
 									if (getDDMTemplate) {
 										getDDMTemplate(
