@@ -440,7 +440,7 @@ public class KaleoFormsPortlet extends MVCPortlet {
 			actionRequest, "name");
 		Map<Locale, String> descriptionMap =
 			LocalizationUtil.getLocalizationMap(actionRequest, "description");
-		String xsd = ParamUtil.getString(actionRequest, "xsd");
+		String definition = ParamUtil.getString(actionRequest, "definition");
 		String storageType = ParamUtil.getString(actionRequest, "storageType");
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
@@ -449,14 +449,14 @@ public class KaleoFormsPortlet extends MVCPortlet {
 		if (cmd.equals(Constants.ADD)) {
 			DDMStructure ddmStructure = DDMStructureServiceUtil.addStructure(
 				groupId, parentStructureId, scopeClassNameId, null, nameMap,
-				descriptionMap, xsd, storageType,
+				descriptionMap, definition, storageType,
 				DDMStructureConstants.TYPE_DEFAULT, serviceContext);
 
 			saveInPortletSession(actionRequest, ddmStructure);
 		}
 		else if (cmd.equals(Constants.UPDATE)) {
 			DDMStructureServiceUtil.updateStructure(
-				classPK, parentStructureId, nameMap, descriptionMap, xsd,
+				classPK, parentStructureId, nameMap, descriptionMap, definition,
 				serviceContext);
 		}
 	}
