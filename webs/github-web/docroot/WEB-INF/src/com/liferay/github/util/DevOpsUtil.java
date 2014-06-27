@@ -186,6 +186,8 @@ public class DevOpsUtil {
 
 			bufferedWriter.write(jsonObject.toString());
 
+			bufferedWriter.close();
+
 			bufferedReader = new BufferedReader(
 				new InputStreamReader(
 					(InputStream)httpURLConnection.getContent()));
