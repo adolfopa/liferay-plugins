@@ -59,7 +59,7 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 		DevOpsProcessUtil.execute(
 			workDir,
 			"rsync -az --delete " +
-				DevOpsPropsUtil.get("peek.liferay.bundle.path") + "/ " +
+				DevOpsPropsUtil.get("peek.liferay.bundle.dir") + "/ " +
 					profileLiferayDir.getPath());
 
 		File fixPacksFile = new File(
