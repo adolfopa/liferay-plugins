@@ -75,7 +75,7 @@ headerTitle = headerTitle.concat(StringPool.COLON + StringPool.SPACE + ddlRecord
 								<portlet:param name="assigneeUserId" value="<%= String.valueOf(user.getUserId()) %>" />
 							</portlet:actionURL>
 
-							<span class="workflow-task task-assign-to-me-link"><aui:a href="<%= assignToMeURL %>" id='<%= randomId + "taskAssignToMeLink" %>' label="assign-to-me" /></span>
+							<span class="task-assign-to-me-link workflow-task"><aui:a href="<%= assignToMeURL %>" id='<%= randomId + "taskAssignToMeLink" %>' label="assign-to-me" /></span>
 						</c:if>
 
 						&nbsp;
@@ -92,7 +92,7 @@ headerTitle = headerTitle.concat(StringPool.COLON + StringPool.SPACE + ddlRecord
 								<portlet:param name="workflowTaskId" value="<%= String.valueOf(workflowTask.getWorkflowTaskId()) %>" />
 							</portlet:actionURL>
 
-							<span class="workflow-task task-assign-link"><aui:a href="<%= assignURL %>" id='<%= randomId + "taskAssignLink" %>' label="assign-to-..." /></span>
+							<span class="task-assign-link workflow-task"><aui:a href="<%= assignURL %>" id='<%= randomId + "taskAssignLink" %>' label="assign-to-..." /></span>
 						</c:if>
 					</aui:field-wrapper>
 				</div>
@@ -127,7 +127,7 @@ headerTitle = headerTitle.concat(StringPool.COLON + StringPool.SPACE + ddlRecord
 							data.put("navigation", Boolean.TRUE);
 							%>
 
-							<%= StringPool.DASH %> (<span class="workflow-task task-due-date-link"><aui:a data='<%= data %>' href='<%= updateDueDateURL %>' id='<%= randomId + "taskDueDateLink" %>' label="change" />)
+							<%= StringPool.DASH %> (<span class="task-due-date-link workflow-task"><aui:a data='<%= data %>' href='<%= updateDueDateURL %>' id='<%= randomId + "taskDueDateLink" %>' label="change" />)
 						</c:if>
 					</aui:field-wrapper>
 				</div>
