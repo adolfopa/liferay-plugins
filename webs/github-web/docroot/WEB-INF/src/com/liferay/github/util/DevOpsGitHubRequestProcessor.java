@@ -58,8 +58,9 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 
 		DevOpsProcessUtil.execute(
 			workDir,
-			"rsync -az --delete " + DevOpsConstants.LIFERAY_ORIGINAL_DIR_NAME +
-				"/ " + profileLiferayDir.getPath());
+			"rsync -az --delete " +
+				DevOpsPropsUtil.get("peek.liferay.bundle.path") + "/ " +
+					profileLiferayDir.getPath());
 
 		File fixPacksFile = new File(
 			DevOpsConstants.PEEK_GIT_REPOSITORY_DIR_NAME + "/" + profileName +
@@ -227,7 +228,9 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 	protected File getProfileAppServerDir(String profileName) {
 		File profileLiferayDir = getProfileLiferayDir(profileName);
 
-		return new File(profileLiferayDir.getPath() + "/tomcat");
+		return new File(
+			profileLiferayDir.getPath() + "/" +
+				DevOpsPropsUtil.get("peek.liferay.tomcat.folder"));
 	}
 
 	protected String getProfileGitHubUserLogin() {
