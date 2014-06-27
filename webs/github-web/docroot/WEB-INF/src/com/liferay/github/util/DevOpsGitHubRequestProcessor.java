@@ -169,7 +169,7 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 
 		DevOpsProcessUtil.execute(workDir, "git clean -d -f -q -x");
 		DevOpsProcessUtil.execute(workDir, "git reset --hard HEAD");
-		DevOpsProcessUtil.execute(workDir, "git co master");
+		DevOpsProcessUtil.execute(workDir, "git checkout master");
 		DevOpsProcessUtil.execute(workDir, "git fetch -f origin");
 		DevOpsProcessUtil.execute(workDir, "git pull -f origin master");
 
