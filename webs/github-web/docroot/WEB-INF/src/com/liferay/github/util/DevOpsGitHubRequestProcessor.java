@@ -140,6 +140,10 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 
 		String profileName = DevOpsUtil.getProfileName(payloadJSONObject);
 
+		if (profileName.isEmpty()) {
+			return;
+		}
+
 		if (DevOpsUtil.isValidLogin(payloadJSONObject, profileName)) {
 			DevOpsPatchRequestProcessor devOpsPatchRequestProcessor =
 				_devOpsPatchRequestProcessors.get(profileName);
