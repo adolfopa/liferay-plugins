@@ -397,6 +397,9 @@ public class DevOpsPatchRequestProcessor {
 			workDir,
 			"git rebase --onto " + pluginsGitBranch + " " + sha1Hashes[0] +
 				" " + sha1Hashes[1]);
+		DevOpsProcessUtil.execute(workDir, "git branch -D " + pluginsGitBranch);
+		DevOpsProcessUtil.execute(
+			workDir, "git checkout -b " + pluginsGitBranch);
 		DevOpsProcessUtil.execute(
 			workDir, "git push devops " + pluginsGitBranch);
 	}
