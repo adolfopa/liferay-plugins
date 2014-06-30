@@ -383,7 +383,7 @@ public class DevOpsPatchRequestProcessor {
 
 		String output = result.getOutput();
 
-		if (output.isEmpty()) {
+		if (!output.isEmpty()) {
 			DevOpsProcessUtil.execute(
 				workDir, "git branch -D " + pluginsGitBranch);
 		}
