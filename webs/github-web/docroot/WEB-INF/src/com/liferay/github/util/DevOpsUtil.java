@@ -174,6 +174,8 @@ public class DevOpsUtil {
 
 			httpURLConnection.setDoOutput(true);
 			httpURLConnection.setRequestMethod(requestMethod);
+			httpURLConnection.setRequestProperty(
+				"Content-Type", "application/json");
 
 			DevOpsProcessUtil.Result result = DevOpsProcessUtil.execute(
 				new File(DevOpsConstants.PEEK_PLUGINS_GIT_REPOSITORY_DIR_NAME),
