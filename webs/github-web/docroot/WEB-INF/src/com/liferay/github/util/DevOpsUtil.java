@@ -55,7 +55,7 @@ public class DevOpsUtil {
 
 		dataJSONObject.put("state", "closed");
 
-		return executePost(sb.toString(), dataJSONObject);
+		return new JSONObject(execute(sb.toString(), "POST", dataJSONObject));
 	}
 
 	public static String getProfileName(JSONObject payloadJSONObject)
@@ -156,10 +156,11 @@ public class DevOpsUtil {
 
 		dataJSONObject.put("body", comment);
 
-		return executePost(sb.toString(), dataJSONObject);
+		return new JSONObject(execute(sb.toString(), "POST", dataJSONObject));
 	}
 
-	protected static JSONObject executePost(String url, JSONObject jsonObject)
+	protected static String execute(
+			String url, String requestMethod, JSONObject jsonObject)
 		throws Exception {
 
 		BufferedReader bufferedReader = null;
@@ -172,7 +173,7 @@ public class DevOpsUtil {
 				(HttpURLConnection)urlObject.openConnection();
 
 			httpURLConnection.setDoOutput(true);
-			httpURLConnection.setRequestMethod("POST");
+			httpURLConnection.setRequestMethod(requestMethod);
 
 			DevOpsProcessUtil.Result result = DevOpsProcessUtil.execute(
 				new File(DevOpsConstants.PEEK_PLUGINS_GIT_REPOSITORY_DIR_NAME),
@@ -199,7 +200,7 @@ public class DevOpsUtil {
 				sb.append(line);
 			}
 
-			return new JSONObject(sb.toString());
+			return sb.toString();
 		}
 		finally {
 			if (bufferedReader != null) {
