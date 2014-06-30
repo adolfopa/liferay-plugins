@@ -184,12 +184,15 @@ public class DevOpsUtil {
 			httpURLConnection.setRequestProperty(
 				"Authorization", "token " + result.getOutput());
 
-			bufferedWriter = new BufferedWriter(
-				new OutputStreamWriter(httpURLConnection.getOutputStream()));
+			if (jsonObject != null) {
+				bufferedWriter = new BufferedWriter(
+					new OutputStreamWriter(
+						httpURLConnection.getOutputStream()));
 
-			bufferedWriter.write(jsonObject.toString());
+				bufferedWriter.write(jsonObject.toString());
 
-			bufferedWriter.close();
+				bufferedWriter.close();
+			}
 
 			bufferedReader = new BufferedReader(
 				new InputStreamReader(
