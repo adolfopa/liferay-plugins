@@ -107,6 +107,15 @@ public class DevOpsPatchRequestProcessor {
 
 		int pullRequestNumber = pullRequestJSONObject.getInt("number");
 
+		DevOpsProcessUtil.Result result = DevOpsProcessUtil.execute(
+			workDir, "git branch --list pull-request-" + pullRequestNumber);
+
+		String output = result.getOutput();
+
+		if (!output.isEmpty()) {
+			cleanUp(payloadJSONObject);
+		}
+
 		DevOpsProcessUtil.execute(
 			workDir,
 			"git fetch " + gitConfigResult.getOutput() + " refs/pull/" +
