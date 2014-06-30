@@ -119,8 +119,7 @@ public class DevOpsPatchRequestProcessor {
 		DevOpsProcessUtil.execute(
 			workDir,
 			"git fetch " + gitConfigResult.getOutput() + " refs/pull/" +
-				pullRequestNumber + "/head:" + "pull-request-" +
-					pullRequestNumber);
+				pullRequestNumber + "/head:pull-request-" + pullRequestNumber);
 
 		DevOpsProcessUtil.execute(
 			workDir, "git checkout pull-request-" + pullRequestNumber);
