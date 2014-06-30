@@ -182,8 +182,8 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 
 		FileUtils.writeStringToFile(
 			new File(
-				DevOpsConstants.PEEK_GIT_REPOSITORY_DIR_NAME + profileName +
-					"/portal/redeploy.marker"),
+				DevOpsConstants.PEEK_GIT_REPOSITORY_DIR_NAME + "/" +
+					profileName + "/portal/redeploy.marker"),
 			commitMessage, "UTF-8", false);
 
 		DevOpsProcessUtil.execute(
