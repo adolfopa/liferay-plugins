@@ -26,6 +26,8 @@ public class DevOpsConstants {
 
 	public static final String GITHUB_URL = "https://github.com";
 
+	public static final String JIRA_URL = "https://issues.liferay.com";
+
 	public static final String PEEK_GIT_REPOSITORY_DIR_NAME = "/var/peek/repo";
 
 	public static final String PEEK_PLUGINS_GIT_REPOSITORY_DIR_NAME =

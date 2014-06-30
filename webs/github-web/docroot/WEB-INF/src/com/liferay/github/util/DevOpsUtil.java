@@ -24,6 +24,8 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import org.apache.commons.codec.binary.Base64;
+
 import org.json.JSONObject;
 
 /**
@@ -177,12 +179,12 @@ public class DevOpsUtil {
 			httpURLConnection.setRequestProperty(
 				"Content-Type", "application/json");
 
-			DevOpsProcessUtil.Result result = DevOpsProcessUtil.execute(
-				new File(DevOpsConstants.PEEK_PLUGINS_GIT_REPOSITORY_DIR_NAME),
-				"git config github.oauth-token");
-
-			httpURLConnection.setRequestProperty(
-				"Authorization", "token " + result.getOutput());
+			if (url.startsWith(DevOpsConstants.GITHUB_API_URL)) {
+				prepareGitHubHTTPURLConnection(httpURLConnection);
+			}
+			else if (url.startsWith(DevOpsConstants.JIRA_URL)) {
+				prepareJIRAHTTPURLConnection(httpURLConnection);
+			}
 
 			if (jsonObject != null) {
 				bufferedWriter = new BufferedWriter(
@@ -216,6 +218,38 @@ public class DevOpsUtil {
 				bufferedWriter.close();
 			}
 		}
+	}
+
+	protected static void prepareGitHubHTTPURLConnection(
+			HttpURLConnection httpURLConnection)
+		throws Exception {
+
+		DevOpsProcessUtil.Result result = DevOpsProcessUtil.execute(
+			new File(DevOpsConstants.PEEK_PLUGINS_GIT_REPOSITORY_DIR_NAME),
+			"git config github.oauth-token");
+
+		httpURLConnection.setRequestProperty(
+			"Authorization", "token " + result.getOutput());
+	}
+
+	protected static void prepareJIRAHTTPURLConnection(
+			HttpURLConnection httpURLConnection)
+		throws Exception {
+
+		File workDir = new File(DevOpsConstants.PEEK_GIT_REPOSITORY_DIR_NAME);
+
+		DevOpsProcessUtil.Result gitConfigJIRAPasswordResult =
+			DevOpsProcessUtil.execute(workDir, "git config jira.password");
+		DevOpsProcessUtil.Result gitConfigJIRAUsernameResult =
+			DevOpsProcessUtil.execute(workDir, "git config jira.username");
+
+		String base64 =
+			gitConfigJIRAUsernameResult.getOutput() + ":" +
+				gitConfigJIRAPasswordResult.getOutput();
+
+		httpURLConnection.setRequestProperty(
+			"Authorization",
+			"Basic " + new String(Base64.encodeBase64(base64.getBytes())));
 	}
 
 }
