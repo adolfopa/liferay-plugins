@@ -129,13 +129,12 @@ public class DevOpsPatchRequestProcessor {
 		String baseRef = baseJSONObject.getString("ref");
 
 		if (baseRef.equals("devops-" + _profileName)) {
-			DevOpsProcessUtil.execute(
-				workDir, "git rebase devops/devops-" + baseRef);
+			DevOpsProcessUtil.execute(workDir, "git rebase devops/" + baseRef);
 		}
 
 		DevOpsProcessUtil.Result gitMergeBaseResult = DevOpsProcessUtil.execute(
 			workDir,
-			"git merge-base devops/devops-" + baseRef + " pull-request-" +
+			"git merge-base devops/" + baseRef + " pull-request-" +
 				pullRequestNumber);
 		DevOpsProcessUtil.Result revParseResult = DevOpsProcessUtil.execute(
 			workDir, "git rev-parse HEAD");
