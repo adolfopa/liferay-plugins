@@ -222,6 +222,8 @@ public class DevOpsGitHubRequestProcessor extends BaseGitHubRequestProcessor {
 		}
 		else {
 			DevOpsProcessUtil.execute(
+				workDir, "git checkout devops-" + profileName);
+			DevOpsProcessUtil.execute(
 				workDir, "git rebase upstream/" + baseRef);
 		}
 
