@@ -88,9 +88,9 @@ public class DevOpsPatchRequestProcessor {
 		int pullRequestNumber = pullRequestJSONObject.getInt("number");
 
 		DevOpsProcessUtil.execute(
-			workDir, "git branch -D pull-request-" + pullRequestNumber);
+			workDir, "git checkout devops-" + _profileName);
 		DevOpsProcessUtil.execute(
-			workDir, "git push devops :pull-request-" + pullRequestNumber);
+			workDir, "git branch -D pull-request-" + pullRequestNumber);
 	}
 
 	protected String[] getSHA1Hashes(JSONObject payloadJSONObject)
