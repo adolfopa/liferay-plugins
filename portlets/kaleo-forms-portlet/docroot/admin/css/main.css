@@ -2,6 +2,10 @@
 @import "mixins";
 
 .kaleo-forms-admin-portlet {
+	.kaleo-process-assign-form-button {
+		width: 122px;
+	}
+
 	.kaleo-process-buttons .btn {
 		margin-left: 5px;
 	}

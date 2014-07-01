@@ -95,7 +95,9 @@ TaskFormPair initialStateTaskFormPair = KaleoFormsUtil.getInitialStateTaskFormPa
 			<portlet:param name="mode" value="<%= taskFormsPair.getWorkflowTaskName().equals(initialStateName) ? DDMTemplateConstants.TEMPLATE_MODE_CREATE : DDMTemplateConstants.TEMPLATE_MODE_EDIT %>" />
 		</portlet:renderURL>
 
-		<liferay-ui:search-container-column-text>
+		<liferay-ui:search-container-column-text
+			cssClass="kaleo-process-assign-form-button"
+		>
 			<aui:button href="<%= selectFormURL %>" value="assign-form" />
 		</liferay-ui:search-container-column-text>
 
