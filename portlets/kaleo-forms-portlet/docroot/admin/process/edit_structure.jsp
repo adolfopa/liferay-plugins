@@ -30,7 +30,9 @@ if (classPK > 0) {
 %>
 
 <div class="portlet-dynamic-data-mapping">
-	<portlet:actionURL name="updateStructure" var="updateStructureURL" />
+	<portlet:actionURL name="updateStructure" var="updateStructureURL">
+		<portlet:param name="mvcPath" value="/admin/process/edit_structure.jsp" />
+	</portlet:actionURL>
 
 	<liferay-util:include page="/html/portlet/dynamic_data_mapping/edit_structure.jsp" portletId="<%= PortletKeys.DYNAMIC_DATA_MAPPING %>">
 		<portlet:param name="redirect" value="<%= redirect %>" />

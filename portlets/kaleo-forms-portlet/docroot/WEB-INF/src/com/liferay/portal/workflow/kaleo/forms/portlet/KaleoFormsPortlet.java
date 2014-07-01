@@ -70,6 +70,7 @@ import com.liferay.portlet.dynamicdatalists.util.DDLExportFormat;
 import com.liferay.portlet.dynamicdatalists.util.DDLExporter;
 import com.liferay.portlet.dynamicdatalists.util.DDLExporterFactory;
 import com.liferay.portlet.dynamicdatalists.util.DDLUtil;
+import com.liferay.portlet.dynamicdatamapping.StructureDefinitionException;
 import com.liferay.portlet.dynamicdatamapping.model.DDMStructure;
 import com.liferay.portlet.dynamicdatamapping.model.DDMStructureConstants;
 import com.liferay.portlet.dynamicdatamapping.service.DDMStructureServiceUtil;
@@ -425,38 +426,56 @@ public class KaleoFormsPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
+		try {
+			String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
 
-		long classPK = ParamUtil.getLong(actionRequest, "classPK");
+			long classPK = ParamUtil.getLong(actionRequest, "classPK");
 
-		long groupId = ParamUtil.getLong(actionRequest, "groupId");
-		long scopeClassNameId = ParamUtil.getLong(
-			actionRequest, "scopeClassNameId");
-		long parentStructureId = ParamUtil.getLong(
-			actionRequest, "parentStructureId",
-			DDMStructureConstants.DEFAULT_PARENT_STRUCTURE_ID);
-		Map<Locale, String> nameMap = LocalizationUtil.getLocalizationMap(
-			actionRequest, "name");
-		Map<Locale, String> descriptionMap =
-			LocalizationUtil.getLocalizationMap(actionRequest, "description");
-		String definition = ParamUtil.getString(actionRequest, "definition");
-		String storageType = ParamUtil.getString(actionRequest, "storageType");
+			long groupId = ParamUtil.getLong(actionRequest, "groupId");
+			long scopeClassNameId = ParamUtil.getLong(
+				actionRequest, "scopeClassNameId");
+			long parentStructureId = ParamUtil.getLong(
+				actionRequest, "parentStructureId",
+				DDMStructureConstants.DEFAULT_PARENT_STRUCTURE_ID);
+			Map<Locale, String> nameMap = LocalizationUtil.getLocalizationMap(
+				actionRequest, "name");
+			Map<Locale, String> descriptionMap =
+				LocalizationUtil.getLocalizationMap(
+					actionRequest, "description");
+			String definition = ParamUtil.getString(
+				actionRequest, "definition");
+			String storageType = ParamUtil.getString(
+				actionRequest, "storageType");
 
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			DDMStructure.class.getName(), actionRequest);
+			ServiceContext serviceContext = ServiceContextFactory.getInstance(
+				DDMStructure.class.getName(), actionRequest);
 
-		if (cmd.equals(Constants.ADD)) {
-			DDMStructure ddmStructure = DDMStructureServiceUtil.addStructure(
-				groupId, parentStructureId, scopeClassNameId, null, nameMap,
-				descriptionMap, definition, storageType,
-				DDMStructureConstants.TYPE_DEFAULT, serviceContext);
+			if (cmd.equals(Constants.ADD)) {
+				DDMStructure ddmStructure =
+					DDMStructureServiceUtil.addStructure(
+						groupId, parentStructureId, scopeClassNameId, null,
+						nameMap, descriptionMap, definition, storageType,
+						DDMStructureConstants.TYPE_DEFAULT, serviceContext);
 
-			saveInPortletSession(actionRequest, ddmStructure);
+				saveInPortletSession(actionRequest, ddmStructure);
+			}
+			else if (cmd.equals(Constants.UPDATE)) {
+				DDMStructureServiceUtil.updateStructure(
+					classPK, parentStructureId, nameMap, descriptionMap,
+					definition, serviceContext);
+			}
 		}
-		else if (cmd.equals(Constants.UPDATE)) {
-			DDMStructureServiceUtil.updateStructure(
-				classPK, parentStructureId, nameMap, descriptionMap, definition,
-				serviceContext);
+		catch (Exception e) {
+			if (isSessionErrorException(e)) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(e, e);
+				}
+
+				SessionErrors.add(actionRequest, e.getClass(), e);
+			}
+			else {
+				throw e;
+			}
 		}
 	}
 
@@ -564,6 +583,7 @@ public class KaleoFormsPortlet extends MVCPortlet {
 			cause instanceof NoSuchKaleoDraftDefinitionException ||
 			cause instanceof RecordSetDDMStructureIdException ||
 			cause instanceof RecordSetNameException ||
+			cause instanceof StructureDefinitionException ||
 			cause instanceof WorkflowException) {
 
 			return true;
