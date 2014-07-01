@@ -15,7 +15,6 @@
 package com.liferay.portal.workflow.kaleo.forms.model.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink;
 import com.liferay.portal.workflow.kaleo.forms.service.KaleoProcessLinkLocalServiceUtil;
 import com.liferay.portlet.dynamicdatalists.model.DDLRecordSet;
@@ -31,48 +30,38 @@ import java.util.Locale;
  */
 public class KaleoProcessImpl extends KaleoProcessBaseImpl {
 
-	public DDLRecordSet getDDLRecordSet()
-		throws PortalException, SystemException {
-
+	public DDLRecordSet getDDLRecordSet() throws PortalException {
 		return DDLRecordSetLocalServiceUtil.getRecordSet(getDDLRecordSetId());
 	}
 
-	public DDMTemplate getDDMTemplate()
-		throws PortalException, SystemException {
-
+	public DDMTemplate getDDMTemplate() throws PortalException {
 		return DDMTemplateLocalServiceUtil.getTemplate(getDDMTemplateId());
 	}
 
-	public String getDescription() throws PortalException, SystemException {
+	public String getDescription() throws PortalException {
 		DDLRecordSet ddlRecordSet = getDDLRecordSet();
 
 		return ddlRecordSet.getDescription();
 	}
 
-	public String getDescription(Locale locale)
-		throws PortalException, SystemException {
-
+	public String getDescription(Locale locale) throws PortalException {
 		DDLRecordSet ddlRecordSet = getDDLRecordSet();
 
 		return ddlRecordSet.getDescription(locale);
 	}
 
-	public List<KaleoProcessLink> getKaleoProcessLinks()
-		throws SystemException {
-
+	public List<KaleoProcessLink> getKaleoProcessLinks() {
 		return KaleoProcessLinkLocalServiceUtil.getKaleoProcessLinks(
 			getKaleoProcessId());
 	}
 
-	public String getName() throws PortalException, SystemException {
+	public String getName() throws PortalException {
 		DDLRecordSet ddlRecordSet = getDDLRecordSet();
 
 		return ddlRecordSet.getName();
 	}
 
-	public String getName(Locale locale)
-		throws PortalException, SystemException {
-
+	public String getName(Locale locale) throws PortalException {
 		DDLRecordSet ddlRecordSet = getDDLRecordSet();
 
 		return ddlRecordSet.getName(locale);

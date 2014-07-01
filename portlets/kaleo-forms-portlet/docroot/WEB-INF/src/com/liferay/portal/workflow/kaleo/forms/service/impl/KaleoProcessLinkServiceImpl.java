@@ -15,7 +15,6 @@
 package com.liferay.portal.workflow.kaleo.forms.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink;
 import com.liferay.portal.workflow.kaleo.forms.service.base.KaleoProcessLinkServiceBaseImpl;
 
@@ -26,8 +25,7 @@ public class KaleoProcessLinkServiceImpl
 	extends KaleoProcessLinkServiceBaseImpl {
 
 	public KaleoProcessLink fetchKaleoProcessLink(
-			long kaleoProcessId, String workflowTaskName)
-		throws SystemException {
+		long kaleoProcessId, String workflowTaskName) {
 
 		return kaleoProcessLinkLocalService.fetchKaleoProcessLink(
 			kaleoProcessId, workflowTaskName);
@@ -36,7 +34,7 @@ public class KaleoProcessLinkServiceImpl
 	public KaleoProcessLink updateKaleoProcessLink(
 			long kaleoProcessLinkId, long kaleoProcessId,
 			String workflowTaskName, long ddmTemplateId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		return kaleoProcessLinkLocalService.updateKaleoProcessLink(
 			kaleoProcessLinkId, kaleoProcessId, workflowTaskName,
@@ -44,8 +42,7 @@ public class KaleoProcessLinkServiceImpl
 	}
 
 	public KaleoProcessLink updateKaleoProcessLink(
-			long kaleoProcessId, String workflowTaskName, long ddmTemplateId)
-		throws SystemException {
+		long kaleoProcessId, String workflowTaskName, long ddmTemplateId) {
 
 		return kaleoProcessLinkLocalService.updateKaleoProcessLink(
 			kaleoProcessId, workflowTaskName, ddmTemplateId);

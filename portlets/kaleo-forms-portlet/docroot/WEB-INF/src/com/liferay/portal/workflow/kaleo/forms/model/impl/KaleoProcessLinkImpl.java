@@ -15,7 +15,6 @@
 package com.liferay.portal.workflow.kaleo.forms.model.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess;
 import com.liferay.portal.workflow.kaleo.forms.service.KaleoProcessLocalServiceUtil;
 
@@ -27,9 +26,7 @@ public class KaleoProcessLinkImpl extends KaleoProcessLinkBaseImpl {
 	public KaleoProcessLinkImpl() {
 	}
 
-	public KaleoProcess getKaleoProcess()
-		throws PortalException, SystemException {
-
+	public KaleoProcess getKaleoProcess() throws PortalException {
 		return KaleoProcessLocalServiceUtil.getKaleoProcess(
 			getKaleoProcessId());
 	}

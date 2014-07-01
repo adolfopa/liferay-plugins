@@ -15,7 +15,6 @@
 package com.liferay.portal.workflow.kaleo.forms.service.permission;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess;
@@ -39,7 +38,7 @@ public class KaleoProcessPermission {
 	public static void check(
 			PermissionChecker permissionChecker, long kaleoProcessId,
 			String actionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (!contains(permissionChecker, kaleoProcessId, actionId)) {
 			throw new PrincipalException();
@@ -66,7 +65,7 @@ public class KaleoProcessPermission {
 	public static boolean contains(
 			PermissionChecker permissionChecker, long kaleoProcessId,
 			String actionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KaleoProcess kaleoProcess =
 			KaleoProcessLocalServiceUtil.getKaleoProcess(kaleoProcessId);

@@ -15,7 +15,6 @@
 package com.liferay.portal.workflow.kaleo.forms.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
@@ -40,7 +39,7 @@ public class KaleoProcessLocalServiceImpl
 			long userId, long groupId, long ddlRecordSetId, long ddmTemplateId,
 			String workflowDefinitionName, long workflowDefinitionVersion,
 			TaskFormPairs taskFormPairs, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		// Kaleo process
 
@@ -80,7 +79,7 @@ public class KaleoProcessLocalServiceImpl
 
 	@Override
 	public KaleoProcess deleteKaleoProcess(KaleoProcess kaleoProcess)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		// Kaleo process
 
@@ -105,7 +104,7 @@ public class KaleoProcessLocalServiceImpl
 
 	@Override
 	public KaleoProcess deleteKaleoProcess(long kaleoProcessId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KaleoProcess kaleoProcess = kaleoProcessPersistence.findByPrimaryKey(
 			kaleoProcessId);
@@ -114,7 +113,7 @@ public class KaleoProcessLocalServiceImpl
 	}
 
 	public void deleteKaleoProcessData(KaleoProcess kaleoProcess)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		workflowDefinitionLinkLocalService.deleteWorkflowDefinitionLink(
 			kaleoProcess.getCompanyId(), kaleoProcess.getGroupId(),
@@ -133,7 +132,7 @@ public class KaleoProcessLocalServiceImpl
 	}
 
 	public void deleteKaleoProcessData(long kaleoProcessId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KaleoProcess kaleoProcess = kaleoProcessPersistence.findByPrimaryKey(
 			kaleoProcessId);
@@ -142,34 +141,30 @@ public class KaleoProcessLocalServiceImpl
 	}
 
 	public KaleoProcess getDDLRecordSetKaleoProcess(long ddlRecordSetId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		return kaleoProcessPersistence.findByDDLRecordSetId(ddlRecordSetId);
 	}
 
 	@Override
 	public KaleoProcess getKaleoProcess(long kaleoProcessId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		return kaleoProcessPersistence.findByPrimaryKey(kaleoProcessId);
 	}
 
-	public List<KaleoProcess> getKaleoProcesses(long groupId)
-		throws SystemException {
-
+	public List<KaleoProcess> getKaleoProcesses(long groupId) {
 		return kaleoProcessPersistence.findByGroupId(groupId);
 	}
 
 	public List<KaleoProcess> getKaleoProcesses(
-			long groupId, int start, int end,
-			OrderByComparator orderByComparator)
-		throws SystemException {
+		long groupId, int start, int end, OrderByComparator orderByComparator) {
 
 		return kaleoProcessPersistence.findByGroupId(
 			groupId, start, end, orderByComparator);
 	}
 
-	public int getKaleoProcessesCount(long groupId) throws SystemException {
+	public int getKaleoProcessesCount(long groupId) {
 		return kaleoProcessPersistence.countByGroupId(groupId);
 	}
 
@@ -177,7 +172,7 @@ public class KaleoProcessLocalServiceImpl
 			long kaleoProcessId, long ddmTemplateId,
 			String workflowDefinitionName, long workflowDefinitionVersion,
 			TaskFormPairs taskFormPairs, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		// Kaleo process
 
@@ -203,8 +198,7 @@ public class KaleoProcessLocalServiceImpl
 	}
 
 	protected void updateKaleoProcessLinks(
-			long kaleoProcessId, TaskFormPairs taskFormPairs)
-		throws SystemException {
+		long kaleoProcessId, TaskFormPairs taskFormPairs) {
 
 		for (TaskFormPair taskFormPair : taskFormPairs) {
 			kaleoProcessLinkLocalService.addKaleoProcessLink(

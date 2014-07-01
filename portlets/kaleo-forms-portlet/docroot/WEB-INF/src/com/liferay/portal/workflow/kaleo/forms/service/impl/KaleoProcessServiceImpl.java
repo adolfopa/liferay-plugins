@@ -15,7 +15,6 @@
 package com.liferay.portal.workflow.kaleo.forms.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess;
@@ -36,7 +35,7 @@ public class KaleoProcessServiceImpl extends KaleoProcessServiceBaseImpl {
 			long groupId, long ddlRecordSetId, long ddmTemplateId,
 			String workflowDefinitionName, long workflowDefinitionVersion,
 			TaskFormPairs taskFormPairs, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KaleoFormsPermission.check(
 			getPermissionChecker(), groupId, ActionKeys.ADD_PROCESS);
@@ -48,7 +47,7 @@ public class KaleoProcessServiceImpl extends KaleoProcessServiceBaseImpl {
 	}
 
 	public KaleoProcess deleteKaleoProcess(long kaleoProcessId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KaleoProcessPermission.check(
 			getPermissionChecker(), kaleoProcessId, ActionKeys.DELETE);
@@ -57,7 +56,7 @@ public class KaleoProcessServiceImpl extends KaleoProcessServiceBaseImpl {
 	}
 
 	public void deleteKaleoProcessData(long kaleoProcessId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KaleoProcessPermission.check(
 			getPermissionChecker(), kaleoProcessId, ActionKeys.DELETE);
@@ -66,7 +65,7 @@ public class KaleoProcessServiceImpl extends KaleoProcessServiceBaseImpl {
 	}
 
 	public KaleoProcess getKaleoProcess(long kaleoProcessId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KaleoProcessPermission.check(
 			getPermissionChecker(), kaleoProcessId, ActionKeys.VIEW);
@@ -75,15 +74,13 @@ public class KaleoProcessServiceImpl extends KaleoProcessServiceBaseImpl {
 	}
 
 	public List<KaleoProcess> getKaleoProcesses(
-			long groupId, int start, int end,
-			OrderByComparator orderByComparator)
-		throws SystemException {
+		long groupId, int start, int end, OrderByComparator orderByComparator) {
 
 		return kaleoProcessPersistence.filterFindByGroupId(
 			groupId, start, end, orderByComparator);
 	}
 
-	public int getKaleoProcessesCount(long groupId) throws SystemException {
+	public int getKaleoProcessesCount(long groupId) {
 		return kaleoProcessPersistence.filterCountByGroupId(groupId);
 	}
 
@@ -91,7 +88,7 @@ public class KaleoProcessServiceImpl extends KaleoProcessServiceBaseImpl {
 			long kaleoProcessId, long ddmTemplateId,
 			String workflowDefinitionName, long workflowDefinitionVersion,
 			TaskFormPairs taskFormPairs, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KaleoProcessPermission.check(
 			getPermissionChecker(), kaleoProcessId, ActionKeys.UPDATE);

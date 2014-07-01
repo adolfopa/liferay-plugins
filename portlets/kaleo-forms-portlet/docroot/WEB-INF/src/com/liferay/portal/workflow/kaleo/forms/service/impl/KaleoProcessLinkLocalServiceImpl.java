@@ -15,7 +15,6 @@
 package com.liferay.portal.workflow.kaleo.forms.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink;
 import com.liferay.portal.workflow.kaleo.forms.service.base.KaleoProcessLinkLocalServiceBaseImpl;
 
@@ -28,8 +27,7 @@ public class KaleoProcessLinkLocalServiceImpl
 	extends KaleoProcessLinkLocalServiceBaseImpl {
 
 	public KaleoProcessLink addKaleoProcessLink(
-			long kaleoProcessId, String workflowTaskName, long ddmTemplateId)
-		throws SystemException {
+		long kaleoProcessId, String workflowTaskName, long ddmTemplateId) {
 
 		long kaleoProcessLinkId = counterLocalService.increment();
 
@@ -45,9 +43,7 @@ public class KaleoProcessLinkLocalServiceImpl
 		return kaleoProcessLink;
 	}
 
-	public void deleteKaleoProcessLinks(long kaleoProcessId)
-		throws SystemException {
-
+	public void deleteKaleoProcessLinks(long kaleoProcessId) {
 		List<KaleoProcessLink> kaleoProcessLinks =
 			kaleoProcessLinkPersistence.findByKaleoProcessId(kaleoProcessId);
 
@@ -57,22 +53,19 @@ public class KaleoProcessLinkLocalServiceImpl
 	}
 
 	public KaleoProcessLink fetchKaleoProcessLink(
-			long kaleoProcessId, String workflowTaskName)
-		throws SystemException {
+		long kaleoProcessId, String workflowTaskName) {
 
 		return kaleoProcessLinkPersistence.fetchByKPI_WTN(
 			kaleoProcessId, workflowTaskName);
 	}
 
-	public List<KaleoProcessLink> getKaleoProcessLinks(long kaleoProcessId)
-		throws SystemException {
-
+	public List<KaleoProcessLink> getKaleoProcessLinks(long kaleoProcessId) {
 		return kaleoProcessLinkPersistence.findByKaleoProcessId(kaleoProcessId);
 	}
 
 	public KaleoProcessLink updateKaleoProcessLink(
 			long kaleoProcessLinkId, long kaleoProcessId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KaleoProcessLink kaleoProcessLink =
 			kaleoProcessLinkPersistence.findByPrimaryKey(kaleoProcessLinkId);
@@ -87,7 +80,7 @@ public class KaleoProcessLinkLocalServiceImpl
 	public KaleoProcessLink updateKaleoProcessLink(
 			long kaleoProcessLinkId, long kaleoProcessId,
 			String workflowTaskName, long ddmTemplateId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KaleoProcessLink kaleoProcessLink =
 			kaleoProcessLinkPersistence.findByPrimaryKey(kaleoProcessLinkId);
@@ -102,8 +95,7 @@ public class KaleoProcessLinkLocalServiceImpl
 	}
 
 	public KaleoProcessLink updateKaleoProcessLink(
-			long kaleoProcessId, String workflowTaskName, long ddmTemplateId)
-		throws SystemException {
+		long kaleoProcessId, String workflowTaskName, long ddmTemplateId) {
 
 		KaleoProcessLink kaleoProcessLink =
 			kaleoProcessLinkPersistence.fetchByKPI_WTN(

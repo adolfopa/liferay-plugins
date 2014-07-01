@@ -15,7 +15,6 @@
 package com.liferay.portal.workflow.kaleo.forms.workflow;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.workflow.BaseWorkflowHandler;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -55,7 +54,7 @@ public class KaleoProcessWorkflowHandler
 	@Override
 	public String getURLEditWorkflowTask(
 			long workflowTaskId, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		return null;
 	}
@@ -63,7 +62,7 @@ public class KaleoProcessWorkflowHandler
 	@Override
 	public WorkflowDefinitionLink getWorkflowDefinitionLink(
 			long companyId, long groupId, long classPK)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		DDLRecord ddlRecord = DDLRecordLocalServiceUtil.getRecord(classPK);
 
@@ -90,7 +89,7 @@ public class KaleoProcessWorkflowHandler
 	@Override
 	public DDLRecord updateStatus(
 			int status, Map<String, Serializable> workflowContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		long userId = GetterUtil.getLong(
 			(String)workflowContext.get(WorkflowConstants.CONTEXT_USER_ID));

@@ -15,7 +15,6 @@
 package com.liferay.portal.workflow.kaleo.forms.portlet;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
@@ -515,7 +514,7 @@ public class KaleoFormsPortlet extends MVCPortlet {
 
 	protected void deleteKaleoProcessData(
 			long kaleoProcessId, ActionRequest actionRequest)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (kaleoProcessId <= 0) {
 			return;
