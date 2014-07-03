@@ -41,6 +41,7 @@ if (classPK > 0) {
 		<portlet:param name="groupId" value="<%= String.valueOf(scopeGroupId) %>" />
 		<portlet:param name="classNameId" value="<%= String.valueOf(classNameId) %>" />
 		<portlet:param name="classPK" value="<%= String.valueOf(classPK) %>" />
+		<portlet:param name="scopeTitle" value='<%= LanguageUtil.get(locale, "fields-definition") %>' />
 		<portlet:param name="structureAvailableFields" value='<%= renderResponse.getNamespace() + "getAvailableFields" %>' />
 		<portlet:param name="editStructureURL" value="<%= updateStructureURL %>" />
 	</liferay-util:include>
