@@ -20,7 +20,7 @@ import com.liferay.portal.workflow.kaleo.designer.service.KaleoDraftDefinitionLo
 
 /**
  * @author Eduardo Lundgren
- * @deprecated As of 7.0.0, replaced by {@link KaleoDraftDefinitionLocalServiceUtil#getExportActionableDynamicQuery()}
+ * @deprecated As of 7.0.0, replaced by {@link KaleoDraftDefinitionLocalServiceUtil#getActionableDynamicQuery()}
  * @generated
  */
 @Deprecated

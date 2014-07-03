@@ -85,7 +85,7 @@ public class SamlIdpSpSessionUtil {
 	 */
 	public static List<SamlIdpSpSession> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<SamlIdpSpSession> orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -150,7 +150,7 @@ public class SamlIdpSpSessionUtil {
 	*/
 	public static java.util.List<com.liferay.saml.model.SamlIdpSpSession> findBySamlIdpSsoSessionId(
 		long samlIdpSsoSessionId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.saml.model.SamlIdpSpSession> orderByComparator) {
 		return getPersistence()
 				   .findBySamlIdpSsoSessionId(samlIdpSsoSessionId, start, end,
 			orderByComparator);
@@ -166,7 +166,7 @@ public class SamlIdpSpSessionUtil {
 	*/
 	public static com.liferay.saml.model.SamlIdpSpSession findBySamlIdpSsoSessionId_First(
 		long samlIdpSsoSessionId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.saml.model.SamlIdpSpSession> orderByComparator)
 		throws com.liferay.saml.NoSuchIdpSpSessionException {
 		return getPersistence()
 				   .findBySamlIdpSsoSessionId_First(samlIdpSsoSessionId,
@@ -182,7 +182,7 @@ public class SamlIdpSpSessionUtil {
 	*/
 	public static com.liferay.saml.model.SamlIdpSpSession fetchBySamlIdpSsoSessionId_First(
 		long samlIdpSsoSessionId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.saml.model.SamlIdpSpSession> orderByComparator) {
 		return getPersistence()
 				   .fetchBySamlIdpSsoSessionId_First(samlIdpSsoSessionId,
 			orderByComparator);
@@ -198,7 +198,7 @@ public class SamlIdpSpSessionUtil {
 	*/
 	public static com.liferay.saml.model.SamlIdpSpSession findBySamlIdpSsoSessionId_Last(
 		long samlIdpSsoSessionId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.saml.model.SamlIdpSpSession> orderByComparator)
 		throws com.liferay.saml.NoSuchIdpSpSessionException {
 		return getPersistence()
 				   .findBySamlIdpSsoSessionId_Last(samlIdpSsoSessionId,
@@ -214,7 +214,7 @@ public class SamlIdpSpSessionUtil {
 	*/
 	public static com.liferay.saml.model.SamlIdpSpSession fetchBySamlIdpSsoSessionId_Last(
 		long samlIdpSsoSessionId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.saml.model.SamlIdpSpSession> orderByComparator) {
 		return getPersistence()
 				   .fetchBySamlIdpSsoSessionId_Last(samlIdpSsoSessionId,
 			orderByComparator);
@@ -231,7 +231,7 @@ public class SamlIdpSpSessionUtil {
 	*/
 	public static com.liferay.saml.model.SamlIdpSpSession[] findBySamlIdpSsoSessionId_PrevAndNext(
 		long samlIdpSpSessionId, long samlIdpSsoSessionId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.saml.model.SamlIdpSpSession> orderByComparator)
 		throws com.liferay.saml.NoSuchIdpSpSessionException {
 		return getPersistence()
 				   .findBySamlIdpSsoSessionId_PrevAndNext(samlIdpSpSessionId,
@@ -445,7 +445,7 @@ public class SamlIdpSpSessionUtil {
 	*/
 	public static java.util.List<com.liferay.saml.model.SamlIdpSpSession> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.saml.model.SamlIdpSpSession> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

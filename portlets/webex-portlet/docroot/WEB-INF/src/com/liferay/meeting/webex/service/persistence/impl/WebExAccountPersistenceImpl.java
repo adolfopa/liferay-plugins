@@ -153,7 +153,7 @@ public class WebExAccountPersistenceImpl extends BasePersistenceImpl<WebExAccoun
 	 */
 	@Override
 	public List<WebExAccount> findByUuid(String uuid, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<WebExAccount> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -273,7 +273,8 @@ public class WebExAccountPersistenceImpl extends BasePersistenceImpl<WebExAccoun
 	 */
 	@Override
 	public WebExAccount findByUuid_First(String uuid,
-		OrderByComparator orderByComparator) throws NoSuchAccountException {
+		OrderByComparator<WebExAccount> orderByComparator)
+		throws NoSuchAccountException {
 		WebExAccount webExAccount = fetchByUuid_First(uuid, orderByComparator);
 
 		if (webExAccount != null) {
@@ -301,7 +302,7 @@ public class WebExAccountPersistenceImpl extends BasePersistenceImpl<WebExAccoun
 	 */
 	@Override
 	public WebExAccount fetchByUuid_First(String uuid,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<WebExAccount> orderByComparator) {
 		List<WebExAccount> list = findByUuid(uuid, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -321,7 +322,8 @@ public class WebExAccountPersistenceImpl extends BasePersistenceImpl<WebExAccoun
 	 */
 	@Override
 	public WebExAccount findByUuid_Last(String uuid,
-		OrderByComparator orderByComparator) throws NoSuchAccountException {
+		OrderByComparator<WebExAccount> orderByComparator)
+		throws NoSuchAccountException {
 		WebExAccount webExAccount = fetchByUuid_Last(uuid, orderByComparator);
 
 		if (webExAccount != null) {
@@ -349,7 +351,7 @@ public class WebExAccountPersistenceImpl extends BasePersistenceImpl<WebExAccoun
 	 */
 	@Override
 	public WebExAccount fetchByUuid_Last(String uuid,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<WebExAccount> orderByComparator) {
 		int count = countByUuid(uuid);
 
 		if (count == 0) {
@@ -377,7 +379,7 @@ public class WebExAccountPersistenceImpl extends BasePersistenceImpl<WebExAccoun
 	 */
 	@Override
 	public WebExAccount[] findByUuid_PrevAndNext(long webExAccountId,
-		String uuid, OrderByComparator orderByComparator)
+		String uuid, OrderByComparator<WebExAccount> orderByComparator)
 		throws NoSuchAccountException {
 		WebExAccount webExAccount = findByPrimaryKey(webExAccountId);
 
@@ -408,7 +410,7 @@ public class WebExAccountPersistenceImpl extends BasePersistenceImpl<WebExAccoun
 
 	protected WebExAccount getByUuid_PrevAndNext(Session session,
 		WebExAccount webExAccount, String uuid,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<WebExAccount> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -932,7 +934,7 @@ public class WebExAccountPersistenceImpl extends BasePersistenceImpl<WebExAccoun
 	 */
 	@Override
 	public List<WebExAccount> findByUuid_C(String uuid, long companyId,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<WebExAccount> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1062,7 +1064,8 @@ public class WebExAccountPersistenceImpl extends BasePersistenceImpl<WebExAccoun
 	 */
 	@Override
 	public WebExAccount findByUuid_C_First(String uuid, long companyId,
-		OrderByComparator orderByComparator) throws NoSuchAccountException {
+		OrderByComparator<WebExAccount> orderByComparator)
+		throws NoSuchAccountException {
 		WebExAccount webExAccount = fetchByUuid_C_First(uuid, companyId,
 				orderByComparator);
 
@@ -1095,7 +1098,7 @@ public class WebExAccountPersistenceImpl extends BasePersistenceImpl<WebExAccoun
 	 */
 	@Override
 	public WebExAccount fetchByUuid_C_First(String uuid, long companyId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<WebExAccount> orderByComparator) {
 		List<WebExAccount> list = findByUuid_C(uuid, companyId, 0, 1,
 				orderByComparator);
 
@@ -1117,7 +1120,8 @@ public class WebExAccountPersistenceImpl extends BasePersistenceImpl<WebExAccoun
 	 */
 	@Override
 	public WebExAccount findByUuid_C_Last(String uuid, long companyId,
-		OrderByComparator orderByComparator) throws NoSuchAccountException {
+		OrderByComparator<WebExAccount> orderByComparator)
+		throws NoSuchAccountException {
 		WebExAccount webExAccount = fetchByUuid_C_Last(uuid, companyId,
 				orderByComparator);
 
@@ -1150,7 +1154,7 @@ public class WebExAccountPersistenceImpl extends BasePersistenceImpl<WebExAccoun
 	 */
 	@Override
 	public WebExAccount fetchByUuid_C_Last(String uuid, long companyId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<WebExAccount> orderByComparator) {
 		int count = countByUuid_C(uuid, companyId);
 
 		if (count == 0) {
@@ -1179,7 +1183,8 @@ public class WebExAccountPersistenceImpl extends BasePersistenceImpl<WebExAccoun
 	 */
 	@Override
 	public WebExAccount[] findByUuid_C_PrevAndNext(long webExAccountId,
-		String uuid, long companyId, OrderByComparator orderByComparator)
+		String uuid, long companyId,
+		OrderByComparator<WebExAccount> orderByComparator)
 		throws NoSuchAccountException {
 		WebExAccount webExAccount = findByPrimaryKey(webExAccountId);
 
@@ -1210,7 +1215,7 @@ public class WebExAccountPersistenceImpl extends BasePersistenceImpl<WebExAccoun
 
 	protected WebExAccount getByUuid_C_PrevAndNext(Session session,
 		WebExAccount webExAccount, String uuid, long companyId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<WebExAccount> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1488,7 +1493,7 @@ public class WebExAccountPersistenceImpl extends BasePersistenceImpl<WebExAccoun
 	 */
 	@Override
 	public List<WebExAccount> findByG_W(long groupId, long webExSiteId,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<WebExAccount> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1604,7 +1609,8 @@ public class WebExAccountPersistenceImpl extends BasePersistenceImpl<WebExAccoun
 	 */
 	@Override
 	public WebExAccount findByG_W_First(long groupId, long webExSiteId,
-		OrderByComparator orderByComparator) throws NoSuchAccountException {
+		OrderByComparator<WebExAccount> orderByComparator)
+		throws NoSuchAccountException {
 		WebExAccount webExAccount = fetchByG_W_First(groupId, webExSiteId,
 				orderByComparator);
 
@@ -1637,7 +1643,7 @@ public class WebExAccountPersistenceImpl extends BasePersistenceImpl<WebExAccoun
 	 */
 	@Override
 	public WebExAccount fetchByG_W_First(long groupId, long webExSiteId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<WebExAccount> orderByComparator) {
 		List<WebExAccount> list = findByG_W(groupId, webExSiteId, 0, 1,
 				orderByComparator);
 
@@ -1659,7 +1665,8 @@ public class WebExAccountPersistenceImpl extends BasePersistenceImpl<WebExAccoun
 	 */
 	@Override
 	public WebExAccount findByG_W_Last(long groupId, long webExSiteId,
-		OrderByComparator orderByComparator) throws NoSuchAccountException {
+		OrderByComparator<WebExAccount> orderByComparator)
+		throws NoSuchAccountException {
 		WebExAccount webExAccount = fetchByG_W_Last(groupId, webExSiteId,
 				orderByComparator);
 
@@ -1692,7 +1699,7 @@ public class WebExAccountPersistenceImpl extends BasePersistenceImpl<WebExAccoun
 	 */
 	@Override
 	public WebExAccount fetchByG_W_Last(long groupId, long webExSiteId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<WebExAccount> orderByComparator) {
 		int count = countByG_W(groupId, webExSiteId);
 
 		if (count == 0) {
@@ -1721,7 +1728,8 @@ public class WebExAccountPersistenceImpl extends BasePersistenceImpl<WebExAccoun
 	 */
 	@Override
 	public WebExAccount[] findByG_W_PrevAndNext(long webExAccountId,
-		long groupId, long webExSiteId, OrderByComparator orderByComparator)
+		long groupId, long webExSiteId,
+		OrderByComparator<WebExAccount> orderByComparator)
 		throws NoSuchAccountException {
 		WebExAccount webExAccount = findByPrimaryKey(webExAccountId);
 
@@ -1752,7 +1760,7 @@ public class WebExAccountPersistenceImpl extends BasePersistenceImpl<WebExAccoun
 
 	protected WebExAccount getByG_W_PrevAndNext(Session session,
 		WebExAccount webExAccount, long groupId, long webExSiteId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<WebExAccount> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1907,7 +1915,7 @@ public class WebExAccountPersistenceImpl extends BasePersistenceImpl<WebExAccoun
 	 */
 	@Override
 	public List<WebExAccount> filterFindByG_W(long groupId, long webExSiteId,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<WebExAccount> orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_W(groupId, webExSiteId, start, end, orderByComparator);
 		}
@@ -2003,7 +2011,8 @@ public class WebExAccountPersistenceImpl extends BasePersistenceImpl<WebExAccoun
 	 */
 	@Override
 	public WebExAccount[] filterFindByG_W_PrevAndNext(long webExAccountId,
-		long groupId, long webExSiteId, OrderByComparator orderByComparator)
+		long groupId, long webExSiteId,
+		OrderByComparator<WebExAccount> orderByComparator)
 		throws NoSuchAccountException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_W_PrevAndNext(webExAccountId, groupId, webExSiteId,
@@ -2039,7 +2048,7 @@ public class WebExAccountPersistenceImpl extends BasePersistenceImpl<WebExAccoun
 
 	protected WebExAccount filterGetByG_W_PrevAndNext(Session session,
 		WebExAccount webExAccount, long groupId, long webExSiteId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<WebExAccount> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -2920,7 +2929,7 @@ public class WebExAccountPersistenceImpl extends BasePersistenceImpl<WebExAccoun
 	 */
 	@Override
 	public List<WebExAccount> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<WebExAccount> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

@@ -63,8 +63,7 @@ public class DefinitionServiceWrapper implements DefinitionService,
 		long sourceId, java.lang.String reportParameters,
 		java.lang.String fileName, java.io.InputStream inputStream,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _definitionService.addDefinition(groupId, nameMap,
 			descriptionMap, sourceId, reportParameters, fileName, inputStream,
 			serviceContext);
@@ -73,15 +72,13 @@ public class DefinitionServiceWrapper implements DefinitionService,
 	@Override
 	public com.liferay.reports.model.Definition deleteDefinition(
 		long definitionId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _definitionService.deleteDefinition(definitionId);
 	}
 
 	@Override
 	public com.liferay.reports.model.Definition getDefinition(long definitionId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _definitionService.getDefinition(definitionId);
 	}
 
@@ -91,8 +88,7 @@ public class DefinitionServiceWrapper implements DefinitionService,
 		java.lang.String description, java.lang.String sourceId,
 		java.lang.String reportName, boolean andSearch, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _definitionService.getDefinitions(groupId, definitionName,
 			description, sourceId, reportName, andSearch, start, end,
 			orderByComparator);
@@ -102,8 +98,7 @@ public class DefinitionServiceWrapper implements DefinitionService,
 	public int getDefinitionsCount(long groupId,
 		java.lang.String definitionName, java.lang.String description,
 		java.lang.String sourceId, java.lang.String reportName,
-		boolean andSearch)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		boolean andSearch) {
 		return _definitionService.getDefinitionsCount(groupId, definitionName,
 			description, sourceId, reportName, andSearch);
 	}
@@ -116,8 +111,7 @@ public class DefinitionServiceWrapper implements DefinitionService,
 		long sourceId, java.lang.String reportParameters,
 		java.lang.String fileName, java.io.InputStream inputStream,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _definitionService.updateDefinition(definitionId, nameMap,
 			descriptionMap, sourceId, reportParameters, fileName, inputStream,
 			serviceContext);

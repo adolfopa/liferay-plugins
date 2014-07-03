@@ -76,7 +76,7 @@ public interface OAuthApplicationPersistence extends BasePersistence<OAuthApplic
 	*/
 	public java.util.List<com.liferay.oauth.model.OAuthApplication> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator);
 
 	/**
 	* Returns the first o auth application in the ordered set where companyId = &#63;.
@@ -88,7 +88,7 @@ public interface OAuthApplicationPersistence extends BasePersistence<OAuthApplic
 	*/
 	public com.liferay.oauth.model.OAuthApplication findByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator)
 		throws com.liferay.oauth.NoSuchApplicationException;
 
 	/**
@@ -100,7 +100,7 @@ public interface OAuthApplicationPersistence extends BasePersistence<OAuthApplic
 	*/
 	public com.liferay.oauth.model.OAuthApplication fetchByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator);
 
 	/**
 	* Returns the last o auth application in the ordered set where companyId = &#63;.
@@ -112,7 +112,7 @@ public interface OAuthApplicationPersistence extends BasePersistence<OAuthApplic
 	*/
 	public com.liferay.oauth.model.OAuthApplication findByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator)
 		throws com.liferay.oauth.NoSuchApplicationException;
 
 	/**
@@ -124,7 +124,7 @@ public interface OAuthApplicationPersistence extends BasePersistence<OAuthApplic
 	*/
 	public com.liferay.oauth.model.OAuthApplication fetchByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator);
 
 	/**
 	* Returns the o auth applications before and after the current o auth application in the ordered set where companyId = &#63;.
@@ -137,7 +137,7 @@ public interface OAuthApplicationPersistence extends BasePersistence<OAuthApplic
 	*/
 	public com.liferay.oauth.model.OAuthApplication[] findByCompanyId_PrevAndNext(
 		long oAuthApplicationId, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator)
 		throws com.liferay.oauth.NoSuchApplicationException;
 
 	/**
@@ -179,7 +179,7 @@ public interface OAuthApplicationPersistence extends BasePersistence<OAuthApplic
 	*/
 	public java.util.List<com.liferay.oauth.model.OAuthApplication> filterFindByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator);
 
 	/**
 	* Returns the o auth applications before and after the current o auth application in the ordered set of o auth applications that the user has permission to view where companyId = &#63;.
@@ -192,7 +192,7 @@ public interface OAuthApplicationPersistence extends BasePersistence<OAuthApplic
 	*/
 	public com.liferay.oauth.model.OAuthApplication[] filterFindByCompanyId_PrevAndNext(
 		long oAuthApplicationId, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator)
 		throws com.liferay.oauth.NoSuchApplicationException;
 
 	/**
@@ -257,7 +257,7 @@ public interface OAuthApplicationPersistence extends BasePersistence<OAuthApplic
 	*/
 	public java.util.List<com.liferay.oauth.model.OAuthApplication> findByUserId(
 		long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator);
 
 	/**
 	* Returns the first o auth application in the ordered set where userId = &#63;.
@@ -269,7 +269,7 @@ public interface OAuthApplicationPersistence extends BasePersistence<OAuthApplic
 	*/
 	public com.liferay.oauth.model.OAuthApplication findByUserId_First(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator)
 		throws com.liferay.oauth.NoSuchApplicationException;
 
 	/**
@@ -281,7 +281,7 @@ public interface OAuthApplicationPersistence extends BasePersistence<OAuthApplic
 	*/
 	public com.liferay.oauth.model.OAuthApplication fetchByUserId_First(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator);
 
 	/**
 	* Returns the last o auth application in the ordered set where userId = &#63;.
@@ -293,7 +293,7 @@ public interface OAuthApplicationPersistence extends BasePersistence<OAuthApplic
 	*/
 	public com.liferay.oauth.model.OAuthApplication findByUserId_Last(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator)
 		throws com.liferay.oauth.NoSuchApplicationException;
 
 	/**
@@ -305,7 +305,7 @@ public interface OAuthApplicationPersistence extends BasePersistence<OAuthApplic
 	*/
 	public com.liferay.oauth.model.OAuthApplication fetchByUserId_Last(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator);
 
 	/**
 	* Returns the o auth applications before and after the current o auth application in the ordered set where userId = &#63;.
@@ -318,7 +318,7 @@ public interface OAuthApplicationPersistence extends BasePersistence<OAuthApplic
 	*/
 	public com.liferay.oauth.model.OAuthApplication[] findByUserId_PrevAndNext(
 		long oAuthApplicationId, long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator)
 		throws com.liferay.oauth.NoSuchApplicationException;
 
 	/**
@@ -360,7 +360,7 @@ public interface OAuthApplicationPersistence extends BasePersistence<OAuthApplic
 	*/
 	public java.util.List<com.liferay.oauth.model.OAuthApplication> filterFindByUserId(
 		long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator);
 
 	/**
 	* Returns the o auth applications before and after the current o auth application in the ordered set of o auth applications that the user has permission to view where userId = &#63;.
@@ -373,7 +373,7 @@ public interface OAuthApplicationPersistence extends BasePersistence<OAuthApplic
 	*/
 	public com.liferay.oauth.model.OAuthApplication[] filterFindByUserId_PrevAndNext(
 		long oAuthApplicationId, long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator)
 		throws com.liferay.oauth.NoSuchApplicationException;
 
 	/**
@@ -489,7 +489,7 @@ public interface OAuthApplicationPersistence extends BasePersistence<OAuthApplic
 	*/
 	public java.util.List<com.liferay.oauth.model.OAuthApplication> findByC_N(
 		long companyId, java.lang.String name, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator);
 
 	/**
 	* Returns the first o auth application in the ordered set where companyId = &#63; and name LIKE &#63;.
@@ -502,7 +502,7 @@ public interface OAuthApplicationPersistence extends BasePersistence<OAuthApplic
 	*/
 	public com.liferay.oauth.model.OAuthApplication findByC_N_First(
 		long companyId, java.lang.String name,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator)
 		throws com.liferay.oauth.NoSuchApplicationException;
 
 	/**
@@ -515,7 +515,7 @@ public interface OAuthApplicationPersistence extends BasePersistence<OAuthApplic
 	*/
 	public com.liferay.oauth.model.OAuthApplication fetchByC_N_First(
 		long companyId, java.lang.String name,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator);
 
 	/**
 	* Returns the last o auth application in the ordered set where companyId = &#63; and name LIKE &#63;.
@@ -528,7 +528,7 @@ public interface OAuthApplicationPersistence extends BasePersistence<OAuthApplic
 	*/
 	public com.liferay.oauth.model.OAuthApplication findByC_N_Last(
 		long companyId, java.lang.String name,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator)
 		throws com.liferay.oauth.NoSuchApplicationException;
 
 	/**
@@ -541,7 +541,7 @@ public interface OAuthApplicationPersistence extends BasePersistence<OAuthApplic
 	*/
 	public com.liferay.oauth.model.OAuthApplication fetchByC_N_Last(
 		long companyId, java.lang.String name,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator);
 
 	/**
 	* Returns the o auth applications before and after the current o auth application in the ordered set where companyId = &#63; and name LIKE &#63;.
@@ -555,7 +555,7 @@ public interface OAuthApplicationPersistence extends BasePersistence<OAuthApplic
 	*/
 	public com.liferay.oauth.model.OAuthApplication[] findByC_N_PrevAndNext(
 		long oAuthApplicationId, long companyId, java.lang.String name,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator)
 		throws com.liferay.oauth.NoSuchApplicationException;
 
 	/**
@@ -600,7 +600,7 @@ public interface OAuthApplicationPersistence extends BasePersistence<OAuthApplic
 	*/
 	public java.util.List<com.liferay.oauth.model.OAuthApplication> filterFindByC_N(
 		long companyId, java.lang.String name, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator);
 
 	/**
 	* Returns the o auth applications before and after the current o auth application in the ordered set of o auth applications that the user has permission to view where companyId = &#63; and name LIKE &#63;.
@@ -614,7 +614,7 @@ public interface OAuthApplicationPersistence extends BasePersistence<OAuthApplic
 	*/
 	public com.liferay.oauth.model.OAuthApplication[] filterFindByC_N_PrevAndNext(
 		long oAuthApplicationId, long companyId, java.lang.String name,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator)
 		throws com.liferay.oauth.NoSuchApplicationException;
 
 	/**
@@ -685,7 +685,7 @@ public interface OAuthApplicationPersistence extends BasePersistence<OAuthApplic
 	*/
 	public java.util.List<com.liferay.oauth.model.OAuthApplication> findByU_N(
 		long userId, java.lang.String name, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator);
 
 	/**
 	* Returns the first o auth application in the ordered set where userId = &#63; and name LIKE &#63;.
@@ -698,7 +698,7 @@ public interface OAuthApplicationPersistence extends BasePersistence<OAuthApplic
 	*/
 	public com.liferay.oauth.model.OAuthApplication findByU_N_First(
 		long userId, java.lang.String name,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator)
 		throws com.liferay.oauth.NoSuchApplicationException;
 
 	/**
@@ -711,7 +711,7 @@ public interface OAuthApplicationPersistence extends BasePersistence<OAuthApplic
 	*/
 	public com.liferay.oauth.model.OAuthApplication fetchByU_N_First(
 		long userId, java.lang.String name,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator);
 
 	/**
 	* Returns the last o auth application in the ordered set where userId = &#63; and name LIKE &#63;.
@@ -724,7 +724,7 @@ public interface OAuthApplicationPersistence extends BasePersistence<OAuthApplic
 	*/
 	public com.liferay.oauth.model.OAuthApplication findByU_N_Last(
 		long userId, java.lang.String name,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator)
 		throws com.liferay.oauth.NoSuchApplicationException;
 
 	/**
@@ -737,7 +737,7 @@ public interface OAuthApplicationPersistence extends BasePersistence<OAuthApplic
 	*/
 	public com.liferay.oauth.model.OAuthApplication fetchByU_N_Last(
 		long userId, java.lang.String name,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator);
 
 	/**
 	* Returns the o auth applications before and after the current o auth application in the ordered set where userId = &#63; and name LIKE &#63;.
@@ -751,7 +751,7 @@ public interface OAuthApplicationPersistence extends BasePersistence<OAuthApplic
 	*/
 	public com.liferay.oauth.model.OAuthApplication[] findByU_N_PrevAndNext(
 		long oAuthApplicationId, long userId, java.lang.String name,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator)
 		throws com.liferay.oauth.NoSuchApplicationException;
 
 	/**
@@ -796,7 +796,7 @@ public interface OAuthApplicationPersistence extends BasePersistence<OAuthApplic
 	*/
 	public java.util.List<com.liferay.oauth.model.OAuthApplication> filterFindByU_N(
 		long userId, java.lang.String name, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator);
 
 	/**
 	* Returns the o auth applications before and after the current o auth application in the ordered set of o auth applications that the user has permission to view where userId = &#63; and name LIKE &#63;.
@@ -810,7 +810,7 @@ public interface OAuthApplicationPersistence extends BasePersistence<OAuthApplic
 	*/
 	public com.liferay.oauth.model.OAuthApplication[] filterFindByU_N_PrevAndNext(
 		long oAuthApplicationId, long userId, java.lang.String name,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator)
 		throws com.liferay.oauth.NoSuchApplicationException;
 
 	/**
@@ -937,7 +937,7 @@ public interface OAuthApplicationPersistence extends BasePersistence<OAuthApplic
 	*/
 	public java.util.List<com.liferay.oauth.model.OAuthApplication> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator);
 
 	/**
 	* Removes all the o auth applications from the database.

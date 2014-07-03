@@ -71,8 +71,7 @@ public class EntryServiceUtil {
 		java.lang.String pageURL, java.lang.String reportName,
 		java.lang.String reportParameters,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .addEntry(groupId, definitionId, format, schedulerRequest,
 			startDate, endDate, repeating, recurrence, emailNotifications,
@@ -82,14 +81,12 @@ public class EntryServiceUtil {
 
 	public static void deleteAttachment(long companyId, long entryId,
 		java.lang.String fileName)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().deleteAttachment(companyId, entryId, fileName);
 	}
 
 	public static com.liferay.reports.model.Entry deleteEntry(long entryId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteEntry(entryId);
 	}
 
@@ -98,8 +95,7 @@ public class EntryServiceUtil {
 		java.lang.String userName, java.util.Date createDateGT,
 		java.util.Date createDateLT, boolean andSearch, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .getEntries(groupId, definitionName, userName, createDateGT,
 			createDateLT, andSearch, start, end, orderByComparator);
@@ -108,8 +104,7 @@ public class EntryServiceUtil {
 	public static int getEntriesCount(long groupId,
 		java.lang.String definitionName, java.lang.String userName,
 		java.util.Date createDateGT, java.util.Date createDateLT,
-		boolean andSearch)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		boolean andSearch) {
 		return getService()
 				   .getEntriesCount(groupId, definitionName, userName,
 			createDateGT, createDateLT, andSearch);
@@ -117,14 +112,12 @@ public class EntryServiceUtil {
 
 	public static void sendEmails(long entryId, java.lang.String fileName,
 		java.lang.String[] emailAddresses, boolean notification)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().sendEmails(entryId, fileName, emailAddresses, notification);
 	}
 
 	public static void unscheduleEntry(long entryId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().unscheduleEntry(entryId);
 	}
 

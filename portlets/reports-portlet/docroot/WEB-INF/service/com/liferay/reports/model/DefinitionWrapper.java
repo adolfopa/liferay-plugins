@@ -823,8 +823,7 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 
 	@Override
 	public java.lang.String[] getAttachmentsFiles()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _definition.getAttachmentsFiles();
 	}
 

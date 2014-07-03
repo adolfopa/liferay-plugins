@@ -701,8 +701,7 @@ public class SourceWrapper implements Source, ModelWrapper<Source> {
 
 	@Override
 	public java.lang.String[] getAttachmentsFiles()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _source.getAttachmentsFiles();
 	}
 

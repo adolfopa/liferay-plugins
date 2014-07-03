@@ -85,7 +85,7 @@ public class OAuthApplicationUtil {
 	 */
 	public static List<OAuthApplication> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<OAuthApplication> orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -149,7 +149,7 @@ public class OAuthApplicationUtil {
 	*/
 	public static java.util.List<com.liferay.oauth.model.OAuthApplication> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator) {
 		return getPersistence()
 				   .findByCompanyId(companyId, start, end, orderByComparator);
 	}
@@ -164,7 +164,7 @@ public class OAuthApplicationUtil {
 	*/
 	public static com.liferay.oauth.model.OAuthApplication findByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator)
 		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence()
 				   .findByCompanyId_First(companyId, orderByComparator);
@@ -179,7 +179,7 @@ public class OAuthApplicationUtil {
 	*/
 	public static com.liferay.oauth.model.OAuthApplication fetchByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator) {
 		return getPersistence()
 				   .fetchByCompanyId_First(companyId, orderByComparator);
 	}
@@ -194,7 +194,7 @@ public class OAuthApplicationUtil {
 	*/
 	public static com.liferay.oauth.model.OAuthApplication findByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator)
 		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence()
 				   .findByCompanyId_Last(companyId, orderByComparator);
@@ -209,7 +209,7 @@ public class OAuthApplicationUtil {
 	*/
 	public static com.liferay.oauth.model.OAuthApplication fetchByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator) {
 		return getPersistence()
 				   .fetchByCompanyId_Last(companyId, orderByComparator);
 	}
@@ -225,7 +225,7 @@ public class OAuthApplicationUtil {
 	*/
 	public static com.liferay.oauth.model.OAuthApplication[] findByCompanyId_PrevAndNext(
 		long oAuthApplicationId, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator)
 		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence()
 				   .findByCompanyId_PrevAndNext(oAuthApplicationId, companyId,
@@ -275,7 +275,7 @@ public class OAuthApplicationUtil {
 	*/
 	public static java.util.List<com.liferay.oauth.model.OAuthApplication> filterFindByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator) {
 		return getPersistence()
 				   .filterFindByCompanyId(companyId, start, end,
 			orderByComparator);
@@ -292,7 +292,7 @@ public class OAuthApplicationUtil {
 	*/
 	public static com.liferay.oauth.model.OAuthApplication[] filterFindByCompanyId_PrevAndNext(
 		long oAuthApplicationId, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator)
 		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence()
 				   .filterFindByCompanyId_PrevAndNext(oAuthApplicationId,
@@ -371,7 +371,7 @@ public class OAuthApplicationUtil {
 	*/
 	public static java.util.List<com.liferay.oauth.model.OAuthApplication> findByUserId(
 		long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator) {
 		return getPersistence()
 				   .findByUserId(userId, start, end, orderByComparator);
 	}
@@ -386,7 +386,7 @@ public class OAuthApplicationUtil {
 	*/
 	public static com.liferay.oauth.model.OAuthApplication findByUserId_First(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator)
 		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence().findByUserId_First(userId, orderByComparator);
 	}
@@ -400,7 +400,7 @@ public class OAuthApplicationUtil {
 	*/
 	public static com.liferay.oauth.model.OAuthApplication fetchByUserId_First(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator) {
 		return getPersistence().fetchByUserId_First(userId, orderByComparator);
 	}
 
@@ -414,7 +414,7 @@ public class OAuthApplicationUtil {
 	*/
 	public static com.liferay.oauth.model.OAuthApplication findByUserId_Last(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator)
 		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence().findByUserId_Last(userId, orderByComparator);
 	}
@@ -428,7 +428,7 @@ public class OAuthApplicationUtil {
 	*/
 	public static com.liferay.oauth.model.OAuthApplication fetchByUserId_Last(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator) {
 		return getPersistence().fetchByUserId_Last(userId, orderByComparator);
 	}
 
@@ -443,7 +443,7 @@ public class OAuthApplicationUtil {
 	*/
 	public static com.liferay.oauth.model.OAuthApplication[] findByUserId_PrevAndNext(
 		long oAuthApplicationId, long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator)
 		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence()
 				   .findByUserId_PrevAndNext(oAuthApplicationId, userId,
@@ -493,7 +493,7 @@ public class OAuthApplicationUtil {
 	*/
 	public static java.util.List<com.liferay.oauth.model.OAuthApplication> filterFindByUserId(
 		long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator) {
 		return getPersistence()
 				   .filterFindByUserId(userId, start, end, orderByComparator);
 	}
@@ -509,7 +509,7 @@ public class OAuthApplicationUtil {
 	*/
 	public static com.liferay.oauth.model.OAuthApplication[] filterFindByUserId_PrevAndNext(
 		long oAuthApplicationId, long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator)
 		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence()
 				   .filterFindByUserId_PrevAndNext(oAuthApplicationId, userId,
@@ -650,7 +650,7 @@ public class OAuthApplicationUtil {
 	*/
 	public static java.util.List<com.liferay.oauth.model.OAuthApplication> findByC_N(
 		long companyId, java.lang.String name, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator) {
 		return getPersistence()
 				   .findByC_N(companyId, name, start, end, orderByComparator);
 	}
@@ -666,7 +666,7 @@ public class OAuthApplicationUtil {
 	*/
 	public static com.liferay.oauth.model.OAuthApplication findByC_N_First(
 		long companyId, java.lang.String name,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator)
 		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence()
 				   .findByC_N_First(companyId, name, orderByComparator);
@@ -682,7 +682,7 @@ public class OAuthApplicationUtil {
 	*/
 	public static com.liferay.oauth.model.OAuthApplication fetchByC_N_First(
 		long companyId, java.lang.String name,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator) {
 		return getPersistence()
 				   .fetchByC_N_First(companyId, name, orderByComparator);
 	}
@@ -698,7 +698,7 @@ public class OAuthApplicationUtil {
 	*/
 	public static com.liferay.oauth.model.OAuthApplication findByC_N_Last(
 		long companyId, java.lang.String name,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator)
 		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence()
 				   .findByC_N_Last(companyId, name, orderByComparator);
@@ -714,7 +714,7 @@ public class OAuthApplicationUtil {
 	*/
 	public static com.liferay.oauth.model.OAuthApplication fetchByC_N_Last(
 		long companyId, java.lang.String name,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator) {
 		return getPersistence()
 				   .fetchByC_N_Last(companyId, name, orderByComparator);
 	}
@@ -731,7 +731,7 @@ public class OAuthApplicationUtil {
 	*/
 	public static com.liferay.oauth.model.OAuthApplication[] findByC_N_PrevAndNext(
 		long oAuthApplicationId, long companyId, java.lang.String name,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator)
 		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence()
 				   .findByC_N_PrevAndNext(oAuthApplicationId, companyId, name,
@@ -784,7 +784,7 @@ public class OAuthApplicationUtil {
 	*/
 	public static java.util.List<com.liferay.oauth.model.OAuthApplication> filterFindByC_N(
 		long companyId, java.lang.String name, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator) {
 		return getPersistence()
 				   .filterFindByC_N(companyId, name, start, end,
 			orderByComparator);
@@ -802,7 +802,7 @@ public class OAuthApplicationUtil {
 	*/
 	public static com.liferay.oauth.model.OAuthApplication[] filterFindByC_N_PrevAndNext(
 		long oAuthApplicationId, long companyId, java.lang.String name,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator)
 		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence()
 				   .filterFindByC_N_PrevAndNext(oAuthApplicationId, companyId,
@@ -887,7 +887,7 @@ public class OAuthApplicationUtil {
 	*/
 	public static java.util.List<com.liferay.oauth.model.OAuthApplication> findByU_N(
 		long userId, java.lang.String name, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator) {
 		return getPersistence()
 				   .findByU_N(userId, name, start, end, orderByComparator);
 	}
@@ -903,7 +903,7 @@ public class OAuthApplicationUtil {
 	*/
 	public static com.liferay.oauth.model.OAuthApplication findByU_N_First(
 		long userId, java.lang.String name,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator)
 		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence().findByU_N_First(userId, name, orderByComparator);
 	}
@@ -918,7 +918,7 @@ public class OAuthApplicationUtil {
 	*/
 	public static com.liferay.oauth.model.OAuthApplication fetchByU_N_First(
 		long userId, java.lang.String name,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator) {
 		return getPersistence().fetchByU_N_First(userId, name, orderByComparator);
 	}
 
@@ -933,7 +933,7 @@ public class OAuthApplicationUtil {
 	*/
 	public static com.liferay.oauth.model.OAuthApplication findByU_N_Last(
 		long userId, java.lang.String name,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator)
 		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence().findByU_N_Last(userId, name, orderByComparator);
 	}
@@ -948,7 +948,7 @@ public class OAuthApplicationUtil {
 	*/
 	public static com.liferay.oauth.model.OAuthApplication fetchByU_N_Last(
 		long userId, java.lang.String name,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator) {
 		return getPersistence().fetchByU_N_Last(userId, name, orderByComparator);
 	}
 
@@ -964,7 +964,7 @@ public class OAuthApplicationUtil {
 	*/
 	public static com.liferay.oauth.model.OAuthApplication[] findByU_N_PrevAndNext(
 		long oAuthApplicationId, long userId, java.lang.String name,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator)
 		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence()
 				   .findByU_N_PrevAndNext(oAuthApplicationId, userId, name,
@@ -1017,7 +1017,7 @@ public class OAuthApplicationUtil {
 	*/
 	public static java.util.List<com.liferay.oauth.model.OAuthApplication> filterFindByU_N(
 		long userId, java.lang.String name, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator) {
 		return getPersistence()
 				   .filterFindByU_N(userId, name, start, end, orderByComparator);
 	}
@@ -1034,7 +1034,7 @@ public class OAuthApplicationUtil {
 	*/
 	public static com.liferay.oauth.model.OAuthApplication[] filterFindByU_N_PrevAndNext(
 		long oAuthApplicationId, long userId, java.lang.String name,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator)
 		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence()
 				   .filterFindByU_N_PrevAndNext(oAuthApplicationId, userId,
@@ -1190,7 +1190,7 @@ public class OAuthApplicationUtil {
 	*/
 	public static java.util.List<com.liferay.oauth.model.OAuthApplication> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

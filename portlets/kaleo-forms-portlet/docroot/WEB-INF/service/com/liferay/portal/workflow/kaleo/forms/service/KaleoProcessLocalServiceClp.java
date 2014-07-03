@@ -223,8 +223,7 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 	@Override
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess deleteKaleoProcess(
 		long kaleoProcessId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -236,10 +235,6 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -257,8 +252,7 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 	@Override
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess deleteKaleoProcess(
 		com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess kaleoProcess)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -271,10 +265,6 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -313,8 +303,7 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		Object returnObj = null;
 
@@ -335,12 +324,11 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		Object returnObj = null;
@@ -368,15 +356,14 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		Object returnObj = null;
 
 		try {
@@ -404,7 +391,7 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -489,8 +476,7 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 	@Override
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess getKaleoProcess(
 		long kaleoProcessId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -502,10 +488,6 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -732,8 +714,7 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 		long workflowDefinitionVersion,
 		com.liferay.portal.workflow.kaleo.forms.util.TaskFormPairs taskFormPairs,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -764,10 +745,6 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -783,8 +760,7 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 	@Override
 	public void deleteKaleoProcessData(
 		com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess kaleoProcess)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			_invokableLocalService.invokeMethod(_methodName22,
 				_methodParameterTypes22,
@@ -795,10 +771,6 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -813,8 +785,7 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 
 	@Override
 	public void deleteKaleoProcessData(long kaleoProcessId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			_invokableLocalService.invokeMethod(_methodName23,
 				_methodParameterTypes23, new Object[] { kaleoProcessId });
@@ -824,10 +795,6 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -843,8 +810,7 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 	@Override
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess getDDLRecordSetKaleoProcess(
 		long ddlRecordSetId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -856,10 +822,6 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -876,8 +838,7 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 
 	@Override
 	public java.util.List<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess> getKaleoProcesses(
-		long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long groupId) {
 		Object returnObj = null;
 
 		try {
@@ -886,10 +847,6 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -906,8 +863,7 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 	@Override
 	public java.util.List<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess> getKaleoProcesses(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		Object returnObj = null;
 
 		try {
@@ -926,10 +882,6 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -943,8 +895,7 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 	}
 
 	@Override
-	public int getKaleoProcessesCount(long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getKaleoProcessesCount(long groupId) {
 		Object returnObj = null;
 
 		try {
@@ -953,10 +904,6 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -977,8 +924,7 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 		long workflowDefinitionVersion,
 		com.liferay.portal.workflow.kaleo.forms.util.TaskFormPairs taskFormPairs,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -1003,10 +949,6 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {

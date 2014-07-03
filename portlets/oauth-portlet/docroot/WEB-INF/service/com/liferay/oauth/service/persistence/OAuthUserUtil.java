@@ -85,7 +85,7 @@ public class OAuthUserUtil {
 	 */
 	public static List<OAuthUser> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<OAuthUser> orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -149,7 +149,7 @@ public class OAuthUserUtil {
 	*/
 	public static java.util.List<com.liferay.oauth.model.OAuthUser> findByUserId(
 		long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthUser> orderByComparator) {
 		return getPersistence()
 				   .findByUserId(userId, start, end, orderByComparator);
 	}
@@ -164,7 +164,7 @@ public class OAuthUserUtil {
 	*/
 	public static com.liferay.oauth.model.OAuthUser findByUserId_First(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthUser> orderByComparator)
 		throws com.liferay.oauth.NoSuchUserException {
 		return getPersistence().findByUserId_First(userId, orderByComparator);
 	}
@@ -178,7 +178,7 @@ public class OAuthUserUtil {
 	*/
 	public static com.liferay.oauth.model.OAuthUser fetchByUserId_First(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthUser> orderByComparator) {
 		return getPersistence().fetchByUserId_First(userId, orderByComparator);
 	}
 
@@ -192,7 +192,7 @@ public class OAuthUserUtil {
 	*/
 	public static com.liferay.oauth.model.OAuthUser findByUserId_Last(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthUser> orderByComparator)
 		throws com.liferay.oauth.NoSuchUserException {
 		return getPersistence().findByUserId_Last(userId, orderByComparator);
 	}
@@ -206,7 +206,7 @@ public class OAuthUserUtil {
 	*/
 	public static com.liferay.oauth.model.OAuthUser fetchByUserId_Last(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthUser> orderByComparator) {
 		return getPersistence().fetchByUserId_Last(userId, orderByComparator);
 	}
 
@@ -221,7 +221,7 @@ public class OAuthUserUtil {
 	*/
 	public static com.liferay.oauth.model.OAuthUser[] findByUserId_PrevAndNext(
 		long oAuthUserId, long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthUser> orderByComparator)
 		throws com.liferay.oauth.NoSuchUserException {
 		return getPersistence()
 				   .findByUserId_PrevAndNext(oAuthUserId, userId,
@@ -271,7 +271,7 @@ public class OAuthUserUtil {
 	*/
 	public static java.util.List<com.liferay.oauth.model.OAuthUser> filterFindByUserId(
 		long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthUser> orderByComparator) {
 		return getPersistence()
 				   .filterFindByUserId(userId, start, end, orderByComparator);
 	}
@@ -287,7 +287,7 @@ public class OAuthUserUtil {
 	*/
 	public static com.liferay.oauth.model.OAuthUser[] filterFindByUserId_PrevAndNext(
 		long oAuthUserId, long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthUser> orderByComparator)
 		throws com.liferay.oauth.NoSuchUserException {
 		return getPersistence()
 				   .filterFindByUserId_PrevAndNext(oAuthUserId, userId,
@@ -367,7 +367,7 @@ public class OAuthUserUtil {
 	*/
 	public static java.util.List<com.liferay.oauth.model.OAuthUser> findByOAuthApplicationId(
 		long oAuthApplicationId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthUser> orderByComparator) {
 		return getPersistence()
 				   .findByOAuthApplicationId(oAuthApplicationId, start, end,
 			orderByComparator);
@@ -383,7 +383,7 @@ public class OAuthUserUtil {
 	*/
 	public static com.liferay.oauth.model.OAuthUser findByOAuthApplicationId_First(
 		long oAuthApplicationId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthUser> orderByComparator)
 		throws com.liferay.oauth.NoSuchUserException {
 		return getPersistence()
 				   .findByOAuthApplicationId_First(oAuthApplicationId,
@@ -399,7 +399,7 @@ public class OAuthUserUtil {
 	*/
 	public static com.liferay.oauth.model.OAuthUser fetchByOAuthApplicationId_First(
 		long oAuthApplicationId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthUser> orderByComparator) {
 		return getPersistence()
 				   .fetchByOAuthApplicationId_First(oAuthApplicationId,
 			orderByComparator);
@@ -415,7 +415,7 @@ public class OAuthUserUtil {
 	*/
 	public static com.liferay.oauth.model.OAuthUser findByOAuthApplicationId_Last(
 		long oAuthApplicationId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthUser> orderByComparator)
 		throws com.liferay.oauth.NoSuchUserException {
 		return getPersistence()
 				   .findByOAuthApplicationId_Last(oAuthApplicationId,
@@ -431,7 +431,7 @@ public class OAuthUserUtil {
 	*/
 	public static com.liferay.oauth.model.OAuthUser fetchByOAuthApplicationId_Last(
 		long oAuthApplicationId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthUser> orderByComparator) {
 		return getPersistence()
 				   .fetchByOAuthApplicationId_Last(oAuthApplicationId,
 			orderByComparator);
@@ -448,7 +448,7 @@ public class OAuthUserUtil {
 	*/
 	public static com.liferay.oauth.model.OAuthUser[] findByOAuthApplicationId_PrevAndNext(
 		long oAuthUserId, long oAuthApplicationId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthUser> orderByComparator)
 		throws com.liferay.oauth.NoSuchUserException {
 		return getPersistence()
 				   .findByOAuthApplicationId_PrevAndNext(oAuthUserId,
@@ -501,7 +501,7 @@ public class OAuthUserUtil {
 	*/
 	public static java.util.List<com.liferay.oauth.model.OAuthUser> filterFindByOAuthApplicationId(
 		long oAuthApplicationId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthUser> orderByComparator) {
 		return getPersistence()
 				   .filterFindByOAuthApplicationId(oAuthApplicationId, start,
 			end, orderByComparator);
@@ -518,7 +518,7 @@ public class OAuthUserUtil {
 	*/
 	public static com.liferay.oauth.model.OAuthUser[] filterFindByOAuthApplicationId_PrevAndNext(
 		long oAuthUserId, long oAuthApplicationId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthUser> orderByComparator)
 		throws com.liferay.oauth.NoSuchUserException {
 		return getPersistence()
 				   .filterFindByOAuthApplicationId_PrevAndNext(oAuthUserId,
@@ -789,7 +789,7 @@ public class OAuthUserUtil {
 	*/
 	public static java.util.List<com.liferay.oauth.model.OAuthUser> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthUser> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

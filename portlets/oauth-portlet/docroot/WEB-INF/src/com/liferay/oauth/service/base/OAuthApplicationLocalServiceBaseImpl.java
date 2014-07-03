@@ -102,12 +102,11 @@ public abstract class OAuthApplicationLocalServiceBaseImpl
 	 * @param oAuthApplicationId the primary key of the o auth application
 	 * @return the o auth application that was removed
 	 * @throws PortalException if a o auth application with the primary key could not be found
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public OAuthApplication deleteOAuthApplication(long oAuthApplicationId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return oAuthApplicationPersistence.remove(oAuthApplicationId);
 	}
 
@@ -117,13 +116,11 @@ public abstract class OAuthApplicationLocalServiceBaseImpl
 	 * @param oAuthApplication the o auth application
 	 * @return the o auth application that was removed
 	 * @throws PortalException
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public OAuthApplication deleteOAuthApplication(
-		OAuthApplication oAuthApplication)
-		throws PortalException, SystemException {
+		OAuthApplication oAuthApplication) throws PortalException {
 		return oAuthApplicationPersistence.remove(oAuthApplication);
 	}
 
@@ -142,8 +139,7 @@ public abstract class OAuthApplicationLocalServiceBaseImpl
 	 * @return the matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
 		return oAuthApplicationPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -160,8 +156,8 @@ public abstract class OAuthApplicationLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end) {
 		return oAuthApplicationPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end);
 	}
@@ -180,9 +176,8 @@ public abstract class OAuthApplicationLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator) {
 		return oAuthApplicationPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end, orderByComparator);
 	}

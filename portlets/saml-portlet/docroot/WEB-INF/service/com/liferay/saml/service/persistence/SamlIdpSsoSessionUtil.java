@@ -85,7 +85,7 @@ public class SamlIdpSsoSessionUtil {
 	 */
 	public static List<SamlIdpSsoSession> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<SamlIdpSsoSession> orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -285,7 +285,7 @@ public class SamlIdpSsoSessionUtil {
 	*/
 	public static java.util.List<com.liferay.saml.model.SamlIdpSsoSession> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.saml.model.SamlIdpSsoSession> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

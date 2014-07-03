@@ -21,7 +21,7 @@ import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
 
 /**
  * @author Anant Singh
- * @deprecated As of 7.0.0, replaced by {@link WebExAccountLocalServiceUtil#getExportActionableDynamicQuery()}
+ * @deprecated As of 7.0.0, replaced by {@link WebExAccountLocalServiceUtil#getActionableDynamicQuery()}
  * @generated
  */
 @Deprecated

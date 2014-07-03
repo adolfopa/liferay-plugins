@@ -130,7 +130,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*/
 	public java.util.List<com.liferay.reports.model.Entry> findAll(int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Entry> orderByComparator);
 
 	/**
 	* Removes all the entries from the database.

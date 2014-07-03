@@ -190,7 +190,7 @@ public interface SamlSpAuthRequestPersistence extends BasePersistence<SamlSpAuth
 	*/
 	public java.util.List<com.liferay.saml.model.SamlSpAuthRequest> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.saml.model.SamlSpAuthRequest> orderByComparator);
 
 	/**
 	* Removes all the saml sp auth requests from the database.

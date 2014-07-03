@@ -246,8 +246,7 @@ public class SPIDefinitionLocalServiceClp implements SPIDefinitionLocalService {
 	@Override
 	public com.liferay.portal.resiliency.spi.model.SPIDefinition deleteSPIDefinition(
 		long spiDefinitionId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -259,10 +258,6 @@ public class SPIDefinitionLocalServiceClp implements SPIDefinitionLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -280,8 +275,7 @@ public class SPIDefinitionLocalServiceClp implements SPIDefinitionLocalService {
 	@Override
 	public com.liferay.portal.resiliency.spi.model.SPIDefinition deleteSPIDefinition(
 		com.liferay.portal.resiliency.spi.model.SPIDefinition spiDefinition)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -294,10 +288,6 @@ public class SPIDefinitionLocalServiceClp implements SPIDefinitionLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -336,8 +326,7 @@ public class SPIDefinitionLocalServiceClp implements SPIDefinitionLocalService {
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		Object returnObj = null;
 
@@ -358,12 +347,11 @@ public class SPIDefinitionLocalServiceClp implements SPIDefinitionLocalService {
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		Object returnObj = null;
@@ -391,15 +379,14 @@ public class SPIDefinitionLocalServiceClp implements SPIDefinitionLocalService {
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		Object returnObj = null;
 
 		try {
@@ -427,7 +414,7 @@ public class SPIDefinitionLocalServiceClp implements SPIDefinitionLocalService {
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -512,8 +499,7 @@ public class SPIDefinitionLocalServiceClp implements SPIDefinitionLocalService {
 	@Override
 	public com.liferay.portal.resiliency.spi.model.SPIDefinition getSPIDefinition(
 		long spiDefinitionId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -525,10 +511,6 @@ public class SPIDefinitionLocalServiceClp implements SPIDefinitionLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -755,8 +737,7 @@ public class SPIDefinitionLocalServiceClp implements SPIDefinitionLocalService {
 		java.lang.String jvmArguments, java.lang.String portletIds,
 		java.lang.String servletContextNames, java.lang.String typeSettings,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -791,10 +772,6 @@ public class SPIDefinitionLocalServiceClp implements SPIDefinitionLocalService {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -808,8 +785,7 @@ public class SPIDefinitionLocalServiceClp implements SPIDefinitionLocalService {
 	}
 
 	@Override
-	public com.liferay.portal.kernel.util.Tuple getPortletIdsAndServletContextNames()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public com.liferay.portal.kernel.util.Tuple getPortletIdsAndServletContextNames() {
 		Object returnObj = null;
 
 		try {
@@ -818,10 +794,6 @@ public class SPIDefinitionLocalServiceClp implements SPIDefinitionLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -838,8 +810,7 @@ public class SPIDefinitionLocalServiceClp implements SPIDefinitionLocalService {
 	@Override
 	public com.liferay.portal.resiliency.spi.model.SPIDefinition getSPIDefinition(
 		long companyId, java.lang.String name)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -852,10 +823,6 @@ public class SPIDefinitionLocalServiceClp implements SPIDefinitionLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -871,8 +838,7 @@ public class SPIDefinitionLocalServiceClp implements SPIDefinitionLocalService {
 	}
 
 	@Override
-	public java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> getSPIDefinitions()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> getSPIDefinitions() {
 		Object returnObj = null;
 
 		try {
@@ -882,10 +848,6 @@ public class SPIDefinitionLocalServiceClp implements SPIDefinitionLocalService {
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -900,8 +862,7 @@ public class SPIDefinitionLocalServiceClp implements SPIDefinitionLocalService {
 
 	@Override
 	public java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> getSPIDefinitions(
-		long companyId, int status)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long companyId, int status) {
 		Object returnObj = null;
 
 		try {
@@ -911,10 +872,6 @@ public class SPIDefinitionLocalServiceClp implements SPIDefinitionLocalService {
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -929,8 +886,7 @@ public class SPIDefinitionLocalServiceClp implements SPIDefinitionLocalService {
 
 	@Override
 	public java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> getSPIDefinitions(
-		long companyId, int[] statuses)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long companyId, int[] statuses) {
 		Object returnObj = null;
 
 		try {
@@ -944,10 +900,6 @@ public class SPIDefinitionLocalServiceClp implements SPIDefinitionLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -963,8 +915,7 @@ public class SPIDefinitionLocalServiceClp implements SPIDefinitionLocalService {
 
 	@Override
 	public void startSPI(long spiDefinitionId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			_invokableLocalService.invokeMethod(_methodName27,
 				_methodParameterTypes27, new Object[] { spiDefinitionId });
@@ -974,10 +925,6 @@ public class SPIDefinitionLocalServiceClp implements SPIDefinitionLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -992,8 +939,7 @@ public class SPIDefinitionLocalServiceClp implements SPIDefinitionLocalService {
 
 	@Override
 	public long startSPIinBackground(long userId, long spiDefinitionId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -1006,10 +952,6 @@ public class SPIDefinitionLocalServiceClp implements SPIDefinitionLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -1027,8 +969,7 @@ public class SPIDefinitionLocalServiceClp implements SPIDefinitionLocalService {
 	@Override
 	public long startSPIinBackground(long userId, long spiDefinitionId,
 		boolean automatedRestart)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -1041,10 +982,6 @@ public class SPIDefinitionLocalServiceClp implements SPIDefinitionLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -1061,8 +998,7 @@ public class SPIDefinitionLocalServiceClp implements SPIDefinitionLocalService {
 
 	@Override
 	public void stopSPI(long spiDefinitionId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			_invokableLocalService.invokeMethod(_methodName30,
 				_methodParameterTypes30, new Object[] { spiDefinitionId });
@@ -1072,10 +1008,6 @@ public class SPIDefinitionLocalServiceClp implements SPIDefinitionLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -1090,8 +1022,7 @@ public class SPIDefinitionLocalServiceClp implements SPIDefinitionLocalService {
 
 	@Override
 	public long stopSPIinBackground(long userId, long spiDefinitionId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -1104,10 +1035,6 @@ public class SPIDefinitionLocalServiceClp implements SPIDefinitionLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -1125,8 +1052,7 @@ public class SPIDefinitionLocalServiceClp implements SPIDefinitionLocalService {
 	@Override
 	public com.liferay.portal.resiliency.spi.model.SPIDefinition updateSPIDefinition(
 		long spiDefinitionId, int status, java.lang.String statusMessage)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -1145,10 +1071,6 @@ public class SPIDefinitionLocalServiceClp implements SPIDefinitionLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -1170,8 +1092,7 @@ public class SPIDefinitionLocalServiceClp implements SPIDefinitionLocalService {
 		java.lang.String jvmArguments, java.lang.String portletIds,
 		java.lang.String servletContextNames, java.lang.String typeSettings,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -1206,10 +1127,6 @@ public class SPIDefinitionLocalServiceClp implements SPIDefinitionLocalService {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -1226,8 +1143,7 @@ public class SPIDefinitionLocalServiceClp implements SPIDefinitionLocalService {
 	public com.liferay.portal.resiliency.spi.model.SPIDefinition updateTypeSettings(
 		long userId, long spiDefinitionId, java.lang.String typeSettings,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -1248,10 +1164,6 @@ public class SPIDefinitionLocalServiceClp implements SPIDefinitionLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {

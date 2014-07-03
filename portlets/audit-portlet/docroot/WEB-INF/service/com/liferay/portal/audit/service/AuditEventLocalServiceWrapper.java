@@ -92,8 +92,7 @@ public class AuditEventLocalServiceWrapper implements AuditEventLocalService,
 	* @return the matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _auditEventLocalService.dynamicQuery(dynamicQuery);
 	}
@@ -111,8 +110,7 @@ public class AuditEventLocalServiceWrapper implements AuditEventLocalService,
 	* @return the range of matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		return _auditEventLocalService.dynamicQuery(dynamicQuery, start, end);
@@ -132,11 +130,10 @@ public class AuditEventLocalServiceWrapper implements AuditEventLocalService,
 	* @return the ordered range of matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		return _auditEventLocalService.dynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
 	}
@@ -170,8 +167,7 @@ public class AuditEventLocalServiceWrapper implements AuditEventLocalService,
 
 	@Override
 	public com.liferay.portal.audit.model.AuditEvent fetchAuditEvent(
-		long auditEventId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long auditEventId) {
 		return _auditEventLocalService.fetchAuditEvent(auditEventId);
 	}
 
@@ -280,16 +276,14 @@ public class AuditEventLocalServiceWrapper implements AuditEventLocalService,
 
 	@Override
 	public com.liferay.portal.audit.model.AuditEvent addAuditEvent(
-		com.liferay.portal.kernel.audit.AuditMessage auditMessage)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.audit.AuditMessage auditMessage) {
 		return _auditEventLocalService.addAuditEvent(auditMessage);
 	}
 
 	@Override
 	public java.util.List<com.liferay.portal.audit.model.AuditEvent> getAuditEvents(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return _auditEventLocalService.getAuditEvents(companyId, start, end,
 			orderByComparator);
 	}
@@ -302,8 +296,7 @@ public class AuditEventLocalServiceWrapper implements AuditEventLocalService,
 		java.lang.String classPK, java.lang.String clientHost,
 		java.lang.String clientIP, java.lang.String serverName, int serverPort,
 		java.lang.String sessionID, boolean andSearch, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return _auditEventLocalService.getAuditEvents(companyId, userId,
 			userName, createDateGT, createDateLT, eventType, className,
 			classPK, clientHost, clientIP, serverName, serverPort, sessionID,
@@ -311,8 +304,7 @@ public class AuditEventLocalServiceWrapper implements AuditEventLocalService,
 	}
 
 	@Override
-	public int getAuditEventsCount(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getAuditEventsCount(long companyId) {
 		return _auditEventLocalService.getAuditEventsCount(companyId);
 	}
 
@@ -323,8 +315,7 @@ public class AuditEventLocalServiceWrapper implements AuditEventLocalService,
 		java.lang.String className, java.lang.String classPK,
 		java.lang.String clientHost, java.lang.String clientIP,
 		java.lang.String serverName, int serverPort,
-		java.lang.String sessionID, boolean andSearch)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String sessionID, boolean andSearch) {
 		return _auditEventLocalService.getAuditEventsCount(companyId, userId,
 			userName, createDateGT, createDateLT, eventType, className,
 			classPK, clientHost, clientIP, serverName, serverPort, sessionID,

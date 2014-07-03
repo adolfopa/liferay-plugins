@@ -645,8 +645,7 @@ public class SPIDefinitionWrapper implements SPIDefinition,
 	}
 
 	@Override
-	public java.lang.String getBaseDir()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.lang.String getBaseDir() {
 		return _spiDefinition.getBaseDir();
 	}
 

@@ -117,8 +117,7 @@ public class SalesforceLeadLocalServiceClp implements SalesforceLeadLocalService
 	@Override
 	public com.liferay.portal.kernel.messaging.MessageBatch getLeadsByCountry(
 		long companyId, java.lang.String country,
-		java.util.List<java.lang.String> fieldNames)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.util.List<java.lang.String> fieldNames) {
 		Object returnObj = null;
 
 		try {
@@ -135,10 +134,6 @@ public class SalesforceLeadLocalServiceClp implements SalesforceLeadLocalService
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -154,8 +149,7 @@ public class SalesforceLeadLocalServiceClp implements SalesforceLeadLocalService
 	@Override
 	public com.liferay.portal.kernel.messaging.MessageBatch getLeadsBySource(
 		long companyId, java.lang.String source,
-		java.util.List<java.lang.String> fieldNames)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.util.List<java.lang.String> fieldNames) {
 		Object returnObj = null;
 
 		try {
@@ -172,10 +166,6 @@ public class SalesforceLeadLocalServiceClp implements SalesforceLeadLocalService
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -191,8 +181,7 @@ public class SalesforceLeadLocalServiceClp implements SalesforceLeadLocalService
 	@Override
 	public com.liferay.portal.kernel.messaging.MessageBatch getLeadsByStatus(
 		long companyId, java.lang.String status,
-		java.util.List<java.lang.String> fieldNames)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.util.List<java.lang.String> fieldNames) {
 		Object returnObj = null;
 
 		try {
@@ -208,10 +197,6 @@ public class SalesforceLeadLocalServiceClp implements SalesforceLeadLocalService
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -229,8 +214,7 @@ public class SalesforceLeadLocalServiceClp implements SalesforceLeadLocalService
 	public com.liferay.portal.kernel.messaging.MessageBatch getLeadsByUserId(
 		long companyId, java.lang.String userId,
 		java.util.List<java.lang.String> fieldNames)
-		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException {
 		Object returnObj = null;
 
 		try {
@@ -251,10 +235,6 @@ public class SalesforceLeadLocalServiceClp implements SalesforceLeadLocalService
 				throw (com.liferay.portal.kernel.dao.orm.ObjectNotFoundException)t;
 			}
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -271,8 +251,7 @@ public class SalesforceLeadLocalServiceClp implements SalesforceLeadLocalService
 	public com.liferay.portal.kernel.messaging.MessageBatch getLeadsByUserName(
 		long companyId, java.lang.String userName,
 		java.util.List<java.lang.String> fieldNames)
-		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException {
 		Object returnObj = null;
 
 		try {
@@ -291,10 +270,6 @@ public class SalesforceLeadLocalServiceClp implements SalesforceLeadLocalService
 
 			if (t instanceof com.liferay.portal.kernel.dao.orm.ObjectNotFoundException) {
 				throw (com.liferay.portal.kernel.dao.orm.ObjectNotFoundException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {

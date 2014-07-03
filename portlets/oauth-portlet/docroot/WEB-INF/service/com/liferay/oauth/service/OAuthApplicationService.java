@@ -69,28 +69,23 @@ public interface OAuthApplicationService extends BaseService, InvokableService {
 		boolean shareableAccessToken, java.lang.String callbackURI,
 		java.lang.String websiteURL,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public void deleteLogo(long oAuthApplicationId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public com.liferay.oauth.model.OAuthApplication deleteOAuthApplication(
 		long oAuthApplicationId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public com.liferay.oauth.model.OAuthApplication updateLogo(
 		long oAuthApplicationId, java.io.InputStream inputStream)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public com.liferay.oauth.model.OAuthApplication updateOAuthApplication(
 		long oAuthApplicationId, java.lang.String name,
 		java.lang.String description, boolean shareableAccessToken,
 		java.lang.String callbackURI, java.lang.String websiteURL,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 }

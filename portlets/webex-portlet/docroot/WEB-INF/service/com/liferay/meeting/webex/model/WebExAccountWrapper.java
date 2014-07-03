@@ -501,15 +501,13 @@ public class WebExAccountWrapper implements WebExAccount,
 
 	@Override
 	public com.liferay.meeting.MeetingContext getMeetingContext()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _webExAccount.getMeetingContext();
 	}
 
 	@Override
 	public com.liferay.meeting.webex.model.WebExSite getWebExSite()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _webExAccount.getWebExSite();
 	}
 

@@ -84,7 +84,7 @@ public class KaleoProcessUtil {
 	 */
 	public static List<KaleoProcess> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoProcess> orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -148,7 +148,7 @@ public class KaleoProcessUtil {
 	*/
 	public static java.util.List<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess> findByGroupId(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess> orderByComparator) {
 		return getPersistence()
 				   .findByGroupId(groupId, start, end, orderByComparator);
 	}
@@ -163,7 +163,7 @@ public class KaleoProcessUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess findByGroupId_First(
 		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessException {
 		return getPersistence().findByGroupId_First(groupId, orderByComparator);
 	}
@@ -177,7 +177,7 @@ public class KaleoProcessUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess fetchByGroupId_First(
 		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess> orderByComparator) {
 		return getPersistence().fetchByGroupId_First(groupId, orderByComparator);
 	}
 
@@ -191,7 +191,7 @@ public class KaleoProcessUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess findByGroupId_Last(
 		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessException {
 		return getPersistence().findByGroupId_Last(groupId, orderByComparator);
 	}
@@ -205,7 +205,7 @@ public class KaleoProcessUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess fetchByGroupId_Last(
 		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess> orderByComparator) {
 		return getPersistence().fetchByGroupId_Last(groupId, orderByComparator);
 	}
 
@@ -220,7 +220,7 @@ public class KaleoProcessUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess[] findByGroupId_PrevAndNext(
 		long kaleoProcessId, long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessException {
 		return getPersistence()
 				   .findByGroupId_PrevAndNext(kaleoProcessId, groupId,
@@ -270,7 +270,7 @@ public class KaleoProcessUtil {
 	*/
 	public static java.util.List<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess> filterFindByGroupId(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess> orderByComparator) {
 		return getPersistence()
 				   .filterFindByGroupId(groupId, start, end, orderByComparator);
 	}
@@ -286,7 +286,7 @@ public class KaleoProcessUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess[] filterFindByGroupId_PrevAndNext(
 		long kaleoProcessId, long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessException {
 		return getPersistence()
 				   .filterFindByGroupId_PrevAndNext(kaleoProcessId, groupId,
@@ -498,7 +498,7 @@ public class KaleoProcessUtil {
 	*/
 	public static java.util.List<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

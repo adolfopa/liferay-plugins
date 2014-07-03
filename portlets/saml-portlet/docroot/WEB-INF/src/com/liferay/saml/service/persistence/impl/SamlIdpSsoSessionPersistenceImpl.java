@@ -882,7 +882,7 @@ public class SamlIdpSsoSessionPersistenceImpl extends BasePersistenceImpl<SamlId
 	 */
 	@Override
 	public List<SamlIdpSsoSession> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<SamlIdpSsoSession> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

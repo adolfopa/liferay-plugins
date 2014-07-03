@@ -91,8 +91,7 @@ public interface SamlSpMessageLocalService extends BaseLocalService,
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
 
 	/**
@@ -107,8 +106,7 @@ public interface SamlSpMessageLocalService extends BaseLocalService,
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end);
 
@@ -125,11 +123,10 @@ public interface SamlSpMessageLocalService extends BaseLocalService,
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator);
 
 	/**
 	* Returns the number of rows that match the dynamic query.
@@ -238,17 +235,14 @@ public interface SamlSpMessageLocalService extends BaseLocalService,
 	public com.liferay.saml.model.SamlSpMessage addSamlSpMessage(
 		java.lang.String samlIdpEntityId, java.lang.String samlIdpResponseKey,
 		java.util.Date expirationDate,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.service.ServiceContext serviceContext);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.saml.model.SamlSpMessage fetchSamlSpMessage(
-		java.lang.String samlIdpEntityId, java.lang.String samlIdpResponseKey)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String samlIdpEntityId, java.lang.String samlIdpResponseKey);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.saml.model.SamlSpMessage getSamlSpMessage(
 		java.lang.String samlIdpEntityId, java.lang.String samlIdpResponseKey)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 }

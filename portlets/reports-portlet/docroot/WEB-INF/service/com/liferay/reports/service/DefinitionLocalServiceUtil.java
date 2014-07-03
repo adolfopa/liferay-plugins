@@ -67,12 +67,10 @@ public class DefinitionLocalServiceUtil {
 	* @param definitionId the primary key of the definition
 	* @return the definition that was removed
 	* @throws PortalException if a definition with the primary key could not be found
-	* @throws SystemException
 	*/
 	public static com.liferay.reports.model.Definition deleteDefinition(
 		long definitionId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteDefinition(definitionId);
 	}
 
@@ -82,12 +80,10 @@ public class DefinitionLocalServiceUtil {
 	* @param definition the definition
 	* @return the definition that was removed
 	* @throws PortalException
-	* @throws SystemException
 	*/
 	public static com.liferay.reports.model.Definition deleteDefinition(
 		com.liferay.reports.model.Definition definition)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteDefinition(definition);
 	}
 
@@ -101,8 +97,7 @@ public class DefinitionLocalServiceUtil {
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return getService().dynamicQuery(dynamicQuery);
 	}
@@ -119,8 +114,7 @@ public class DefinitionLocalServiceUtil {
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		return getService().dynamicQuery(dynamicQuery, start, end);
@@ -139,11 +133,10 @@ public class DefinitionLocalServiceUtil {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		return getService()
 				   .dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
@@ -333,23 +326,20 @@ public class DefinitionLocalServiceUtil {
 		long sourceId, java.lang.String reportParameters,
 		java.lang.String fileName, java.io.InputStream inputStream,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .addDefinition(userId, groupId, nameMap, descriptionMap,
 			sourceId, reportParameters, fileName, inputStream, serviceContext);
 	}
 
 	public static void deleteDefinitions(long groupId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().deleteDefinitions(groupId);
 	}
 
 	public static void deleteDefinitionTemplates(long companyId,
 		java.lang.String attachmentsDirectory)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().deleteDefinitionTemplates(companyId, attachmentsDirectory);
 	}
 
@@ -357,8 +347,7 @@ public class DefinitionLocalServiceUtil {
 		long groupId, java.lang.String definitionName,
 		java.lang.String description, java.lang.String sourceId,
 		java.lang.String reportName, boolean andSearch, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getService()
 				   .getDefinitions(groupId, definitionName, description,
 			sourceId, reportName, andSearch, start, end, orderByComparator);
@@ -367,8 +356,7 @@ public class DefinitionLocalServiceUtil {
 	public static int getDefinitionsCount(long groupId,
 		java.lang.String definitionName, java.lang.String description,
 		java.lang.String sourceId, java.lang.String reportName,
-		boolean andSearch)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		boolean andSearch) {
 		return getService()
 				   .getDefinitionsCount(groupId, definitionName, description,
 			sourceId, reportName, andSearch);
@@ -381,8 +369,7 @@ public class DefinitionLocalServiceUtil {
 		long sourceId, java.lang.String reportParameters,
 		java.lang.String fileName, java.io.InputStream inputStream,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .updateDefinition(definitionId, nameMap, descriptionMap,
 			sourceId, reportParameters, fileName, inputStream, serviceContext);
@@ -392,8 +379,7 @@ public class DefinitionLocalServiceUtil {
 		com.liferay.reports.model.Definition definition,
 		java.lang.String[] communityPermissions,
 		java.lang.String[] guestPermissions)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService()
 			.updateDefinitionResources(definition, communityPermissions,
 			guestPermissions);

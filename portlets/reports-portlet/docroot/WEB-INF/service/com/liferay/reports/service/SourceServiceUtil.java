@@ -68,22 +68,19 @@ public class SourceServiceUtil {
 		java.lang.String driverClassName, java.lang.String driverUrl,
 		java.lang.String driverUserName, java.lang.String driverPassword,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .addSource(groupId, nameMap, driverClassName, driverUrl,
 			driverUserName, driverPassword, serviceContext);
 	}
 
 	public static com.liferay.reports.model.Source deleteSource(long sourceId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteSource(sourceId);
 	}
 
 	public static com.liferay.reports.model.Source getSource(long sourceId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getSource(sourceId);
 	}
 
@@ -91,16 +88,14 @@ public class SourceServiceUtil {
 		long groupId, java.lang.String name, java.lang.String driverUrl,
 		boolean andSearch, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .getSources(groupId, name, driverUrl, andSearch, start, end,
 			orderByComparator);
 	}
 
 	public static int getSourcesCount(long groupId, java.lang.String name,
-		java.lang.String driverUrl, boolean andSearch)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String driverUrl, boolean andSearch) {
 		return getService().getSourcesCount(groupId, name, driverUrl, andSearch);
 	}
 
@@ -109,8 +104,7 @@ public class SourceServiceUtil {
 		java.lang.String driverClassName, java.lang.String driverUrl,
 		java.lang.String driverUserName, java.lang.String driverPassword,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .updateSource(sourceId, nameMap, driverClassName, driverUrl,
 			driverUserName, driverPassword, serviceContext);

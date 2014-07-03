@@ -158,7 +158,7 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 */
 	@Override
 	public List<SPIDefinition> findByCompanyId(long companyId, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<SPIDefinition> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -264,7 +264,8 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 */
 	@Override
 	public SPIDefinition findByCompanyId_First(long companyId,
-		OrderByComparator orderByComparator) throws NoSuchDefinitionException {
+		OrderByComparator<SPIDefinition> orderByComparator)
+		throws NoSuchDefinitionException {
 		SPIDefinition spiDefinition = fetchByCompanyId_First(companyId,
 				orderByComparator);
 
@@ -293,7 +294,7 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 */
 	@Override
 	public SPIDefinition fetchByCompanyId_First(long companyId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<SPIDefinition> orderByComparator) {
 		List<SPIDefinition> list = findByCompanyId(companyId, 0, 1,
 				orderByComparator);
 
@@ -314,7 +315,8 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 */
 	@Override
 	public SPIDefinition findByCompanyId_Last(long companyId,
-		OrderByComparator orderByComparator) throws NoSuchDefinitionException {
+		OrderByComparator<SPIDefinition> orderByComparator)
+		throws NoSuchDefinitionException {
 		SPIDefinition spiDefinition = fetchByCompanyId_Last(companyId,
 				orderByComparator);
 
@@ -343,7 +345,7 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 */
 	@Override
 	public SPIDefinition fetchByCompanyId_Last(long companyId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<SPIDefinition> orderByComparator) {
 		int count = countByCompanyId(companyId);
 
 		if (count == 0) {
@@ -371,7 +373,7 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 */
 	@Override
 	public SPIDefinition[] findByCompanyId_PrevAndNext(long spiDefinitionId,
-		long companyId, OrderByComparator orderByComparator)
+		long companyId, OrderByComparator<SPIDefinition> orderByComparator)
 		throws NoSuchDefinitionException {
 		SPIDefinition spiDefinition = findByPrimaryKey(spiDefinitionId);
 
@@ -402,7 +404,7 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 
 	protected SPIDefinition getByCompanyId_PrevAndNext(Session session,
 		SPIDefinition spiDefinition, long companyId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<SPIDefinition> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -550,7 +552,7 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 */
 	@Override
 	public List<SPIDefinition> filterFindByCompanyId(long companyId, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<SPIDefinition> orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled()) {
 			return findByCompanyId(companyId, start, end, orderByComparator);
 		}
@@ -642,7 +644,8 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	@Override
 	public SPIDefinition[] filterFindByCompanyId_PrevAndNext(
 		long spiDefinitionId, long companyId,
-		OrderByComparator orderByComparator) throws NoSuchDefinitionException {
+		OrderByComparator<SPIDefinition> orderByComparator)
+		throws NoSuchDefinitionException {
 		if (!InlineSQLHelperUtil.isEnabled()) {
 			return findByCompanyId_PrevAndNext(spiDefinitionId, companyId,
 				orderByComparator);
@@ -677,7 +680,7 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 
 	protected SPIDefinition filterGetByCompanyId_PrevAndNext(Session session,
 		SPIDefinition spiDefinition, long companyId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<SPIDefinition> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1266,7 +1269,7 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 */
 	@Override
 	public List<SPIDefinition> findByC_S(long companyId, int status, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<SPIDefinition> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1382,7 +1385,8 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 */
 	@Override
 	public SPIDefinition findByC_S_First(long companyId, int status,
-		OrderByComparator orderByComparator) throws NoSuchDefinitionException {
+		OrderByComparator<SPIDefinition> orderByComparator)
+		throws NoSuchDefinitionException {
 		SPIDefinition spiDefinition = fetchByC_S_First(companyId, status,
 				orderByComparator);
 
@@ -1415,7 +1419,7 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 */
 	@Override
 	public SPIDefinition fetchByC_S_First(long companyId, int status,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<SPIDefinition> orderByComparator) {
 		List<SPIDefinition> list = findByC_S(companyId, status, 0, 1,
 				orderByComparator);
 
@@ -1437,7 +1441,8 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 */
 	@Override
 	public SPIDefinition findByC_S_Last(long companyId, int status,
-		OrderByComparator orderByComparator) throws NoSuchDefinitionException {
+		OrderByComparator<SPIDefinition> orderByComparator)
+		throws NoSuchDefinitionException {
 		SPIDefinition spiDefinition = fetchByC_S_Last(companyId, status,
 				orderByComparator);
 
@@ -1470,7 +1475,7 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 */
 	@Override
 	public SPIDefinition fetchByC_S_Last(long companyId, int status,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<SPIDefinition> orderByComparator) {
 		int count = countByC_S(companyId, status);
 
 		if (count == 0) {
@@ -1499,7 +1504,8 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 */
 	@Override
 	public SPIDefinition[] findByC_S_PrevAndNext(long spiDefinitionId,
-		long companyId, int status, OrderByComparator orderByComparator)
+		long companyId, int status,
+		OrderByComparator<SPIDefinition> orderByComparator)
 		throws NoSuchDefinitionException {
 		SPIDefinition spiDefinition = findByPrimaryKey(spiDefinitionId);
 
@@ -1530,7 +1536,7 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 
 	protected SPIDefinition getByC_S_PrevAndNext(Session session,
 		SPIDefinition spiDefinition, long companyId, int status,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<SPIDefinition> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1685,7 +1691,7 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 */
 	@Override
 	public List<SPIDefinition> filterFindByC_S(long companyId, int status,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<SPIDefinition> orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled()) {
 			return findByC_S(companyId, status, start, end, orderByComparator);
 		}
@@ -1781,7 +1787,8 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 */
 	@Override
 	public SPIDefinition[] filterFindByC_S_PrevAndNext(long spiDefinitionId,
-		long companyId, int status, OrderByComparator orderByComparator)
+		long companyId, int status,
+		OrderByComparator<SPIDefinition> orderByComparator)
 		throws NoSuchDefinitionException {
 		if (!InlineSQLHelperUtil.isEnabled()) {
 			return findByC_S_PrevAndNext(spiDefinitionId, companyId, status,
@@ -1817,7 +1824,7 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 
 	protected SPIDefinition filterGetByC_S_PrevAndNext(Session session,
 		SPIDefinition spiDefinition, long companyId, int status,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<SPIDefinition> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -2007,7 +2014,7 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 */
 	@Override
 	public List<SPIDefinition> filterFindByC_S(long companyId, int[] statuses,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<SPIDefinition> orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled()) {
 			return findByC_S(companyId, statuses, start, end, orderByComparator);
 		}
@@ -2153,7 +2160,7 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 */
 	@Override
 	public List<SPIDefinition> findByC_S(long companyId, int[] statuses,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<SPIDefinition> orderByComparator) {
 		if (statuses == null) {
 			statuses = new int[0];
 		}
@@ -3450,7 +3457,7 @@ public class SPIDefinitionPersistenceImpl extends BasePersistenceImpl<SPIDefinit
 	 */
 	@Override
 	public List<SPIDefinition> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<SPIDefinition> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

@@ -101,12 +101,11 @@ public abstract class SPIDefinitionLocalServiceBaseImpl
 	 * @param spiDefinitionId the primary key of the s p i definition
 	 * @return the s p i definition that was removed
 	 * @throws PortalException if a s p i definition with the primary key could not be found
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public SPIDefinition deleteSPIDefinition(long spiDefinitionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return spiDefinitionPersistence.remove(spiDefinitionId);
 	}
 
@@ -116,12 +115,11 @@ public abstract class SPIDefinitionLocalServiceBaseImpl
 	 * @param spiDefinition the s p i definition
 	 * @return the s p i definition that was removed
 	 * @throws PortalException
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public SPIDefinition deleteSPIDefinition(SPIDefinition spiDefinition)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return spiDefinitionPersistence.remove(spiDefinition);
 	}
 
@@ -140,8 +138,7 @@ public abstract class SPIDefinitionLocalServiceBaseImpl
 	 * @return the matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
 		return spiDefinitionPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -158,8 +155,8 @@ public abstract class SPIDefinitionLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end) {
 		return spiDefinitionPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end);
 	}
@@ -178,9 +175,8 @@ public abstract class SPIDefinitionLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator) {
 		return spiDefinitionPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end, orderByComparator);
 	}
@@ -221,11 +217,10 @@ public abstract class SPIDefinitionLocalServiceBaseImpl
 	 * @param spiDefinitionId the primary key of the s p i definition
 	 * @return the s p i definition
 	 * @throws PortalException if a s p i definition with the primary key could not be found
-	 * @throws SystemException
 	 */
 	@Override
 	public SPIDefinition getSPIDefinition(long spiDefinitionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return spiDefinitionPersistence.findByPrimaryKey(spiDefinitionId);
 	}
 

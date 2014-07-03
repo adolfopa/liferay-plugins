@@ -107,8 +107,7 @@ public class SalesforceEventLocalServiceClp
 	public com.liferay.portal.kernel.messaging.MessageBatch getEventsByAccountId(
 		long companyId, java.lang.String accountId,
 		java.util.List<java.lang.String> fieldNames)
-		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException {
 		Object returnObj = null;
 
 		try {
@@ -129,10 +128,6 @@ public class SalesforceEventLocalServiceClp
 				throw (com.liferay.portal.kernel.dao.orm.ObjectNotFoundException)t;
 			}
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -149,8 +144,7 @@ public class SalesforceEventLocalServiceClp
 	public com.liferay.portal.kernel.messaging.MessageBatch getEventsByUser(
 		long companyId, java.lang.String userId,
 		java.util.List<java.lang.String> fieldNames)
-		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException {
 		Object returnObj = null;
 
 		try {
@@ -171,10 +165,6 @@ public class SalesforceEventLocalServiceClp
 				throw (com.liferay.portal.kernel.dao.orm.ObjectNotFoundException)t;
 			}
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -191,8 +181,7 @@ public class SalesforceEventLocalServiceClp
 	public com.liferay.portal.kernel.messaging.MessageBatch getEventsByUserName(
 		long companyId, java.lang.String userName,
 		java.util.List<java.lang.String> fieldNames)
-		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException {
 		Object returnObj = null;
 
 		try {
@@ -211,10 +200,6 @@ public class SalesforceEventLocalServiceClp
 
 			if (t instanceof com.liferay.portal.kernel.dao.orm.ObjectNotFoundException) {
 				throw (com.liferay.portal.kernel.dao.orm.ObjectNotFoundException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {

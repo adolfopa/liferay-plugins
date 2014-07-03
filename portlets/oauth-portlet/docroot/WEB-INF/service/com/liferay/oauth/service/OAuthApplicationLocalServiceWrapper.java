@@ -61,13 +61,11 @@ public class OAuthApplicationLocalServiceWrapper
 	* @param oAuthApplicationId the primary key of the o auth application
 	* @return the o auth application that was removed
 	* @throws PortalException if a o auth application with the primary key could not be found
-	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.oauth.model.OAuthApplication deleteOAuthApplication(
 		long oAuthApplicationId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _oAuthApplicationLocalService.deleteOAuthApplication(oAuthApplicationId);
 	}
 
@@ -77,13 +75,11 @@ public class OAuthApplicationLocalServiceWrapper
 	* @param oAuthApplication the o auth application
 	* @return the o auth application that was removed
 	* @throws PortalException
-	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.oauth.model.OAuthApplication deleteOAuthApplication(
 		com.liferay.oauth.model.OAuthApplication oAuthApplication)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _oAuthApplicationLocalService.deleteOAuthApplication(oAuthApplication);
 	}
 
@@ -99,8 +95,7 @@ public class OAuthApplicationLocalServiceWrapper
 	* @return the matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _oAuthApplicationLocalService.dynamicQuery(dynamicQuery);
 	}
@@ -118,8 +113,7 @@ public class OAuthApplicationLocalServiceWrapper
 	* @return the range of matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		return _oAuthApplicationLocalService.dynamicQuery(dynamicQuery, start,
@@ -140,11 +134,10 @@ public class OAuthApplicationLocalServiceWrapper
 	* @return the ordered range of matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		return _oAuthApplicationLocalService.dynamicQuery(dynamicQuery, start,
 			end, orderByComparator);
 	}
@@ -291,8 +284,7 @@ public class OAuthApplicationLocalServiceWrapper
 		int accessLevel, boolean shareableAccessToken,
 		java.lang.String callbackURI, java.lang.String websiteURL,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _oAuthApplicationLocalService.addOAuthApplication(userId, name,
 			description, accessLevel, shareableAccessToken, callbackURI,
 			websiteURL, serviceContext);
@@ -300,38 +292,33 @@ public class OAuthApplicationLocalServiceWrapper
 
 	@Override
 	public void deleteLogo(long oAuthApplicationId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		_oAuthApplicationLocalService.deleteLogo(oAuthApplicationId);
 	}
 
 	@Override
 	public com.liferay.oauth.model.OAuthApplication fetchOAuthApplication(
-		java.lang.String consumerKey)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String consumerKey) {
 		return _oAuthApplicationLocalService.fetchOAuthApplication(consumerKey);
 	}
 
 	@Override
 	public com.liferay.oauth.model.OAuthApplication getOAuthApplication(
 		java.lang.String consumerKey)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _oAuthApplicationLocalService.getOAuthApplication(consumerKey);
 	}
 
 	@Override
 	public java.util.List<com.liferay.oauth.model.OAuthApplication> getOAuthApplications(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return _oAuthApplicationLocalService.getOAuthApplications(companyId,
 			start, end, orderByComparator);
 	}
 
 	@Override
-	public int getOAuthApplicationsCount(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getOAuthApplicationsCount(long companyId) {
 		return _oAuthApplicationLocalService.getOAuthApplicationsCount(companyId);
 	}
 
@@ -340,16 +327,14 @@ public class OAuthApplicationLocalServiceWrapper
 		long companyId, java.lang.String keywords,
 		java.util.LinkedHashMap<java.lang.String, java.lang.Object> params,
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return _oAuthApplicationLocalService.search(companyId, keywords,
 			params, start, end, orderByComparator);
 	}
 
 	@Override
 	public int searchCount(long companyId, java.lang.String keywords,
-		java.util.LinkedHashMap<java.lang.String, java.lang.Object> params)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.util.LinkedHashMap<java.lang.String, java.lang.Object> params) {
 		return _oAuthApplicationLocalService.searchCount(companyId, keywords,
 			params);
 	}
@@ -357,8 +342,7 @@ public class OAuthApplicationLocalServiceWrapper
 	@Override
 	public com.liferay.oauth.model.OAuthApplication updateLogo(
 		long oAuthApplicationId, java.io.InputStream inputStream)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _oAuthApplicationLocalService.updateLogo(oAuthApplicationId,
 			inputStream);
 	}
@@ -369,8 +353,7 @@ public class OAuthApplicationLocalServiceWrapper
 		java.lang.String description, boolean shareableAccessToken,
 		java.lang.String callbackURI, java.lang.String websiteURL,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _oAuthApplicationLocalService.updateOAuthApplication(oAuthApplicationId,
 			name, description, shareableAccessToken, callbackURI, websiteURL,
 			serviceContext);

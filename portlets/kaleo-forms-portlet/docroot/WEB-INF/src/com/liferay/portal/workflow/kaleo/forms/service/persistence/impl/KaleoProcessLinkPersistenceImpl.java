@@ -156,7 +156,8 @@ public class KaleoProcessLinkPersistenceImpl extends BasePersistenceImpl<KaleoPr
 	 */
 	@Override
 	public List<KaleoProcessLink> findByKaleoProcessId(long kaleoProcessId,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end,
+		OrderByComparator<KaleoProcessLink> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -266,7 +267,7 @@ public class KaleoProcessLinkPersistenceImpl extends BasePersistenceImpl<KaleoPr
 	 */
 	@Override
 	public KaleoProcessLink findByKaleoProcessId_First(long kaleoProcessId,
-		OrderByComparator orderByComparator)
+		OrderByComparator<KaleoProcessLink> orderByComparator)
 		throws NoSuchKaleoProcessLinkException {
 		KaleoProcessLink kaleoProcessLink = fetchByKaleoProcessId_First(kaleoProcessId,
 				orderByComparator);
@@ -296,7 +297,7 @@ public class KaleoProcessLinkPersistenceImpl extends BasePersistenceImpl<KaleoPr
 	 */
 	@Override
 	public KaleoProcessLink fetchByKaleoProcessId_First(long kaleoProcessId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoProcessLink> orderByComparator) {
 		List<KaleoProcessLink> list = findByKaleoProcessId(kaleoProcessId, 0,
 				1, orderByComparator);
 
@@ -317,7 +318,7 @@ public class KaleoProcessLinkPersistenceImpl extends BasePersistenceImpl<KaleoPr
 	 */
 	@Override
 	public KaleoProcessLink findByKaleoProcessId_Last(long kaleoProcessId,
-		OrderByComparator orderByComparator)
+		OrderByComparator<KaleoProcessLink> orderByComparator)
 		throws NoSuchKaleoProcessLinkException {
 		KaleoProcessLink kaleoProcessLink = fetchByKaleoProcessId_Last(kaleoProcessId,
 				orderByComparator);
@@ -347,7 +348,7 @@ public class KaleoProcessLinkPersistenceImpl extends BasePersistenceImpl<KaleoPr
 	 */
 	@Override
 	public KaleoProcessLink fetchByKaleoProcessId_Last(long kaleoProcessId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoProcessLink> orderByComparator) {
 		int count = countByKaleoProcessId(kaleoProcessId);
 
 		if (count == 0) {
@@ -376,7 +377,7 @@ public class KaleoProcessLinkPersistenceImpl extends BasePersistenceImpl<KaleoPr
 	@Override
 	public KaleoProcessLink[] findByKaleoProcessId_PrevAndNext(
 		long kaleoProcessLinkId, long kaleoProcessId,
-		OrderByComparator orderByComparator)
+		OrderByComparator<KaleoProcessLink> orderByComparator)
 		throws NoSuchKaleoProcessLinkException {
 		KaleoProcessLink kaleoProcessLink = findByPrimaryKey(kaleoProcessLinkId);
 
@@ -407,8 +408,8 @@ public class KaleoProcessLinkPersistenceImpl extends BasePersistenceImpl<KaleoPr
 
 	protected KaleoProcessLink getByKaleoProcessId_PrevAndNext(
 		Session session, KaleoProcessLink kaleoProcessLink,
-		long kaleoProcessId, OrderByComparator orderByComparator,
-		boolean previous) {
+		long kaleoProcessId,
+		OrderByComparator<KaleoProcessLink> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1407,7 +1408,7 @@ public class KaleoProcessLinkPersistenceImpl extends BasePersistenceImpl<KaleoPr
 	 */
 	@Override
 	public List<KaleoProcessLink> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoProcessLink> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

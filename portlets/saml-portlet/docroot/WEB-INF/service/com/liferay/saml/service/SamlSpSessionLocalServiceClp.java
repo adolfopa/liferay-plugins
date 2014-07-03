@@ -299,8 +299,7 @@ public class SamlSpSessionLocalServiceClp implements SamlSpSessionLocalService {
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		Object returnObj = null;
 
@@ -321,12 +320,11 @@ public class SamlSpSessionLocalServiceClp implements SamlSpSessionLocalService {
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		Object returnObj = null;
@@ -354,15 +352,14 @@ public class SamlSpSessionLocalServiceClp implements SamlSpSessionLocalService {
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		Object returnObj = null;
 
 		try {
@@ -390,7 +387,7 @@ public class SamlSpSessionLocalServiceClp implements SamlSpSessionLocalService {
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -714,8 +711,7 @@ public class SamlSpSessionLocalServiceClp implements SamlSpSessionLocalService {
 		java.lang.String nameIdSPNameQualifier, java.lang.String nameIdValue,
 		java.lang.String sessionIndex,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -748,10 +744,6 @@ public class SamlSpSessionLocalServiceClp implements SamlSpSessionLocalService {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -766,8 +758,7 @@ public class SamlSpSessionLocalServiceClp implements SamlSpSessionLocalService {
 
 	@Override
 	public com.liferay.saml.model.SamlSpSession fetchSamlSpSessionByJSessionId(
-		java.lang.String jSessionId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String jSessionId) {
 		Object returnObj = null;
 
 		try {
@@ -777,10 +768,6 @@ public class SamlSpSessionLocalServiceClp implements SamlSpSessionLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -796,8 +783,7 @@ public class SamlSpSessionLocalServiceClp implements SamlSpSessionLocalService {
 
 	@Override
 	public com.liferay.saml.model.SamlSpSession fetchSamlSpSessionBySamlSpSessionKey(
-		java.lang.String samlSpSessionKey)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String samlSpSessionKey) {
 		Object returnObj = null;
 
 		try {
@@ -808,10 +794,6 @@ public class SamlSpSessionLocalServiceClp implements SamlSpSessionLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -827,8 +809,7 @@ public class SamlSpSessionLocalServiceClp implements SamlSpSessionLocalService {
 
 	@Override
 	public com.liferay.saml.model.SamlSpSession fetchSamlSpSessionBySessionIndex(
-		java.lang.String sessionIndex)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String sessionIndex) {
 		Object returnObj = null;
 
 		try {
@@ -838,10 +819,6 @@ public class SamlSpSessionLocalServiceClp implements SamlSpSessionLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -858,8 +835,7 @@ public class SamlSpSessionLocalServiceClp implements SamlSpSessionLocalService {
 	@Override
 	public com.liferay.saml.model.SamlSpSession getSamlSpSessionByJSessionId(
 		java.lang.String jSessionId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -872,10 +848,6 @@ public class SamlSpSessionLocalServiceClp implements SamlSpSessionLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -893,8 +865,7 @@ public class SamlSpSessionLocalServiceClp implements SamlSpSessionLocalService {
 	@Override
 	public com.liferay.saml.model.SamlSpSession getSamlSpSessionBySamlSpSessionKey(
 		java.lang.String samlSpSessionKey)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -908,10 +879,6 @@ public class SamlSpSessionLocalServiceClp implements SamlSpSessionLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -929,8 +896,7 @@ public class SamlSpSessionLocalServiceClp implements SamlSpSessionLocalService {
 	@Override
 	public com.liferay.saml.model.SamlSpSession getSamlSpSessionBySessionIndex(
 		java.lang.String sessionIndex)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -943,10 +909,6 @@ public class SamlSpSessionLocalServiceClp implements SamlSpSessionLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -963,8 +925,7 @@ public class SamlSpSessionLocalServiceClp implements SamlSpSessionLocalService {
 
 	@Override
 	public java.util.List<com.liferay.saml.model.SamlSpSession> getSamlSpSessions(
-		java.lang.String nameIdValue)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String nameIdValue) {
 		Object returnObj = null;
 
 		try {
@@ -974,10 +935,6 @@ public class SamlSpSessionLocalServiceClp implements SamlSpSessionLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -999,8 +956,7 @@ public class SamlSpSessionLocalServiceClp implements SamlSpSessionLocalService {
 		java.lang.String nameIdSPNameQualifier, java.lang.String nameIdValue,
 		java.lang.String sessionIndex,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -1033,10 +989,6 @@ public class SamlSpSessionLocalServiceClp implements SamlSpSessionLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {

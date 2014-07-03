@@ -21,7 +21,7 @@ import com.liferay.reports.service.DefinitionLocalServiceUtil;
 
 /**
  * @author Brian Wing Shun Chan
- * @deprecated As of 7.0.0, replaced by {@link DefinitionLocalServiceUtil#getExportActionableDynamicQuery()}
+ * @deprecated As of 7.0.0, replaced by {@link DefinitionLocalServiceUtil#getActionableDynamicQuery()}
  * @generated
  */
 @Deprecated

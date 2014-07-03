@@ -104,12 +104,11 @@ public abstract class KaleoProcessLocalServiceBaseImpl
 	 * @param kaleoProcessId the primary key of the kaleo process
 	 * @return the kaleo process that was removed
 	 * @throws PortalException if a kaleo process with the primary key could not be found
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public KaleoProcess deleteKaleoProcess(long kaleoProcessId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return kaleoProcessPersistence.remove(kaleoProcessId);
 	}
 
@@ -119,12 +118,11 @@ public abstract class KaleoProcessLocalServiceBaseImpl
 	 * @param kaleoProcess the kaleo process
 	 * @return the kaleo process that was removed
 	 * @throws PortalException
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public KaleoProcess deleteKaleoProcess(KaleoProcess kaleoProcess)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return kaleoProcessPersistence.remove(kaleoProcess);
 	}
 
@@ -143,8 +141,7 @@ public abstract class KaleoProcessLocalServiceBaseImpl
 	 * @return the matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
 		return kaleoProcessPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -161,8 +158,8 @@ public abstract class KaleoProcessLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end) {
 		return kaleoProcessPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end);
 	}
@@ -181,9 +178,8 @@ public abstract class KaleoProcessLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator) {
 		return kaleoProcessPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end, orderByComparator);
 	}
@@ -224,11 +220,10 @@ public abstract class KaleoProcessLocalServiceBaseImpl
 	 * @param kaleoProcessId the primary key of the kaleo process
 	 * @return the kaleo process
 	 * @throws PortalException if a kaleo process with the primary key could not be found
-	 * @throws SystemException
 	 */
 	@Override
 	public KaleoProcess getKaleoProcess(long kaleoProcessId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return kaleoProcessPersistence.findByPrimaryKey(kaleoProcessId);
 	}
 

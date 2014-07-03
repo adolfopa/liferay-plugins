@@ -80,12 +80,10 @@ public class OAuthUserLocalServiceUtil {
 	* @param oAuthUser the o auth user
 	* @return the o auth user that was removed
 	* @throws PortalException
-	* @throws SystemException
 	*/
 	public static com.liferay.oauth.model.OAuthUser deleteOAuthUser(
 		com.liferay.oauth.model.OAuthUser oAuthUser)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteOAuthUser(oAuthUser);
 	}
 
@@ -99,8 +97,7 @@ public class OAuthUserLocalServiceUtil {
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return getService().dynamicQuery(dynamicQuery);
 	}
@@ -117,8 +114,7 @@ public class OAuthUserLocalServiceUtil {
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		return getService().dynamicQuery(dynamicQuery, start, end);
@@ -137,11 +133,10 @@ public class OAuthUserLocalServiceUtil {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		return getService()
 				   .dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
@@ -271,8 +266,7 @@ public class OAuthUserLocalServiceUtil {
 		long oAuthApplicationId, java.lang.String accessToken,
 		java.lang.String accessSecret,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .addOAuthUser(userId, oAuthApplicationId, accessToken,
 			accessSecret, serviceContext);
@@ -280,63 +274,54 @@ public class OAuthUserLocalServiceUtil {
 
 	public static com.liferay.oauth.model.OAuthUser deleteOAuthUser(
 		long userId, long oAuthApplicationId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteOAuthUser(userId, oAuthApplicationId);
 	}
 
 	public static com.liferay.oauth.model.OAuthUser fetchOAuthUser(
-		long userId, long oAuthApplicationId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long userId, long oAuthApplicationId) {
 		return getService().fetchOAuthUser(userId, oAuthApplicationId);
 	}
 
 	public static com.liferay.oauth.model.OAuthUser fetchOAuthUser(
-		java.lang.String accessToken)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String accessToken) {
 		return getService().fetchOAuthUser(accessToken);
 	}
 
 	public static java.util.List<com.liferay.oauth.model.OAuthUser> getOAuthApplicationOAuthUsers(
 		long oAuthApplicationId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getService()
 				   .getOAuthApplicationOAuthUsers(oAuthApplicationId, start,
 			end, orderByComparator);
 	}
 
 	public static int getOAuthApplicationOAuthUsersCount(
-		long oAuthApplicationId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long oAuthApplicationId) {
 		return getService()
 				   .getOAuthApplicationOAuthUsersCount(oAuthApplicationId);
 	}
 
 	public static com.liferay.oauth.model.OAuthUser getOAuthUser(long userId,
 		long oAuthApplicationId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getOAuthUser(userId, oAuthApplicationId);
 	}
 
 	public static com.liferay.oauth.model.OAuthUser getOAuthUser(
 		java.lang.String accessToken)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getOAuthUser(accessToken);
 	}
 
 	public static java.util.List<com.liferay.oauth.model.OAuthUser> getUserOAuthUsers(
 		long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getService()
 				   .getUserOAuthUsers(userId, start, end, orderByComparator);
 	}
 
-	public static int getUserOAuthUsersCount(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int getUserOAuthUsersCount(long userId) {
 		return getService().getUserOAuthUsersCount(userId);
 	}
 
@@ -344,8 +329,7 @@ public class OAuthUserLocalServiceUtil {
 		long userId, long oAuthApplicationId, java.lang.String accessToken,
 		java.lang.String accessSecret,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .updateOAuthUser(userId, oAuthApplicationId, accessToken,
 			accessSecret, serviceContext);

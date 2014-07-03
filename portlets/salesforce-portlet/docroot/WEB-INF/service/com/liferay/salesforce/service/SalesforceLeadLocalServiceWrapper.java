@@ -62,8 +62,7 @@ public class SalesforceLeadLocalServiceWrapper
 	@Override
 	public com.liferay.portal.kernel.messaging.MessageBatch getLeadsByCountry(
 		long companyId, java.lang.String country,
-		java.util.List<java.lang.String> fieldNames)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.util.List<java.lang.String> fieldNames) {
 		return _salesforceLeadLocalService.getLeadsByCountry(companyId,
 			country, fieldNames);
 	}
@@ -71,8 +70,7 @@ public class SalesforceLeadLocalServiceWrapper
 	@Override
 	public com.liferay.portal.kernel.messaging.MessageBatch getLeadsBySource(
 		long companyId, java.lang.String source,
-		java.util.List<java.lang.String> fieldNames)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.util.List<java.lang.String> fieldNames) {
 		return _salesforceLeadLocalService.getLeadsBySource(companyId, source,
 			fieldNames);
 	}
@@ -80,8 +78,7 @@ public class SalesforceLeadLocalServiceWrapper
 	@Override
 	public com.liferay.portal.kernel.messaging.MessageBatch getLeadsByStatus(
 		long companyId, java.lang.String status,
-		java.util.List<java.lang.String> fieldNames)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.util.List<java.lang.String> fieldNames) {
 		return _salesforceLeadLocalService.getLeadsByStatus(companyId, status,
 			fieldNames);
 	}
@@ -90,8 +87,7 @@ public class SalesforceLeadLocalServiceWrapper
 	public com.liferay.portal.kernel.messaging.MessageBatch getLeadsByUserId(
 		long companyId, java.lang.String userId,
 		java.util.List<java.lang.String> fieldNames)
-		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException {
 		return _salesforceLeadLocalService.getLeadsByUserId(companyId, userId,
 			fieldNames);
 	}
@@ -100,8 +96,7 @@ public class SalesforceLeadLocalServiceWrapper
 	public com.liferay.portal.kernel.messaging.MessageBatch getLeadsByUserName(
 		long companyId, java.lang.String userName,
 		java.util.List<java.lang.String> fieldNames)
-		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException {
 		return _salesforceLeadLocalService.getLeadsByUserName(companyId,
 			userName, fieldNames);
 	}

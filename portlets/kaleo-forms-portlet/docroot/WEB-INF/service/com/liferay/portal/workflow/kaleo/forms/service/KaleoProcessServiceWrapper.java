@@ -63,8 +63,7 @@ public class KaleoProcessServiceWrapper implements KaleoProcessService,
 		long workflowDefinitionVersion,
 		com.liferay.portal.workflow.kaleo.forms.util.TaskFormPairs taskFormPairs,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kaleoProcessService.addKaleoProcess(groupId, ddlRecordSetId,
 			ddmTemplateId, workflowDefinitionName, workflowDefinitionVersion,
 			taskFormPairs, serviceContext);
@@ -73,38 +72,33 @@ public class KaleoProcessServiceWrapper implements KaleoProcessService,
 	@Override
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess deleteKaleoProcess(
 		long kaleoProcessId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kaleoProcessService.deleteKaleoProcess(kaleoProcessId);
 	}
 
 	@Override
 	public void deleteKaleoProcessData(long kaleoProcessId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		_kaleoProcessService.deleteKaleoProcessData(kaleoProcessId);
 	}
 
 	@Override
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess getKaleoProcess(
 		long kaleoProcessId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kaleoProcessService.getKaleoProcess(kaleoProcessId);
 	}
 
 	@Override
 	public java.util.List<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess> getKaleoProcesses(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return _kaleoProcessService.getKaleoProcesses(groupId, start, end,
 			orderByComparator);
 	}
 
 	@Override
-	public int getKaleoProcessesCount(long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getKaleoProcessesCount(long groupId) {
 		return _kaleoProcessService.getKaleoProcessesCount(groupId);
 	}
 
@@ -115,8 +109,7 @@ public class KaleoProcessServiceWrapper implements KaleoProcessService,
 		long workflowDefinitionVersion,
 		com.liferay.portal.workflow.kaleo.forms.util.TaskFormPairs taskFormPairs,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kaleoProcessService.updateKaleoProcess(kaleoProcessId,
 			ddmTemplateId, workflowDefinitionName, workflowDefinitionVersion,
 			taskFormPairs, serviceContext);

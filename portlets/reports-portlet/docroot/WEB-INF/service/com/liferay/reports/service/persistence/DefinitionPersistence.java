@@ -76,7 +76,7 @@ public interface DefinitionPersistence extends BasePersistence<Definition> {
 	*/
 	public java.util.List<com.liferay.reports.model.Definition> findByUuid(
 		java.lang.String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator);
 
 	/**
 	* Returns the first definition in the ordered set where uuid = &#63;.
@@ -88,7 +88,7 @@ public interface DefinitionPersistence extends BasePersistence<Definition> {
 	*/
 	public com.liferay.reports.model.Definition findByUuid_First(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator)
 		throws com.liferay.reports.NoSuchDefinitionException;
 
 	/**
@@ -100,7 +100,7 @@ public interface DefinitionPersistence extends BasePersistence<Definition> {
 	*/
 	public com.liferay.reports.model.Definition fetchByUuid_First(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator);
 
 	/**
 	* Returns the last definition in the ordered set where uuid = &#63;.
@@ -112,7 +112,7 @@ public interface DefinitionPersistence extends BasePersistence<Definition> {
 	*/
 	public com.liferay.reports.model.Definition findByUuid_Last(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator)
 		throws com.liferay.reports.NoSuchDefinitionException;
 
 	/**
@@ -124,7 +124,7 @@ public interface DefinitionPersistence extends BasePersistence<Definition> {
 	*/
 	public com.liferay.reports.model.Definition fetchByUuid_Last(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator);
 
 	/**
 	* Returns the definitions before and after the current definition in the ordered set where uuid = &#63;.
@@ -137,7 +137,7 @@ public interface DefinitionPersistence extends BasePersistence<Definition> {
 	*/
 	public com.liferay.reports.model.Definition[] findByUuid_PrevAndNext(
 		long definitionId, java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator)
 		throws com.liferay.reports.NoSuchDefinitionException;
 
 	/**
@@ -250,7 +250,7 @@ public interface DefinitionPersistence extends BasePersistence<Definition> {
 	*/
 	public java.util.List<com.liferay.reports.model.Definition> findByUuid_C(
 		java.lang.String uuid, long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator);
 
 	/**
 	* Returns the first definition in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -263,7 +263,7 @@ public interface DefinitionPersistence extends BasePersistence<Definition> {
 	*/
 	public com.liferay.reports.model.Definition findByUuid_C_First(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator)
 		throws com.liferay.reports.NoSuchDefinitionException;
 
 	/**
@@ -276,7 +276,7 @@ public interface DefinitionPersistence extends BasePersistence<Definition> {
 	*/
 	public com.liferay.reports.model.Definition fetchByUuid_C_First(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator);
 
 	/**
 	* Returns the last definition in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -289,7 +289,7 @@ public interface DefinitionPersistence extends BasePersistence<Definition> {
 	*/
 	public com.liferay.reports.model.Definition findByUuid_C_Last(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator)
 		throws com.liferay.reports.NoSuchDefinitionException;
 
 	/**
@@ -302,7 +302,7 @@ public interface DefinitionPersistence extends BasePersistence<Definition> {
 	*/
 	public com.liferay.reports.model.Definition fetchByUuid_C_Last(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator);
 
 	/**
 	* Returns the definitions before and after the current definition in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -316,7 +316,7 @@ public interface DefinitionPersistence extends BasePersistence<Definition> {
 	*/
 	public com.liferay.reports.model.Definition[] findByUuid_C_PrevAndNext(
 		long definitionId, java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator)
 		throws com.liferay.reports.NoSuchDefinitionException;
 
 	/**
@@ -375,7 +375,7 @@ public interface DefinitionPersistence extends BasePersistence<Definition> {
 	*/
 	public java.util.List<com.liferay.reports.model.Definition> findByGroupId(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator);
 
 	/**
 	* Returns the first definition in the ordered set where groupId = &#63;.
@@ -387,7 +387,7 @@ public interface DefinitionPersistence extends BasePersistence<Definition> {
 	*/
 	public com.liferay.reports.model.Definition findByGroupId_First(
 		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator)
 		throws com.liferay.reports.NoSuchDefinitionException;
 
 	/**
@@ -399,7 +399,7 @@ public interface DefinitionPersistence extends BasePersistence<Definition> {
 	*/
 	public com.liferay.reports.model.Definition fetchByGroupId_First(
 		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator);
 
 	/**
 	* Returns the last definition in the ordered set where groupId = &#63;.
@@ -411,7 +411,7 @@ public interface DefinitionPersistence extends BasePersistence<Definition> {
 	*/
 	public com.liferay.reports.model.Definition findByGroupId_Last(
 		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator)
 		throws com.liferay.reports.NoSuchDefinitionException;
 
 	/**
@@ -423,7 +423,7 @@ public interface DefinitionPersistence extends BasePersistence<Definition> {
 	*/
 	public com.liferay.reports.model.Definition fetchByGroupId_Last(
 		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator);
 
 	/**
 	* Returns the definitions before and after the current definition in the ordered set where groupId = &#63;.
@@ -436,7 +436,7 @@ public interface DefinitionPersistence extends BasePersistence<Definition> {
 	*/
 	public com.liferay.reports.model.Definition[] findByGroupId_PrevAndNext(
 		long definitionId, long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator)
 		throws com.liferay.reports.NoSuchDefinitionException;
 
 	/**
@@ -478,7 +478,7 @@ public interface DefinitionPersistence extends BasePersistence<Definition> {
 	*/
 	public java.util.List<com.liferay.reports.model.Definition> filterFindByGroupId(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator);
 
 	/**
 	* Returns the definitions before and after the current definition in the ordered set of definitions that the user has permission to view where groupId = &#63;.
@@ -491,7 +491,7 @@ public interface DefinitionPersistence extends BasePersistence<Definition> {
 	*/
 	public com.liferay.reports.model.Definition[] filterFindByGroupId_PrevAndNext(
 		long definitionId, long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator)
 		throws com.liferay.reports.NoSuchDefinitionException;
 
 	/**
@@ -556,7 +556,7 @@ public interface DefinitionPersistence extends BasePersistence<Definition> {
 	*/
 	public java.util.List<com.liferay.reports.model.Definition> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator);
 
 	/**
 	* Returns the first definition in the ordered set where companyId = &#63;.
@@ -568,7 +568,7 @@ public interface DefinitionPersistence extends BasePersistence<Definition> {
 	*/
 	public com.liferay.reports.model.Definition findByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator)
 		throws com.liferay.reports.NoSuchDefinitionException;
 
 	/**
@@ -580,7 +580,7 @@ public interface DefinitionPersistence extends BasePersistence<Definition> {
 	*/
 	public com.liferay.reports.model.Definition fetchByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator);
 
 	/**
 	* Returns the last definition in the ordered set where companyId = &#63;.
@@ -592,7 +592,7 @@ public interface DefinitionPersistence extends BasePersistence<Definition> {
 	*/
 	public com.liferay.reports.model.Definition findByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator)
 		throws com.liferay.reports.NoSuchDefinitionException;
 
 	/**
@@ -604,7 +604,7 @@ public interface DefinitionPersistence extends BasePersistence<Definition> {
 	*/
 	public com.liferay.reports.model.Definition fetchByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator);
 
 	/**
 	* Returns the definitions before and after the current definition in the ordered set where companyId = &#63;.
@@ -617,7 +617,7 @@ public interface DefinitionPersistence extends BasePersistence<Definition> {
 	*/
 	public com.liferay.reports.model.Definition[] findByCompanyId_PrevAndNext(
 		long definitionId, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator)
 		throws com.liferay.reports.NoSuchDefinitionException;
 
 	/**
@@ -729,7 +729,7 @@ public interface DefinitionPersistence extends BasePersistence<Definition> {
 	*/
 	public java.util.List<com.liferay.reports.model.Definition> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator);
 
 	/**
 	* Removes all the definitions from the database.

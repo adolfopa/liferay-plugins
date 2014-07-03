@@ -95,8 +95,7 @@ public class AuditEventLocalServiceUtil {
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return getService().dynamicQuery(dynamicQuery);
 	}
@@ -113,8 +112,7 @@ public class AuditEventLocalServiceUtil {
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		return getService().dynamicQuery(dynamicQuery, start, end);
@@ -133,11 +131,10 @@ public class AuditEventLocalServiceUtil {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		return getService()
 				   .dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
@@ -167,8 +164,7 @@ public class AuditEventLocalServiceUtil {
 	}
 
 	public static com.liferay.portal.audit.model.AuditEvent fetchAuditEvent(
-		long auditEventId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long auditEventId) {
 		return getService().fetchAuditEvent(auditEventId);
 	}
 
@@ -265,15 +261,13 @@ public class AuditEventLocalServiceUtil {
 	}
 
 	public static com.liferay.portal.audit.model.AuditEvent addAuditEvent(
-		com.liferay.portal.kernel.audit.AuditMessage auditMessage)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.audit.AuditMessage auditMessage) {
 		return getService().addAuditEvent(auditMessage);
 	}
 
 	public static java.util.List<com.liferay.portal.audit.model.AuditEvent> getAuditEvents(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getService()
 				   .getAuditEvents(companyId, start, end, orderByComparator);
 	}
@@ -285,8 +279,7 @@ public class AuditEventLocalServiceUtil {
 		java.lang.String classPK, java.lang.String clientHost,
 		java.lang.String clientIP, java.lang.String serverName, int serverPort,
 		java.lang.String sessionID, boolean andSearch, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getService()
 				   .getAuditEvents(companyId, userId, userName, createDateGT,
 			createDateLT, eventType, className, classPK, clientHost, clientIP,
@@ -294,8 +287,7 @@ public class AuditEventLocalServiceUtil {
 			orderByComparator);
 	}
 
-	public static int getAuditEventsCount(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int getAuditEventsCount(long companyId) {
 		return getService().getAuditEventsCount(companyId);
 	}
 
@@ -305,8 +297,7 @@ public class AuditEventLocalServiceUtil {
 		java.lang.String className, java.lang.String classPK,
 		java.lang.String clientHost, java.lang.String clientIP,
 		java.lang.String serverName, int serverPort,
-		java.lang.String sessionID, boolean andSearch)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String sessionID, boolean andSearch) {
 		return getService()
 				   .getAuditEventsCount(companyId, userId, userName,
 			createDateGT, createDateLT, eventType, className, classPK,

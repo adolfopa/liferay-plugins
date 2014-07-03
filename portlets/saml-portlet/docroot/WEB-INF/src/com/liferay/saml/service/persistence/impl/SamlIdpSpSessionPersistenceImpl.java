@@ -159,7 +159,7 @@ public class SamlIdpSpSessionPersistenceImpl extends BasePersistenceImpl<SamlIdp
 	@Override
 	public List<SamlIdpSpSession> findBySamlIdpSsoSessionId(
 		long samlIdpSsoSessionId, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<SamlIdpSpSession> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -269,7 +269,8 @@ public class SamlIdpSpSessionPersistenceImpl extends BasePersistenceImpl<SamlIdp
 	 */
 	@Override
 	public SamlIdpSpSession findBySamlIdpSsoSessionId_First(
-		long samlIdpSsoSessionId, OrderByComparator orderByComparator)
+		long samlIdpSsoSessionId,
+		OrderByComparator<SamlIdpSpSession> orderByComparator)
 		throws NoSuchIdpSpSessionException {
 		SamlIdpSpSession samlIdpSpSession = fetchBySamlIdpSsoSessionId_First(samlIdpSsoSessionId,
 				orderByComparator);
@@ -299,7 +300,8 @@ public class SamlIdpSpSessionPersistenceImpl extends BasePersistenceImpl<SamlIdp
 	 */
 	@Override
 	public SamlIdpSpSession fetchBySamlIdpSsoSessionId_First(
-		long samlIdpSsoSessionId, OrderByComparator orderByComparator) {
+		long samlIdpSsoSessionId,
+		OrderByComparator<SamlIdpSpSession> orderByComparator) {
 		List<SamlIdpSpSession> list = findBySamlIdpSsoSessionId(samlIdpSsoSessionId,
 				0, 1, orderByComparator);
 
@@ -320,7 +322,8 @@ public class SamlIdpSpSessionPersistenceImpl extends BasePersistenceImpl<SamlIdp
 	 */
 	@Override
 	public SamlIdpSpSession findBySamlIdpSsoSessionId_Last(
-		long samlIdpSsoSessionId, OrderByComparator orderByComparator)
+		long samlIdpSsoSessionId,
+		OrderByComparator<SamlIdpSpSession> orderByComparator)
 		throws NoSuchIdpSpSessionException {
 		SamlIdpSpSession samlIdpSpSession = fetchBySamlIdpSsoSessionId_Last(samlIdpSsoSessionId,
 				orderByComparator);
@@ -350,7 +353,8 @@ public class SamlIdpSpSessionPersistenceImpl extends BasePersistenceImpl<SamlIdp
 	 */
 	@Override
 	public SamlIdpSpSession fetchBySamlIdpSsoSessionId_Last(
-		long samlIdpSsoSessionId, OrderByComparator orderByComparator) {
+		long samlIdpSsoSessionId,
+		OrderByComparator<SamlIdpSpSession> orderByComparator) {
 		int count = countBySamlIdpSsoSessionId(samlIdpSsoSessionId);
 
 		if (count == 0) {
@@ -379,7 +383,8 @@ public class SamlIdpSpSessionPersistenceImpl extends BasePersistenceImpl<SamlIdp
 	@Override
 	public SamlIdpSpSession[] findBySamlIdpSsoSessionId_PrevAndNext(
 		long samlIdpSpSessionId, long samlIdpSsoSessionId,
-		OrderByComparator orderByComparator) throws NoSuchIdpSpSessionException {
+		OrderByComparator<SamlIdpSpSession> orderByComparator)
+		throws NoSuchIdpSpSessionException {
 		SamlIdpSpSession samlIdpSpSession = findByPrimaryKey(samlIdpSpSessionId);
 
 		Session session = null;
@@ -411,8 +416,8 @@ public class SamlIdpSpSessionPersistenceImpl extends BasePersistenceImpl<SamlIdp
 
 	protected SamlIdpSpSession getBySamlIdpSsoSessionId_PrevAndNext(
 		Session session, SamlIdpSpSession samlIdpSpSession,
-		long samlIdpSsoSessionId, OrderByComparator orderByComparator,
-		boolean previous) {
+		long samlIdpSsoSessionId,
+		OrderByComparator<SamlIdpSpSession> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1425,7 +1430,7 @@ public class SamlIdpSpSessionPersistenceImpl extends BasePersistenceImpl<SamlIdp
 	 */
 	@Override
 	public List<SamlIdpSpSession> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<SamlIdpSpSession> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

@@ -85,7 +85,7 @@ public class SamlSpMessageUtil {
 	 */
 	public static List<SamlSpMessage> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<SamlSpMessage> orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -292,7 +292,7 @@ public class SamlSpMessageUtil {
 	*/
 	public static java.util.List<com.liferay.saml.model.SamlSpMessage> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.saml.model.SamlSpMessage> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

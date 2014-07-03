@@ -106,12 +106,10 @@ public abstract class SourceLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param sourceId the primary key of the source
 	 * @return the source that was removed
 	 * @throws PortalException if a source with the primary key could not be found
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
-	public Source deleteSource(long sourceId)
-		throws PortalException, SystemException {
+	public Source deleteSource(long sourceId) throws PortalException {
 		return sourcePersistence.remove(sourceId);
 	}
 
@@ -121,12 +119,10 @@ public abstract class SourceLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param source the source
 	 * @return the source that was removed
 	 * @throws PortalException
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
-	public Source deleteSource(Source source)
-		throws PortalException, SystemException {
+	public Source deleteSource(Source source) throws PortalException {
 		return sourcePersistence.remove(source);
 	}
 
@@ -145,8 +141,7 @@ public abstract class SourceLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
 		return sourcePersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -163,8 +158,8 @@ public abstract class SourceLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end) {
 		return sourcePersistence.findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -182,9 +177,8 @@ public abstract class SourceLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the ordered range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator) {
 		return sourcePersistence.findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
 	}
@@ -248,11 +242,9 @@ public abstract class SourceLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param sourceId the primary key of the source
 	 * @return the source
 	 * @throws PortalException if a source with the primary key could not be found
-	 * @throws SystemException
 	 */
 	@Override
-	public Source getSource(long sourceId)
-		throws PortalException, SystemException {
+	public Source getSource(long sourceId) throws PortalException {
 		return sourcePersistence.findByPrimaryKey(sourceId);
 	}
 
@@ -355,11 +347,10 @@ public abstract class SourceLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param  companyId the primary key of the company
 	 * @return the matching source
 	 * @throws PortalException if a matching source could not be found
-	 * @throws SystemException
 	 */
 	@Override
 	public Source getSourceByUuidAndCompanyId(String uuid, long companyId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return sourcePersistence.findByUuid_C_First(uuid, companyId, null);
 	}
 
@@ -370,11 +361,10 @@ public abstract class SourceLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param groupId the primary key of the group
 	 * @return the matching source
 	 * @throws PortalException if a matching source could not be found
-	 * @throws SystemException
 	 */
 	@Override
 	public Source getSourceByUuidAndGroupId(String uuid, long groupId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return sourcePersistence.findByUUID_G(uuid, groupId);
 	}
 

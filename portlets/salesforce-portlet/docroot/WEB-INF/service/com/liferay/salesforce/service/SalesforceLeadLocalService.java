@@ -66,32 +66,27 @@ public interface SalesforceLeadLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.kernel.messaging.MessageBatch getLeadsByCountry(
 		long companyId, java.lang.String country,
-		java.util.List<java.lang.String> fieldNames)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.util.List<java.lang.String> fieldNames);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.kernel.messaging.MessageBatch getLeadsBySource(
 		long companyId, java.lang.String source,
-		java.util.List<java.lang.String> fieldNames)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.util.List<java.lang.String> fieldNames);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.kernel.messaging.MessageBatch getLeadsByStatus(
 		long companyId, java.lang.String status,
-		java.util.List<java.lang.String> fieldNames)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.util.List<java.lang.String> fieldNames);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.kernel.messaging.MessageBatch getLeadsByUserId(
 		long companyId, java.lang.String userId,
 		java.util.List<java.lang.String> fieldNames)
-		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.kernel.messaging.MessageBatch getLeadsByUserName(
 		long companyId, java.lang.String userName,
 		java.util.List<java.lang.String> fieldNames)
-		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException;
 }

@@ -133,8 +133,7 @@ public abstract class AuditEventLocalServiceBaseImpl
 	 * @return the matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
 		return auditEventPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -151,8 +150,8 @@ public abstract class AuditEventLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end) {
 		return auditEventPersistence.findWithDynamicQuery(dynamicQuery, start,
 			end);
 	}
@@ -171,9 +170,8 @@ public abstract class AuditEventLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator) {
 		return auditEventPersistence.findWithDynamicQuery(dynamicQuery, start,
 			end, orderByComparator);
 	}
@@ -204,8 +202,7 @@ public abstract class AuditEventLocalServiceBaseImpl
 	}
 
 	@Override
-	public AuditEvent fetchAuditEvent(long auditEventId)
-		throws SystemException {
+	public AuditEvent fetchAuditEvent(long auditEventId) {
 		return auditEventPersistence.fetchByPrimaryKey(auditEventId);
 	}
 

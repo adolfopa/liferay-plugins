@@ -59,8 +59,7 @@ public class OAuthUserServiceWrapper implements OAuthUserService,
 	@Override
 	public com.liferay.oauth.model.OAuthUser deleteOAuthUser(
 		long oAuthApplicationId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _oAuthUserService.deleteOAuthUser(oAuthApplicationId);
 	}
 

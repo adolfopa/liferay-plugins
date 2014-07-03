@@ -75,7 +75,7 @@ public interface KaleoProcessLinkPersistence extends BasePersistence<KaleoProces
 	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink> findByKaleoProcessId(
 		long kaleoProcessId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink> orderByComparator);
 
 	/**
 	* Returns the first kaleo process link in the ordered set where kaleoProcessId = &#63;.
@@ -87,7 +87,7 @@ public interface KaleoProcessLinkPersistence extends BasePersistence<KaleoProces
 	*/
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink findByKaleoProcessId_First(
 		long kaleoProcessId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessLinkException;
 
 	/**
@@ -99,7 +99,7 @@ public interface KaleoProcessLinkPersistence extends BasePersistence<KaleoProces
 	*/
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink fetchByKaleoProcessId_First(
 		long kaleoProcessId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink> orderByComparator);
 
 	/**
 	* Returns the last kaleo process link in the ordered set where kaleoProcessId = &#63;.
@@ -111,7 +111,7 @@ public interface KaleoProcessLinkPersistence extends BasePersistence<KaleoProces
 	*/
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink findByKaleoProcessId_Last(
 		long kaleoProcessId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessLinkException;
 
 	/**
@@ -123,7 +123,7 @@ public interface KaleoProcessLinkPersistence extends BasePersistence<KaleoProces
 	*/
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink fetchByKaleoProcessId_Last(
 		long kaleoProcessId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink> orderByComparator);
 
 	/**
 	* Returns the kaleo process links before and after the current kaleo process link in the ordered set where kaleoProcessId = &#63;.
@@ -136,7 +136,7 @@ public interface KaleoProcessLinkPersistence extends BasePersistence<KaleoProces
 	*/
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink[] findByKaleoProcessId_PrevAndNext(
 		long kaleoProcessLinkId, long kaleoProcessId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.forms.NoSuchKaleoProcessLinkException;
 
 	/**
@@ -307,7 +307,7 @@ public interface KaleoProcessLinkPersistence extends BasePersistence<KaleoProces
 	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink> orderByComparator);
 
 	/**
 	* Removes all the kaleo process links from the database.

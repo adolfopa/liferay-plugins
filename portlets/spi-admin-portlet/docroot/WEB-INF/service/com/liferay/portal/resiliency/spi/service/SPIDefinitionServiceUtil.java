@@ -69,8 +69,7 @@ public class SPIDefinitionServiceUtil {
 		java.lang.String jvmArguments, java.lang.String portletIds,
 		java.lang.String servletContextNames, java.lang.String typeSettings,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .addSPIDefinition(name, connectorAddress, connectorPort,
 			description, jvmArguments, portletIds, servletContextNames,
@@ -79,58 +78,49 @@ public class SPIDefinitionServiceUtil {
 
 	public static com.liferay.portal.resiliency.spi.model.SPIDefinition deleteSPIDefinition(
 		long spiDefinitionId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteSPIDefinition(spiDefinitionId);
 	}
 
 	public static com.liferay.portal.kernel.util.Tuple getPortletIdsAndServletContextNames()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getPortletIdsAndServletContextNames();
 	}
 
 	public static com.liferay.portal.resiliency.spi.model.SPIDefinition getSPIDefinition(
 		long spiDefinitionId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getSPIDefinition(spiDefinitionId);
 	}
 
 	public static com.liferay.portal.resiliency.spi.model.SPIDefinition getSPIDefinition(
 		long companyId, java.lang.String name)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getSPIDefinition(companyId, name);
 	}
 
 	public static java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> getSPIDefinitions()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getSPIDefinitions();
 	}
 
 	public static void startSPI(long spiDefinitionId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().startSPI(spiDefinitionId);
 	}
 
 	public static long startSPIinBackground(long spiDefinitionId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().startSPIinBackground(spiDefinitionId);
 	}
 
 	public static void stopSPI(long spiDefinitionId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().stopSPI(spiDefinitionId);
 	}
 
 	public static long stopSPIinBackground(long spiDefinitionId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().stopSPIinBackground(spiDefinitionId);
 	}
 
@@ -140,8 +130,7 @@ public class SPIDefinitionServiceUtil {
 		java.lang.String jvmArguments, java.lang.String portletIds,
 		java.lang.String servletContextNames, java.lang.String typeSettings,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .updateSPIDefinition(spiDefinitionId, connectorAddress,
 			connectorPort, description, jvmArguments, portletIds,
@@ -151,8 +140,7 @@ public class SPIDefinitionServiceUtil {
 	public static com.liferay.portal.resiliency.spi.model.SPIDefinition updateTypeSettings(
 		long userId, long spiDefinitionId, java.lang.String recoveryOptions,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .updateTypeSettings(userId, spiDefinitionId,
 			recoveryOptions, serviceContext);

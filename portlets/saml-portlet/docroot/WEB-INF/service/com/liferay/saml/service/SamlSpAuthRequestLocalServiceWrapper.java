@@ -93,8 +93,7 @@ public class SamlSpAuthRequestLocalServiceWrapper
 	* @return the matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _samlSpAuthRequestLocalService.dynamicQuery(dynamicQuery);
 	}
@@ -112,8 +111,7 @@ public class SamlSpAuthRequestLocalServiceWrapper
 	* @return the range of matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		return _samlSpAuthRequestLocalService.dynamicQuery(dynamicQuery, start,
@@ -134,11 +132,10 @@ public class SamlSpAuthRequestLocalServiceWrapper
 	* @return the ordered range of matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		return _samlSpAuthRequestLocalService.dynamicQuery(dynamicQuery, start,
 			end, orderByComparator);
 	}
@@ -283,16 +280,14 @@ public class SamlSpAuthRequestLocalServiceWrapper
 	public com.liferay.saml.model.SamlSpAuthRequest addSamlSpAuthRequest(
 		java.lang.String samlIdpEntityId,
 		java.lang.String samlSpAuthRequestKey,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.service.ServiceContext serviceContext) {
 		return _samlSpAuthRequestLocalService.addSamlSpAuthRequest(samlIdpEntityId,
 			samlSpAuthRequestKey, serviceContext);
 	}
 
 	@Override
 	public com.liferay.saml.model.SamlSpAuthRequest fetchSamlSpAuthRequest(
-		java.lang.String samlIdpEntityId, java.lang.String samlSpAuthRequestKey)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String samlIdpEntityId, java.lang.String samlSpAuthRequestKey) {
 		return _samlSpAuthRequestLocalService.fetchSamlSpAuthRequest(samlIdpEntityId,
 			samlSpAuthRequestKey);
 	}
@@ -300,8 +295,7 @@ public class SamlSpAuthRequestLocalServiceWrapper
 	@Override
 	public com.liferay.saml.model.SamlSpAuthRequest getSamlSpAuthRequest(
 		java.lang.String samlIdpEntityId, java.lang.String samlSpAuthRequestKey)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _samlSpAuthRequestLocalService.getSamlSpAuthRequest(samlIdpEntityId,
 			samlSpAuthRequestKey);
 	}

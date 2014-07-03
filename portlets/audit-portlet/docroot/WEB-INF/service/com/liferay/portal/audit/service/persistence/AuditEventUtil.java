@@ -84,7 +84,7 @@ public class AuditEventUtil {
 	 */
 	public static List<AuditEvent> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<AuditEvent> orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -148,7 +148,7 @@ public class AuditEventUtil {
 	*/
 	public static java.util.List<com.liferay.portal.audit.model.AuditEvent> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.audit.model.AuditEvent> orderByComparator) {
 		return getPersistence()
 				   .findByCompanyId(companyId, start, end, orderByComparator);
 	}
@@ -163,7 +163,7 @@ public class AuditEventUtil {
 	*/
 	public static com.liferay.portal.audit.model.AuditEvent findByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.audit.model.AuditEvent> orderByComparator)
 		throws com.liferay.portal.audit.NoSuchEventException {
 		return getPersistence()
 				   .findByCompanyId_First(companyId, orderByComparator);
@@ -178,7 +178,7 @@ public class AuditEventUtil {
 	*/
 	public static com.liferay.portal.audit.model.AuditEvent fetchByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.audit.model.AuditEvent> orderByComparator) {
 		return getPersistence()
 				   .fetchByCompanyId_First(companyId, orderByComparator);
 	}
@@ -193,7 +193,7 @@ public class AuditEventUtil {
 	*/
 	public static com.liferay.portal.audit.model.AuditEvent findByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.audit.model.AuditEvent> orderByComparator)
 		throws com.liferay.portal.audit.NoSuchEventException {
 		return getPersistence()
 				   .findByCompanyId_Last(companyId, orderByComparator);
@@ -208,7 +208,7 @@ public class AuditEventUtil {
 	*/
 	public static com.liferay.portal.audit.model.AuditEvent fetchByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.audit.model.AuditEvent> orderByComparator) {
 		return getPersistence()
 				   .fetchByCompanyId_Last(companyId, orderByComparator);
 	}
@@ -224,7 +224,7 @@ public class AuditEventUtil {
 	*/
 	public static com.liferay.portal.audit.model.AuditEvent[] findByCompanyId_PrevAndNext(
 		long auditEventId, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.audit.model.AuditEvent> orderByComparator)
 		throws com.liferay.portal.audit.NoSuchEventException {
 		return getPersistence()
 				   .findByCompanyId_PrevAndNext(auditEventId, companyId,
@@ -365,7 +365,7 @@ public class AuditEventUtil {
 	*/
 	public static java.util.List<com.liferay.portal.audit.model.AuditEvent> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.audit.model.AuditEvent> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

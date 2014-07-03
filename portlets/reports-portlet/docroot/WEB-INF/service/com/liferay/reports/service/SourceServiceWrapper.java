@@ -62,23 +62,20 @@ public class SourceServiceWrapper implements SourceService,
 		java.lang.String driverClassName, java.lang.String driverUrl,
 		java.lang.String driverUserName, java.lang.String driverPassword,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _sourceService.addSource(groupId, nameMap, driverClassName,
 			driverUrl, driverUserName, driverPassword, serviceContext);
 	}
 
 	@Override
 	public com.liferay.reports.model.Source deleteSource(long sourceId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _sourceService.deleteSource(sourceId);
 	}
 
 	@Override
 	public com.liferay.reports.model.Source getSource(long sourceId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _sourceService.getSource(sourceId);
 	}
 
@@ -87,16 +84,14 @@ public class SourceServiceWrapper implements SourceService,
 		long groupId, java.lang.String name, java.lang.String driverUrl,
 		boolean andSearch, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _sourceService.getSources(groupId, name, driverUrl, andSearch,
 			start, end, orderByComparator);
 	}
 
 	@Override
 	public int getSourcesCount(long groupId, java.lang.String name,
-		java.lang.String driverUrl, boolean andSearch)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String driverUrl, boolean andSearch) {
 		return _sourceService.getSourcesCount(groupId, name, driverUrl,
 			andSearch);
 	}
@@ -107,8 +102,7 @@ public class SourceServiceWrapper implements SourceService,
 		java.lang.String driverClassName, java.lang.String driverUrl,
 		java.lang.String driverUserName, java.lang.String driverPassword,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _sourceService.updateSource(sourceId, nameMap, driverClassName,
 			driverUrl, driverUserName, driverPassword, serviceContext);
 	}

@@ -32,10 +32,8 @@ public interface WebExAccount extends WebExAccountModel, PersistedModel {
 	 * Never modify this interface directly. Add methods to {@link com.liferay.meeting.webex.model.impl.WebExAccountImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 	public com.liferay.meeting.MeetingContext getMeetingContext()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public com.liferay.meeting.webex.model.WebExSite getWebExSite()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 }

@@ -566,7 +566,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 */
 	@Override
 	public List<Entry> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Entry> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

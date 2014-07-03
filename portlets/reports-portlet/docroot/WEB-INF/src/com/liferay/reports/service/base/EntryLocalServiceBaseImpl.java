@@ -101,12 +101,10 @@ public abstract class EntryLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param entryId the primary key of the entry
 	 * @return the entry that was removed
 	 * @throws PortalException if a entry with the primary key could not be found
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
-	public Entry deleteEntry(long entryId)
-		throws PortalException, SystemException {
+	public Entry deleteEntry(long entryId) throws PortalException {
 		return entryPersistence.remove(entryId);
 	}
 
@@ -116,12 +114,10 @@ public abstract class EntryLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param entry the entry
 	 * @return the entry that was removed
 	 * @throws PortalException
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
-	public Entry deleteEntry(Entry entry)
-		throws PortalException, SystemException {
+	public Entry deleteEntry(Entry entry) throws PortalException {
 		return entryPersistence.remove(entry);
 	}
 
@@ -140,8 +136,7 @@ public abstract class EntryLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
 		return entryPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -158,8 +153,8 @@ public abstract class EntryLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end) {
 		return entryPersistence.findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -177,9 +172,8 @@ public abstract class EntryLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the ordered range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator) {
 		return entryPersistence.findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
 	}

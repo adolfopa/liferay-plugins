@@ -76,7 +76,7 @@ public interface SamlSpIdpConnectionPersistence extends BasePersistence<SamlSpId
 	*/
 	public java.util.List<com.liferay.saml.model.SamlSpIdpConnection> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.saml.model.SamlSpIdpConnection> orderByComparator);
 
 	/**
 	* Returns the first saml sp idp connection in the ordered set where companyId = &#63;.
@@ -88,7 +88,7 @@ public interface SamlSpIdpConnectionPersistence extends BasePersistence<SamlSpId
 	*/
 	public com.liferay.saml.model.SamlSpIdpConnection findByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.saml.model.SamlSpIdpConnection> orderByComparator)
 		throws com.liferay.saml.NoSuchSpIdpConnectionException;
 
 	/**
@@ -100,7 +100,7 @@ public interface SamlSpIdpConnectionPersistence extends BasePersistence<SamlSpId
 	*/
 	public com.liferay.saml.model.SamlSpIdpConnection fetchByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.saml.model.SamlSpIdpConnection> orderByComparator);
 
 	/**
 	* Returns the last saml sp idp connection in the ordered set where companyId = &#63;.
@@ -112,7 +112,7 @@ public interface SamlSpIdpConnectionPersistence extends BasePersistence<SamlSpId
 	*/
 	public com.liferay.saml.model.SamlSpIdpConnection findByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.saml.model.SamlSpIdpConnection> orderByComparator)
 		throws com.liferay.saml.NoSuchSpIdpConnectionException;
 
 	/**
@@ -124,7 +124,7 @@ public interface SamlSpIdpConnectionPersistence extends BasePersistence<SamlSpId
 	*/
 	public com.liferay.saml.model.SamlSpIdpConnection fetchByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.saml.model.SamlSpIdpConnection> orderByComparator);
 
 	/**
 	* Returns the saml sp idp connections before and after the current saml sp idp connection in the ordered set where companyId = &#63;.
@@ -137,7 +137,7 @@ public interface SamlSpIdpConnectionPersistence extends BasePersistence<SamlSpId
 	*/
 	public com.liferay.saml.model.SamlSpIdpConnection[] findByCompanyId_PrevAndNext(
 		long samlSpIdpConnectionId, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.saml.model.SamlSpIdpConnection> orderByComparator)
 		throws com.liferay.saml.NoSuchSpIdpConnectionException;
 
 	/**
@@ -307,7 +307,7 @@ public interface SamlSpIdpConnectionPersistence extends BasePersistence<SamlSpId
 	*/
 	public java.util.List<com.liferay.saml.model.SamlSpIdpConnection> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.saml.model.SamlSpIdpConnection> orderByComparator);
 
 	/**
 	* Removes all the saml sp idp connections from the database.

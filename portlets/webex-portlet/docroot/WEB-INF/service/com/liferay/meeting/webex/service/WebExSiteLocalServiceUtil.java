@@ -67,12 +67,10 @@ public class WebExSiteLocalServiceUtil {
 	* @param webExSiteId the primary key of the web ex site
 	* @return the web ex site that was removed
 	* @throws PortalException if a web ex site with the primary key could not be found
-	* @throws SystemException
 	*/
 	public static com.liferay.meeting.webex.model.WebExSite deleteWebExSite(
 		long webExSiteId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteWebExSite(webExSiteId);
 	}
 
@@ -82,12 +80,10 @@ public class WebExSiteLocalServiceUtil {
 	* @param webExSite the web ex site
 	* @return the web ex site that was removed
 	* @throws PortalException
-	* @throws SystemException
 	*/
 	public static com.liferay.meeting.webex.model.WebExSite deleteWebExSite(
 		com.liferay.meeting.webex.model.WebExSite webExSite)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteWebExSite(webExSite);
 	}
 
@@ -101,8 +97,7 @@ public class WebExSiteLocalServiceUtil {
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return getService().dynamicQuery(dynamicQuery);
 	}
@@ -119,8 +114,7 @@ public class WebExSiteLocalServiceUtil {
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		return getService().dynamicQuery(dynamicQuery, start, end);
@@ -139,11 +133,10 @@ public class WebExSiteLocalServiceUtil {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		return getService()
 				   .dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
@@ -330,36 +323,31 @@ public class WebExSiteLocalServiceUtil {
 		java.lang.String name, java.lang.String apiURL, java.lang.String login,
 		java.lang.String password, java.lang.String partnerKey, long siteKey,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService()
 			.addWebExSite(userId, groupId, name, apiURL, login, password,
 			partnerKey, siteKey, serviceContext);
 	}
 
 	public static com.liferay.meeting.webex.model.WebExSite fetchSiteKeyWebExSite(
-		long siteKey)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long siteKey) {
 		return getService().fetchSiteKeyWebExSite(siteKey);
 	}
 
 	public static com.liferay.meeting.webex.model.WebExSite getSiteKeyWebExSite(
 		long siteKey)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getSiteKeyWebExSite(siteKey);
 	}
 
 	public static java.util.List<com.liferay.meeting.webex.model.WebExSite> getWebExSites(
-		long groupId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long groupId, int start, int end) {
 		return getService().getWebExSites(groupId, start, end);
 	}
 
 	public static java.util.List<com.liferay.meeting.webex.model.WebExSite> getWebExSites(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator obc) {
 		return getService().getWebExSites(groupId, start, end, obc);
 	}
 
@@ -367,8 +355,7 @@ public class WebExSiteLocalServiceUtil {
 		java.lang.String apiURL, java.lang.String login,
 		java.lang.String password,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService()
 			.updateWebExSite(webExSiteId, apiURL, login, password,
 			serviceContext);

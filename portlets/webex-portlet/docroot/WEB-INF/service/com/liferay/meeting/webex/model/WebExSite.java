@@ -31,6 +31,5 @@ public interface WebExSite extends WebExSiteModel, PersistedModel {
 	 *
 	 * Never modify this interface directly. Add methods to {@link com.liferay.meeting.webex.model.impl.WebExSiteImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public java.util.List<com.liferay.meeting.webex.model.WebExAccount> getWebExAccounts()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public java.util.List<com.liferay.meeting.webex.model.WebExAccount> getWebExAccounts();
 }

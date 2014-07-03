@@ -64,8 +64,7 @@ public class KaleoProcessLinkServiceUtil {
 	}
 
 	public static com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink fetchKaleoProcessLink(
-		long kaleoProcessId, java.lang.String workflowTaskName)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long kaleoProcessId, java.lang.String workflowTaskName) {
 		return getService()
 				   .fetchKaleoProcessLink(kaleoProcessId, workflowTaskName);
 	}
@@ -73,8 +72,7 @@ public class KaleoProcessLinkServiceUtil {
 	public static com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink updateKaleoProcessLink(
 		long kaleoProcessLinkId, long kaleoProcessId,
 		java.lang.String workflowTaskName, long ddmTemplateId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .updateKaleoProcessLink(kaleoProcessLinkId, kaleoProcessId,
 			workflowTaskName, ddmTemplateId);
@@ -82,8 +80,7 @@ public class KaleoProcessLinkServiceUtil {
 
 	public static com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink updateKaleoProcessLink(
 		long kaleoProcessId, java.lang.String workflowTaskName,
-		long ddmTemplateId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long ddmTemplateId) {
 		return getService()
 				   .updateKaleoProcessLink(kaleoProcessId, workflowTaskName,
 			ddmTemplateId);

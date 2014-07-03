@@ -66,20 +66,17 @@ public interface SalesforceAccountLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.kernel.messaging.MessageBatch getAccountsByName(
 		long companyId, java.lang.String name,
-		java.util.List<java.lang.String> fieldNames)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.util.List<java.lang.String> fieldNames);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.kernel.messaging.MessageBatch getAccountsByOwnerId(
 		long companyId, java.lang.String ownerId,
 		java.util.List<java.lang.String> fieldNames)
-		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.kernel.messaging.MessageBatch getAccountsByUserName(
 		long companyId, java.lang.String userName,
 		java.util.List<java.lang.String> fieldNames)
-		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException;
 }

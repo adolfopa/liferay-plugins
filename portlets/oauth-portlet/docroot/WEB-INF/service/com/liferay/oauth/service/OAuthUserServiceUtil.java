@@ -65,8 +65,7 @@ public class OAuthUserServiceUtil {
 
 	public static com.liferay.oauth.model.OAuthUser deleteOAuthUser(
 		long oAuthApplicationId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteOAuthUser(oAuthApplicationId);
 	}
 

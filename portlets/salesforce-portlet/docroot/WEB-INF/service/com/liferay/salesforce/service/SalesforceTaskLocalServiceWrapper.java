@@ -63,8 +63,7 @@ public class SalesforceTaskLocalServiceWrapper
 	public com.liferay.portal.kernel.messaging.MessageBatch getTasksByAccountId(
 		long companyId, java.lang.String accountId,
 		java.util.List<java.lang.String> fieldNames)
-		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException {
 		return _salesforceTaskLocalService.getTasksByAccountId(companyId,
 			accountId, fieldNames);
 	}
@@ -73,8 +72,7 @@ public class SalesforceTaskLocalServiceWrapper
 	public com.liferay.portal.kernel.messaging.MessageBatch getTasksByUserId(
 		long companyId, java.lang.String userId,
 		java.util.List<java.lang.String> fieldNames)
-		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException {
 		return _salesforceTaskLocalService.getTasksByUserId(companyId, userId,
 			fieldNames);
 	}
@@ -83,8 +81,7 @@ public class SalesforceTaskLocalServiceWrapper
 	public com.liferay.portal.kernel.messaging.MessageBatch getTasksByUserName(
 		long companyId, java.lang.String userName,
 		java.util.List<java.lang.String> fieldNames)
-		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException {
 		return _salesforceTaskLocalService.getTasksByUserName(companyId,
 			userName, fieldNames);
 	}

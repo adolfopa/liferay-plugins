@@ -153,7 +153,7 @@ public class WebExSitePersistenceImpl extends BasePersistenceImpl<WebExSite>
 	 */
 	@Override
 	public List<WebExSite> findByUuid(String uuid, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<WebExSite> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -273,7 +273,8 @@ public class WebExSitePersistenceImpl extends BasePersistenceImpl<WebExSite>
 	 */
 	@Override
 	public WebExSite findByUuid_First(String uuid,
-		OrderByComparator orderByComparator) throws NoSuchSiteException {
+		OrderByComparator<WebExSite> orderByComparator)
+		throws NoSuchSiteException {
 		WebExSite webExSite = fetchByUuid_First(uuid, orderByComparator);
 
 		if (webExSite != null) {
@@ -301,7 +302,7 @@ public class WebExSitePersistenceImpl extends BasePersistenceImpl<WebExSite>
 	 */
 	@Override
 	public WebExSite fetchByUuid_First(String uuid,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<WebExSite> orderByComparator) {
 		List<WebExSite> list = findByUuid(uuid, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -321,7 +322,8 @@ public class WebExSitePersistenceImpl extends BasePersistenceImpl<WebExSite>
 	 */
 	@Override
 	public WebExSite findByUuid_Last(String uuid,
-		OrderByComparator orderByComparator) throws NoSuchSiteException {
+		OrderByComparator<WebExSite> orderByComparator)
+		throws NoSuchSiteException {
 		WebExSite webExSite = fetchByUuid_Last(uuid, orderByComparator);
 
 		if (webExSite != null) {
@@ -349,7 +351,7 @@ public class WebExSitePersistenceImpl extends BasePersistenceImpl<WebExSite>
 	 */
 	@Override
 	public WebExSite fetchByUuid_Last(String uuid,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<WebExSite> orderByComparator) {
 		int count = countByUuid(uuid);
 
 		if (count == 0) {
@@ -377,7 +379,8 @@ public class WebExSitePersistenceImpl extends BasePersistenceImpl<WebExSite>
 	 */
 	@Override
 	public WebExSite[] findByUuid_PrevAndNext(long webExSiteId, String uuid,
-		OrderByComparator orderByComparator) throws NoSuchSiteException {
+		OrderByComparator<WebExSite> orderByComparator)
+		throws NoSuchSiteException {
 		WebExSite webExSite = findByPrimaryKey(webExSiteId);
 
 		Session session = null;
@@ -406,8 +409,8 @@ public class WebExSitePersistenceImpl extends BasePersistenceImpl<WebExSite>
 	}
 
 	protected WebExSite getByUuid_PrevAndNext(Session session,
-		WebExSite webExSite, String uuid, OrderByComparator orderByComparator,
-		boolean previous) {
+		WebExSite webExSite, String uuid,
+		OrderByComparator<WebExSite> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -931,7 +934,7 @@ public class WebExSitePersistenceImpl extends BasePersistenceImpl<WebExSite>
 	 */
 	@Override
 	public List<WebExSite> findByUuid_C(String uuid, long companyId, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<WebExSite> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1061,7 +1064,8 @@ public class WebExSitePersistenceImpl extends BasePersistenceImpl<WebExSite>
 	 */
 	@Override
 	public WebExSite findByUuid_C_First(String uuid, long companyId,
-		OrderByComparator orderByComparator) throws NoSuchSiteException {
+		OrderByComparator<WebExSite> orderByComparator)
+		throws NoSuchSiteException {
 		WebExSite webExSite = fetchByUuid_C_First(uuid, companyId,
 				orderByComparator);
 
@@ -1094,7 +1098,7 @@ public class WebExSitePersistenceImpl extends BasePersistenceImpl<WebExSite>
 	 */
 	@Override
 	public WebExSite fetchByUuid_C_First(String uuid, long companyId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<WebExSite> orderByComparator) {
 		List<WebExSite> list = findByUuid_C(uuid, companyId, 0, 1,
 				orderByComparator);
 
@@ -1116,7 +1120,8 @@ public class WebExSitePersistenceImpl extends BasePersistenceImpl<WebExSite>
 	 */
 	@Override
 	public WebExSite findByUuid_C_Last(String uuid, long companyId,
-		OrderByComparator orderByComparator) throws NoSuchSiteException {
+		OrderByComparator<WebExSite> orderByComparator)
+		throws NoSuchSiteException {
 		WebExSite webExSite = fetchByUuid_C_Last(uuid, companyId,
 				orderByComparator);
 
@@ -1149,7 +1154,7 @@ public class WebExSitePersistenceImpl extends BasePersistenceImpl<WebExSite>
 	 */
 	@Override
 	public WebExSite fetchByUuid_C_Last(String uuid, long companyId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<WebExSite> orderByComparator) {
 		int count = countByUuid_C(uuid, companyId);
 
 		if (count == 0) {
@@ -1178,7 +1183,7 @@ public class WebExSitePersistenceImpl extends BasePersistenceImpl<WebExSite>
 	 */
 	@Override
 	public WebExSite[] findByUuid_C_PrevAndNext(long webExSiteId, String uuid,
-		long companyId, OrderByComparator orderByComparator)
+		long companyId, OrderByComparator<WebExSite> orderByComparator)
 		throws NoSuchSiteException {
 		WebExSite webExSite = findByPrimaryKey(webExSiteId);
 
@@ -1209,7 +1214,7 @@ public class WebExSitePersistenceImpl extends BasePersistenceImpl<WebExSite>
 
 	protected WebExSite getByUuid_C_PrevAndNext(Session session,
 		WebExSite webExSite, String uuid, long companyId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<WebExSite> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1482,7 +1487,7 @@ public class WebExSitePersistenceImpl extends BasePersistenceImpl<WebExSite>
 	 */
 	@Override
 	public List<WebExSite> findByGroupId(long groupId, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<WebExSite> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1588,7 +1593,8 @@ public class WebExSitePersistenceImpl extends BasePersistenceImpl<WebExSite>
 	 */
 	@Override
 	public WebExSite findByGroupId_First(long groupId,
-		OrderByComparator orderByComparator) throws NoSuchSiteException {
+		OrderByComparator<WebExSite> orderByComparator)
+		throws NoSuchSiteException {
 		WebExSite webExSite = fetchByGroupId_First(groupId, orderByComparator);
 
 		if (webExSite != null) {
@@ -1616,7 +1622,7 @@ public class WebExSitePersistenceImpl extends BasePersistenceImpl<WebExSite>
 	 */
 	@Override
 	public WebExSite fetchByGroupId_First(long groupId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<WebExSite> orderByComparator) {
 		List<WebExSite> list = findByGroupId(groupId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -1636,7 +1642,8 @@ public class WebExSitePersistenceImpl extends BasePersistenceImpl<WebExSite>
 	 */
 	@Override
 	public WebExSite findByGroupId_Last(long groupId,
-		OrderByComparator orderByComparator) throws NoSuchSiteException {
+		OrderByComparator<WebExSite> orderByComparator)
+		throws NoSuchSiteException {
 		WebExSite webExSite = fetchByGroupId_Last(groupId, orderByComparator);
 
 		if (webExSite != null) {
@@ -1664,7 +1671,7 @@ public class WebExSitePersistenceImpl extends BasePersistenceImpl<WebExSite>
 	 */
 	@Override
 	public WebExSite fetchByGroupId_Last(long groupId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<WebExSite> orderByComparator) {
 		int count = countByGroupId(groupId);
 
 		if (count == 0) {
@@ -1692,7 +1699,7 @@ public class WebExSitePersistenceImpl extends BasePersistenceImpl<WebExSite>
 	 */
 	@Override
 	public WebExSite[] findByGroupId_PrevAndNext(long webExSiteId,
-		long groupId, OrderByComparator orderByComparator)
+		long groupId, OrderByComparator<WebExSite> orderByComparator)
 		throws NoSuchSiteException {
 		WebExSite webExSite = findByPrimaryKey(webExSiteId);
 
@@ -1722,8 +1729,8 @@ public class WebExSitePersistenceImpl extends BasePersistenceImpl<WebExSite>
 	}
 
 	protected WebExSite getByGroupId_PrevAndNext(Session session,
-		WebExSite webExSite, long groupId, OrderByComparator orderByComparator,
-		boolean previous) {
+		WebExSite webExSite, long groupId,
+		OrderByComparator<WebExSite> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1870,7 +1877,7 @@ public class WebExSitePersistenceImpl extends BasePersistenceImpl<WebExSite>
 	 */
 	@Override
 	public List<WebExSite> filterFindByGroupId(long groupId, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<WebExSite> orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByGroupId(groupId, start, end, orderByComparator);
 		}
@@ -1960,7 +1967,7 @@ public class WebExSitePersistenceImpl extends BasePersistenceImpl<WebExSite>
 	 */
 	@Override
 	public WebExSite[] filterFindByGroupId_PrevAndNext(long webExSiteId,
-		long groupId, OrderByComparator orderByComparator)
+		long groupId, OrderByComparator<WebExSite> orderByComparator)
 		throws NoSuchSiteException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByGroupId_PrevAndNext(webExSiteId, groupId,
@@ -1995,8 +2002,8 @@ public class WebExSitePersistenceImpl extends BasePersistenceImpl<WebExSite>
 	}
 
 	protected WebExSite filterGetByGroupId_PrevAndNext(Session session,
-		WebExSite webExSite, long groupId, OrderByComparator orderByComparator,
-		boolean previous) {
+		WebExSite webExSite, long groupId,
+		OrderByComparator<WebExSite> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -3097,7 +3104,7 @@ public class WebExSitePersistenceImpl extends BasePersistenceImpl<WebExSite>
 	 */
 	@Override
 	public List<WebExSite> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<WebExSite> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

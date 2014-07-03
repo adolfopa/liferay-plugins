@@ -579,8 +579,7 @@ public class WebExSiteWrapper implements WebExSite, ModelWrapper<WebExSite> {
 	}
 
 	@Override
-	public java.util.List<com.liferay.meeting.webex.model.WebExAccount> getWebExAccounts()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.util.List<com.liferay.meeting.webex.model.WebExAccount> getWebExAccounts() {
 		return _webExSite.getWebExAccounts();
 	}
 

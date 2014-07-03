@@ -66,8 +66,7 @@ public class SalesforceOpportunityLocalServiceUtil {
 	public static com.liferay.portal.kernel.messaging.MessageBatch getOpportunitiesByAccountId(
 		long companyId, java.lang.String accountId,
 		java.util.List<java.lang.String> fieldNames)
-		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException {
 		return getService()
 				   .getOpportunitiesByAccountId(companyId, accountId, fieldNames);
 	}
@@ -75,8 +74,7 @@ public class SalesforceOpportunityLocalServiceUtil {
 	public static com.liferay.portal.kernel.messaging.MessageBatch getOpportunitiesByUserId(
 		long companyId, java.lang.String userId,
 		java.util.List<java.lang.String> fieldNames)
-		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException {
 		return getService()
 				   .getOpportunitiesByUserId(companyId, userId, fieldNames);
 	}
@@ -84,8 +82,7 @@ public class SalesforceOpportunityLocalServiceUtil {
 	public static com.liferay.portal.kernel.messaging.MessageBatch getOpportunitiesByUserName(
 		long companyId, java.lang.String userName,
 		java.util.List<java.lang.String> fieldNames)
-		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException {
 		return getService()
 				   .getOpportunitiesByUserName(companyId, userName, fieldNames);
 	}

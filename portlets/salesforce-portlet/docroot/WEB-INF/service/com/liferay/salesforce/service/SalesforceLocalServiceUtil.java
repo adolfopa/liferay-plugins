@@ -65,86 +65,74 @@ public class SalesforceLocalServiceUtil {
 
 	public static void executeAdd(long companyId,
 		java.util.List<com.liferay.portal.kernel.messaging.Message> messages)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.salesforce.service.MultipleSalesforceException {
+		throws com.liferay.salesforce.service.MultipleSalesforceException {
 		getService().executeAdd(companyId, messages);
 	}
 
 	public static java.lang.String executeAdd(long companyId,
 		com.liferay.portal.kernel.messaging.Message message)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.salesforce.service.SalesforceException {
+		throws com.liferay.salesforce.service.SalesforceException {
 		return getService().executeAdd(companyId, message);
 	}
 
 	public static void executeAddOrUpdate(long companyId,
 		java.lang.String externalId,
 		java.util.List<com.liferay.portal.kernel.messaging.Message> messages)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.salesforce.service.MultipleSalesforceException {
+		throws com.liferay.salesforce.service.MultipleSalesforceException {
 		getService().executeAddOrUpdate(companyId, externalId, messages);
 	}
 
 	public static void executeAddOrUpdate(long companyId,
 		java.lang.String externalId,
 		com.liferay.portal.kernel.messaging.Message message)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.salesforce.service.SalesforceException {
+		throws com.liferay.salesforce.service.SalesforceException {
 		getService().executeAddOrUpdate(companyId, externalId, message);
 	}
 
 	public static void executeDelete(long companyId,
 		java.util.List<java.lang.String> objectIds)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.salesforce.service.MultipleSalesforceException {
+		throws com.liferay.salesforce.service.MultipleSalesforceException {
 		getService().executeDelete(companyId, objectIds);
 	}
 
 	public static boolean executeDelete(long companyId,
 		java.lang.String objectId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.salesforce.service.SalesforceException {
+		throws com.liferay.salesforce.service.SalesforceException {
 		return getService().executeDelete(companyId, objectId);
 	}
 
 	public static com.liferay.portal.kernel.messaging.MessageBatch executeQuery(
-		long companyId, java.lang.String queryString)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long companyId, java.lang.String queryString) {
 		return getService().executeQuery(companyId, queryString);
 	}
 
 	public static com.liferay.portal.kernel.messaging.Message executeQuery(
 		long companyId, java.lang.String objectId, java.lang.String objectType,
 		java.util.List<java.lang.String> fieldNames)
-		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException {
 		return getService()
 				   .executeQuery(companyId, objectId, objectType, fieldNames);
 	}
 
 	public static com.liferay.portal.kernel.messaging.MessageBatch executeQueryMore(
-		long companyId, java.lang.String queryLocator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long companyId, java.lang.String queryLocator) {
 		return getService().executeQueryMore(companyId, queryLocator);
 	}
 
 	public static com.liferay.portal.kernel.messaging.MessageBatch executeSearch(
-		long companyId, java.lang.String searchString)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long companyId, java.lang.String searchString) {
 		return getService().executeSearch(companyId, searchString);
 	}
 
 	public static void executeUpdate(long companyId,
 		java.util.List<com.liferay.portal.kernel.messaging.Message> messages)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.salesforce.service.MultipleSalesforceException {
+		throws com.liferay.salesforce.service.MultipleSalesforceException {
 		getService().executeUpdate(companyId, messages);
 	}
 
 	public static void executeUpdate(long companyId,
 		com.liferay.portal.kernel.messaging.Message message)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.salesforce.service.SalesforceException {
+		throws com.liferay.salesforce.service.SalesforceException {
 		getService().executeUpdate(companyId, message);
 	}
 

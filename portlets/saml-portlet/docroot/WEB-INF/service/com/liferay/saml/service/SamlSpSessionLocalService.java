@@ -91,8 +91,7 @@ public interface SamlSpSessionLocalService extends BaseLocalService,
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
 
 	/**
@@ -107,8 +106,7 @@ public interface SamlSpSessionLocalService extends BaseLocalService,
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end);
 
@@ -125,11 +123,10 @@ public interface SamlSpSessionLocalService extends BaseLocalService,
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator);
 
 	/**
 	* Returns the number of rows that match the dynamic query.
@@ -242,46 +239,38 @@ public interface SamlSpSessionLocalService extends BaseLocalService,
 		java.lang.String nameIdSPNameQualifier, java.lang.String nameIdValue,
 		java.lang.String sessionIndex,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.saml.model.SamlSpSession fetchSamlSpSessionByJSessionId(
-		java.lang.String jSessionId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String jSessionId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.saml.model.SamlSpSession fetchSamlSpSessionBySamlSpSessionKey(
-		java.lang.String samlSpSessionKey)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String samlSpSessionKey);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.saml.model.SamlSpSession fetchSamlSpSessionBySessionIndex(
-		java.lang.String sessionIndex)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String sessionIndex);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.saml.model.SamlSpSession getSamlSpSessionByJSessionId(
 		java.lang.String jSessionId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.saml.model.SamlSpSession getSamlSpSessionBySamlSpSessionKey(
 		java.lang.String samlSpSessionKey)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.saml.model.SamlSpSession getSamlSpSessionBySessionIndex(
 		java.lang.String sessionIndex)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.saml.model.SamlSpSession> getSamlSpSessions(
-		java.lang.String nameIdValue)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String nameIdValue);
 
 	public com.liferay.saml.model.SamlSpSession updateSamlSpSession(
 		long samlSpSessionId, java.lang.String samlSpSessionKey,
@@ -290,6 +279,5 @@ public interface SamlSpSessionLocalService extends BaseLocalService,
 		java.lang.String nameIdSPNameQualifier, java.lang.String nameIdValue,
 		java.lang.String sessionIndex,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 }

@@ -75,7 +75,7 @@ public interface AuditEventPersistence extends BasePersistence<AuditEvent> {
 	*/
 	public java.util.List<com.liferay.portal.audit.model.AuditEvent> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.audit.model.AuditEvent> orderByComparator);
 
 	/**
 	* Returns the first audit event in the ordered set where companyId = &#63;.
@@ -87,7 +87,7 @@ public interface AuditEventPersistence extends BasePersistence<AuditEvent> {
 	*/
 	public com.liferay.portal.audit.model.AuditEvent findByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.audit.model.AuditEvent> orderByComparator)
 		throws com.liferay.portal.audit.NoSuchEventException;
 
 	/**
@@ -99,7 +99,7 @@ public interface AuditEventPersistence extends BasePersistence<AuditEvent> {
 	*/
 	public com.liferay.portal.audit.model.AuditEvent fetchByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.audit.model.AuditEvent> orderByComparator);
 
 	/**
 	* Returns the last audit event in the ordered set where companyId = &#63;.
@@ -111,7 +111,7 @@ public interface AuditEventPersistence extends BasePersistence<AuditEvent> {
 	*/
 	public com.liferay.portal.audit.model.AuditEvent findByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.audit.model.AuditEvent> orderByComparator)
 		throws com.liferay.portal.audit.NoSuchEventException;
 
 	/**
@@ -123,7 +123,7 @@ public interface AuditEventPersistence extends BasePersistence<AuditEvent> {
 	*/
 	public com.liferay.portal.audit.model.AuditEvent fetchByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.audit.model.AuditEvent> orderByComparator);
 
 	/**
 	* Returns the audit events before and after the current audit event in the ordered set where companyId = &#63;.
@@ -136,7 +136,7 @@ public interface AuditEventPersistence extends BasePersistence<AuditEvent> {
 	*/
 	public com.liferay.portal.audit.model.AuditEvent[] findByCompanyId_PrevAndNext(
 		long auditEventId, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.audit.model.AuditEvent> orderByComparator)
 		throws com.liferay.portal.audit.NoSuchEventException;
 
 	/**
@@ -249,7 +249,7 @@ public interface AuditEventPersistence extends BasePersistence<AuditEvent> {
 	*/
 	public java.util.List<com.liferay.portal.audit.model.AuditEvent> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.audit.model.AuditEvent> orderByComparator);
 
 	/**
 	* Removes all the audit events from the database.

@@ -443,85 +443,9 @@ public class KaleoProcessClp extends BaseModelImpl<KaleoProcess>
 	}
 
 	@Override
-	public java.lang.String getDescription() {
-		try {
-			String methodName = "getDescription";
-
-			Class<?>[] parameterTypes = new Class<?>[] {  };
-
-			Object[] parameterValues = new Object[] {  };
-
-			java.lang.String returnObj = (java.lang.String)invokeOnRemoteModel(methodName,
-					parameterTypes, parameterValues);
-
-			return returnObj;
-		}
-		catch (Exception e) {
-			throw new UnsupportedOperationException(e);
-		}
-	}
-
-	@Override
 	public java.lang.String getWorkflowDefinition() {
 		try {
 			String methodName = "getWorkflowDefinition";
-
-			Class<?>[] parameterTypes = new Class<?>[] {  };
-
-			Object[] parameterValues = new Object[] {  };
-
-			java.lang.String returnObj = (java.lang.String)invokeOnRemoteModel(methodName,
-					parameterTypes, parameterValues);
-
-			return returnObj;
-		}
-		catch (Exception e) {
-			throw new UnsupportedOperationException(e);
-		}
-	}
-
-	@Override
-	public com.liferay.portlet.dynamicdatamapping.model.DDMTemplate getDDMTemplate() {
-		try {
-			String methodName = "getDDMTemplate";
-
-			Class<?>[] parameterTypes = new Class<?>[] {  };
-
-			Object[] parameterValues = new Object[] {  };
-
-			com.liferay.portlet.dynamicdatamapping.model.DDMTemplate returnObj = (com.liferay.portlet.dynamicdatamapping.model.DDMTemplate)invokeOnRemoteModel(methodName,
-					parameterTypes, parameterValues);
-
-			return returnObj;
-		}
-		catch (Exception e) {
-			throw new UnsupportedOperationException(e);
-		}
-	}
-
-	@Override
-	public com.liferay.portlet.dynamicdatalists.model.DDLRecordSet getDDLRecordSet() {
-		try {
-			String methodName = "getDDLRecordSet";
-
-			Class<?>[] parameterTypes = new Class<?>[] {  };
-
-			Object[] parameterValues = new Object[] {  };
-
-			com.liferay.portlet.dynamicdatalists.model.DDLRecordSet returnObj = (com.liferay.portlet.dynamicdatalists.model.DDLRecordSet)invokeOnRemoteModel(methodName,
-					parameterTypes, parameterValues);
-
-			return returnObj;
-		}
-		catch (Exception e) {
-			throw new UnsupportedOperationException(e);
-		}
-	}
-
-	@Override
-	public java.lang.String getName() {
-		try {
-			String methodName = "getName";
 
 			Class<?>[] parameterTypes = new Class<?>[] {  };
 
@@ -577,6 +501,25 @@ public class KaleoProcessClp extends BaseModelImpl<KaleoProcess>
 	}
 
 	@Override
+	public com.liferay.portlet.dynamicdatalists.model.DDLRecordSet getDDLRecordSet() {
+		try {
+			String methodName = "getDDLRecordSet";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			com.liferay.portlet.dynamicdatalists.model.DDLRecordSet returnObj = (com.liferay.portlet.dynamicdatalists.model.DDLRecordSet)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
+	}
+
+	@Override
 	public java.lang.String getDescription(java.util.Locale locale) {
 		try {
 			String methodName = "getDescription";
@@ -584,6 +527,63 @@ public class KaleoProcessClp extends BaseModelImpl<KaleoProcess>
 			Class<?>[] parameterTypes = new Class<?>[] { java.util.Locale.class };
 
 			Object[] parameterValues = new Object[] { locale };
+
+			java.lang.String returnObj = (java.lang.String)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
+	}
+
+	@Override
+	public java.lang.String getDescription() {
+		try {
+			String methodName = "getDescription";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			java.lang.String returnObj = (java.lang.String)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
+	}
+
+	@Override
+	public com.liferay.portlet.dynamicdatamapping.model.DDMTemplate getDDMTemplate() {
+		try {
+			String methodName = "getDDMTemplate";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			com.liferay.portlet.dynamicdatamapping.model.DDMTemplate returnObj = (com.liferay.portlet.dynamicdatamapping.model.DDMTemplate)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
+	}
+
+	@Override
+	public java.lang.String getName() {
+		try {
+			String methodName = "getName";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
 
 			java.lang.String returnObj = (java.lang.String)invokeOnRemoteModel(methodName,
 					parameterTypes, parameterValues);

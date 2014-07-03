@@ -85,7 +85,7 @@ public class WebExSiteUtil {
 	 */
 	public static List<WebExSite> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<WebExSite> orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -149,7 +149,7 @@ public class WebExSiteUtil {
 	*/
 	public static java.util.List<com.liferay.meeting.webex.model.WebExSite> findByUuid(
 		java.lang.String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExSite> orderByComparator) {
 		return getPersistence().findByUuid(uuid, start, end, orderByComparator);
 	}
 
@@ -163,7 +163,7 @@ public class WebExSiteUtil {
 	*/
 	public static com.liferay.meeting.webex.model.WebExSite findByUuid_First(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExSite> orderByComparator)
 		throws com.liferay.meeting.webex.NoSuchSiteException {
 		return getPersistence().findByUuid_First(uuid, orderByComparator);
 	}
@@ -177,7 +177,7 @@ public class WebExSiteUtil {
 	*/
 	public static com.liferay.meeting.webex.model.WebExSite fetchByUuid_First(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExSite> orderByComparator) {
 		return getPersistence().fetchByUuid_First(uuid, orderByComparator);
 	}
 
@@ -191,7 +191,7 @@ public class WebExSiteUtil {
 	*/
 	public static com.liferay.meeting.webex.model.WebExSite findByUuid_Last(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExSite> orderByComparator)
 		throws com.liferay.meeting.webex.NoSuchSiteException {
 		return getPersistence().findByUuid_Last(uuid, orderByComparator);
 	}
@@ -205,7 +205,7 @@ public class WebExSiteUtil {
 	*/
 	public static com.liferay.meeting.webex.model.WebExSite fetchByUuid_Last(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExSite> orderByComparator) {
 		return getPersistence().fetchByUuid_Last(uuid, orderByComparator);
 	}
 
@@ -220,7 +220,7 @@ public class WebExSiteUtil {
 	*/
 	public static com.liferay.meeting.webex.model.WebExSite[] findByUuid_PrevAndNext(
 		long webExSiteId, java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExSite> orderByComparator)
 		throws com.liferay.meeting.webex.NoSuchSiteException {
 		return getPersistence()
 				   .findByUuid_PrevAndNext(webExSiteId, uuid, orderByComparator);
@@ -354,7 +354,7 @@ public class WebExSiteUtil {
 	*/
 	public static java.util.List<com.liferay.meeting.webex.model.WebExSite> findByUuid_C(
 		java.lang.String uuid, long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExSite> orderByComparator) {
 		return getPersistence()
 				   .findByUuid_C(uuid, companyId, start, end, orderByComparator);
 	}
@@ -370,7 +370,7 @@ public class WebExSiteUtil {
 	*/
 	public static com.liferay.meeting.webex.model.WebExSite findByUuid_C_First(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExSite> orderByComparator)
 		throws com.liferay.meeting.webex.NoSuchSiteException {
 		return getPersistence()
 				   .findByUuid_C_First(uuid, companyId, orderByComparator);
@@ -386,7 +386,7 @@ public class WebExSiteUtil {
 	*/
 	public static com.liferay.meeting.webex.model.WebExSite fetchByUuid_C_First(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExSite> orderByComparator) {
 		return getPersistence()
 				   .fetchByUuid_C_First(uuid, companyId, orderByComparator);
 	}
@@ -402,7 +402,7 @@ public class WebExSiteUtil {
 	*/
 	public static com.liferay.meeting.webex.model.WebExSite findByUuid_C_Last(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExSite> orderByComparator)
 		throws com.liferay.meeting.webex.NoSuchSiteException {
 		return getPersistence()
 				   .findByUuid_C_Last(uuid, companyId, orderByComparator);
@@ -418,7 +418,7 @@ public class WebExSiteUtil {
 	*/
 	public static com.liferay.meeting.webex.model.WebExSite fetchByUuid_C_Last(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExSite> orderByComparator) {
 		return getPersistence()
 				   .fetchByUuid_C_Last(uuid, companyId, orderByComparator);
 	}
@@ -435,7 +435,7 @@ public class WebExSiteUtil {
 	*/
 	public static com.liferay.meeting.webex.model.WebExSite[] findByUuid_C_PrevAndNext(
 		long webExSiteId, java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExSite> orderByComparator)
 		throws com.liferay.meeting.webex.NoSuchSiteException {
 		return getPersistence()
 				   .findByUuid_C_PrevAndNext(webExSiteId, uuid, companyId,
@@ -506,7 +506,7 @@ public class WebExSiteUtil {
 	*/
 	public static java.util.List<com.liferay.meeting.webex.model.WebExSite> findByGroupId(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExSite> orderByComparator) {
 		return getPersistence()
 				   .findByGroupId(groupId, start, end, orderByComparator);
 	}
@@ -521,7 +521,7 @@ public class WebExSiteUtil {
 	*/
 	public static com.liferay.meeting.webex.model.WebExSite findByGroupId_First(
 		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExSite> orderByComparator)
 		throws com.liferay.meeting.webex.NoSuchSiteException {
 		return getPersistence().findByGroupId_First(groupId, orderByComparator);
 	}
@@ -535,7 +535,7 @@ public class WebExSiteUtil {
 	*/
 	public static com.liferay.meeting.webex.model.WebExSite fetchByGroupId_First(
 		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExSite> orderByComparator) {
 		return getPersistence().fetchByGroupId_First(groupId, orderByComparator);
 	}
 
@@ -549,7 +549,7 @@ public class WebExSiteUtil {
 	*/
 	public static com.liferay.meeting.webex.model.WebExSite findByGroupId_Last(
 		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExSite> orderByComparator)
 		throws com.liferay.meeting.webex.NoSuchSiteException {
 		return getPersistence().findByGroupId_Last(groupId, orderByComparator);
 	}
@@ -563,7 +563,7 @@ public class WebExSiteUtil {
 	*/
 	public static com.liferay.meeting.webex.model.WebExSite fetchByGroupId_Last(
 		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExSite> orderByComparator) {
 		return getPersistence().fetchByGroupId_Last(groupId, orderByComparator);
 	}
 
@@ -578,7 +578,7 @@ public class WebExSiteUtil {
 	*/
 	public static com.liferay.meeting.webex.model.WebExSite[] findByGroupId_PrevAndNext(
 		long webExSiteId, long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExSite> orderByComparator)
 		throws com.liferay.meeting.webex.NoSuchSiteException {
 		return getPersistence()
 				   .findByGroupId_PrevAndNext(webExSiteId, groupId,
@@ -628,7 +628,7 @@ public class WebExSiteUtil {
 	*/
 	public static java.util.List<com.liferay.meeting.webex.model.WebExSite> filterFindByGroupId(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExSite> orderByComparator) {
 		return getPersistence()
 				   .filterFindByGroupId(groupId, start, end, orderByComparator);
 	}
@@ -644,7 +644,7 @@ public class WebExSiteUtil {
 	*/
 	public static com.liferay.meeting.webex.model.WebExSite[] filterFindByGroupId_PrevAndNext(
 		long webExSiteId, long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExSite> orderByComparator)
 		throws com.liferay.meeting.webex.NoSuchSiteException {
 		return getPersistence()
 				   .filterFindByGroupId_PrevAndNext(webExSiteId, groupId,
@@ -851,7 +851,7 @@ public class WebExSiteUtil {
 	*/
 	public static java.util.List<com.liferay.meeting.webex.model.WebExSite> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExSite> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

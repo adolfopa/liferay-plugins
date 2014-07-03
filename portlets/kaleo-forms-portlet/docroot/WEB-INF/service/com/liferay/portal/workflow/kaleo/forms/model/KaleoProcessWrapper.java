@@ -504,49 +504,42 @@ public class KaleoProcessWrapper implements KaleoProcess,
 
 	@Override
 	public com.liferay.portlet.dynamicdatalists.model.DDLRecordSet getDDLRecordSet()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kaleoProcess.getDDLRecordSet();
 	}
 
 	@Override
 	public com.liferay.portlet.dynamicdatamapping.model.DDMTemplate getDDMTemplate()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kaleoProcess.getDDMTemplate();
 	}
 
 	@Override
 	public java.lang.String getDescription()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kaleoProcess.getDescription();
 	}
 
 	@Override
 	public java.lang.String getDescription(java.util.Locale locale)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kaleoProcess.getDescription(locale);
 	}
 
 	@Override
-	public java.util.List<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink> getKaleoProcessLinks()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.util.List<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink> getKaleoProcessLinks() {
 		return _kaleoProcess.getKaleoProcessLinks();
 	}
 
 	@Override
 	public java.lang.String getName()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kaleoProcess.getName();
 	}
 
 	@Override
 	public java.lang.String getName(java.util.Locale locale)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kaleoProcess.getName(locale);
 	}
 

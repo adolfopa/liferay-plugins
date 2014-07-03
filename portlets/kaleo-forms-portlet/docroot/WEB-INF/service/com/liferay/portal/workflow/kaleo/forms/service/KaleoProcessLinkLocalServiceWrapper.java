@@ -93,8 +93,7 @@ public class KaleoProcessLinkLocalServiceWrapper
 	* @return the matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _kaleoProcessLinkLocalService.dynamicQuery(dynamicQuery);
 	}
@@ -112,8 +111,7 @@ public class KaleoProcessLinkLocalServiceWrapper
 	* @return the range of matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		return _kaleoProcessLinkLocalService.dynamicQuery(dynamicQuery, start,
@@ -134,11 +132,10 @@ public class KaleoProcessLinkLocalServiceWrapper
 	* @return the ordered range of matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		return _kaleoProcessLinkLocalService.dynamicQuery(dynamicQuery, start,
 			end, orderByComparator);
 	}
@@ -282,38 +279,33 @@ public class KaleoProcessLinkLocalServiceWrapper
 	@Override
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink addKaleoProcessLink(
 		long kaleoProcessId, java.lang.String workflowTaskName,
-		long ddmTemplateId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long ddmTemplateId) {
 		return _kaleoProcessLinkLocalService.addKaleoProcessLink(kaleoProcessId,
 			workflowTaskName, ddmTemplateId);
 	}
 
 	@Override
-	public void deleteKaleoProcessLinks(long kaleoProcessId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void deleteKaleoProcessLinks(long kaleoProcessId) {
 		_kaleoProcessLinkLocalService.deleteKaleoProcessLinks(kaleoProcessId);
 	}
 
 	@Override
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink fetchKaleoProcessLink(
-		long kaleoProcessId, java.lang.String workflowTaskName)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long kaleoProcessId, java.lang.String workflowTaskName) {
 		return _kaleoProcessLinkLocalService.fetchKaleoProcessLink(kaleoProcessId,
 			workflowTaskName);
 	}
 
 	@Override
 	public java.util.List<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink> getKaleoProcessLinks(
-		long kaleoProcessId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long kaleoProcessId) {
 		return _kaleoProcessLinkLocalService.getKaleoProcessLinks(kaleoProcessId);
 	}
 
 	@Override
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink updateKaleoProcessLink(
 		long kaleoProcessLinkId, long kaleoProcessId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kaleoProcessLinkLocalService.updateKaleoProcessLink(kaleoProcessLinkId,
 			kaleoProcessId);
 	}
@@ -322,8 +314,7 @@ public class KaleoProcessLinkLocalServiceWrapper
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink updateKaleoProcessLink(
 		long kaleoProcessLinkId, long kaleoProcessId,
 		java.lang.String workflowTaskName, long ddmTemplateId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kaleoProcessLinkLocalService.updateKaleoProcessLink(kaleoProcessLinkId,
 			kaleoProcessId, workflowTaskName, ddmTemplateId);
 	}
@@ -331,8 +322,7 @@ public class KaleoProcessLinkLocalServiceWrapper
 	@Override
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink updateKaleoProcessLink(
 		long kaleoProcessId, java.lang.String workflowTaskName,
-		long ddmTemplateId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long ddmTemplateId) {
 		return _kaleoProcessLinkLocalService.updateKaleoProcessLink(kaleoProcessId,
 			workflowTaskName, ddmTemplateId);
 	}

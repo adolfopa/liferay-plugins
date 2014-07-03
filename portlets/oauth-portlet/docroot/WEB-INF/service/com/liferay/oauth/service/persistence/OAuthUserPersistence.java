@@ -76,7 +76,7 @@ public interface OAuthUserPersistence extends BasePersistence<OAuthUser> {
 	*/
 	public java.util.List<com.liferay.oauth.model.OAuthUser> findByUserId(
 		long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthUser> orderByComparator);
 
 	/**
 	* Returns the first o auth user in the ordered set where userId = &#63;.
@@ -87,7 +87,7 @@ public interface OAuthUserPersistence extends BasePersistence<OAuthUser> {
 	* @throws com.liferay.oauth.NoSuchUserException if a matching o auth user could not be found
 	*/
 	public com.liferay.oauth.model.OAuthUser findByUserId_First(long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthUser> orderByComparator)
 		throws com.liferay.oauth.NoSuchUserException;
 
 	/**
@@ -98,7 +98,7 @@ public interface OAuthUserPersistence extends BasePersistence<OAuthUser> {
 	* @return the first matching o auth user, or <code>null</code> if a matching o auth user could not be found
 	*/
 	public com.liferay.oauth.model.OAuthUser fetchByUserId_First(long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthUser> orderByComparator);
 
 	/**
 	* Returns the last o auth user in the ordered set where userId = &#63;.
@@ -109,7 +109,7 @@ public interface OAuthUserPersistence extends BasePersistence<OAuthUser> {
 	* @throws com.liferay.oauth.NoSuchUserException if a matching o auth user could not be found
 	*/
 	public com.liferay.oauth.model.OAuthUser findByUserId_Last(long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthUser> orderByComparator)
 		throws com.liferay.oauth.NoSuchUserException;
 
 	/**
@@ -120,7 +120,7 @@ public interface OAuthUserPersistence extends BasePersistence<OAuthUser> {
 	* @return the last matching o auth user, or <code>null</code> if a matching o auth user could not be found
 	*/
 	public com.liferay.oauth.model.OAuthUser fetchByUserId_Last(long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthUser> orderByComparator);
 
 	/**
 	* Returns the o auth users before and after the current o auth user in the ordered set where userId = &#63;.
@@ -133,7 +133,7 @@ public interface OAuthUserPersistence extends BasePersistence<OAuthUser> {
 	*/
 	public com.liferay.oauth.model.OAuthUser[] findByUserId_PrevAndNext(
 		long oAuthUserId, long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthUser> orderByComparator)
 		throws com.liferay.oauth.NoSuchUserException;
 
 	/**
@@ -175,7 +175,7 @@ public interface OAuthUserPersistence extends BasePersistence<OAuthUser> {
 	*/
 	public java.util.List<com.liferay.oauth.model.OAuthUser> filterFindByUserId(
 		long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthUser> orderByComparator);
 
 	/**
 	* Returns the o auth users before and after the current o auth user in the ordered set of o auth users that the user has permission to view where userId = &#63;.
@@ -188,7 +188,7 @@ public interface OAuthUserPersistence extends BasePersistence<OAuthUser> {
 	*/
 	public com.liferay.oauth.model.OAuthUser[] filterFindByUserId_PrevAndNext(
 		long oAuthUserId, long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthUser> orderByComparator)
 		throws com.liferay.oauth.NoSuchUserException;
 
 	/**
@@ -253,7 +253,7 @@ public interface OAuthUserPersistence extends BasePersistence<OAuthUser> {
 	*/
 	public java.util.List<com.liferay.oauth.model.OAuthUser> findByOAuthApplicationId(
 		long oAuthApplicationId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthUser> orderByComparator);
 
 	/**
 	* Returns the first o auth user in the ordered set where oAuthApplicationId = &#63;.
@@ -265,7 +265,7 @@ public interface OAuthUserPersistence extends BasePersistence<OAuthUser> {
 	*/
 	public com.liferay.oauth.model.OAuthUser findByOAuthApplicationId_First(
 		long oAuthApplicationId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthUser> orderByComparator)
 		throws com.liferay.oauth.NoSuchUserException;
 
 	/**
@@ -277,7 +277,7 @@ public interface OAuthUserPersistence extends BasePersistence<OAuthUser> {
 	*/
 	public com.liferay.oauth.model.OAuthUser fetchByOAuthApplicationId_First(
 		long oAuthApplicationId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthUser> orderByComparator);
 
 	/**
 	* Returns the last o auth user in the ordered set where oAuthApplicationId = &#63;.
@@ -289,7 +289,7 @@ public interface OAuthUserPersistence extends BasePersistence<OAuthUser> {
 	*/
 	public com.liferay.oauth.model.OAuthUser findByOAuthApplicationId_Last(
 		long oAuthApplicationId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthUser> orderByComparator)
 		throws com.liferay.oauth.NoSuchUserException;
 
 	/**
@@ -301,7 +301,7 @@ public interface OAuthUserPersistence extends BasePersistence<OAuthUser> {
 	*/
 	public com.liferay.oauth.model.OAuthUser fetchByOAuthApplicationId_Last(
 		long oAuthApplicationId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthUser> orderByComparator);
 
 	/**
 	* Returns the o auth users before and after the current o auth user in the ordered set where oAuthApplicationId = &#63;.
@@ -314,7 +314,7 @@ public interface OAuthUserPersistence extends BasePersistence<OAuthUser> {
 	*/
 	public com.liferay.oauth.model.OAuthUser[] findByOAuthApplicationId_PrevAndNext(
 		long oAuthUserId, long oAuthApplicationId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthUser> orderByComparator)
 		throws com.liferay.oauth.NoSuchUserException;
 
 	/**
@@ -356,7 +356,7 @@ public interface OAuthUserPersistence extends BasePersistence<OAuthUser> {
 	*/
 	public java.util.List<com.liferay.oauth.model.OAuthUser> filterFindByOAuthApplicationId(
 		long oAuthApplicationId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthUser> orderByComparator);
 
 	/**
 	* Returns the o auth users before and after the current o auth user in the ordered set of o auth users that the user has permission to view where oAuthApplicationId = &#63;.
@@ -369,7 +369,7 @@ public interface OAuthUserPersistence extends BasePersistence<OAuthUser> {
 	*/
 	public com.liferay.oauth.model.OAuthUser[] filterFindByOAuthApplicationId_PrevAndNext(
 		long oAuthUserId, long oAuthApplicationId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthUser> orderByComparator)
 		throws com.liferay.oauth.NoSuchUserException;
 
 	/**
@@ -587,7 +587,7 @@ public interface OAuthUserPersistence extends BasePersistence<OAuthUser> {
 	*/
 	public java.util.List<com.liferay.oauth.model.OAuthUser> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthUser> orderByComparator);
 
 	/**
 	* Removes all the o auth users from the database.

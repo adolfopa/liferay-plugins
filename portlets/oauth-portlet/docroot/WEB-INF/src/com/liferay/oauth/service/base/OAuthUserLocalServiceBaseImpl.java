@@ -113,12 +113,11 @@ public abstract class OAuthUserLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param oAuthUser the o auth user
 	 * @return the o auth user that was removed
 	 * @throws PortalException
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public OAuthUser deleteOAuthUser(OAuthUser oAuthUser)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return oAuthUserPersistence.remove(oAuthUser);
 	}
 
@@ -137,8 +136,7 @@ public abstract class OAuthUserLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
 		return oAuthUserPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -155,8 +153,8 @@ public abstract class OAuthUserLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end) {
 		return oAuthUserPersistence.findWithDynamicQuery(dynamicQuery, start,
 			end);
 	}
@@ -175,9 +173,8 @@ public abstract class OAuthUserLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the ordered range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator) {
 		return oAuthUserPersistence.findWithDynamicQuery(dynamicQuery, start,
 			end, orderByComparator);
 	}

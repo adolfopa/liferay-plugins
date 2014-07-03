@@ -20,7 +20,7 @@ import com.liferay.portal.workflow.kaleo.forms.service.KaleoProcessLinkLocalServ
 
 /**
  * @author Marcellus Tavares
- * @deprecated As of 7.0.0, replaced by {@link KaleoProcessLinkLocalServiceUtil#getExportActionableDynamicQuery()}
+ * @deprecated As of 7.0.0, replaced by {@link KaleoProcessLinkLocalServiceUtil#getActionableDynamicQuery()}
  * @generated
  */
 @Deprecated

@@ -157,7 +157,7 @@ public class SamlIdpSpConnectionPersistenceImpl extends BasePersistenceImpl<Saml
 	 */
 	@Override
 	public List<SamlIdpSpConnection> findByCompanyId(long companyId, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<SamlIdpSpConnection> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -263,7 +263,7 @@ public class SamlIdpSpConnectionPersistenceImpl extends BasePersistenceImpl<Saml
 	 */
 	@Override
 	public SamlIdpSpConnection findByCompanyId_First(long companyId,
-		OrderByComparator orderByComparator)
+		OrderByComparator<SamlIdpSpConnection> orderByComparator)
 		throws NoSuchIdpSpConnectionException {
 		SamlIdpSpConnection samlIdpSpConnection = fetchByCompanyId_First(companyId,
 				orderByComparator);
@@ -293,7 +293,7 @@ public class SamlIdpSpConnectionPersistenceImpl extends BasePersistenceImpl<Saml
 	 */
 	@Override
 	public SamlIdpSpConnection fetchByCompanyId_First(long companyId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<SamlIdpSpConnection> orderByComparator) {
 		List<SamlIdpSpConnection> list = findByCompanyId(companyId, 0, 1,
 				orderByComparator);
 
@@ -314,7 +314,7 @@ public class SamlIdpSpConnectionPersistenceImpl extends BasePersistenceImpl<Saml
 	 */
 	@Override
 	public SamlIdpSpConnection findByCompanyId_Last(long companyId,
-		OrderByComparator orderByComparator)
+		OrderByComparator<SamlIdpSpConnection> orderByComparator)
 		throws NoSuchIdpSpConnectionException {
 		SamlIdpSpConnection samlIdpSpConnection = fetchByCompanyId_Last(companyId,
 				orderByComparator);
@@ -344,7 +344,7 @@ public class SamlIdpSpConnectionPersistenceImpl extends BasePersistenceImpl<Saml
 	 */
 	@Override
 	public SamlIdpSpConnection fetchByCompanyId_Last(long companyId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<SamlIdpSpConnection> orderByComparator) {
 		int count = countByCompanyId(companyId);
 
 		if (count == 0) {
@@ -373,7 +373,7 @@ public class SamlIdpSpConnectionPersistenceImpl extends BasePersistenceImpl<Saml
 	@Override
 	public SamlIdpSpConnection[] findByCompanyId_PrevAndNext(
 		long samlIdpSpConnectionId, long companyId,
-		OrderByComparator orderByComparator)
+		OrderByComparator<SamlIdpSpConnection> orderByComparator)
 		throws NoSuchIdpSpConnectionException {
 		SamlIdpSpConnection samlIdpSpConnection = findByPrimaryKey(samlIdpSpConnectionId);
 
@@ -404,7 +404,8 @@ public class SamlIdpSpConnectionPersistenceImpl extends BasePersistenceImpl<Saml
 
 	protected SamlIdpSpConnection getByCompanyId_PrevAndNext(Session session,
 		SamlIdpSpConnection samlIdpSpConnection, long companyId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<SamlIdpSpConnection> orderByComparator,
+		boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1427,7 +1428,7 @@ public class SamlIdpSpConnectionPersistenceImpl extends BasePersistenceImpl<Saml
 	 */
 	@Override
 	public List<SamlIdpSpConnection> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<SamlIdpSpConnection> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

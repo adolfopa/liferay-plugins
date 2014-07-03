@@ -21,7 +21,7 @@ import com.liferay.saml.service.SamlSpSessionLocalServiceUtil;
 
 /**
  * @author Mika Koivisto
- * @deprecated As of 7.0.0, replaced by {@link SamlSpSessionLocalServiceUtil#getExportActionableDynamicQuery()}
+ * @deprecated As of 7.0.0, replaced by {@link SamlSpSessionLocalServiceUtil#getActionableDynamicQuery()}
  * @generated
  */
 @Deprecated

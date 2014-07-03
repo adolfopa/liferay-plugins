@@ -76,7 +76,7 @@ public interface SamlIdpSpSessionPersistence extends BasePersistence<SamlIdpSpSe
 	*/
 	public java.util.List<com.liferay.saml.model.SamlIdpSpSession> findBySamlIdpSsoSessionId(
 		long samlIdpSsoSessionId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.saml.model.SamlIdpSpSession> orderByComparator);
 
 	/**
 	* Returns the first saml idp sp session in the ordered set where samlIdpSsoSessionId = &#63;.
@@ -88,7 +88,7 @@ public interface SamlIdpSpSessionPersistence extends BasePersistence<SamlIdpSpSe
 	*/
 	public com.liferay.saml.model.SamlIdpSpSession findBySamlIdpSsoSessionId_First(
 		long samlIdpSsoSessionId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.saml.model.SamlIdpSpSession> orderByComparator)
 		throws com.liferay.saml.NoSuchIdpSpSessionException;
 
 	/**
@@ -100,7 +100,7 @@ public interface SamlIdpSpSessionPersistence extends BasePersistence<SamlIdpSpSe
 	*/
 	public com.liferay.saml.model.SamlIdpSpSession fetchBySamlIdpSsoSessionId_First(
 		long samlIdpSsoSessionId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.saml.model.SamlIdpSpSession> orderByComparator);
 
 	/**
 	* Returns the last saml idp sp session in the ordered set where samlIdpSsoSessionId = &#63;.
@@ -112,7 +112,7 @@ public interface SamlIdpSpSessionPersistence extends BasePersistence<SamlIdpSpSe
 	*/
 	public com.liferay.saml.model.SamlIdpSpSession findBySamlIdpSsoSessionId_Last(
 		long samlIdpSsoSessionId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.saml.model.SamlIdpSpSession> orderByComparator)
 		throws com.liferay.saml.NoSuchIdpSpSessionException;
 
 	/**
@@ -124,7 +124,7 @@ public interface SamlIdpSpSessionPersistence extends BasePersistence<SamlIdpSpSe
 	*/
 	public com.liferay.saml.model.SamlIdpSpSession fetchBySamlIdpSsoSessionId_Last(
 		long samlIdpSsoSessionId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.saml.model.SamlIdpSpSession> orderByComparator);
 
 	/**
 	* Returns the saml idp sp sessions before and after the current saml idp sp session in the ordered set where samlIdpSsoSessionId = &#63;.
@@ -137,7 +137,7 @@ public interface SamlIdpSpSessionPersistence extends BasePersistence<SamlIdpSpSe
 	*/
 	public com.liferay.saml.model.SamlIdpSpSession[] findBySamlIdpSsoSessionId_PrevAndNext(
 		long samlIdpSpSessionId, long samlIdpSsoSessionId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.saml.model.SamlIdpSpSession> orderByComparator)
 		throws com.liferay.saml.NoSuchIdpSpSessionException;
 
 	/**
@@ -308,7 +308,7 @@ public interface SamlIdpSpSessionPersistence extends BasePersistence<SamlIdpSpSe
 	*/
 	public java.util.List<com.liferay.saml.model.SamlIdpSpSession> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.saml.model.SamlIdpSpSession> orderByComparator);
 
 	/**
 	* Removes all the saml idp sp sessions from the database.

@@ -60,13 +60,11 @@ public class DefinitionLocalServiceWrapper implements DefinitionLocalService,
 	* @param definitionId the primary key of the definition
 	* @return the definition that was removed
 	* @throws PortalException if a definition with the primary key could not be found
-	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.reports.model.Definition deleteDefinition(
 		long definitionId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _definitionLocalService.deleteDefinition(definitionId);
 	}
 
@@ -76,13 +74,11 @@ public class DefinitionLocalServiceWrapper implements DefinitionLocalService,
 	* @param definition the definition
 	* @return the definition that was removed
 	* @throws PortalException
-	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.reports.model.Definition deleteDefinition(
 		com.liferay.reports.model.Definition definition)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _definitionLocalService.deleteDefinition(definition);
 	}
 
@@ -98,8 +94,7 @@ public class DefinitionLocalServiceWrapper implements DefinitionLocalService,
 	* @return the matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _definitionLocalService.dynamicQuery(dynamicQuery);
 	}
@@ -117,8 +112,7 @@ public class DefinitionLocalServiceWrapper implements DefinitionLocalService,
 	* @return the range of matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		return _definitionLocalService.dynamicQuery(dynamicQuery, start, end);
@@ -138,11 +132,10 @@ public class DefinitionLocalServiceWrapper implements DefinitionLocalService,
 	* @return the ordered range of matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		return _definitionLocalService.dynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
 	}
@@ -356,8 +349,7 @@ public class DefinitionLocalServiceWrapper implements DefinitionLocalService,
 		long sourceId, java.lang.String reportParameters,
 		java.lang.String fileName, java.io.InputStream inputStream,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _definitionLocalService.addDefinition(userId, groupId, nameMap,
 			descriptionMap, sourceId, reportParameters, fileName, inputStream,
 			serviceContext);
@@ -365,16 +357,14 @@ public class DefinitionLocalServiceWrapper implements DefinitionLocalService,
 
 	@Override
 	public void deleteDefinitions(long groupId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		_definitionLocalService.deleteDefinitions(groupId);
 	}
 
 	@Override
 	public void deleteDefinitionTemplates(long companyId,
 		java.lang.String attachmentsDirectory)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		_definitionLocalService.deleteDefinitionTemplates(companyId,
 			attachmentsDirectory);
 	}
@@ -384,8 +374,7 @@ public class DefinitionLocalServiceWrapper implements DefinitionLocalService,
 		long groupId, java.lang.String definitionName,
 		java.lang.String description, java.lang.String sourceId,
 		java.lang.String reportName, boolean andSearch, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return _definitionLocalService.getDefinitions(groupId, definitionName,
 			description, sourceId, reportName, andSearch, start, end,
 			orderByComparator);
@@ -395,8 +384,7 @@ public class DefinitionLocalServiceWrapper implements DefinitionLocalService,
 	public int getDefinitionsCount(long groupId,
 		java.lang.String definitionName, java.lang.String description,
 		java.lang.String sourceId, java.lang.String reportName,
-		boolean andSearch)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		boolean andSearch) {
 		return _definitionLocalService.getDefinitionsCount(groupId,
 			definitionName, description, sourceId, reportName, andSearch);
 	}
@@ -409,8 +397,7 @@ public class DefinitionLocalServiceWrapper implements DefinitionLocalService,
 		long sourceId, java.lang.String reportParameters,
 		java.lang.String fileName, java.io.InputStream inputStream,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _definitionLocalService.updateDefinition(definitionId, nameMap,
 			descriptionMap, sourceId, reportParameters, fileName, inputStream,
 			serviceContext);
@@ -421,8 +408,7 @@ public class DefinitionLocalServiceWrapper implements DefinitionLocalService,
 		com.liferay.reports.model.Definition definition,
 		java.lang.String[] communityPermissions,
 		java.lang.String[] guestPermissions)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		_definitionLocalService.updateDefinitionResources(definition,
 			communityPermissions, guestPermissions);
 	}

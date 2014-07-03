@@ -99,8 +99,7 @@ public class KaleoProcessLinkServiceClp implements KaleoProcessLinkService {
 
 	@Override
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink fetchKaleoProcessLink(
-		long kaleoProcessId, java.lang.String workflowTaskName)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long kaleoProcessId, java.lang.String workflowTaskName) {
 		Object returnObj = null;
 
 		try {
@@ -114,10 +113,6 @@ public class KaleoProcessLinkServiceClp implements KaleoProcessLinkService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -135,8 +130,7 @@ public class KaleoProcessLinkServiceClp implements KaleoProcessLinkService {
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink updateKaleoProcessLink(
 		long kaleoProcessLinkId, long kaleoProcessId,
 		java.lang.String workflowTaskName, long ddmTemplateId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -159,10 +153,6 @@ public class KaleoProcessLinkServiceClp implements KaleoProcessLinkService {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -178,8 +168,7 @@ public class KaleoProcessLinkServiceClp implements KaleoProcessLinkService {
 	@Override
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink updateKaleoProcessLink(
 		long kaleoProcessId, java.lang.String workflowTaskName,
-		long ddmTemplateId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long ddmTemplateId) {
 		Object returnObj = null;
 
 		try {
@@ -195,10 +184,6 @@ public class KaleoProcessLinkServiceClp implements KaleoProcessLinkService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;

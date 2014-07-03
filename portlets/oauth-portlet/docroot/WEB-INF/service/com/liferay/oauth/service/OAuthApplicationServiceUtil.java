@@ -68,30 +68,26 @@ public class OAuthApplicationServiceUtil {
 		boolean shareableAccessToken, java.lang.String callbackURI,
 		java.lang.String websiteURL,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .addOAuthApplication(name, description, accessLevel,
 			shareableAccessToken, callbackURI, websiteURL, serviceContext);
 	}
 
 	public static void deleteLogo(long oAuthApplicationId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().deleteLogo(oAuthApplicationId);
 	}
 
 	public static com.liferay.oauth.model.OAuthApplication deleteOAuthApplication(
 		long oAuthApplicationId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteOAuthApplication(oAuthApplicationId);
 	}
 
 	public static com.liferay.oauth.model.OAuthApplication updateLogo(
 		long oAuthApplicationId, java.io.InputStream inputStream)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().updateLogo(oAuthApplicationId, inputStream);
 	}
 
@@ -100,8 +96,7 @@ public class OAuthApplicationServiceUtil {
 		java.lang.String description, boolean shareableAccessToken,
 		java.lang.String callbackURI, java.lang.String websiteURL,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .updateOAuthApplication(oAuthApplicationId, name,
 			description, shareableAccessToken, callbackURI, websiteURL,

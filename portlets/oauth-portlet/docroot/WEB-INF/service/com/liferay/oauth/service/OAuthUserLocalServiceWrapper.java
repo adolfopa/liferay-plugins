@@ -72,13 +72,11 @@ public class OAuthUserLocalServiceWrapper implements OAuthUserLocalService,
 	* @param oAuthUser the o auth user
 	* @return the o auth user that was removed
 	* @throws PortalException
-	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.oauth.model.OAuthUser deleteOAuthUser(
 		com.liferay.oauth.model.OAuthUser oAuthUser)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _oAuthUserLocalService.deleteOAuthUser(oAuthUser);
 	}
 
@@ -94,8 +92,7 @@ public class OAuthUserLocalServiceWrapper implements OAuthUserLocalService,
 	* @return the matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _oAuthUserLocalService.dynamicQuery(dynamicQuery);
 	}
@@ -113,8 +110,7 @@ public class OAuthUserLocalServiceWrapper implements OAuthUserLocalService,
 	* @return the range of matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		return _oAuthUserLocalService.dynamicQuery(dynamicQuery, start, end);
@@ -134,11 +130,10 @@ public class OAuthUserLocalServiceWrapper implements OAuthUserLocalService,
 	* @return the ordered range of matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		return _oAuthUserLocalService.dynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
 	}
@@ -281,8 +276,7 @@ public class OAuthUserLocalServiceWrapper implements OAuthUserLocalService,
 		long oAuthApplicationId, java.lang.String accessToken,
 		java.lang.String accessSecret,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _oAuthUserLocalService.addOAuthUser(userId, oAuthApplicationId,
 			accessToken, accessSecret, serviceContext);
 	}
@@ -290,68 +284,59 @@ public class OAuthUserLocalServiceWrapper implements OAuthUserLocalService,
 	@Override
 	public com.liferay.oauth.model.OAuthUser deleteOAuthUser(long userId,
 		long oAuthApplicationId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _oAuthUserLocalService.deleteOAuthUser(userId, oAuthApplicationId);
 	}
 
 	@Override
 	public com.liferay.oauth.model.OAuthUser fetchOAuthUser(long userId,
-		long oAuthApplicationId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long oAuthApplicationId) {
 		return _oAuthUserLocalService.fetchOAuthUser(userId, oAuthApplicationId);
 	}
 
 	@Override
 	public com.liferay.oauth.model.OAuthUser fetchOAuthUser(
-		java.lang.String accessToken)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String accessToken) {
 		return _oAuthUserLocalService.fetchOAuthUser(accessToken);
 	}
 
 	@Override
 	public java.util.List<com.liferay.oauth.model.OAuthUser> getOAuthApplicationOAuthUsers(
 		long oAuthApplicationId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return _oAuthUserLocalService.getOAuthApplicationOAuthUsers(oAuthApplicationId,
 			start, end, orderByComparator);
 	}
 
 	@Override
-	public int getOAuthApplicationOAuthUsersCount(long oAuthApplicationId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getOAuthApplicationOAuthUsersCount(long oAuthApplicationId) {
 		return _oAuthUserLocalService.getOAuthApplicationOAuthUsersCount(oAuthApplicationId);
 	}
 
 	@Override
 	public com.liferay.oauth.model.OAuthUser getOAuthUser(long userId,
 		long oAuthApplicationId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _oAuthUserLocalService.getOAuthUser(userId, oAuthApplicationId);
 	}
 
 	@Override
 	public com.liferay.oauth.model.OAuthUser getOAuthUser(
 		java.lang.String accessToken)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _oAuthUserLocalService.getOAuthUser(accessToken);
 	}
 
 	@Override
 	public java.util.List<com.liferay.oauth.model.OAuthUser> getUserOAuthUsers(
 		long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return _oAuthUserLocalService.getUserOAuthUsers(userId, start, end,
 			orderByComparator);
 	}
 
 	@Override
-	public int getUserOAuthUsersCount(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getUserOAuthUsersCount(long userId) {
 		return _oAuthUserLocalService.getUserOAuthUsersCount(userId);
 	}
 
@@ -360,8 +345,7 @@ public class OAuthUserLocalServiceWrapper implements OAuthUserLocalService,
 		long oAuthApplicationId, java.lang.String accessToken,
 		java.lang.String accessSecret,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _oAuthUserLocalService.updateOAuthUser(userId,
 			oAuthApplicationId, accessToken, accessSecret, serviceContext);
 	}

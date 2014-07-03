@@ -186,7 +186,7 @@ public interface SamlSpMessagePersistence extends BasePersistence<SamlSpMessage>
 	*/
 	public java.util.List<com.liferay.saml.model.SamlSpMessage> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.saml.model.SamlSpMessage> orderByComparator);
 
 	/**
 	* Removes all the saml sp messages from the database.

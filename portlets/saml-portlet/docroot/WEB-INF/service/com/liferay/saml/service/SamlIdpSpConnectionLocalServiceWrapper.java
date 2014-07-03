@@ -93,8 +93,7 @@ public class SamlIdpSpConnectionLocalServiceWrapper
 	* @return the matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _samlIdpSpConnectionLocalService.dynamicQuery(dynamicQuery);
 	}
@@ -112,8 +111,7 @@ public class SamlIdpSpConnectionLocalServiceWrapper
 	* @return the range of matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		return _samlIdpSpConnectionLocalService.dynamicQuery(dynamicQuery,
@@ -134,11 +132,10 @@ public class SamlIdpSpConnectionLocalServiceWrapper
 	* @return the ordered range of matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		return _samlIdpSpConnectionLocalService.dynamicQuery(dynamicQuery,
 			start, end, orderByComparator);
 	}
@@ -289,8 +286,7 @@ public class SamlIdpSpConnectionLocalServiceWrapper
 		java.io.InputStream metadataXmlInputStream, java.lang.String name,
 		java.lang.String nameIdAttribute, java.lang.String nameIdFormat,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _samlIdpSpConnectionLocalService.addSamlIdpSpConnection(samlSpEntityId,
 			assertionLifetime, attributeNames, attributesEnabled,
 			attributesNamespaceEnabled, enabled, metadataUrl,
@@ -301,23 +297,20 @@ public class SamlIdpSpConnectionLocalServiceWrapper
 	@Override
 	public com.liferay.saml.model.SamlIdpSpConnection getSamlIdpSpConnection(
 		long companyId, java.lang.String samlSpEntityId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _samlIdpSpConnectionLocalService.getSamlIdpSpConnection(companyId,
 			samlSpEntityId);
 	}
 
 	@Override
 	public java.util.List<com.liferay.saml.model.SamlIdpSpConnection> getSamlIdpSpConnections(
-		long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long companyId) {
 		return _samlIdpSpConnectionLocalService.getSamlIdpSpConnections(companyId);
 	}
 
 	@Override
 	public java.util.List<com.liferay.saml.model.SamlIdpSpConnection> getSamlIdpSpConnections(
-		long companyId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long companyId, int start, int end) {
 		return _samlIdpSpConnectionLocalService.getSamlIdpSpConnections(companyId,
 			start, end);
 	}
@@ -325,22 +318,19 @@ public class SamlIdpSpConnectionLocalServiceWrapper
 	@Override
 	public java.util.List<com.liferay.saml.model.SamlIdpSpConnection> getSamlIdpSpConnections(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return _samlIdpSpConnectionLocalService.getSamlIdpSpConnections(companyId,
 			start, end, orderByComparator);
 	}
 
 	@Override
-	public int getSamlIdpSpConnectionsCount(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getSamlIdpSpConnectionsCount(long companyId) {
 		return _samlIdpSpConnectionLocalService.getSamlIdpSpConnectionsCount(companyId);
 	}
 
 	@Override
 	public void updateMetadata(long samlIdpSpConnectionId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		_samlIdpSpConnectionLocalService.updateMetadata(samlIdpSpConnectionId);
 	}
 
@@ -353,8 +343,7 @@ public class SamlIdpSpConnectionLocalServiceWrapper
 		java.io.InputStream metadataXmlInputStream, java.lang.String name,
 		java.lang.String nameIdAttribute, java.lang.String nameIdFormat,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _samlIdpSpConnectionLocalService.updateSamlIdpSpConnection(samlIdpSpConnectionId,
 			samlSpEntityId, assertionLifetime, attributeNames,
 			attributesEnabled, attributesNamespaceEnabled, enabled,

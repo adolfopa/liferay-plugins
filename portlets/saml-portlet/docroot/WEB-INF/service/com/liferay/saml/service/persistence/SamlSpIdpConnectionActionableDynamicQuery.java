@@ -21,7 +21,7 @@ import com.liferay.saml.service.SamlSpIdpConnectionLocalServiceUtil;
 
 /**
  * @author Mika Koivisto
- * @deprecated As of 7.0.0, replaced by {@link SamlSpIdpConnectionLocalServiceUtil#getExportActionableDynamicQuery()}
+ * @deprecated As of 7.0.0, replaced by {@link SamlSpIdpConnectionLocalServiceUtil#getActionableDynamicQuery()}
  * @generated
  */
 @Deprecated

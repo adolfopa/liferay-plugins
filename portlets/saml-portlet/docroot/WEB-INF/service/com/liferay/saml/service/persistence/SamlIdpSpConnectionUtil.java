@@ -85,7 +85,7 @@ public class SamlIdpSpConnectionUtil {
 	 */
 	public static List<SamlIdpSpConnection> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<SamlIdpSpConnection> orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -150,7 +150,7 @@ public class SamlIdpSpConnectionUtil {
 	*/
 	public static java.util.List<com.liferay.saml.model.SamlIdpSpConnection> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.saml.model.SamlIdpSpConnection> orderByComparator) {
 		return getPersistence()
 				   .findByCompanyId(companyId, start, end, orderByComparator);
 	}
@@ -165,7 +165,7 @@ public class SamlIdpSpConnectionUtil {
 	*/
 	public static com.liferay.saml.model.SamlIdpSpConnection findByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.saml.model.SamlIdpSpConnection> orderByComparator)
 		throws com.liferay.saml.NoSuchIdpSpConnectionException {
 		return getPersistence()
 				   .findByCompanyId_First(companyId, orderByComparator);
@@ -180,7 +180,7 @@ public class SamlIdpSpConnectionUtil {
 	*/
 	public static com.liferay.saml.model.SamlIdpSpConnection fetchByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.saml.model.SamlIdpSpConnection> orderByComparator) {
 		return getPersistence()
 				   .fetchByCompanyId_First(companyId, orderByComparator);
 	}
@@ -195,7 +195,7 @@ public class SamlIdpSpConnectionUtil {
 	*/
 	public static com.liferay.saml.model.SamlIdpSpConnection findByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.saml.model.SamlIdpSpConnection> orderByComparator)
 		throws com.liferay.saml.NoSuchIdpSpConnectionException {
 		return getPersistence()
 				   .findByCompanyId_Last(companyId, orderByComparator);
@@ -210,7 +210,7 @@ public class SamlIdpSpConnectionUtil {
 	*/
 	public static com.liferay.saml.model.SamlIdpSpConnection fetchByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.saml.model.SamlIdpSpConnection> orderByComparator) {
 		return getPersistence()
 				   .fetchByCompanyId_Last(companyId, orderByComparator);
 	}
@@ -226,7 +226,7 @@ public class SamlIdpSpConnectionUtil {
 	*/
 	public static com.liferay.saml.model.SamlIdpSpConnection[] findByCompanyId_PrevAndNext(
 		long samlIdpSpConnectionId, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.saml.model.SamlIdpSpConnection> orderByComparator)
 		throws com.liferay.saml.NoSuchIdpSpConnectionException {
 		return getPersistence()
 				   .findByCompanyId_PrevAndNext(samlIdpSpConnectionId,
@@ -435,7 +435,7 @@ public class SamlIdpSpConnectionUtil {
 	*/
 	public static java.util.List<com.liferay.saml.model.SamlIdpSpConnection> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.saml.model.SamlIdpSpConnection> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

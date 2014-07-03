@@ -440,15 +440,15 @@ public class WebExAccountClp extends BaseModelImpl<WebExAccount>
 	}
 
 	@Override
-	public com.liferay.meeting.webex.model.WebExSite getWebExSite() {
+	public com.liferay.meeting.MeetingContext getMeetingContext() {
 		try {
-			String methodName = "getWebExSite";
+			String methodName = "getMeetingContext";
 
 			Class<?>[] parameterTypes = new Class<?>[] {  };
 
 			Object[] parameterValues = new Object[] {  };
 
-			com.liferay.meeting.webex.model.WebExSite returnObj = (com.liferay.meeting.webex.model.WebExSite)invokeOnRemoteModel(methodName,
+			com.liferay.meeting.MeetingContext returnObj = (com.liferay.meeting.MeetingContext)invokeOnRemoteModel(methodName,
 					parameterTypes, parameterValues);
 
 			return returnObj;
@@ -459,15 +459,15 @@ public class WebExAccountClp extends BaseModelImpl<WebExAccount>
 	}
 
 	@Override
-	public com.liferay.meeting.MeetingContext getMeetingContext() {
+	public com.liferay.meeting.webex.model.WebExSite getWebExSite() {
 		try {
-			String methodName = "getMeetingContext";
+			String methodName = "getWebExSite";
 
 			Class<?>[] parameterTypes = new Class<?>[] {  };
 
 			Object[] parameterValues = new Object[] {  };
 
-			com.liferay.meeting.MeetingContext returnObj = (com.liferay.meeting.MeetingContext)invokeOnRemoteModel(methodName,
+			com.liferay.meeting.webex.model.WebExSite returnObj = (com.liferay.meeting.webex.model.WebExSite)invokeOnRemoteModel(methodName,
 					parameterTypes, parameterValues);
 
 			return returnObj;

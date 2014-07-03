@@ -21,7 +21,7 @@ import com.liferay.saml.service.SamlSpAuthRequestLocalServiceUtil;
 
 /**
  * @author Mika Koivisto
- * @deprecated As of 7.0.0, replaced by {@link SamlSpAuthRequestLocalServiceUtil#getExportActionableDynamicQuery()}
+ * @deprecated As of 7.0.0, replaced by {@link SamlSpAuthRequestLocalServiceUtil#getActionableDynamicQuery()}
  * @generated
  */
 @Deprecated

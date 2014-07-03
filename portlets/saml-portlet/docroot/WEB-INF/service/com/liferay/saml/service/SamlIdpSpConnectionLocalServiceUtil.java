@@ -95,8 +95,7 @@ public class SamlIdpSpConnectionLocalServiceUtil {
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return getService().dynamicQuery(dynamicQuery);
 	}
@@ -113,8 +112,7 @@ public class SamlIdpSpConnectionLocalServiceUtil {
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		return getService().dynamicQuery(dynamicQuery, start, end);
@@ -133,11 +131,10 @@ public class SamlIdpSpConnectionLocalServiceUtil {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		return getService()
 				   .dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
@@ -271,8 +268,7 @@ public class SamlIdpSpConnectionLocalServiceUtil {
 		java.io.InputStream metadataXmlInputStream, java.lang.String name,
 		java.lang.String nameIdAttribute, java.lang.String nameIdFormat,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .addSamlIdpSpConnection(samlSpEntityId, assertionLifetime,
 			attributeNames, attributesEnabled, attributesNamespaceEnabled,
@@ -282,40 +278,34 @@ public class SamlIdpSpConnectionLocalServiceUtil {
 
 	public static com.liferay.saml.model.SamlIdpSpConnection getSamlIdpSpConnection(
 		long companyId, java.lang.String samlSpEntityId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getSamlIdpSpConnection(companyId, samlSpEntityId);
 	}
 
 	public static java.util.List<com.liferay.saml.model.SamlIdpSpConnection> getSamlIdpSpConnections(
-		long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long companyId) {
 		return getService().getSamlIdpSpConnections(companyId);
 	}
 
 	public static java.util.List<com.liferay.saml.model.SamlIdpSpConnection> getSamlIdpSpConnections(
-		long companyId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long companyId, int start, int end) {
 		return getService().getSamlIdpSpConnections(companyId, start, end);
 	}
 
 	public static java.util.List<com.liferay.saml.model.SamlIdpSpConnection> getSamlIdpSpConnections(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getService()
 				   .getSamlIdpSpConnections(companyId, start, end,
 			orderByComparator);
 	}
 
-	public static int getSamlIdpSpConnectionsCount(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int getSamlIdpSpConnectionsCount(long companyId) {
 		return getService().getSamlIdpSpConnectionsCount(companyId);
 	}
 
 	public static void updateMetadata(long samlIdpSpConnectionId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().updateMetadata(samlIdpSpConnectionId);
 	}
 
@@ -327,8 +317,7 @@ public class SamlIdpSpConnectionLocalServiceUtil {
 		java.io.InputStream metadataXmlInputStream, java.lang.String name,
 		java.lang.String nameIdAttribute, java.lang.String nameIdFormat,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .updateSamlIdpSpConnection(samlIdpSpConnectionId,
 			samlSpEntityId, assertionLifetime, attributeNames,

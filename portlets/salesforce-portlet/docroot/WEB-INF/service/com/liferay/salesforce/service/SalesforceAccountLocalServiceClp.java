@@ -106,8 +106,7 @@ public class SalesforceAccountLocalServiceClp
 	@Override
 	public com.liferay.portal.kernel.messaging.MessageBatch getAccountsByName(
 		long companyId, java.lang.String name,
-		java.util.List<java.lang.String> fieldNames)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.util.List<java.lang.String> fieldNames) {
 		Object returnObj = null;
 
 		try {
@@ -123,10 +122,6 @@ public class SalesforceAccountLocalServiceClp
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -144,8 +139,7 @@ public class SalesforceAccountLocalServiceClp
 	public com.liferay.portal.kernel.messaging.MessageBatch getAccountsByOwnerId(
 		long companyId, java.lang.String ownerId,
 		java.util.List<java.lang.String> fieldNames)
-		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException {
 		Object returnObj = null;
 
 		try {
@@ -166,10 +160,6 @@ public class SalesforceAccountLocalServiceClp
 				throw (com.liferay.portal.kernel.dao.orm.ObjectNotFoundException)t;
 			}
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -186,8 +176,7 @@ public class SalesforceAccountLocalServiceClp
 	public com.liferay.portal.kernel.messaging.MessageBatch getAccountsByUserName(
 		long companyId, java.lang.String userName,
 		java.util.List<java.lang.String> fieldNames)
-		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException {
 		Object returnObj = null;
 
 		try {
@@ -206,10 +195,6 @@ public class SalesforceAccountLocalServiceClp
 
 			if (t instanceof com.liferay.portal.kernel.dao.orm.ObjectNotFoundException) {
 				throw (com.liferay.portal.kernel.dao.orm.ObjectNotFoundException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {

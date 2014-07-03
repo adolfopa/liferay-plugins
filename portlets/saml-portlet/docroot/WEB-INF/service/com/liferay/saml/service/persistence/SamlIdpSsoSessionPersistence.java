@@ -184,7 +184,7 @@ public interface SamlIdpSsoSessionPersistence extends BasePersistence<SamlIdpSso
 	*/
 	public java.util.List<com.liferay.saml.model.SamlIdpSsoSession> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.saml.model.SamlIdpSsoSession> orderByComparator);
 
 	/**
 	* Removes all the saml idp sso sessions from the database.

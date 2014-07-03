@@ -66,11 +66,9 @@ public class SourceLocalServiceUtil {
 	* @param sourceId the primary key of the source
 	* @return the source that was removed
 	* @throws PortalException if a source with the primary key could not be found
-	* @throws SystemException
 	*/
 	public static com.liferay.reports.model.Source deleteSource(long sourceId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteSource(sourceId);
 	}
 
@@ -80,12 +78,10 @@ public class SourceLocalServiceUtil {
 	* @param source the source
 	* @return the source that was removed
 	* @throws PortalException
-	* @throws SystemException
 	*/
 	public static com.liferay.reports.model.Source deleteSource(
 		com.liferay.reports.model.Source source)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteSource(source);
 	}
 
@@ -99,8 +95,7 @@ public class SourceLocalServiceUtil {
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return getService().dynamicQuery(dynamicQuery);
 	}
@@ -117,8 +112,7 @@ public class SourceLocalServiceUtil {
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		return getService().dynamicQuery(dynamicQuery, start, end);
@@ -137,11 +131,10 @@ public class SourceLocalServiceUtil {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		return getService()
 				   .dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
@@ -204,11 +197,9 @@ public class SourceLocalServiceUtil {
 	* @param sourceId the primary key of the source
 	* @return the source
 	* @throws PortalException if a source with the primary key could not be found
-	* @throws SystemException
 	*/
 	public static com.liferay.reports.model.Source getSource(long sourceId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getSource(sourceId);
 	}
 
@@ -243,12 +234,10 @@ public class SourceLocalServiceUtil {
 	* @param companyId the primary key of the company
 	* @return the matching source
 	* @throws PortalException if a matching source could not be found
-	* @throws SystemException
 	*/
 	public static com.liferay.reports.model.Source getSourceByUuidAndCompanyId(
 		java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getSourceByUuidAndCompanyId(uuid, companyId);
 	}
 
@@ -259,12 +248,10 @@ public class SourceLocalServiceUtil {
 	* @param groupId the primary key of the group
 	* @return the matching source
 	* @throws PortalException if a matching source could not be found
-	* @throws SystemException
 	*/
 	public static com.liferay.reports.model.Source getSourceByUuidAndGroupId(
 		java.lang.String uuid, long groupId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getSourceByUuidAndGroupId(uuid, groupId);
 	}
 
@@ -334,32 +321,28 @@ public class SourceLocalServiceUtil {
 		java.lang.String driverClassName, java.lang.String driverUrl,
 		java.lang.String driverUserName, java.lang.String driverPassword,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .addSource(userId, groupId, nameMap, driverClassName,
 			driverUrl, driverUserName, driverPassword, serviceContext);
 	}
 
 	public static void deleteSources(long groupId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().deleteSources(groupId);
 	}
 
 	public static java.util.List<com.liferay.reports.model.Source> getSources(
 		long groupId, java.lang.String name, java.lang.String driverUrl,
 		boolean andSearch, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getService()
 				   .getSources(groupId, name, driverUrl, andSearch, start, end,
 			orderByComparator);
 	}
 
 	public static int getSourcesCount(long groupId, java.lang.String name,
-		java.lang.String driverUrl, boolean andSearch)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String driverUrl, boolean andSearch) {
 		return getService().getSourcesCount(groupId, name, driverUrl, andSearch);
 	}
 
@@ -368,8 +351,7 @@ public class SourceLocalServiceUtil {
 		java.lang.String driverClassName, java.lang.String driverUrl,
 		java.lang.String driverUserName, java.lang.String driverPassword,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .updateSource(sourceId, nameMap, driverClassName, driverUrl,
 			driverUserName, driverPassword, serviceContext);

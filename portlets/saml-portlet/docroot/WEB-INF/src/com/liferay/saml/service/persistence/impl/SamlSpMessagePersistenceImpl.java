@@ -933,7 +933,7 @@ public class SamlSpMessagePersistenceImpl extends BasePersistenceImpl<SamlSpMess
 	 */
 	@Override
 	public List<SamlSpMessage> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<SamlSpMessage> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

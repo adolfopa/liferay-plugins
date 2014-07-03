@@ -76,7 +76,7 @@ public interface WebExAccountPersistence extends BasePersistence<WebExAccount> {
 	*/
 	public java.util.List<com.liferay.meeting.webex.model.WebExAccount> findByUuid(
 		java.lang.String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExAccount> orderByComparator);
 
 	/**
 	* Returns the first web ex account in the ordered set where uuid = &#63;.
@@ -88,7 +88,7 @@ public interface WebExAccountPersistence extends BasePersistence<WebExAccount> {
 	*/
 	public com.liferay.meeting.webex.model.WebExAccount findByUuid_First(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExAccount> orderByComparator)
 		throws com.liferay.meeting.webex.NoSuchAccountException;
 
 	/**
@@ -100,7 +100,7 @@ public interface WebExAccountPersistence extends BasePersistence<WebExAccount> {
 	*/
 	public com.liferay.meeting.webex.model.WebExAccount fetchByUuid_First(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExAccount> orderByComparator);
 
 	/**
 	* Returns the last web ex account in the ordered set where uuid = &#63;.
@@ -112,7 +112,7 @@ public interface WebExAccountPersistence extends BasePersistence<WebExAccount> {
 	*/
 	public com.liferay.meeting.webex.model.WebExAccount findByUuid_Last(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExAccount> orderByComparator)
 		throws com.liferay.meeting.webex.NoSuchAccountException;
 
 	/**
@@ -124,7 +124,7 @@ public interface WebExAccountPersistence extends BasePersistence<WebExAccount> {
 	*/
 	public com.liferay.meeting.webex.model.WebExAccount fetchByUuid_Last(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExAccount> orderByComparator);
 
 	/**
 	* Returns the web ex accounts before and after the current web ex account in the ordered set where uuid = &#63;.
@@ -137,7 +137,7 @@ public interface WebExAccountPersistence extends BasePersistence<WebExAccount> {
 	*/
 	public com.liferay.meeting.webex.model.WebExAccount[] findByUuid_PrevAndNext(
 		long webExAccountId, java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExAccount> orderByComparator)
 		throws com.liferay.meeting.webex.NoSuchAccountException;
 
 	/**
@@ -250,7 +250,7 @@ public interface WebExAccountPersistence extends BasePersistence<WebExAccount> {
 	*/
 	public java.util.List<com.liferay.meeting.webex.model.WebExAccount> findByUuid_C(
 		java.lang.String uuid, long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExAccount> orderByComparator);
 
 	/**
 	* Returns the first web ex account in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -263,7 +263,7 @@ public interface WebExAccountPersistence extends BasePersistence<WebExAccount> {
 	*/
 	public com.liferay.meeting.webex.model.WebExAccount findByUuid_C_First(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExAccount> orderByComparator)
 		throws com.liferay.meeting.webex.NoSuchAccountException;
 
 	/**
@@ -276,7 +276,7 @@ public interface WebExAccountPersistence extends BasePersistence<WebExAccount> {
 	*/
 	public com.liferay.meeting.webex.model.WebExAccount fetchByUuid_C_First(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExAccount> orderByComparator);
 
 	/**
 	* Returns the last web ex account in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -289,7 +289,7 @@ public interface WebExAccountPersistence extends BasePersistence<WebExAccount> {
 	*/
 	public com.liferay.meeting.webex.model.WebExAccount findByUuid_C_Last(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExAccount> orderByComparator)
 		throws com.liferay.meeting.webex.NoSuchAccountException;
 
 	/**
@@ -302,7 +302,7 @@ public interface WebExAccountPersistence extends BasePersistence<WebExAccount> {
 	*/
 	public com.liferay.meeting.webex.model.WebExAccount fetchByUuid_C_Last(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExAccount> orderByComparator);
 
 	/**
 	* Returns the web ex accounts before and after the current web ex account in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -316,7 +316,7 @@ public interface WebExAccountPersistence extends BasePersistence<WebExAccount> {
 	*/
 	public com.liferay.meeting.webex.model.WebExAccount[] findByUuid_C_PrevAndNext(
 		long webExAccountId, java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExAccount> orderByComparator)
 		throws com.liferay.meeting.webex.NoSuchAccountException;
 
 	/**
@@ -378,7 +378,7 @@ public interface WebExAccountPersistence extends BasePersistence<WebExAccount> {
 	*/
 	public java.util.List<com.liferay.meeting.webex.model.WebExAccount> findByG_W(
 		long groupId, long webExSiteId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExAccount> orderByComparator);
 
 	/**
 	* Returns the first web ex account in the ordered set where groupId = &#63; and webExSiteId = &#63;.
@@ -391,7 +391,7 @@ public interface WebExAccountPersistence extends BasePersistence<WebExAccount> {
 	*/
 	public com.liferay.meeting.webex.model.WebExAccount findByG_W_First(
 		long groupId, long webExSiteId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExAccount> orderByComparator)
 		throws com.liferay.meeting.webex.NoSuchAccountException;
 
 	/**
@@ -404,7 +404,7 @@ public interface WebExAccountPersistence extends BasePersistence<WebExAccount> {
 	*/
 	public com.liferay.meeting.webex.model.WebExAccount fetchByG_W_First(
 		long groupId, long webExSiteId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExAccount> orderByComparator);
 
 	/**
 	* Returns the last web ex account in the ordered set where groupId = &#63; and webExSiteId = &#63;.
@@ -417,7 +417,7 @@ public interface WebExAccountPersistence extends BasePersistence<WebExAccount> {
 	*/
 	public com.liferay.meeting.webex.model.WebExAccount findByG_W_Last(
 		long groupId, long webExSiteId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExAccount> orderByComparator)
 		throws com.liferay.meeting.webex.NoSuchAccountException;
 
 	/**
@@ -430,7 +430,7 @@ public interface WebExAccountPersistence extends BasePersistence<WebExAccount> {
 	*/
 	public com.liferay.meeting.webex.model.WebExAccount fetchByG_W_Last(
 		long groupId, long webExSiteId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExAccount> orderByComparator);
 
 	/**
 	* Returns the web ex accounts before and after the current web ex account in the ordered set where groupId = &#63; and webExSiteId = &#63;.
@@ -444,7 +444,7 @@ public interface WebExAccountPersistence extends BasePersistence<WebExAccount> {
 	*/
 	public com.liferay.meeting.webex.model.WebExAccount[] findByG_W_PrevAndNext(
 		long webExAccountId, long groupId, long webExSiteId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExAccount> orderByComparator)
 		throws com.liferay.meeting.webex.NoSuchAccountException;
 
 	/**
@@ -489,7 +489,7 @@ public interface WebExAccountPersistence extends BasePersistence<WebExAccount> {
 	*/
 	public java.util.List<com.liferay.meeting.webex.model.WebExAccount> filterFindByG_W(
 		long groupId, long webExSiteId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExAccount> orderByComparator);
 
 	/**
 	* Returns the web ex accounts before and after the current web ex account in the ordered set of web ex accounts that the user has permission to view where groupId = &#63; and webExSiteId = &#63;.
@@ -503,7 +503,7 @@ public interface WebExAccountPersistence extends BasePersistence<WebExAccount> {
 	*/
 	public com.liferay.meeting.webex.model.WebExAccount[] filterFindByG_W_PrevAndNext(
 		long webExAccountId, long groupId, long webExSiteId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExAccount> orderByComparator)
 		throws com.liferay.meeting.webex.NoSuchAccountException;
 
 	/**
@@ -630,7 +630,7 @@ public interface WebExAccountPersistence extends BasePersistence<WebExAccount> {
 	*/
 	public java.util.List<com.liferay.meeting.webex.model.WebExAccount> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExAccount> orderByComparator);
 
 	/**
 	* Removes all the web ex accounts from the database.

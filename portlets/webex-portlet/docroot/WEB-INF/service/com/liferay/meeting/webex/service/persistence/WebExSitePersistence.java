@@ -76,7 +76,7 @@ public interface WebExSitePersistence extends BasePersistence<WebExSite> {
 	*/
 	public java.util.List<com.liferay.meeting.webex.model.WebExSite> findByUuid(
 		java.lang.String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExSite> orderByComparator);
 
 	/**
 	* Returns the first web ex site in the ordered set where uuid = &#63;.
@@ -88,7 +88,7 @@ public interface WebExSitePersistence extends BasePersistence<WebExSite> {
 	*/
 	public com.liferay.meeting.webex.model.WebExSite findByUuid_First(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExSite> orderByComparator)
 		throws com.liferay.meeting.webex.NoSuchSiteException;
 
 	/**
@@ -100,7 +100,7 @@ public interface WebExSitePersistence extends BasePersistence<WebExSite> {
 	*/
 	public com.liferay.meeting.webex.model.WebExSite fetchByUuid_First(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExSite> orderByComparator);
 
 	/**
 	* Returns the last web ex site in the ordered set where uuid = &#63;.
@@ -112,7 +112,7 @@ public interface WebExSitePersistence extends BasePersistence<WebExSite> {
 	*/
 	public com.liferay.meeting.webex.model.WebExSite findByUuid_Last(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExSite> orderByComparator)
 		throws com.liferay.meeting.webex.NoSuchSiteException;
 
 	/**
@@ -124,7 +124,7 @@ public interface WebExSitePersistence extends BasePersistence<WebExSite> {
 	*/
 	public com.liferay.meeting.webex.model.WebExSite fetchByUuid_Last(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExSite> orderByComparator);
 
 	/**
 	* Returns the web ex sites before and after the current web ex site in the ordered set where uuid = &#63;.
@@ -137,7 +137,7 @@ public interface WebExSitePersistence extends BasePersistence<WebExSite> {
 	*/
 	public com.liferay.meeting.webex.model.WebExSite[] findByUuid_PrevAndNext(
 		long webExSiteId, java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExSite> orderByComparator)
 		throws com.liferay.meeting.webex.NoSuchSiteException;
 
 	/**
@@ -250,7 +250,7 @@ public interface WebExSitePersistence extends BasePersistence<WebExSite> {
 	*/
 	public java.util.List<com.liferay.meeting.webex.model.WebExSite> findByUuid_C(
 		java.lang.String uuid, long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExSite> orderByComparator);
 
 	/**
 	* Returns the first web ex site in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -263,7 +263,7 @@ public interface WebExSitePersistence extends BasePersistence<WebExSite> {
 	*/
 	public com.liferay.meeting.webex.model.WebExSite findByUuid_C_First(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExSite> orderByComparator)
 		throws com.liferay.meeting.webex.NoSuchSiteException;
 
 	/**
@@ -276,7 +276,7 @@ public interface WebExSitePersistence extends BasePersistence<WebExSite> {
 	*/
 	public com.liferay.meeting.webex.model.WebExSite fetchByUuid_C_First(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExSite> orderByComparator);
 
 	/**
 	* Returns the last web ex site in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -289,7 +289,7 @@ public interface WebExSitePersistence extends BasePersistence<WebExSite> {
 	*/
 	public com.liferay.meeting.webex.model.WebExSite findByUuid_C_Last(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExSite> orderByComparator)
 		throws com.liferay.meeting.webex.NoSuchSiteException;
 
 	/**
@@ -302,7 +302,7 @@ public interface WebExSitePersistence extends BasePersistence<WebExSite> {
 	*/
 	public com.liferay.meeting.webex.model.WebExSite fetchByUuid_C_Last(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExSite> orderByComparator);
 
 	/**
 	* Returns the web ex sites before and after the current web ex site in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -316,7 +316,7 @@ public interface WebExSitePersistence extends BasePersistence<WebExSite> {
 	*/
 	public com.liferay.meeting.webex.model.WebExSite[] findByUuid_C_PrevAndNext(
 		long webExSiteId, java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExSite> orderByComparator)
 		throws com.liferay.meeting.webex.NoSuchSiteException;
 
 	/**
@@ -375,7 +375,7 @@ public interface WebExSitePersistence extends BasePersistence<WebExSite> {
 	*/
 	public java.util.List<com.liferay.meeting.webex.model.WebExSite> findByGroupId(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExSite> orderByComparator);
 
 	/**
 	* Returns the first web ex site in the ordered set where groupId = &#63;.
@@ -387,7 +387,7 @@ public interface WebExSitePersistence extends BasePersistence<WebExSite> {
 	*/
 	public com.liferay.meeting.webex.model.WebExSite findByGroupId_First(
 		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExSite> orderByComparator)
 		throws com.liferay.meeting.webex.NoSuchSiteException;
 
 	/**
@@ -399,7 +399,7 @@ public interface WebExSitePersistence extends BasePersistence<WebExSite> {
 	*/
 	public com.liferay.meeting.webex.model.WebExSite fetchByGroupId_First(
 		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExSite> orderByComparator);
 
 	/**
 	* Returns the last web ex site in the ordered set where groupId = &#63;.
@@ -411,7 +411,7 @@ public interface WebExSitePersistence extends BasePersistence<WebExSite> {
 	*/
 	public com.liferay.meeting.webex.model.WebExSite findByGroupId_Last(
 		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExSite> orderByComparator)
 		throws com.liferay.meeting.webex.NoSuchSiteException;
 
 	/**
@@ -423,7 +423,7 @@ public interface WebExSitePersistence extends BasePersistence<WebExSite> {
 	*/
 	public com.liferay.meeting.webex.model.WebExSite fetchByGroupId_Last(
 		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExSite> orderByComparator);
 
 	/**
 	* Returns the web ex sites before and after the current web ex site in the ordered set where groupId = &#63;.
@@ -436,7 +436,7 @@ public interface WebExSitePersistence extends BasePersistence<WebExSite> {
 	*/
 	public com.liferay.meeting.webex.model.WebExSite[] findByGroupId_PrevAndNext(
 		long webExSiteId, long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExSite> orderByComparator)
 		throws com.liferay.meeting.webex.NoSuchSiteException;
 
 	/**
@@ -478,7 +478,7 @@ public interface WebExSitePersistence extends BasePersistence<WebExSite> {
 	*/
 	public java.util.List<com.liferay.meeting.webex.model.WebExSite> filterFindByGroupId(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExSite> orderByComparator);
 
 	/**
 	* Returns the web ex sites before and after the current web ex site in the ordered set of web ex sites that the user has permission to view where groupId = &#63;.
@@ -491,7 +491,7 @@ public interface WebExSitePersistence extends BasePersistence<WebExSite> {
 	*/
 	public com.liferay.meeting.webex.model.WebExSite[] filterFindByGroupId_PrevAndNext(
 		long webExSiteId, long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExSite> orderByComparator)
 		throws com.liferay.meeting.webex.NoSuchSiteException;
 
 	/**
@@ -657,7 +657,7 @@ public interface WebExSitePersistence extends BasePersistence<WebExSite> {
 	*/
 	public java.util.List<com.liferay.meeting.webex.model.WebExSite> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExSite> orderByComparator);
 
 	/**
 	* Removes all the web ex sites from the database.

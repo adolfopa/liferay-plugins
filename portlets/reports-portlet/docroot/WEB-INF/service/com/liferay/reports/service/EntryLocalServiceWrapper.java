@@ -58,12 +58,10 @@ public class EntryLocalServiceWrapper implements EntryLocalService,
 	* @param entryId the primary key of the entry
 	* @return the entry that was removed
 	* @throws PortalException if a entry with the primary key could not be found
-	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.reports.model.Entry deleteEntry(long entryId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _entryLocalService.deleteEntry(entryId);
 	}
 
@@ -73,13 +71,11 @@ public class EntryLocalServiceWrapper implements EntryLocalService,
 	* @param entry the entry
 	* @return the entry that was removed
 	* @throws PortalException
-	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.reports.model.Entry deleteEntry(
 		com.liferay.reports.model.Entry entry)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _entryLocalService.deleteEntry(entry);
 	}
 
@@ -95,8 +91,7 @@ public class EntryLocalServiceWrapper implements EntryLocalService,
 	* @return the matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _entryLocalService.dynamicQuery(dynamicQuery);
 	}
@@ -114,8 +109,7 @@ public class EntryLocalServiceWrapper implements EntryLocalService,
 	* @return the range of matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		return _entryLocalService.dynamicQuery(dynamicQuery, start, end);
@@ -135,11 +129,10 @@ public class EntryLocalServiceWrapper implements EntryLocalService,
 	* @return the ordered range of matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		return _entryLocalService.dynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
 	}
@@ -285,8 +278,7 @@ public class EntryLocalServiceWrapper implements EntryLocalService,
 		java.lang.String pageURL, java.lang.String reportName,
 		java.lang.String reportParameters,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _entryLocalService.addEntry(userId, groupId, definitionId,
 			format, schedulerRequest, startDate, endDate, repeating,
 			recurrence, emailNotifications, emailDelivery, portletId, pageURL,
@@ -296,8 +288,7 @@ public class EntryLocalServiceWrapper implements EntryLocalService,
 	@Override
 	public void addEntryResources(com.liferay.reports.model.Entry entry,
 		boolean addCommunityPermissions, boolean addGuestPermissions)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		_entryLocalService.addEntryResources(entry, addCommunityPermissions,
 			addGuestPermissions);
 	}
@@ -306,30 +297,26 @@ public class EntryLocalServiceWrapper implements EntryLocalService,
 	public void addEntryResources(com.liferay.reports.model.Entry entry,
 		java.lang.String[] communityPermissions,
 		java.lang.String[] guestPermissions)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		_entryLocalService.addEntryResources(entry, communityPermissions,
 			guestPermissions);
 	}
 
 	@Override
 	public void deleteAttachment(long companyId, java.lang.String fileName)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		_entryLocalService.deleteAttachment(companyId, fileName);
 	}
 
 	@Override
 	public void generateReport(long entryId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		_entryLocalService.generateReport(entryId);
 	}
 
 	@Override
 	public void generateReport(long entryId, java.lang.String reportName)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		_entryLocalService.generateReport(entryId, reportName);
 	}
 
@@ -338,8 +325,7 @@ public class EntryLocalServiceWrapper implements EntryLocalService,
 		long groupId, java.lang.String definitionName,
 		java.lang.String userName, java.util.Date createDateGT,
 		java.util.Date createDateLT, boolean andSearch, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return _entryLocalService.getEntries(groupId, definitionName, userName,
 			createDateGT, createDateLT, andSearch, start, end, orderByComparator);
 	}
@@ -347,8 +333,7 @@ public class EntryLocalServiceWrapper implements EntryLocalService,
 	@Override
 	public int getEntriesCount(long groupId, java.lang.String definitionName,
 		java.lang.String userName, java.util.Date createDateGT,
-		java.util.Date createDateLT, boolean andSearch)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.util.Date createDateLT, boolean andSearch) {
 		return _entryLocalService.getEntriesCount(groupId, definitionName,
 			userName, createDateGT, createDateLT, andSearch);
 	}
@@ -356,32 +341,28 @@ public class EntryLocalServiceWrapper implements EntryLocalService,
 	@Override
 	public void sendEmails(long entryId, java.lang.String fileName,
 		java.lang.String[] emailAddresses, boolean notification)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		_entryLocalService.sendEmails(entryId, fileName, emailAddresses,
 			notification);
 	}
 
 	@Override
 	public void unscheduleEntry(long entryId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		_entryLocalService.unscheduleEntry(entryId);
 	}
 
 	@Override
 	public void updateEntry(long entryId, java.lang.String reportName,
 		byte[] reportResults)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		_entryLocalService.updateEntry(entryId, reportName, reportResults);
 	}
 
 	@Override
 	public void updateEntryStatus(long entryId,
 		com.liferay.reports.ReportStatus status, java.lang.String errorMessage)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		_entryLocalService.updateEntryStatus(entryId, status, errorMessage);
 	}
 

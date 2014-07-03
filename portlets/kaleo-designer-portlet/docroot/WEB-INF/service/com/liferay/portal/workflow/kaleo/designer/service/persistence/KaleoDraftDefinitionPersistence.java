@@ -75,7 +75,7 @@ public interface KaleoDraftDefinitionPersistence extends BasePersistence<KaleoDr
 	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition> orderByComparator);
 
 	/**
 	* Returns the first kaleo draft definition in the ordered set where companyId = &#63;.
@@ -87,7 +87,7 @@ public interface KaleoDraftDefinitionPersistence extends BasePersistence<KaleoDr
 	*/
 	public com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition findByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.designer.NoSuchKaleoDraftDefinitionException;
 
 	/**
@@ -99,7 +99,7 @@ public interface KaleoDraftDefinitionPersistence extends BasePersistence<KaleoDr
 	*/
 	public com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition fetchByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition> orderByComparator);
 
 	/**
 	* Returns the last kaleo draft definition in the ordered set where companyId = &#63;.
@@ -111,7 +111,7 @@ public interface KaleoDraftDefinitionPersistence extends BasePersistence<KaleoDr
 	*/
 	public com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition findByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.designer.NoSuchKaleoDraftDefinitionException;
 
 	/**
@@ -123,7 +123,7 @@ public interface KaleoDraftDefinitionPersistence extends BasePersistence<KaleoDr
 	*/
 	public com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition fetchByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition> orderByComparator);
 
 	/**
 	* Returns the kaleo draft definitions before and after the current kaleo draft definition in the ordered set where companyId = &#63;.
@@ -136,7 +136,7 @@ public interface KaleoDraftDefinitionPersistence extends BasePersistence<KaleoDr
 	*/
 	public com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition[] findByCompanyId_PrevAndNext(
 		long kaleoDraftDefinitionId, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.designer.NoSuchKaleoDraftDefinitionException;
 
 	/**
@@ -199,7 +199,7 @@ public interface KaleoDraftDefinitionPersistence extends BasePersistence<KaleoDr
 	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition> findByC_N_V(
 		long companyId, java.lang.String name, int version, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition> orderByComparator);
 
 	/**
 	* Returns the first kaleo draft definition in the ordered set where companyId = &#63; and name = &#63; and version = &#63;.
@@ -213,7 +213,7 @@ public interface KaleoDraftDefinitionPersistence extends BasePersistence<KaleoDr
 	*/
 	public com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition findByC_N_V_First(
 		long companyId, java.lang.String name, int version,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.designer.NoSuchKaleoDraftDefinitionException;
 
 	/**
@@ -227,7 +227,7 @@ public interface KaleoDraftDefinitionPersistence extends BasePersistence<KaleoDr
 	*/
 	public com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition fetchByC_N_V_First(
 		long companyId, java.lang.String name, int version,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition> orderByComparator);
 
 	/**
 	* Returns the last kaleo draft definition in the ordered set where companyId = &#63; and name = &#63; and version = &#63;.
@@ -241,7 +241,7 @@ public interface KaleoDraftDefinitionPersistence extends BasePersistence<KaleoDr
 	*/
 	public com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition findByC_N_V_Last(
 		long companyId, java.lang.String name, int version,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.designer.NoSuchKaleoDraftDefinitionException;
 
 	/**
@@ -255,7 +255,7 @@ public interface KaleoDraftDefinitionPersistence extends BasePersistence<KaleoDr
 	*/
 	public com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition fetchByC_N_V_Last(
 		long companyId, java.lang.String name, int version,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition> orderByComparator);
 
 	/**
 	* Returns the kaleo draft definitions before and after the current kaleo draft definition in the ordered set where companyId = &#63; and name = &#63; and version = &#63;.
@@ -271,7 +271,7 @@ public interface KaleoDraftDefinitionPersistence extends BasePersistence<KaleoDr
 	public com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition[] findByC_N_V_PrevAndNext(
 		long kaleoDraftDefinitionId, long companyId, java.lang.String name,
 		int version,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.designer.NoSuchKaleoDraftDefinitionException;
 
 	/**
@@ -456,7 +456,7 @@ public interface KaleoDraftDefinitionPersistence extends BasePersistence<KaleoDr
 	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition> orderByComparator);
 
 	/**
 	* Removes all the kaleo draft definitions from the database.

@@ -154,7 +154,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 */
 	@Override
 	public List<Definition> findByUuid(String uuid, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Definition> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -274,7 +274,8 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 */
 	@Override
 	public Definition findByUuid_First(String uuid,
-		OrderByComparator orderByComparator) throws NoSuchDefinitionException {
+		OrderByComparator<Definition> orderByComparator)
+		throws NoSuchDefinitionException {
 		Definition definition = fetchByUuid_First(uuid, orderByComparator);
 
 		if (definition != null) {
@@ -302,7 +303,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 */
 	@Override
 	public Definition fetchByUuid_First(String uuid,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Definition> orderByComparator) {
 		List<Definition> list = findByUuid(uuid, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -322,7 +323,8 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 */
 	@Override
 	public Definition findByUuid_Last(String uuid,
-		OrderByComparator orderByComparator) throws NoSuchDefinitionException {
+		OrderByComparator<Definition> orderByComparator)
+		throws NoSuchDefinitionException {
 		Definition definition = fetchByUuid_Last(uuid, orderByComparator);
 
 		if (definition != null) {
@@ -350,7 +352,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 */
 	@Override
 	public Definition fetchByUuid_Last(String uuid,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Definition> orderByComparator) {
 		int count = countByUuid(uuid);
 
 		if (count == 0) {
@@ -378,7 +380,8 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 */
 	@Override
 	public Definition[] findByUuid_PrevAndNext(long definitionId, String uuid,
-		OrderByComparator orderByComparator) throws NoSuchDefinitionException {
+		OrderByComparator<Definition> orderByComparator)
+		throws NoSuchDefinitionException {
 		Definition definition = findByPrimaryKey(definitionId);
 
 		Session session = null;
@@ -408,7 +411,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 
 	protected Definition getByUuid_PrevAndNext(Session session,
 		Definition definition, String uuid,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<Definition> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -933,7 +936,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 */
 	@Override
 	public List<Definition> findByUuid_C(String uuid, long companyId,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<Definition> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1063,7 +1066,8 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 */
 	@Override
 	public Definition findByUuid_C_First(String uuid, long companyId,
-		OrderByComparator orderByComparator) throws NoSuchDefinitionException {
+		OrderByComparator<Definition> orderByComparator)
+		throws NoSuchDefinitionException {
 		Definition definition = fetchByUuid_C_First(uuid, companyId,
 				orderByComparator);
 
@@ -1096,7 +1100,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 */
 	@Override
 	public Definition fetchByUuid_C_First(String uuid, long companyId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Definition> orderByComparator) {
 		List<Definition> list = findByUuid_C(uuid, companyId, 0, 1,
 				orderByComparator);
 
@@ -1118,7 +1122,8 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 */
 	@Override
 	public Definition findByUuid_C_Last(String uuid, long companyId,
-		OrderByComparator orderByComparator) throws NoSuchDefinitionException {
+		OrderByComparator<Definition> orderByComparator)
+		throws NoSuchDefinitionException {
 		Definition definition = fetchByUuid_C_Last(uuid, companyId,
 				orderByComparator);
 
@@ -1151,7 +1156,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 */
 	@Override
 	public Definition fetchByUuid_C_Last(String uuid, long companyId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Definition> orderByComparator) {
 		int count = countByUuid_C(uuid, companyId);
 
 		if (count == 0) {
@@ -1180,7 +1185,8 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 */
 	@Override
 	public Definition[] findByUuid_C_PrevAndNext(long definitionId,
-		String uuid, long companyId, OrderByComparator orderByComparator)
+		String uuid, long companyId,
+		OrderByComparator<Definition> orderByComparator)
 		throws NoSuchDefinitionException {
 		Definition definition = findByPrimaryKey(definitionId);
 
@@ -1211,7 +1217,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 
 	protected Definition getByUuid_C_PrevAndNext(Session session,
 		Definition definition, String uuid, long companyId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<Definition> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1485,7 +1491,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 */
 	@Override
 	public List<Definition> findByGroupId(long groupId, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Definition> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1591,7 +1597,8 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 */
 	@Override
 	public Definition findByGroupId_First(long groupId,
-		OrderByComparator orderByComparator) throws NoSuchDefinitionException {
+		OrderByComparator<Definition> orderByComparator)
+		throws NoSuchDefinitionException {
 		Definition definition = fetchByGroupId_First(groupId, orderByComparator);
 
 		if (definition != null) {
@@ -1619,7 +1626,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 */
 	@Override
 	public Definition fetchByGroupId_First(long groupId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Definition> orderByComparator) {
 		List<Definition> list = findByGroupId(groupId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -1639,7 +1646,8 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 */
 	@Override
 	public Definition findByGroupId_Last(long groupId,
-		OrderByComparator orderByComparator) throws NoSuchDefinitionException {
+		OrderByComparator<Definition> orderByComparator)
+		throws NoSuchDefinitionException {
 		Definition definition = fetchByGroupId_Last(groupId, orderByComparator);
 
 		if (definition != null) {
@@ -1667,7 +1675,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 */
 	@Override
 	public Definition fetchByGroupId_Last(long groupId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Definition> orderByComparator) {
 		int count = countByGroupId(groupId);
 
 		if (count == 0) {
@@ -1695,7 +1703,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 */
 	@Override
 	public Definition[] findByGroupId_PrevAndNext(long definitionId,
-		long groupId, OrderByComparator orderByComparator)
+		long groupId, OrderByComparator<Definition> orderByComparator)
 		throws NoSuchDefinitionException {
 		Definition definition = findByPrimaryKey(definitionId);
 
@@ -1726,7 +1734,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 
 	protected Definition getByGroupId_PrevAndNext(Session session,
 		Definition definition, long groupId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<Definition> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1873,7 +1881,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 */
 	@Override
 	public List<Definition> filterFindByGroupId(long groupId, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<Definition> orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByGroupId(groupId, start, end, orderByComparator);
 		}
@@ -1963,7 +1971,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 */
 	@Override
 	public Definition[] filterFindByGroupId_PrevAndNext(long definitionId,
-		long groupId, OrderByComparator orderByComparator)
+		long groupId, OrderByComparator<Definition> orderByComparator)
 		throws NoSuchDefinitionException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByGroupId_PrevAndNext(definitionId, groupId,
@@ -1999,7 +2007,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 
 	protected Definition filterGetByGroupId_PrevAndNext(Session session,
 		Definition definition, long groupId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<Definition> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -2317,7 +2325,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 */
 	@Override
 	public List<Definition> findByCompanyId(long companyId, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Definition> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -2423,7 +2431,8 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 */
 	@Override
 	public Definition findByCompanyId_First(long companyId,
-		OrderByComparator orderByComparator) throws NoSuchDefinitionException {
+		OrderByComparator<Definition> orderByComparator)
+		throws NoSuchDefinitionException {
 		Definition definition = fetchByCompanyId_First(companyId,
 				orderByComparator);
 
@@ -2452,7 +2461,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 */
 	@Override
 	public Definition fetchByCompanyId_First(long companyId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Definition> orderByComparator) {
 		List<Definition> list = findByCompanyId(companyId, 0, 1,
 				orderByComparator);
 
@@ -2473,7 +2482,8 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 */
 	@Override
 	public Definition findByCompanyId_Last(long companyId,
-		OrderByComparator orderByComparator) throws NoSuchDefinitionException {
+		OrderByComparator<Definition> orderByComparator)
+		throws NoSuchDefinitionException {
 		Definition definition = fetchByCompanyId_Last(companyId,
 				orderByComparator);
 
@@ -2502,7 +2512,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 */
 	@Override
 	public Definition fetchByCompanyId_Last(long companyId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Definition> orderByComparator) {
 		int count = countByCompanyId(companyId);
 
 		if (count == 0) {
@@ -2530,7 +2540,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 */
 	@Override
 	public Definition[] findByCompanyId_PrevAndNext(long definitionId,
-		long companyId, OrderByComparator orderByComparator)
+		long companyId, OrderByComparator<Definition> orderByComparator)
 		throws NoSuchDefinitionException {
 		Definition definition = findByPrimaryKey(definitionId);
 
@@ -2561,7 +2571,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 
 	protected Definition getByCompanyId_PrevAndNext(Session session,
 		Definition definition, long companyId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<Definition> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -3359,7 +3369,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 */
 	@Override
 	public List<Definition> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Definition> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

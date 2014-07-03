@@ -680,25 +680,6 @@ public class SPIDefinitionClp extends BaseModelImpl<SPIDefinition>
 	}
 
 	@Override
-	public java.lang.String getBaseDir() {
-		try {
-			String methodName = "getBaseDir";
-
-			Class<?>[] parameterTypes = new Class<?>[] {  };
-
-			Object[] parameterValues = new Object[] {  };
-
-			java.lang.String returnObj = (java.lang.String)invokeOnRemoteModel(methodName,
-					parameterTypes, parameterValues);
-
-			return returnObj;
-		}
-		catch (Exception e) {
-			throw new UnsupportedOperationException(e);
-		}
-	}
-
-	@Override
 	public com.liferay.portal.kernel.resiliency.spi.SPI getSPI() {
 		try {
 			String methodName = "getSPI";
@@ -727,6 +708,25 @@ public class SPIDefinitionClp extends BaseModelImpl<SPIDefinition>
 			Object[] parameterValues = new Object[] {  };
 
 			Long returnObj = (Long)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
+	}
+
+	@Override
+	public java.lang.String getBaseDir() {
+		try {
+			String methodName = "getBaseDir";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			java.lang.String returnObj = (java.lang.String)invokeOnRemoteModel(methodName,
 					parameterTypes, parameterValues);
 
 			return returnObj;

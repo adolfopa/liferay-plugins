@@ -61,8 +61,7 @@ public class WebExSiteServiceWrapper implements WebExSiteService,
 		java.lang.String apiURL, java.lang.String login,
 		java.lang.String password, java.lang.String partnerKey, long siteKey,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		_webExSiteService.addWebExSite(groupId, name, apiURL, login, password,
 			partnerKey, siteKey, serviceContext);
 	}
@@ -70,38 +69,33 @@ public class WebExSiteServiceWrapper implements WebExSiteService,
 	@Override
 	public com.liferay.meeting.webex.model.WebExSite deleteWebExSite(
 		long webExSiteId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _webExSiteService.deleteWebExSite(webExSiteId);
 	}
 
 	@Override
 	public com.liferay.meeting.webex.model.WebExSite fetchSiteKeyWebExSite(
 		long siteKey)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _webExSiteService.fetchSiteKeyWebExSite(siteKey);
 	}
 
 	@Override
 	public com.liferay.meeting.webex.model.WebExSite getWebExSite(
 		long webExSiteId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _webExSiteService.getWebExSite(webExSiteId);
 	}
 
 	@Override
 	public java.util.List<com.liferay.meeting.webex.model.WebExSite> getWebExSites(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator obc) {
 		return _webExSiteService.getWebExSites(groupId, start, end, obc);
 	}
 
 	@Override
-	public int getWebExSitesCount(long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getWebExSitesCount(long groupId) {
 		return _webExSiteService.getWebExSitesCount(groupId);
 	}
 
@@ -109,8 +103,7 @@ public class WebExSiteServiceWrapper implements WebExSiteService,
 	public void updateWebExSite(long webExSiteId, java.lang.String apiURL,
 		java.lang.String login, java.lang.String password,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		_webExSiteService.updateWebExSite(webExSiteId, apiURL, login, password,
 			serviceContext);
 	}

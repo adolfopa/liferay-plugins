@@ -108,12 +108,11 @@ public abstract class WebExAccountLocalServiceBaseImpl
 	 * @param webExAccountId the primary key of the web ex account
 	 * @return the web ex account that was removed
 	 * @throws PortalException if a web ex account with the primary key could not be found
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public WebExAccount deleteWebExAccount(long webExAccountId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return webExAccountPersistence.remove(webExAccountId);
 	}
 
@@ -123,12 +122,11 @@ public abstract class WebExAccountLocalServiceBaseImpl
 	 * @param webExAccount the web ex account
 	 * @return the web ex account that was removed
 	 * @throws PortalException
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public WebExAccount deleteWebExAccount(WebExAccount webExAccount)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return webExAccountPersistence.remove(webExAccount);
 	}
 
@@ -147,8 +145,7 @@ public abstract class WebExAccountLocalServiceBaseImpl
 	 * @return the matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
 		return webExAccountPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -165,8 +162,8 @@ public abstract class WebExAccountLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end) {
 		return webExAccountPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end);
 	}
@@ -185,9 +182,8 @@ public abstract class WebExAccountLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator) {
 		return webExAccountPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end, orderByComparator);
 	}

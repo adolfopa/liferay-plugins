@@ -64,58 +64,46 @@ public interface SalesforceLocalService extends BaseLocalService,
 
 	public void executeAdd(long companyId,
 		java.util.List<com.liferay.portal.kernel.messaging.Message> messages)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.salesforce.service.MultipleSalesforceException;
+		throws com.liferay.salesforce.service.MultipleSalesforceException;
 
 	public java.lang.String executeAdd(long companyId,
 		com.liferay.portal.kernel.messaging.Message message)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.salesforce.service.SalesforceException;
+		throws com.liferay.salesforce.service.SalesforceException;
 
 	public void executeAddOrUpdate(long companyId, java.lang.String externalId,
 		java.util.List<com.liferay.portal.kernel.messaging.Message> messages)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.salesforce.service.MultipleSalesforceException;
+		throws com.liferay.salesforce.service.MultipleSalesforceException;
 
 	public void executeAddOrUpdate(long companyId, java.lang.String externalId,
 		com.liferay.portal.kernel.messaging.Message message)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.salesforce.service.SalesforceException;
+		throws com.liferay.salesforce.service.SalesforceException;
 
 	public void executeDelete(long companyId,
 		java.util.List<java.lang.String> objectIds)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.salesforce.service.MultipleSalesforceException;
+		throws com.liferay.salesforce.service.MultipleSalesforceException;
 
 	public boolean executeDelete(long companyId, java.lang.String objectId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.salesforce.service.SalesforceException;
+		throws com.liferay.salesforce.service.SalesforceException;
 
 	public com.liferay.portal.kernel.messaging.MessageBatch executeQuery(
-		long companyId, java.lang.String queryString)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long companyId, java.lang.String queryString);
 
 	public com.liferay.portal.kernel.messaging.Message executeQuery(
 		long companyId, java.lang.String objectId, java.lang.String objectType,
 		java.util.List<java.lang.String> fieldNames)
-		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException;
 
 	public com.liferay.portal.kernel.messaging.MessageBatch executeQueryMore(
-		long companyId, java.lang.String queryLocator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long companyId, java.lang.String queryLocator);
 
 	public com.liferay.portal.kernel.messaging.MessageBatch executeSearch(
-		long companyId, java.lang.String searchString)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long companyId, java.lang.String searchString);
 
 	public void executeUpdate(long companyId,
 		java.util.List<com.liferay.portal.kernel.messaging.Message> messages)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.salesforce.service.MultipleSalesforceException;
+		throws com.liferay.salesforce.service.MultipleSalesforceException;
 
 	public void executeUpdate(long companyId,
 		com.liferay.portal.kernel.messaging.Message message)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.salesforce.service.SalesforceException;
+		throws com.liferay.salesforce.service.SalesforceException;
 }

@@ -152,7 +152,7 @@ public class OAuthUserPersistenceImpl extends BasePersistenceImpl<OAuthUser>
 	 */
 	@Override
 	public List<OAuthUser> findByUserId(long userId, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<OAuthUser> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -258,7 +258,8 @@ public class OAuthUserPersistenceImpl extends BasePersistenceImpl<OAuthUser>
 	 */
 	@Override
 	public OAuthUser findByUserId_First(long userId,
-		OrderByComparator orderByComparator) throws NoSuchUserException {
+		OrderByComparator<OAuthUser> orderByComparator)
+		throws NoSuchUserException {
 		OAuthUser oAuthUser = fetchByUserId_First(userId, orderByComparator);
 
 		if (oAuthUser != null) {
@@ -286,7 +287,7 @@ public class OAuthUserPersistenceImpl extends BasePersistenceImpl<OAuthUser>
 	 */
 	@Override
 	public OAuthUser fetchByUserId_First(long userId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<OAuthUser> orderByComparator) {
 		List<OAuthUser> list = findByUserId(userId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -306,7 +307,8 @@ public class OAuthUserPersistenceImpl extends BasePersistenceImpl<OAuthUser>
 	 */
 	@Override
 	public OAuthUser findByUserId_Last(long userId,
-		OrderByComparator orderByComparator) throws NoSuchUserException {
+		OrderByComparator<OAuthUser> orderByComparator)
+		throws NoSuchUserException {
 		OAuthUser oAuthUser = fetchByUserId_Last(userId, orderByComparator);
 
 		if (oAuthUser != null) {
@@ -334,7 +336,7 @@ public class OAuthUserPersistenceImpl extends BasePersistenceImpl<OAuthUser>
 	 */
 	@Override
 	public OAuthUser fetchByUserId_Last(long userId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<OAuthUser> orderByComparator) {
 		int count = countByUserId(userId);
 
 		if (count == 0) {
@@ -362,7 +364,8 @@ public class OAuthUserPersistenceImpl extends BasePersistenceImpl<OAuthUser>
 	 */
 	@Override
 	public OAuthUser[] findByUserId_PrevAndNext(long oAuthUserId, long userId,
-		OrderByComparator orderByComparator) throws NoSuchUserException {
+		OrderByComparator<OAuthUser> orderByComparator)
+		throws NoSuchUserException {
 		OAuthUser oAuthUser = findByPrimaryKey(oAuthUserId);
 
 		Session session = null;
@@ -391,8 +394,8 @@ public class OAuthUserPersistenceImpl extends BasePersistenceImpl<OAuthUser>
 	}
 
 	protected OAuthUser getByUserId_PrevAndNext(Session session,
-		OAuthUser oAuthUser, long userId, OrderByComparator orderByComparator,
-		boolean previous) {
+		OAuthUser oAuthUser, long userId,
+		OrderByComparator<OAuthUser> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -539,7 +542,7 @@ public class OAuthUserPersistenceImpl extends BasePersistenceImpl<OAuthUser>
 	 */
 	@Override
 	public List<OAuthUser> filterFindByUserId(long userId, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<OAuthUser> orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled()) {
 			return findByUserId(userId, start, end, orderByComparator);
 		}
@@ -628,7 +631,7 @@ public class OAuthUserPersistenceImpl extends BasePersistenceImpl<OAuthUser>
 	 */
 	@Override
 	public OAuthUser[] filterFindByUserId_PrevAndNext(long oAuthUserId,
-		long userId, OrderByComparator orderByComparator)
+		long userId, OrderByComparator<OAuthUser> orderByComparator)
 		throws NoSuchUserException {
 		if (!InlineSQLHelperUtil.isEnabled()) {
 			return findByUserId_PrevAndNext(oAuthUserId, userId,
@@ -663,8 +666,8 @@ public class OAuthUserPersistenceImpl extends BasePersistenceImpl<OAuthUser>
 	}
 
 	protected OAuthUser filterGetByUserId_PrevAndNext(Session session,
-		OAuthUser oAuthUser, long userId, OrderByComparator orderByComparator,
-		boolean previous) {
+		OAuthUser oAuthUser, long userId,
+		OrderByComparator<OAuthUser> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -980,7 +983,7 @@ public class OAuthUserPersistenceImpl extends BasePersistenceImpl<OAuthUser>
 	 */
 	@Override
 	public List<OAuthUser> findByOAuthApplicationId(long oAuthApplicationId,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<OAuthUser> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1090,7 +1093,8 @@ public class OAuthUserPersistenceImpl extends BasePersistenceImpl<OAuthUser>
 	 */
 	@Override
 	public OAuthUser findByOAuthApplicationId_First(long oAuthApplicationId,
-		OrderByComparator orderByComparator) throws NoSuchUserException {
+		OrderByComparator<OAuthUser> orderByComparator)
+		throws NoSuchUserException {
 		OAuthUser oAuthUser = fetchByOAuthApplicationId_First(oAuthApplicationId,
 				orderByComparator);
 
@@ -1119,7 +1123,7 @@ public class OAuthUserPersistenceImpl extends BasePersistenceImpl<OAuthUser>
 	 */
 	@Override
 	public OAuthUser fetchByOAuthApplicationId_First(long oAuthApplicationId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<OAuthUser> orderByComparator) {
 		List<OAuthUser> list = findByOAuthApplicationId(oAuthApplicationId, 0,
 				1, orderByComparator);
 
@@ -1140,7 +1144,8 @@ public class OAuthUserPersistenceImpl extends BasePersistenceImpl<OAuthUser>
 	 */
 	@Override
 	public OAuthUser findByOAuthApplicationId_Last(long oAuthApplicationId,
-		OrderByComparator orderByComparator) throws NoSuchUserException {
+		OrderByComparator<OAuthUser> orderByComparator)
+		throws NoSuchUserException {
 		OAuthUser oAuthUser = fetchByOAuthApplicationId_Last(oAuthApplicationId,
 				orderByComparator);
 
@@ -1169,7 +1174,7 @@ public class OAuthUserPersistenceImpl extends BasePersistenceImpl<OAuthUser>
 	 */
 	@Override
 	public OAuthUser fetchByOAuthApplicationId_Last(long oAuthApplicationId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<OAuthUser> orderByComparator) {
 		int count = countByOAuthApplicationId(oAuthApplicationId);
 
 		if (count == 0) {
@@ -1197,7 +1202,7 @@ public class OAuthUserPersistenceImpl extends BasePersistenceImpl<OAuthUser>
 	 */
 	@Override
 	public OAuthUser[] findByOAuthApplicationId_PrevAndNext(long oAuthUserId,
-		long oAuthApplicationId, OrderByComparator orderByComparator)
+		long oAuthApplicationId, OrderByComparator<OAuthUser> orderByComparator)
 		throws NoSuchUserException {
 		OAuthUser oAuthUser = findByPrimaryKey(oAuthUserId);
 
@@ -1228,7 +1233,7 @@ public class OAuthUserPersistenceImpl extends BasePersistenceImpl<OAuthUser>
 
 	protected OAuthUser getByOAuthApplicationId_PrevAndNext(Session session,
 		OAuthUser oAuthUser, long oAuthApplicationId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<OAuthUser> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1379,7 +1384,7 @@ public class OAuthUserPersistenceImpl extends BasePersistenceImpl<OAuthUser>
 	@Override
 	public List<OAuthUser> filterFindByOAuthApplicationId(
 		long oAuthApplicationId, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<OAuthUser> orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled()) {
 			return findByOAuthApplicationId(oAuthApplicationId, start, end,
 				orderByComparator);
@@ -1470,7 +1475,8 @@ public class OAuthUserPersistenceImpl extends BasePersistenceImpl<OAuthUser>
 	@Override
 	public OAuthUser[] filterFindByOAuthApplicationId_PrevAndNext(
 		long oAuthUserId, long oAuthApplicationId,
-		OrderByComparator orderByComparator) throws NoSuchUserException {
+		OrderByComparator<OAuthUser> orderByComparator)
+		throws NoSuchUserException {
 		if (!InlineSQLHelperUtil.isEnabled()) {
 			return findByOAuthApplicationId_PrevAndNext(oAuthUserId,
 				oAuthApplicationId, orderByComparator);
@@ -1505,7 +1511,7 @@ public class OAuthUserPersistenceImpl extends BasePersistenceImpl<OAuthUser>
 
 	protected OAuthUser filterGetByOAuthApplicationId_PrevAndNext(
 		Session session, OAuthUser oAuthUser, long oAuthApplicationId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<OAuthUser> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -2825,7 +2831,7 @@ public class OAuthUserPersistenceImpl extends BasePersistenceImpl<OAuthUser>
 	 */
 	@Override
 	public List<OAuthUser> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<OAuthUser> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

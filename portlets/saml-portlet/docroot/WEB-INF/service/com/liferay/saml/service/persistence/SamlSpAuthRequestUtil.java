@@ -85,7 +85,7 @@ public class SamlSpAuthRequestUtil {
 	 */
 	public static List<SamlSpAuthRequest> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<SamlSpAuthRequest> orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -294,7 +294,7 @@ public class SamlSpAuthRequestUtil {
 	*/
 	public static java.util.List<com.liferay.saml.model.SamlSpAuthRequest> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.saml.model.SamlSpAuthRequest> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

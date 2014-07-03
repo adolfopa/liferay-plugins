@@ -939,7 +939,7 @@ public class SamlSpAuthRequestPersistenceImpl extends BasePersistenceImpl<SamlSp
 	 */
 	@Override
 	public List<SamlSpAuthRequest> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<SamlSpAuthRequest> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

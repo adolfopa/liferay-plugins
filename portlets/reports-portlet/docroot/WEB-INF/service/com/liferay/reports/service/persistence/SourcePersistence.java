@@ -76,7 +76,7 @@ public interface SourcePersistence extends BasePersistence<Source> {
 	*/
 	public java.util.List<com.liferay.reports.model.Source> findByUuid(
 		java.lang.String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Source> orderByComparator);
 
 	/**
 	* Returns the first source in the ordered set where uuid = &#63;.
@@ -88,7 +88,7 @@ public interface SourcePersistence extends BasePersistence<Source> {
 	*/
 	public com.liferay.reports.model.Source findByUuid_First(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Source> orderByComparator)
 		throws com.liferay.reports.NoSuchSourceException;
 
 	/**
@@ -100,7 +100,7 @@ public interface SourcePersistence extends BasePersistence<Source> {
 	*/
 	public com.liferay.reports.model.Source fetchByUuid_First(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Source> orderByComparator);
 
 	/**
 	* Returns the last source in the ordered set where uuid = &#63;.
@@ -112,7 +112,7 @@ public interface SourcePersistence extends BasePersistence<Source> {
 	*/
 	public com.liferay.reports.model.Source findByUuid_Last(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Source> orderByComparator)
 		throws com.liferay.reports.NoSuchSourceException;
 
 	/**
@@ -124,7 +124,7 @@ public interface SourcePersistence extends BasePersistence<Source> {
 	*/
 	public com.liferay.reports.model.Source fetchByUuid_Last(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Source> orderByComparator);
 
 	/**
 	* Returns the sources before and after the current source in the ordered set where uuid = &#63;.
@@ -137,7 +137,7 @@ public interface SourcePersistence extends BasePersistence<Source> {
 	*/
 	public com.liferay.reports.model.Source[] findByUuid_PrevAndNext(
 		long sourceId, java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Source> orderByComparator)
 		throws com.liferay.reports.NoSuchSourceException;
 
 	/**
@@ -250,7 +250,7 @@ public interface SourcePersistence extends BasePersistence<Source> {
 	*/
 	public java.util.List<com.liferay.reports.model.Source> findByUuid_C(
 		java.lang.String uuid, long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Source> orderByComparator);
 
 	/**
 	* Returns the first source in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -263,7 +263,7 @@ public interface SourcePersistence extends BasePersistence<Source> {
 	*/
 	public com.liferay.reports.model.Source findByUuid_C_First(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Source> orderByComparator)
 		throws com.liferay.reports.NoSuchSourceException;
 
 	/**
@@ -276,7 +276,7 @@ public interface SourcePersistence extends BasePersistence<Source> {
 	*/
 	public com.liferay.reports.model.Source fetchByUuid_C_First(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Source> orderByComparator);
 
 	/**
 	* Returns the last source in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -289,7 +289,7 @@ public interface SourcePersistence extends BasePersistence<Source> {
 	*/
 	public com.liferay.reports.model.Source findByUuid_C_Last(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Source> orderByComparator)
 		throws com.liferay.reports.NoSuchSourceException;
 
 	/**
@@ -302,7 +302,7 @@ public interface SourcePersistence extends BasePersistence<Source> {
 	*/
 	public com.liferay.reports.model.Source fetchByUuid_C_Last(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Source> orderByComparator);
 
 	/**
 	* Returns the sources before and after the current source in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -316,7 +316,7 @@ public interface SourcePersistence extends BasePersistence<Source> {
 	*/
 	public com.liferay.reports.model.Source[] findByUuid_C_PrevAndNext(
 		long sourceId, java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Source> orderByComparator)
 		throws com.liferay.reports.NoSuchSourceException;
 
 	/**
@@ -375,7 +375,7 @@ public interface SourcePersistence extends BasePersistence<Source> {
 	*/
 	public java.util.List<com.liferay.reports.model.Source> findByGroupId(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Source> orderByComparator);
 
 	/**
 	* Returns the first source in the ordered set where groupId = &#63;.
@@ -386,7 +386,7 @@ public interface SourcePersistence extends BasePersistence<Source> {
 	* @throws com.liferay.reports.NoSuchSourceException if a matching source could not be found
 	*/
 	public com.liferay.reports.model.Source findByGroupId_First(long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Source> orderByComparator)
 		throws com.liferay.reports.NoSuchSourceException;
 
 	/**
@@ -397,7 +397,7 @@ public interface SourcePersistence extends BasePersistence<Source> {
 	* @return the first matching source, or <code>null</code> if a matching source could not be found
 	*/
 	public com.liferay.reports.model.Source fetchByGroupId_First(long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Source> orderByComparator);
 
 	/**
 	* Returns the last source in the ordered set where groupId = &#63;.
@@ -408,7 +408,7 @@ public interface SourcePersistence extends BasePersistence<Source> {
 	* @throws com.liferay.reports.NoSuchSourceException if a matching source could not be found
 	*/
 	public com.liferay.reports.model.Source findByGroupId_Last(long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Source> orderByComparator)
 		throws com.liferay.reports.NoSuchSourceException;
 
 	/**
@@ -419,7 +419,7 @@ public interface SourcePersistence extends BasePersistence<Source> {
 	* @return the last matching source, or <code>null</code> if a matching source could not be found
 	*/
 	public com.liferay.reports.model.Source fetchByGroupId_Last(long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Source> orderByComparator);
 
 	/**
 	* Returns the sources before and after the current source in the ordered set where groupId = &#63;.
@@ -432,7 +432,7 @@ public interface SourcePersistence extends BasePersistence<Source> {
 	*/
 	public com.liferay.reports.model.Source[] findByGroupId_PrevAndNext(
 		long sourceId, long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Source> orderByComparator)
 		throws com.liferay.reports.NoSuchSourceException;
 
 	/**
@@ -474,7 +474,7 @@ public interface SourcePersistence extends BasePersistence<Source> {
 	*/
 	public java.util.List<com.liferay.reports.model.Source> filterFindByGroupId(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Source> orderByComparator);
 
 	/**
 	* Returns the sources before and after the current source in the ordered set of sources that the user has permission to view where groupId = &#63;.
@@ -487,7 +487,7 @@ public interface SourcePersistence extends BasePersistence<Source> {
 	*/
 	public com.liferay.reports.model.Source[] filterFindByGroupId_PrevAndNext(
 		long sourceId, long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Source> orderByComparator)
 		throws com.liferay.reports.NoSuchSourceException;
 
 	/**
@@ -552,7 +552,7 @@ public interface SourcePersistence extends BasePersistence<Source> {
 	*/
 	public java.util.List<com.liferay.reports.model.Source> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Source> orderByComparator);
 
 	/**
 	* Returns the first source in the ordered set where companyId = &#63;.
@@ -564,7 +564,7 @@ public interface SourcePersistence extends BasePersistence<Source> {
 	*/
 	public com.liferay.reports.model.Source findByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Source> orderByComparator)
 		throws com.liferay.reports.NoSuchSourceException;
 
 	/**
@@ -576,7 +576,7 @@ public interface SourcePersistence extends BasePersistence<Source> {
 	*/
 	public com.liferay.reports.model.Source fetchByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Source> orderByComparator);
 
 	/**
 	* Returns the last source in the ordered set where companyId = &#63;.
@@ -588,7 +588,7 @@ public interface SourcePersistence extends BasePersistence<Source> {
 	*/
 	public com.liferay.reports.model.Source findByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Source> orderByComparator)
 		throws com.liferay.reports.NoSuchSourceException;
 
 	/**
@@ -600,7 +600,7 @@ public interface SourcePersistence extends BasePersistence<Source> {
 	*/
 	public com.liferay.reports.model.Source fetchByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Source> orderByComparator);
 
 	/**
 	* Returns the sources before and after the current source in the ordered set where companyId = &#63;.
@@ -613,7 +613,7 @@ public interface SourcePersistence extends BasePersistence<Source> {
 	*/
 	public com.liferay.reports.model.Source[] findByCompanyId_PrevAndNext(
 		long sourceId, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Source> orderByComparator)
 		throws com.liferay.reports.NoSuchSourceException;
 
 	/**
@@ -724,7 +724,7 @@ public interface SourcePersistence extends BasePersistence<Source> {
 	*/
 	public java.util.List<com.liferay.reports.model.Source> findAll(int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Source> orderByComparator);
 
 	/**
 	* Removes all the sources from the database.

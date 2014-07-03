@@ -106,8 +106,7 @@ public class SalesforceTaskLocalServiceClp implements SalesforceTaskLocalService
 	public com.liferay.portal.kernel.messaging.MessageBatch getTasksByAccountId(
 		long companyId, java.lang.String accountId,
 		java.util.List<java.lang.String> fieldNames)
-		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException {
 		Object returnObj = null;
 
 		try {
@@ -128,10 +127,6 @@ public class SalesforceTaskLocalServiceClp implements SalesforceTaskLocalService
 				throw (com.liferay.portal.kernel.dao.orm.ObjectNotFoundException)t;
 			}
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -148,8 +143,7 @@ public class SalesforceTaskLocalServiceClp implements SalesforceTaskLocalService
 	public com.liferay.portal.kernel.messaging.MessageBatch getTasksByUserId(
 		long companyId, java.lang.String userId,
 		java.util.List<java.lang.String> fieldNames)
-		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException {
 		Object returnObj = null;
 
 		try {
@@ -170,10 +164,6 @@ public class SalesforceTaskLocalServiceClp implements SalesforceTaskLocalService
 				throw (com.liferay.portal.kernel.dao.orm.ObjectNotFoundException)t;
 			}
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -190,8 +180,7 @@ public class SalesforceTaskLocalServiceClp implements SalesforceTaskLocalService
 	public com.liferay.portal.kernel.messaging.MessageBatch getTasksByUserName(
 		long companyId, java.lang.String userName,
 		java.util.List<java.lang.String> fieldNames)
-		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException {
 		Object returnObj = null;
 
 		try {
@@ -210,10 +199,6 @@ public class SalesforceTaskLocalServiceClp implements SalesforceTaskLocalService
 
 			if (t instanceof com.liferay.portal.kernel.dao.orm.ObjectNotFoundException) {
 				throw (com.liferay.portal.kernel.dao.orm.ObjectNotFoundException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {

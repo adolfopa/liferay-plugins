@@ -84,7 +84,7 @@ public class SPIDefinitionUtil {
 	 */
 	public static List<SPIDefinition> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<SPIDefinition> orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -148,7 +148,7 @@ public class SPIDefinitionUtil {
 	*/
 	public static java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.resiliency.spi.model.SPIDefinition> orderByComparator) {
 		return getPersistence()
 				   .findByCompanyId(companyId, start, end, orderByComparator);
 	}
@@ -163,7 +163,7 @@ public class SPIDefinitionUtil {
 	*/
 	public static com.liferay.portal.resiliency.spi.model.SPIDefinition findByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.resiliency.spi.model.SPIDefinition> orderByComparator)
 		throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException {
 		return getPersistence()
 				   .findByCompanyId_First(companyId, orderByComparator);
@@ -178,7 +178,7 @@ public class SPIDefinitionUtil {
 	*/
 	public static com.liferay.portal.resiliency.spi.model.SPIDefinition fetchByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.resiliency.spi.model.SPIDefinition> orderByComparator) {
 		return getPersistence()
 				   .fetchByCompanyId_First(companyId, orderByComparator);
 	}
@@ -193,7 +193,7 @@ public class SPIDefinitionUtil {
 	*/
 	public static com.liferay.portal.resiliency.spi.model.SPIDefinition findByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.resiliency.spi.model.SPIDefinition> orderByComparator)
 		throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException {
 		return getPersistence()
 				   .findByCompanyId_Last(companyId, orderByComparator);
@@ -208,7 +208,7 @@ public class SPIDefinitionUtil {
 	*/
 	public static com.liferay.portal.resiliency.spi.model.SPIDefinition fetchByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.resiliency.spi.model.SPIDefinition> orderByComparator) {
 		return getPersistence()
 				   .fetchByCompanyId_Last(companyId, orderByComparator);
 	}
@@ -224,7 +224,7 @@ public class SPIDefinitionUtil {
 	*/
 	public static com.liferay.portal.resiliency.spi.model.SPIDefinition[] findByCompanyId_PrevAndNext(
 		long spiDefinitionId, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.resiliency.spi.model.SPIDefinition> orderByComparator)
 		throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException {
 		return getPersistence()
 				   .findByCompanyId_PrevAndNext(spiDefinitionId, companyId,
@@ -274,7 +274,7 @@ public class SPIDefinitionUtil {
 	*/
 	public static java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> filterFindByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.resiliency.spi.model.SPIDefinition> orderByComparator) {
 		return getPersistence()
 				   .filterFindByCompanyId(companyId, start, end,
 			orderByComparator);
@@ -291,7 +291,7 @@ public class SPIDefinitionUtil {
 	*/
 	public static com.liferay.portal.resiliency.spi.model.SPIDefinition[] filterFindByCompanyId_PrevAndNext(
 		long spiDefinitionId, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.resiliency.spi.model.SPIDefinition> orderByComparator)
 		throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException {
 		return getPersistence()
 				   .filterFindByCompanyId_PrevAndNext(spiDefinitionId,
@@ -436,7 +436,7 @@ public class SPIDefinitionUtil {
 	*/
 	public static java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> findByC_S(
 		long companyId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.resiliency.spi.model.SPIDefinition> orderByComparator) {
 		return getPersistence()
 				   .findByC_S(companyId, status, start, end, orderByComparator);
 	}
@@ -452,7 +452,7 @@ public class SPIDefinitionUtil {
 	*/
 	public static com.liferay.portal.resiliency.spi.model.SPIDefinition findByC_S_First(
 		long companyId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.resiliency.spi.model.SPIDefinition> orderByComparator)
 		throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException {
 		return getPersistence()
 				   .findByC_S_First(companyId, status, orderByComparator);
@@ -468,7 +468,7 @@ public class SPIDefinitionUtil {
 	*/
 	public static com.liferay.portal.resiliency.spi.model.SPIDefinition fetchByC_S_First(
 		long companyId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.resiliency.spi.model.SPIDefinition> orderByComparator) {
 		return getPersistence()
 				   .fetchByC_S_First(companyId, status, orderByComparator);
 	}
@@ -484,7 +484,7 @@ public class SPIDefinitionUtil {
 	*/
 	public static com.liferay.portal.resiliency.spi.model.SPIDefinition findByC_S_Last(
 		long companyId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.resiliency.spi.model.SPIDefinition> orderByComparator)
 		throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException {
 		return getPersistence()
 				   .findByC_S_Last(companyId, status, orderByComparator);
@@ -500,7 +500,7 @@ public class SPIDefinitionUtil {
 	*/
 	public static com.liferay.portal.resiliency.spi.model.SPIDefinition fetchByC_S_Last(
 		long companyId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.resiliency.spi.model.SPIDefinition> orderByComparator) {
 		return getPersistence()
 				   .fetchByC_S_Last(companyId, status, orderByComparator);
 	}
@@ -517,7 +517,7 @@ public class SPIDefinitionUtil {
 	*/
 	public static com.liferay.portal.resiliency.spi.model.SPIDefinition[] findByC_S_PrevAndNext(
 		long spiDefinitionId, long companyId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.resiliency.spi.model.SPIDefinition> orderByComparator)
 		throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException {
 		return getPersistence()
 				   .findByC_S_PrevAndNext(spiDefinitionId, companyId, status,
@@ -570,7 +570,7 @@ public class SPIDefinitionUtil {
 	*/
 	public static java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> filterFindByC_S(
 		long companyId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.resiliency.spi.model.SPIDefinition> orderByComparator) {
 		return getPersistence()
 				   .filterFindByC_S(companyId, status, start, end,
 			orderByComparator);
@@ -588,7 +588,7 @@ public class SPIDefinitionUtil {
 	*/
 	public static com.liferay.portal.resiliency.spi.model.SPIDefinition[] filterFindByC_S_PrevAndNext(
 		long spiDefinitionId, long companyId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.resiliency.spi.model.SPIDefinition> orderByComparator)
 		throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException {
 		return getPersistence()
 				   .filterFindByC_S_PrevAndNext(spiDefinitionId, companyId,
@@ -641,7 +641,7 @@ public class SPIDefinitionUtil {
 	*/
 	public static java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> filterFindByC_S(
 		long companyId, int[] statuses, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.resiliency.spi.model.SPIDefinition> orderByComparator) {
 		return getPersistence()
 				   .filterFindByC_S(companyId, statuses, start, end,
 			orderByComparator);
@@ -697,7 +697,7 @@ public class SPIDefinitionUtil {
 	*/
 	public static java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> findByC_S(
 		long companyId, int[] statuses, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.resiliency.spi.model.SPIDefinition> orderByComparator) {
 		return getPersistence()
 				   .findByC_S(companyId, statuses, start, end, orderByComparator);
 	}
@@ -940,7 +940,7 @@ public class SPIDefinitionUtil {
 	*/
 	public static java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.resiliency.spi.model.SPIDefinition> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

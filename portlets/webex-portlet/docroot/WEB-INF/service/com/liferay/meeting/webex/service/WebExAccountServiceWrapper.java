@@ -60,39 +60,34 @@ public class WebExAccountServiceWrapper implements WebExAccountService,
 	public void addWebExAccount(long groupId, long webExSiteId,
 		java.lang.String login, java.lang.String password,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		_webExAccountService.addWebExAccount(groupId, webExSiteId, login,
 			password, serviceContext);
 	}
 
 	@Override
 	public void deleteWebExAccount(long webExAccountId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		_webExAccountService.deleteWebExAccount(webExAccountId);
 	}
 
 	@Override
 	public com.liferay.meeting.webex.model.WebExAccount getWebExAccount(
 		long webExAccountId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _webExAccountService.getWebExAccount(webExAccountId);
 	}
 
 	@Override
 	public java.util.List<com.liferay.meeting.webex.model.WebExAccount> getWebExSiteWebExAccounts(
 		long groupId, long webExSiteId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator obc) {
 		return _webExAccountService.getWebExSiteWebExAccounts(groupId,
 			webExSiteId, start, end, obc);
 	}
 
 	@Override
-	public int getWebExSiteWebExAccountsCount(long groupId, long webExSiteId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getWebExSiteWebExAccountsCount(long groupId, long webExSiteId) {
 		return _webExAccountService.getWebExSiteWebExAccountsCount(groupId,
 			webExSiteId);
 	}
@@ -101,8 +96,7 @@ public class WebExAccountServiceWrapper implements WebExAccountService,
 	public void updateWebExAccount(long webExAccountId,
 		java.lang.String password,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		_webExAccountService.updateWebExAccount(webExAccountId, password,
 			serviceContext);
 	}

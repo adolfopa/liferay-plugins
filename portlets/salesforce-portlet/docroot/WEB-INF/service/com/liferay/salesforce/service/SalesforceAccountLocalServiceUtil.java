@@ -65,24 +65,21 @@ public class SalesforceAccountLocalServiceUtil {
 
 	public static com.liferay.portal.kernel.messaging.MessageBatch getAccountsByName(
 		long companyId, java.lang.String name,
-		java.util.List<java.lang.String> fieldNames)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.util.List<java.lang.String> fieldNames) {
 		return getService().getAccountsByName(companyId, name, fieldNames);
 	}
 
 	public static com.liferay.portal.kernel.messaging.MessageBatch getAccountsByOwnerId(
 		long companyId, java.lang.String ownerId,
 		java.util.List<java.lang.String> fieldNames)
-		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException {
 		return getService().getAccountsByOwnerId(companyId, ownerId, fieldNames);
 	}
 
 	public static com.liferay.portal.kernel.messaging.MessageBatch getAccountsByUserName(
 		long companyId, java.lang.String userName,
 		java.util.List<java.lang.String> fieldNames)
-		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException {
 		return getService()
 				   .getAccountsByUserName(companyId, userName, fieldNames);
 	}

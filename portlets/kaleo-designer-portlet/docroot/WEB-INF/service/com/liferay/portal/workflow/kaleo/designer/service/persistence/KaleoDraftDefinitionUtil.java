@@ -84,7 +84,7 @@ public class KaleoDraftDefinitionUtil {
 	 */
 	public static List<KaleoDraftDefinition> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoDraftDefinition> orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -149,7 +149,7 @@ public class KaleoDraftDefinitionUtil {
 	*/
 	public static java.util.List<com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition> orderByComparator) {
 		return getPersistence()
 				   .findByCompanyId(companyId, start, end, orderByComparator);
 	}
@@ -164,7 +164,7 @@ public class KaleoDraftDefinitionUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition findByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.designer.NoSuchKaleoDraftDefinitionException {
 		return getPersistence()
 				   .findByCompanyId_First(companyId, orderByComparator);
@@ -179,7 +179,7 @@ public class KaleoDraftDefinitionUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition fetchByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition> orderByComparator) {
 		return getPersistence()
 				   .fetchByCompanyId_First(companyId, orderByComparator);
 	}
@@ -194,7 +194,7 @@ public class KaleoDraftDefinitionUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition findByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.designer.NoSuchKaleoDraftDefinitionException {
 		return getPersistence()
 				   .findByCompanyId_Last(companyId, orderByComparator);
@@ -209,7 +209,7 @@ public class KaleoDraftDefinitionUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition fetchByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition> orderByComparator) {
 		return getPersistence()
 				   .fetchByCompanyId_Last(companyId, orderByComparator);
 	}
@@ -225,7 +225,7 @@ public class KaleoDraftDefinitionUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition[] findByCompanyId_PrevAndNext(
 		long kaleoDraftDefinitionId, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.designer.NoSuchKaleoDraftDefinitionException {
 		return getPersistence()
 				   .findByCompanyId_PrevAndNext(kaleoDraftDefinitionId,
@@ -300,7 +300,7 @@ public class KaleoDraftDefinitionUtil {
 	*/
 	public static java.util.List<com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition> findByC_N_V(
 		long companyId, java.lang.String name, int version, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition> orderByComparator) {
 		return getPersistence()
 				   .findByC_N_V(companyId, name, version, start, end,
 			orderByComparator);
@@ -318,7 +318,7 @@ public class KaleoDraftDefinitionUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition findByC_N_V_First(
 		long companyId, java.lang.String name, int version,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.designer.NoSuchKaleoDraftDefinitionException {
 		return getPersistence()
 				   .findByC_N_V_First(companyId, name, version,
@@ -336,7 +336,7 @@ public class KaleoDraftDefinitionUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition fetchByC_N_V_First(
 		long companyId, java.lang.String name, int version,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition> orderByComparator) {
 		return getPersistence()
 				   .fetchByC_N_V_First(companyId, name, version,
 			orderByComparator);
@@ -354,7 +354,7 @@ public class KaleoDraftDefinitionUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition findByC_N_V_Last(
 		long companyId, java.lang.String name, int version,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.designer.NoSuchKaleoDraftDefinitionException {
 		return getPersistence()
 				   .findByC_N_V_Last(companyId, name, version, orderByComparator);
@@ -371,7 +371,7 @@ public class KaleoDraftDefinitionUtil {
 	*/
 	public static com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition fetchByC_N_V_Last(
 		long companyId, java.lang.String name, int version,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition> orderByComparator) {
 		return getPersistence()
 				   .fetchByC_N_V_Last(companyId, name, version,
 			orderByComparator);
@@ -391,7 +391,7 @@ public class KaleoDraftDefinitionUtil {
 	public static com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition[] findByC_N_V_PrevAndNext(
 		long kaleoDraftDefinitionId, long companyId, java.lang.String name,
 		int version,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.designer.NoSuchKaleoDraftDefinitionException {
 		return getPersistence()
 				   .findByC_N_V_PrevAndNext(kaleoDraftDefinitionId, companyId,
@@ -621,7 +621,7 @@ public class KaleoDraftDefinitionUtil {
 	*/
 	public static java.util.List<com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

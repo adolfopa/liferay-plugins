@@ -120,8 +120,7 @@ public class WebExAccountServiceClp implements WebExAccountService {
 	public void addWebExAccount(long groupId, long webExSiteId,
 		java.lang.String login, java.lang.String password,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			_invokableService.invokeMethod(_methodName3,
 				_methodParameterTypes3,
@@ -144,10 +143,6 @@ public class WebExAccountServiceClp implements WebExAccountService {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -160,8 +155,7 @@ public class WebExAccountServiceClp implements WebExAccountService {
 
 	@Override
 	public void deleteWebExAccount(long webExAccountId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			_invokableService.invokeMethod(_methodName4,
 				_methodParameterTypes4, new Object[] { webExAccountId });
@@ -171,10 +165,6 @@ public class WebExAccountServiceClp implements WebExAccountService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -190,8 +180,7 @@ public class WebExAccountServiceClp implements WebExAccountService {
 	@Override
 	public com.liferay.meeting.webex.model.WebExAccount getWebExAccount(
 		long webExAccountId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -203,10 +192,6 @@ public class WebExAccountServiceClp implements WebExAccountService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -224,8 +209,7 @@ public class WebExAccountServiceClp implements WebExAccountService {
 	@Override
 	public java.util.List<com.liferay.meeting.webex.model.WebExAccount> getWebExSiteWebExAccounts(
 		long groupId, long webExSiteId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator obc) {
 		Object returnObj = null;
 
 		try {
@@ -246,10 +230,6 @@ public class WebExAccountServiceClp implements WebExAccountService {
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -263,8 +243,7 @@ public class WebExAccountServiceClp implements WebExAccountService {
 	}
 
 	@Override
-	public int getWebExSiteWebExAccountsCount(long groupId, long webExSiteId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getWebExSiteWebExAccountsCount(long groupId, long webExSiteId) {
 		Object returnObj = null;
 
 		try {
@@ -274,10 +253,6 @@ public class WebExAccountServiceClp implements WebExAccountService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -295,8 +270,7 @@ public class WebExAccountServiceClp implements WebExAccountService {
 	public void updateWebExAccount(long webExAccountId,
 		java.lang.String password,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			_invokableService.invokeMethod(_methodName8,
 				_methodParameterTypes8,
@@ -313,10 +287,6 @@ public class WebExAccountServiceClp implements WebExAccountService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {

@@ -277,8 +277,7 @@ public class SamlSpAuthRequestLocalServiceClp
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		Object returnObj = null;
 
@@ -299,12 +298,11 @@ public class SamlSpAuthRequestLocalServiceClp
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		Object returnObj = null;
@@ -332,15 +330,14 @@ public class SamlSpAuthRequestLocalServiceClp
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		Object returnObj = null;
 
 		try {
@@ -368,7 +365,7 @@ public class SamlSpAuthRequestLocalServiceClp
 			}
 		}
 
-		return (java.util.List)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<T>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -691,8 +688,7 @@ public class SamlSpAuthRequestLocalServiceClp
 	public com.liferay.saml.model.SamlSpAuthRequest addSamlSpAuthRequest(
 		java.lang.String samlIdpEntityId,
 		java.lang.String samlSpAuthRequestKey,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.service.ServiceContext serviceContext) {
 		Object returnObj = null;
 
 		try {
@@ -709,10 +705,6 @@ public class SamlSpAuthRequestLocalServiceClp
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -727,8 +719,7 @@ public class SamlSpAuthRequestLocalServiceClp
 
 	@Override
 	public com.liferay.saml.model.SamlSpAuthRequest fetchSamlSpAuthRequest(
-		java.lang.String samlIdpEntityId, java.lang.String samlSpAuthRequestKey)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String samlIdpEntityId, java.lang.String samlSpAuthRequestKey) {
 		Object returnObj = null;
 
 		try {
@@ -742,10 +733,6 @@ public class SamlSpAuthRequestLocalServiceClp
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -762,8 +749,7 @@ public class SamlSpAuthRequestLocalServiceClp
 	@Override
 	public com.liferay.saml.model.SamlSpAuthRequest getSamlSpAuthRequest(
 		java.lang.String samlIdpEntityId, java.lang.String samlSpAuthRequestKey)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -780,10 +766,6 @@ public class SamlSpAuthRequestLocalServiceClp
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {

@@ -66,8 +66,7 @@ public class SalesforceContactLocalServiceUtil {
 	public static com.liferay.portal.kernel.messaging.MessageBatch getContactsByAccountId(
 		long companyId, java.lang.String accountId,
 		java.util.List<java.lang.String> fieldNames)
-		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException {
 		return getService()
 				   .getContactsByAccountId(companyId, accountId, fieldNames);
 	}
@@ -75,16 +74,14 @@ public class SalesforceContactLocalServiceUtil {
 	public static com.liferay.portal.kernel.messaging.MessageBatch getContactsByOwnerId(
 		long companyId, java.lang.String userId,
 		java.util.List<java.lang.String> fieldNames)
-		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException {
 		return getService().getContactsByOwnerId(companyId, userId, fieldNames);
 	}
 
 	public static com.liferay.portal.kernel.messaging.MessageBatch getContactsByUserName(
 		long companyId, java.lang.String userName,
 		java.util.List<java.lang.String> fieldNames)
-		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException {
 		return getService()
 				   .getContactsByUserName(companyId, userName, fieldNames);
 	}

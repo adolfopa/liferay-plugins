@@ -85,7 +85,7 @@ public class WebExAccountUtil {
 	 */
 	public static List<WebExAccount> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<WebExAccount> orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -149,7 +149,7 @@ public class WebExAccountUtil {
 	*/
 	public static java.util.List<com.liferay.meeting.webex.model.WebExAccount> findByUuid(
 		java.lang.String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExAccount> orderByComparator) {
 		return getPersistence().findByUuid(uuid, start, end, orderByComparator);
 	}
 
@@ -163,7 +163,7 @@ public class WebExAccountUtil {
 	*/
 	public static com.liferay.meeting.webex.model.WebExAccount findByUuid_First(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExAccount> orderByComparator)
 		throws com.liferay.meeting.webex.NoSuchAccountException {
 		return getPersistence().findByUuid_First(uuid, orderByComparator);
 	}
@@ -177,7 +177,7 @@ public class WebExAccountUtil {
 	*/
 	public static com.liferay.meeting.webex.model.WebExAccount fetchByUuid_First(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExAccount> orderByComparator) {
 		return getPersistence().fetchByUuid_First(uuid, orderByComparator);
 	}
 
@@ -191,7 +191,7 @@ public class WebExAccountUtil {
 	*/
 	public static com.liferay.meeting.webex.model.WebExAccount findByUuid_Last(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExAccount> orderByComparator)
 		throws com.liferay.meeting.webex.NoSuchAccountException {
 		return getPersistence().findByUuid_Last(uuid, orderByComparator);
 	}
@@ -205,7 +205,7 @@ public class WebExAccountUtil {
 	*/
 	public static com.liferay.meeting.webex.model.WebExAccount fetchByUuid_Last(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExAccount> orderByComparator) {
 		return getPersistence().fetchByUuid_Last(uuid, orderByComparator);
 	}
 
@@ -220,7 +220,7 @@ public class WebExAccountUtil {
 	*/
 	public static com.liferay.meeting.webex.model.WebExAccount[] findByUuid_PrevAndNext(
 		long webExAccountId, java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExAccount> orderByComparator)
 		throws com.liferay.meeting.webex.NoSuchAccountException {
 		return getPersistence()
 				   .findByUuid_PrevAndNext(webExAccountId, uuid,
@@ -355,7 +355,7 @@ public class WebExAccountUtil {
 	*/
 	public static java.util.List<com.liferay.meeting.webex.model.WebExAccount> findByUuid_C(
 		java.lang.String uuid, long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExAccount> orderByComparator) {
 		return getPersistence()
 				   .findByUuid_C(uuid, companyId, start, end, orderByComparator);
 	}
@@ -371,7 +371,7 @@ public class WebExAccountUtil {
 	*/
 	public static com.liferay.meeting.webex.model.WebExAccount findByUuid_C_First(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExAccount> orderByComparator)
 		throws com.liferay.meeting.webex.NoSuchAccountException {
 		return getPersistence()
 				   .findByUuid_C_First(uuid, companyId, orderByComparator);
@@ -387,7 +387,7 @@ public class WebExAccountUtil {
 	*/
 	public static com.liferay.meeting.webex.model.WebExAccount fetchByUuid_C_First(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExAccount> orderByComparator) {
 		return getPersistence()
 				   .fetchByUuid_C_First(uuid, companyId, orderByComparator);
 	}
@@ -403,7 +403,7 @@ public class WebExAccountUtil {
 	*/
 	public static com.liferay.meeting.webex.model.WebExAccount findByUuid_C_Last(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExAccount> orderByComparator)
 		throws com.liferay.meeting.webex.NoSuchAccountException {
 		return getPersistence()
 				   .findByUuid_C_Last(uuid, companyId, orderByComparator);
@@ -419,7 +419,7 @@ public class WebExAccountUtil {
 	*/
 	public static com.liferay.meeting.webex.model.WebExAccount fetchByUuid_C_Last(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExAccount> orderByComparator) {
 		return getPersistence()
 				   .fetchByUuid_C_Last(uuid, companyId, orderByComparator);
 	}
@@ -436,7 +436,7 @@ public class WebExAccountUtil {
 	*/
 	public static com.liferay.meeting.webex.model.WebExAccount[] findByUuid_C_PrevAndNext(
 		long webExAccountId, java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExAccount> orderByComparator)
 		throws com.liferay.meeting.webex.NoSuchAccountException {
 		return getPersistence()
 				   .findByUuid_C_PrevAndNext(webExAccountId, uuid, companyId,
@@ -510,7 +510,7 @@ public class WebExAccountUtil {
 	*/
 	public static java.util.List<com.liferay.meeting.webex.model.WebExAccount> findByG_W(
 		long groupId, long webExSiteId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExAccount> orderByComparator) {
 		return getPersistence()
 				   .findByG_W(groupId, webExSiteId, start, end,
 			orderByComparator);
@@ -527,7 +527,7 @@ public class WebExAccountUtil {
 	*/
 	public static com.liferay.meeting.webex.model.WebExAccount findByG_W_First(
 		long groupId, long webExSiteId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExAccount> orderByComparator)
 		throws com.liferay.meeting.webex.NoSuchAccountException {
 		return getPersistence()
 				   .findByG_W_First(groupId, webExSiteId, orderByComparator);
@@ -543,7 +543,7 @@ public class WebExAccountUtil {
 	*/
 	public static com.liferay.meeting.webex.model.WebExAccount fetchByG_W_First(
 		long groupId, long webExSiteId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExAccount> orderByComparator) {
 		return getPersistence()
 				   .fetchByG_W_First(groupId, webExSiteId, orderByComparator);
 	}
@@ -559,7 +559,7 @@ public class WebExAccountUtil {
 	*/
 	public static com.liferay.meeting.webex.model.WebExAccount findByG_W_Last(
 		long groupId, long webExSiteId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExAccount> orderByComparator)
 		throws com.liferay.meeting.webex.NoSuchAccountException {
 		return getPersistence()
 				   .findByG_W_Last(groupId, webExSiteId, orderByComparator);
@@ -575,7 +575,7 @@ public class WebExAccountUtil {
 	*/
 	public static com.liferay.meeting.webex.model.WebExAccount fetchByG_W_Last(
 		long groupId, long webExSiteId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExAccount> orderByComparator) {
 		return getPersistence()
 				   .fetchByG_W_Last(groupId, webExSiteId, orderByComparator);
 	}
@@ -592,7 +592,7 @@ public class WebExAccountUtil {
 	*/
 	public static com.liferay.meeting.webex.model.WebExAccount[] findByG_W_PrevAndNext(
 		long webExAccountId, long groupId, long webExSiteId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExAccount> orderByComparator)
 		throws com.liferay.meeting.webex.NoSuchAccountException {
 		return getPersistence()
 				   .findByG_W_PrevAndNext(webExAccountId, groupId, webExSiteId,
@@ -645,7 +645,7 @@ public class WebExAccountUtil {
 	*/
 	public static java.util.List<com.liferay.meeting.webex.model.WebExAccount> filterFindByG_W(
 		long groupId, long webExSiteId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExAccount> orderByComparator) {
 		return getPersistence()
 				   .filterFindByG_W(groupId, webExSiteId, start, end,
 			orderByComparator);
@@ -663,7 +663,7 @@ public class WebExAccountUtil {
 	*/
 	public static com.liferay.meeting.webex.model.WebExAccount[] filterFindByG_W_PrevAndNext(
 		long webExAccountId, long groupId, long webExSiteId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExAccount> orderByComparator)
 		throws com.liferay.meeting.webex.NoSuchAccountException {
 		return getPersistence()
 				   .filterFindByG_W_PrevAndNext(webExAccountId, groupId,
@@ -819,7 +819,7 @@ public class WebExAccountUtil {
 	*/
 	public static java.util.List<com.liferay.meeting.webex.model.WebExAccount> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExAccount> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

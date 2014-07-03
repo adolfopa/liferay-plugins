@@ -793,8 +793,7 @@ public class EntryWrapper implements Entry, ModelWrapper<Entry> {
 
 	@Override
 	public java.lang.String[] getAttachmentsFiles()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _entry.getAttachmentsFiles();
 	}
 

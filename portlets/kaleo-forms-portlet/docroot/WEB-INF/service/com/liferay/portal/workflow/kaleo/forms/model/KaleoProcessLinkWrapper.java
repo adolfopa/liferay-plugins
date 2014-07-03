@@ -290,8 +290,7 @@ public class KaleoProcessLinkWrapper implements KaleoProcessLink,
 
 	@Override
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess getKaleoProcess()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kaleoProcessLink.getKaleoProcess();
 	}
 

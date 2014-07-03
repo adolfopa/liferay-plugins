@@ -64,8 +64,7 @@ public class OAuthApplicationServiceWrapper implements OAuthApplicationService,
 		boolean shareableAccessToken, java.lang.String callbackURI,
 		java.lang.String websiteURL,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _oAuthApplicationService.addOAuthApplication(name, description,
 			accessLevel, shareableAccessToken, callbackURI, websiteURL,
 			serviceContext);
@@ -73,24 +72,21 @@ public class OAuthApplicationServiceWrapper implements OAuthApplicationService,
 
 	@Override
 	public void deleteLogo(long oAuthApplicationId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		_oAuthApplicationService.deleteLogo(oAuthApplicationId);
 	}
 
 	@Override
 	public com.liferay.oauth.model.OAuthApplication deleteOAuthApplication(
 		long oAuthApplicationId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _oAuthApplicationService.deleteOAuthApplication(oAuthApplicationId);
 	}
 
 	@Override
 	public com.liferay.oauth.model.OAuthApplication updateLogo(
 		long oAuthApplicationId, java.io.InputStream inputStream)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _oAuthApplicationService.updateLogo(oAuthApplicationId,
 			inputStream);
 	}
@@ -101,8 +97,7 @@ public class OAuthApplicationServiceWrapper implements OAuthApplicationService,
 		java.lang.String description, boolean shareableAccessToken,
 		java.lang.String callbackURI, java.lang.String websiteURL,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _oAuthApplicationService.updateOAuthApplication(oAuthApplicationId,
 			name, description, shareableAccessToken, callbackURI, websiteURL,
 			serviceContext);

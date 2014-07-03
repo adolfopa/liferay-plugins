@@ -67,17 +67,14 @@ public interface KaleoProcessLinkService extends BaseService, InvokableService {
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink fetchKaleoProcessLink(
-		long kaleoProcessId, java.lang.String workflowTaskName)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long kaleoProcessId, java.lang.String workflowTaskName);
 
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink updateKaleoProcessLink(
 		long kaleoProcessLinkId, long kaleoProcessId,
 		java.lang.String workflowTaskName, long ddmTemplateId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink updateKaleoProcessLink(
 		long kaleoProcessId, java.lang.String workflowTaskName,
-		long ddmTemplateId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long ddmTemplateId);
 }

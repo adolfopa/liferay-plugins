@@ -91,8 +91,7 @@ public interface AuditEventLocalService extends BaseLocalService,
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
 
 	/**
@@ -107,8 +106,7 @@ public interface AuditEventLocalService extends BaseLocalService,
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end);
 
@@ -125,11 +123,10 @@ public interface AuditEventLocalService extends BaseLocalService,
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	*/
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator);
 
 	/**
 	* Returns the number of rows that match the dynamic query.
@@ -153,8 +150,7 @@ public interface AuditEventLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.audit.model.AuditEvent fetchAuditEvent(
-		long auditEventId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long auditEventId);
 
 	/**
 	* Returns the audit event with the primary key.
@@ -237,14 +233,12 @@ public interface AuditEventLocalService extends BaseLocalService,
 		throws java.lang.Throwable;
 
 	public com.liferay.portal.audit.model.AuditEvent addAuditEvent(
-		com.liferay.portal.kernel.audit.AuditMessage auditMessage)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.audit.AuditMessage auditMessage);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.portal.audit.model.AuditEvent> getAuditEvents(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.portal.audit.model.AuditEvent> getAuditEvents(
@@ -254,12 +248,10 @@ public interface AuditEventLocalService extends BaseLocalService,
 		java.lang.String classPK, java.lang.String clientHost,
 		java.lang.String clientIP, java.lang.String serverName, int serverPort,
 		java.lang.String sessionID, boolean andSearch, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getAuditEventsCount(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int getAuditEventsCount(long companyId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getAuditEventsCount(long companyId, long userId,
@@ -268,6 +260,5 @@ public interface AuditEventLocalService extends BaseLocalService,
 		java.lang.String className, java.lang.String classPK,
 		java.lang.String clientHost, java.lang.String clientIP,
 		java.lang.String serverName, int serverPort,
-		java.lang.String sessionID, boolean andSearch)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String sessionID, boolean andSearch);
 }

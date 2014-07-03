@@ -75,7 +75,7 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	*/
 	public java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.resiliency.spi.model.SPIDefinition> orderByComparator);
 
 	/**
 	* Returns the first s p i definition in the ordered set where companyId = &#63;.
@@ -87,7 +87,7 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	*/
 	public com.liferay.portal.resiliency.spi.model.SPIDefinition findByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.resiliency.spi.model.SPIDefinition> orderByComparator)
 		throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException;
 
 	/**
@@ -99,7 +99,7 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	*/
 	public com.liferay.portal.resiliency.spi.model.SPIDefinition fetchByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.resiliency.spi.model.SPIDefinition> orderByComparator);
 
 	/**
 	* Returns the last s p i definition in the ordered set where companyId = &#63;.
@@ -111,7 +111,7 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	*/
 	public com.liferay.portal.resiliency.spi.model.SPIDefinition findByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.resiliency.spi.model.SPIDefinition> orderByComparator)
 		throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException;
 
 	/**
@@ -123,7 +123,7 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	*/
 	public com.liferay.portal.resiliency.spi.model.SPIDefinition fetchByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.resiliency.spi.model.SPIDefinition> orderByComparator);
 
 	/**
 	* Returns the s p i definitions before and after the current s p i definition in the ordered set where companyId = &#63;.
@@ -136,7 +136,7 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	*/
 	public com.liferay.portal.resiliency.spi.model.SPIDefinition[] findByCompanyId_PrevAndNext(
 		long spiDefinitionId, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.resiliency.spi.model.SPIDefinition> orderByComparator)
 		throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException;
 
 	/**
@@ -178,7 +178,7 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	*/
 	public java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> filterFindByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.resiliency.spi.model.SPIDefinition> orderByComparator);
 
 	/**
 	* Returns the s p i definitions before and after the current s p i definition in the ordered set of s p i definitions that the user has permission to view where companyId = &#63;.
@@ -191,7 +191,7 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	*/
 	public com.liferay.portal.resiliency.spi.model.SPIDefinition[] filterFindByCompanyId_PrevAndNext(
 		long spiDefinitionId, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.resiliency.spi.model.SPIDefinition> orderByComparator)
 		throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException;
 
 	/**
@@ -312,7 +312,7 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	*/
 	public java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> findByC_S(
 		long companyId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.resiliency.spi.model.SPIDefinition> orderByComparator);
 
 	/**
 	* Returns the first s p i definition in the ordered set where companyId = &#63; and status = &#63;.
@@ -325,7 +325,7 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	*/
 	public com.liferay.portal.resiliency.spi.model.SPIDefinition findByC_S_First(
 		long companyId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.resiliency.spi.model.SPIDefinition> orderByComparator)
 		throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException;
 
 	/**
@@ -338,7 +338,7 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	*/
 	public com.liferay.portal.resiliency.spi.model.SPIDefinition fetchByC_S_First(
 		long companyId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.resiliency.spi.model.SPIDefinition> orderByComparator);
 
 	/**
 	* Returns the last s p i definition in the ordered set where companyId = &#63; and status = &#63;.
@@ -351,7 +351,7 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	*/
 	public com.liferay.portal.resiliency.spi.model.SPIDefinition findByC_S_Last(
 		long companyId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.resiliency.spi.model.SPIDefinition> orderByComparator)
 		throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException;
 
 	/**
@@ -364,7 +364,7 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	*/
 	public com.liferay.portal.resiliency.spi.model.SPIDefinition fetchByC_S_Last(
 		long companyId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.resiliency.spi.model.SPIDefinition> orderByComparator);
 
 	/**
 	* Returns the s p i definitions before and after the current s p i definition in the ordered set where companyId = &#63; and status = &#63;.
@@ -378,7 +378,7 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	*/
 	public com.liferay.portal.resiliency.spi.model.SPIDefinition[] findByC_S_PrevAndNext(
 		long spiDefinitionId, long companyId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.resiliency.spi.model.SPIDefinition> orderByComparator)
 		throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException;
 
 	/**
@@ -423,7 +423,7 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	*/
 	public java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> filterFindByC_S(
 		long companyId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.resiliency.spi.model.SPIDefinition> orderByComparator);
 
 	/**
 	* Returns the s p i definitions before and after the current s p i definition in the ordered set of s p i definitions that the user has permission to view where companyId = &#63; and status = &#63;.
@@ -437,7 +437,7 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	*/
 	public com.liferay.portal.resiliency.spi.model.SPIDefinition[] filterFindByC_S_PrevAndNext(
 		long spiDefinitionId, long companyId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.resiliency.spi.model.SPIDefinition> orderByComparator)
 		throws com.liferay.portal.resiliency.spi.NoSuchDefinitionException;
 
 	/**
@@ -482,7 +482,7 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	*/
 	public java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> filterFindByC_S(
 		long companyId, int[] statuses, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.resiliency.spi.model.SPIDefinition> orderByComparator);
 
 	/**
 	* Returns all the s p i definitions where companyId = &#63; and status = any &#63;.
@@ -530,7 +530,7 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	*/
 	public java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> findByC_S(
 		long companyId, int[] statuses, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.resiliency.spi.model.SPIDefinition> orderByComparator);
 
 	/**
 	* Removes all the s p i definitions where companyId = &#63; and status = &#63; from the database.
@@ -728,7 +728,7 @@ public interface SPIDefinitionPersistence extends BasePersistence<SPIDefinition>
 	*/
 	public java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.resiliency.spi.model.SPIDefinition> orderByComparator);
 
 	/**
 	* Removes all the s p i definitions from the database.

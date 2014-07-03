@@ -398,7 +398,7 @@ public class SamlSpSessionPersistenceImpl extends BasePersistenceImpl<SamlSpSess
 	 */
 	@Override
 	public List<SamlSpSession> findByNameIdValue(String nameIdValue, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<SamlSpSession> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -519,7 +519,8 @@ public class SamlSpSessionPersistenceImpl extends BasePersistenceImpl<SamlSpSess
 	 */
 	@Override
 	public SamlSpSession findByNameIdValue_First(String nameIdValue,
-		OrderByComparator orderByComparator) throws NoSuchSpSessionException {
+		OrderByComparator<SamlSpSession> orderByComparator)
+		throws NoSuchSpSessionException {
 		SamlSpSession samlSpSession = fetchByNameIdValue_First(nameIdValue,
 				orderByComparator);
 
@@ -548,7 +549,7 @@ public class SamlSpSessionPersistenceImpl extends BasePersistenceImpl<SamlSpSess
 	 */
 	@Override
 	public SamlSpSession fetchByNameIdValue_First(String nameIdValue,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<SamlSpSession> orderByComparator) {
 		List<SamlSpSession> list = findByNameIdValue(nameIdValue, 0, 1,
 				orderByComparator);
 
@@ -569,7 +570,8 @@ public class SamlSpSessionPersistenceImpl extends BasePersistenceImpl<SamlSpSess
 	 */
 	@Override
 	public SamlSpSession findByNameIdValue_Last(String nameIdValue,
-		OrderByComparator orderByComparator) throws NoSuchSpSessionException {
+		OrderByComparator<SamlSpSession> orderByComparator)
+		throws NoSuchSpSessionException {
 		SamlSpSession samlSpSession = fetchByNameIdValue_Last(nameIdValue,
 				orderByComparator);
 
@@ -598,7 +600,7 @@ public class SamlSpSessionPersistenceImpl extends BasePersistenceImpl<SamlSpSess
 	 */
 	@Override
 	public SamlSpSession fetchByNameIdValue_Last(String nameIdValue,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<SamlSpSession> orderByComparator) {
 		int count = countByNameIdValue(nameIdValue);
 
 		if (count == 0) {
@@ -626,7 +628,7 @@ public class SamlSpSessionPersistenceImpl extends BasePersistenceImpl<SamlSpSess
 	 */
 	@Override
 	public SamlSpSession[] findByNameIdValue_PrevAndNext(long samlSpSessionId,
-		String nameIdValue, OrderByComparator orderByComparator)
+		String nameIdValue, OrderByComparator<SamlSpSession> orderByComparator)
 		throws NoSuchSpSessionException {
 		SamlSpSession samlSpSession = findByPrimaryKey(samlSpSessionId);
 
@@ -657,7 +659,7 @@ public class SamlSpSessionPersistenceImpl extends BasePersistenceImpl<SamlSpSess
 
 	protected SamlSpSession getByNameIdValue_PrevAndNext(Session session,
 		SamlSpSession samlSpSession, String nameIdValue,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<SamlSpSession> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1970,7 +1972,7 @@ public class SamlSpSessionPersistenceImpl extends BasePersistenceImpl<SamlSpSess
 	 */
 	@Override
 	public List<SamlSpSession> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<SamlSpSession> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

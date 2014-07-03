@@ -85,7 +85,7 @@ public class DefinitionUtil {
 	 */
 	public static List<Definition> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Definition> orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -149,7 +149,7 @@ public class DefinitionUtil {
 	*/
 	public static java.util.List<com.liferay.reports.model.Definition> findByUuid(
 		java.lang.String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator) {
 		return getPersistence().findByUuid(uuid, start, end, orderByComparator);
 	}
 
@@ -163,7 +163,7 @@ public class DefinitionUtil {
 	*/
 	public static com.liferay.reports.model.Definition findByUuid_First(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator)
 		throws com.liferay.reports.NoSuchDefinitionException {
 		return getPersistence().findByUuid_First(uuid, orderByComparator);
 	}
@@ -177,7 +177,7 @@ public class DefinitionUtil {
 	*/
 	public static com.liferay.reports.model.Definition fetchByUuid_First(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator) {
 		return getPersistence().fetchByUuid_First(uuid, orderByComparator);
 	}
 
@@ -191,7 +191,7 @@ public class DefinitionUtil {
 	*/
 	public static com.liferay.reports.model.Definition findByUuid_Last(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator)
 		throws com.liferay.reports.NoSuchDefinitionException {
 		return getPersistence().findByUuid_Last(uuid, orderByComparator);
 	}
@@ -205,7 +205,7 @@ public class DefinitionUtil {
 	*/
 	public static com.liferay.reports.model.Definition fetchByUuid_Last(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator) {
 		return getPersistence().fetchByUuid_Last(uuid, orderByComparator);
 	}
 
@@ -220,7 +220,7 @@ public class DefinitionUtil {
 	*/
 	public static com.liferay.reports.model.Definition[] findByUuid_PrevAndNext(
 		long definitionId, java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator)
 		throws com.liferay.reports.NoSuchDefinitionException {
 		return getPersistence()
 				   .findByUuid_PrevAndNext(definitionId, uuid, orderByComparator);
@@ -354,7 +354,7 @@ public class DefinitionUtil {
 	*/
 	public static java.util.List<com.liferay.reports.model.Definition> findByUuid_C(
 		java.lang.String uuid, long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator) {
 		return getPersistence()
 				   .findByUuid_C(uuid, companyId, start, end, orderByComparator);
 	}
@@ -370,7 +370,7 @@ public class DefinitionUtil {
 	*/
 	public static com.liferay.reports.model.Definition findByUuid_C_First(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator)
 		throws com.liferay.reports.NoSuchDefinitionException {
 		return getPersistence()
 				   .findByUuid_C_First(uuid, companyId, orderByComparator);
@@ -386,7 +386,7 @@ public class DefinitionUtil {
 	*/
 	public static com.liferay.reports.model.Definition fetchByUuid_C_First(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator) {
 		return getPersistence()
 				   .fetchByUuid_C_First(uuid, companyId, orderByComparator);
 	}
@@ -402,7 +402,7 @@ public class DefinitionUtil {
 	*/
 	public static com.liferay.reports.model.Definition findByUuid_C_Last(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator)
 		throws com.liferay.reports.NoSuchDefinitionException {
 		return getPersistence()
 				   .findByUuid_C_Last(uuid, companyId, orderByComparator);
@@ -418,7 +418,7 @@ public class DefinitionUtil {
 	*/
 	public static com.liferay.reports.model.Definition fetchByUuid_C_Last(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator) {
 		return getPersistence()
 				   .fetchByUuid_C_Last(uuid, companyId, orderByComparator);
 	}
@@ -435,7 +435,7 @@ public class DefinitionUtil {
 	*/
 	public static com.liferay.reports.model.Definition[] findByUuid_C_PrevAndNext(
 		long definitionId, java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator)
 		throws com.liferay.reports.NoSuchDefinitionException {
 		return getPersistence()
 				   .findByUuid_C_PrevAndNext(definitionId, uuid, companyId,
@@ -506,7 +506,7 @@ public class DefinitionUtil {
 	*/
 	public static java.util.List<com.liferay.reports.model.Definition> findByGroupId(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator) {
 		return getPersistence()
 				   .findByGroupId(groupId, start, end, orderByComparator);
 	}
@@ -521,7 +521,7 @@ public class DefinitionUtil {
 	*/
 	public static com.liferay.reports.model.Definition findByGroupId_First(
 		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator)
 		throws com.liferay.reports.NoSuchDefinitionException {
 		return getPersistence().findByGroupId_First(groupId, orderByComparator);
 	}
@@ -535,7 +535,7 @@ public class DefinitionUtil {
 	*/
 	public static com.liferay.reports.model.Definition fetchByGroupId_First(
 		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator) {
 		return getPersistence().fetchByGroupId_First(groupId, orderByComparator);
 	}
 
@@ -549,7 +549,7 @@ public class DefinitionUtil {
 	*/
 	public static com.liferay.reports.model.Definition findByGroupId_Last(
 		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator)
 		throws com.liferay.reports.NoSuchDefinitionException {
 		return getPersistence().findByGroupId_Last(groupId, orderByComparator);
 	}
@@ -563,7 +563,7 @@ public class DefinitionUtil {
 	*/
 	public static com.liferay.reports.model.Definition fetchByGroupId_Last(
 		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator) {
 		return getPersistence().fetchByGroupId_Last(groupId, orderByComparator);
 	}
 
@@ -578,7 +578,7 @@ public class DefinitionUtil {
 	*/
 	public static com.liferay.reports.model.Definition[] findByGroupId_PrevAndNext(
 		long definitionId, long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator)
 		throws com.liferay.reports.NoSuchDefinitionException {
 		return getPersistence()
 				   .findByGroupId_PrevAndNext(definitionId, groupId,
@@ -628,7 +628,7 @@ public class DefinitionUtil {
 	*/
 	public static java.util.List<com.liferay.reports.model.Definition> filterFindByGroupId(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator) {
 		return getPersistence()
 				   .filterFindByGroupId(groupId, start, end, orderByComparator);
 	}
@@ -644,7 +644,7 @@ public class DefinitionUtil {
 	*/
 	public static com.liferay.reports.model.Definition[] filterFindByGroupId_PrevAndNext(
 		long definitionId, long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator)
 		throws com.liferay.reports.NoSuchDefinitionException {
 		return getPersistence()
 				   .filterFindByGroupId_PrevAndNext(definitionId, groupId,
@@ -723,7 +723,7 @@ public class DefinitionUtil {
 	*/
 	public static java.util.List<com.liferay.reports.model.Definition> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator) {
 		return getPersistence()
 				   .findByCompanyId(companyId, start, end, orderByComparator);
 	}
@@ -738,7 +738,7 @@ public class DefinitionUtil {
 	*/
 	public static com.liferay.reports.model.Definition findByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator)
 		throws com.liferay.reports.NoSuchDefinitionException {
 		return getPersistence()
 				   .findByCompanyId_First(companyId, orderByComparator);
@@ -753,7 +753,7 @@ public class DefinitionUtil {
 	*/
 	public static com.liferay.reports.model.Definition fetchByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator) {
 		return getPersistence()
 				   .fetchByCompanyId_First(companyId, orderByComparator);
 	}
@@ -768,7 +768,7 @@ public class DefinitionUtil {
 	*/
 	public static com.liferay.reports.model.Definition findByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator)
 		throws com.liferay.reports.NoSuchDefinitionException {
 		return getPersistence()
 				   .findByCompanyId_Last(companyId, orderByComparator);
@@ -783,7 +783,7 @@ public class DefinitionUtil {
 	*/
 	public static com.liferay.reports.model.Definition fetchByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator) {
 		return getPersistence()
 				   .fetchByCompanyId_Last(companyId, orderByComparator);
 	}
@@ -799,7 +799,7 @@ public class DefinitionUtil {
 	*/
 	public static com.liferay.reports.model.Definition[] findByCompanyId_PrevAndNext(
 		long definitionId, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator)
 		throws com.liferay.reports.NoSuchDefinitionException {
 		return getPersistence()
 				   .findByCompanyId_PrevAndNext(definitionId, companyId,
@@ -939,7 +939,7 @@ public class DefinitionUtil {
 	*/
 	public static java.util.List<com.liferay.reports.model.Definition> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

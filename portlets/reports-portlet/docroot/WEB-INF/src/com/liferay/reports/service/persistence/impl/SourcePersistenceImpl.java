@@ -153,7 +153,7 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 */
 	@Override
 	public List<Source> findByUuid(String uuid, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Source> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -273,7 +273,8 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 */
 	@Override
 	public Source findByUuid_First(String uuid,
-		OrderByComparator orderByComparator) throws NoSuchSourceException {
+		OrderByComparator<Source> orderByComparator)
+		throws NoSuchSourceException {
 		Source source = fetchByUuid_First(uuid, orderByComparator);
 
 		if (source != null) {
@@ -301,7 +302,7 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 */
 	@Override
 	public Source fetchByUuid_First(String uuid,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Source> orderByComparator) {
 		List<Source> list = findByUuid(uuid, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -321,7 +322,8 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 */
 	@Override
 	public Source findByUuid_Last(String uuid,
-		OrderByComparator orderByComparator) throws NoSuchSourceException {
+		OrderByComparator<Source> orderByComparator)
+		throws NoSuchSourceException {
 		Source source = fetchByUuid_Last(uuid, orderByComparator);
 
 		if (source != null) {
@@ -349,7 +351,7 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 */
 	@Override
 	public Source fetchByUuid_Last(String uuid,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Source> orderByComparator) {
 		int count = countByUuid(uuid);
 
 		if (count == 0) {
@@ -376,7 +378,8 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 */
 	@Override
 	public Source[] findByUuid_PrevAndNext(long sourceId, String uuid,
-		OrderByComparator orderByComparator) throws NoSuchSourceException {
+		OrderByComparator<Source> orderByComparator)
+		throws NoSuchSourceException {
 		Source source = findByPrimaryKey(sourceId);
 
 		Session session = null;
@@ -405,7 +408,8 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	}
 
 	protected Source getByUuid_PrevAndNext(Session session, Source source,
-		String uuid, OrderByComparator orderByComparator, boolean previous) {
+		String uuid, OrderByComparator<Source> orderByComparator,
+		boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -929,7 +933,7 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 */
 	@Override
 	public List<Source> findByUuid_C(String uuid, long companyId, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<Source> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1059,7 +1063,8 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 */
 	@Override
 	public Source findByUuid_C_First(String uuid, long companyId,
-		OrderByComparator orderByComparator) throws NoSuchSourceException {
+		OrderByComparator<Source> orderByComparator)
+		throws NoSuchSourceException {
 		Source source = fetchByUuid_C_First(uuid, companyId, orderByComparator);
 
 		if (source != null) {
@@ -1091,7 +1096,7 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 */
 	@Override
 	public Source fetchByUuid_C_First(String uuid, long companyId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Source> orderByComparator) {
 		List<Source> list = findByUuid_C(uuid, companyId, 0, 1,
 				orderByComparator);
 
@@ -1113,7 +1118,8 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 */
 	@Override
 	public Source findByUuid_C_Last(String uuid, long companyId,
-		OrderByComparator orderByComparator) throws NoSuchSourceException {
+		OrderByComparator<Source> orderByComparator)
+		throws NoSuchSourceException {
 		Source source = fetchByUuid_C_Last(uuid, companyId, orderByComparator);
 
 		if (source != null) {
@@ -1145,7 +1151,7 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 */
 	@Override
 	public Source fetchByUuid_C_Last(String uuid, long companyId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Source> orderByComparator) {
 		int count = countByUuid_C(uuid, companyId);
 
 		if (count == 0) {
@@ -1174,7 +1180,7 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 */
 	@Override
 	public Source[] findByUuid_C_PrevAndNext(long sourceId, String uuid,
-		long companyId, OrderByComparator orderByComparator)
+		long companyId, OrderByComparator<Source> orderByComparator)
 		throws NoSuchSourceException {
 		Source source = findByPrimaryKey(sourceId);
 
@@ -1204,8 +1210,8 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	}
 
 	protected Source getByUuid_C_PrevAndNext(Session session, Source source,
-		String uuid, long companyId, OrderByComparator orderByComparator,
-		boolean previous) {
+		String uuid, long companyId,
+		OrderByComparator<Source> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1478,7 +1484,7 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 */
 	@Override
 	public List<Source> findByGroupId(long groupId, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Source> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1584,7 +1590,8 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 */
 	@Override
 	public Source findByGroupId_First(long groupId,
-		OrderByComparator orderByComparator) throws NoSuchSourceException {
+		OrderByComparator<Source> orderByComparator)
+		throws NoSuchSourceException {
 		Source source = fetchByGroupId_First(groupId, orderByComparator);
 
 		if (source != null) {
@@ -1612,7 +1619,7 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 */
 	@Override
 	public Source fetchByGroupId_First(long groupId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Source> orderByComparator) {
 		List<Source> list = findByGroupId(groupId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -1632,7 +1639,8 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 */
 	@Override
 	public Source findByGroupId_Last(long groupId,
-		OrderByComparator orderByComparator) throws NoSuchSourceException {
+		OrderByComparator<Source> orderByComparator)
+		throws NoSuchSourceException {
 		Source source = fetchByGroupId_Last(groupId, orderByComparator);
 
 		if (source != null) {
@@ -1660,7 +1668,7 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 */
 	@Override
 	public Source fetchByGroupId_Last(long groupId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Source> orderByComparator) {
 		int count = countByGroupId(groupId);
 
 		if (count == 0) {
@@ -1688,7 +1696,8 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 */
 	@Override
 	public Source[] findByGroupId_PrevAndNext(long sourceId, long groupId,
-		OrderByComparator orderByComparator) throws NoSuchSourceException {
+		OrderByComparator<Source> orderByComparator)
+		throws NoSuchSourceException {
 		Source source = findByPrimaryKey(sourceId);
 
 		Session session = null;
@@ -1717,7 +1726,8 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	}
 
 	protected Source getByGroupId_PrevAndNext(Session session, Source source,
-		long groupId, OrderByComparator orderByComparator, boolean previous) {
+		long groupId, OrderByComparator<Source> orderByComparator,
+		boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1864,7 +1874,7 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 */
 	@Override
 	public List<Source> filterFindByGroupId(long groupId, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Source> orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByGroupId(groupId, start, end, orderByComparator);
 		}
@@ -1954,7 +1964,7 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 */
 	@Override
 	public Source[] filterFindByGroupId_PrevAndNext(long sourceId,
-		long groupId, OrderByComparator orderByComparator)
+		long groupId, OrderByComparator<Source> orderByComparator)
 		throws NoSuchSourceException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByGroupId_PrevAndNext(sourceId, groupId,
@@ -1989,8 +1999,8 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	}
 
 	protected Source filterGetByGroupId_PrevAndNext(Session session,
-		Source source, long groupId, OrderByComparator orderByComparator,
-		boolean previous) {
+		Source source, long groupId,
+		OrderByComparator<Source> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -2307,7 +2317,7 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 */
 	@Override
 	public List<Source> findByCompanyId(long companyId, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Source> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -2413,7 +2423,8 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 */
 	@Override
 	public Source findByCompanyId_First(long companyId,
-		OrderByComparator orderByComparator) throws NoSuchSourceException {
+		OrderByComparator<Source> orderByComparator)
+		throws NoSuchSourceException {
 		Source source = fetchByCompanyId_First(companyId, orderByComparator);
 
 		if (source != null) {
@@ -2441,7 +2452,7 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 */
 	@Override
 	public Source fetchByCompanyId_First(long companyId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Source> orderByComparator) {
 		List<Source> list = findByCompanyId(companyId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -2461,7 +2472,8 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 */
 	@Override
 	public Source findByCompanyId_Last(long companyId,
-		OrderByComparator orderByComparator) throws NoSuchSourceException {
+		OrderByComparator<Source> orderByComparator)
+		throws NoSuchSourceException {
 		Source source = fetchByCompanyId_Last(companyId, orderByComparator);
 
 		if (source != null) {
@@ -2489,7 +2501,7 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 */
 	@Override
 	public Source fetchByCompanyId_Last(long companyId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Source> orderByComparator) {
 		int count = countByCompanyId(companyId);
 
 		if (count == 0) {
@@ -2517,7 +2529,8 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 */
 	@Override
 	public Source[] findByCompanyId_PrevAndNext(long sourceId, long companyId,
-		OrderByComparator orderByComparator) throws NoSuchSourceException {
+		OrderByComparator<Source> orderByComparator)
+		throws NoSuchSourceException {
 		Source source = findByPrimaryKey(sourceId);
 
 		Session session = null;
@@ -2546,7 +2559,8 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	}
 
 	protected Source getByCompanyId_PrevAndNext(Session session, Source source,
-		long companyId, OrderByComparator orderByComparator, boolean previous) {
+		long companyId, OrderByComparator<Source> orderByComparator,
+		boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -3330,7 +3344,7 @@ public class SourcePersistenceImpl extends BasePersistenceImpl<Source>
 	 */
 	@Override
 	public List<Source> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Source> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

@@ -124,7 +124,7 @@ public interface SamlSpSessionPersistence extends BasePersistence<SamlSpSession>
 	*/
 	public java.util.List<com.liferay.saml.model.SamlSpSession> findByNameIdValue(
 		java.lang.String nameIdValue, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.saml.model.SamlSpSession> orderByComparator);
 
 	/**
 	* Returns the first saml sp session in the ordered set where nameIdValue = &#63;.
@@ -136,7 +136,7 @@ public interface SamlSpSessionPersistence extends BasePersistence<SamlSpSession>
 	*/
 	public com.liferay.saml.model.SamlSpSession findByNameIdValue_First(
 		java.lang.String nameIdValue,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.saml.model.SamlSpSession> orderByComparator)
 		throws com.liferay.saml.NoSuchSpSessionException;
 
 	/**
@@ -148,7 +148,7 @@ public interface SamlSpSessionPersistence extends BasePersistence<SamlSpSession>
 	*/
 	public com.liferay.saml.model.SamlSpSession fetchByNameIdValue_First(
 		java.lang.String nameIdValue,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.saml.model.SamlSpSession> orderByComparator);
 
 	/**
 	* Returns the last saml sp session in the ordered set where nameIdValue = &#63;.
@@ -160,7 +160,7 @@ public interface SamlSpSessionPersistence extends BasePersistence<SamlSpSession>
 	*/
 	public com.liferay.saml.model.SamlSpSession findByNameIdValue_Last(
 		java.lang.String nameIdValue,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.saml.model.SamlSpSession> orderByComparator)
 		throws com.liferay.saml.NoSuchSpSessionException;
 
 	/**
@@ -172,7 +172,7 @@ public interface SamlSpSessionPersistence extends BasePersistence<SamlSpSession>
 	*/
 	public com.liferay.saml.model.SamlSpSession fetchByNameIdValue_Last(
 		java.lang.String nameIdValue,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.saml.model.SamlSpSession> orderByComparator);
 
 	/**
 	* Returns the saml sp sessions before and after the current saml sp session in the ordered set where nameIdValue = &#63;.
@@ -185,7 +185,7 @@ public interface SamlSpSessionPersistence extends BasePersistence<SamlSpSession>
 	*/
 	public com.liferay.saml.model.SamlSpSession[] findByNameIdValue_PrevAndNext(
 		long samlSpSessionId, java.lang.String nameIdValue,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.saml.model.SamlSpSession> orderByComparator)
 		throws com.liferay.saml.NoSuchSpSessionException;
 
 	/**
@@ -393,7 +393,7 @@ public interface SamlSpSessionPersistence extends BasePersistence<SamlSpSession>
 	*/
 	public java.util.List<com.liferay.saml.model.SamlSpSession> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.saml.model.SamlSpSession> orderByComparator);
 
 	/**
 	* Removes all the saml sp sessions from the database.

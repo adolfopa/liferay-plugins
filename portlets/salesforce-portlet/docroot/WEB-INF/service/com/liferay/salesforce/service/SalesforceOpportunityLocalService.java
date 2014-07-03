@@ -67,20 +67,17 @@ public interface SalesforceOpportunityLocalService extends BaseLocalService,
 	public com.liferay.portal.kernel.messaging.MessageBatch getOpportunitiesByAccountId(
 		long companyId, java.lang.String accountId,
 		java.util.List<java.lang.String> fieldNames)
-		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.kernel.messaging.MessageBatch getOpportunitiesByUserId(
 		long companyId, java.lang.String userId,
 		java.util.List<java.lang.String> fieldNames)
-		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.kernel.messaging.MessageBatch getOpportunitiesByUserName(
 		long companyId, java.lang.String userName,
 		java.util.List<java.lang.String> fieldNames)
-		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException;
 }

@@ -107,12 +107,11 @@ public abstract class DefinitionLocalServiceBaseImpl
 	 * @param definitionId the primary key of the definition
 	 * @return the definition that was removed
 	 * @throws PortalException if a definition with the primary key could not be found
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public Definition deleteDefinition(long definitionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return definitionPersistence.remove(definitionId);
 	}
 
@@ -122,12 +121,11 @@ public abstract class DefinitionLocalServiceBaseImpl
 	 * @param definition the definition
 	 * @return the definition that was removed
 	 * @throws PortalException
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public Definition deleteDefinition(Definition definition)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return definitionPersistence.remove(definition);
 	}
 
@@ -146,8 +144,7 @@ public abstract class DefinitionLocalServiceBaseImpl
 	 * @return the matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
 		return definitionPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -164,8 +161,8 @@ public abstract class DefinitionLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end) {
 		return definitionPersistence.findWithDynamicQuery(dynamicQuery, start,
 			end);
 	}
@@ -184,9 +181,8 @@ public abstract class DefinitionLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator) {
 		return definitionPersistence.findWithDynamicQuery(dynamicQuery, start,
 			end, orderByComparator);
 	}

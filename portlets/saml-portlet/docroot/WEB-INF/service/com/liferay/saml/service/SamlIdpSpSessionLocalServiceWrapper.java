@@ -93,8 +93,7 @@ public class SamlIdpSpSessionLocalServiceWrapper
 	* @return the matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _samlIdpSpSessionLocalService.dynamicQuery(dynamicQuery);
 	}
@@ -112,8 +111,7 @@ public class SamlIdpSpSessionLocalServiceWrapper
 	* @return the range of matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) {
 		return _samlIdpSpSessionLocalService.dynamicQuery(dynamicQuery, start,
@@ -134,11 +132,10 @@ public class SamlIdpSpSessionLocalServiceWrapper
 	* @return the ordered range of matching rows
 	*/
 	@Override
-	@SuppressWarnings("rawtypes")
-	public java.util.List dynamicQuery(
+	public <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		return _samlIdpSpSessionLocalService.dynamicQuery(dynamicQuery, start,
 			end, orderByComparator);
 	}
@@ -284,8 +281,7 @@ public class SamlIdpSpSessionLocalServiceWrapper
 		long samlIdpSsoSessionId, java.lang.String samlSpEntityId,
 		java.lang.String nameIdFormat, java.lang.String nameIdValue,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _samlIdpSpSessionLocalService.addSamlIdpSpSession(samlIdpSsoSessionId,
 			samlSpEntityId, nameIdFormat, nameIdValue, serviceContext);
 	}
@@ -293,24 +289,21 @@ public class SamlIdpSpSessionLocalServiceWrapper
 	@Override
 	public com.liferay.saml.model.SamlIdpSpSession getSamlIdpSpSession(
 		long samlIdpSsoSessionId, java.lang.String samlSpEntityId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _samlIdpSpSessionLocalService.getSamlIdpSpSession(samlIdpSsoSessionId,
 			samlSpEntityId);
 	}
 
 	@Override
 	public java.util.List<com.liferay.saml.model.SamlIdpSpSession> getSamlIdpSpSessions(
-		long samlIdpSsoSessionId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long samlIdpSsoSessionId) {
 		return _samlIdpSpSessionLocalService.getSamlIdpSpSessions(samlIdpSsoSessionId);
 	}
 
 	@Override
 	public com.liferay.saml.model.SamlIdpSpSession updateModifiedDate(
 		long samlIdpSsoSessionId, java.lang.String samlSpEntityId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _samlIdpSpSessionLocalService.updateModifiedDate(samlIdpSsoSessionId,
 			samlSpEntityId);
 	}

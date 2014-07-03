@@ -20,7 +20,7 @@ import com.liferay.portal.resiliency.spi.service.SPIDefinitionLocalServiceUtil;
 
 /**
  * @author Michael C. Han
- * @deprecated As of 7.0.0, replaced by {@link SPIDefinitionLocalServiceUtil#getExportActionableDynamicQuery()}
+ * @deprecated As of 7.0.0, replaced by {@link SPIDefinitionLocalServiceUtil#getActionableDynamicQuery()}
  * @generated
  */
 @Deprecated

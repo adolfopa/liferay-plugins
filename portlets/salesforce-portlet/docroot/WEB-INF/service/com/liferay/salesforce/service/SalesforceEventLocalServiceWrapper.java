@@ -63,8 +63,7 @@ public class SalesforceEventLocalServiceWrapper
 	public com.liferay.portal.kernel.messaging.MessageBatch getEventsByAccountId(
 		long companyId, java.lang.String accountId,
 		java.util.List<java.lang.String> fieldNames)
-		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException {
 		return _salesforceEventLocalService.getEventsByAccountId(companyId,
 			accountId, fieldNames);
 	}
@@ -73,8 +72,7 @@ public class SalesforceEventLocalServiceWrapper
 	public com.liferay.portal.kernel.messaging.MessageBatch getEventsByUser(
 		long companyId, java.lang.String userId,
 		java.util.List<java.lang.String> fieldNames)
-		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException {
 		return _salesforceEventLocalService.getEventsByUser(companyId, userId,
 			fieldNames);
 	}
@@ -83,8 +81,7 @@ public class SalesforceEventLocalServiceWrapper
 	public com.liferay.portal.kernel.messaging.MessageBatch getEventsByUserName(
 		long companyId, java.lang.String userName,
 		java.util.List<java.lang.String> fieldNames)
-		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException {
 		return _salesforceEventLocalService.getEventsByUserName(companyId,
 			userName, fieldNames);
 	}

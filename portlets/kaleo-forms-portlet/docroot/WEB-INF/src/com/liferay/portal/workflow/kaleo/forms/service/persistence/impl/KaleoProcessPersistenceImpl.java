@@ -150,7 +150,7 @@ public class KaleoProcessPersistenceImpl extends BasePersistenceImpl<KaleoProces
 	 */
 	@Override
 	public List<KaleoProcess> findByGroupId(long groupId, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoProcess> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -256,7 +256,8 @@ public class KaleoProcessPersistenceImpl extends BasePersistenceImpl<KaleoProces
 	 */
 	@Override
 	public KaleoProcess findByGroupId_First(long groupId,
-		OrderByComparator orderByComparator) throws NoSuchKaleoProcessException {
+		OrderByComparator<KaleoProcess> orderByComparator)
+		throws NoSuchKaleoProcessException {
 		KaleoProcess kaleoProcess = fetchByGroupId_First(groupId,
 				orderByComparator);
 
@@ -285,7 +286,7 @@ public class KaleoProcessPersistenceImpl extends BasePersistenceImpl<KaleoProces
 	 */
 	@Override
 	public KaleoProcess fetchByGroupId_First(long groupId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoProcess> orderByComparator) {
 		List<KaleoProcess> list = findByGroupId(groupId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -305,7 +306,8 @@ public class KaleoProcessPersistenceImpl extends BasePersistenceImpl<KaleoProces
 	 */
 	@Override
 	public KaleoProcess findByGroupId_Last(long groupId,
-		OrderByComparator orderByComparator) throws NoSuchKaleoProcessException {
+		OrderByComparator<KaleoProcess> orderByComparator)
+		throws NoSuchKaleoProcessException {
 		KaleoProcess kaleoProcess = fetchByGroupId_Last(groupId,
 				orderByComparator);
 
@@ -334,7 +336,7 @@ public class KaleoProcessPersistenceImpl extends BasePersistenceImpl<KaleoProces
 	 */
 	@Override
 	public KaleoProcess fetchByGroupId_Last(long groupId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoProcess> orderByComparator) {
 		int count = countByGroupId(groupId);
 
 		if (count == 0) {
@@ -362,7 +364,7 @@ public class KaleoProcessPersistenceImpl extends BasePersistenceImpl<KaleoProces
 	 */
 	@Override
 	public KaleoProcess[] findByGroupId_PrevAndNext(long kaleoProcessId,
-		long groupId, OrderByComparator orderByComparator)
+		long groupId, OrderByComparator<KaleoProcess> orderByComparator)
 		throws NoSuchKaleoProcessException {
 		KaleoProcess kaleoProcess = findByPrimaryKey(kaleoProcessId);
 
@@ -393,7 +395,7 @@ public class KaleoProcessPersistenceImpl extends BasePersistenceImpl<KaleoProces
 
 	protected KaleoProcess getByGroupId_PrevAndNext(Session session,
 		KaleoProcess kaleoProcess, long groupId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<KaleoProcess> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -541,7 +543,7 @@ public class KaleoProcessPersistenceImpl extends BasePersistenceImpl<KaleoProces
 	 */
 	@Override
 	public List<KaleoProcess> filterFindByGroupId(long groupId, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<KaleoProcess> orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByGroupId(groupId, start, end, orderByComparator);
 		}
@@ -632,7 +634,7 @@ public class KaleoProcessPersistenceImpl extends BasePersistenceImpl<KaleoProces
 	 */
 	@Override
 	public KaleoProcess[] filterFindByGroupId_PrevAndNext(long kaleoProcessId,
-		long groupId, OrderByComparator orderByComparator)
+		long groupId, OrderByComparator<KaleoProcess> orderByComparator)
 		throws NoSuchKaleoProcessException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByGroupId_PrevAndNext(kaleoProcessId, groupId,
@@ -668,7 +670,7 @@ public class KaleoProcessPersistenceImpl extends BasePersistenceImpl<KaleoProces
 
 	protected KaleoProcess filterGetByGroupId_PrevAndNext(Session session,
 		KaleoProcess kaleoProcess, long groupId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<KaleoProcess> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1687,7 +1689,7 @@ public class KaleoProcessPersistenceImpl extends BasePersistenceImpl<KaleoProces
 	 */
 	@Override
 	public List<KaleoProcess> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<KaleoProcess> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
