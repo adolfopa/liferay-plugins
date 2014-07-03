@@ -187,7 +187,9 @@ public class KaleoDraftDefinitionLocalServiceImpl
 		return dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
 
-	public int getLatestKaleoDraftDefinitionsCount(long companyId, int version) {
+	public int getLatestKaleoDraftDefinitionsCount(
+		long companyId, int version) {
+
 		List<Object> kaleoDraftDefinitioIds = getKaleoDraftDefinitionIds(
 			companyId, version);
 
