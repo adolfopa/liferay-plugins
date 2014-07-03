@@ -31,7 +31,7 @@ else {
 }
 %>
 
-<liferay-ui:icon-menu showExpanded="<%= row == null %>">
+<liferay-ui:icon-menu icon="<%= StringPool.BLANK %>" message="<%= StringPool.BLANK %>" showExpanded="<%= row == null %>">
 	<c:if test="<%= WebExAccountPermission.contains(permissionChecker, webExAccount, ActionKeys.UPDATE) %>">
 		<portlet:renderURL var="editURL">
 			<portlet:param name="mvcPath" value="/meetings/edit_account.jsp" />
@@ -41,7 +41,8 @@ else {
 		</portlet:renderURL>
 
 		<liferay-ui:icon
-			image="edit"
+			iconCssClass="icon-edit"
+			message="edit"
 			url="<%= editURL.toString() %>"
 		/>
 	</c:if>
@@ -56,7 +57,8 @@ else {
 		/>
 
 		<liferay-ui:icon
-			image="permissions"
+			iconCssClass="icon-lock"
+			message="permissions"
 			method="get"
 			url="<%= permissionsURL %>"
 			useDialog="<%= true %>"
@@ -71,7 +73,7 @@ else {
 		</portlet:renderURL>
 
 		<liferay-ui:icon
-			image="services"
+			iconCssClass="icon-cogs"
 			message="add-meeting"
 			url="<%= addMeetingURL %>"
 		/>

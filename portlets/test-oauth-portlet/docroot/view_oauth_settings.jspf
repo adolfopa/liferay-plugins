@@ -16,7 +16,7 @@
 
 <liferay-ui:header title="set-oauth-consumer-credentials" />
 
-<liferay-ui:icon image="checked" />
+<liferay-ui:icon iconCssClass="icon-check" message="checked" />
 
 <p>
 	<liferay-ui:message key="host-name" />: <strong><%= hostName %></strong><br />
@@ -31,7 +31,7 @@
 <c:if test="<%= Validator.isNotNull(accessToken) %>">
 	<liferay-ui:header title="obtain-oauth-accessor-credentials" />
 
-	<liferay-ui:icon image="checked" />
+	<liferay-ui:icon iconCssClass="icon-check" message="checked" />
 
 	<p>
 		<liferay-ui:message key="access-token" />: <strong><%= accessToken %></strong><br />

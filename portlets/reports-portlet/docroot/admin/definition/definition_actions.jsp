@@ -22,7 +22,7 @@ ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_
 Definition definition = (Definition)row.getObject();
 %>
 
-<liferay-ui:icon-menu>
+<liferay-ui:icon-menu icon="<%= StringPool.BLANK %>" message="<%= StringPool.BLANK %>">
 	<c:if test="<%= DefinitionPermission.contains(permissionChecker, definition, ActionKeys.UPDATE) %>">
 		<portlet:renderURL var="editURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">
 			<portlet:param name="mvcPath" value="/admin/definition/edit_definition.jsp" />
@@ -30,7 +30,8 @@ Definition definition = (Definition)row.getObject();
 		</portlet:renderURL>
 
 		<liferay-ui:icon
-			image="edit"
+			iconCssClass="icon-edit"
+			message="edit"
 			url="<%= editURL %>"
 		/>
 	</c:if>
@@ -45,7 +46,8 @@ Definition definition = (Definition)row.getObject();
 		/>
 
 		<liferay-ui:icon
-			image="permissions"
+			iconCssClass="icon-lock"
+			message="permissions"
 			method="get"
 			url="<%= permissionsURL %>"
 			useDialog="<%= true %>"
@@ -59,7 +61,7 @@ Definition definition = (Definition)row.getObject();
 		</portlet:renderURL>
 
 		<liferay-ui:icon
-			image="add_template"
+			iconCssClass="icon-plus"
 			message="add-report"
 			url="<%= addReportURL %>"
 		/>
@@ -72,7 +74,7 @@ Definition definition = (Definition)row.getObject();
 		</portlet:renderURL>
 
 		<liferay-ui:icon
-			image="time"
+			iconCssClass="icon-time"
 			message="add-schedule"
 			url="<%= addScheduleURL %>"
 		/>

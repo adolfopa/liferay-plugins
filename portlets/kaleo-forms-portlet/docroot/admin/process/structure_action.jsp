@@ -24,7 +24,7 @@ DDMStructure ddmStructure = (DDMStructure)row.getObject();
 String redirect = (String)row.getParameter("redirect");
 %>
 
-<liferay-ui:icon-menu>
+<liferay-ui:icon-menu icon="<%= StringPool.BLANK %>" message="<%= StringPool.BLANK %>">
 	<portlet:renderURL var="editURL">
 		<portlet:param name="mvcPath" value='<%= "/admin/process/edit_structure.jsp" %>' />
 		<portlet:param name="redirect" value="<%= redirect %>" />

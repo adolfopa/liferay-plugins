@@ -22,7 +22,7 @@ ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_
 OAuthApplication oAuthApplication = (OAuthApplication)row.getObject();
 %>
 
-<liferay-ui:icon-menu>
+<liferay-ui:icon-menu icon="<%= StringPool.BLANK %>" message="<%= StringPool.BLANK %>">
 	<liferay-portlet:renderURL var="viewURL">
 		<portlet:param name="mvcPath" value="/admin/view_application.jsp" />
 		<portlet:param name="redirect" value="<%= currentURL %>" />
@@ -30,7 +30,8 @@ OAuthApplication oAuthApplication = (OAuthApplication)row.getObject();
 	</liferay-portlet:renderURL>
 
 	<liferay-ui:icon
-		image="view"
+		iconCssClass="icon-search"
+		message="view"
 		method="get"
 		url="<%= viewURL %>"
 	/>
@@ -43,7 +44,8 @@ OAuthApplication oAuthApplication = (OAuthApplication)row.getObject();
 		</liferay-portlet:renderURL>
 
 		<liferay-ui:icon
-			image="edit"
+			iconCssClass="icon-edit"
+			message="edit"
 			method="get"
 			url="<%= editURL %>"
 		/>

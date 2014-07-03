@@ -22,7 +22,7 @@ ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_
 DDMTemplate ddmTemplate = (DDMTemplate)row.getObject();
 %>
 
-<liferay-ui:icon-menu>
+<liferay-ui:icon-menu icon="<%= StringPool.BLANK %>" message="<%= StringPool.BLANK %>">
 
 	<%
 	String taglibOnClick = "javascript:" + renderResponse.getNamespace() + "openDDMPortlet('"+ ddmTemplate.getTemplateId() +"');";

@@ -31,7 +31,7 @@ else {
 }
 %>
 
-<liferay-ui:icon-menu showWhenSingleIcon="<%= true %>">
+<liferay-ui:icon-menu icon="<%= StringPool.BLANK %>" message="<%= StringPool.BLANK %>" showWhenSingleIcon="<%= true %>">
 	<c:if test="<%= SPIDefinitionPermissionUtil.contains(permissionChecker, spiDefinition, ActionKeys.UPDATE) %>">
 		<portlet:renderURL var="editURL">
 			<portlet:param name="mvcPath" value="/edit_spi_definition.jsp" />
@@ -41,7 +41,8 @@ else {
 		</portlet:renderURL>
 
 		<liferay-ui:icon
-			image="edit"
+			iconCssClass="icon-edit"
+			message="edit"
 			url="<%= editURL %>"
 		/>
 	</c:if>
@@ -55,8 +56,8 @@ else {
 				</portlet:actionURL>
 
 				<liferay-ui:icon
+					iconCssClass="icon-repeat"
 					message="restart"
-					src='<%= PortalUtil.getPathContext(request) + "/images/restart.png" %>'
 					url="<%= restartURL %>"
 				/>
 
@@ -66,8 +67,8 @@ else {
 				</portlet:actionURL>
 
 				<liferay-ui:icon
+					iconCssClass="icon-stop"
 					message="stop"
-					src='<%= PortalUtil.getPathContext(request) + "/images/stop.png" %>'
 					url="<%= stopURL %>"
 				/>
 			</c:when>
@@ -78,8 +79,8 @@ else {
 				</portlet:actionURL>
 
 				<liferay-ui:icon
+					iconCssClass="icon-play"
 					message="start"
-					src='<%= PortalUtil.getPathContext(request) + "/images/start.png" %>'
 					url="<%= startURL %>"
 				/>
 			</c:when>
@@ -105,7 +106,8 @@ else {
 				%>
 
 				<liferay-ui:icon
-					image="delete"
+					cssClass="item-remove"
+					iconCssClass="icon-remove"
 					url="<%= taglibURL %>"
 				/>
 			</c:otherwise>

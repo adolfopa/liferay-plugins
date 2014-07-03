@@ -22,7 +22,7 @@ ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_
 Source source = (Source)row.getObject();
 %>
 
-<liferay-ui:icon-menu>
+<liferay-ui:icon-menu icon="<%= StringPool.BLANK %>" message="<%= StringPool.BLANK %>">
 	<c:if test="<%= SourcePermission.contains(permissionChecker, source, ActionKeys.VIEW) %>">
 		<portlet:actionURL name="testDataSource" var="testConnectionURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">
 			<portlet:param name="tabs1" value="sources" />
@@ -30,7 +30,7 @@ Source source = (Source)row.getObject();
 		</portlet:actionURL>
 
 		<liferay-ui:icon
-			image="view"
+			iconCssClass="icon-search"
 			message="test-database-connection"
 			url="<%= testConnectionURL %>"
 		/>
@@ -43,7 +43,8 @@ Source source = (Source)row.getObject();
 		</portlet:renderURL>
 
 		<liferay-ui:icon
-			image="edit"
+			iconCssClass="icon-edit"
+			message="edit"
 			url="<%= editURL %>"
 		/>
 	</c:if>
@@ -58,7 +59,8 @@ Source source = (Source)row.getObject();
 		/>
 
 		<liferay-ui:icon
-			image="permissions"
+			iconCssClass="icon-lock"
+			message="permissions"
 			method="get"
 			url="<%= permissionsURL %>"
 			useDialog="<%= true %>"

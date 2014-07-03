@@ -22,7 +22,7 @@ ResultRow row = (ResultRow) request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT
 Entry entry = (Entry) row.getObject();
 %>
 
-<liferay-ui:icon-menu>
+<liferay-ui:icon-menu icon="<%= StringPool.BLANK %>" message="<%= StringPool.BLANK %>">
 	<c:if test="<%= EntryPermission.contains(permissionChecker, entry.getEntryId(), ActionKeys.PERMISSIONS) %>">
 		<liferay-security:permissionsURL
 			modelResource="<%= Entry.class.getName() %>"
@@ -33,7 +33,8 @@ Entry entry = (Entry) row.getObject();
 		/>
 
 		<liferay-ui:icon
-			image="permissions"
+			iconCssClass="icon-lock"
+			message="permissions"
 			method="get"
 			url="<%= permissionsURL %>"
 			useDialog="<%= true %>"
@@ -57,7 +58,7 @@ Entry entry = (Entry) row.getObject();
 			</portlet:actionURL>
 
 			<liferay-ui:icon
-				image="time"
+				iconCssClass="icon-time"
 				message="unschedule"
 				url="<%= unscheduleURL %>"
 			/>

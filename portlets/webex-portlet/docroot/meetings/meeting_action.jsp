@@ -35,7 +35,7 @@ long webExAccountId = ParamUtil.getLong(request, "webExAccountId");
 WebExAccount webExAccount = WebExAccountLocalServiceUtil.fetchWebExAccount(webExAccountId);
 %>
 
-<liferay-ui:icon-menu showExpanded="<%= row == null %>">
+<liferay-ui:icon-menu icon="<%= StringPool.BLANK %>" message="<%= StringPool.BLANK %>" showExpanded="<%= row == null %>">
 	<c:if test="<%= WebExAccountPermission.contains(permissionChecker, webExAccount, ActionKeys.UPDATE) %>">
 		<portlet:renderURL var="editURL">
 			<portlet:param name="mvcPath" value="/meetings/edit_meeting.jsp" />
@@ -46,12 +46,13 @@ WebExAccount webExAccount = WebExAccountLocalServiceUtil.fetchWebExAccount(webEx
 		</portlet:renderURL>
 
 		<liferay-ui:icon
-			image="edit"
+			iconCssClass="icon-edit"
+			message="edit"
 			url="<%= editURL.toString() %>"
 		/>
 
 		<liferay-ui:icon
-			image="services"
+			iconCssClass="icon-cogs"
 			message="start-meeting"
 			target="_blank"
 			url="<%= MeetingServiceUtil.getHostURL(meeting.getMeetingKey(), webExAccount.getMeetingContext()) %>"

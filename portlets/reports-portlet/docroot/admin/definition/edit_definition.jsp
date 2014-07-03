@@ -144,7 +144,7 @@ if (definition != null) {
 			</aui:column>
 			<aui:column>
 				<span class="add-parameter">
-					<liferay-ui:icon cssClass="add-parameter-button" image="add" />
+					<liferay-ui:icon cssClass="add-parameter-button" iconCssClass="icon-plus" message="add" />
 				</span>
 			</aui:column>
 		</aui:field-wrapper>
