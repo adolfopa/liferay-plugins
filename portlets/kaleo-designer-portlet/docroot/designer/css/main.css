@@ -3,6 +3,8 @@
 }
 
 .diagram-builder {
+	height: 600px;
+
 	.diagram-builder-field {
 		position: relative;
 		width: 78px;
