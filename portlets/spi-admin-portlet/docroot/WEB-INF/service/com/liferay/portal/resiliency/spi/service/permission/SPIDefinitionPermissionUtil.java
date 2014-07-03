@@ -15,7 +15,6 @@
 package com.liferay.portal.resiliency.spi.service.permission;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.security.pacl.permission.PortalRuntimePermission;
 import com.liferay.portal.resiliency.spi.model.SPIDefinition;
 import com.liferay.portal.security.permission.PermissionChecker;
@@ -28,7 +27,7 @@ public class SPIDefinitionPermissionUtil {
 	public static void check(
 			PermissionChecker permissionChecker, long spiDefinitionId,
 			String actionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		getSpiDefinitionPermission().check(
 			permissionChecker, spiDefinitionId, actionId);
@@ -53,7 +52,7 @@ public class SPIDefinitionPermissionUtil {
 	public static boolean contains(
 			PermissionChecker permissionChecker, long spiDefinitionId,
 			String actionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		return getSpiDefinitionPermission().contains(
 			permissionChecker, spiDefinitionId, actionId);
@@ -75,7 +74,6 @@ public class SPIDefinitionPermissionUtil {
 	}
 
 	public static SPIDefinitionPermission getSpiDefinitionPermission() {
-
 		PortalRuntimePermission.checkGetBeanProperty(
 			SPIDefinitionPermissionUtil.class);
 

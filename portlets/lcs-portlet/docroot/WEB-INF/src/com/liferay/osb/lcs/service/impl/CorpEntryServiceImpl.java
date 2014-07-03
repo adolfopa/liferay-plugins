@@ -34,9 +34,7 @@ public class CorpEntryServiceImpl
 	}
 
 	@Override
-	public List<CorpEntryIdentifier> getCorpEntryIdentifiers()
-		throws SystemException {
-
+	public List<CorpEntryIdentifier> getCorpEntryIdentifiers() {
 		try {
 			return doGetToList(
 				CorpEntryIdentifier.class,
@@ -56,7 +54,7 @@ public class CorpEntryServiceImpl
 
 	@Override
 	public List<CorpEntryIdentifier> getLocalCorpEntryIdentifiers()
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		throw new UnsupportedOperationException();
 	}

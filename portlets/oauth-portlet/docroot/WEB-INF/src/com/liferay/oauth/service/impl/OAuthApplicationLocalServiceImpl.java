@@ -22,7 +22,6 @@ import com.liferay.oauth.model.OAuthUser;
 import com.liferay.oauth.service.base.OAuthApplicationLocalServiceBaseImpl;
 import com.liferay.oauth.util.OAuthUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
@@ -49,7 +48,7 @@ public class OAuthApplicationLocalServiceImpl
 			long userId, String name, String description, int accessLevel,
 			boolean shareableAccessToken, String callbackURI, String websiteURL,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		// OAuth application
 
@@ -97,9 +96,7 @@ public class OAuthApplicationLocalServiceImpl
 	}
 
 	@Override
-	public void deleteLogo(long oAuthApplicationId)
-		throws PortalException, SystemException {
-
+	public void deleteLogo(long oAuthApplicationId) throws PortalException {
 		OAuthApplication oAuthApplication =
 			oAuthApplicationPersistence.findByPrimaryKey(oAuthApplicationId);
 
@@ -116,7 +113,7 @@ public class OAuthApplicationLocalServiceImpl
 
 	@Override
 	public OAuthApplication deleteOAuthApplication(long oAuthApplicationId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		OAuthApplication oAuthApplication =
 			oAuthApplicationPersistence.findByPrimaryKey(oAuthApplicationId);
@@ -127,7 +124,7 @@ public class OAuthApplicationLocalServiceImpl
 	@Override
 	public OAuthApplication deleteOAuthApplication(
 			OAuthApplication oAuthApplication)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		// OAuth application
 
@@ -156,42 +153,35 @@ public class OAuthApplicationLocalServiceImpl
 	}
 
 	@Override
-	public OAuthApplication fetchOAuthApplication(String consumerKey)
-		throws SystemException {
-
+	public OAuthApplication fetchOAuthApplication(String consumerKey) {
 		return oAuthApplicationPersistence.fetchByConsumerKey(consumerKey);
 	}
 
 	@Override
 	public OAuthApplication getOAuthApplication(String consumerKey)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		return oAuthApplicationPersistence.findByConsumerKey(consumerKey);
 	}
 
 	@Override
 	public List<OAuthApplication> getOAuthApplications(
-			long companyId, int start, int end,
-			OrderByComparator orderByComparator)
-		throws SystemException {
+		long companyId, int start, int end,
+		OrderByComparator orderByComparator) {
 
 		return oAuthApplicationPersistence.findByCompanyId(
 			companyId, start, end, orderByComparator);
 	}
 
 	@Override
-	public int getOAuthApplicationsCount(long companyId)
-		throws SystemException {
-
+	public int getOAuthApplicationsCount(long companyId) {
 		return oAuthApplicationPersistence.countByCompanyId(companyId);
 	}
 
 	@Override
 	public List<OAuthApplication> search(
-			long companyId, String keywords,
-			LinkedHashMap<String, Object> params, int start, int end,
-			OrderByComparator orderByComparator)
-		throws SystemException {
+		long companyId, String keywords, LinkedHashMap<String, Object> params,
+		int start, int end, OrderByComparator orderByComparator) {
 
 		keywords = CustomSQLUtil.keywords(keywords)[0];
 
@@ -218,9 +208,8 @@ public class OAuthApplicationLocalServiceImpl
 
 	@Override
 	public int searchCount(
-			long companyId, String keywords,
-			LinkedHashMap<String, Object> params)
-		throws SystemException {
+		long companyId, String keywords,
+		LinkedHashMap<String, Object> params) {
 
 		keywords = CustomSQLUtil.keywords(keywords)[0];
 
@@ -244,7 +233,7 @@ public class OAuthApplicationLocalServiceImpl
 	@Override
 	public OAuthApplication updateLogo(
 			long oAuthApplicationId, InputStream inputStream)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		OAuthApplication oAuthApplication =
 			oAuthApplicationPersistence.findByPrimaryKey(oAuthApplicationId);
@@ -269,7 +258,7 @@ public class OAuthApplicationLocalServiceImpl
 			long oAuthApplicationId, String name, String description,
 			boolean shareableAccessToken, String callbackURI, String websiteURL,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		validate(name, callbackURI, websiteURL);
 

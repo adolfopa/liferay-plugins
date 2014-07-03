@@ -15,7 +15,6 @@
 package com.liferay.salesforce.service.impl;
 
 import com.liferay.portal.kernel.dao.orm.ObjectNotFoundException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.messaging.MessageBatch;
 import com.liferay.salesforce.query.Condition;
 import com.liferay.salesforce.query.ConditionImpl;
@@ -33,8 +32,7 @@ public class SalesforceLeadLocalServiceImpl
 	extends SalesforceLeadLocalServiceBaseImpl {
 
 	public MessageBatch getLeadsByCountry(
-			long companyId, String country, List<String> fieldNames)
-		throws SystemException {
+		long companyId, String country, List<String> fieldNames) {
 
 		Condition condition = ConditionImpl.EQUALS("Country", country);
 
@@ -42,8 +40,7 @@ public class SalesforceLeadLocalServiceImpl
 	}
 
 	public MessageBatch getLeadsBySource(
-			long companyId, String source, List<String> fieldNames)
-		throws SystemException {
+		long companyId, String source, List<String> fieldNames) {
 
 		Condition condition = ConditionImpl.EQUALS("LeadSource", source);
 
@@ -51,8 +48,7 @@ public class SalesforceLeadLocalServiceImpl
 	}
 
 	public MessageBatch getLeadsByStatus(
-			long companyId, String status, List<String> fieldNames)
-		throws SystemException {
+		long companyId, String status, List<String> fieldNames) {
 
 		Condition condition = ConditionImpl.EQUALS("Status", status);
 
@@ -61,7 +57,7 @@ public class SalesforceLeadLocalServiceImpl
 
 	public MessageBatch getLeadsByUserId(
 			long companyId, String userId, List<String> fieldNames)
-		throws ObjectNotFoundException, SystemException {
+		throws ObjectNotFoundException {
 
 		Condition condition = ConditionImpl.EQUALS("OwnerId", userId);
 
@@ -70,7 +66,7 @@ public class SalesforceLeadLocalServiceImpl
 
 	public MessageBatch getLeadsByUserName(
 			long companyId, String userName, List<String> fieldNames)
-		throws ObjectNotFoundException, SystemException {
+		throws ObjectNotFoundException {
 
 		Condition condition = ConditionImpl.EQUALS("Owner.Username", userName);
 
@@ -78,8 +74,7 @@ public class SalesforceLeadLocalServiceImpl
 	}
 
 	protected MessageBatch executeQuery(
-			long companyId, List<String> fieldNames, Condition condition)
-		throws SystemException {
+		long companyId, List<String> fieldNames, Condition condition) {
 
 		String query = SelectQuery.build(
 			SalesforceObjectNames.LEAD, fieldNames, condition,

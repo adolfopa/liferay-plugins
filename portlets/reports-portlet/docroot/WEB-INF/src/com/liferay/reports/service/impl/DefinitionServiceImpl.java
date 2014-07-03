@@ -15,7 +15,6 @@
 package com.liferay.reports.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.service.ServiceContext;
@@ -43,7 +42,7 @@ public class DefinitionServiceImpl extends DefinitionServiceBaseImpl {
 			Map<Locale, String> descriptionMap, long sourceId,
 			String reportParameters, String fileName, InputStream inputStream,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		AdminPermission.check(
 			getPermissionChecker(), serviceContext.getScopeGroupId(),
@@ -55,7 +54,7 @@ public class DefinitionServiceImpl extends DefinitionServiceBaseImpl {
 	}
 
 	public Definition deleteDefinition(long definitionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		DefinitionPermission.check(
 			getPermissionChecker(), definitionId, ActionKeys.DELETE);
@@ -63,9 +62,7 @@ public class DefinitionServiceImpl extends DefinitionServiceBaseImpl {
 		return definitionLocalService.deleteDefinition(definitionId);
 	}
 
-	public Definition getDefinition(long definitionId)
-		throws PortalException, SystemException {
-
+	public Definition getDefinition(long definitionId) throws PortalException {
 		DefinitionPermission.check(
 			getPermissionChecker(), definitionId, ActionKeys.VIEW);
 
@@ -76,7 +73,7 @@ public class DefinitionServiceImpl extends DefinitionServiceBaseImpl {
 			long groupId, String definitionName, String description,
 			String sourceId, String reportName, boolean andSearch, int start,
 			int end, OrderByComparator orderByComparator)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		List<Definition> definitions = definitionLocalService.getDefinitions(
 			groupId, definitionName, description, sourceId, reportName,
@@ -86,9 +83,8 @@ public class DefinitionServiceImpl extends DefinitionServiceBaseImpl {
 	}
 
 	public int getDefinitionsCount(
-			long groupId, String definitionName, String description,
-			String sourceId, String reportName, boolean andSearch)
-		throws SystemException {
+		long groupId, String definitionName, String description,
+		String sourceId, String reportName, boolean andSearch) {
 
 		return definitionLocalService.getDefinitionsCount(
 			groupId, definitionName, description, sourceId, reportName,
@@ -100,7 +96,7 @@ public class DefinitionServiceImpl extends DefinitionServiceBaseImpl {
 			Map<Locale, String> descriptionMap, long sourceId,
 			String reportParameters, String fileName, InputStream inputStream,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		DefinitionPermission.check(
 			getPermissionChecker(), definitionId, ActionKeys.UPDATE);

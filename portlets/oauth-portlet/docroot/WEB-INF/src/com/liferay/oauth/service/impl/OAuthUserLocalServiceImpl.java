@@ -17,7 +17,6 @@ package com.liferay.oauth.service.impl;
 import com.liferay.oauth.model.OAuthUser;
 import com.liferay.oauth.service.base.OAuthUserLocalServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.User;
@@ -36,7 +35,7 @@ public class OAuthUserLocalServiceImpl extends OAuthUserLocalServiceBaseImpl {
 	public OAuthUser addOAuthUser(
 			long userId, long oAuthApplicationId, String accessToken,
 			String accessSecret, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		// OAuth user
 
@@ -69,7 +68,7 @@ public class OAuthUserLocalServiceImpl extends OAuthUserLocalServiceBaseImpl {
 
 	@Override
 	public OAuthUser deleteOAuthUser(long userId, long oAuthApplicationId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		OAuthUser oAuthUser = oAuthUserPersistence.findByU_OAI(
 			userId, oAuthApplicationId);
@@ -79,7 +78,7 @@ public class OAuthUserLocalServiceImpl extends OAuthUserLocalServiceBaseImpl {
 
 	@Override
 	public OAuthUser deleteOAuthUser(OAuthUser oAuthUser)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		// OAuth user
 
@@ -94,61 +93,52 @@ public class OAuthUserLocalServiceImpl extends OAuthUserLocalServiceBaseImpl {
 	}
 
 	@Override
-	public OAuthUser fetchOAuthUser(long userId, long oAuthApplicationId)
-		throws SystemException {
-
+	public OAuthUser fetchOAuthUser(long userId, long oAuthApplicationId) {
 		return oAuthUserPersistence.fetchByU_OAI(userId, oAuthApplicationId);
 	}
 
 	@Override
-	public OAuthUser fetchOAuthUser(String accessToken) throws SystemException {
+	public OAuthUser fetchOAuthUser(String accessToken) {
 		return oAuthUserPersistence.fetchByAccessToken(accessToken);
 	}
 
 	@Override
 	public List<OAuthUser> getOAuthApplicationOAuthUsers(
-			long oAuthApplicationId, int start, int end,
-			OrderByComparator orderByComparator)
-		throws SystemException {
+		long oAuthApplicationId, int start, int end,
+		OrderByComparator orderByComparator) {
 
 		return oAuthUserPersistence.findByOAuthApplicationId(
 			oAuthApplicationId, start, end, orderByComparator);
 	}
 
 	@Override
-	public int getOAuthApplicationOAuthUsersCount(long oAuthApplicationId)
-		throws SystemException {
-
+	public int getOAuthApplicationOAuthUsersCount(long oAuthApplicationId) {
 		return oAuthUserPersistence.countByOAuthApplicationId(
 			oAuthApplicationId);
 	}
 
 	@Override
 	public OAuthUser getOAuthUser(long userId, long oAuthApplicationId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		return oAuthUserPersistence.findByU_OAI(userId, oAuthApplicationId);
 	}
 
 	@Override
-	public OAuthUser getOAuthUser(String accessToken)
-		throws PortalException, SystemException {
-
+	public OAuthUser getOAuthUser(String accessToken) throws PortalException {
 		return oAuthUserPersistence.findByAccessToken(accessToken);
 	}
 
 	@Override
 	public List<OAuthUser> getUserOAuthUsers(
-			long userId, int start, int end,
-			OrderByComparator orderByComparator)
-		throws SystemException {
+		long userId, int start, int end, OrderByComparator orderByComparator) {
 
 		return oAuthUserPersistence.findByUserId(
 			userId, start, end, orderByComparator);
 	}
 
 	@Override
-	public int getUserOAuthUsersCount(long userId) throws SystemException {
+	public int getUserOAuthUsersCount(long userId) {
 		return oAuthUserPersistence.countByUserId(userId);
 	}
 
@@ -156,7 +146,7 @@ public class OAuthUserLocalServiceImpl extends OAuthUserLocalServiceBaseImpl {
 	public OAuthUser updateOAuthUser(
 			long userId, long oAuthApplicationId, String accessToken,
 			String accessSecret, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		OAuthUser oAuthUser = oAuthUserPersistence.findByU_OAI(
 			userId, oAuthApplicationId);
@@ -169,9 +159,7 @@ public class OAuthUserLocalServiceImpl extends OAuthUserLocalServiceBaseImpl {
 		return oAuthUser;
 	}
 
-	protected void validate(long oAuthApplicationId)
-		throws PortalException, SystemException {
-
+	protected void validate(long oAuthApplicationId) throws PortalException {
 		oAuthApplicationPersistence.findByPrimaryKey(oAuthApplicationId);
 	}
 

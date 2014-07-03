@@ -16,7 +16,6 @@ package com.liferay.saml.resolver;
 
 import com.liferay.portal.NoSuchUserException;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.MapUtil;
@@ -95,7 +94,7 @@ public class DefaultUserResolver implements UserResolver {
 	protected User addUser(
 			long companyId, Map<String, String> attributesMap,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (_log.isDebugEnabled()) {
 			_log.debug(
@@ -148,9 +147,9 @@ public class DefaultUserResolver implements UserResolver {
 	}
 
 	protected List<Attribute> getAttributes(
-			Assertion assertion,
-			SAMLMessageContext<Response, SAMLObject, NameID>
-				samlMessageContext) {
+		Assertion assertion,
+		SAMLMessageContext<Response, SAMLObject, NameID>
+			samlMessageContext) {
 
 		List<Attribute> attributes = new ArrayList<Attribute>();
 
@@ -220,7 +219,7 @@ public class DefaultUserResolver implements UserResolver {
 	protected User getUser(
 			long companyId, String subjectNameIdentifier,
 			String subjectNameIdentifierType)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			if (subjectNameIdentifierType.endsWith(
@@ -281,7 +280,7 @@ public class DefaultUserResolver implements UserResolver {
 			String subjectNameIdentifierType, Assertion assertion,
 			SAMLMessageContext<Response, SAMLObject, NameID>
 				samlMessageContext, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (_log.isDebugEnabled()) {
 			_log.debug(

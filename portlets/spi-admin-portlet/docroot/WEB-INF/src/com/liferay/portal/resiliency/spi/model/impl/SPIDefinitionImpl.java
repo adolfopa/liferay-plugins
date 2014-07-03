@@ -51,7 +51,7 @@ public class SPIDefinitionImpl extends SPIDefinitionBaseImpl {
 	}
 
 	@Override
-	public String getBaseDir() throws SystemException {
+	public String getBaseDir() {
 		String baseDirName = getBaseDirName();
 
 		File baseDir = new File(baseDirName);

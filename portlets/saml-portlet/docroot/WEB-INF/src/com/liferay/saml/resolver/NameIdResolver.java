@@ -15,7 +15,6 @@
 package com.liferay.saml.resolver;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.User;
 
 import org.opensaml.saml2.core.NameID;
@@ -27,6 +26,6 @@ import org.opensaml.saml2.core.NameIDPolicy;
 public interface NameIdResolver {
 
 	public NameID resolve(User user, String entityId, NameIDPolicy nameIdPolicy)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 }

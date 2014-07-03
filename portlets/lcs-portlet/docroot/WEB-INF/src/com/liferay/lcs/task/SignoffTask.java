@@ -21,7 +21,6 @@ import com.liferay.lcs.util.HandshakeManager;
 import com.liferay.lcs.util.KeyGenerator;
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 
@@ -53,7 +52,7 @@ public class SignoffTask implements Runnable {
 		_heartbeatInterval = heartbeatInterval;
 	}
 
-	protected void doRun() throws PortalException, SystemException {
+	protected void doRun() throws PortalException {
 		if (_log.isInfoEnabled()) {
 			_log.info("Initiate sign off");
 		}

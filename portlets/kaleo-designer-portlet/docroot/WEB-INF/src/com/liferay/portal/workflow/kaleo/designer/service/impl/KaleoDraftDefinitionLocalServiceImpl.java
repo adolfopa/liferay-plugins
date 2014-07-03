@@ -21,7 +21,6 @@ import com.liferay.portal.kernel.dao.orm.ProjectionList;
 import com.liferay.portal.kernel.dao.orm.Property;
 import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowDefinition;
@@ -56,7 +55,7 @@ public class KaleoDraftDefinitionLocalServiceImpl
 			long userId, long groupId, String name,
 			Map<Locale, String> titleMap, String content, int version,
 			int draftVersion, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		// Kaleo draft definition
 
@@ -95,7 +94,7 @@ public class KaleoDraftDefinitionLocalServiceImpl
 	public KaleoDraftDefinition deleteKaleoDraftDefinition(
 			String name, int version, int draftVersion,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		// Kaleo draft definition
 
@@ -113,8 +112,7 @@ public class KaleoDraftDefinitionLocalServiceImpl
 	}
 
 	public void deleteKaleoDraftDefinitions(
-			String name, int version, ServiceContext serviceContext)
-		throws SystemException {
+		String name, int version, ServiceContext serviceContext) {
 
 		List<KaleoDraftDefinition> kaleoDraftDefinitions =
 			kaleoDraftDefinitionPersistence.findByC_N_V(
@@ -130,16 +128,15 @@ public class KaleoDraftDefinitionLocalServiceImpl
 	public KaleoDraftDefinition getKaleoDraftDefinition(
 			String name, int version, int draftVersion,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		return kaleoDraftDefinitionPersistence.findByC_N_V_D(
 			serviceContext.getCompanyId(), name, version, draftVersion);
 	}
 
 	public List<KaleoDraftDefinition> getKaleoDraftDefinitions(
-			String name, int version, int start, int end,
-			OrderByComparator orderByComparator, ServiceContext serviceContext)
-		throws SystemException {
+		String name, int version, int start, int end,
+		OrderByComparator orderByComparator, ServiceContext serviceContext) {
 
 		return kaleoDraftDefinitionPersistence.findByC_N_V(
 			serviceContext.getCompanyId(), name, version, start, end,
@@ -147,8 +144,7 @@ public class KaleoDraftDefinitionLocalServiceImpl
 	}
 
 	public int getKaleoDraftDefinitionsCount(
-			String name, int version, ServiceContext serviceContext)
-		throws SystemException {
+		String name, int version, ServiceContext serviceContext) {
 
 		return kaleoDraftDefinitionPersistence.countByC_N_V(
 			serviceContext.getCompanyId(), name, version);
@@ -156,7 +152,7 @@ public class KaleoDraftDefinitionLocalServiceImpl
 
 	public KaleoDraftDefinition getLatestKaleoDraftDefinition(
 			String name, int version, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		List<KaleoDraftDefinition> kaleoDraftDefinitions =
 			kaleoDraftDefinitionPersistence.findByC_N_V(
@@ -170,9 +166,8 @@ public class KaleoDraftDefinitionLocalServiceImpl
 	}
 
 	public List<KaleoDraftDefinition> getLatestKaleoDraftDefinitions(
-			long companyId, int version, int start, int end,
-			OrderByComparator orderByComparator)
-		throws SystemException {
+		long companyId, int version, int start, int end,
+		OrderByComparator orderByComparator) {
 
 		List<Object> kaleoDraftDefinitioIds = getKaleoDraftDefinitionIds(
 			companyId, version);
@@ -192,9 +187,7 @@ public class KaleoDraftDefinitionLocalServiceImpl
 		return dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
 
-	public int getLatestKaleoDraftDefinitionsCount(long companyId, int version)
-		throws SystemException {
-
+	public int getLatestKaleoDraftDefinitionsCount(long companyId, int version) {
 		List<Object> kaleoDraftDefinitioIds = getKaleoDraftDefinitionIds(
 			companyId, version);
 
@@ -216,7 +209,7 @@ public class KaleoDraftDefinitionLocalServiceImpl
 	public KaleoDraftDefinition incrementKaleoDraftDefinitionDraftVersion(
 			long userId, String name, int version,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KaleoDraftDefinition kaleoDraftDefinition =
 			getLatestKaleoDraftDefinition(name, version, serviceContext);
@@ -233,7 +226,7 @@ public class KaleoDraftDefinitionLocalServiceImpl
 			long userId, long groupId, String name,
 			Map<Locale, String> titleMap, String content,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		validate(content);
 
@@ -259,7 +252,7 @@ public class KaleoDraftDefinitionLocalServiceImpl
 	public KaleoDraftDefinition updateKaleoDraftDefinition(
 			long userId, String name, Map<Locale, String> titleMap,
 			String content, int version, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KaleoDraftDefinition kaleoDraftDefinition =
 			incrementKaleoDraftDefinitionDraftVersion(
@@ -274,8 +267,7 @@ public class KaleoDraftDefinitionLocalServiceImpl
 	}
 
 	protected List<Object> getKaleoDraftDefinitionIds(
-			long companyId, int version)
-		throws SystemException {
+		long companyId, int version) {
 
 		List<Object> kaleoDraftDefinitionIds = new ArrayList<Object>();
 
@@ -308,7 +300,7 @@ public class KaleoDraftDefinitionLocalServiceImpl
 
 	protected void validate(
 			long companyId, String name, int version, int draftVersion)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (Validator.isNull(name)) {
 			throw new KaleoDraftDefinitionNameException();
@@ -324,7 +316,7 @@ public class KaleoDraftDefinitionLocalServiceImpl
 	protected void validate(
 			long companyId, String name, String content, int version,
 			int draftVersion)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		validate(companyId, name, version, draftVersion);
 		validate(content);

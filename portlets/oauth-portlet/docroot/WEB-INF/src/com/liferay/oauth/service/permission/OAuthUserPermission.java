@@ -17,7 +17,6 @@ package com.liferay.oauth.service.permission;
 import com.liferay.oauth.model.OAuthUser;
 import com.liferay.oauth.service.OAuthUserLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.permission.PermissionChecker;
 
@@ -29,7 +28,7 @@ public class OAuthUserPermission {
 	public static void check(
 			PermissionChecker permissionChecker, long oAuthUserId,
 			String actionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (!contains(permissionChecker, oAuthUserId, actionId)) {
 			throw new PrincipalException();
@@ -49,7 +48,7 @@ public class OAuthUserPermission {
 	public static boolean contains(
 			PermissionChecker permissionChecker, long oAuthUserId,
 			String actionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		OAuthUser oAuthUser = OAuthUserLocalServiceUtil.getOAuthUser(
 			oAuthUserId);

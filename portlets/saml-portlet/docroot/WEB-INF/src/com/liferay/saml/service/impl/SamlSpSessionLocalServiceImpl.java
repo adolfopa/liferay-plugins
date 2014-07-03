@@ -15,7 +15,6 @@
 package com.liferay.saml.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
@@ -38,7 +37,7 @@ public class SamlSpSessionLocalServiceImpl
 			String nameIdFormat, String nameIdNameQualifier,
 			String nameIdSPNameQualifier, String nameIdValue,
 			String sessionIndex, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		User user = userLocalService.getUserById(serviceContext.getUserId());
 		Date now = new Date();
@@ -70,25 +69,20 @@ public class SamlSpSessionLocalServiceImpl
 	}
 
 	@Override
-	public SamlSpSession fetchSamlSpSessionByJSessionId(String jSessionId)
-		throws SystemException {
-
+	public SamlSpSession fetchSamlSpSessionByJSessionId(String jSessionId) {
 		return samlSpSessionPersistence.fetchByJSessionId(jSessionId);
 	}
 
 	@Override
 	public SamlSpSession fetchSamlSpSessionBySamlSpSessionKey(
-			String samlSpSessionKey)
-		throws SystemException {
+		String samlSpSessionKey) {
 
 		return samlSpSessionPersistence.fetchBySamlSpSessionKey(
 			samlSpSessionKey);
 	}
 
 	@Override
-	public SamlSpSession fetchSamlSpSessionBySessionIndex(String sessionIndex)
-		throws SystemException {
-
+	public SamlSpSession fetchSamlSpSessionBySessionIndex(String sessionIndex) {
 		if (Validator.isNull(sessionIndex)) {
 			return null;
 		}
@@ -98,7 +92,7 @@ public class SamlSpSessionLocalServiceImpl
 
 	@Override
 	public SamlSpSession getSamlSpSessionByJSessionId(String jSessionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		return samlSpSessionPersistence.findByJSessionId(jSessionId);
 	}
@@ -106,7 +100,7 @@ public class SamlSpSessionLocalServiceImpl
 	@Override
 	public SamlSpSession getSamlSpSessionBySamlSpSessionKey(
 			String samlSpSessionKey)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		return samlSpSessionPersistence.findBySamlSpSessionKey(
 			samlSpSessionKey);
@@ -114,7 +108,7 @@ public class SamlSpSessionLocalServiceImpl
 
 	@Override
 	public SamlSpSession getSamlSpSessionBySessionIndex(String sessionIndex)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (Validator.isNull(sessionIndex)) {
 			throw new NoSuchSpSessionException();
@@ -124,9 +118,7 @@ public class SamlSpSessionLocalServiceImpl
 	}
 
 	@Override
-	public List<SamlSpSession> getSamlSpSessions(String nameIdValue)
-		throws SystemException {
-
+	public List<SamlSpSession> getSamlSpSessions(String nameIdValue) {
 		return samlSpSessionPersistence.findByNameIdValue(nameIdValue);
 	}
 
@@ -136,7 +128,7 @@ public class SamlSpSessionLocalServiceImpl
 			String jSessionId, String nameIdFormat, String nameIdNameQualifier,
 			String nameIdSPNameQualifier, String nameIdValue,
 			String sessionIndex, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		User user = userLocalService.getUserById(serviceContext.getUserId());
 

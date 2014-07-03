@@ -72,7 +72,7 @@ public class KeyGeneratorImpl implements KeyGenerator {
 		_keyStoreType = keyStoreType;
 	}
 
-	protected byte[] generateServerId() throws SystemException {
+	protected byte[] generateServerId() {
 		try {
 			Properties serverIdProperties = new Properties();
 

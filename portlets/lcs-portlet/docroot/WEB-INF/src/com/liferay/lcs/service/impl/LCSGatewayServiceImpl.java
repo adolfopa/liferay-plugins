@@ -38,9 +38,7 @@ public class LCSGatewayServiceImpl
 	extends BaseLCSServiceImpl implements LCSGatewayService {
 
 	@Override
-	public void deleteMessages(String key)
-		throws PortalException, SystemException {
-
+	public void deleteMessages(String key) throws PortalException {
 		try {
 			doGet(_URL_LCS_GATEWAY_DELETE_MESSAGES, "key", key);
 		}
@@ -53,9 +51,7 @@ public class LCSGatewayServiceImpl
 	}
 
 	@Override
-	public List<Message> getMessages(String key)
-		throws PortalException, SystemException {
-
+	public List<Message> getMessages(String key) throws PortalException {
 		try {
 			List<Message> messages = new ArrayList<Message>();
 
@@ -83,9 +79,7 @@ public class LCSGatewayServiceImpl
 	}
 
 	@Override
-	public void sendMessage(Message message)
-		throws PortalException, SystemException {
-
+	public void sendMessage(Message message) throws PortalException {
 		String json = toJSON(message);
 
 		try {

@@ -18,7 +18,6 @@ import com.liferay.oauth.model.OAuthUser;
 import com.liferay.oauth.service.base.OAuthUserServiceBaseImpl;
 import com.liferay.oauth.service.permission.OAuthUserPermission;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.security.permission.ActionKeys;
 
 /**
@@ -29,7 +28,7 @@ public class OAuthUserServiceImpl extends OAuthUserServiceBaseImpl {
 
 	@Override
 	public OAuthUser deleteOAuthUser(long oAuthApplicationId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		OAuthUser oAuthUser = oAuthUserPersistence.findByU_OAI(
 			getUserId(), oAuthApplicationId);

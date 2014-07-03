@@ -15,7 +15,6 @@
 package com.liferay.saml.hook.filter;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.BaseFilter;
@@ -98,7 +97,7 @@ public class SamlSpSsoFilter extends BaseFilter {
 
 	protected void login(
 			HttpServletRequest request, HttpServletResponse response)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		String relayState = ParamUtil.getString(request, "redirect");
 

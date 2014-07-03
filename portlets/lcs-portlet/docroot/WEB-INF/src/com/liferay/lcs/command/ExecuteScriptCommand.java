@@ -20,7 +20,6 @@ import com.liferay.lcs.service.LCSGatewayService;
 import com.liferay.lcs.util.ResponseCommandMessageUtil;
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream;
 import com.liferay.portal.kernel.io.unsync.UnsyncPrintWriter;
 import com.liferay.portal.kernel.log.Log;
@@ -40,7 +39,7 @@ public class ExecuteScriptCommand implements Command {
 
 	@Override
 	public void execute(RequestCommandMessage requestCommandMessage)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Map<String, Object> inputObjects = new HashMap<String, Object>();
 

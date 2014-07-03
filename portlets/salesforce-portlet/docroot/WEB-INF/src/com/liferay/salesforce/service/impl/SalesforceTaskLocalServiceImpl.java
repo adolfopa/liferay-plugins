@@ -15,7 +15,6 @@
 package com.liferay.salesforce.service.impl;
 
 import com.liferay.portal.kernel.dao.orm.ObjectNotFoundException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.messaging.MessageBatch;
 import com.liferay.salesforce.query.Condition;
 import com.liferay.salesforce.query.ConditionImpl;
@@ -34,7 +33,7 @@ public class SalesforceTaskLocalServiceImpl
 
 	public MessageBatch getTasksByAccountId(
 			long companyId, String accountId, List<String> fieldNames)
-		throws ObjectNotFoundException, SystemException {
+		throws ObjectNotFoundException {
 
 		Condition condition = ConditionImpl.EQUALS("AccountId", accountId);
 
@@ -43,7 +42,7 @@ public class SalesforceTaskLocalServiceImpl
 
 	public MessageBatch getTasksByUserId(
 			long companyId, String userId, List<String> fieldNames)
-		throws ObjectNotFoundException, SystemException {
+		throws ObjectNotFoundException {
 
 		Condition condition = ConditionImpl.EQUALS("OwnerId", userId);
 
@@ -52,7 +51,7 @@ public class SalesforceTaskLocalServiceImpl
 
 	public MessageBatch getTasksByUserName(
 			long companyId, String userName, List<String> fieldNames)
-		throws ObjectNotFoundException, SystemException {
+		throws ObjectNotFoundException {
 
 		Condition condition = ConditionImpl.EQUALS("Owner.Username", userName);
 
@@ -60,8 +59,7 @@ public class SalesforceTaskLocalServiceImpl
 	}
 
 	protected MessageBatch executeQuery(
-			long companyId, List<String> fieldNames, Condition condition)
-		throws SystemException {
+		long companyId, List<String> fieldNames, Condition condition) {
 
 		String query = SelectQuery.build(
 			SalesforceObjectNames.TASK, fieldNames, condition,

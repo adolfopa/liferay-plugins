@@ -40,7 +40,7 @@ public class LCSClusterNodeServiceImpl
 			long lcsClusterEntryId, String name, String description,
 			int buildNumber, String key, String location,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		validate(lcsClusterEntryId, name);
 
@@ -67,9 +67,8 @@ public class LCSClusterNodeServiceImpl
 
 	@Override
 	public LCSClusterNode addLCSClusterNode(
-			String siblingKey, String name, String description, String key,
-			String location, ServiceContext serviceContext)
-		throws SystemException {
+		String siblingKey, String name, String description, String key,
+		String location, ServiceContext serviceContext) {
 
 		try {
 			return doGetToObject(
@@ -107,8 +106,7 @@ public class LCSClusterNodeServiceImpl
 
 	@Override
 	public List<LCSClusterNode> getLCSClusterEntryLCSClusterNodes(
-			long lcsClusterEntryId)
-		throws SystemException {
+		long lcsClusterEntryId) {
 
 		List<LCSClusterNodeImpl> remoteLCSClusterNodes = null;
 
@@ -152,7 +150,7 @@ public class LCSClusterNodeServiceImpl
 	}
 
 	@Override
-	public LCSClusterNode getLCSClusterNode(String key) throws SystemException {
+	public LCSClusterNode getLCSClusterNode(String key) {
 		try {
 			return doGetToObject(
 				LCSClusterNodeImpl.class,
@@ -185,7 +183,7 @@ public class LCSClusterNodeServiceImpl
 	}
 
 	protected void validate(long lcsClusterEntryId, String lcsClusterNodeName)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (Validator.isNull(lcsClusterNodeName)) {
 			throw new RequiredLCSClusterNodeNameException();

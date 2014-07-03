@@ -20,7 +20,6 @@ import com.liferay.meeting.webex.service.permission.WebExPermission;
 import com.liferay.meeting.webex.service.permission.WebExSitePermission;
 import com.liferay.meeting.webex.util.ActionKeys;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.service.ServiceContext;
 
@@ -36,7 +35,7 @@ public class WebExSiteServiceImpl extends WebExSiteServiceBaseImpl {
 			long groupId, String name, String apiURL, String login,
 			String password, String partnerKey, long siteKey,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		WebExPermission.check(
 			getPermissionChecker(), groupId, ActionKeys.ADD_SITE);
@@ -46,9 +45,7 @@ public class WebExSiteServiceImpl extends WebExSiteServiceBaseImpl {
 			siteKey, serviceContext);
 	}
 
-	public WebExSite deleteWebExSite(long webExSiteId)
-		throws PortalException, SystemException {
-
+	public WebExSite deleteWebExSite(long webExSiteId) throws PortalException {
 		WebExSitePermission.check(
 			getPermissionChecker(), webExSiteId, ActionKeys.DELETE);
 
@@ -56,7 +53,7 @@ public class WebExSiteServiceImpl extends WebExSiteServiceBaseImpl {
 	}
 
 	public WebExSite fetchSiteKeyWebExSite(long siteKey)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		WebExSite webExSite = webExSiteLocalService.fetchSiteKeyWebExSite(
 			siteKey);
@@ -68,9 +65,7 @@ public class WebExSiteServiceImpl extends WebExSiteServiceBaseImpl {
 		return webExSite;
 	}
 
-	public WebExSite getWebExSite(long webExSiteId)
-		throws PortalException, SystemException {
-
+	public WebExSite getWebExSite(long webExSiteId) throws PortalException {
 		WebExSitePermission.check(
 			getPermissionChecker(), webExSiteId, ActionKeys.VIEW);
 
@@ -78,21 +73,20 @@ public class WebExSiteServiceImpl extends WebExSiteServiceBaseImpl {
 	}
 
 	public List<WebExSite> getWebExSites(
-			long groupId, int start, int end, OrderByComparator obc)
-		throws SystemException {
+		long groupId, int start, int end, OrderByComparator obc) {
 
 		return webExSitePersistence.filterFindByGroupId(
 			groupId, start, end, obc);
 	}
 
-	public int getWebExSitesCount(long groupId) throws SystemException {
+	public int getWebExSitesCount(long groupId) {
 		return webExSitePersistence.filterCountByGroupId(groupId);
 	}
 
 	public void updateWebExSite(
 			long webExSiteId, String apiURL, String login, String password,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		WebExSitePermission.check(
 			getPermissionChecker(), webExSiteId, ActionKeys.UPDATE);

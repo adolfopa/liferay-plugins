@@ -16,7 +16,6 @@ package com.liferay.meeting.webex.model.impl;
 
 import com.liferay.meeting.webex.model.WebExAccount;
 import com.liferay.meeting.webex.service.WebExAccountLocalServiceUtil;
-import com.liferay.portal.kernel.exception.SystemException;
 
 import java.util.List;
 
@@ -28,7 +27,7 @@ public class WebExSiteImpl extends WebExSiteBaseImpl {
 	public WebExSiteImpl() {
 	}
 
-	public List<WebExAccount> getWebExAccounts() throws SystemException {
+	public List<WebExAccount> getWebExAccounts() {
 		return WebExAccountLocalServiceUtil.getWebExSiteWebExAccounts(
 			getGroupId(), getWebExSiteId());
 	}

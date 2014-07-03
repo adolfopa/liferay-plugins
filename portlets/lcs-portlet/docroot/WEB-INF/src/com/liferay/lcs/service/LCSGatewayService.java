@@ -16,7 +16,6 @@ package com.liferay.lcs.service;
 
 import com.liferay.lcs.messaging.Message;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 
 import java.util.List;
 
@@ -26,13 +25,10 @@ import java.util.List;
  */
 public interface LCSGatewayService {
 
-	public void deleteMessages(String key)
-		throws PortalException, SystemException;
+	public void deleteMessages(String key) throws PortalException;
 
-	public List<Message> getMessages(String key)
-		throws PortalException, SystemException;
+	public List<Message> getMessages(String key) throws PortalException;
 
-	public void sendMessage(Message message)
-		throws PortalException, SystemException;
+	public void sendMessage(Message message) throws PortalException;
 
 }

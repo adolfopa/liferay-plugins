@@ -15,7 +15,6 @@
 package com.liferay.saml.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.saml.model.SamlSpAuthRequest;
 import com.liferay.saml.service.base.SamlSpAuthRequestLocalServiceBaseImpl;
@@ -30,9 +29,8 @@ public class SamlSpAuthRequestLocalServiceImpl
 
 	@Override
 	public SamlSpAuthRequest addSamlSpAuthRequest(
-			String samlIdpEntityId, String samlSpAuthRequestKey,
-			ServiceContext serviceContext)
-		throws SystemException {
+		String samlIdpEntityId, String samlSpAuthRequestKey,
+		ServiceContext serviceContext) {
 
 		long samlSpAuthRequestId = counterLocalService.increment(
 			SamlSpAuthRequest.class.getName());
@@ -52,8 +50,7 @@ public class SamlSpAuthRequestLocalServiceImpl
 
 	@Override
 	public SamlSpAuthRequest fetchSamlSpAuthRequest(
-			String samlIdpEntityId, String samlSpAuthRequestKey)
-		throws SystemException {
+		String samlIdpEntityId, String samlSpAuthRequestKey) {
 
 		return samlSpAuthRequestPersistence.fetchBySIEI_SSARK(
 			samlIdpEntityId, samlSpAuthRequestKey);
@@ -62,7 +59,7 @@ public class SamlSpAuthRequestLocalServiceImpl
 	@Override
 	public SamlSpAuthRequest getSamlSpAuthRequest(
 			String samlIdpEntityId, String samlSpAuthRequestKey)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		return samlSpAuthRequestPersistence.findBySIEI_SSARK(
 			samlIdpEntityId, samlSpAuthRequestKey);

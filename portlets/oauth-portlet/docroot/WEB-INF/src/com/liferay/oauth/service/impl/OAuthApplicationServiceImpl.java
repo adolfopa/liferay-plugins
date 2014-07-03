@@ -20,7 +20,6 @@ import com.liferay.oauth.service.permission.OAuthApplicationPermission;
 import com.liferay.oauth.service.permission.OAuthPermission;
 import com.liferay.oauth.util.ActionKeys;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.ServiceContext;
 
 import java.io.InputStream;
@@ -37,7 +36,7 @@ public class OAuthApplicationServiceImpl
 			String name, String description, int accessLevel,
 			boolean shareableAccessToken, String callbackURI, String websiteURL,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		OAuthPermission.check(
 			getPermissionChecker(), ActionKeys.ADD_APPLICATION);
@@ -48,9 +47,7 @@ public class OAuthApplicationServiceImpl
 	}
 
 	@Override
-	public void deleteLogo(long oAuthApplicationId)
-		throws PortalException, SystemException {
-
+	public void deleteLogo(long oAuthApplicationId) throws PortalException {
 		OAuthApplicationPermission.check(
 			getPermissionChecker(), oAuthApplicationId, ActionKeys.UPDATE);
 
@@ -59,7 +56,7 @@ public class OAuthApplicationServiceImpl
 
 	@Override
 	public OAuthApplication deleteOAuthApplication(long oAuthApplicationId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		OAuthApplication oAuthApplication =
 			oAuthApplicationPersistence.findByPrimaryKey(oAuthApplicationId);
@@ -74,7 +71,7 @@ public class OAuthApplicationServiceImpl
 	@Override
 	public OAuthApplication updateLogo(
 			long oAuthApplicationId, InputStream inputStream)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		OAuthApplicationPermission.check(
 			getPermissionChecker(), oAuthApplicationId, ActionKeys.UPDATE);
@@ -88,7 +85,7 @@ public class OAuthApplicationServiceImpl
 			long oAuthApplicationId, String name, String description,
 			boolean shareableAccessToken, String callbackURI, String websiteURL,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		OAuthApplicationPermission.check(
 			getPermissionChecker(), oAuthApplicationId, ActionKeys.UPDATE);

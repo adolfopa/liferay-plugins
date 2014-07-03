@@ -15,7 +15,6 @@
 package com.liferay.saml.profile;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.saml.model.SamlSpSession;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,9 +25,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class WebSsoProfileUtil {
 
-	public static SamlSpSession getSamlSpSession(HttpServletRequest request)
-		throws SystemException {
-
+	public static SamlSpSession getSamlSpSession(HttpServletRequest request) {
 		return getWebSsoProfile().getSamlSpSession(request);
 	}
 
@@ -38,14 +35,14 @@ public class WebSsoProfileUtil {
 
 	public static void processAuthnRequest(
 			HttpServletRequest request, HttpServletResponse response)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		getWebSsoProfile().processAuthnRequest(request, response);
 	}
 
 	public static void processResponse(
 			HttpServletRequest request, HttpServletResponse response)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		getWebSsoProfile().processResponse(request, response);
 	}
@@ -53,7 +50,7 @@ public class WebSsoProfileUtil {
 	public static void sendAuthnRequest(
 			HttpServletRequest request, HttpServletResponse response,
 			String relayState)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		getWebSsoProfile().sendAuthnRequest(request, response, relayState);
 	}

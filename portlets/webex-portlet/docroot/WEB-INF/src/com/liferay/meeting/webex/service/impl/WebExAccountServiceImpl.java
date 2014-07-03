@@ -20,7 +20,6 @@ import com.liferay.meeting.webex.service.permission.WebExAccountPermission;
 import com.liferay.meeting.webex.service.permission.WebExSitePermission;
 import com.liferay.meeting.webex.util.ActionKeys;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.service.ServiceContext;
 
@@ -35,7 +34,7 @@ public class WebExAccountServiceImpl extends WebExAccountServiceBaseImpl {
 	public void addWebExAccount(
 			long groupId, long webExSiteId, String login, String password,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		WebExSitePermission.check(
 			getPermissionChecker(), webExSiteId, ActionKeys.ADD_ACCOUNT);
@@ -44,9 +43,7 @@ public class WebExAccountServiceImpl extends WebExAccountServiceBaseImpl {
 			getUserId(), groupId, webExSiteId, login, password, serviceContext);
 	}
 
-	public void deleteWebExAccount(long webExAccountId)
-		throws PortalException, SystemException {
-
+	public void deleteWebExAccount(long webExAccountId) throws PortalException {
 		WebExAccountPermission.check(
 			getPermissionChecker(), webExAccountId, ActionKeys.DELETE);
 
@@ -54,7 +51,7 @@ public class WebExAccountServiceImpl extends WebExAccountServiceBaseImpl {
 	}
 
 	public WebExAccount getWebExAccount(long webExAccountId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		WebExAccountPermission.check(
 			getPermissionChecker(), webExAccountId, ActionKeys.VIEW);
@@ -63,23 +60,20 @@ public class WebExAccountServiceImpl extends WebExAccountServiceBaseImpl {
 	}
 
 	public List<WebExAccount> getWebExSiteWebExAccounts(
-			long groupId, long webExSiteId, int start, int end,
-			OrderByComparator obc)
-		throws SystemException {
+		long groupId, long webExSiteId, int start, int end,
+		OrderByComparator obc) {
 
 		return webExAccountPersistence.filterFindByG_W(
 			groupId, webExSiteId, start, end, obc);
 	}
 
-	public int getWebExSiteWebExAccountsCount(long groupId, long webExSiteId)
-		throws SystemException {
-
+	public int getWebExSiteWebExAccountsCount(long groupId, long webExSiteId) {
 		return webExAccountPersistence.filterCountByG_W(groupId, webExSiteId);
 	}
 
 	public void updateWebExAccount(
 			long webExAccountId, String password, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		WebExAccountPermission.check(
 			getPermissionChecker(), webExAccountId, ActionKeys.UPDATE);

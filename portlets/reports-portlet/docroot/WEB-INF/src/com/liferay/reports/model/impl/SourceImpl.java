@@ -15,7 +15,6 @@
 package com.liferay.reports.model.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portlet.documentlibrary.NoSuchDirectoryException;
 import com.liferay.portlet.documentlibrary.store.DLStoreUtil;
@@ -29,9 +28,7 @@ public class SourceImpl extends SourceBaseImpl {
 		return "reports_templates/".concat(String.valueOf(getSourceId()));
 	}
 
-	public String[] getAttachmentsFiles()
-		throws PortalException, SystemException {
-
+	public String[] getAttachmentsFiles() throws PortalException {
 		try {
 			return DLStoreUtil.getFileNames(
 				getCompanyId(), CompanyConstants.SYSTEM, getAttachmentsDir());

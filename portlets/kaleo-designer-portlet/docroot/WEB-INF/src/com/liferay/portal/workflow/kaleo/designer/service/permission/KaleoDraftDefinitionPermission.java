@@ -15,7 +15,6 @@
 package com.liferay.portal.workflow.kaleo.designer.service.permission;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition;
@@ -39,7 +38,7 @@ public class KaleoDraftDefinitionPermission {
 	public static void check(
 			PermissionChecker permissionChecker, long kaleoDraftDefinitionId,
 			String actionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (!contains(permissionChecker, kaleoDraftDefinitionId, actionId)) {
 			throw new PrincipalException();
@@ -68,7 +67,7 @@ public class KaleoDraftDefinitionPermission {
 	public static boolean contains(
 			PermissionChecker permissionChecker, long kaleoDraftDefinitionId,
 			String actionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KaleoDraftDefinition kaleoDraftDefinition =
 			KaleoDraftDefinitionLocalServiceUtil.getKaleoDraftDefinition(

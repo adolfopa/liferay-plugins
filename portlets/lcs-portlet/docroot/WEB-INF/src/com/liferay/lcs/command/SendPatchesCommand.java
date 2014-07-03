@@ -21,7 +21,6 @@ import com.liferay.lcs.util.LCSConstants;
 import com.liferay.lcs.util.ResponseCommandMessageUtil;
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.Digester;
 import com.liferay.portal.kernel.util.DigesterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
@@ -39,7 +38,7 @@ public class SendPatchesCommand implements Command {
 
 	@Override
 	public void execute(RequestCommandMessage requestCommandMessage)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		String[] fixedIssues = PatcherUtil.getFixedIssues();
 

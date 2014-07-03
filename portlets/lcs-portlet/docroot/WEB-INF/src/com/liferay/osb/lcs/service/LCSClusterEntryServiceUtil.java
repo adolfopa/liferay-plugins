@@ -16,7 +16,6 @@ package com.liferay.osb.lcs.service;
 
 import com.liferay.osb.lcs.model.LCSClusterEntry;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 
 import java.util.List;
 
@@ -29,7 +28,7 @@ public class LCSClusterEntryServiceUtil {
 	public static LCSClusterEntry addLCSClusterEntry(
 			long corpEntryId, String name, String description, String location,
 			int type)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		return getLCSClusterEntryService().addLCSClusterEntry(
 			corpEntryId, name, description, location, type, null);
@@ -37,14 +36,14 @@ public class LCSClusterEntryServiceUtil {
 
 	public static List<LCSClusterEntry> getCorpEntryLCSClusterEntries(
 			long corpEntryId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		return getLCSClusterEntryService().getCorpEntryLCSClusterEntries(
 			corpEntryId);
 	}
 
 	public static LCSClusterEntry getLCSClusterEntry(long lcsClusterEntryId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		return getLCSClusterEntryService().getLCSClusterEntry(
 			lcsClusterEntryId);
@@ -55,7 +54,7 @@ public class LCSClusterEntryServiceUtil {
 	}
 
 	public static List<LCSClusterEntry> getUserLCSClusterEntries(long userId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		return getLCSClusterEntryService().getUserLCSClusterEntries(userId);
 	}

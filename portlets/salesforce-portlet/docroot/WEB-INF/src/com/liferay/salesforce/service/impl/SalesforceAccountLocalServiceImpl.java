@@ -15,7 +15,6 @@
 package com.liferay.salesforce.service.impl;
 
 import com.liferay.portal.kernel.dao.orm.ObjectNotFoundException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.messaging.MessageBatch;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -35,8 +34,7 @@ public class SalesforceAccountLocalServiceImpl
 	extends SalesforceAccountLocalServiceBaseImpl {
 
 	public MessageBatch getAccountsByName(
-			long companyId, String name, List<String> fieldNames)
-		throws SystemException {
+		long companyId, String name, List<String> fieldNames) {
 
 		Condition condition = ConditionImpl.LIKE(
 			"Name", StringUtil.quote(name, StringPool.PERCENT));
@@ -46,7 +44,7 @@ public class SalesforceAccountLocalServiceImpl
 
 	public MessageBatch getAccountsByOwnerId(
 			long companyId, String ownerId, List<String> fieldNames)
-		throws ObjectNotFoundException, SystemException {
+		throws ObjectNotFoundException {
 
 		Condition condition = ConditionImpl.EQUALS("OwnerId", ownerId);
 
@@ -55,7 +53,7 @@ public class SalesforceAccountLocalServiceImpl
 
 	public MessageBatch getAccountsByUserName(
 			long companyId, String userName, List<String> fieldNames)
-		throws ObjectNotFoundException, SystemException {
+		throws ObjectNotFoundException {
 
 		Condition condition = ConditionImpl.EQUALS("Owner.Username", userName);
 
@@ -63,8 +61,7 @@ public class SalesforceAccountLocalServiceImpl
 	}
 
 	protected MessageBatch executeQuery(
-			long companyId, List<String> fieldNames, Condition condition)
-		throws SystemException {
+		long companyId, List<String> fieldNames, Condition condition) {
 
 		String query = SelectQuery.build(
 			SalesforceObjectNames.ACCOUNT, fieldNames, condition,

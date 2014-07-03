@@ -15,7 +15,6 @@
 package com.liferay.saml.profile;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.saml.model.SamlSpSession;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,21 +25,20 @@ import javax.servlet.http.HttpServletResponse;
  */
 public interface SingleLogoutProfile {
 
-	public SamlSpSession getSamlSpSession(HttpServletRequest request)
-		throws SystemException;
+	public SamlSpSession getSamlSpSession(HttpServletRequest request);
 
 	public boolean isSingleLogoutSupported(HttpServletRequest request);
 
 	public void processIdpLogout(
 			HttpServletRequest request, HttpServletResponse response)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 	public void processSingleLogout(
 			HttpServletRequest request, HttpServletResponse response)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 	public void processSpLogout(
 			HttpServletRequest request, HttpServletResponse response)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 }

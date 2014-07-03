@@ -16,7 +16,6 @@ package com.liferay.salesforce.service.impl;
 
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.dao.orm.ObjectNotFoundException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageBatch;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -42,7 +41,7 @@ import java.util.List;
 public class SalesforceLocalServiceImpl extends SalesforceLocalServiceBaseImpl {
 
 	public void executeAdd(long companyId, List<Message> messages)
-		throws MultipleSalesforceException, SystemException {
+		throws MultipleSalesforceException {
 
 		SalesforceConnection salesforceConnection = getSalesforceConnection(
 			companyId);
@@ -75,7 +74,7 @@ public class SalesforceLocalServiceImpl extends SalesforceLocalServiceBaseImpl {
 	}
 
 	public String executeAdd(long companyId, Message message)
-		throws SalesforceException, SystemException {
+		throws SalesforceException {
 
 		SalesforceConnection salesforceConnection = getSalesforceConnection(
 			companyId);
@@ -98,7 +97,7 @@ public class SalesforceLocalServiceImpl extends SalesforceLocalServiceBaseImpl {
 
 	public void executeAddOrUpdate(
 			long companyId, String externalId, List<Message> messages)
-		throws MultipleSalesforceException, SystemException {
+		throws MultipleSalesforceException {
 
 		SalesforceConnection salesforceConnection = getSalesforceConnection(
 			companyId);
@@ -133,7 +132,7 @@ public class SalesforceLocalServiceImpl extends SalesforceLocalServiceBaseImpl {
 
 	public void executeAddOrUpdate(
 			long companyId, String externalId, Message message)
-		throws SalesforceException, SystemException {
+		throws SalesforceException {
 
 		SalesforceConnection salesforceConnection = getSalesforceConnection(
 			companyId);
@@ -155,7 +154,7 @@ public class SalesforceLocalServiceImpl extends SalesforceLocalServiceBaseImpl {
 	}
 
 	public void executeDelete(long companyId, List<String> objectIds)
-		throws MultipleSalesforceException, SystemException {
+		throws MultipleSalesforceException {
 
 		SalesforceConnection salesforceConnection = getSalesforceConnection(
 			companyId);
@@ -187,7 +186,7 @@ public class SalesforceLocalServiceImpl extends SalesforceLocalServiceBaseImpl {
 	}
 
 	public boolean executeDelete(long companyId, String objectId)
-		throws SalesforceException, SystemException {
+		throws SalesforceException {
 
 		SalesforceConnection salesforceConnection = getSalesforceConnection(
 			companyId);
@@ -206,9 +205,7 @@ public class SalesforceLocalServiceImpl extends SalesforceLocalServiceBaseImpl {
 		throw new SalesforceException(error);
 	}
 
-	public MessageBatch executeQuery(long companyId, String queryString)
-		throws SystemException {
-
+	public MessageBatch executeQuery(long companyId, String queryString) {
 		SalesforceConnection salesforceConnection = getSalesforceConnection(
 			companyId);
 
@@ -220,7 +217,7 @@ public class SalesforceLocalServiceImpl extends SalesforceLocalServiceBaseImpl {
 	public Message executeQuery(
 			long companyId, String objectId, String objectType,
 			List<String> fieldNames)
-		throws ObjectNotFoundException, SystemException {
+		throws ObjectNotFoundException {
 
 		SalesforceConnection salesforceConnection = getSalesforceConnection(
 			companyId);
@@ -235,9 +232,7 @@ public class SalesforceLocalServiceImpl extends SalesforceLocalServiceBaseImpl {
 		return SObjectConverter.convert(sObjects[0]);
 	}
 
-	public MessageBatch executeQueryMore(long companyId, String queryLocator)
-		throws SystemException {
-
+	public MessageBatch executeQueryMore(long companyId, String queryLocator) {
 		SalesforceConnection salesforceConnection = getSalesforceConnection(
 			companyId);
 
@@ -246,9 +241,7 @@ public class SalesforceLocalServiceImpl extends SalesforceLocalServiceBaseImpl {
 		return SObjectConverter.convert(queryResults);
 	}
 
-	public MessageBatch executeSearch(long companyId, String searchString)
-		throws SystemException {
-
+	public MessageBatch executeSearch(long companyId, String searchString) {
 		SalesforceConnection salesforceConnection = getSalesforceConnection(
 			companyId);
 
@@ -258,7 +251,7 @@ public class SalesforceLocalServiceImpl extends SalesforceLocalServiceBaseImpl {
 	}
 
 	public void executeUpdate(long companyId, List<Message> messages)
-		throws MultipleSalesforceException, SystemException {
+		throws MultipleSalesforceException {
 
 		SalesforceConnection salesforceConnection = getSalesforceConnection(
 			companyId);
@@ -291,7 +284,7 @@ public class SalesforceLocalServiceImpl extends SalesforceLocalServiceBaseImpl {
 	}
 
 	public void executeUpdate(long companyId, Message message)
-		throws SalesforceException, SystemException {
+		throws SalesforceException {
 
 		SalesforceConnection salesforceConnection = getSalesforceConnection(
 			companyId);

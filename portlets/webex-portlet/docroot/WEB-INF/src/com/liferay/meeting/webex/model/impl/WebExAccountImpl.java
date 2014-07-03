@@ -18,7 +18,6 @@ import com.liferay.meeting.MeetingContext;
 import com.liferay.meeting.webex.model.WebExSite;
 import com.liferay.meeting.webex.service.WebExSiteLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 
 /**
  * @author Brian Wing Shun Chan
@@ -28,9 +27,7 @@ public class WebExAccountImpl extends WebExAccountBaseImpl {
 	public WebExAccountImpl() {
 	}
 
-	public MeetingContext getMeetingContext()
-		throws PortalException, SystemException {
-
+	public MeetingContext getMeetingContext() throws PortalException {
 		MeetingContext meetingContext = new MeetingContext();
 
 		WebExSite webExSite = getWebExSite();
@@ -45,7 +42,7 @@ public class WebExAccountImpl extends WebExAccountBaseImpl {
 		return meetingContext;
 	}
 
-	public WebExSite getWebExSite() throws PortalException, SystemException {
+	public WebExSite getWebExSite() throws PortalException {
 		return WebExSiteLocalServiceUtil.getWebExSite(getWebExSiteId());
 	}
 

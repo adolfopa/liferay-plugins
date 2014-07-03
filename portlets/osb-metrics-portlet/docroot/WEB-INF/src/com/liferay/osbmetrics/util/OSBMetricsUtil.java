@@ -20,7 +20,6 @@ import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.ProjectionFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -198,9 +197,7 @@ public class OSBMetricsUtil {
 			serviceContext);
 	}
 
-	protected static long getReportDefinitionId(String reportName)
-		throws SystemException {
-
+	protected static long getReportDefinitionId(String reportName) {
 		DynamicQuery dynamicQuery = DefinitionLocalServiceUtil.dynamicQuery();
 
 		dynamicQuery.setProjection(

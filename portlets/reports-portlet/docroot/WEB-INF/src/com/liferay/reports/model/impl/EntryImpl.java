@@ -16,7 +16,6 @@ package com.liferay.reports.model.impl;
 
 import com.liferay.portal.kernel.cal.TZSRecurrence;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.messaging.DestinationNames;
 import com.liferay.portal.kernel.util.StringPool;
@@ -38,9 +37,7 @@ public class EntryImpl extends EntryBaseImpl {
 		return "reports/".concat(String.valueOf(getEntryId()));
 	}
 
-	public String[] getAttachmentsFiles()
-		throws PortalException, SystemException {
-
+	public String[] getAttachmentsFiles() throws PortalException {
 		try {
 			return DLStoreUtil.getFileNames(
 				getCompanyId(), CompanyConstants.SYSTEM, getAttachmentsDir());

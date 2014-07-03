@@ -23,7 +23,6 @@ import com.liferay.portal.kernel.dao.orm.Junction;
 import com.liferay.portal.kernel.dao.orm.Property;
 import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -38,9 +37,7 @@ import java.util.List;
 public class AuditEventLocalServiceImpl extends AuditEventLocalServiceBaseImpl {
 
 	@Override
-	public AuditEvent addAuditEvent(AuditMessage auditMessage)
-		throws SystemException {
-
+	public AuditEvent addAuditEvent(AuditMessage auditMessage) {
 		long auditEventId = counterLocalService.increment();
 
 		AuditEvent auditEvent = auditEventPersistence.create(auditEventId);
@@ -68,17 +65,14 @@ public class AuditEventLocalServiceImpl extends AuditEventLocalServiceBaseImpl {
 	}
 
 	@Override
-	public AuditEvent fetchAuditEvent(long auditEventId)
-		throws SystemException {
-
+	public AuditEvent fetchAuditEvent(long auditEventId) {
 		return auditEventPersistence.fetchByPrimaryKey(auditEventId);
 	}
 
 	@Override
 	public List<AuditEvent> getAuditEvents(
-			long companyId, int start, int end,
-			OrderByComparator orderByComparator)
-		throws SystemException {
+		long companyId, int start, int end,
+		OrderByComparator orderByComparator) {
 
 		return auditEventPersistence.findByCompanyId(
 			companyId, start, end, orderByComparator);
@@ -86,13 +80,11 @@ public class AuditEventLocalServiceImpl extends AuditEventLocalServiceBaseImpl {
 
 	@Override
 	public List<AuditEvent> getAuditEvents(
-			long companyId, long userId, String userName, Date createDateGT,
-			Date createDateLT, String eventType, String className,
-			String classPK, String clientHost, String clientIP,
-			String serverName, int serverPort, String sessionID,
-			boolean andSearch, int start, int end,
-			OrderByComparator orderByComparator)
-		throws SystemException {
+		long companyId, long userId, String userName, Date createDateGT,
+		Date createDateLT, String eventType, String className, String classPK,
+		String clientHost, String clientIP, String serverName, int serverPort,
+		String sessionID, boolean andSearch, int start, int end,
+		OrderByComparator orderByComparator) {
 
 		DynamicQuery dynamicQuery = buildDynamicQuery(
 			companyId, userId, userName, createDateGT, createDateLT, eventType,
@@ -103,18 +95,16 @@ public class AuditEventLocalServiceImpl extends AuditEventLocalServiceBaseImpl {
 	}
 
 	@Override
-	public int getAuditEventsCount(long companyId) throws SystemException {
+	public int getAuditEventsCount(long companyId) {
 		return auditEventPersistence.countByCompanyId(companyId);
 	}
 
 	@Override
 	public int getAuditEventsCount(
-			long companyId, long userId, String userName, Date createDateGT,
-			Date createDateLT, String eventType, String className,
-			String classPK, String clientHost, String clientIP,
-			String serverName, int serverPort, String sessionID,
-			boolean andSearch)
-		throws SystemException {
+		long companyId, long userId, String userName, Date createDateGT,
+		Date createDateLT, String eventType, String className, String classPK,
+		String clientHost, String clientIP, String serverName, int serverPort,
+		String sessionID, boolean andSearch) {
 
 		DynamicQuery dynamicQuery = buildDynamicQuery(
 			companyId, userId, userName, createDateGT, createDateLT, eventType,

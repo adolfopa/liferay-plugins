@@ -21,7 +21,6 @@ import com.liferay.portal.kernel.dao.orm.Property;
 import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
@@ -58,7 +57,7 @@ public class DefinitionLocalServiceImpl extends DefinitionLocalServiceBaseImpl {
 			Map<Locale, String> descriptionMap, long sourceId,
 			String reportParameters, String fileName, InputStream inputStream,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		// Definition
 
@@ -104,7 +103,7 @@ public class DefinitionLocalServiceImpl extends DefinitionLocalServiceBaseImpl {
 	@Override
 	@SystemEvent(type = SystemEventConstants.TYPE_DELETE)
 	public Definition deleteDefinition(Definition definition)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		// Definition
 
@@ -126,7 +125,7 @@ public class DefinitionLocalServiceImpl extends DefinitionLocalServiceBaseImpl {
 
 	@Override
 	public Definition deleteDefinition(long definitionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Definition definition = definitionPersistence.findByPrimaryKey(
 			definitionId);
@@ -135,9 +134,7 @@ public class DefinitionLocalServiceImpl extends DefinitionLocalServiceBaseImpl {
 	}
 
 	@Override
-	public void deleteDefinitions(long groupId)
-		throws PortalException, SystemException {
-
+	public void deleteDefinitions(long groupId) throws PortalException {
 		List<Definition> definitions = definitionPersistence.findByGroupId(
 			groupId);
 
@@ -148,7 +145,7 @@ public class DefinitionLocalServiceImpl extends DefinitionLocalServiceBaseImpl {
 
 	public void deleteDefinitionTemplates(
 			long companyId, String attachmentsDirectory)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			DLStoreUtil.deleteDirectory(
@@ -160,10 +157,9 @@ public class DefinitionLocalServiceImpl extends DefinitionLocalServiceBaseImpl {
 
 	@SuppressWarnings("unchecked")
 	public List<Definition> getDefinitions(
-			long groupId, String definitionName, String description,
-			String sourceId, String reportName, boolean andSearch, int start,
-			int end, OrderByComparator orderByComparator)
-		throws SystemException {
+		long groupId, String definitionName, String description,
+		String sourceId, String reportName, boolean andSearch, int start,
+		int end, OrderByComparator orderByComparator) {
 
 		DynamicQuery dynamicQuery = buildDynamicQuery(
 			groupId, definitionName, description, sourceId, reportName,
@@ -173,9 +169,8 @@ public class DefinitionLocalServiceImpl extends DefinitionLocalServiceBaseImpl {
 	}
 
 	public int getDefinitionsCount(
-			long groupId, String definitionName, String description,
-			String sourceId, String reportName, boolean andSearch)
-		throws SystemException {
+		long groupId, String definitionName, String description,
+		String sourceId, String reportName, boolean andSearch) {
 
 		DynamicQuery dynamicQuery = buildDynamicQuery(
 			groupId, definitionName, description, sourceId, reportName,
@@ -189,7 +184,7 @@ public class DefinitionLocalServiceImpl extends DefinitionLocalServiceBaseImpl {
 			Map<Locale, String> descriptionMap, long sourceId,
 			String reportParameters, String fileName, InputStream inputStream,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		// Definition
 
@@ -244,7 +239,7 @@ public class DefinitionLocalServiceImpl extends DefinitionLocalServiceBaseImpl {
 	public void updateDefinitionResources(
 			Definition definition, String[] communityPermissions,
 			String[] guestPermissions)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		resourceLocalService.updateResources(
 			definition.getCompanyId(), definition.getGroupId(),
@@ -255,7 +250,7 @@ public class DefinitionLocalServiceImpl extends DefinitionLocalServiceBaseImpl {
 	protected void addDefinitionFile(
 			long companyId, Definition definition, String fileName,
 			InputStream inputStream)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		String directoryName = definition.getAttachmentsDir();
 

@@ -129,7 +129,7 @@ public class WebSsoProfileImpl extends BaseProfile implements WebSsoProfile {
 	@Override
 	public void processAuthnRequest(
 			HttpServletRequest request, HttpServletResponse response)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			doProcessAuthnRequest(request, response);
@@ -150,7 +150,7 @@ public class WebSsoProfileImpl extends BaseProfile implements WebSsoProfile {
 	@Override
 	public void processResponse(
 			HttpServletRequest request, HttpServletResponse response)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			doProcessResponse(request, response);
@@ -172,7 +172,7 @@ public class WebSsoProfileImpl extends BaseProfile implements WebSsoProfile {
 	public void sendAuthnRequest(
 			HttpServletRequest request, HttpServletResponse response,
 			String relayState)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			doSendAuthnRequest(request, response, relayState);
@@ -919,9 +919,8 @@ public class WebSsoProfileImpl extends BaseProfile implements WebSsoProfile {
 	}
 
 	protected void redirectToLogin(
-			HttpServletRequest request, HttpServletResponse response,
-			SamlSsoRequestContext samlSsoRequestContext, boolean forceAuthn)
-		throws SystemException {
+		HttpServletRequest request, HttpServletResponse response,
+		SamlSsoRequestContext samlSsoRequestContext, boolean forceAuthn) {
 
 		HttpSession session = request.getSession();
 
@@ -1196,7 +1195,7 @@ public class WebSsoProfileImpl extends BaseProfile implements WebSsoProfile {
 	}
 
 	protected void verifyInResponseTo(Response samlResponse)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (Validator.isNull(samlResponse.getInResponseTo())) {
 			return;

@@ -76,7 +76,7 @@ public class CheckSamlMetadataMessageListener extends BaseMessageListener {
 		}
 	}
 
-	protected void updateIdpMetadata(long companyId) throws SystemException {
+	protected void updateIdpMetadata(long companyId) {
 		List<SamlSpIdpConnection> samlSpIdpConnections =
 			SamlSpIdpConnectionLocalServiceUtil.getSamlSpIdpConnections(
 				companyId);
@@ -103,7 +103,7 @@ public class CheckSamlMetadataMessageListener extends BaseMessageListener {
 		}
 	}
 
-	protected void updateSpMetadata(long companyId) throws SystemException {
+	protected void updateSpMetadata(long companyId) {
 		List<SamlIdpSpConnection> samlIdpSpConnections =
 			SamlIdpSpConnectionLocalServiceUtil.getSamlIdpSpConnections(
 				companyId);

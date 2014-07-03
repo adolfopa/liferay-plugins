@@ -91,7 +91,7 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 			String emailDelivery, String portletId, String pageURL,
 			String reportName, String reportParameters,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		// Entry
 
@@ -148,7 +148,7 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 	public void addEntryResources(
 			Entry entry, boolean addCommunityPermissions,
 			boolean addGuestPermissions)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		resourceLocalService.addResources(
 			entry.getCompanyId(), entry.getGroupId(), entry.getUserId(),
@@ -159,7 +159,7 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 	public void addEntryResources(
 			Entry entry, String[] communityPermissions,
 			String[] guestPermissions)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		resourceLocalService.addModelResources(
 			entry.getCompanyId(), entry.getGroupId(), entry.getUserId(),
@@ -168,14 +168,13 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 	}
 
 	public void deleteAttachment(long companyId, String fileName)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		DLStoreUtil.deleteFile(companyId, CompanyConstants.SYSTEM, fileName);
 	}
 
 	@Override
-	public Entry deleteEntry(Entry entry)
-		throws PortalException, SystemException {
+	public Entry deleteEntry(Entry entry) throws PortalException {
 
 		// Entry
 
@@ -209,17 +208,13 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 	}
 
 	@Override
-	public Entry deleteEntry(long entryId)
-		throws PortalException, SystemException {
-
+	public Entry deleteEntry(long entryId) throws PortalException {
 		Entry entry = entryPersistence.findByPrimaryKey(entryId);
 
 		return deleteEntry(entry);
 	}
 
-	public void generateReport(long entryId)
-		throws PortalException, SystemException {
-
+	public void generateReport(long entryId) throws PortalException {
 		Entry entry = entryPersistence.findByPrimaryKey(entryId);
 
 		Definition definition = definitionPersistence.findByPrimaryKey(
@@ -229,7 +224,7 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 	}
 
 	public void generateReport(long entryId, String reportName)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Entry entry = entryPersistence.findByPrimaryKey(entryId);
 
@@ -301,10 +296,9 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 
 	@SuppressWarnings("unchecked")
 	public List<Entry> getEntries(
-			long groupId, String definitionName, String userName,
-			Date createDateGT, Date createDateLT, boolean andSearch, int start,
-			int end, OrderByComparator orderByComparator)
-		throws SystemException {
+		long groupId, String definitionName, String userName, Date createDateGT,
+		Date createDateLT, boolean andSearch, int start, int end,
+		OrderByComparator orderByComparator) {
 
 		DynamicQuery dynamicQuery = buildDynamicQuery(
 			groupId, definitionName, userName, createDateGT, createDateLT,
@@ -314,9 +308,8 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 	}
 
 	public int getEntriesCount(
-			long groupId, String definitionName, String userName,
-			Date createDateGT, Date createDateLT, boolean andSearch)
-		throws SystemException {
+		long groupId, String definitionName, String userName, Date createDateGT,
+		Date createDateLT, boolean andSearch) {
 
 		DynamicQuery dynamicQuery = buildDynamicQuery(
 			groupId, definitionName, userName, createDateGT, createDateLT,
@@ -328,7 +321,7 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 	public void sendEmails(
 			long entryId, String fileName, String[] emailAddresses,
 			boolean notification)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Entry entry = entryLocalService.getEntry(entryId);
 
@@ -361,9 +354,7 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 		}
 	}
 
-	public void unscheduleEntry(long entryId)
-		throws PortalException, SystemException {
-
+	public void unscheduleEntry(long entryId) throws PortalException {
 		Entry entry = entryPersistence.findByPrimaryKey(entryId);
 
 		entry.setScheduleRequest(false);
@@ -378,7 +369,7 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 
 	public void updateEntry(
 			long entryId, String reportName, byte[] reportResults)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Entry entry = entryPersistence.findByPrimaryKey(entryId);
 		Date now = new Date();
@@ -430,7 +421,7 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 
 	public void updateEntryStatus(
 			long entryId, ReportStatus status, String errorMessage)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Entry entry = entryLocalService.getEntry(entryId);
 
@@ -599,9 +590,7 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 		subscriptionSender.flushNotificationsAsync();
 	}
 
-	protected void scheduleEntry(Entry entry)
-		throws PortalException, SystemException {
-
+	protected void scheduleEntry(Entry entry) throws PortalException {
 		Definition definition = definitionPersistence.findByPrimaryKey(
 			entry.getDefinitionId());
 

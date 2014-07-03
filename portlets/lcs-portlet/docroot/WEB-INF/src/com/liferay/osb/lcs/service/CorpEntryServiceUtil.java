@@ -16,7 +16,6 @@ package com.liferay.osb.lcs.service;
 
 import com.liferay.osb.lcs.model.CorpEntryIdentifier;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 
 import java.util.List;
 
@@ -26,7 +25,7 @@ import java.util.List;
 public class CorpEntryServiceUtil {
 
 	public static List<CorpEntryIdentifier> getCorpEntryIdentifiers()
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		return getCorpEntryService().getCorpEntryIdentifiers();
 	}

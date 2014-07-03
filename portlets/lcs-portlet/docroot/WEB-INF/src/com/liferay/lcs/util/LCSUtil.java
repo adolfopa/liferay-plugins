@@ -189,9 +189,7 @@ public class LCSUtil {
 		return false;
 	}
 
-	public static void setupCredentials()
-		throws PortalException, SystemException {
-
+	public static void setupCredentials() throws PortalException {
 		javax.portlet.PortletPreferences jxPortletPreferences =
 			getJxPortletPreferences();
 
@@ -219,7 +217,7 @@ public class LCSUtil {
 	}
 
 	protected static javax.portlet.PortletPreferences getJxPortletPreferences()
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		PortletPreferences portletPreferences =
 			PortletPreferencesLocalServiceUtil.getPortletPreferences(

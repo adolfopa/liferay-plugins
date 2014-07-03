@@ -27,7 +27,7 @@ public class LCSClusterNodeServiceUtil {
 	public static LCSClusterNode addLCSClusterNode(
 			long lcsClusterEntryId, String name, String description,
 			int buildNumber, String key, String location)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		return getLCSClusterNodeService().addLCSClusterNode(
 			lcsClusterEntryId, name, description, buildNumber, key, location,
@@ -37,14 +37,14 @@ public class LCSClusterNodeServiceUtil {
 	public static LCSClusterNode addLCSClusterNode(
 			String siblingKey, String name, String description, String key,
 			String location)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		return getLCSClusterNodeService().addLCSClusterNode(
 			siblingKey, name, description, key, location, null);
 	}
 
 	public static LCSClusterNode getLCSClusterNode(String key)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		return getLCSClusterNodeService().getLCSClusterNode(key);
 	}
@@ -53,9 +53,7 @@ public class LCSClusterNodeServiceUtil {
 		return _lcsClusterNodeService;
 	}
 
-	public static boolean isRegistered(String key)
-		throws PortalException, SystemException {
-
+	public static boolean isRegistered(String key) throws PortalException {
 		try {
 			if (getLCSClusterNode(key) != null) {
 				return true;

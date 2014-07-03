@@ -20,7 +20,6 @@ import com.liferay.lcs.service.LCSGatewayService;
 import com.liferay.lcs.util.ResponseCommandMessageUtil;
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.Digester;
 import com.liferay.portal.kernel.util.DigesterUtil;
 import com.liferay.portal.kernel.util.PropsUtil;
@@ -41,7 +40,7 @@ public class SendPortalPropertiesCommand implements Command {
 
 	@Override
 	public void execute(RequestCommandMessage requestCommandMessage)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Properties portalProperties = new SortedProperties(
 			PropsUtil.getProperties());

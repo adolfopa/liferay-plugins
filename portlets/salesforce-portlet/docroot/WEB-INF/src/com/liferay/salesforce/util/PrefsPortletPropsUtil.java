@@ -14,7 +14,6 @@
 
 package com.liferay.salesforce.util;
 
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.PortletPreferencesLocalServiceUtil;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.util.portlet.PortletProps;
@@ -26,17 +25,13 @@ import javax.portlet.PortletPreferences;
  */
 public class PrefsPortletPropsUtil {
 
-	public static PortletPreferences getPortletPreferences(long companyId)
-		throws SystemException {
-
+	public static PortletPreferences getPortletPreferences(long companyId) {
 		return PortletPreferencesLocalServiceUtil.getPreferences(
 			companyId, companyId, PortletKeys.PREFS_OWNER_TYPE_COMPANY,
 			PortletKeys.PREFS_PLID_SHARED, "1_WAR_salesforceportlet");
 	}
 
-	public static String getString(long companyId, String name)
-		throws SystemException {
-
+	public static String getString(long companyId, String name) {
 		PortletPreferences portletPreferences = getPortletPreferences(
 			companyId);
 

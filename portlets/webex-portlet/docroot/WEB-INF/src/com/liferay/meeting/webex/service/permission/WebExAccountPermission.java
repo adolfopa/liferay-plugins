@@ -17,7 +17,6 @@ package com.liferay.meeting.webex.service.permission;
 import com.liferay.meeting.webex.model.WebExAccount;
 import com.liferay.meeting.webex.service.WebExAccountLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.permission.PermissionChecker;
 
@@ -29,7 +28,7 @@ public class WebExAccountPermission {
 	public static void check(
 			PermissionChecker permissionChecker, long webExAccountId,
 			String actionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (!contains(permissionChecker, webExAccountId, actionId)) {
 			throw new PrincipalException();
@@ -49,7 +48,7 @@ public class WebExAccountPermission {
 	public static boolean contains(
 			PermissionChecker permissionChecker, long webExAccountId,
 			String actionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		WebExAccount webExAccount =
 			WebExAccountLocalServiceUtil.getWebExAccount(webExAccountId);

@@ -15,7 +15,6 @@
 package com.liferay.saml.profile;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.saml.model.SamlSpSession;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,9 +25,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class SingleLogoutProfileUtil {
 
-	public static SamlSpSession getSamlSpSession(HttpServletRequest request)
-		throws SystemException {
-
+	public static SamlSpSession getSamlSpSession(HttpServletRequest request) {
 		return getSingleLogoutProfile().getSamlSpSession(request);
 	}
 
@@ -42,21 +39,21 @@ public class SingleLogoutProfileUtil {
 
 	public static void processIdpLogout(
 			HttpServletRequest request, HttpServletResponse response)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		getSingleLogoutProfile().processIdpLogout(request, response);
 	}
 
 	public static void processSingleLogout(
 			HttpServletRequest request, HttpServletResponse response)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		getSingleLogoutProfile().processSingleLogout(request, response);
 	}
 
 	public static void processSpLogout(
 			HttpServletRequest request, HttpServletResponse response)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		getSingleLogoutProfile().processSpLogout(request, response);
 	}

@@ -48,19 +48,17 @@ import org.apache.axis.transport.http.HTTPConstants;
  */
 public class SalesforceConnection {
 
-	public SaveResult[] create(SObject[] sObjects) throws SystemException {
+	public SaveResult[] create(SObject[] sObjects) {
 		return create(sObjects, _batchSize);
 	}
 
-	public SaveResult[] create(SObject[] sObjects, int batchSize)
-		throws SystemException {
-
+	public SaveResult[] create(SObject[] sObjects, int batchSize) {
 		validateBatchSize(batchSize);
 
 		return batch(sObjects, batchSize, new CreateBatcher());
 	}
 
-	public DeleteResult[] delete(String[] objectIds) throws SystemException {
+	public DeleteResult[] delete(String[] objectIds) {
 		login();
 
 		try {
@@ -77,7 +75,7 @@ public class SalesforceConnection {
 		}
 	}
 
-	public DescribeGlobalResult describeGlobal() throws SystemException {
+	public DescribeGlobalResult describeGlobal() {
 		login();
 
 		try {
@@ -92,9 +90,7 @@ public class SalesforceConnection {
 		}
 	}
 
-	public DescribeSObjectResult describeSObject(String objectType)
-		throws SystemException {
-
+	public DescribeSObjectResult describeSObject(String objectType) {
 		login();
 
 		try {
@@ -110,9 +106,7 @@ public class SalesforceConnection {
 		}
 	}
 
-	public DescribeSObjectResult[] describeSObjects(String[] objectTypes)
-		throws SystemException {
-
+	public DescribeSObjectResult[] describeSObjects(String[] objectTypes) {
 		login();
 
 		try {
@@ -166,7 +160,7 @@ public class SalesforceConnection {
 		return _useCompression;
 	}
 
-	public synchronized void login() throws SystemException {
+	public synchronized void login() {
 		try {
 			if (Validator.isNotNull(_sessionId) &&
 				(System.currentTimeMillis() < _nextLoginTime)) {
@@ -220,7 +214,7 @@ public class SalesforceConnection {
 		setHeader("SessionHeader", sessionHeader);
 	}
 
-	public synchronized void logout() throws SystemException {
+	public synchronized void logout() {
 		try {
 			_soapBindingStub.logout();
 		}
@@ -233,13 +227,11 @@ public class SalesforceConnection {
 		}
 	}
 
-	public QueryResult query(String queryString) throws SystemException {
+	public QueryResult query(String queryString) {
 		return query(queryString, -1);
 	}
 
-	public QueryResult query(String queryString, int batchSize)
-		throws SystemException {
-
+	public QueryResult query(String queryString, int batchSize) {
 		login();
 
 		try {
@@ -261,7 +253,7 @@ public class SalesforceConnection {
 		}
 	}
 
-	public QueryResult queryMore(String queryLocator) throws SystemException {
+	public QueryResult queryMore(String queryLocator) {
 		login();
 
 		try {
@@ -278,8 +270,7 @@ public class SalesforceConnection {
 	}
 
 	public SObject[] retrieve(
-			String fieldNames, String objectType, String[] objectIds)
-		throws SystemException {
+		String fieldNames, String objectType, String[] objectIds) {
 
 		login();
 
@@ -298,7 +289,7 @@ public class SalesforceConnection {
 		}
 	}
 
-	public SearchResult search(String searchString) throws SystemException {
+	public SearchResult search(String searchString) {
 		try {
 			return _soapBindingStub.search(searchString);
 		}
@@ -355,27 +346,22 @@ public class SalesforceConnection {
 		_userName = userName;
 	}
 
-	public SaveResult[] update(SObject[] sObjects) throws SystemException {
+	public SaveResult[] update(SObject[] sObjects) {
 		return update(sObjects, _batchSize);
 	}
 
-	public SaveResult[] update(SObject[] sObjects, int batchSize)
-		throws SystemException {
-
+	public SaveResult[] update(SObject[] sObjects, int batchSize) {
 		validateBatchSize(batchSize);
 
 		return batch(sObjects, batchSize, new UpdateBatcher());
 	}
 
-	public UpsertResult[] upsert(String externalId, SObject[] sObjects)
-		throws SystemException {
-
+	public UpsertResult[] upsert(String externalId, SObject[] sObjects) {
 		return upsert(externalId, sObjects, _batchSize);
 	}
 
 	public UpsertResult[] upsert(
-			String externalId, SObject[] sObjects, int batchSize)
-		throws SystemException {
+		String externalId, SObject[] sObjects, int batchSize) {
 
 		validateBatchSize(batchSize);
 
@@ -383,8 +369,7 @@ public class SalesforceConnection {
 	}
 
 	protected SaveResult[] batch(
-			SObject[] sObjects, int batchSize, Batcher batcher)
-		throws SystemException {
+		SObject[] sObjects, int batchSize, Batcher batcher) {
 
 		if (sObjects.length <= batchSize) {
 			login();
@@ -419,9 +404,8 @@ public class SalesforceConnection {
 	}
 
 	protected UpsertResult[] batch(
-			String externalId, SObject[] sObjects, int batchSize,
-			UpsertBatcher upsertBatcher)
-		throws SystemException {
+		String externalId, SObject[] sObjects, int batchSize,
+		UpsertBatcher upsertBatcher) {
 
 		if (sObjects.length <= batchSize) {
 			login();
@@ -528,15 +512,14 @@ public class SalesforceConnection {
 
 	private abstract class Batcher {
 
-		public abstract SaveResult[] perform(SObject[] sObjects)
-			throws SystemException;
+		public abstract SaveResult[] perform(SObject[] sObjects);
 
 	}
 
 	private class CreateBatcher extends Batcher {
 
 		@Override
-		public SaveResult[] perform(SObject[] sObjects) throws SystemException {
+		public SaveResult[] perform(SObject[] sObjects) {
 			login();
 
 			try {
@@ -556,7 +539,7 @@ public class SalesforceConnection {
 	private class UpdateBatcher extends Batcher {
 
 		@Override
-		public SaveResult[] perform(SObject[] sObjects) throws SystemException {
+		public SaveResult[] perform(SObject[] sObjects) {
 			login();
 
 			try {
@@ -575,8 +558,7 @@ public class SalesforceConnection {
 
 	private class UpsertBatcher {
 
-		public UpsertResult[] perform(String externalId, SObject[] sObjects)
-			throws SystemException {
+		public UpsertResult[] perform(String externalId, SObject[] sObjects) {
 
 			login();
 

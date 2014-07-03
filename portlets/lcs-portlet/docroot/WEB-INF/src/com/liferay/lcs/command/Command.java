@@ -16,7 +16,6 @@ package com.liferay.lcs.command;
 
 import com.liferay.lcs.messaging.RequestCommandMessage;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 
 /**
  * @author Ivica Cardic
@@ -24,6 +23,6 @@ import com.liferay.portal.kernel.exception.SystemException;
 public interface Command {
 
 	public void execute(RequestCommandMessage requestCommandMessage)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 }

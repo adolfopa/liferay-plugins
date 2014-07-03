@@ -21,7 +21,6 @@ import com.liferay.oauth.service.OAuthUserLocalServiceUtil;
 import com.liferay.portal.kernel.cache.MultiVMPoolUtil;
 import com.liferay.portal.kernel.cache.PortalCache;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.oauth.OAuthException;
 import com.liferay.portal.kernel.util.Digester;
 import com.liferay.portal.kernel.util.DigesterUtil;
@@ -109,7 +108,7 @@ public class V10aOAuth implements OAuth {
 	public void generateAccessToken(
 			OAuthAccessor oAuthAccessor, long userId,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Boolean authorized = (Boolean)oAuthAccessor.getProperty(
 			OAuthAccessorConstants.AUTHORIZED);
@@ -210,7 +209,7 @@ public class V10aOAuth implements OAuth {
 
 	@Override
 	public OAuthConsumer getOAuthConsumer(OAuthMessage requestMessage)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		String consumerKey = null;
 

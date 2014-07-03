@@ -40,7 +40,7 @@ public class LCSClusterEntryServiceImpl
 	public LCSClusterEntry addLCSClusterEntry(
 			long corpEntryId, String name, String description, String location,
 			int type, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		validate(corpEntryId, name);
 
@@ -81,9 +81,7 @@ public class LCSClusterEntryServiceImpl
 	}
 
 	@Override
-	public List<LCSClusterEntry> getCorpEntryLCSClusterEntries(long corpEntryId)
-		throws SystemException {
-
+	public List<LCSClusterEntry> getCorpEntryLCSClusterEntries(long corpEntryId) {
 		List<LCSClusterEntryImpl> remoteLcsClusterEntries = null;
 
 		try {
@@ -113,9 +111,7 @@ public class LCSClusterEntryServiceImpl
 	}
 
 	@Override
-	public LCSClusterEntry getLCSClusterEntry(long lcsClusterEntryId)
-		throws SystemException {
-
+	public LCSClusterEntry getLCSClusterEntry(long lcsClusterEntryId) {
 		try {
 			return doGetToObject(
 				LCSClusterEntryImpl.class,
@@ -128,9 +124,7 @@ public class LCSClusterEntryServiceImpl
 	}
 
 	@Override
-	public List<LCSClusterEntry> getUserLCSClusterEntries(long userId)
-		throws SystemException {
-
+	public List<LCSClusterEntry> getUserLCSClusterEntries(long userId) {
 		List<LCSClusterEntryImpl> remoteLcsClusterEntries = null;
 
 		try {
@@ -182,7 +176,7 @@ public class LCSClusterEntryServiceImpl
 	}
 
 	protected void validate(long corpEntryId, String lcsClusterEntryName)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (Validator.isNull(lcsClusterEntryName)) {
 			throw new RequiredLCSClusterEntryNameException();

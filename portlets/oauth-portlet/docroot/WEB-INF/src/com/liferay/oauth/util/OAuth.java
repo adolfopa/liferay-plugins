@@ -15,7 +15,6 @@
 package com.liferay.oauth.util;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.oauth.OAuthException;
 import com.liferay.portal.service.ServiceContext;
 
@@ -47,7 +46,7 @@ public interface OAuth {
 	public void generateAccessToken(
 			OAuthAccessor oAuthAccessor, long userId,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 	public void generateRequestToken(OAuthAccessor oAuthAccessor);
 
@@ -55,7 +54,7 @@ public interface OAuth {
 		throws PortalException;
 
 	public OAuthConsumer getOAuthConsumer(OAuthMessage oAuthMessage)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 	public OAuthMessage getOAuthMessage(HttpServletRequest request);
 

@@ -16,7 +16,6 @@ package com.liferay.portal.resiliency.spi.service.impl;
 
 import com.liferay.portal.kernel.cluster.Clusterable;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.nio.intraband.rpc.IntrabandRPCUtil;
@@ -85,7 +84,7 @@ public class SPIDefinitionLocalServiceImpl
 			int connectorPort, String description, String jvmArguments,
 			String portletIds, String servletContextNames, String typeSettings,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		// SPI definition
 
@@ -131,7 +130,7 @@ public class SPIDefinitionLocalServiceImpl
 
 	@Override
 	public SPIDefinition deleteSPIDefinition(long spiDefinitionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		SPIDefinition spiDefinition = spiDefinitionPersistence.findByPrimaryKey(
 			spiDefinitionId);
@@ -141,7 +140,7 @@ public class SPIDefinitionLocalServiceImpl
 
 	@Override
 	public SPIDefinition deleteSPIDefinition(SPIDefinition spiDefinition)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		// SPI definition
 
@@ -162,48 +161,42 @@ public class SPIDefinitionLocalServiceImpl
 	}
 
 	@Override
-	public Tuple getPortletIdsAndServletContextNames() throws SystemException {
+	public Tuple getPortletIdsAndServletContextNames() {
 		return getPortletIdsAndServletContextNames(0);
 	}
 
 	@Override
 	public SPIDefinition getSPIDefinition(long spiDefinitionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		return spiDefinitionPersistence.findByPrimaryKey(spiDefinitionId);
 	}
 
 	@Override
 	public SPIDefinition getSPIDefinition(long companyId, String name)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		return spiDefinitionPersistence.findByC_N(companyId, name);
 	}
 
 	@Override
-	public List<SPIDefinition> getSPIDefinitions() throws SystemException {
+	public List<SPIDefinition> getSPIDefinitions() {
 		return spiDefinitionPersistence.findAll();
 	}
 
 	@Override
-	public List<SPIDefinition> getSPIDefinitions(long companyId, int status)
-		throws SystemException {
-
+	public List<SPIDefinition> getSPIDefinitions(long companyId, int status) {
 		return spiDefinitionPersistence.findByC_S(companyId, status);
 	}
 
 	@Override
-	public List<SPIDefinition> getSPIDefinitions(long companyId, int[] statuses)
-		throws SystemException {
-
+	public List<SPIDefinition> getSPIDefinitions(long companyId, int[] statuses) {
 		return spiDefinitionPersistence.findByC_S(companyId, statuses);
 	}
 
 	@Clusterable
 	@Override
-	public void startSPI(long spiDefinitionId)
-		throws PortalException, SystemException {
-
+	public void startSPI(long spiDefinitionId) throws PortalException {
 		SPIDefinition spiDefinition = spiDefinitionPersistence.findByPrimaryKey(
 			spiDefinitionId);
 
@@ -296,7 +289,7 @@ public class SPIDefinitionLocalServiceImpl
 
 	@Override
 	public long startSPIinBackground(long userId, long spiDefinitionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		return startSPIinBackground(userId, spiDefinitionId, false);
 	}
@@ -304,7 +297,7 @@ public class SPIDefinitionLocalServiceImpl
 	@Override
 	public long startSPIinBackground(
 			long userId, long spiDefinitionId, boolean automatedRestart)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		SPIDefinition spiDefinition = spiDefinitionPersistence.findByPrimaryKey(
 			spiDefinitionId);
@@ -354,9 +347,7 @@ public class SPIDefinitionLocalServiceImpl
 
 	@Clusterable
 	@Override
-	public void stopSPI(long spiDefinitionId)
-		throws PortalException, SystemException {
-
+	public void stopSPI(long spiDefinitionId) throws PortalException {
 		SPIDefinitionMonitorUtil.unregister(spiDefinitionId);
 
 		SPIDefinition spiDefinition = spiDefinitionPersistence.findByPrimaryKey(
@@ -399,7 +390,7 @@ public class SPIDefinitionLocalServiceImpl
 
 	@Override
 	public long stopSPIinBackground(long userId, long spiDefinitionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		SPIDefinition spiDefinition = spiDefinitionPersistence.findByPrimaryKey(
 			spiDefinitionId);
@@ -443,7 +434,7 @@ public class SPIDefinitionLocalServiceImpl
 	@Override
 	public SPIDefinition updateSPIDefinition(
 			long spiDefinitionId, int status, String statusMessage)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		SPIDefinition spiDefinition = spiDefinitionPersistence.findByPrimaryKey(
 			spiDefinitionId);
@@ -462,7 +453,7 @@ public class SPIDefinitionLocalServiceImpl
 			int connectorPort, String description, String jvmArguments,
 			String portletIds, String servletContextNames, String typeSettings,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		User user = userPersistence.findByPrimaryKey(userId);
 
@@ -504,7 +495,7 @@ public class SPIDefinitionLocalServiceImpl
 	public SPIDefinition updateTypeSettings(
 			long userId, long spiDefinitionId, String typeSettings,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		User user = userPersistence.findByPrimaryKey(userId);
 
@@ -522,7 +513,7 @@ public class SPIDefinitionLocalServiceImpl
 	}
 
 	protected SPI createSPI(SPIDefinition spiDefinition)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		SPIProvider spiProvider = MPIHelperUtil.getSPIProvider(
 			SPIConfigurationTemplate.getSPIProviderName());
@@ -559,8 +550,7 @@ public class SPIDefinitionLocalServiceImpl
 	}
 
 	protected Tuple getPortletIdsAndServletContextNames(
-			long skipSPIDefinitionId)
-		throws SystemException {
+		long skipSPIDefinitionId) {
 
 		Set<String> portletIds = new HashSet<String>();
 		Set<String> servletContextNames = new HashSet<String>();
@@ -669,9 +659,8 @@ public class SPIDefinitionLocalServiceImpl
 	}
 
 	protected void setPortletIdsAndServletContextNames(
-			SPIDefinition spiDefinition, long skipSPIDefinitionId,
-			String portletIds, String servletContextNames)
-		throws SystemException {
+		SPIDefinition spiDefinition, long skipSPIDefinitionId,
+		String portletIds, String servletContextNames) {
 
 		Tuple portletIdsAndServletContextNames =
 			getPortletIdsAndServletContextNames(skipSPIDefinitionId);
@@ -695,7 +684,7 @@ public class SPIDefinitionLocalServiceImpl
 	}
 
 	protected void validateConnector(String connectorAddress, int connectorPort)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (Validator.isNull(connectorAddress) || (connectorPort < 0)) {
 			throw new InvalidSPIDefinitionConnectorException();
@@ -710,7 +699,7 @@ public class SPIDefinitionLocalServiceImpl
 	}
 
 	protected void validateName(long companyId, String name)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		SPIDefinition spiDefinition = spiDefinitionPersistence.fetchByC_N(
 			companyId, name);

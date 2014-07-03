@@ -15,7 +15,6 @@
 package com.liferay.reports.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.service.ServiceContext;
@@ -41,7 +40,7 @@ public class EntryServiceImpl extends EntryServiceBaseImpl {
 			String emailDelivery, String portletId, String pageURL,
 			String reportName, String reportParameters,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		DefinitionPermission.check(
 			getPermissionChecker(), definitionId, ActionKeys.ADD_REPORT);
@@ -54,7 +53,7 @@ public class EntryServiceImpl extends EntryServiceBaseImpl {
 	}
 
 	public void deleteAttachment(long companyId, long entryId, String fileName)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		EntryPermission.check(
 			getPermissionChecker(), entryId, ActionKeys.DELETE);
@@ -62,9 +61,7 @@ public class EntryServiceImpl extends EntryServiceBaseImpl {
 		entryLocalService.deleteAttachment(companyId, fileName);
 	}
 
-	public Entry deleteEntry(long entryId)
-		throws PortalException, SystemException {
-
+	public Entry deleteEntry(long entryId) throws PortalException {
 		EntryPermission.check(
 			getPermissionChecker(), entryId, ActionKeys.DELETE);
 
@@ -75,7 +72,7 @@ public class EntryServiceImpl extends EntryServiceBaseImpl {
 			long groupId, String definitionName, String userName,
 			Date createDateGT, Date createDateLT, boolean andSearch, int start,
 			int end, OrderByComparator orderByComparator)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		List<Entry> entries = entryLocalService.getEntries(
 			groupId, definitionName, userName, createDateGT, createDateLT,
@@ -85,9 +82,8 @@ public class EntryServiceImpl extends EntryServiceBaseImpl {
 	}
 
 	public int getEntriesCount(
-			long groupId, String definitionName, String userName,
-			Date createDateGT, Date createDateLT, boolean andSearch)
-		throws SystemException {
+		long groupId, String definitionName, String userName, Date createDateGT,
+		Date createDateLT, boolean andSearch) {
 
 		return entryLocalService.getEntriesCount(
 			groupId, definitionName, userName, createDateGT, createDateLT,
@@ -97,7 +93,7 @@ public class EntryServiceImpl extends EntryServiceBaseImpl {
 	public void sendEmails(
 			long entryId, String fileName, String[] emailAddresses,
 			boolean notification)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		EntryPermission.check(getPermissionChecker(), entryId, ActionKeys.VIEW);
 
@@ -105,9 +101,7 @@ public class EntryServiceImpl extends EntryServiceBaseImpl {
 			entryId, fileName, emailAddresses, notification);
 	}
 
-	public void unscheduleEntry(long entryId)
-		throws PortalException, SystemException {
-
+	public void unscheduleEntry(long entryId) throws PortalException {
 		EntryPermission.check(
 			getPermissionChecker(), entryId, ActionKeys.DELETE);
 

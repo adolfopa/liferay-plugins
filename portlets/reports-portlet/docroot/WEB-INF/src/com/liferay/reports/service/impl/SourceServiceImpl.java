@@ -15,7 +15,6 @@
 package com.liferay.reports.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.service.ServiceContext;
@@ -40,7 +39,7 @@ public class SourceServiceImpl extends SourceServiceBaseImpl {
 			long groupId, Map<Locale, String> nameMap, String driverClassName,
 			String driverUrl, String driverUserName, String driverPassword,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		AdminPermission.check(
 			getPermissionChecker(), serviceContext.getScopeGroupId(),
@@ -51,18 +50,14 @@ public class SourceServiceImpl extends SourceServiceBaseImpl {
 			driverUserName, driverPassword, serviceContext);
 	}
 
-	public Source deleteSource(long sourceId)
-		throws PortalException, SystemException {
-
+	public Source deleteSource(long sourceId) throws PortalException {
 		SourcePermission.check(
 			getPermissionChecker(), sourceId, ActionKeys.DELETE);
 
 		return sourceLocalService.deleteSource(sourceId);
 	}
 
-	public Source getSource(long sourceId)
-		throws PortalException, SystemException {
-
+	public Source getSource(long sourceId) throws PortalException {
 		SourcePermission.check(
 			getPermissionChecker(), sourceId, ActionKeys.VIEW);
 
@@ -72,7 +67,7 @@ public class SourceServiceImpl extends SourceServiceBaseImpl {
 	public List<Source> getSources(
 			long groupId, String name, String driverUrl, boolean andSearch,
 			int start, int end, OrderByComparator orderByComparator)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		List<Source> sources = sourceLocalService.getSources(
 			groupId, name, driverUrl, andSearch, start, end, orderByComparator);
@@ -81,8 +76,7 @@ public class SourceServiceImpl extends SourceServiceBaseImpl {
 	}
 
 	public int getSourcesCount(
-			long groupId, String name, String driverUrl, boolean andSearch)
-		throws SystemException {
+		long groupId, String name, String driverUrl, boolean andSearch) {
 
 		return sourceLocalService.getSourcesCount(
 			groupId, name, driverUrl, andSearch);
@@ -92,7 +86,7 @@ public class SourceServiceImpl extends SourceServiceBaseImpl {
 			long sourceId, Map<Locale, String> nameMap, String driverClassName,
 			String driverUrl, String driverUserName, String driverPassword,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		SourcePermission.check(
 			getPermissionChecker(), sourceId, ActionKeys.UPDATE);

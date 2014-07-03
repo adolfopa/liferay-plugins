@@ -17,7 +17,6 @@ package com.liferay.meeting.webex.service.impl;
 import com.liferay.meeting.webex.model.WebExSite;
 import com.liferay.meeting.webex.service.base.WebExSiteLocalServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ResourceConstants;
@@ -37,7 +36,7 @@ public class WebExSiteLocalServiceImpl extends WebExSiteLocalServiceBaseImpl {
 			long userId, long groupId, String name, String apiURL, String login,
 			String password, String partnerKey, long siteKey,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		// WebEx site
 
@@ -75,9 +74,7 @@ public class WebExSiteLocalServiceImpl extends WebExSiteLocalServiceBaseImpl {
 	}
 
 	@Override
-	public WebExSite deleteWebExSite(long webExSiteId)
-		throws PortalException, SystemException {
-
+	public WebExSite deleteWebExSite(long webExSiteId) throws PortalException {
 		WebExSite webExSite = webExSitePersistence.findByPrimaryKey(
 			webExSiteId);
 
@@ -86,7 +83,7 @@ public class WebExSiteLocalServiceImpl extends WebExSiteLocalServiceBaseImpl {
 
 	@Override
 	public WebExSite deleteWebExSite(WebExSite webExSite)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		// WebEx site
 
@@ -110,27 +107,20 @@ public class WebExSiteLocalServiceImpl extends WebExSiteLocalServiceBaseImpl {
 		return webExSite;
 	}
 
-	public WebExSite fetchSiteKeyWebExSite(long siteKey)
-		throws SystemException {
-
+	public WebExSite fetchSiteKeyWebExSite(long siteKey) {
 		return webExSitePersistence.fetchBySiteKey(siteKey);
 	}
 
-	public WebExSite getSiteKeyWebExSite(long siteKey)
-		throws PortalException, SystemException {
-
+	public WebExSite getSiteKeyWebExSite(long siteKey) throws PortalException {
 		return webExSitePersistence.findBySiteKey(siteKey);
 	}
 
-	public List<WebExSite> getWebExSites(long groupId, int start, int end)
-		throws SystemException {
-
+	public List<WebExSite> getWebExSites(long groupId, int start, int end) {
 		return webExSitePersistence.findByGroupId(groupId, start, end);
 	}
 
 	public List<WebExSite> getWebExSites(
-			long groupId, int start, int end, OrderByComparator obc)
-		throws SystemException {
+		long groupId, int start, int end, OrderByComparator obc) {
 
 		return webExSitePersistence.findByGroupId(groupId, start, end, obc);
 	}
@@ -138,7 +128,7 @@ public class WebExSiteLocalServiceImpl extends WebExSiteLocalServiceBaseImpl {
 	public void updateWebExSite(
 			long webExSiteId, String apiURL, String login, String password,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		// WebEx site
 

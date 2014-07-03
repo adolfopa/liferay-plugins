@@ -16,7 +16,6 @@ package com.liferay.portal.workflow.kaleo.designer.service.impl;
 
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.service.ServiceContext;
@@ -44,7 +43,7 @@ public class KaleoDraftDefinitionServiceImpl
 			long userId, long groupId, String name,
 			Map<Locale, String> titleMap, String content, int version,
 			int draftVersion, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KaleoDesignerPermission.check(
 			getPermissionChecker(), groupId, ActionKeys.ADD_DRAFT);
@@ -57,7 +56,7 @@ public class KaleoDraftDefinitionServiceImpl
 	public KaleoDraftDefinition getKaleoDraftDefinition(
 			String name, int version, int draftVersion,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KaleoDraftDefinition kaleoDraftDefinition =
 			kaleoDraftDefinitionLocalService.getKaleoDraftDefinition(
@@ -70,7 +69,7 @@ public class KaleoDraftDefinitionServiceImpl
 	}
 
 	public List<KaleoDraftDefinition> getKaleoDraftDefinitions()
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		List<KaleoDraftDefinition> kaleoDraftDefinitions =
 			kaleoDraftDefinitionLocalService.getKaleoDraftDefinitions(
@@ -82,7 +81,7 @@ public class KaleoDraftDefinitionServiceImpl
 
 	public KaleoDraftDefinition getLatestKaleoDraftDefinition(
 			String name, int version, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KaleoDraftDefinition latestKaleoDraftDefinition =
 			kaleoDraftDefinitionLocalService.getLatestKaleoDraftDefinition(
@@ -98,7 +97,7 @@ public class KaleoDraftDefinitionServiceImpl
 	public List<KaleoDraftDefinition> getLatestKaleoDraftDefinitions(
 			long companyId, int version, int start, int end,
 			OrderByComparator orderByComparator)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		List<KaleoDraftDefinition> latestKaleoDraftDefinitions =
 			kaleoDraftDefinitionLocalService.getLatestKaleoDraftDefinitions(
@@ -112,7 +111,7 @@ public class KaleoDraftDefinitionServiceImpl
 			long userId, long groupId, String name,
 			Map<Locale, String> titleMap, String content,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KaleoDesignerPermission.check(
 			getPermissionChecker(), groupId, ActionKeys.PUBLISH);
@@ -124,7 +123,7 @@ public class KaleoDraftDefinitionServiceImpl
 	public KaleoDraftDefinition updateKaleoDraftDefinition(
 			long userId, String name, Map<Locale, String> titleMap,
 			String content, int version, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KaleoDraftDefinition latestKaleoDraftDefinition =
 			getLatestKaleoDraftDefinition(name, version, serviceContext);

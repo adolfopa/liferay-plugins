@@ -22,7 +22,6 @@ import com.liferay.oauth.util.OAuthConsumer;
 import com.liferay.oauth.util.OAuthMessage;
 import com.liferay.oauth.util.OAuthUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.oauth.OAuthException;
 import com.liferay.portal.kernel.servlet.HttpHeaders;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -99,7 +98,7 @@ public class OAuthVerifier implements AuthVerifier {
 
 	protected OAuthAccessor getOAuthAccessor(
 			OAuthMessage oAuthMessage, OAuthUser oAuthUser)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		OAuthConsumer oAuthConsumer = OAuthUtil.getOAuthConsumer(oAuthMessage);
 
@@ -113,7 +112,7 @@ public class OAuthVerifier implements AuthVerifier {
 	}
 
 	protected OAuthUser getOAuthUser(OAuthMessage oAuthMessage)
-		throws IOException, OAuthException, SystemException {
+		throws IOException, OAuthException {
 
 		if (Validator.isNull(oAuthMessage) ||
 			Validator.isNull(oAuthMessage.getToken())) {

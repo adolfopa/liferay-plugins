@@ -15,7 +15,6 @@
 package com.liferay.reports.service.permission;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.reports.model.Entry;
@@ -37,7 +36,7 @@ public class EntryPermission {
 
 	public static void check(
 			PermissionChecker permissionChecker, long entryId, String actionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (!contains(permissionChecker, entryId, actionId)) {
 			throw new PrincipalException();
@@ -61,7 +60,7 @@ public class EntryPermission {
 
 	public static boolean contains(
 			PermissionChecker permissionChecker, long entryId, String actionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Entry entry = EntryLocalServiceUtil.getEntry(entryId);
 

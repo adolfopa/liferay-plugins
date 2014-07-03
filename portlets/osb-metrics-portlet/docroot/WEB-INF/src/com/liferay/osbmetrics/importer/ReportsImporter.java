@@ -139,7 +139,7 @@ public class ReportsImporter {
 		List<Element> entryElements = localizationElement.elements("entry");
 
 		String[] languageIds = new String[entryElements.size()];
-		String[] values = new String[entryElements.size()];;
+		String[] values = new String[entryElements.size()];
 
 		for (int i = 0; i < entryElements.size(); i++) {
 			Element entryElement = entryElements.get(i);

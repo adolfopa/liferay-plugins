@@ -15,7 +15,6 @@
 package com.liferay.portal.resiliency.spi.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.Tuple;
 import com.liferay.portal.resiliency.spi.model.SPIDefinition;
 import com.liferay.portal.resiliency.spi.service.base.SPIDefinitionServiceBaseImpl;
@@ -36,7 +35,7 @@ public class SPIDefinitionServiceImpl extends SPIDefinitionServiceBaseImpl {
 			String description, String jvmArguments, String portletIds,
 			String servletContextNames, String typeSettings,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		SPIDefinitionPermissionUtil.check(
 			getPermissionChecker(), ActionKeys.ADD_SPI_DEFINITION);
@@ -49,7 +48,7 @@ public class SPIDefinitionServiceImpl extends SPIDefinitionServiceBaseImpl {
 
 	@Override
 	public SPIDefinition deleteSPIDefinition(long spiDefinitionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		SPIDefinitionPermissionUtil.check(
 			getPermissionChecker(), spiDefinitionId, ActionKeys.DELETE);
@@ -58,9 +57,7 @@ public class SPIDefinitionServiceImpl extends SPIDefinitionServiceBaseImpl {
 	}
 
 	@Override
-	public Tuple getPortletIdsAndServletContextNames()
-		throws PortalException, SystemException {
-
+	public Tuple getPortletIdsAndServletContextNames() throws PortalException {
 		SPIDefinitionPermissionUtil.check(
 			getPermissionChecker(), ActionKeys.VIEW_SPI_DEFINITIONS);
 
@@ -69,7 +66,7 @@ public class SPIDefinitionServiceImpl extends SPIDefinitionServiceBaseImpl {
 
 	@Override
 	public SPIDefinition getSPIDefinition(long spiDefinitionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		SPIDefinitionPermissionUtil.check(
 			getPermissionChecker(), spiDefinitionId, ActionKeys.VIEW);
@@ -79,7 +76,7 @@ public class SPIDefinitionServiceImpl extends SPIDefinitionServiceBaseImpl {
 
 	@Override
 	public SPIDefinition getSPIDefinition(long companyId, String name)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		SPIDefinition spiDefinition =
 			spiDefinitionLocalService.getSPIDefinition(companyId, name);
@@ -91,9 +88,7 @@ public class SPIDefinitionServiceImpl extends SPIDefinitionServiceBaseImpl {
 	}
 
 	@Override
-	public List<SPIDefinition> getSPIDefinitions()
-		throws PortalException, SystemException {
-
+	public List<SPIDefinition> getSPIDefinitions() throws PortalException {
 		SPIDefinitionPermissionUtil.check(
 			getPermissionChecker(), ActionKeys.VIEW_SPI_DEFINITIONS);
 
@@ -101,9 +96,7 @@ public class SPIDefinitionServiceImpl extends SPIDefinitionServiceBaseImpl {
 	}
 
 	@Override
-	public void startSPI(long spiDefinitionId)
-		throws PortalException, SystemException {
-
+	public void startSPI(long spiDefinitionId) throws PortalException {
 		SPIDefinitionPermissionUtil.check(
 			getPermissionChecker(), spiDefinitionId, ActionKeys.MANAGE);
 
@@ -112,7 +105,7 @@ public class SPIDefinitionServiceImpl extends SPIDefinitionServiceBaseImpl {
 
 	@Override
 	public long startSPIinBackground(long spiDefinitionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		SPIDefinitionPermissionUtil.check(
 			getPermissionChecker(), spiDefinitionId, ActionKeys.MANAGE);
@@ -122,9 +115,7 @@ public class SPIDefinitionServiceImpl extends SPIDefinitionServiceBaseImpl {
 	}
 
 	@Override
-	public void stopSPI(long spiDefinitionId)
-		throws PortalException, SystemException {
-
+	public void stopSPI(long spiDefinitionId) throws PortalException {
 		SPIDefinitionPermissionUtil.check(
 			getPermissionChecker(), spiDefinitionId, ActionKeys.MANAGE);
 
@@ -133,7 +124,7 @@ public class SPIDefinitionServiceImpl extends SPIDefinitionServiceBaseImpl {
 
 	@Override
 	public long stopSPIinBackground(long spiDefinitionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		SPIDefinitionPermissionUtil.check(
 			getPermissionChecker(), spiDefinitionId, ActionKeys.MANAGE);
@@ -148,7 +139,7 @@ public class SPIDefinitionServiceImpl extends SPIDefinitionServiceBaseImpl {
 			String description, String jvmArguments, String portletIds,
 			String servletContextNames, String typeSettings,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		SPIDefinitionPermissionUtil.check(
 			getPermissionChecker(), spiDefinitionId, ActionKeys.UPDATE);
@@ -163,7 +154,7 @@ public class SPIDefinitionServiceImpl extends SPIDefinitionServiceBaseImpl {
 	public SPIDefinition updateTypeSettings(
 			long userId, long spiDefinitionId, String recoveryOptions,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		SPIDefinitionPermissionUtil.check(
 			getPermissionChecker(), spiDefinitionId, ActionKeys.UPDATE);

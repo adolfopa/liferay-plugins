@@ -17,7 +17,6 @@ package com.liferay.meeting.webex.service.impl;
 import com.liferay.meeting.webex.model.WebExAccount;
 import com.liferay.meeting.webex.service.base.WebExAccountLocalServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ResourceConstants;
@@ -37,7 +36,7 @@ public class WebExAccountLocalServiceImpl
 	public void addWebExAccount(
 			long userId, long groupId, long webExSiteId, String login,
 			String password, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		// WebEx account
 
@@ -70,7 +69,7 @@ public class WebExAccountLocalServiceImpl
 
 	@Override
 	public WebExAccount deleteWebExAccount(long webExAccountId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		WebExAccount webExAccount = webExAccountPersistence.findByPrimaryKey(
 			webExAccountId);
@@ -80,7 +79,7 @@ public class WebExAccountLocalServiceImpl
 
 	@Override
 	public WebExAccount deleteWebExAccount(WebExAccount webExAccount)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		// WebEx account
 
@@ -100,7 +99,7 @@ public class WebExAccountLocalServiceImpl
 	}
 
 	public void deleteWebExSiteWebExAccounts(long groupId, long webExSiteId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		List<WebExAccount> webExAccounts = webExAccountPersistence.findByG_W(
 			groupId, webExSiteId);
@@ -111,38 +110,33 @@ public class WebExAccountLocalServiceImpl
 	}
 
 	public List<WebExAccount> getWebExSiteWebExAccounts(
-			long groupId, long webExSiteId)
-		throws SystemException {
+		long groupId, long webExSiteId) {
 
 		return webExAccountPersistence.findByG_W(groupId, webExSiteId);
 	}
 
 	public List<WebExAccount> getWebExSiteWebExAccounts(
-			long groupId, long webExSiteId, int start, int end)
-		throws SystemException {
+		long groupId, long webExSiteId, int start, int end) {
 
 		return webExAccountPersistence.findByG_W(
 			groupId, webExSiteId, start, end);
 	}
 
 	public List<WebExAccount> getWebExSiteWebExAccounts(
-			long groupId, long webExSiteId, int start, int end,
-			OrderByComparator obc)
-		throws SystemException {
+		long groupId, long webExSiteId, int start, int end,
+		OrderByComparator obc) {
 
 		return webExAccountPersistence.findByG_W(
 			groupId, webExSiteId, start, end, obc);
 	}
 
-	public int getWebExSiteWebExAccountsCount(long groupId, long webExSiteId)
-		throws SystemException {
-
+	public int getWebExSiteWebExAccountsCount(long groupId, long webExSiteId) {
 		return webExAccountPersistence.countByG_W(groupId, webExSiteId);
 	}
 
 	public void updateWebExAccount(
 			long webExAccountId, String password, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		// WebEx account
 

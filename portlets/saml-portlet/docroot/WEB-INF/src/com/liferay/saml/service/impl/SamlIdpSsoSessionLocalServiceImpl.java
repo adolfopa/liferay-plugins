@@ -15,7 +15,6 @@
 package com.liferay.saml.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.saml.DuplicateSamlIdpSsoSessionException;
@@ -33,7 +32,7 @@ public class SamlIdpSsoSessionLocalServiceImpl
 	@Override
 	public SamlIdpSsoSession addSamlIdpSsoSession(
 			String samlIdpSsoSessionKey, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		User user = userLocalService.getUserById(serviceContext.getUserId());
 		Date now = new Date();
@@ -65,16 +64,14 @@ public class SamlIdpSsoSessionLocalServiceImpl
 	}
 
 	@Override
-	public SamlIdpSsoSession fetchSamlIdpSso(String samlIdpSsoSessionKey)
-		throws SystemException {
-
+	public SamlIdpSsoSession fetchSamlIdpSso(String samlIdpSsoSessionKey) {
 		return samlIdpSsoSessionPersistence.fetchBySamlIdpSsoSessionKey(
 			samlIdpSsoSessionKey);
 	}
 
 	@Override
 	public SamlIdpSsoSession getSamlIdpSso(String samlIdpSsoSessionKey)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		return samlIdpSsoSessionPersistence.findBySamlIdpSsoSessionKey(
 			samlIdpSsoSessionKey);
@@ -82,7 +79,7 @@ public class SamlIdpSsoSessionLocalServiceImpl
 
 	@Override
 	public SamlIdpSsoSession updateModifiedDate(String samlIdpSsoSessionKey)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		SamlIdpSsoSession samlIdpSsoSession =
 			samlIdpSsoSessionPersistence.findBySamlIdpSsoSessionKey(

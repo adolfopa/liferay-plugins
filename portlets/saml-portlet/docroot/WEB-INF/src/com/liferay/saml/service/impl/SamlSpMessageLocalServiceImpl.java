@@ -15,7 +15,6 @@
 package com.liferay.saml.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.saml.model.SamlSpMessage;
 import com.liferay.saml.service.base.SamlSpMessageLocalServiceBaseImpl;
@@ -30,9 +29,8 @@ public class SamlSpMessageLocalServiceImpl
 
 	@Override
 	public SamlSpMessage addSamlSpMessage(
-			String samlIdpEntityId, String samlIdpResponseKey,
-			Date expirationDate, ServiceContext serviceContext)
-		throws SystemException {
+		String samlIdpEntityId, String samlIdpResponseKey, Date expirationDate,
+		ServiceContext serviceContext) {
 
 		long samlSpMessageId = counterLocalService.increment(
 			SamlSpMessage.class.getName());
@@ -53,8 +51,7 @@ public class SamlSpMessageLocalServiceImpl
 
 	@Override
 	public SamlSpMessage fetchSamlSpMessage(
-			String samlIdpEntityId, String samlIdpResponseKey)
-		throws SystemException {
+		String samlIdpEntityId, String samlIdpResponseKey) {
 
 		return samlSpMessagePersistence.fetchBySIEI_SIRK(
 			samlIdpEntityId, samlIdpResponseKey);
@@ -63,7 +60,7 @@ public class SamlSpMessageLocalServiceImpl
 	@Override
 	public SamlSpMessage getSamlSpMessage(
 			String samlIdpEntityId, String samlIdpResponseKey)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		return samlSpMessagePersistence.findBySIEI_SIRK(
 			samlIdpEntityId, samlIdpResponseKey);

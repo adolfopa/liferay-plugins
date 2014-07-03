@@ -15,7 +15,6 @@
 package com.liferay.saml.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -48,7 +47,7 @@ public class SamlSpIdpConnectionLocalServiceImpl
 			String metadataUrl, InputStream metadataXmlInputStream, String name,
 			String nameIdFormat, boolean signAuthnRequest,
 			String userAttributeMappings, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Date now = new Date();
 
@@ -107,23 +106,20 @@ public class SamlSpIdpConnectionLocalServiceImpl
 	@Override
 	public SamlSpIdpConnection getSamlSpIdpConnection(
 			long companyId, String samlIdpEntityId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		return samlSpIdpConnectionPersistence.findByC_SIEI(
 			companyId, samlIdpEntityId);
 	}
 
 	@Override
-	public List<SamlSpIdpConnection> getSamlSpIdpConnections(long companyId)
-		throws SystemException {
-
+	public List<SamlSpIdpConnection> getSamlSpIdpConnections(long companyId) {
 		return samlSpIdpConnectionPersistence.findByCompanyId(companyId);
 	}
 
 	@Override
 	public List<SamlSpIdpConnection> getSamlSpIdpConnections(
-			long companyId, int start, int end)
-		throws SystemException {
+		long companyId, int start, int end) {
 
 		return samlSpIdpConnectionPersistence.findByCompanyId(
 			companyId, start, end);
@@ -131,24 +127,21 @@ public class SamlSpIdpConnectionLocalServiceImpl
 
 	@Override
 	public List<SamlSpIdpConnection> getSamlSpIdpConnections(
-			long companyId, int start, int end,
-			OrderByComparator orderByComparator)
-		throws SystemException {
+		long companyId, int start, int end,
+		OrderByComparator orderByComparator) {
 
 		return samlSpIdpConnectionPersistence.findByCompanyId(
 			companyId, start, end, orderByComparator);
 	}
 
 	@Override
-	public int getSamlSpIdpConnectionsCount(long companyId)
-		throws SystemException {
-
+	public int getSamlSpIdpConnectionsCount(long companyId) {
 		return samlSpIdpConnectionPersistence.countByCompanyId(companyId);
 	}
 
 	@Override
 	public void updateMetadata(long samlSpIdpConnectionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		SamlSpIdpConnection samlSpIdpConnection =
 			samlSpIdpConnectionPersistence.findByPrimaryKey(
@@ -198,7 +191,7 @@ public class SamlSpIdpConnectionLocalServiceImpl
 			InputStream metadataXmlInputStream, String name,
 			String nameIdFormat, boolean signAuthnRequest,
 			String userAttributeMappings, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Date now = new Date();
 

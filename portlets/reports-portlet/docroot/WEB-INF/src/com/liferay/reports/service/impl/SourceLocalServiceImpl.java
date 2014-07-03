@@ -21,7 +21,6 @@ import com.liferay.portal.kernel.dao.orm.Property;
 import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -55,7 +54,7 @@ public class SourceLocalServiceImpl extends SourceLocalServiceBaseImpl {
 			long userId, long groupId, Map<Locale, String> nameMap,
 			String driverClassName, String driverUrl, String driverUserName,
 			String driverPassword, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		// Source
 
@@ -93,9 +92,7 @@ public class SourceLocalServiceImpl extends SourceLocalServiceBaseImpl {
 	}
 
 	@Override
-	public Source deleteSource(long sourceId)
-		throws PortalException, SystemException {
-
+	public Source deleteSource(long sourceId) throws PortalException {
 		Source source = sourcePersistence.findByPrimaryKey(sourceId);
 
 		return sourceLocalService.deleteSource(source);
@@ -103,8 +100,7 @@ public class SourceLocalServiceImpl extends SourceLocalServiceBaseImpl {
 
 	@Override
 	@SystemEvent(type = SystemEventConstants.TYPE_DELETE)
-	public Source deleteSource(Source source)
-		throws PortalException, SystemException {
+	public Source deleteSource(Source source) throws PortalException {
 
 		// Source
 
@@ -120,9 +116,7 @@ public class SourceLocalServiceImpl extends SourceLocalServiceBaseImpl {
 	}
 
 	@Override
-	public void deleteSources(long groupId)
-		throws PortalException, SystemException {
-
+	public void deleteSources(long groupId) throws PortalException {
 		List<Source> sources = sourcePersistence.findByGroupId(groupId);
 
 		for (Source source : sources) {
@@ -131,16 +125,13 @@ public class SourceLocalServiceImpl extends SourceLocalServiceBaseImpl {
 	}
 
 	@Override
-	public Source getSource(long sourceId)
-		throws PortalException, SystemException {
-
+	public Source getSource(long sourceId) throws PortalException {
 		return sourcePersistence.findByPrimaryKey(sourceId);
 	}
 
 	public List<Source> getSources(
-			long groupId, String name, String driverUrl, boolean andSearch,
-			int start, int end, OrderByComparator orderByComparator)
-		throws SystemException {
+		long groupId, String name, String driverUrl, boolean andSearch,
+		int start, int end, OrderByComparator orderByComparator) {
 
 		DynamicQuery dynamicQuery = buildDynamicQuery(
 			groupId, name, driverUrl, andSearch);
@@ -149,8 +140,7 @@ public class SourceLocalServiceImpl extends SourceLocalServiceBaseImpl {
 	}
 
 	public int getSourcesCount(
-			long groupId, String name, String driverUrl, boolean andSearch)
-		throws SystemException {
+		long groupId, String name, String driverUrl, boolean andSearch) {
 
 		DynamicQuery dynamicQuery = buildDynamicQuery(
 			groupId, name, driverUrl, andSearch);
@@ -162,7 +152,7 @@ public class SourceLocalServiceImpl extends SourceLocalServiceBaseImpl {
 			long sourceId, Map<Locale, String> nameMap, String driverClassName,
 			String driverUrl, String driverUserName, String driverPassword,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		// Source
 

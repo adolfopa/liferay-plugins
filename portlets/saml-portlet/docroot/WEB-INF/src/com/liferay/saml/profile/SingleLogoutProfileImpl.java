@@ -131,7 +131,7 @@ public class SingleLogoutProfileImpl
 	@Override
 	public void processIdpLogout(
 			HttpServletRequest request, HttpServletResponse response)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		String requestPath = SamlUtil.getRequestPath(request);
 
@@ -193,7 +193,7 @@ public class SingleLogoutProfileImpl
 	@Override
 	public void processSingleLogout(
 			HttpServletRequest request, HttpServletResponse response)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		SamlBinding samlBinding = null;
 
@@ -257,7 +257,7 @@ public class SingleLogoutProfileImpl
 	@Override
 	public void processSpLogout(
 			HttpServletRequest request, HttpServletResponse response)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			sendSpLogoutRequest(request, response);
