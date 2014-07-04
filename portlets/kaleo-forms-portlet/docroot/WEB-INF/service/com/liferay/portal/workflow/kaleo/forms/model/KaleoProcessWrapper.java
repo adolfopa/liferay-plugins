@@ -137,64 +137,15 @@ public class KaleoProcessWrapper implements KaleoProcess,
 		}
 	}
 
-	/**
-	* Returns the primary key of this kaleo process.
-	*
-	* @return the primary key of this kaleo process
-	*/
 	@Override
-	public long getPrimaryKey() {
-		return _kaleoProcess.getPrimaryKey();
+	public java.lang.Object clone() {
+		return new KaleoProcessWrapper((KaleoProcess)_kaleoProcess.clone());
 	}
 
-	/**
-	* Sets the primary key of this kaleo process.
-	*
-	* @param primaryKey the primary key of this kaleo process
-	*/
 	@Override
-	public void setPrimaryKey(long primaryKey) {
-		_kaleoProcess.setPrimaryKey(primaryKey);
-	}
-
-	/**
-	* Returns the kaleo process ID of this kaleo process.
-	*
-	* @return the kaleo process ID of this kaleo process
-	*/
-	@Override
-	public long getKaleoProcessId() {
-		return _kaleoProcess.getKaleoProcessId();
-	}
-
-	/**
-	* Sets the kaleo process ID of this kaleo process.
-	*
-	* @param kaleoProcessId the kaleo process ID of this kaleo process
-	*/
-	@Override
-	public void setKaleoProcessId(long kaleoProcessId) {
-		_kaleoProcess.setKaleoProcessId(kaleoProcessId);
-	}
-
-	/**
-	* Returns the group ID of this kaleo process.
-	*
-	* @return the group ID of this kaleo process
-	*/
-	@Override
-	public long getGroupId() {
-		return _kaleoProcess.getGroupId();
-	}
-
-	/**
-	* Sets the group ID of this kaleo process.
-	*
-	* @param groupId the group ID of this kaleo process
-	*/
-	@Override
-	public void setGroupId(long groupId) {
-		_kaleoProcess.setGroupId(groupId);
+	public int compareTo(
+		com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess kaleoProcess) {
+		return _kaleoProcess.compareTo(kaleoProcess);
 	}
 
 	/**
@@ -208,13 +159,124 @@ public class KaleoProcessWrapper implements KaleoProcess,
 	}
 
 	/**
-	* Sets the company ID of this kaleo process.
+	* Returns the create date of this kaleo process.
 	*
-	* @param companyId the company ID of this kaleo process
+	* @return the create date of this kaleo process
 	*/
 	@Override
-	public void setCompanyId(long companyId) {
-		_kaleoProcess.setCompanyId(companyId);
+	public java.util.Date getCreateDate() {
+		return _kaleoProcess.getCreateDate();
+	}
+
+	@Override
+	public com.liferay.portlet.dynamicdatalists.model.DDLRecordSet getDDLRecordSet()
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kaleoProcess.getDDLRecordSet();
+	}
+
+	/**
+	* Returns the d d l record set ID of this kaleo process.
+	*
+	* @return the d d l record set ID of this kaleo process
+	*/
+	@Override
+	public long getDDLRecordSetId() {
+		return _kaleoProcess.getDDLRecordSetId();
+	}
+
+	@Override
+	public com.liferay.portlet.dynamicdatamapping.model.DDMTemplate getDDMTemplate()
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kaleoProcess.getDDMTemplate();
+	}
+
+	/**
+	* Returns the d d m template ID of this kaleo process.
+	*
+	* @return the d d m template ID of this kaleo process
+	*/
+	@Override
+	public long getDDMTemplateId() {
+		return _kaleoProcess.getDDMTemplateId();
+	}
+
+	@Override
+	public java.lang.String getDescription()
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kaleoProcess.getDescription();
+	}
+
+	@Override
+	public java.lang.String getDescription(java.util.Locale locale)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kaleoProcess.getDescription(locale);
+	}
+
+	@Override
+	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
+		return _kaleoProcess.getExpandoBridge();
+	}
+
+	/**
+	* Returns the group ID of this kaleo process.
+	*
+	* @return the group ID of this kaleo process
+	*/
+	@Override
+	public long getGroupId() {
+		return _kaleoProcess.getGroupId();
+	}
+
+	/**
+	* Returns the kaleo process ID of this kaleo process.
+	*
+	* @return the kaleo process ID of this kaleo process
+	*/
+	@Override
+	public long getKaleoProcessId() {
+		return _kaleoProcess.getKaleoProcessId();
+	}
+
+	@Override
+	public java.util.List<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink> getKaleoProcessLinks() {
+		return _kaleoProcess.getKaleoProcessLinks();
+	}
+
+	/**
+	* Returns the modified date of this kaleo process.
+	*
+	* @return the modified date of this kaleo process
+	*/
+	@Override
+	public java.util.Date getModifiedDate() {
+		return _kaleoProcess.getModifiedDate();
+	}
+
+	@Override
+	public java.lang.String getName()
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kaleoProcess.getName();
+	}
+
+	@Override
+	public java.lang.String getName(java.util.Locale locale)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kaleoProcess.getName(locale);
+	}
+
+	/**
+	* Returns the primary key of this kaleo process.
+	*
+	* @return the primary key of this kaleo process
+	*/
+	@Override
+	public long getPrimaryKey() {
+		return _kaleoProcess.getPrimaryKey();
+	}
+
+	@Override
+	public java.io.Serializable getPrimaryKeyObj() {
+		return _kaleoProcess.getPrimaryKeyObj();
 	}
 
 	/**
@@ -228,13 +290,13 @@ public class KaleoProcessWrapper implements KaleoProcess,
 	}
 
 	/**
-	* Sets the user ID of this kaleo process.
+	* Returns the user name of this kaleo process.
 	*
-	* @param userId the user ID of this kaleo process
+	* @return the user name of this kaleo process
 	*/
 	@Override
-	public void setUserId(long userId) {
-		_kaleoProcess.setUserId(userId);
+	public java.lang.String getUserName() {
+		return _kaleoProcess.getUserName();
 	}
 
 	/**
@@ -247,114 +309,9 @@ public class KaleoProcessWrapper implements KaleoProcess,
 		return _kaleoProcess.getUserUuid();
 	}
 
-	/**
-	* Sets the user uuid of this kaleo process.
-	*
-	* @param userUuid the user uuid of this kaleo process
-	*/
 	@Override
-	public void setUserUuid(java.lang.String userUuid) {
-		_kaleoProcess.setUserUuid(userUuid);
-	}
-
-	/**
-	* Returns the user name of this kaleo process.
-	*
-	* @return the user name of this kaleo process
-	*/
-	@Override
-	public java.lang.String getUserName() {
-		return _kaleoProcess.getUserName();
-	}
-
-	/**
-	* Sets the user name of this kaleo process.
-	*
-	* @param userName the user name of this kaleo process
-	*/
-	@Override
-	public void setUserName(java.lang.String userName) {
-		_kaleoProcess.setUserName(userName);
-	}
-
-	/**
-	* Returns the create date of this kaleo process.
-	*
-	* @return the create date of this kaleo process
-	*/
-	@Override
-	public java.util.Date getCreateDate() {
-		return _kaleoProcess.getCreateDate();
-	}
-
-	/**
-	* Sets the create date of this kaleo process.
-	*
-	* @param createDate the create date of this kaleo process
-	*/
-	@Override
-	public void setCreateDate(java.util.Date createDate) {
-		_kaleoProcess.setCreateDate(createDate);
-	}
-
-	/**
-	* Returns the modified date of this kaleo process.
-	*
-	* @return the modified date of this kaleo process
-	*/
-	@Override
-	public java.util.Date getModifiedDate() {
-		return _kaleoProcess.getModifiedDate();
-	}
-
-	/**
-	* Sets the modified date of this kaleo process.
-	*
-	* @param modifiedDate the modified date of this kaleo process
-	*/
-	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
-		_kaleoProcess.setModifiedDate(modifiedDate);
-	}
-
-	/**
-	* Returns the d d l record set ID of this kaleo process.
-	*
-	* @return the d d l record set ID of this kaleo process
-	*/
-	@Override
-	public long getDDLRecordSetId() {
-		return _kaleoProcess.getDDLRecordSetId();
-	}
-
-	/**
-	* Sets the d d l record set ID of this kaleo process.
-	*
-	* @param DDLRecordSetId the d d l record set ID of this kaleo process
-	*/
-	@Override
-	public void setDDLRecordSetId(long DDLRecordSetId) {
-		_kaleoProcess.setDDLRecordSetId(DDLRecordSetId);
-	}
-
-	/**
-	* Returns the d d m template ID of this kaleo process.
-	*
-	* @return the d d m template ID of this kaleo process
-	*/
-	@Override
-	public long getDDMTemplateId() {
-		return _kaleoProcess.getDDMTemplateId();
-	}
-
-	/**
-	* Sets the d d m template ID of this kaleo process.
-	*
-	* @param DDMTemplateId the d d m template ID of this kaleo process
-	*/
-	@Override
-	public void setDDMTemplateId(long DDMTemplateId) {
-		_kaleoProcess.setDDMTemplateId(DDMTemplateId);
+	public java.lang.String getWorkflowDefinition() {
+		return _kaleoProcess.getWorkflowDefinition();
 	}
 
 	/**
@@ -368,17 +325,6 @@ public class KaleoProcessWrapper implements KaleoProcess,
 	}
 
 	/**
-	* Sets the workflow definition name of this kaleo process.
-	*
-	* @param WorkflowDefinitionName the workflow definition name of this kaleo process
-	*/
-	@Override
-	public void setWorkflowDefinitionName(
-		java.lang.String WorkflowDefinitionName) {
-		_kaleoProcess.setWorkflowDefinitionName(WorkflowDefinitionName);
-	}
-
-	/**
 	* Returns the workflow definition version of this kaleo process.
 	*
 	* @return the workflow definition version of this kaleo process
@@ -388,24 +334,9 @@ public class KaleoProcessWrapper implements KaleoProcess,
 		return _kaleoProcess.getWorkflowDefinitionVersion();
 	}
 
-	/**
-	* Sets the workflow definition version of this kaleo process.
-	*
-	* @param WorkflowDefinitionVersion the workflow definition version of this kaleo process
-	*/
 	@Override
-	public void setWorkflowDefinitionVersion(long WorkflowDefinitionVersion) {
-		_kaleoProcess.setWorkflowDefinitionVersion(WorkflowDefinitionVersion);
-	}
-
-	@Override
-	public boolean isNew() {
-		return _kaleoProcess.isNew();
-	}
-
-	@Override
-	public void setNew(boolean n) {
-		_kaleoProcess.setNew(n);
+	public int hashCode() {
+		return _kaleoProcess.hashCode();
 	}
 
 	@Override
@@ -414,28 +345,63 @@ public class KaleoProcessWrapper implements KaleoProcess,
 	}
 
 	@Override
-	public void setCachedModel(boolean cachedModel) {
-		_kaleoProcess.setCachedModel(cachedModel);
-	}
-
-	@Override
 	public boolean isEscapedModel() {
 		return _kaleoProcess.isEscapedModel();
 	}
 
 	@Override
-	public java.io.Serializable getPrimaryKeyObj() {
-		return _kaleoProcess.getPrimaryKeyObj();
+	public boolean isNew() {
+		return _kaleoProcess.isNew();
 	}
 
 	@Override
-	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
-		_kaleoProcess.setPrimaryKeyObj(primaryKeyObj);
+	public void persist() {
+		_kaleoProcess.persist();
 	}
 
 	@Override
-	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
-		return _kaleoProcess.getExpandoBridge();
+	public void setCachedModel(boolean cachedModel) {
+		_kaleoProcess.setCachedModel(cachedModel);
+	}
+
+	/**
+	* Sets the company ID of this kaleo process.
+	*
+	* @param companyId the company ID of this kaleo process
+	*/
+	@Override
+	public void setCompanyId(long companyId) {
+		_kaleoProcess.setCompanyId(companyId);
+	}
+
+	/**
+	* Sets the create date of this kaleo process.
+	*
+	* @param createDate the create date of this kaleo process
+	*/
+	@Override
+	public void setCreateDate(java.util.Date createDate) {
+		_kaleoProcess.setCreateDate(createDate);
+	}
+
+	/**
+	* Sets the d d l record set ID of this kaleo process.
+	*
+	* @param DDLRecordSetId the d d l record set ID of this kaleo process
+	*/
+	@Override
+	public void setDDLRecordSetId(long DDLRecordSetId) {
+		_kaleoProcess.setDDLRecordSetId(DDLRecordSetId);
+	}
+
+	/**
+	* Sets the d d m template ID of this kaleo process.
+	*
+	* @param DDMTemplateId the d d m template ID of this kaleo process
+	*/
+	@Override
+	public void setDDMTemplateId(long DDMTemplateId) {
+		_kaleoProcess.setDDMTemplateId(DDMTemplateId);
 	}
 
 	@Override
@@ -456,20 +422,105 @@ public class KaleoProcessWrapper implements KaleoProcess,
 		_kaleoProcess.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	/**
+	* Sets the group ID of this kaleo process.
+	*
+	* @param groupId the group ID of this kaleo process
+	*/
 	@Override
-	public java.lang.Object clone() {
-		return new KaleoProcessWrapper((KaleoProcess)_kaleoProcess.clone());
+	public void setGroupId(long groupId) {
+		_kaleoProcess.setGroupId(groupId);
+	}
+
+	/**
+	* Sets the kaleo process ID of this kaleo process.
+	*
+	* @param kaleoProcessId the kaleo process ID of this kaleo process
+	*/
+	@Override
+	public void setKaleoProcessId(long kaleoProcessId) {
+		_kaleoProcess.setKaleoProcessId(kaleoProcessId);
+	}
+
+	/**
+	* Sets the modified date of this kaleo process.
+	*
+	* @param modifiedDate the modified date of this kaleo process
+	*/
+	@Override
+	public void setModifiedDate(java.util.Date modifiedDate) {
+		_kaleoProcess.setModifiedDate(modifiedDate);
 	}
 
 	@Override
-	public int compareTo(
-		com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess kaleoProcess) {
-		return _kaleoProcess.compareTo(kaleoProcess);
+	public void setNew(boolean n) {
+		_kaleoProcess.setNew(n);
+	}
+
+	/**
+	* Sets the primary key of this kaleo process.
+	*
+	* @param primaryKey the primary key of this kaleo process
+	*/
+	@Override
+	public void setPrimaryKey(long primaryKey) {
+		_kaleoProcess.setPrimaryKey(primaryKey);
 	}
 
 	@Override
-	public int hashCode() {
-		return _kaleoProcess.hashCode();
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_kaleoProcess.setPrimaryKeyObj(primaryKeyObj);
+	}
+
+	/**
+	* Sets the user ID of this kaleo process.
+	*
+	* @param userId the user ID of this kaleo process
+	*/
+	@Override
+	public void setUserId(long userId) {
+		_kaleoProcess.setUserId(userId);
+	}
+
+	/**
+	* Sets the user name of this kaleo process.
+	*
+	* @param userName the user name of this kaleo process
+	*/
+	@Override
+	public void setUserName(java.lang.String userName) {
+		_kaleoProcess.setUserName(userName);
+	}
+
+	/**
+	* Sets the user uuid of this kaleo process.
+	*
+	* @param userUuid the user uuid of this kaleo process
+	*/
+	@Override
+	public void setUserUuid(java.lang.String userUuid) {
+		_kaleoProcess.setUserUuid(userUuid);
+	}
+
+	/**
+	* Sets the workflow definition name of this kaleo process.
+	*
+	* @param WorkflowDefinitionName the workflow definition name of this kaleo process
+	*/
+	@Override
+	public void setWorkflowDefinitionName(
+		java.lang.String WorkflowDefinitionName) {
+		_kaleoProcess.setWorkflowDefinitionName(WorkflowDefinitionName);
+	}
+
+	/**
+	* Sets the workflow definition version of this kaleo process.
+	*
+	* @param WorkflowDefinitionVersion the workflow definition version of this kaleo process
+	*/
+	@Override
+	public void setWorkflowDefinitionVersion(long WorkflowDefinitionVersion) {
+		_kaleoProcess.setWorkflowDefinitionVersion(WorkflowDefinitionVersion);
 	}
 
 	@Override
@@ -483,69 +534,18 @@ public class KaleoProcessWrapper implements KaleoProcess,
 	}
 
 	@Override
-	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess toUnescapedModel() {
-		return new KaleoProcessWrapper(_kaleoProcess.toUnescapedModel());
-	}
-
-	@Override
 	public java.lang.String toString() {
 		return _kaleoProcess.toString();
 	}
 
 	@Override
+	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess toUnescapedModel() {
+		return new KaleoProcessWrapper(_kaleoProcess.toUnescapedModel());
+	}
+
+	@Override
 	public java.lang.String toXmlString() {
 		return _kaleoProcess.toXmlString();
-	}
-
-	@Override
-	public void persist() {
-		_kaleoProcess.persist();
-	}
-
-	@Override
-	public com.liferay.portlet.dynamicdatalists.model.DDLRecordSet getDDLRecordSet()
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kaleoProcess.getDDLRecordSet();
-	}
-
-	@Override
-	public com.liferay.portlet.dynamicdatamapping.model.DDMTemplate getDDMTemplate()
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kaleoProcess.getDDMTemplate();
-	}
-
-	@Override
-	public java.lang.String getDescription()
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kaleoProcess.getDescription();
-	}
-
-	@Override
-	public java.lang.String getDescription(java.util.Locale locale)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kaleoProcess.getDescription(locale);
-	}
-
-	@Override
-	public java.util.List<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink> getKaleoProcessLinks() {
-		return _kaleoProcess.getKaleoProcessLinks();
-	}
-
-	@Override
-	public java.lang.String getName()
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kaleoProcess.getName();
-	}
-
-	@Override
-	public java.lang.String getName(java.util.Locale locale)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kaleoProcess.getName(locale);
-	}
-
-	@Override
-	public java.lang.String getWorkflowDefinition() {
-		return _kaleoProcess.getWorkflowDefinition();
 	}
 
 	@Override

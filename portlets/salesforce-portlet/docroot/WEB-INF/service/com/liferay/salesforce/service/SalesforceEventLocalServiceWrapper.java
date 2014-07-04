@@ -41,24 +41,6 @@ public class SalesforceEventLocalServiceWrapper
 		return _salesforceEventLocalService.getBeanIdentifier();
 	}
 
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_salesforceEventLocalService.setBeanIdentifier(beanIdentifier);
-	}
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _salesforceEventLocalService.invokeMethod(name, parameterTypes,
-			arguments);
-	}
-
 	@Override
 	public com.liferay.portal.kernel.messaging.MessageBatch getEventsByAccountId(
 		long companyId, java.lang.String accountId,
@@ -84,6 +66,24 @@ public class SalesforceEventLocalServiceWrapper
 		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException {
 		return _salesforceEventLocalService.getEventsByUserName(companyId,
 			userName, fieldNames);
+	}
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _salesforceEventLocalService.invokeMethod(name, parameterTypes,
+			arguments);
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	@Override
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_salesforceEventLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
 	/**

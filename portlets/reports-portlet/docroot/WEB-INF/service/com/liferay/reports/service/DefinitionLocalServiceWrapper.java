@@ -42,6 +42,20 @@ public class DefinitionLocalServiceWrapper implements DefinitionLocalService,
 		return _definitionLocalService.addDefinition(definition);
 	}
 
+	@Override
+	public com.liferay.reports.model.Definition addDefinition(long userId,
+		long groupId,
+		java.util.Map<java.util.Locale, java.lang.String> nameMap,
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		long sourceId, java.lang.String reportParameters,
+		java.lang.String fileName, java.io.InputStream inputStream,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _definitionLocalService.addDefinition(userId, groupId, nameMap,
+			descriptionMap, sourceId, reportParameters, fileName, inputStream,
+			serviceContext);
+	}
+
 	/**
 	* Creates a new definition with the primary key. Does not add the definition to the database.
 	*
@@ -52,6 +66,20 @@ public class DefinitionLocalServiceWrapper implements DefinitionLocalService,
 	public com.liferay.reports.model.Definition createDefinition(
 		long definitionId) {
 		return _definitionLocalService.createDefinition(definitionId);
+	}
+
+	/**
+	* Deletes the definition from the database. Also notifies the appropriate model listeners.
+	*
+	* @param definition the definition
+	* @return the definition that was removed
+	* @throws PortalException
+	*/
+	@Override
+	public com.liferay.reports.model.Definition deleteDefinition(
+		com.liferay.reports.model.Definition definition)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _definitionLocalService.deleteDefinition(definition);
 	}
 
 	/**
@@ -68,18 +96,28 @@ public class DefinitionLocalServiceWrapper implements DefinitionLocalService,
 		return _definitionLocalService.deleteDefinition(definitionId);
 	}
 
+	@Override
+	public void deleteDefinitionTemplates(long companyId,
+		java.lang.String attachmentsDirectory)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		_definitionLocalService.deleteDefinitionTemplates(companyId,
+			attachmentsDirectory);
+	}
+
+	@Override
+	public void deleteDefinitions(long groupId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		_definitionLocalService.deleteDefinitions(groupId);
+	}
+
 	/**
-	* Deletes the definition from the database. Also notifies the appropriate model listeners.
-	*
-	* @param definition the definition
-	* @return the definition that was removed
 	* @throws PortalException
 	*/
 	@Override
-	public com.liferay.reports.model.Definition deleteDefinition(
-		com.liferay.reports.model.Definition definition)
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _definitionLocalService.deleteDefinition(definition);
+		return _definitionLocalService.deletePersistedModel(persistedModel);
 	}
 
 	@Override
@@ -201,6 +239,21 @@ public class DefinitionLocalServiceWrapper implements DefinitionLocalService,
 			groupId);
 	}
 
+	@Override
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return _definitionLocalService.getActionableDynamicQuery();
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	@Override
+	public java.lang.String getBeanIdentifier() {
+		return _definitionLocalService.getBeanIdentifier();
+	}
+
 	/**
 	* Returns the definition with the primary key.
 	*
@@ -212,34 +265,6 @@ public class DefinitionLocalServiceWrapper implements DefinitionLocalService,
 	public com.liferay.reports.model.Definition getDefinition(long definitionId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _definitionLocalService.getDefinition(definitionId);
-	}
-
-	@Override
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return _definitionLocalService.getActionableDynamicQuery();
-	}
-
-	@Override
-	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
-		com.liferay.portal.kernel.lar.PortletDataContext portletDataContext) {
-		return _definitionLocalService.getExportActionableDynamicQuery(portletDataContext);
-	}
-
-	/**
-	* @throws PortalException
-	*/
-	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _definitionLocalService.deletePersistedModel(persistedModel);
-	}
-
-	@Override
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _definitionLocalService.getPersistedModel(primaryKeyObj);
 	}
 
 	/**
@@ -274,6 +299,17 @@ public class DefinitionLocalServiceWrapper implements DefinitionLocalService,
 			groupId);
 	}
 
+	@Override
+	public java.util.List<com.liferay.reports.model.Definition> getDefinitions(
+		long groupId, java.lang.String definitionName,
+		java.lang.String description, java.lang.String sourceId,
+		java.lang.String reportName, boolean andSearch, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		return _definitionLocalService.getDefinitions(groupId, definitionName,
+			description, sourceId, reportName, andSearch, start, end,
+			orderByComparator);
+	}
+
 	/**
 	* Returns a range of all the definitions.
 	*
@@ -301,26 +337,34 @@ public class DefinitionLocalServiceWrapper implements DefinitionLocalService,
 		return _definitionLocalService.getDefinitionsCount();
 	}
 
-	/**
-	* Updates the definition in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param definition the definition
-	* @return the definition that was updated
-	*/
 	@Override
-	public com.liferay.reports.model.Definition updateDefinition(
-		com.liferay.reports.model.Definition definition) {
-		return _definitionLocalService.updateDefinition(definition);
+	public int getDefinitionsCount(long groupId,
+		java.lang.String definitionName, java.lang.String description,
+		java.lang.String sourceId, java.lang.String reportName,
+		boolean andSearch) {
+		return _definitionLocalService.getDefinitionsCount(groupId,
+			definitionName, description, sourceId, reportName, andSearch);
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
 	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _definitionLocalService.getBeanIdentifier();
+	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
+		com.liferay.portal.kernel.lar.PortletDataContext portletDataContext) {
+		return _definitionLocalService.getExportActionableDynamicQuery(portletDataContext);
+	}
+
+	@Override
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _definitionLocalService.getPersistedModel(primaryKeyObj);
+	}
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _definitionLocalService.invokeMethod(name, parameterTypes,
+			arguments);
 	}
 
 	/**
@@ -333,60 +377,16 @@ public class DefinitionLocalServiceWrapper implements DefinitionLocalService,
 		_definitionLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
+	/**
+	* Updates the definition in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param definition the definition
+	* @return the definition that was updated
+	*/
 	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _definitionLocalService.invokeMethod(name, parameterTypes,
-			arguments);
-	}
-
-	@Override
-	public com.liferay.reports.model.Definition addDefinition(long userId,
-		long groupId,
-		java.util.Map<java.util.Locale, java.lang.String> nameMap,
-		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
-		long sourceId, java.lang.String reportParameters,
-		java.lang.String fileName, java.io.InputStream inputStream,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _definitionLocalService.addDefinition(userId, groupId, nameMap,
-			descriptionMap, sourceId, reportParameters, fileName, inputStream,
-			serviceContext);
-	}
-
-	@Override
-	public void deleteDefinitions(long groupId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		_definitionLocalService.deleteDefinitions(groupId);
-	}
-
-	@Override
-	public void deleteDefinitionTemplates(long companyId,
-		java.lang.String attachmentsDirectory)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		_definitionLocalService.deleteDefinitionTemplates(companyId,
-			attachmentsDirectory);
-	}
-
-	@Override
-	public java.util.List<com.liferay.reports.model.Definition> getDefinitions(
-		long groupId, java.lang.String definitionName,
-		java.lang.String description, java.lang.String sourceId,
-		java.lang.String reportName, boolean andSearch, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
-		return _definitionLocalService.getDefinitions(groupId, definitionName,
-			description, sourceId, reportName, andSearch, start, end,
-			orderByComparator);
-	}
-
-	@Override
-	public int getDefinitionsCount(long groupId,
-		java.lang.String definitionName, java.lang.String description,
-		java.lang.String sourceId, java.lang.String reportName,
-		boolean andSearch) {
-		return _definitionLocalService.getDefinitionsCount(groupId,
-			definitionName, description, sourceId, reportName, andSearch);
+	public com.liferay.reports.model.Definition updateDefinition(
+		com.liferay.reports.model.Definition definition) {
+		return _definitionLocalService.updateDefinition(definition);
 	}
 
 	@Override

@@ -16,6 +16,7 @@ package com.liferay.meeting.webex.service;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
@@ -44,6 +45,10 @@ public interface WebExAccountLocalService extends BaseLocalService,
 	 *
 	 * Never modify or reference this interface directly. Always use {@link WebExAccountLocalServiceUtil} to access the web ex account local service. Add custom service methods to {@link com.liferay.meeting.webex.service.impl.WebExAccountLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public void addWebExAccount(long userId, long groupId, long webExSiteId,
+		java.lang.String login, java.lang.String password,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Adds the web ex account to the database. Also notifies the appropriate model listeners.
@@ -51,6 +56,7 @@ public interface WebExAccountLocalService extends BaseLocalService,
 	* @param webExAccount the web ex account
 	* @return the web ex account that was added
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
 	public com.liferay.meeting.webex.model.WebExAccount addWebExAccount(
 		com.liferay.meeting.webex.model.WebExAccount webExAccount);
 
@@ -64,14 +70,11 @@ public interface WebExAccountLocalService extends BaseLocalService,
 		long webExAccountId);
 
 	/**
-	* Deletes the web ex account with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param webExAccountId the primary key of the web ex account
-	* @return the web ex account that was removed
-	* @throws PortalException if a web ex account with the primary key could not be found
+	* @throws PortalException
 	*/
-	public com.liferay.meeting.webex.model.WebExAccount deleteWebExAccount(
-		long webExAccountId)
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
@@ -81,8 +84,24 @@ public interface WebExAccountLocalService extends BaseLocalService,
 	* @return the web ex account that was removed
 	* @throws PortalException
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.meeting.webex.model.WebExAccount deleteWebExAccount(
 		com.liferay.meeting.webex.model.WebExAccount webExAccount)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	/**
+	* Deletes the web ex account with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param webExAccountId the primary key of the web ex account
+	* @return the web ex account that was removed
+	* @throws PortalException if a web ex account with the primary key could not be found
+	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
+	public com.liferay.meeting.webex.model.WebExAccount deleteWebExAccount(
+		long webExAccountId)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	public void deleteWebExSiteWebExAccounts(long groupId, long webExSiteId)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
@@ -176,6 +195,26 @@ public interface WebExAccountLocalService extends BaseLocalService,
 	public com.liferay.meeting.webex.model.WebExAccount fetchWebExAccountByUuidAndGroupId(
 		java.lang.String uuid, long groupId);
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
+		com.liferay.portal.kernel.lar.PortletDataContext portletDataContext);
+
+	@Override
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
 	/**
 	* Returns the web ex account with the primary key.
 	*
@@ -186,27 +225,6 @@ public interface WebExAccountLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.meeting.webex.model.WebExAccount getWebExAccount(
 		long webExAccountId)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
-		com.liferay.portal.kernel.lar.PortletDataContext portletDataContext);
-
-	/**
-	* @throws PortalException
-	*/
-	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Override
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
@@ -258,42 +276,6 @@ public interface WebExAccountLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getWebExAccountsCount();
 
-	/**
-	* Updates the web ex account in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param webExAccount the web ex account
-	* @return the web ex account that was updated
-	*/
-	public com.liferay.meeting.webex.model.WebExAccount updateWebExAccount(
-		com.liferay.meeting.webex.model.WebExAccount webExAccount);
-
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public java.lang.String getBeanIdentifier();
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	public void setBeanIdentifier(java.lang.String beanIdentifier);
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
-
-	public void addWebExAccount(long userId, long groupId, long webExSiteId,
-		java.lang.String login, java.lang.String password,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	public void deleteWebExSiteWebExAccounts(long groupId, long webExSiteId)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.meeting.webex.model.WebExAccount> getWebExSiteWebExAccounts(
 		long groupId, long webExSiteId);
@@ -309,6 +291,28 @@ public interface WebExAccountLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getWebExSiteWebExAccountsCount(long groupId, long webExSiteId);
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier);
+
+	/**
+	* Updates the web ex account in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param webExAccount the web ex account
+	* @return the web ex account that was updated
+	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
+	public com.liferay.meeting.webex.model.WebExAccount updateWebExAccount(
+		com.liferay.meeting.webex.model.WebExAccount webExAccount);
 
 	public void updateWebExAccount(long webExAccountId,
 		java.lang.String password,

@@ -50,6 +50,19 @@ public class DefinitionLocalServiceUtil {
 		return getService().addDefinition(definition);
 	}
 
+	public static com.liferay.reports.model.Definition addDefinition(
+		long userId, long groupId,
+		java.util.Map<java.util.Locale, java.lang.String> nameMap,
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		long sourceId, java.lang.String reportParameters,
+		java.lang.String fileName, java.io.InputStream inputStream,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .addDefinition(userId, groupId, nameMap, descriptionMap,
+			sourceId, reportParameters, fileName, inputStream, serviceContext);
+	}
+
 	/**
 	* Creates a new definition with the primary key. Does not add the definition to the database.
 	*
@@ -59,6 +72,19 @@ public class DefinitionLocalServiceUtil {
 	public static com.liferay.reports.model.Definition createDefinition(
 		long definitionId) {
 		return getService().createDefinition(definitionId);
+	}
+
+	/**
+	* Deletes the definition from the database. Also notifies the appropriate model listeners.
+	*
+	* @param definition the definition
+	* @return the definition that was removed
+	* @throws PortalException
+	*/
+	public static com.liferay.reports.model.Definition deleteDefinition(
+		com.liferay.reports.model.Definition definition)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deleteDefinition(definition);
 	}
 
 	/**
@@ -74,17 +100,24 @@ public class DefinitionLocalServiceUtil {
 		return getService().deleteDefinition(definitionId);
 	}
 
+	public static void deleteDefinitionTemplates(long companyId,
+		java.lang.String attachmentsDirectory)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		getService().deleteDefinitionTemplates(companyId, attachmentsDirectory);
+	}
+
+	public static void deleteDefinitions(long groupId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		getService().deleteDefinitions(groupId);
+	}
+
 	/**
-	* Deletes the definition from the database. Also notifies the appropriate model listeners.
-	*
-	* @param definition the definition
-	* @return the definition that was removed
 	* @throws PortalException
 	*/
-	public static com.liferay.reports.model.Definition deleteDefinition(
-		com.liferay.reports.model.Definition definition)
+	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().deleteDefinition(definition);
+		return getService().deletePersistedModel(persistedModel);
 	}
 
 	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
@@ -194,6 +227,19 @@ public class DefinitionLocalServiceUtil {
 		return getService().fetchDefinitionByUuidAndGroupId(uuid, groupId);
 	}
 
+	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return getService().getActionableDynamicQuery();
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public static java.lang.String getBeanIdentifier() {
+		return getService().getBeanIdentifier();
+	}
+
 	/**
 	* Returns the definition with the primary key.
 	*
@@ -205,30 +251,6 @@ public class DefinitionLocalServiceUtil {
 		long definitionId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getDefinition(definitionId);
-	}
-
-	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return getService().getActionableDynamicQuery();
-	}
-
-	public static com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
-		com.liferay.portal.kernel.lar.PortletDataContext portletDataContext) {
-		return getService().getExportActionableDynamicQuery(portletDataContext);
-	}
-
-	/**
-	* @throws PortalException
-	*/
-	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().deletePersistedModel(persistedModel);
-	}
-
-	public static com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getPersistedModel(primaryKeyObj);
 	}
 
 	/**
@@ -259,6 +281,16 @@ public class DefinitionLocalServiceUtil {
 		return getService().getDefinitionByUuidAndGroupId(uuid, groupId);
 	}
 
+	public static java.util.List<com.liferay.reports.model.Definition> getDefinitions(
+		long groupId, java.lang.String definitionName,
+		java.lang.String description, java.lang.String sourceId,
+		java.lang.String reportName, boolean andSearch, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		return getService()
+				   .getDefinitions(groupId, definitionName, description,
+			sourceId, reportName, andSearch, start, end, orderByComparator);
+	}
+
 	/**
 	* Returns a range of all the definitions.
 	*
@@ -284,24 +316,30 @@ public class DefinitionLocalServiceUtil {
 		return getService().getDefinitionsCount();
 	}
 
-	/**
-	* Updates the definition in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param definition the definition
-	* @return the definition that was updated
-	*/
-	public static com.liferay.reports.model.Definition updateDefinition(
-		com.liferay.reports.model.Definition definition) {
-		return getService().updateDefinition(definition);
+	public static int getDefinitionsCount(long groupId,
+		java.lang.String definitionName, java.lang.String description,
+		java.lang.String sourceId, java.lang.String reportName,
+		boolean andSearch) {
+		return getService()
+				   .getDefinitionsCount(groupId, definitionName, description,
+			sourceId, reportName, andSearch);
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public static java.lang.String getBeanIdentifier() {
-		return getService().getBeanIdentifier();
+	public static com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
+		com.liferay.portal.kernel.lar.PortletDataContext portletDataContext) {
+		return getService().getExportActionableDynamicQuery(portletDataContext);
+	}
+
+	public static com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getPersistedModel(primaryKeyObj);
+	}
+
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
 	/**
@@ -313,53 +351,15 @@ public class DefinitionLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
-	public static java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return getService().invokeMethod(name, parameterTypes, arguments);
-	}
-
-	public static com.liferay.reports.model.Definition addDefinition(
-		long userId, long groupId,
-		java.util.Map<java.util.Locale, java.lang.String> nameMap,
-		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
-		long sourceId, java.lang.String reportParameters,
-		java.lang.String fileName, java.io.InputStream inputStream,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService()
-				   .addDefinition(userId, groupId, nameMap, descriptionMap,
-			sourceId, reportParameters, fileName, inputStream, serviceContext);
-	}
-
-	public static void deleteDefinitions(long groupId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		getService().deleteDefinitions(groupId);
-	}
-
-	public static void deleteDefinitionTemplates(long companyId,
-		java.lang.String attachmentsDirectory)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		getService().deleteDefinitionTemplates(companyId, attachmentsDirectory);
-	}
-
-	public static java.util.List<com.liferay.reports.model.Definition> getDefinitions(
-		long groupId, java.lang.String definitionName,
-		java.lang.String description, java.lang.String sourceId,
-		java.lang.String reportName, boolean andSearch, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
-		return getService()
-				   .getDefinitions(groupId, definitionName, description,
-			sourceId, reportName, andSearch, start, end, orderByComparator);
-	}
-
-	public static int getDefinitionsCount(long groupId,
-		java.lang.String definitionName, java.lang.String description,
-		java.lang.String sourceId, java.lang.String reportName,
-		boolean andSearch) {
-		return getService()
-				   .getDefinitionsCount(groupId, definitionName, description,
-			sourceId, reportName, andSearch);
+	/**
+	* Updates the definition in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param definition the definition
+	* @return the definition that was updated
+	*/
+	public static com.liferay.reports.model.Definition updateDefinition(
+		com.liferay.reports.model.Definition definition) {
+		return getService().updateDefinition(definition);
 	}
 
 	public static com.liferay.reports.model.Definition updateDefinition(

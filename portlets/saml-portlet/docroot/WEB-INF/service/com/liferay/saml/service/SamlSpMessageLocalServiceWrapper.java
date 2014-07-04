@@ -31,6 +31,15 @@ public class SamlSpMessageLocalServiceWrapper
 		_samlSpMessageLocalService = samlSpMessageLocalService;
 	}
 
+	@Override
+	public com.liferay.saml.model.SamlSpMessage addSamlSpMessage(
+		java.lang.String samlIdpEntityId, java.lang.String samlIdpResponseKey,
+		java.util.Date expirationDate,
+		com.liferay.portal.service.ServiceContext serviceContext) {
+		return _samlSpMessageLocalService.addSamlSpMessage(samlIdpEntityId,
+			samlIdpResponseKey, expirationDate, serviceContext);
+	}
+
 	/**
 	* Adds the saml sp message to the database. Also notifies the appropriate model listeners.
 	*
@@ -56,17 +65,13 @@ public class SamlSpMessageLocalServiceWrapper
 	}
 
 	/**
-	* Deletes the saml sp message with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param samlSpMessageId the primary key of the saml sp message
-	* @return the saml sp message that was removed
-	* @throws PortalException if a saml sp message with the primary key could not be found
+	* @throws PortalException
 	*/
 	@Override
-	public com.liferay.saml.model.SamlSpMessage deleteSamlSpMessage(
-		long samlSpMessageId)
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _samlSpMessageLocalService.deleteSamlSpMessage(samlSpMessageId);
+		return _samlSpMessageLocalService.deletePersistedModel(persistedModel);
 	}
 
 	/**
@@ -79,6 +84,20 @@ public class SamlSpMessageLocalServiceWrapper
 	public com.liferay.saml.model.SamlSpMessage deleteSamlSpMessage(
 		com.liferay.saml.model.SamlSpMessage samlSpMessage) {
 		return _samlSpMessageLocalService.deleteSamlSpMessage(samlSpMessage);
+	}
+
+	/**
+	* Deletes the saml sp message with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param samlSpMessageId the primary key of the saml sp message
+	* @return the saml sp message that was removed
+	* @throws PortalException if a saml sp message with the primary key could not be found
+	*/
+	@Override
+	public com.liferay.saml.model.SamlSpMessage deleteSamlSpMessage(
+		long samlSpMessageId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _samlSpMessageLocalService.deleteSamlSpMessage(samlSpMessageId);
 	}
 
 	@Override
@@ -168,8 +187,45 @@ public class SamlSpMessageLocalServiceWrapper
 
 	@Override
 	public com.liferay.saml.model.SamlSpMessage fetchSamlSpMessage(
+		java.lang.String samlIdpEntityId, java.lang.String samlIdpResponseKey) {
+		return _samlSpMessageLocalService.fetchSamlSpMessage(samlIdpEntityId,
+			samlIdpResponseKey);
+	}
+
+	@Override
+	public com.liferay.saml.model.SamlSpMessage fetchSamlSpMessage(
 		long samlSpMessageId) {
 		return _samlSpMessageLocalService.fetchSamlSpMessage(samlSpMessageId);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return _samlSpMessageLocalService.getActionableDynamicQuery();
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	@Override
+	public java.lang.String getBeanIdentifier() {
+		return _samlSpMessageLocalService.getBeanIdentifier();
+	}
+
+	@Override
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _samlSpMessageLocalService.getPersistedModel(primaryKeyObj);
+	}
+
+	@Override
+	public com.liferay.saml.model.SamlSpMessage getSamlSpMessage(
+		java.lang.String samlIdpEntityId, java.lang.String samlIdpResponseKey)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _samlSpMessageLocalService.getSamlSpMessage(samlIdpEntityId,
+			samlIdpResponseKey);
 	}
 
 	/**
@@ -184,28 +240,6 @@ public class SamlSpMessageLocalServiceWrapper
 		long samlSpMessageId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _samlSpMessageLocalService.getSamlSpMessage(samlSpMessageId);
-	}
-
-	@Override
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return _samlSpMessageLocalService.getActionableDynamicQuery();
-	}
-
-	/**
-	* @throws PortalException
-	*/
-	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _samlSpMessageLocalService.deletePersistedModel(persistedModel);
-	}
-
-	@Override
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _samlSpMessageLocalService.getPersistedModel(primaryKeyObj);
 	}
 
 	/**
@@ -235,26 +269,12 @@ public class SamlSpMessageLocalServiceWrapper
 		return _samlSpMessageLocalService.getSamlSpMessagesCount();
 	}
 
-	/**
-	* Updates the saml sp message in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param samlSpMessage the saml sp message
-	* @return the saml sp message that was updated
-	*/
 	@Override
-	public com.liferay.saml.model.SamlSpMessage updateSamlSpMessage(
-		com.liferay.saml.model.SamlSpMessage samlSpMessage) {
-		return _samlSpMessageLocalService.updateSamlSpMessage(samlSpMessage);
-	}
-
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _samlSpMessageLocalService.getBeanIdentifier();
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _samlSpMessageLocalService.invokeMethod(name, parameterTypes,
+			arguments);
 	}
 
 	/**
@@ -267,36 +287,16 @@ public class SamlSpMessageLocalServiceWrapper
 		_samlSpMessageLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
+	/**
+	* Updates the saml sp message in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param samlSpMessage the saml sp message
+	* @return the saml sp message that was updated
+	*/
 	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _samlSpMessageLocalService.invokeMethod(name, parameterTypes,
-			arguments);
-	}
-
-	@Override
-	public com.liferay.saml.model.SamlSpMessage addSamlSpMessage(
-		java.lang.String samlIdpEntityId, java.lang.String samlIdpResponseKey,
-		java.util.Date expirationDate,
-		com.liferay.portal.service.ServiceContext serviceContext) {
-		return _samlSpMessageLocalService.addSamlSpMessage(samlIdpEntityId,
-			samlIdpResponseKey, expirationDate, serviceContext);
-	}
-
-	@Override
-	public com.liferay.saml.model.SamlSpMessage fetchSamlSpMessage(
-		java.lang.String samlIdpEntityId, java.lang.String samlIdpResponseKey) {
-		return _samlSpMessageLocalService.fetchSamlSpMessage(samlIdpEntityId,
-			samlIdpResponseKey);
-	}
-
-	@Override
-	public com.liferay.saml.model.SamlSpMessage getSamlSpMessage(
-		java.lang.String samlIdpEntityId, java.lang.String samlIdpResponseKey)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _samlSpMessageLocalService.getSamlSpMessage(samlIdpEntityId,
-			samlIdpResponseKey);
+	public com.liferay.saml.model.SamlSpMessage updateSamlSpMessage(
+		com.liferay.saml.model.SamlSpMessage samlSpMessage) {
+		return _samlSpMessageLocalService.updateSamlSpMessage(samlSpMessage);
 	}
 
 	/**

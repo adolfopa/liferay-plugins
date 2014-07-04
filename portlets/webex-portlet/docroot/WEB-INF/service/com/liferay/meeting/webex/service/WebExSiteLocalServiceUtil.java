@@ -38,6 +38,15 @@ public class WebExSiteLocalServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link com.liferay.meeting.webex.service.impl.WebExSiteLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static void addWebExSite(long userId, long groupId,
+		java.lang.String name, java.lang.String apiURL, java.lang.String login,
+		java.lang.String password, java.lang.String partnerKey, long siteKey,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		getService()
+			.addWebExSite(userId, groupId, name, apiURL, login, password,
+			partnerKey, siteKey, serviceContext);
+	}
 
 	/**
 	* Adds the web ex site to the database. Also notifies the appropriate model listeners.
@@ -62,16 +71,12 @@ public class WebExSiteLocalServiceUtil {
 	}
 
 	/**
-	* Deletes the web ex site with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param webExSiteId the primary key of the web ex site
-	* @return the web ex site that was removed
-	* @throws PortalException if a web ex site with the primary key could not be found
+	* @throws PortalException
 	*/
-	public static com.liferay.meeting.webex.model.WebExSite deleteWebExSite(
-		long webExSiteId)
+	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().deleteWebExSite(webExSiteId);
+		return getService().deletePersistedModel(persistedModel);
 	}
 
 	/**
@@ -85,6 +90,19 @@ public class WebExSiteLocalServiceUtil {
 		com.liferay.meeting.webex.model.WebExSite webExSite)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteWebExSite(webExSite);
+	}
+
+	/**
+	* Deletes the web ex site with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param webExSiteId the primary key of the web ex site
+	* @return the web ex site that was removed
+	* @throws PortalException if a web ex site with the primary key could not be found
+	*/
+	public static com.liferay.meeting.webex.model.WebExSite deleteWebExSite(
+		long webExSiteId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deleteWebExSite(webExSiteId);
 	}
 
 	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
@@ -165,6 +183,11 @@ public class WebExSiteLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery, projection);
 	}
 
+	public static com.liferay.meeting.webex.model.WebExSite fetchSiteKeyWebExSite(
+		long siteKey) {
+		return getService().fetchSiteKeyWebExSite(siteKey);
+	}
+
 	public static com.liferay.meeting.webex.model.WebExSite fetchWebExSite(
 		long webExSiteId) {
 		return getService().fetchWebExSite(webExSiteId);
@@ -194,6 +217,36 @@ public class WebExSiteLocalServiceUtil {
 		return getService().fetchWebExSiteByUuidAndGroupId(uuid, groupId);
 	}
 
+	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return getService().getActionableDynamicQuery();
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public static java.lang.String getBeanIdentifier() {
+		return getService().getBeanIdentifier();
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
+		com.liferay.portal.kernel.lar.PortletDataContext portletDataContext) {
+		return getService().getExportActionableDynamicQuery(portletDataContext);
+	}
+
+	public static com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getPersistedModel(primaryKeyObj);
+	}
+
+	public static com.liferay.meeting.webex.model.WebExSite getSiteKeyWebExSite(
+		long siteKey)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getSiteKeyWebExSite(siteKey);
+	}
+
 	/**
 	* Returns the web ex site with the primary key.
 	*
@@ -205,30 +258,6 @@ public class WebExSiteLocalServiceUtil {
 		long webExSiteId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getWebExSite(webExSiteId);
-	}
-
-	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return getService().getActionableDynamicQuery();
-	}
-
-	public static com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
-		com.liferay.portal.kernel.lar.PortletDataContext portletDataContext) {
-		return getService().getExportActionableDynamicQuery(portletDataContext);
-	}
-
-	/**
-	* @throws PortalException
-	*/
-	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().deletePersistedModel(persistedModel);
-	}
-
-	public static com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getPersistedModel(primaryKeyObj);
 	}
 
 	/**
@@ -259,6 +288,17 @@ public class WebExSiteLocalServiceUtil {
 		return getService().getWebExSiteByUuidAndGroupId(uuid, groupId);
 	}
 
+	public static java.util.List<com.liferay.meeting.webex.model.WebExSite> getWebExSites(
+		long groupId, int start, int end) {
+		return getService().getWebExSites(groupId, start, end);
+	}
+
+	public static java.util.List<com.liferay.meeting.webex.model.WebExSite> getWebExSites(
+		long groupId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc) {
+		return getService().getWebExSites(groupId, start, end, obc);
+	}
+
 	/**
 	* Returns a range of all the web ex sites.
 	*
@@ -284,24 +324,10 @@ public class WebExSiteLocalServiceUtil {
 		return getService().getWebExSitesCount();
 	}
 
-	/**
-	* Updates the web ex site in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param webExSite the web ex site
-	* @return the web ex site that was updated
-	*/
-	public static com.liferay.meeting.webex.model.WebExSite updateWebExSite(
-		com.liferay.meeting.webex.model.WebExSite webExSite) {
-		return getService().updateWebExSite(webExSite);
-	}
-
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public static java.lang.String getBeanIdentifier() {
-		return getService().getBeanIdentifier();
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
 	/**
@@ -313,42 +339,15 @@ public class WebExSiteLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
-	public static java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return getService().invokeMethod(name, parameterTypes, arguments);
-	}
-
-	public static void addWebExSite(long userId, long groupId,
-		java.lang.String name, java.lang.String apiURL, java.lang.String login,
-		java.lang.String password, java.lang.String partnerKey, long siteKey,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		getService()
-			.addWebExSite(userId, groupId, name, apiURL, login, password,
-			partnerKey, siteKey, serviceContext);
-	}
-
-	public static com.liferay.meeting.webex.model.WebExSite fetchSiteKeyWebExSite(
-		long siteKey) {
-		return getService().fetchSiteKeyWebExSite(siteKey);
-	}
-
-	public static com.liferay.meeting.webex.model.WebExSite getSiteKeyWebExSite(
-		long siteKey)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getSiteKeyWebExSite(siteKey);
-	}
-
-	public static java.util.List<com.liferay.meeting.webex.model.WebExSite> getWebExSites(
-		long groupId, int start, int end) {
-		return getService().getWebExSites(groupId, start, end);
-	}
-
-	public static java.util.List<com.liferay.meeting.webex.model.WebExSite> getWebExSites(
-		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator obc) {
-		return getService().getWebExSites(groupId, start, end, obc);
+	/**
+	* Updates the web ex site in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param webExSite the web ex site
+	* @return the web ex site that was updated
+	*/
+	public static com.liferay.meeting.webex.model.WebExSite updateWebExSite(
+		com.liferay.meeting.webex.model.WebExSite webExSite) {
+		return getService().updateWebExSite(webExSite);
 	}
 
 	public static void updateWebExSite(long webExSiteId,

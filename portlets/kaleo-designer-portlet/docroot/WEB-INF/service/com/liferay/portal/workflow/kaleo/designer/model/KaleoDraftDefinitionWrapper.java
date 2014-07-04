@@ -143,64 +143,20 @@ public class KaleoDraftDefinitionWrapper implements KaleoDraftDefinition,
 		}
 	}
 
-	/**
-	* Returns the primary key of this kaleo draft definition.
-	*
-	* @return the primary key of this kaleo draft definition
-	*/
 	@Override
-	public long getPrimaryKey() {
-		return _kaleoDraftDefinition.getPrimaryKey();
+	public java.lang.Object clone() {
+		return new KaleoDraftDefinitionWrapper((KaleoDraftDefinition)_kaleoDraftDefinition.clone());
 	}
 
-	/**
-	* Sets the primary key of this kaleo draft definition.
-	*
-	* @param primaryKey the primary key of this kaleo draft definition
-	*/
 	@Override
-	public void setPrimaryKey(long primaryKey) {
-		_kaleoDraftDefinition.setPrimaryKey(primaryKey);
+	public int compareTo(
+		com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition kaleoDraftDefinition) {
+		return _kaleoDraftDefinition.compareTo(kaleoDraftDefinition);
 	}
 
-	/**
-	* Returns the kaleo draft definition ID of this kaleo draft definition.
-	*
-	* @return the kaleo draft definition ID of this kaleo draft definition
-	*/
 	@Override
-	public long getKaleoDraftDefinitionId() {
-		return _kaleoDraftDefinition.getKaleoDraftDefinitionId();
-	}
-
-	/**
-	* Sets the kaleo draft definition ID of this kaleo draft definition.
-	*
-	* @param kaleoDraftDefinitionId the kaleo draft definition ID of this kaleo draft definition
-	*/
-	@Override
-	public void setKaleoDraftDefinitionId(long kaleoDraftDefinitionId) {
-		_kaleoDraftDefinition.setKaleoDraftDefinitionId(kaleoDraftDefinitionId);
-	}
-
-	/**
-	* Returns the group ID of this kaleo draft definition.
-	*
-	* @return the group ID of this kaleo draft definition
-	*/
-	@Override
-	public long getGroupId() {
-		return _kaleoDraftDefinition.getGroupId();
-	}
-
-	/**
-	* Sets the group ID of this kaleo draft definition.
-	*
-	* @param groupId the group ID of this kaleo draft definition
-	*/
-	@Override
-	public void setGroupId(long groupId) {
-		_kaleoDraftDefinition.setGroupId(groupId);
+	public java.lang.String[] getAvailableLanguageIds() {
+		return _kaleoDraftDefinition.getAvailableLanguageIds();
 	}
 
 	/**
@@ -214,73 +170,13 @@ public class KaleoDraftDefinitionWrapper implements KaleoDraftDefinition,
 	}
 
 	/**
-	* Sets the company ID of this kaleo draft definition.
+	* Returns the content of this kaleo draft definition.
 	*
-	* @param companyId the company ID of this kaleo draft definition
+	* @return the content of this kaleo draft definition
 	*/
 	@Override
-	public void setCompanyId(long companyId) {
-		_kaleoDraftDefinition.setCompanyId(companyId);
-	}
-
-	/**
-	* Returns the user ID of this kaleo draft definition.
-	*
-	* @return the user ID of this kaleo draft definition
-	*/
-	@Override
-	public long getUserId() {
-		return _kaleoDraftDefinition.getUserId();
-	}
-
-	/**
-	* Sets the user ID of this kaleo draft definition.
-	*
-	* @param userId the user ID of this kaleo draft definition
-	*/
-	@Override
-	public void setUserId(long userId) {
-		_kaleoDraftDefinition.setUserId(userId);
-	}
-
-	/**
-	* Returns the user uuid of this kaleo draft definition.
-	*
-	* @return the user uuid of this kaleo draft definition
-	*/
-	@Override
-	public java.lang.String getUserUuid() {
-		return _kaleoDraftDefinition.getUserUuid();
-	}
-
-	/**
-	* Sets the user uuid of this kaleo draft definition.
-	*
-	* @param userUuid the user uuid of this kaleo draft definition
-	*/
-	@Override
-	public void setUserUuid(java.lang.String userUuid) {
-		_kaleoDraftDefinition.setUserUuid(userUuid);
-	}
-
-	/**
-	* Returns the user name of this kaleo draft definition.
-	*
-	* @return the user name of this kaleo draft definition
-	*/
-	@Override
-	public java.lang.String getUserName() {
-		return _kaleoDraftDefinition.getUserName();
-	}
-
-	/**
-	* Sets the user name of this kaleo draft definition.
-	*
-	* @param userName the user name of this kaleo draft definition
-	*/
-	@Override
-	public void setUserName(java.lang.String userName) {
-		_kaleoDraftDefinition.setUserName(userName);
+	public java.lang.String getContent() {
+		return _kaleoDraftDefinition.getContent();
 	}
 
 	/**
@@ -293,14 +189,44 @@ public class KaleoDraftDefinitionWrapper implements KaleoDraftDefinition,
 		return _kaleoDraftDefinition.getCreateDate();
 	}
 
+	@Override
+	public java.lang.String getDefaultLanguageId() {
+		return _kaleoDraftDefinition.getDefaultLanguageId();
+	}
+
 	/**
-	* Sets the create date of this kaleo draft definition.
+	* Returns the draft version of this kaleo draft definition.
 	*
-	* @param createDate the create date of this kaleo draft definition
+	* @return the draft version of this kaleo draft definition
 	*/
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
-		_kaleoDraftDefinition.setCreateDate(createDate);
+	public int getDraftVersion() {
+		return _kaleoDraftDefinition.getDraftVersion();
+	}
+
+	@Override
+	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
+		return _kaleoDraftDefinition.getExpandoBridge();
+	}
+
+	/**
+	* Returns the group ID of this kaleo draft definition.
+	*
+	* @return the group ID of this kaleo draft definition
+	*/
+	@Override
+	public long getGroupId() {
+		return _kaleoDraftDefinition.getGroupId();
+	}
+
+	/**
+	* Returns the kaleo draft definition ID of this kaleo draft definition.
+	*
+	* @return the kaleo draft definition ID of this kaleo draft definition
+	*/
+	@Override
+	public long getKaleoDraftDefinitionId() {
+		return _kaleoDraftDefinition.getKaleoDraftDefinitionId();
 	}
 
 	/**
@@ -314,16 +240,6 @@ public class KaleoDraftDefinitionWrapper implements KaleoDraftDefinition,
 	}
 
 	/**
-	* Sets the modified date of this kaleo draft definition.
-	*
-	* @param modifiedDate the modified date of this kaleo draft definition
-	*/
-	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
-		_kaleoDraftDefinition.setModifiedDate(modifiedDate);
-	}
-
-	/**
 	* Returns the name of this kaleo draft definition.
 	*
 	* @return the name of this kaleo draft definition
@@ -334,13 +250,18 @@ public class KaleoDraftDefinitionWrapper implements KaleoDraftDefinition,
 	}
 
 	/**
-	* Sets the name of this kaleo draft definition.
+	* Returns the primary key of this kaleo draft definition.
 	*
-	* @param name the name of this kaleo draft definition
+	* @return the primary key of this kaleo draft definition
 	*/
 	@Override
-	public void setName(java.lang.String name) {
-		_kaleoDraftDefinition.setName(name);
+	public long getPrimaryKey() {
+		return _kaleoDraftDefinition.getPrimaryKey();
+	}
+
+	@Override
+	public java.io.Serializable getPrimaryKeyObj() {
+		return _kaleoDraftDefinition.getPrimaryKeyObj();
 	}
 
 	/**
@@ -351,29 +272,6 @@ public class KaleoDraftDefinitionWrapper implements KaleoDraftDefinition,
 	@Override
 	public java.lang.String getTitle() {
 		return _kaleoDraftDefinition.getTitle();
-	}
-
-	/**
-	* Returns the localized title of this kaleo draft definition in the language. Uses the default language if no localization exists for the requested language.
-	*
-	* @param locale the locale of the language
-	* @return the localized title of this kaleo draft definition
-	*/
-	@Override
-	public java.lang.String getTitle(java.util.Locale locale) {
-		return _kaleoDraftDefinition.getTitle(locale);
-	}
-
-	/**
-	* Returns the localized title of this kaleo draft definition in the language, optionally using the default language if no localization exists for the requested language.
-	*
-	* @param locale the local of the language
-	* @param useDefault whether to use the default language if no localization exists for the requested language
-	* @return the localized title of this kaleo draft definition. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
-	*/
-	@Override
-	public java.lang.String getTitle(java.util.Locale locale, boolean useDefault) {
-		return _kaleoDraftDefinition.getTitle(locale, useDefault);
 	}
 
 	/**
@@ -400,6 +298,29 @@ public class KaleoDraftDefinitionWrapper implements KaleoDraftDefinition,
 		return _kaleoDraftDefinition.getTitle(languageId, useDefault);
 	}
 
+	/**
+	* Returns the localized title of this kaleo draft definition in the language. Uses the default language if no localization exists for the requested language.
+	*
+	* @param locale the locale of the language
+	* @return the localized title of this kaleo draft definition
+	*/
+	@Override
+	public java.lang.String getTitle(java.util.Locale locale) {
+		return _kaleoDraftDefinition.getTitle(locale);
+	}
+
+	/**
+	* Returns the localized title of this kaleo draft definition in the language, optionally using the default language if no localization exists for the requested language.
+	*
+	* @param locale the local of the language
+	* @param useDefault whether to use the default language if no localization exists for the requested language
+	* @return the localized title of this kaleo draft definition. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
+	*/
+	@Override
+	public java.lang.String getTitle(java.util.Locale locale, boolean useDefault) {
+		return _kaleoDraftDefinition.getTitle(locale, useDefault);
+	}
+
 	@Override
 	public java.lang.String getTitleCurrentLanguageId() {
 		return _kaleoDraftDefinition.getTitleCurrentLanguageId();
@@ -418,6 +339,207 @@ public class KaleoDraftDefinitionWrapper implements KaleoDraftDefinition,
 	@Override
 	public java.util.Map<java.util.Locale, java.lang.String> getTitleMap() {
 		return _kaleoDraftDefinition.getTitleMap();
+	}
+
+	/**
+	* Returns the user ID of this kaleo draft definition.
+	*
+	* @return the user ID of this kaleo draft definition
+	*/
+	@Override
+	public long getUserId() {
+		return _kaleoDraftDefinition.getUserId();
+	}
+
+	/**
+	* Returns the user name of this kaleo draft definition.
+	*
+	* @return the user name of this kaleo draft definition
+	*/
+	@Override
+	public java.lang.String getUserName() {
+		return _kaleoDraftDefinition.getUserName();
+	}
+
+	/**
+	* Returns the user uuid of this kaleo draft definition.
+	*
+	* @return the user uuid of this kaleo draft definition
+	*/
+	@Override
+	public java.lang.String getUserUuid() {
+		return _kaleoDraftDefinition.getUserUuid();
+	}
+
+	/**
+	* Returns the version of this kaleo draft definition.
+	*
+	* @return the version of this kaleo draft definition
+	*/
+	@Override
+	public int getVersion() {
+		return _kaleoDraftDefinition.getVersion();
+	}
+
+	@Override
+	public int hashCode() {
+		return _kaleoDraftDefinition.hashCode();
+	}
+
+	@Override
+	public boolean isCachedModel() {
+		return _kaleoDraftDefinition.isCachedModel();
+	}
+
+	@Override
+	public boolean isEscapedModel() {
+		return _kaleoDraftDefinition.isEscapedModel();
+	}
+
+	@Override
+	public boolean isNew() {
+		return _kaleoDraftDefinition.isNew();
+	}
+
+	@Override
+	public void persist() {
+		_kaleoDraftDefinition.persist();
+	}
+
+	@Override
+	public void prepareLocalizedFieldsForImport()
+		throws com.liferay.portal.LocaleException {
+		_kaleoDraftDefinition.prepareLocalizedFieldsForImport();
+	}
+
+	@Override
+	public void prepareLocalizedFieldsForImport(
+		java.util.Locale defaultImportLocale)
+		throws com.liferay.portal.LocaleException {
+		_kaleoDraftDefinition.prepareLocalizedFieldsForImport(defaultImportLocale);
+	}
+
+	@Override
+	public void setCachedModel(boolean cachedModel) {
+		_kaleoDraftDefinition.setCachedModel(cachedModel);
+	}
+
+	/**
+	* Sets the company ID of this kaleo draft definition.
+	*
+	* @param companyId the company ID of this kaleo draft definition
+	*/
+	@Override
+	public void setCompanyId(long companyId) {
+		_kaleoDraftDefinition.setCompanyId(companyId);
+	}
+
+	/**
+	* Sets the content of this kaleo draft definition.
+	*
+	* @param content the content of this kaleo draft definition
+	*/
+	@Override
+	public void setContent(java.lang.String content) {
+		_kaleoDraftDefinition.setContent(content);
+	}
+
+	/**
+	* Sets the create date of this kaleo draft definition.
+	*
+	* @param createDate the create date of this kaleo draft definition
+	*/
+	@Override
+	public void setCreateDate(java.util.Date createDate) {
+		_kaleoDraftDefinition.setCreateDate(createDate);
+	}
+
+	/**
+	* Sets the draft version of this kaleo draft definition.
+	*
+	* @param draftVersion the draft version of this kaleo draft definition
+	*/
+	@Override
+	public void setDraftVersion(int draftVersion) {
+		_kaleoDraftDefinition.setDraftVersion(draftVersion);
+	}
+
+	@Override
+	public void setExpandoBridgeAttributes(
+		com.liferay.portal.model.BaseModel<?> baseModel) {
+		_kaleoDraftDefinition.setExpandoBridgeAttributes(baseModel);
+	}
+
+	@Override
+	public void setExpandoBridgeAttributes(
+		com.liferay.portlet.expando.model.ExpandoBridge expandoBridge) {
+		_kaleoDraftDefinition.setExpandoBridgeAttributes(expandoBridge);
+	}
+
+	@Override
+	public void setExpandoBridgeAttributes(
+		com.liferay.portal.service.ServiceContext serviceContext) {
+		_kaleoDraftDefinition.setExpandoBridgeAttributes(serviceContext);
+	}
+
+	/**
+	* Sets the group ID of this kaleo draft definition.
+	*
+	* @param groupId the group ID of this kaleo draft definition
+	*/
+	@Override
+	public void setGroupId(long groupId) {
+		_kaleoDraftDefinition.setGroupId(groupId);
+	}
+
+	/**
+	* Sets the kaleo draft definition ID of this kaleo draft definition.
+	*
+	* @param kaleoDraftDefinitionId the kaleo draft definition ID of this kaleo draft definition
+	*/
+	@Override
+	public void setKaleoDraftDefinitionId(long kaleoDraftDefinitionId) {
+		_kaleoDraftDefinition.setKaleoDraftDefinitionId(kaleoDraftDefinitionId);
+	}
+
+	/**
+	* Sets the modified date of this kaleo draft definition.
+	*
+	* @param modifiedDate the modified date of this kaleo draft definition
+	*/
+	@Override
+	public void setModifiedDate(java.util.Date modifiedDate) {
+		_kaleoDraftDefinition.setModifiedDate(modifiedDate);
+	}
+
+	/**
+	* Sets the name of this kaleo draft definition.
+	*
+	* @param name the name of this kaleo draft definition
+	*/
+	@Override
+	public void setName(java.lang.String name) {
+		_kaleoDraftDefinition.setName(name);
+	}
+
+	@Override
+	public void setNew(boolean n) {
+		_kaleoDraftDefinition.setNew(n);
+	}
+
+	/**
+	* Sets the primary key of this kaleo draft definition.
+	*
+	* @param primaryKey the primary key of this kaleo draft definition
+	*/
+	@Override
+	public void setPrimaryKey(long primaryKey) {
+		_kaleoDraftDefinition.setPrimaryKey(primaryKey);
+	}
+
+	@Override
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_kaleoDraftDefinition.setPrimaryKeyObj(primaryKeyObj);
 	}
 
 	/**
@@ -484,33 +606,33 @@ public class KaleoDraftDefinitionWrapper implements KaleoDraftDefinition,
 	}
 
 	/**
-	* Returns the content of this kaleo draft definition.
+	* Sets the user ID of this kaleo draft definition.
 	*
-	* @return the content of this kaleo draft definition
+	* @param userId the user ID of this kaleo draft definition
 	*/
 	@Override
-	public java.lang.String getContent() {
-		return _kaleoDraftDefinition.getContent();
+	public void setUserId(long userId) {
+		_kaleoDraftDefinition.setUserId(userId);
 	}
 
 	/**
-	* Sets the content of this kaleo draft definition.
+	* Sets the user name of this kaleo draft definition.
 	*
-	* @param content the content of this kaleo draft definition
+	* @param userName the user name of this kaleo draft definition
 	*/
 	@Override
-	public void setContent(java.lang.String content) {
-		_kaleoDraftDefinition.setContent(content);
+	public void setUserName(java.lang.String userName) {
+		_kaleoDraftDefinition.setUserName(userName);
 	}
 
 	/**
-	* Returns the version of this kaleo draft definition.
+	* Sets the user uuid of this kaleo draft definition.
 	*
-	* @return the version of this kaleo draft definition
+	* @param userUuid the user uuid of this kaleo draft definition
 	*/
 	@Override
-	public int getVersion() {
-		return _kaleoDraftDefinition.getVersion();
+	public void setUserUuid(java.lang.String userUuid) {
+		_kaleoDraftDefinition.setUserUuid(userUuid);
 	}
 
 	/**
@@ -521,123 +643,6 @@ public class KaleoDraftDefinitionWrapper implements KaleoDraftDefinition,
 	@Override
 	public void setVersion(int version) {
 		_kaleoDraftDefinition.setVersion(version);
-	}
-
-	/**
-	* Returns the draft version of this kaleo draft definition.
-	*
-	* @return the draft version of this kaleo draft definition
-	*/
-	@Override
-	public int getDraftVersion() {
-		return _kaleoDraftDefinition.getDraftVersion();
-	}
-
-	/**
-	* Sets the draft version of this kaleo draft definition.
-	*
-	* @param draftVersion the draft version of this kaleo draft definition
-	*/
-	@Override
-	public void setDraftVersion(int draftVersion) {
-		_kaleoDraftDefinition.setDraftVersion(draftVersion);
-	}
-
-	@Override
-	public boolean isNew() {
-		return _kaleoDraftDefinition.isNew();
-	}
-
-	@Override
-	public void setNew(boolean n) {
-		_kaleoDraftDefinition.setNew(n);
-	}
-
-	@Override
-	public boolean isCachedModel() {
-		return _kaleoDraftDefinition.isCachedModel();
-	}
-
-	@Override
-	public void setCachedModel(boolean cachedModel) {
-		_kaleoDraftDefinition.setCachedModel(cachedModel);
-	}
-
-	@Override
-	public boolean isEscapedModel() {
-		return _kaleoDraftDefinition.isEscapedModel();
-	}
-
-	@Override
-	public java.io.Serializable getPrimaryKeyObj() {
-		return _kaleoDraftDefinition.getPrimaryKeyObj();
-	}
-
-	@Override
-	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
-		_kaleoDraftDefinition.setPrimaryKeyObj(primaryKeyObj);
-	}
-
-	@Override
-	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
-		return _kaleoDraftDefinition.getExpandoBridge();
-	}
-
-	@Override
-	public void setExpandoBridgeAttributes(
-		com.liferay.portal.model.BaseModel<?> baseModel) {
-		_kaleoDraftDefinition.setExpandoBridgeAttributes(baseModel);
-	}
-
-	@Override
-	public void setExpandoBridgeAttributes(
-		com.liferay.portlet.expando.model.ExpandoBridge expandoBridge) {
-		_kaleoDraftDefinition.setExpandoBridgeAttributes(expandoBridge);
-	}
-
-	@Override
-	public void setExpandoBridgeAttributes(
-		com.liferay.portal.service.ServiceContext serviceContext) {
-		_kaleoDraftDefinition.setExpandoBridgeAttributes(serviceContext);
-	}
-
-	@Override
-	public java.lang.String[] getAvailableLanguageIds() {
-		return _kaleoDraftDefinition.getAvailableLanguageIds();
-	}
-
-	@Override
-	public java.lang.String getDefaultLanguageId() {
-		return _kaleoDraftDefinition.getDefaultLanguageId();
-	}
-
-	@Override
-	public void prepareLocalizedFieldsForImport()
-		throws com.liferay.portal.LocaleException {
-		_kaleoDraftDefinition.prepareLocalizedFieldsForImport();
-	}
-
-	@Override
-	public void prepareLocalizedFieldsForImport(
-		java.util.Locale defaultImportLocale)
-		throws com.liferay.portal.LocaleException {
-		_kaleoDraftDefinition.prepareLocalizedFieldsForImport(defaultImportLocale);
-	}
-
-	@Override
-	public java.lang.Object clone() {
-		return new KaleoDraftDefinitionWrapper((KaleoDraftDefinition)_kaleoDraftDefinition.clone());
-	}
-
-	@Override
-	public int compareTo(
-		com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition kaleoDraftDefinition) {
-		return _kaleoDraftDefinition.compareTo(kaleoDraftDefinition);
-	}
-
-	@Override
-	public int hashCode() {
-		return _kaleoDraftDefinition.hashCode();
 	}
 
 	@Override
@@ -651,23 +656,18 @@ public class KaleoDraftDefinitionWrapper implements KaleoDraftDefinition,
 	}
 
 	@Override
-	public com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition toUnescapedModel() {
-		return new KaleoDraftDefinitionWrapper(_kaleoDraftDefinition.toUnescapedModel());
-	}
-
-	@Override
 	public java.lang.String toString() {
 		return _kaleoDraftDefinition.toString();
 	}
 
 	@Override
-	public java.lang.String toXmlString() {
-		return _kaleoDraftDefinition.toXmlString();
+	public com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition toUnescapedModel() {
+		return new KaleoDraftDefinitionWrapper(_kaleoDraftDefinition.toUnescapedModel());
 	}
 
 	@Override
-	public void persist() {
-		_kaleoDraftDefinition.persist();
+	public java.lang.String toXmlString() {
+		return _kaleoDraftDefinition.toXmlString();
 	}
 
 	@Override

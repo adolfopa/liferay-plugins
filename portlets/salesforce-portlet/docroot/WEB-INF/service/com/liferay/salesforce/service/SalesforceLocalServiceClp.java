@@ -25,148 +25,72 @@ public class SalesforceLocalServiceClp implements SalesforceLocalService {
 		InvokableLocalService invokableLocalService) {
 		_invokableLocalService = invokableLocalService;
 
-		_methodName0 = "getBeanIdentifier";
+		_methodName0 = "executeAdd";
 
-		_methodParameterTypes0 = new String[] {  };
-
-		_methodName1 = "setBeanIdentifier";
-
-		_methodParameterTypes1 = new String[] { "java.lang.String" };
-
-		_methodName3 = "executeAdd";
-
-		_methodParameterTypes3 = new String[] { "long", "java.util.List" };
-
-		_methodName4 = "executeAdd";
-
-		_methodParameterTypes4 = new String[] {
+		_methodParameterTypes0 = new String[] {
 				"long", "com.liferay.portal.kernel.messaging.Message"
 			};
 
-		_methodName5 = "executeAddOrUpdate";
+		_methodName1 = "executeAdd";
 
-		_methodParameterTypes5 = new String[] {
-				"long", "java.lang.String", "java.util.List"
-			};
+		_methodParameterTypes1 = new String[] { "long", "java.util.List" };
 
-		_methodName6 = "executeAddOrUpdate";
+		_methodName2 = "executeAddOrUpdate";
 
-		_methodParameterTypes6 = new String[] {
+		_methodParameterTypes2 = new String[] {
 				"long", "java.lang.String",
 				"com.liferay.portal.kernel.messaging.Message"
 			};
 
-		_methodName7 = "executeDelete";
+		_methodName3 = "executeAddOrUpdate";
 
-		_methodParameterTypes7 = new String[] { "long", "java.util.List" };
+		_methodParameterTypes3 = new String[] {
+				"long", "java.lang.String", "java.util.List"
+			};
 
-		_methodName8 = "executeDelete";
+		_methodName4 = "executeDelete";
 
-		_methodParameterTypes8 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes4 = new String[] { "long", "java.lang.String" };
 
-		_methodName9 = "executeQuery";
+		_methodName5 = "executeDelete";
 
-		_methodParameterTypes9 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes5 = new String[] { "long", "java.util.List" };
 
-		_methodName10 = "executeQuery";
+		_methodName6 = "executeQuery";
 
-		_methodParameterTypes10 = new String[] {
+		_methodParameterTypes6 = new String[] {
 				"long", "java.lang.String", "java.lang.String", "java.util.List"
 			};
 
-		_methodName11 = "executeQueryMore";
+		_methodName7 = "executeQuery";
 
-		_methodParameterTypes11 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes7 = new String[] { "long", "java.lang.String" };
 
-		_methodName12 = "executeSearch";
+		_methodName8 = "executeQueryMore";
 
-		_methodParameterTypes12 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes8 = new String[] { "long", "java.lang.String" };
 
-		_methodName13 = "executeUpdate";
+		_methodName9 = "executeSearch";
 
-		_methodParameterTypes13 = new String[] { "long", "java.util.List" };
+		_methodParameterTypes9 = new String[] { "long", "java.lang.String" };
 
-		_methodName14 = "executeUpdate";
+		_methodName10 = "executeUpdate";
 
-		_methodParameterTypes14 = new String[] {
+		_methodParameterTypes10 = new String[] {
 				"long", "com.liferay.portal.kernel.messaging.Message"
 			};
-	}
 
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		Object returnObj = null;
+		_methodName11 = "executeUpdate";
 
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName0,
-					_methodParameterTypes0, new Object[] {  });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
+		_methodParameterTypes11 = new String[] { "long", "java.util.List" };
 
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
+		_methodName12 = "getBeanIdentifier";
 
-		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
-	}
+		_methodParameterTypes12 = new String[] {  };
 
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		try {
-			_invokableLocalService.invokeMethod(_methodName1,
-				_methodParameterTypes1,
-				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
+		_methodName14 = "setBeanIdentifier";
 
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public void executeAdd(long companyId,
-		java.util.List<com.liferay.portal.kernel.messaging.Message> messages)
-		throws com.liferay.salesforce.service.MultipleSalesforceException {
-		try {
-			_invokableLocalService.invokeMethod(_methodName3,
-				_methodParameterTypes3,
-				new Object[] { companyId, ClpSerializer.translateInput(messages) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.salesforce.service.MultipleSalesforceException) {
-				throw (com.liferay.salesforce.service.MultipleSalesforceException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
+		_methodParameterTypes14 = new String[] { "java.lang.String" };
 	}
 
 	@Override
@@ -176,8 +100,8 @@ public class SalesforceLocalServiceClp implements SalesforceLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName4,
-					_methodParameterTypes4,
+			returnObj = _invokableLocalService.invokeMethod(_methodName0,
+					_methodParameterTypes0,
 					new Object[] {
 						companyId,
 						
@@ -204,19 +128,13 @@ public class SalesforceLocalServiceClp implements SalesforceLocalService {
 	}
 
 	@Override
-	public void executeAddOrUpdate(long companyId, java.lang.String externalId,
+	public void executeAdd(long companyId,
 		java.util.List<com.liferay.portal.kernel.messaging.Message> messages)
 		throws com.liferay.salesforce.service.MultipleSalesforceException {
 		try {
-			_invokableLocalService.invokeMethod(_methodName5,
-				_methodParameterTypes5,
-				new Object[] {
-					companyId,
-					
-				ClpSerializer.translateInput(externalId),
-					
-				ClpSerializer.translateInput(messages)
-				});
+			_invokableLocalService.invokeMethod(_methodName1,
+				_methodParameterTypes1,
+				new Object[] { companyId, ClpSerializer.translateInput(messages) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -240,8 +158,8 @@ public class SalesforceLocalServiceClp implements SalesforceLocalService {
 		com.liferay.portal.kernel.messaging.Message message)
 		throws com.liferay.salesforce.service.SalesforceException {
 		try {
-			_invokableLocalService.invokeMethod(_methodName6,
-				_methodParameterTypes6,
+			_invokableLocalService.invokeMethod(_methodName2,
+				_methodParameterTypes2,
 				new Object[] {
 					companyId,
 					
@@ -268,14 +186,19 @@ public class SalesforceLocalServiceClp implements SalesforceLocalService {
 	}
 
 	@Override
-	public void executeDelete(long companyId,
-		java.util.List<java.lang.String> objectIds)
+	public void executeAddOrUpdate(long companyId, java.lang.String externalId,
+		java.util.List<com.liferay.portal.kernel.messaging.Message> messages)
 		throws com.liferay.salesforce.service.MultipleSalesforceException {
 		try {
-			_invokableLocalService.invokeMethod(_methodName7,
-				_methodParameterTypes7,
-				new Object[] { companyId, ClpSerializer.translateInput(
-						objectIds) });
+			_invokableLocalService.invokeMethod(_methodName3,
+				_methodParameterTypes3,
+				new Object[] {
+					companyId,
+					
+				ClpSerializer.translateInput(externalId),
+					
+				ClpSerializer.translateInput(messages)
+				});
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -300,8 +223,8 @@ public class SalesforceLocalServiceClp implements SalesforceLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName8,
-					_methodParameterTypes8,
+			returnObj = _invokableLocalService.invokeMethod(_methodName4,
+					_methodParameterTypes4,
 					new Object[] {
 						companyId,
 						
@@ -328,21 +251,21 @@ public class SalesforceLocalServiceClp implements SalesforceLocalService {
 	}
 
 	@Override
-	public com.liferay.portal.kernel.messaging.MessageBatch executeQuery(
-		long companyId, java.lang.String queryString) {
-		Object returnObj = null;
-
+	public void executeDelete(long companyId,
+		java.util.List<java.lang.String> objectIds)
+		throws com.liferay.salesforce.service.MultipleSalesforceException {
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName9,
-					_methodParameterTypes9,
-					new Object[] {
-						companyId,
-						
-					ClpSerializer.translateInput(queryString)
-					});
+			_invokableLocalService.invokeMethod(_methodName5,
+				_methodParameterTypes5,
+				new Object[] { companyId, ClpSerializer.translateInput(
+						objectIds) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.salesforce.service.MultipleSalesforceException) {
+				throw (com.liferay.salesforce.service.MultipleSalesforceException)t;
+			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -352,8 +275,6 @@ public class SalesforceLocalServiceClp implements SalesforceLocalService {
 					" is not a valid exception");
 			}
 		}
-
-		return (com.liferay.portal.kernel.messaging.MessageBatch)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -364,8 +285,8 @@ public class SalesforceLocalServiceClp implements SalesforceLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName10,
-					_methodParameterTypes10,
+			returnObj = _invokableLocalService.invokeMethod(_methodName6,
+					_methodParameterTypes6,
 					new Object[] {
 						companyId,
 						
@@ -396,13 +317,42 @@ public class SalesforceLocalServiceClp implements SalesforceLocalService {
 	}
 
 	@Override
+	public com.liferay.portal.kernel.messaging.MessageBatch executeQuery(
+		long companyId, java.lang.String queryString) {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName7,
+					_methodParameterTypes7,
+					new Object[] {
+						companyId,
+						
+					ClpSerializer.translateInput(queryString)
+					});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.portal.kernel.messaging.MessageBatch)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
 	public com.liferay.portal.kernel.messaging.MessageBatch executeQueryMore(
 		long companyId, java.lang.String queryLocator) {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName11,
-					_methodParameterTypes11,
+			returnObj = _invokableLocalService.invokeMethod(_methodName8,
+					_methodParameterTypes8,
 					new Object[] {
 						companyId,
 						
@@ -430,8 +380,8 @@ public class SalesforceLocalServiceClp implements SalesforceLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName12,
-					_methodParameterTypes12,
+			returnObj = _invokableLocalService.invokeMethod(_methodName9,
+					_methodParameterTypes9,
 					new Object[] {
 						companyId,
 						
@@ -455,11 +405,37 @@ public class SalesforceLocalServiceClp implements SalesforceLocalService {
 
 	@Override
 	public void executeUpdate(long companyId,
+		com.liferay.portal.kernel.messaging.Message message)
+		throws com.liferay.salesforce.service.SalesforceException {
+		try {
+			_invokableLocalService.invokeMethod(_methodName10,
+				_methodParameterTypes10,
+				new Object[] { companyId, ClpSerializer.translateInput(message) });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.salesforce.service.SalesforceException) {
+				throw (com.liferay.salesforce.service.SalesforceException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
+	@Override
+	public void executeUpdate(long companyId,
 		java.util.List<com.liferay.portal.kernel.messaging.Message> messages)
 		throws com.liferay.salesforce.service.MultipleSalesforceException {
 		try {
-			_invokableLocalService.invokeMethod(_methodName13,
-				_methodParameterTypes13,
+			_invokableLocalService.invokeMethod(_methodName11,
+				_methodParameterTypes11,
 				new Object[] { companyId, ClpSerializer.translateInput(messages) });
 		}
 		catch (Throwable t) {
@@ -480,20 +456,44 @@ public class SalesforceLocalServiceClp implements SalesforceLocalService {
 	}
 
 	@Override
-	public void executeUpdate(long companyId,
-		com.liferay.portal.kernel.messaging.Message message)
-		throws com.liferay.salesforce.service.SalesforceException {
+	public java.lang.String getBeanIdentifier() {
+		Object returnObj = null;
+
 		try {
-			_invokableLocalService.invokeMethod(_methodName14,
-				_methodParameterTypes14,
-				new Object[] { companyId, ClpSerializer.translateInput(message) });
+			returnObj = _invokableLocalService.invokeMethod(_methodName12,
+					_methodParameterTypes12, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
 
-			if (t instanceof com.liferay.salesforce.service.SalesforceException) {
-				throw (com.liferay.salesforce.service.SalesforceException)t;
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
 			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		try {
+			_invokableLocalService.invokeMethod(_methodName14,
+				_methodParameterTypes14,
+				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -510,6 +510,8 @@ public class SalesforceLocalServiceClp implements SalesforceLocalService {
 	private String[] _methodParameterTypes0;
 	private String _methodName1;
 	private String[] _methodParameterTypes1;
+	private String _methodName2;
+	private String[] _methodParameterTypes2;
 	private String _methodName3;
 	private String[] _methodParameterTypes3;
 	private String _methodName4;
@@ -530,8 +532,6 @@ public class SalesforceLocalServiceClp implements SalesforceLocalService {
 	private String[] _methodParameterTypes11;
 	private String _methodName12;
 	private String[] _methodParameterTypes12;
-	private String _methodName13;
-	private String[] _methodParameterTypes13;
 	private String _methodName14;
 	private String[] _methodParameterTypes14;
 }

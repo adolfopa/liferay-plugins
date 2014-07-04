@@ -50,6 +50,11 @@ public class AuditEventLocalServiceUtil {
 		return getService().addAuditEvent(auditEvent);
 	}
 
+	public static com.liferay.portal.audit.model.AuditEvent addAuditEvent(
+		com.liferay.portal.kernel.audit.AuditMessage auditMessage) {
+		return getService().addAuditEvent(auditMessage);
+	}
+
 	/**
 	* Creates a new audit event with the primary key. Does not add the audit event to the database.
 	*
@@ -59,6 +64,17 @@ public class AuditEventLocalServiceUtil {
 	public static com.liferay.portal.audit.model.AuditEvent createAuditEvent(
 		long auditEventId) {
 		return getService().createAuditEvent(auditEventId);
+	}
+
+	/**
+	* Deletes the audit event from the database. Also notifies the appropriate model listeners.
+	*
+	* @param auditEvent the audit event
+	* @return the audit event that was removed
+	*/
+	public static com.liferay.portal.audit.model.AuditEvent deleteAuditEvent(
+		com.liferay.portal.audit.model.AuditEvent auditEvent) {
+		return getService().deleteAuditEvent(auditEvent);
 	}
 
 	/**
@@ -75,14 +91,12 @@ public class AuditEventLocalServiceUtil {
 	}
 
 	/**
-	* Deletes the audit event from the database. Also notifies the appropriate model listeners.
-	*
-	* @param auditEvent the audit event
-	* @return the audit event that was removed
+	* @throws PortalException
 	*/
-	public static com.liferay.portal.audit.model.AuditEvent deleteAuditEvent(
-		com.liferay.portal.audit.model.AuditEvent auditEvent) {
-		return getService().deleteAuditEvent(auditEvent);
+	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deletePersistedModel(persistedModel);
 	}
 
 	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
@@ -168,6 +182,10 @@ public class AuditEventLocalServiceUtil {
 		return getService().fetchAuditEvent(auditEventId);
 	}
 
+	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return getService().getActionableDynamicQuery();
+	}
+
 	/**
 	* Returns the audit event with the primary key.
 	*
@@ -181,23 +199,26 @@ public class AuditEventLocalServiceUtil {
 		return getService().getAuditEvent(auditEventId);
 	}
 
-	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return getService().getActionableDynamicQuery();
+	public static java.util.List<com.liferay.portal.audit.model.AuditEvent> getAuditEvents(
+		long companyId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		return getService()
+				   .getAuditEvents(companyId, start, end, orderByComparator);
 	}
 
-	/**
-	* @throws PortalException
-	*/
-	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().deletePersistedModel(persistedModel);
-	}
-
-	public static com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getPersistedModel(primaryKeyObj);
+	public static java.util.List<com.liferay.portal.audit.model.AuditEvent> getAuditEvents(
+		long companyId, long userId, java.lang.String userName,
+		java.util.Date createDateGT, java.util.Date createDateLT,
+		java.lang.String eventType, java.lang.String className,
+		java.lang.String classPK, java.lang.String clientHost,
+		java.lang.String clientIP, java.lang.String serverName, int serverPort,
+		java.lang.String sessionID, boolean andSearch, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		return getService()
+				   .getAuditEvents(companyId, userId, userName, createDateGT,
+			createDateLT, eventType, className, classPK, clientHost, clientIP,
+			serverName, serverPort, sessionID, andSearch, start, end,
+			orderByComparator);
 	}
 
 	/**
@@ -225,68 +246,6 @@ public class AuditEventLocalServiceUtil {
 		return getService().getAuditEventsCount();
 	}
 
-	/**
-	* Updates the audit event in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param auditEvent the audit event
-	* @return the audit event that was updated
-	*/
-	public static com.liferay.portal.audit.model.AuditEvent updateAuditEvent(
-		com.liferay.portal.audit.model.AuditEvent auditEvent) {
-		return getService().updateAuditEvent(auditEvent);
-	}
-
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public static java.lang.String getBeanIdentifier() {
-		return getService().getBeanIdentifier();
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
-		getService().setBeanIdentifier(beanIdentifier);
-	}
-
-	public static java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return getService().invokeMethod(name, parameterTypes, arguments);
-	}
-
-	public static com.liferay.portal.audit.model.AuditEvent addAuditEvent(
-		com.liferay.portal.kernel.audit.AuditMessage auditMessage) {
-		return getService().addAuditEvent(auditMessage);
-	}
-
-	public static java.util.List<com.liferay.portal.audit.model.AuditEvent> getAuditEvents(
-		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
-		return getService()
-				   .getAuditEvents(companyId, start, end, orderByComparator);
-	}
-
-	public static java.util.List<com.liferay.portal.audit.model.AuditEvent> getAuditEvents(
-		long companyId, long userId, java.lang.String userName,
-		java.util.Date createDateGT, java.util.Date createDateLT,
-		java.lang.String eventType, java.lang.String className,
-		java.lang.String classPK, java.lang.String clientHost,
-		java.lang.String clientIP, java.lang.String serverName, int serverPort,
-		java.lang.String sessionID, boolean andSearch, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
-		return getService()
-				   .getAuditEvents(companyId, userId, userName, createDateGT,
-			createDateLT, eventType, className, classPK, clientHost, clientIP,
-			serverName, serverPort, sessionID, andSearch, start, end,
-			orderByComparator);
-	}
-
 	public static int getAuditEventsCount(long companyId) {
 		return getService().getAuditEventsCount(companyId);
 	}
@@ -302,6 +261,47 @@ public class AuditEventLocalServiceUtil {
 				   .getAuditEventsCount(companyId, userId, userName,
 			createDateGT, createDateLT, eventType, className, classPK,
 			clientHost, clientIP, serverName, serverPort, sessionID, andSearch);
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public static java.lang.String getBeanIdentifier() {
+		return getService().getBeanIdentifier();
+	}
+
+	public static com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getPersistedModel(primaryKeyObj);
+	}
+
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
+		getService().setBeanIdentifier(beanIdentifier);
+	}
+
+	/**
+	* Updates the audit event in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param auditEvent the audit event
+	* @return the audit event that was updated
+	*/
+	public static com.liferay.portal.audit.model.AuditEvent updateAuditEvent(
+		com.liferay.portal.audit.model.AuditEvent auditEvent) {
+		return getService().updateAuditEvent(auditEvent);
 	}
 
 	public static void clearService() {

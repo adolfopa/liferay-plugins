@@ -25,53 +25,53 @@ public class KaleoDraftDefinitionServiceClp
 	public KaleoDraftDefinitionServiceClp(InvokableService invokableService) {
 		_invokableService = invokableService;
 
-		_methodName0 = "getBeanIdentifier";
+		_methodName0 = "addKaleoDraftDefinition";
 
-		_methodParameterTypes0 = new String[] {  };
-
-		_methodName1 = "setBeanIdentifier";
-
-		_methodParameterTypes1 = new String[] { "java.lang.String" };
-
-		_methodName3 = "addKaleoDraftDefinition";
-
-		_methodParameterTypes3 = new String[] {
+		_methodParameterTypes0 = new String[] {
 				"long", "long", "java.lang.String", "java.util.Map",
 				"java.lang.String", "int", "int",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName4 = "getKaleoDraftDefinition";
+		_methodName1 = "getBeanIdentifier";
 
-		_methodParameterTypes4 = new String[] {
+		_methodParameterTypes1 = new String[] {  };
+
+		_methodName2 = "getKaleoDraftDefinition";
+
+		_methodParameterTypes2 = new String[] {
 				"java.lang.String", "int", "int",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName5 = "getKaleoDraftDefinitions";
+		_methodName3 = "getKaleoDraftDefinitions";
 
-		_methodParameterTypes5 = new String[] {  };
+		_methodParameterTypes3 = new String[] {  };
 
-		_methodName6 = "getLatestKaleoDraftDefinition";
+		_methodName4 = "getLatestKaleoDraftDefinition";
 
-		_methodParameterTypes6 = new String[] {
+		_methodParameterTypes4 = new String[] {
 				"java.lang.String", "int",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName7 = "getLatestKaleoDraftDefinitions";
+		_methodName5 = "getLatestKaleoDraftDefinitions";
 
-		_methodParameterTypes7 = new String[] {
+		_methodParameterTypes5 = new String[] {
 				"long", "int", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName8 = "publishKaleoDraftDefinition";
+		_methodName7 = "publishKaleoDraftDefinition";
 
-		_methodParameterTypes8 = new String[] {
+		_methodParameterTypes7 = new String[] {
 				"long", "long", "java.lang.String", "java.util.Map",
 				"java.lang.String", "com.liferay.portal.service.ServiceContext"
 			};
+
+		_methodName8 = "setBeanIdentifier";
+
+		_methodParameterTypes8 = new String[] { "java.lang.String" };
 
 		_methodName9 = "updateKaleoDraftDefinition";
 
@@ -79,56 +79,6 @@ public class KaleoDraftDefinitionServiceClp
 				"long", "java.lang.String", "java.util.Map", "java.lang.String",
 				"int", "com.liferay.portal.service.ServiceContext"
 			};
-	}
-
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableService.invokeMethod(_methodName0,
-					_methodParameterTypes0, new Object[] {  });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		try {
-			_invokableService.invokeMethod(_methodName1,
-				_methodParameterTypes1,
-				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		throw new UnsupportedOperationException();
 	}
 
 	@Override
@@ -141,8 +91,8 @@ public class KaleoDraftDefinitionServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName3,
-					_methodParameterTypes3,
+			returnObj = _invokableService.invokeMethod(_methodName0,
+					_methodParameterTypes0,
 					new Object[] {
 						userId,
 						
@@ -181,6 +131,29 @@ public class KaleoDraftDefinitionServiceClp
 	}
 
 	@Override
+	public java.lang.String getBeanIdentifier() {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableService.invokeMethod(_methodName1,
+					_methodParameterTypes1, new Object[] {  });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
 	public com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition getKaleoDraftDefinition(
 		java.lang.String name, int version, int draftVersion,
 		com.liferay.portal.service.ServiceContext serviceContext)
@@ -188,8 +161,8 @@ public class KaleoDraftDefinitionServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName4,
-					_methodParameterTypes4,
+			returnObj = _invokableService.invokeMethod(_methodName2,
+					_methodParameterTypes2,
 					new Object[] {
 						ClpSerializer.translateInput(name),
 						
@@ -225,8 +198,8 @@ public class KaleoDraftDefinitionServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName5,
-					_methodParameterTypes5, new Object[] {  });
+			returnObj = _invokableService.invokeMethod(_methodName3,
+					_methodParameterTypes3, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -255,8 +228,8 @@ public class KaleoDraftDefinitionServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName6,
-					_methodParameterTypes6,
+			returnObj = _invokableService.invokeMethod(_methodName4,
+					_methodParameterTypes4,
 					new Object[] {
 						ClpSerializer.translateInput(name),
 						
@@ -292,8 +265,8 @@ public class KaleoDraftDefinitionServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName7,
-					_methodParameterTypes7,
+			returnObj = _invokableService.invokeMethod(_methodName5,
+					_methodParameterTypes5,
 					new Object[] {
 						companyId,
 						
@@ -326,6 +299,13 @@ public class KaleoDraftDefinitionServiceClp
 	}
 
 	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
 	public com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition publishKaleoDraftDefinition(
 		long userId, long groupId, java.lang.String name,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
@@ -335,8 +315,8 @@ public class KaleoDraftDefinitionServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName8,
-					_methodParameterTypes8,
+			returnObj = _invokableService.invokeMethod(_methodName7,
+					_methodParameterTypes7,
 					new Object[] {
 						userId,
 						
@@ -368,6 +348,26 @@ public class KaleoDraftDefinitionServiceClp
 		}
 
 		return (com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		try {
+			_invokableService.invokeMethod(_methodName8,
+				_methodParameterTypes8,
+				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
 	}
 
 	@Override
@@ -420,14 +420,14 @@ public class KaleoDraftDefinitionServiceClp
 	private String[] _methodParameterTypes0;
 	private String _methodName1;
 	private String[] _methodParameterTypes1;
+	private String _methodName2;
+	private String[] _methodParameterTypes2;
 	private String _methodName3;
 	private String[] _methodParameterTypes3;
 	private String _methodName4;
 	private String[] _methodParameterTypes4;
 	private String _methodName5;
 	private String[] _methodParameterTypes5;
-	private String _methodName6;
-	private String[] _methodParameterTypes6;
 	private String _methodName7;
 	private String[] _methodParameterTypes7;
 	private String _methodName8;

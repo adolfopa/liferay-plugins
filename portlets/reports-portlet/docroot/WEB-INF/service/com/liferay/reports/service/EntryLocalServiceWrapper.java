@@ -41,6 +41,39 @@ public class EntryLocalServiceWrapper implements EntryLocalService,
 		return _entryLocalService.addEntry(entry);
 	}
 
+	@Override
+	public com.liferay.reports.model.Entry addEntry(long userId, long groupId,
+		long definitionId, java.lang.String format, boolean schedulerRequest,
+		java.util.Date startDate, java.util.Date endDate, boolean repeating,
+		java.lang.String recurrence, java.lang.String emailNotifications,
+		java.lang.String emailDelivery, java.lang.String portletId,
+		java.lang.String pageURL, java.lang.String reportName,
+		java.lang.String reportParameters,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _entryLocalService.addEntry(userId, groupId, definitionId,
+			format, schedulerRequest, startDate, endDate, repeating,
+			recurrence, emailNotifications, emailDelivery, portletId, pageURL,
+			reportName, reportParameters, serviceContext);
+	}
+
+	@Override
+	public void addEntryResources(com.liferay.reports.model.Entry entry,
+		boolean addCommunityPermissions, boolean addGuestPermissions)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		_entryLocalService.addEntryResources(entry, addCommunityPermissions,
+			addGuestPermissions);
+	}
+
+	@Override
+	public void addEntryResources(com.liferay.reports.model.Entry entry,
+		java.lang.String[] communityPermissions,
+		java.lang.String[] guestPermissions)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		_entryLocalService.addEntryResources(entry, communityPermissions,
+			guestPermissions);
+	}
+
 	/**
 	* Creates a new entry with the primary key. Does not add the entry to the database.
 	*
@@ -50,6 +83,26 @@ public class EntryLocalServiceWrapper implements EntryLocalService,
 	@Override
 	public com.liferay.reports.model.Entry createEntry(long entryId) {
 		return _entryLocalService.createEntry(entryId);
+	}
+
+	@Override
+	public void deleteAttachment(long companyId, java.lang.String fileName)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		_entryLocalService.deleteAttachment(companyId, fileName);
+	}
+
+	/**
+	* Deletes the entry from the database. Also notifies the appropriate model listeners.
+	*
+	* @param entry the entry
+	* @return the entry that was removed
+	* @throws PortalException
+	*/
+	@Override
+	public com.liferay.reports.model.Entry deleteEntry(
+		com.liferay.reports.model.Entry entry)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _entryLocalService.deleteEntry(entry);
 	}
 
 	/**
@@ -66,17 +119,13 @@ public class EntryLocalServiceWrapper implements EntryLocalService,
 	}
 
 	/**
-	* Deletes the entry from the database. Also notifies the appropriate model listeners.
-	*
-	* @param entry the entry
-	* @return the entry that was removed
 	* @throws PortalException
 	*/
 	@Override
-	public com.liferay.reports.model.Entry deleteEntry(
-		com.liferay.reports.model.Entry entry)
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _entryLocalService.deleteEntry(entry);
+		return _entryLocalService.deletePersistedModel(persistedModel);
 	}
 
 	@Override
@@ -168,17 +217,16 @@ public class EntryLocalServiceWrapper implements EntryLocalService,
 		return _entryLocalService.fetchEntry(entryId);
 	}
 
-	/**
-	* Returns the entry with the primary key.
-	*
-	* @param entryId the primary key of the entry
-	* @return the entry
-	* @throws PortalException if a entry with the primary key could not be found
-	*/
 	@Override
-	public com.liferay.reports.model.Entry getEntry(long entryId)
+	public void generateReport(long entryId)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _entryLocalService.getEntry(entryId);
+		_entryLocalService.generateReport(entryId);
+	}
+
+	@Override
+	public void generateReport(long entryId, java.lang.String reportName)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		_entryLocalService.generateReport(entryId, reportName);
 	}
 
 	@Override
@@ -187,20 +235,23 @@ public class EntryLocalServiceWrapper implements EntryLocalService,
 	}
 
 	/**
-	* @throws PortalException
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
 	*/
 	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _entryLocalService.deletePersistedModel(persistedModel);
+	public java.lang.String getBeanIdentifier() {
+		return _entryLocalService.getBeanIdentifier();
 	}
 
 	@Override
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _entryLocalService.getPersistedModel(primaryKeyObj);
+	public java.util.List<com.liferay.reports.model.Entry> getEntries(
+		long groupId, java.lang.String definitionName,
+		java.lang.String userName, java.util.Date createDateGT,
+		java.util.Date createDateLT, boolean andSearch, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		return _entryLocalService.getEntries(groupId, definitionName, userName,
+			createDateGT, createDateLT, andSearch, start, end, orderByComparator);
 	}
 
 	/**
@@ -230,26 +281,47 @@ public class EntryLocalServiceWrapper implements EntryLocalService,
 		return _entryLocalService.getEntriesCount();
 	}
 
-	/**
-	* Updates the entry in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param entry the entry
-	* @return the entry that was updated
-	*/
 	@Override
-	public com.liferay.reports.model.Entry updateEntry(
-		com.liferay.reports.model.Entry entry) {
-		return _entryLocalService.updateEntry(entry);
+	public int getEntriesCount(long groupId, java.lang.String definitionName,
+		java.lang.String userName, java.util.Date createDateGT,
+		java.util.Date createDateLT, boolean andSearch) {
+		return _entryLocalService.getEntriesCount(groupId, definitionName,
+			userName, createDateGT, createDateLT, andSearch);
 	}
 
 	/**
-	* Returns the Spring bean ID for this bean.
+	* Returns the entry with the primary key.
 	*
-	* @return the Spring bean ID for this bean
+	* @param entryId the primary key of the entry
+	* @return the entry
+	* @throws PortalException if a entry with the primary key could not be found
 	*/
 	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _entryLocalService.getBeanIdentifier();
+	public com.liferay.reports.model.Entry getEntry(long entryId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _entryLocalService.getEntry(entryId);
+	}
+
+	@Override
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _entryLocalService.getPersistedModel(primaryKeyObj);
+	}
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _entryLocalService.invokeMethod(name, parameterTypes, arguments);
+	}
+
+	@Override
+	public void sendEmails(long entryId, java.lang.String fileName,
+		java.lang.String[] emailAddresses, boolean notification)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		_entryLocalService.sendEmails(entryId, fileName, emailAddresses,
+			notification);
 	}
 
 	/**
@@ -263,93 +335,21 @@ public class EntryLocalServiceWrapper implements EntryLocalService,
 	}
 
 	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _entryLocalService.invokeMethod(name, parameterTypes, arguments);
-	}
-
-	@Override
-	public com.liferay.reports.model.Entry addEntry(long userId, long groupId,
-		long definitionId, java.lang.String format, boolean schedulerRequest,
-		java.util.Date startDate, java.util.Date endDate, boolean repeating,
-		java.lang.String recurrence, java.lang.String emailNotifications,
-		java.lang.String emailDelivery, java.lang.String portletId,
-		java.lang.String pageURL, java.lang.String reportName,
-		java.lang.String reportParameters,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _entryLocalService.addEntry(userId, groupId, definitionId,
-			format, schedulerRequest, startDate, endDate, repeating,
-			recurrence, emailNotifications, emailDelivery, portletId, pageURL,
-			reportName, reportParameters, serviceContext);
-	}
-
-	@Override
-	public void addEntryResources(com.liferay.reports.model.Entry entry,
-		boolean addCommunityPermissions, boolean addGuestPermissions)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		_entryLocalService.addEntryResources(entry, addCommunityPermissions,
-			addGuestPermissions);
-	}
-
-	@Override
-	public void addEntryResources(com.liferay.reports.model.Entry entry,
-		java.lang.String[] communityPermissions,
-		java.lang.String[] guestPermissions)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		_entryLocalService.addEntryResources(entry, communityPermissions,
-			guestPermissions);
-	}
-
-	@Override
-	public void deleteAttachment(long companyId, java.lang.String fileName)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		_entryLocalService.deleteAttachment(companyId, fileName);
-	}
-
-	@Override
-	public void generateReport(long entryId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		_entryLocalService.generateReport(entryId);
-	}
-
-	@Override
-	public void generateReport(long entryId, java.lang.String reportName)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		_entryLocalService.generateReport(entryId, reportName);
-	}
-
-	@Override
-	public java.util.List<com.liferay.reports.model.Entry> getEntries(
-		long groupId, java.lang.String definitionName,
-		java.lang.String userName, java.util.Date createDateGT,
-		java.util.Date createDateLT, boolean andSearch, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
-		return _entryLocalService.getEntries(groupId, definitionName, userName,
-			createDateGT, createDateLT, andSearch, start, end, orderByComparator);
-	}
-
-	@Override
-	public int getEntriesCount(long groupId, java.lang.String definitionName,
-		java.lang.String userName, java.util.Date createDateGT,
-		java.util.Date createDateLT, boolean andSearch) {
-		return _entryLocalService.getEntriesCount(groupId, definitionName,
-			userName, createDateGT, createDateLT, andSearch);
-	}
-
-	@Override
-	public void sendEmails(long entryId, java.lang.String fileName,
-		java.lang.String[] emailAddresses, boolean notification)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		_entryLocalService.sendEmails(entryId, fileName, emailAddresses,
-			notification);
-	}
-
-	@Override
 	public void unscheduleEntry(long entryId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		_entryLocalService.unscheduleEntry(entryId);
+	}
+
+	/**
+	* Updates the entry in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param entry the entry
+	* @return the entry that was updated
+	*/
+	@Override
+	public com.liferay.reports.model.Entry updateEntry(
+		com.liferay.reports.model.Entry entry) {
+		return _entryLocalService.updateEntry(entry);
 	}
 
 	@Override

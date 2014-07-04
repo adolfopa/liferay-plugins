@@ -16,6 +16,7 @@ package com.liferay.meeting.webex.service;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
@@ -44,6 +45,11 @@ public interface WebExSiteLocalService extends BaseLocalService,
 	 *
 	 * Never modify or reference this interface directly. Always use {@link WebExSiteLocalServiceUtil} to access the web ex site local service. Add custom service methods to {@link com.liferay.meeting.webex.service.impl.WebExSiteLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public void addWebExSite(long userId, long groupId, java.lang.String name,
+		java.lang.String apiURL, java.lang.String login,
+		java.lang.String password, java.lang.String partnerKey, long siteKey,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Adds the web ex site to the database. Also notifies the appropriate model listeners.
@@ -51,6 +57,7 @@ public interface WebExSiteLocalService extends BaseLocalService,
 	* @param webExSite the web ex site
 	* @return the web ex site that was added
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
 	public com.liferay.meeting.webex.model.WebExSite addWebExSite(
 		com.liferay.meeting.webex.model.WebExSite webExSite);
 
@@ -64,14 +71,11 @@ public interface WebExSiteLocalService extends BaseLocalService,
 		long webExSiteId);
 
 	/**
-	* Deletes the web ex site with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param webExSiteId the primary key of the web ex site
-	* @return the web ex site that was removed
-	* @throws PortalException if a web ex site with the primary key could not be found
+	* @throws PortalException
 	*/
-	public com.liferay.meeting.webex.model.WebExSite deleteWebExSite(
-		long webExSiteId)
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
@@ -81,8 +85,21 @@ public interface WebExSiteLocalService extends BaseLocalService,
 	* @return the web ex site that was removed
 	* @throws PortalException
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.meeting.webex.model.WebExSite deleteWebExSite(
 		com.liferay.meeting.webex.model.WebExSite webExSite)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	/**
+	* Deletes the web ex site with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param webExSiteId the primary key of the web ex site
+	* @return the web ex site that was removed
+	* @throws PortalException if a web ex site with the primary key could not be found
+	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
+	public com.liferay.meeting.webex.model.WebExSite deleteWebExSite(
+		long webExSiteId)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
@@ -151,6 +168,10 @@ public interface WebExSiteLocalService extends BaseLocalService,
 		com.liferay.portal.kernel.dao.orm.Projection projection);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.meeting.webex.model.WebExSite fetchSiteKeyWebExSite(
+		long siteKey);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.meeting.webex.model.WebExSite fetchWebExSite(
 		long webExSiteId);
 
@@ -176,6 +197,31 @@ public interface WebExSiteLocalService extends BaseLocalService,
 	public com.liferay.meeting.webex.model.WebExSite fetchWebExSiteByUuidAndGroupId(
 		java.lang.String uuid, long groupId);
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
+		com.liferay.portal.kernel.lar.PortletDataContext portletDataContext);
+
+	@Override
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.meeting.webex.model.WebExSite getSiteKeyWebExSite(
+		long siteKey)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
 	/**
 	* Returns the web ex site with the primary key.
 	*
@@ -186,27 +232,6 @@ public interface WebExSiteLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.meeting.webex.model.WebExSite getWebExSite(
 		long webExSiteId)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
-		com.liferay.portal.kernel.lar.PortletDataContext portletDataContext);
-
-	/**
-	* @throws PortalException
-	*/
-	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Override
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
@@ -235,6 +260,15 @@ public interface WebExSiteLocalService extends BaseLocalService,
 		java.lang.String uuid, long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.meeting.webex.model.WebExSite> getWebExSites(
+		long groupId, int start, int end);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.meeting.webex.model.WebExSite> getWebExSites(
+		long groupId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc);
+
 	/**
 	* Returns a range of all the web ex sites.
 	*
@@ -258,21 +292,10 @@ public interface WebExSiteLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getWebExSitesCount();
 
-	/**
-	* Updates the web ex site in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param webExSite the web ex site
-	* @return the web ex site that was updated
-	*/
-	public com.liferay.meeting.webex.model.WebExSite updateWebExSite(
-		com.liferay.meeting.webex.model.WebExSite webExSite);
-
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public java.lang.String getBeanIdentifier();
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
 
 	/**
 	* Sets the Spring bean ID for this bean.
@@ -281,34 +304,15 @@ public interface WebExSiteLocalService extends BaseLocalService,
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier);
 
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
-
-	public void addWebExSite(long userId, long groupId, java.lang.String name,
-		java.lang.String apiURL, java.lang.String login,
-		java.lang.String password, java.lang.String partnerKey, long siteKey,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.meeting.webex.model.WebExSite fetchSiteKeyWebExSite(
-		long siteKey);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.meeting.webex.model.WebExSite getSiteKeyWebExSite(
-		long siteKey)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.meeting.webex.model.WebExSite> getWebExSites(
-		long groupId, int start, int end);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.meeting.webex.model.WebExSite> getWebExSites(
-		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator obc);
+	/**
+	* Updates the web ex site in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param webExSite the web ex site
+	* @return the web ex site that was updated
+	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
+	public com.liferay.meeting.webex.model.WebExSite updateWebExSite(
+		com.liferay.meeting.webex.model.WebExSite webExSite);
 
 	public void updateWebExSite(long webExSiteId, java.lang.String apiURL,
 		java.lang.String login, java.lang.String password,

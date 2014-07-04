@@ -41,6 +41,19 @@ public class SourceLocalServiceWrapper implements SourceLocalService,
 		return _sourceLocalService.addSource(source);
 	}
 
+	@Override
+	public com.liferay.reports.model.Source addSource(long userId,
+		long groupId,
+		java.util.Map<java.util.Locale, java.lang.String> nameMap,
+		java.lang.String driverClassName, java.lang.String driverUrl,
+		java.lang.String driverUserName, java.lang.String driverPassword,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _sourceLocalService.addSource(userId, groupId, nameMap,
+			driverClassName, driverUrl, driverUserName, driverPassword,
+			serviceContext);
+	}
+
 	/**
 	* Creates a new source with the primary key. Does not add the source to the database.
 	*
@@ -50,6 +63,30 @@ public class SourceLocalServiceWrapper implements SourceLocalService,
 	@Override
 	public com.liferay.reports.model.Source createSource(long sourceId) {
 		return _sourceLocalService.createSource(sourceId);
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _sourceLocalService.deletePersistedModel(persistedModel);
+	}
+
+	/**
+	* Deletes the source from the database. Also notifies the appropriate model listeners.
+	*
+	* @param source the source
+	* @return the source that was removed
+	* @throws PortalException
+	*/
+	@Override
+	public com.liferay.reports.model.Source deleteSource(
+		com.liferay.reports.model.Source source)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _sourceLocalService.deleteSource(source);
 	}
 
 	/**
@@ -65,18 +102,10 @@ public class SourceLocalServiceWrapper implements SourceLocalService,
 		return _sourceLocalService.deleteSource(sourceId);
 	}
 
-	/**
-	* Deletes the source from the database. Also notifies the appropriate model listeners.
-	*
-	* @param source the source
-	* @return the source that was removed
-	* @throws PortalException
-	*/
 	@Override
-	public com.liferay.reports.model.Source deleteSource(
-		com.liferay.reports.model.Source source)
+	public void deleteSources(long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _sourceLocalService.deleteSource(source);
+		_sourceLocalService.deleteSources(groupId);
 	}
 
 	@Override
@@ -194,6 +223,34 @@ public class SourceLocalServiceWrapper implements SourceLocalService,
 		return _sourceLocalService.fetchSourceByUuidAndGroupId(uuid, groupId);
 	}
 
+	@Override
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return _sourceLocalService.getActionableDynamicQuery();
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	@Override
+	public java.lang.String getBeanIdentifier() {
+		return _sourceLocalService.getBeanIdentifier();
+	}
+
+	@Override
+	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
+		com.liferay.portal.kernel.lar.PortletDataContext portletDataContext) {
+		return _sourceLocalService.getExportActionableDynamicQuery(portletDataContext);
+	}
+
+	@Override
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _sourceLocalService.getPersistedModel(primaryKeyObj);
+	}
+
 	/**
 	* Returns the source with the primary key.
 	*
@@ -205,34 +262,6 @@ public class SourceLocalServiceWrapper implements SourceLocalService,
 	public com.liferay.reports.model.Source getSource(long sourceId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _sourceLocalService.getSource(sourceId);
-	}
-
-	@Override
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return _sourceLocalService.getActionableDynamicQuery();
-	}
-
-	@Override
-	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
-		com.liferay.portal.kernel.lar.PortletDataContext portletDataContext) {
-		return _sourceLocalService.getExportActionableDynamicQuery(portletDataContext);
-	}
-
-	/**
-	* @throws PortalException
-	*/
-	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _sourceLocalService.deletePersistedModel(persistedModel);
-	}
-
-	@Override
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _sourceLocalService.getPersistedModel(primaryKeyObj);
 	}
 
 	/**
@@ -265,6 +294,15 @@ public class SourceLocalServiceWrapper implements SourceLocalService,
 		return _sourceLocalService.getSourceByUuidAndGroupId(uuid, groupId);
 	}
 
+	@Override
+	public java.util.List<com.liferay.reports.model.Source> getSources(
+		long groupId, java.lang.String name, java.lang.String driverUrl,
+		boolean andSearch, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		return _sourceLocalService.getSources(groupId, name, driverUrl,
+			andSearch, start, end, orderByComparator);
+	}
+
 	/**
 	* Returns a range of all the sources.
 	*
@@ -292,26 +330,18 @@ public class SourceLocalServiceWrapper implements SourceLocalService,
 		return _sourceLocalService.getSourcesCount();
 	}
 
-	/**
-	* Updates the source in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param source the source
-	* @return the source that was updated
-	*/
 	@Override
-	public com.liferay.reports.model.Source updateSource(
-		com.liferay.reports.model.Source source) {
-		return _sourceLocalService.updateSource(source);
+	public int getSourcesCount(long groupId, java.lang.String name,
+		java.lang.String driverUrl, boolean andSearch) {
+		return _sourceLocalService.getSourcesCount(groupId, name, driverUrl,
+			andSearch);
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
 	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _sourceLocalService.getBeanIdentifier();
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _sourceLocalService.invokeMethod(name, parameterTypes, arguments);
 	}
 
 	/**
@@ -324,46 +354,16 @@ public class SourceLocalServiceWrapper implements SourceLocalService,
 		_sourceLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
+	/**
+	* Updates the source in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param source the source
+	* @return the source that was updated
+	*/
 	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _sourceLocalService.invokeMethod(name, parameterTypes, arguments);
-	}
-
-	@Override
-	public com.liferay.reports.model.Source addSource(long userId,
-		long groupId,
-		java.util.Map<java.util.Locale, java.lang.String> nameMap,
-		java.lang.String driverClassName, java.lang.String driverUrl,
-		java.lang.String driverUserName, java.lang.String driverPassword,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _sourceLocalService.addSource(userId, groupId, nameMap,
-			driverClassName, driverUrl, driverUserName, driverPassword,
-			serviceContext);
-	}
-
-	@Override
-	public void deleteSources(long groupId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		_sourceLocalService.deleteSources(groupId);
-	}
-
-	@Override
-	public java.util.List<com.liferay.reports.model.Source> getSources(
-		long groupId, java.lang.String name, java.lang.String driverUrl,
-		boolean andSearch, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
-		return _sourceLocalService.getSources(groupId, name, driverUrl,
-			andSearch, start, end, orderByComparator);
-	}
-
-	@Override
-	public int getSourcesCount(long groupId, java.lang.String name,
-		java.lang.String driverUrl, boolean andSearch) {
-		return _sourceLocalService.getSourcesCount(groupId, name, driverUrl,
-			andSearch);
+	public com.liferay.reports.model.Source updateSource(
+		com.liferay.reports.model.Source source) {
+		return _sourceLocalService.updateSource(source);
 	}
 
 	@Override

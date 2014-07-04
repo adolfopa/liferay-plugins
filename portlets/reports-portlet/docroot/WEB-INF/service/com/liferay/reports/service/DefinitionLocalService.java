@@ -16,9 +16,11 @@ package com.liferay.reports.service;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
+import com.liferay.portal.model.SystemEventConstants;
 import com.liferay.portal.service.BaseLocalService;
 import com.liferay.portal.service.InvokableLocalService;
 import com.liferay.portal.service.PersistedModelLocalService;
@@ -51,8 +53,18 @@ public interface DefinitionLocalService extends BaseLocalService,
 	* @param definition the definition
 	* @return the definition that was added
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
 	public com.liferay.reports.model.Definition addDefinition(
 		com.liferay.reports.model.Definition definition);
+
+	public com.liferay.reports.model.Definition addDefinition(long userId,
+		long groupId,
+		java.util.Map<java.util.Locale, java.lang.String> nameMap,
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		long sourceId, java.lang.String reportParameters,
+		java.lang.String fileName, java.io.InputStream inputStream,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Creates a new definition with the primary key. Does not add the definition to the database.
@@ -64,25 +76,43 @@ public interface DefinitionLocalService extends BaseLocalService,
 		long definitionId);
 
 	/**
-	* Deletes the definition with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param definitionId the primary key of the definition
-	* @return the definition that was removed
-	* @throws PortalException if a definition with the primary key could not be found
-	*/
-	public com.liferay.reports.model.Definition deleteDefinition(
-		long definitionId)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	/**
 	* Deletes the definition from the database. Also notifies the appropriate model listeners.
 	*
 	* @param definition the definition
 	* @return the definition that was removed
 	* @throws PortalException
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
+	@com.liferay.portal.kernel.systemevent.SystemEvent(type = SystemEventConstants.TYPE_DELETE)
 	public com.liferay.reports.model.Definition deleteDefinition(
 		com.liferay.reports.model.Definition definition)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	/**
+	* Deletes the definition with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param definitionId the primary key of the definition
+	* @return the definition that was removed
+	* @throws PortalException if a definition with the primary key could not be found
+	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
+	public com.liferay.reports.model.Definition deleteDefinition(
+		long definitionId)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	public void deleteDefinitionTemplates(long companyId,
+		java.lang.String attachmentsDirectory)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	public void deleteDefinitions(long groupId)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	/**
+	* @throws PortalException
+	*/
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
@@ -176,6 +206,16 @@ public interface DefinitionLocalService extends BaseLocalService,
 	public com.liferay.reports.model.Definition fetchDefinitionByUuidAndGroupId(
 		java.lang.String uuid, long groupId);
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier();
+
 	/**
 	* Returns the definition with the primary key.
 	*
@@ -185,27 +225,6 @@ public interface DefinitionLocalService extends BaseLocalService,
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.reports.model.Definition getDefinition(long definitionId)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
-		com.liferay.portal.kernel.lar.PortletDataContext portletDataContext);
-
-	/**
-	* @throws PortalException
-	*/
-	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Override
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
@@ -234,6 +253,14 @@ public interface DefinitionLocalService extends BaseLocalService,
 		java.lang.String uuid, long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
+	@java.lang.SuppressWarnings(value = "unchecked")
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.reports.model.Definition> getDefinitions(
+		long groupId, java.lang.String definitionName,
+		java.lang.String description, java.lang.String sourceId,
+		java.lang.String reportName, boolean andSearch, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+
 	/**
 	* Returns a range of all the definitions.
 	*
@@ -257,21 +284,26 @@ public interface DefinitionLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getDefinitionsCount();
 
-	/**
-	* Updates the definition in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param definition the definition
-	* @return the definition that was updated
-	*/
-	public com.liferay.reports.model.Definition updateDefinition(
-		com.liferay.reports.model.Definition definition);
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getDefinitionsCount(long groupId,
+		java.lang.String definitionName, java.lang.String description,
+		java.lang.String sourceId, java.lang.String reportName,
+		boolean andSearch);
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public java.lang.String getBeanIdentifier();
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
+		com.liferay.portal.kernel.lar.PortletDataContext portletDataContext);
+
+	@Override
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
 
 	/**
 	* Sets the Spring bean ID for this bean.
@@ -280,39 +312,15 @@ public interface DefinitionLocalService extends BaseLocalService,
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier);
 
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
-
-	public com.liferay.reports.model.Definition addDefinition(long userId,
-		long groupId,
-		java.util.Map<java.util.Locale, java.lang.String> nameMap,
-		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
-		long sourceId, java.lang.String reportParameters,
-		java.lang.String fileName, java.io.InputStream inputStream,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	public void deleteDefinitions(long groupId)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	public void deleteDefinitionTemplates(long companyId,
-		java.lang.String attachmentsDirectory)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.reports.model.Definition> getDefinitions(
-		long groupId, java.lang.String definitionName,
-		java.lang.String description, java.lang.String sourceId,
-		java.lang.String reportName, boolean andSearch, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getDefinitionsCount(long groupId,
-		java.lang.String definitionName, java.lang.String description,
-		java.lang.String sourceId, java.lang.String reportName,
-		boolean andSearch);
+	/**
+	* Updates the definition in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param definition the definition
+	* @return the definition that was updated
+	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
+	public com.liferay.reports.model.Definition updateDefinition(
+		com.liferay.reports.model.Definition definition);
 
 	public com.liferay.reports.model.Definition updateDefinition(
 		long definitionId,

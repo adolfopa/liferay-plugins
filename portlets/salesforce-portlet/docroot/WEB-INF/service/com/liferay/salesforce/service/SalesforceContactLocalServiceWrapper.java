@@ -41,24 +41,6 @@ public class SalesforceContactLocalServiceWrapper
 		return _salesforceContactLocalService.getBeanIdentifier();
 	}
 
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_salesforceContactLocalService.setBeanIdentifier(beanIdentifier);
-	}
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _salesforceContactLocalService.invokeMethod(name,
-			parameterTypes, arguments);
-	}
-
 	@Override
 	public com.liferay.portal.kernel.messaging.MessageBatch getContactsByAccountId(
 		long companyId, java.lang.String accountId,
@@ -84,6 +66,24 @@ public class SalesforceContactLocalServiceWrapper
 		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException {
 		return _salesforceContactLocalService.getContactsByUserName(companyId,
 			userName, fieldNames);
+	}
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _salesforceContactLocalService.invokeMethod(name,
+			parameterTypes, arguments);
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	@Override
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_salesforceContactLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
 	/**

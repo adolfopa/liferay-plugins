@@ -187,184 +187,15 @@ public class SamlSpIdpConnectionWrapper implements SamlSpIdpConnection,
 		}
 	}
 
-	/**
-	* Returns the primary key of this saml sp idp connection.
-	*
-	* @return the primary key of this saml sp idp connection
-	*/
 	@Override
-	public long getPrimaryKey() {
-		return _samlSpIdpConnection.getPrimaryKey();
+	public java.lang.Object clone() {
+		return new SamlSpIdpConnectionWrapper((SamlSpIdpConnection)_samlSpIdpConnection.clone());
 	}
 
-	/**
-	* Sets the primary key of this saml sp idp connection.
-	*
-	* @param primaryKey the primary key of this saml sp idp connection
-	*/
 	@Override
-	public void setPrimaryKey(long primaryKey) {
-		_samlSpIdpConnection.setPrimaryKey(primaryKey);
-	}
-
-	/**
-	* Returns the saml sp idp connection ID of this saml sp idp connection.
-	*
-	* @return the saml sp idp connection ID of this saml sp idp connection
-	*/
-	@Override
-	public long getSamlSpIdpConnectionId() {
-		return _samlSpIdpConnection.getSamlSpIdpConnectionId();
-	}
-
-	/**
-	* Sets the saml sp idp connection ID of this saml sp idp connection.
-	*
-	* @param samlSpIdpConnectionId the saml sp idp connection ID of this saml sp idp connection
-	*/
-	@Override
-	public void setSamlSpIdpConnectionId(long samlSpIdpConnectionId) {
-		_samlSpIdpConnection.setSamlSpIdpConnectionId(samlSpIdpConnectionId);
-	}
-
-	/**
-	* Returns the company ID of this saml sp idp connection.
-	*
-	* @return the company ID of this saml sp idp connection
-	*/
-	@Override
-	public long getCompanyId() {
-		return _samlSpIdpConnection.getCompanyId();
-	}
-
-	/**
-	* Sets the company ID of this saml sp idp connection.
-	*
-	* @param companyId the company ID of this saml sp idp connection
-	*/
-	@Override
-	public void setCompanyId(long companyId) {
-		_samlSpIdpConnection.setCompanyId(companyId);
-	}
-
-	/**
-	* Returns the user ID of this saml sp idp connection.
-	*
-	* @return the user ID of this saml sp idp connection
-	*/
-	@Override
-	public long getUserId() {
-		return _samlSpIdpConnection.getUserId();
-	}
-
-	/**
-	* Sets the user ID of this saml sp idp connection.
-	*
-	* @param userId the user ID of this saml sp idp connection
-	*/
-	@Override
-	public void setUserId(long userId) {
-		_samlSpIdpConnection.setUserId(userId);
-	}
-
-	/**
-	* Returns the user uuid of this saml sp idp connection.
-	*
-	* @return the user uuid of this saml sp idp connection
-	*/
-	@Override
-	public java.lang.String getUserUuid() {
-		return _samlSpIdpConnection.getUserUuid();
-	}
-
-	/**
-	* Sets the user uuid of this saml sp idp connection.
-	*
-	* @param userUuid the user uuid of this saml sp idp connection
-	*/
-	@Override
-	public void setUserUuid(java.lang.String userUuid) {
-		_samlSpIdpConnection.setUserUuid(userUuid);
-	}
-
-	/**
-	* Returns the user name of this saml sp idp connection.
-	*
-	* @return the user name of this saml sp idp connection
-	*/
-	@Override
-	public java.lang.String getUserName() {
-		return _samlSpIdpConnection.getUserName();
-	}
-
-	/**
-	* Sets the user name of this saml sp idp connection.
-	*
-	* @param userName the user name of this saml sp idp connection
-	*/
-	@Override
-	public void setUserName(java.lang.String userName) {
-		_samlSpIdpConnection.setUserName(userName);
-	}
-
-	/**
-	* Returns the create date of this saml sp idp connection.
-	*
-	* @return the create date of this saml sp idp connection
-	*/
-	@Override
-	public java.util.Date getCreateDate() {
-		return _samlSpIdpConnection.getCreateDate();
-	}
-
-	/**
-	* Sets the create date of this saml sp idp connection.
-	*
-	* @param createDate the create date of this saml sp idp connection
-	*/
-	@Override
-	public void setCreateDate(java.util.Date createDate) {
-		_samlSpIdpConnection.setCreateDate(createDate);
-	}
-
-	/**
-	* Returns the modified date of this saml sp idp connection.
-	*
-	* @return the modified date of this saml sp idp connection
-	*/
-	@Override
-	public java.util.Date getModifiedDate() {
-		return _samlSpIdpConnection.getModifiedDate();
-	}
-
-	/**
-	* Sets the modified date of this saml sp idp connection.
-	*
-	* @param modifiedDate the modified date of this saml sp idp connection
-	*/
-	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
-		_samlSpIdpConnection.setModifiedDate(modifiedDate);
-	}
-
-	/**
-	* Returns the saml idp entity ID of this saml sp idp connection.
-	*
-	* @return the saml idp entity ID of this saml sp idp connection
-	*/
-	@Override
-	public java.lang.String getSamlIdpEntityId() {
-		return _samlSpIdpConnection.getSamlIdpEntityId();
-	}
-
-	/**
-	* Sets the saml idp entity ID of this saml sp idp connection.
-	*
-	* @param samlIdpEntityId the saml idp entity ID of this saml sp idp connection
-	*/
-	@Override
-	public void setSamlIdpEntityId(java.lang.String samlIdpEntityId) {
-		_samlSpIdpConnection.setSamlIdpEntityId(samlIdpEntityId);
+	public int compareTo(
+		com.liferay.saml.model.SamlSpIdpConnection samlSpIdpConnection) {
+		return _samlSpIdpConnection.compareTo(samlSpIdpConnection);
 	}
 
 	/**
@@ -378,27 +209,6 @@ public class SamlSpIdpConnectionWrapper implements SamlSpIdpConnection,
 	}
 
 	/**
-	* Returns <code>true</code> if this saml sp idp connection is assertion signature required.
-	*
-	* @return <code>true</code> if this saml sp idp connection is assertion signature required; <code>false</code> otherwise
-	*/
-	@Override
-	public boolean isAssertionSignatureRequired() {
-		return _samlSpIdpConnection.isAssertionSignatureRequired();
-	}
-
-	/**
-	* Sets whether this saml sp idp connection is assertion signature required.
-	*
-	* @param assertionSignatureRequired the assertion signature required of this saml sp idp connection
-	*/
-	@Override
-	public void setAssertionSignatureRequired(
-		boolean assertionSignatureRequired) {
-		_samlSpIdpConnection.setAssertionSignatureRequired(assertionSignatureRequired);
-	}
-
-	/**
 	* Returns the clock skew of this saml sp idp connection.
 	*
 	* @return the clock skew of this saml sp idp connection
@@ -409,13 +219,23 @@ public class SamlSpIdpConnectionWrapper implements SamlSpIdpConnection,
 	}
 
 	/**
-	* Sets the clock skew of this saml sp idp connection.
+	* Returns the company ID of this saml sp idp connection.
 	*
-	* @param clockSkew the clock skew of this saml sp idp connection
+	* @return the company ID of this saml sp idp connection
 	*/
 	@Override
-	public void setClockSkew(long clockSkew) {
-		_samlSpIdpConnection.setClockSkew(clockSkew);
+	public long getCompanyId() {
+		return _samlSpIdpConnection.getCompanyId();
+	}
+
+	/**
+	* Returns the create date of this saml sp idp connection.
+	*
+	* @return the create date of this saml sp idp connection
+	*/
+	@Override
+	public java.util.Date getCreateDate() {
+		return _samlSpIdpConnection.getCreateDate();
 	}
 
 	/**
@@ -428,24 +248,9 @@ public class SamlSpIdpConnectionWrapper implements SamlSpIdpConnection,
 		return _samlSpIdpConnection.getEnabled();
 	}
 
-	/**
-	* Returns <code>true</code> if this saml sp idp connection is enabled.
-	*
-	* @return <code>true</code> if this saml sp idp connection is enabled; <code>false</code> otherwise
-	*/
 	@Override
-	public boolean isEnabled() {
-		return _samlSpIdpConnection.isEnabled();
-	}
-
-	/**
-	* Sets whether this saml sp idp connection is enabled.
-	*
-	* @param enabled the enabled of this saml sp idp connection
-	*/
-	@Override
-	public void setEnabled(boolean enabled) {
-		_samlSpIdpConnection.setEnabled(enabled);
+	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
+		return _samlSpIdpConnection.getExpandoBridge();
 	}
 
 	/**
@@ -459,23 +264,13 @@ public class SamlSpIdpConnectionWrapper implements SamlSpIdpConnection,
 	}
 
 	/**
-	* Returns <code>true</code> if this saml sp idp connection is ldap import enabled.
+	* Returns the metadata updated date of this saml sp idp connection.
 	*
-	* @return <code>true</code> if this saml sp idp connection is ldap import enabled; <code>false</code> otherwise
+	* @return the metadata updated date of this saml sp idp connection
 	*/
 	@Override
-	public boolean isLdapImportEnabled() {
-		return _samlSpIdpConnection.isLdapImportEnabled();
-	}
-
-	/**
-	* Sets whether this saml sp idp connection is ldap import enabled.
-	*
-	* @param ldapImportEnabled the ldap import enabled of this saml sp idp connection
-	*/
-	@Override
-	public void setLdapImportEnabled(boolean ldapImportEnabled) {
-		_samlSpIdpConnection.setLdapImportEnabled(ldapImportEnabled);
+	public java.util.Date getMetadataUpdatedDate() {
+		return _samlSpIdpConnection.getMetadataUpdatedDate();
 	}
 
 	/**
@@ -489,16 +284,6 @@ public class SamlSpIdpConnectionWrapper implements SamlSpIdpConnection,
 	}
 
 	/**
-	* Sets the metadata url of this saml sp idp connection.
-	*
-	* @param metadataUrl the metadata url of this saml sp idp connection
-	*/
-	@Override
-	public void setMetadataUrl(java.lang.String metadataUrl) {
-		_samlSpIdpConnection.setMetadataUrl(metadataUrl);
-	}
-
-	/**
 	* Returns the metadata xml of this saml sp idp connection.
 	*
 	* @return the metadata xml of this saml sp idp connection
@@ -509,33 +294,13 @@ public class SamlSpIdpConnectionWrapper implements SamlSpIdpConnection,
 	}
 
 	/**
-	* Sets the metadata xml of this saml sp idp connection.
+	* Returns the modified date of this saml sp idp connection.
 	*
-	* @param metadataXml the metadata xml of this saml sp idp connection
+	* @return the modified date of this saml sp idp connection
 	*/
 	@Override
-	public void setMetadataXml(java.lang.String metadataXml) {
-		_samlSpIdpConnection.setMetadataXml(metadataXml);
-	}
-
-	/**
-	* Returns the metadata updated date of this saml sp idp connection.
-	*
-	* @return the metadata updated date of this saml sp idp connection
-	*/
-	@Override
-	public java.util.Date getMetadataUpdatedDate() {
-		return _samlSpIdpConnection.getMetadataUpdatedDate();
-	}
-
-	/**
-	* Sets the metadata updated date of this saml sp idp connection.
-	*
-	* @param metadataUpdatedDate the metadata updated date of this saml sp idp connection
-	*/
-	@Override
-	public void setMetadataUpdatedDate(java.util.Date metadataUpdatedDate) {
-		_samlSpIdpConnection.setMetadataUpdatedDate(metadataUpdatedDate);
+	public java.util.Date getModifiedDate() {
+		return _samlSpIdpConnection.getModifiedDate();
 	}
 
 	/**
@@ -549,16 +314,6 @@ public class SamlSpIdpConnectionWrapper implements SamlSpIdpConnection,
 	}
 
 	/**
-	* Sets the name of this saml sp idp connection.
-	*
-	* @param name the name of this saml sp idp connection
-	*/
-	@Override
-	public void setName(java.lang.String name) {
-		_samlSpIdpConnection.setName(name);
-	}
-
-	/**
 	* Returns the name ID format of this saml sp idp connection.
 	*
 	* @return the name ID format of this saml sp idp connection
@@ -569,13 +324,38 @@ public class SamlSpIdpConnectionWrapper implements SamlSpIdpConnection,
 	}
 
 	/**
-	* Sets the name ID format of this saml sp idp connection.
+	* Returns the primary key of this saml sp idp connection.
 	*
-	* @param nameIdFormat the name ID format of this saml sp idp connection
+	* @return the primary key of this saml sp idp connection
 	*/
 	@Override
-	public void setNameIdFormat(java.lang.String nameIdFormat) {
-		_samlSpIdpConnection.setNameIdFormat(nameIdFormat);
+	public long getPrimaryKey() {
+		return _samlSpIdpConnection.getPrimaryKey();
+	}
+
+	@Override
+	public java.io.Serializable getPrimaryKeyObj() {
+		return _samlSpIdpConnection.getPrimaryKeyObj();
+	}
+
+	/**
+	* Returns the saml idp entity ID of this saml sp idp connection.
+	*
+	* @return the saml idp entity ID of this saml sp idp connection
+	*/
+	@Override
+	public java.lang.String getSamlIdpEntityId() {
+		return _samlSpIdpConnection.getSamlIdpEntityId();
+	}
+
+	/**
+	* Returns the saml sp idp connection ID of this saml sp idp connection.
+	*
+	* @return the saml sp idp connection ID of this saml sp idp connection
+	*/
+	@Override
+	public long getSamlSpIdpConnectionId() {
+		return _samlSpIdpConnection.getSamlSpIdpConnectionId();
 	}
 
 	/**
@@ -589,26 +369,6 @@ public class SamlSpIdpConnectionWrapper implements SamlSpIdpConnection,
 	}
 
 	/**
-	* Returns <code>true</code> if this saml sp idp connection is sign authn request.
-	*
-	* @return <code>true</code> if this saml sp idp connection is sign authn request; <code>false</code> otherwise
-	*/
-	@Override
-	public boolean isSignAuthnRequest() {
-		return _samlSpIdpConnection.isSignAuthnRequest();
-	}
-
-	/**
-	* Sets whether this saml sp idp connection is sign authn request.
-	*
-	* @param signAuthnRequest the sign authn request of this saml sp idp connection
-	*/
-	@Override
-	public void setSignAuthnRequest(boolean signAuthnRequest) {
-		_samlSpIdpConnection.setSignAuthnRequest(signAuthnRequest);
-	}
-
-	/**
 	* Returns the user attribute mappings of this saml sp idp connection.
 	*
 	* @return the user attribute mappings of this saml sp idp connection
@@ -619,23 +379,48 @@ public class SamlSpIdpConnectionWrapper implements SamlSpIdpConnection,
 	}
 
 	/**
-	* Sets the user attribute mappings of this saml sp idp connection.
+	* Returns the user ID of this saml sp idp connection.
 	*
-	* @param userAttributeMappings the user attribute mappings of this saml sp idp connection
+	* @return the user ID of this saml sp idp connection
 	*/
 	@Override
-	public void setUserAttributeMappings(java.lang.String userAttributeMappings) {
-		_samlSpIdpConnection.setUserAttributeMappings(userAttributeMappings);
+	public long getUserId() {
+		return _samlSpIdpConnection.getUserId();
+	}
+
+	/**
+	* Returns the user name of this saml sp idp connection.
+	*
+	* @return the user name of this saml sp idp connection
+	*/
+	@Override
+	public java.lang.String getUserName() {
+		return _samlSpIdpConnection.getUserName();
+	}
+
+	/**
+	* Returns the user uuid of this saml sp idp connection.
+	*
+	* @return the user uuid of this saml sp idp connection
+	*/
+	@Override
+	public java.lang.String getUserUuid() {
+		return _samlSpIdpConnection.getUserUuid();
 	}
 
 	@Override
-	public boolean isNew() {
-		return _samlSpIdpConnection.isNew();
+	public int hashCode() {
+		return _samlSpIdpConnection.hashCode();
 	}
 
+	/**
+	* Returns <code>true</code> if this saml sp idp connection is assertion signature required.
+	*
+	* @return <code>true</code> if this saml sp idp connection is assertion signature required; <code>false</code> otherwise
+	*/
 	@Override
-	public void setNew(boolean n) {
-		_samlSpIdpConnection.setNew(n);
+	public boolean isAssertionSignatureRequired() {
+		return _samlSpIdpConnection.isAssertionSignatureRequired();
 	}
 
 	@Override
@@ -643,9 +428,14 @@ public class SamlSpIdpConnectionWrapper implements SamlSpIdpConnection,
 		return _samlSpIdpConnection.isCachedModel();
 	}
 
+	/**
+	* Returns <code>true</code> if this saml sp idp connection is enabled.
+	*
+	* @return <code>true</code> if this saml sp idp connection is enabled; <code>false</code> otherwise
+	*/
 	@Override
-	public void setCachedModel(boolean cachedModel) {
-		_samlSpIdpConnection.setCachedModel(cachedModel);
+	public boolean isEnabled() {
+		return _samlSpIdpConnection.isEnabled();
 	}
 
 	@Override
@@ -653,19 +443,90 @@ public class SamlSpIdpConnectionWrapper implements SamlSpIdpConnection,
 		return _samlSpIdpConnection.isEscapedModel();
 	}
 
+	/**
+	* Returns <code>true</code> if this saml sp idp connection is ldap import enabled.
+	*
+	* @return <code>true</code> if this saml sp idp connection is ldap import enabled; <code>false</code> otherwise
+	*/
 	@Override
-	public java.io.Serializable getPrimaryKeyObj() {
-		return _samlSpIdpConnection.getPrimaryKeyObj();
+	public boolean isLdapImportEnabled() {
+		return _samlSpIdpConnection.isLdapImportEnabled();
 	}
 
 	@Override
-	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
-		_samlSpIdpConnection.setPrimaryKeyObj(primaryKeyObj);
+	public boolean isNew() {
+		return _samlSpIdpConnection.isNew();
+	}
+
+	/**
+	* Returns <code>true</code> if this saml sp idp connection is sign authn request.
+	*
+	* @return <code>true</code> if this saml sp idp connection is sign authn request; <code>false</code> otherwise
+	*/
+	@Override
+	public boolean isSignAuthnRequest() {
+		return _samlSpIdpConnection.isSignAuthnRequest();
 	}
 
 	@Override
-	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
-		return _samlSpIdpConnection.getExpandoBridge();
+	public void persist() {
+		_samlSpIdpConnection.persist();
+	}
+
+	/**
+	* Sets whether this saml sp idp connection is assertion signature required.
+	*
+	* @param assertionSignatureRequired the assertion signature required of this saml sp idp connection
+	*/
+	@Override
+	public void setAssertionSignatureRequired(
+		boolean assertionSignatureRequired) {
+		_samlSpIdpConnection.setAssertionSignatureRequired(assertionSignatureRequired);
+	}
+
+	@Override
+	public void setCachedModel(boolean cachedModel) {
+		_samlSpIdpConnection.setCachedModel(cachedModel);
+	}
+
+	/**
+	* Sets the clock skew of this saml sp idp connection.
+	*
+	* @param clockSkew the clock skew of this saml sp idp connection
+	*/
+	@Override
+	public void setClockSkew(long clockSkew) {
+		_samlSpIdpConnection.setClockSkew(clockSkew);
+	}
+
+	/**
+	* Sets the company ID of this saml sp idp connection.
+	*
+	* @param companyId the company ID of this saml sp idp connection
+	*/
+	@Override
+	public void setCompanyId(long companyId) {
+		_samlSpIdpConnection.setCompanyId(companyId);
+	}
+
+	/**
+	* Sets the create date of this saml sp idp connection.
+	*
+	* @param createDate the create date of this saml sp idp connection
+	*/
+	@Override
+	public void setCreateDate(java.util.Date createDate) {
+		_samlSpIdpConnection.setCreateDate(createDate);
+	}
+
+	/**
+	* Sets whether this saml sp idp connection is enabled.
+	*
+	* @param enabled the enabled of this saml sp idp connection
+	*/
+	@Override
+	public void setEnabled(boolean enabled) {
+		_samlSpIdpConnection.setEnabled(enabled);
 	}
 
 	@Override
@@ -686,20 +547,164 @@ public class SamlSpIdpConnectionWrapper implements SamlSpIdpConnection,
 		_samlSpIdpConnection.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	/**
+	* Sets whether this saml sp idp connection is ldap import enabled.
+	*
+	* @param ldapImportEnabled the ldap import enabled of this saml sp idp connection
+	*/
 	@Override
-	public java.lang.Object clone() {
-		return new SamlSpIdpConnectionWrapper((SamlSpIdpConnection)_samlSpIdpConnection.clone());
+	public void setLdapImportEnabled(boolean ldapImportEnabled) {
+		_samlSpIdpConnection.setLdapImportEnabled(ldapImportEnabled);
+	}
+
+	/**
+	* Sets the metadata updated date of this saml sp idp connection.
+	*
+	* @param metadataUpdatedDate the metadata updated date of this saml sp idp connection
+	*/
+	@Override
+	public void setMetadataUpdatedDate(java.util.Date metadataUpdatedDate) {
+		_samlSpIdpConnection.setMetadataUpdatedDate(metadataUpdatedDate);
+	}
+
+	/**
+	* Sets the metadata url of this saml sp idp connection.
+	*
+	* @param metadataUrl the metadata url of this saml sp idp connection
+	*/
+	@Override
+	public void setMetadataUrl(java.lang.String metadataUrl) {
+		_samlSpIdpConnection.setMetadataUrl(metadataUrl);
+	}
+
+	/**
+	* Sets the metadata xml of this saml sp idp connection.
+	*
+	* @param metadataXml the metadata xml of this saml sp idp connection
+	*/
+	@Override
+	public void setMetadataXml(java.lang.String metadataXml) {
+		_samlSpIdpConnection.setMetadataXml(metadataXml);
+	}
+
+	/**
+	* Sets the modified date of this saml sp idp connection.
+	*
+	* @param modifiedDate the modified date of this saml sp idp connection
+	*/
+	@Override
+	public void setModifiedDate(java.util.Date modifiedDate) {
+		_samlSpIdpConnection.setModifiedDate(modifiedDate);
+	}
+
+	/**
+	* Sets the name of this saml sp idp connection.
+	*
+	* @param name the name of this saml sp idp connection
+	*/
+	@Override
+	public void setName(java.lang.String name) {
+		_samlSpIdpConnection.setName(name);
+	}
+
+	/**
+	* Sets the name ID format of this saml sp idp connection.
+	*
+	* @param nameIdFormat the name ID format of this saml sp idp connection
+	*/
+	@Override
+	public void setNameIdFormat(java.lang.String nameIdFormat) {
+		_samlSpIdpConnection.setNameIdFormat(nameIdFormat);
 	}
 
 	@Override
-	public int compareTo(
-		com.liferay.saml.model.SamlSpIdpConnection samlSpIdpConnection) {
-		return _samlSpIdpConnection.compareTo(samlSpIdpConnection);
+	public void setNew(boolean n) {
+		_samlSpIdpConnection.setNew(n);
+	}
+
+	/**
+	* Sets the primary key of this saml sp idp connection.
+	*
+	* @param primaryKey the primary key of this saml sp idp connection
+	*/
+	@Override
+	public void setPrimaryKey(long primaryKey) {
+		_samlSpIdpConnection.setPrimaryKey(primaryKey);
 	}
 
 	@Override
-	public int hashCode() {
-		return _samlSpIdpConnection.hashCode();
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_samlSpIdpConnection.setPrimaryKeyObj(primaryKeyObj);
+	}
+
+	/**
+	* Sets the saml idp entity ID of this saml sp idp connection.
+	*
+	* @param samlIdpEntityId the saml idp entity ID of this saml sp idp connection
+	*/
+	@Override
+	public void setSamlIdpEntityId(java.lang.String samlIdpEntityId) {
+		_samlSpIdpConnection.setSamlIdpEntityId(samlIdpEntityId);
+	}
+
+	/**
+	* Sets the saml sp idp connection ID of this saml sp idp connection.
+	*
+	* @param samlSpIdpConnectionId the saml sp idp connection ID of this saml sp idp connection
+	*/
+	@Override
+	public void setSamlSpIdpConnectionId(long samlSpIdpConnectionId) {
+		_samlSpIdpConnection.setSamlSpIdpConnectionId(samlSpIdpConnectionId);
+	}
+
+	/**
+	* Sets whether this saml sp idp connection is sign authn request.
+	*
+	* @param signAuthnRequest the sign authn request of this saml sp idp connection
+	*/
+	@Override
+	public void setSignAuthnRequest(boolean signAuthnRequest) {
+		_samlSpIdpConnection.setSignAuthnRequest(signAuthnRequest);
+	}
+
+	/**
+	* Sets the user attribute mappings of this saml sp idp connection.
+	*
+	* @param userAttributeMappings the user attribute mappings of this saml sp idp connection
+	*/
+	@Override
+	public void setUserAttributeMappings(java.lang.String userAttributeMappings) {
+		_samlSpIdpConnection.setUserAttributeMappings(userAttributeMappings);
+	}
+
+	/**
+	* Sets the user ID of this saml sp idp connection.
+	*
+	* @param userId the user ID of this saml sp idp connection
+	*/
+	@Override
+	public void setUserId(long userId) {
+		_samlSpIdpConnection.setUserId(userId);
+	}
+
+	/**
+	* Sets the user name of this saml sp idp connection.
+	*
+	* @param userName the user name of this saml sp idp connection
+	*/
+	@Override
+	public void setUserName(java.lang.String userName) {
+		_samlSpIdpConnection.setUserName(userName);
+	}
+
+	/**
+	* Sets the user uuid of this saml sp idp connection.
+	*
+	* @param userUuid the user uuid of this saml sp idp connection
+	*/
+	@Override
+	public void setUserUuid(java.lang.String userUuid) {
+		_samlSpIdpConnection.setUserUuid(userUuid);
 	}
 
 	@Override
@@ -713,23 +718,18 @@ public class SamlSpIdpConnectionWrapper implements SamlSpIdpConnection,
 	}
 
 	@Override
-	public com.liferay.saml.model.SamlSpIdpConnection toUnescapedModel() {
-		return new SamlSpIdpConnectionWrapper(_samlSpIdpConnection.toUnescapedModel());
-	}
-
-	@Override
 	public java.lang.String toString() {
 		return _samlSpIdpConnection.toString();
 	}
 
 	@Override
-	public java.lang.String toXmlString() {
-		return _samlSpIdpConnection.toXmlString();
+	public com.liferay.saml.model.SamlSpIdpConnection toUnescapedModel() {
+		return new SamlSpIdpConnectionWrapper(_samlSpIdpConnection.toUnescapedModel());
 	}
 
 	@Override
-	public void persist() {
-		_samlSpIdpConnection.persist();
+	public java.lang.String toXmlString() {
+		return _samlSpIdpConnection.toXmlString();
 	}
 
 	@Override

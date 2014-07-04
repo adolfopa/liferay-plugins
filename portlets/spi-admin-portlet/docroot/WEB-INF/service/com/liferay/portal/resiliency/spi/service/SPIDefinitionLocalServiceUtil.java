@@ -50,6 +50,19 @@ public class SPIDefinitionLocalServiceUtil {
 		return getService().addSPIDefinition(spiDefinition);
 	}
 
+	public static com.liferay.portal.resiliency.spi.model.SPIDefinition addSPIDefinition(
+		long userId, java.lang.String name, java.lang.String connectorAddress,
+		int connectorPort, java.lang.String description,
+		java.lang.String jvmArguments, java.lang.String portletIds,
+		java.lang.String servletContextNames, java.lang.String typeSettings,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .addSPIDefinition(userId, name, connectorAddress,
+			connectorPort, description, jvmArguments, portletIds,
+			servletContextNames, typeSettings, serviceContext);
+	}
+
 	/**
 	* Creates a new s p i definition with the primary key. Does not add the s p i definition to the database.
 	*
@@ -62,16 +75,12 @@ public class SPIDefinitionLocalServiceUtil {
 	}
 
 	/**
-	* Deletes the s p i definition with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param spiDefinitionId the primary key of the s p i definition
-	* @return the s p i definition that was removed
-	* @throws PortalException if a s p i definition with the primary key could not be found
+	* @throws PortalException
 	*/
-	public static com.liferay.portal.resiliency.spi.model.SPIDefinition deleteSPIDefinition(
-		long spiDefinitionId)
+	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().deleteSPIDefinition(spiDefinitionId);
+		return getService().deletePersistedModel(persistedModel);
 	}
 
 	/**
@@ -85,6 +94,19 @@ public class SPIDefinitionLocalServiceUtil {
 		com.liferay.portal.resiliency.spi.model.SPIDefinition spiDefinition)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteSPIDefinition(spiDefinition);
+	}
+
+	/**
+	* Deletes the s p i definition with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param spiDefinitionId the primary key of the s p i definition
+	* @return the s p i definition that was removed
+	* @throws PortalException if a s p i definition with the primary key could not be found
+	*/
+	public static com.liferay.portal.resiliency.spi.model.SPIDefinition deleteSPIDefinition(
+		long spiDefinitionId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deleteSPIDefinition(spiDefinitionId);
 	}
 
 	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
@@ -170,6 +192,35 @@ public class SPIDefinitionLocalServiceUtil {
 		return getService().fetchSPIDefinition(spiDefinitionId);
 	}
 
+	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return getService().getActionableDynamicQuery();
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public static java.lang.String getBeanIdentifier() {
+		return getService().getBeanIdentifier();
+	}
+
+	public static com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getPersistedModel(primaryKeyObj);
+	}
+
+	public static com.liferay.portal.kernel.util.Tuple getPortletIdsAndServletContextNames() {
+		return getService().getPortletIdsAndServletContextNames();
+	}
+
+	public static com.liferay.portal.resiliency.spi.model.SPIDefinition getSPIDefinition(
+		long companyId, java.lang.String name)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getSPIDefinition(companyId, name);
+	}
+
 	/**
 	* Returns the s p i definition with the primary key.
 	*
@@ -183,23 +234,18 @@ public class SPIDefinitionLocalServiceUtil {
 		return getService().getSPIDefinition(spiDefinitionId);
 	}
 
-	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return getService().getActionableDynamicQuery();
+	public static java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> getSPIDefinitions() {
+		return getService().getSPIDefinitions();
 	}
 
-	/**
-	* @throws PortalException
-	*/
-	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().deletePersistedModel(persistedModel);
+	public static java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> getSPIDefinitions(
+		long companyId, int status) {
+		return getService().getSPIDefinitions(companyId, status);
 	}
 
-	public static com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getPersistedModel(primaryKeyObj);
+	public static java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> getSPIDefinitions(
+		long companyId, int[] statuses) {
+		return getService().getSPIDefinitions(companyId, statuses);
 	}
 
 	/**
@@ -227,24 +273,10 @@ public class SPIDefinitionLocalServiceUtil {
 		return getService().getSPIDefinitionsCount();
 	}
 
-	/**
-	* Updates the s p i definition in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param spiDefinition the s p i definition
-	* @return the s p i definition that was updated
-	*/
-	public static com.liferay.portal.resiliency.spi.model.SPIDefinition updateSPIDefinition(
-		com.liferay.portal.resiliency.spi.model.SPIDefinition spiDefinition) {
-		return getService().updateSPIDefinition(spiDefinition);
-	}
-
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public static java.lang.String getBeanIdentifier() {
-		return getService().getBeanIdentifier();
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
 	/**
@@ -254,49 +286,6 @@ public class SPIDefinitionLocalServiceUtil {
 	*/
 	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
 		getService().setBeanIdentifier(beanIdentifier);
-	}
-
-	public static java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return getService().invokeMethod(name, parameterTypes, arguments);
-	}
-
-	public static com.liferay.portal.resiliency.spi.model.SPIDefinition addSPIDefinition(
-		long userId, java.lang.String name, java.lang.String connectorAddress,
-		int connectorPort, java.lang.String description,
-		java.lang.String jvmArguments, java.lang.String portletIds,
-		java.lang.String servletContextNames, java.lang.String typeSettings,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService()
-				   .addSPIDefinition(userId, name, connectorAddress,
-			connectorPort, description, jvmArguments, portletIds,
-			servletContextNames, typeSettings, serviceContext);
-	}
-
-	public static com.liferay.portal.kernel.util.Tuple getPortletIdsAndServletContextNames() {
-		return getService().getPortletIdsAndServletContextNames();
-	}
-
-	public static com.liferay.portal.resiliency.spi.model.SPIDefinition getSPIDefinition(
-		long companyId, java.lang.String name)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getSPIDefinition(companyId, name);
-	}
-
-	public static java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> getSPIDefinitions() {
-		return getService().getSPIDefinitions();
-	}
-
-	public static java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> getSPIDefinitions(
-		long companyId, int status) {
-		return getService().getSPIDefinitions(companyId, status);
-	}
-
-	public static java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> getSPIDefinitions(
-		long companyId, int[] statuses) {
-		return getService().getSPIDefinitions(companyId, statuses);
 	}
 
 	public static void startSPI(long spiDefinitionId)
@@ -325,6 +314,17 @@ public class SPIDefinitionLocalServiceUtil {
 	public static long stopSPIinBackground(long userId, long spiDefinitionId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().stopSPIinBackground(userId, spiDefinitionId);
+	}
+
+	/**
+	* Updates the s p i definition in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param spiDefinition the s p i definition
+	* @return the s p i definition that was updated
+	*/
+	public static com.liferay.portal.resiliency.spi.model.SPIDefinition updateSPIDefinition(
+		com.liferay.portal.resiliency.spi.model.SPIDefinition spiDefinition) {
+		return getService().updateSPIDefinition(spiDefinition);
 	}
 
 	public static com.liferay.portal.resiliency.spi.model.SPIDefinition updateSPIDefinition(

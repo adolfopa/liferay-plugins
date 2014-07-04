@@ -38,6 +38,11 @@ public class KaleoProcessLinkServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link com.liferay.portal.workflow.kaleo.forms.service.impl.KaleoProcessLinkServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink fetchKaleoProcessLink(
+		long kaleoProcessId, java.lang.String workflowTaskName) {
+		return getService()
+				   .fetchKaleoProcessLink(kaleoProcessId, workflowTaskName);
+	}
 
 	/**
 	* Returns the Spring bean ID for this bean.
@@ -46,6 +51,12 @@ public class KaleoProcessLinkServiceUtil {
 	*/
 	public static java.lang.String getBeanIdentifier() {
 		return getService().getBeanIdentifier();
+	}
+
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
 	/**
@@ -57,16 +68,12 @@ public class KaleoProcessLinkServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
-	public static java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return getService().invokeMethod(name, parameterTypes, arguments);
-	}
-
-	public static com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink fetchKaleoProcessLink(
-		long kaleoProcessId, java.lang.String workflowTaskName) {
+	public static com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink updateKaleoProcessLink(
+		long kaleoProcessId, java.lang.String workflowTaskName,
+		long ddmTemplateId) {
 		return getService()
-				   .fetchKaleoProcessLink(kaleoProcessId, workflowTaskName);
+				   .updateKaleoProcessLink(kaleoProcessId, workflowTaskName,
+			ddmTemplateId);
 	}
 
 	public static com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink updateKaleoProcessLink(
@@ -76,14 +83,6 @@ public class KaleoProcessLinkServiceUtil {
 		return getService()
 				   .updateKaleoProcessLink(kaleoProcessLinkId, kaleoProcessId,
 			workflowTaskName, ddmTemplateId);
-	}
-
-	public static com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink updateKaleoProcessLink(
-		long kaleoProcessId, java.lang.String workflowTaskName,
-		long ddmTemplateId) {
-		return getService()
-				   .updateKaleoProcessLink(kaleoProcessId, workflowTaskName,
-			ddmTemplateId);
 	}
 
 	public static void clearService() {

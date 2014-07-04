@@ -43,6 +43,18 @@ public class KaleoDraftDefinitionLocalServiceWrapper
 		return _kaleoDraftDefinitionLocalService.addKaleoDraftDefinition(kaleoDraftDefinition);
 	}
 
+	@Override
+	public com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition addKaleoDraftDefinition(
+		long userId, long groupId, java.lang.String name,
+		java.util.Map<java.util.Locale, java.lang.String> titleMap,
+		java.lang.String content, int version, int draftVersion,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kaleoDraftDefinitionLocalService.addKaleoDraftDefinition(userId,
+			groupId, name, titleMap, content, version, draftVersion,
+			serviceContext);
+	}
+
 	/**
 	* Creates a new kaleo draft definition with the primary key. Does not add the kaleo draft definition to the database.
 	*
@@ -53,6 +65,18 @@ public class KaleoDraftDefinitionLocalServiceWrapper
 	public com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition createKaleoDraftDefinition(
 		long kaleoDraftDefinitionId) {
 		return _kaleoDraftDefinitionLocalService.createKaleoDraftDefinition(kaleoDraftDefinitionId);
+	}
+
+	/**
+	* Deletes the kaleo draft definition from the database. Also notifies the appropriate model listeners.
+	*
+	* @param kaleoDraftDefinition the kaleo draft definition
+	* @return the kaleo draft definition that was removed
+	*/
+	@Override
+	public com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition deleteKaleoDraftDefinition(
+		com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition kaleoDraftDefinition) {
+		return _kaleoDraftDefinitionLocalService.deleteKaleoDraftDefinition(kaleoDraftDefinition);
 	}
 
 	/**
@@ -69,16 +93,30 @@ public class KaleoDraftDefinitionLocalServiceWrapper
 		return _kaleoDraftDefinitionLocalService.deleteKaleoDraftDefinition(kaleoDraftDefinitionId);
 	}
 
-	/**
-	* Deletes the kaleo draft definition from the database. Also notifies the appropriate model listeners.
-	*
-	* @param kaleoDraftDefinition the kaleo draft definition
-	* @return the kaleo draft definition that was removed
-	*/
 	@Override
 	public com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition deleteKaleoDraftDefinition(
-		com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition kaleoDraftDefinition) {
-		return _kaleoDraftDefinitionLocalService.deleteKaleoDraftDefinition(kaleoDraftDefinition);
+		java.lang.String name, int version, int draftVersion,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kaleoDraftDefinitionLocalService.deleteKaleoDraftDefinition(name,
+			version, draftVersion, serviceContext);
+	}
+
+	@Override
+	public void deleteKaleoDraftDefinitions(java.lang.String name, int version,
+		com.liferay.portal.service.ServiceContext serviceContext) {
+		_kaleoDraftDefinitionLocalService.deleteKaleoDraftDefinitions(name,
+			version, serviceContext);
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kaleoDraftDefinitionLocalService.deletePersistedModel(persistedModel);
 	}
 
 	@Override
@@ -173,6 +211,21 @@ public class KaleoDraftDefinitionLocalServiceWrapper
 		return _kaleoDraftDefinitionLocalService.fetchKaleoDraftDefinition(kaleoDraftDefinitionId);
 	}
 
+	@Override
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return _kaleoDraftDefinitionLocalService.getActionableDynamicQuery();
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	@Override
+	public java.lang.String getBeanIdentifier() {
+		return _kaleoDraftDefinitionLocalService.getBeanIdentifier();
+	}
+
 	/**
 	* Returns the kaleo draft definition with the primary key.
 	*
@@ -188,25 +241,21 @@ public class KaleoDraftDefinitionLocalServiceWrapper
 	}
 
 	@Override
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return _kaleoDraftDefinitionLocalService.getActionableDynamicQuery();
-	}
-
-	/**
-	* @throws PortalException
-	*/
-	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
+	public com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition getKaleoDraftDefinition(
+		java.lang.String name, int version, int draftVersion,
+		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kaleoDraftDefinitionLocalService.deletePersistedModel(persistedModel);
+		return _kaleoDraftDefinitionLocalService.getKaleoDraftDefinition(name,
+			version, draftVersion, serviceContext);
 	}
 
 	@Override
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kaleoDraftDefinitionLocalService.getPersistedModel(primaryKeyObj);
+	public java.util.List<com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition> getKaleoDraftDefinitions(
+		java.lang.String name, int version, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator,
+		com.liferay.portal.service.ServiceContext serviceContext) {
+		return _kaleoDraftDefinitionLocalService.getKaleoDraftDefinitions(name,
+			version, start, end, orderByComparator, serviceContext);
 	}
 
 	/**
@@ -235,92 +284,6 @@ public class KaleoDraftDefinitionLocalServiceWrapper
 	@Override
 	public int getKaleoDraftDefinitionsCount() {
 		return _kaleoDraftDefinitionLocalService.getKaleoDraftDefinitionsCount();
-	}
-
-	/**
-	* Updates the kaleo draft definition in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param kaleoDraftDefinition the kaleo draft definition
-	* @return the kaleo draft definition that was updated
-	*/
-	@Override
-	public com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition updateKaleoDraftDefinition(
-		com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition kaleoDraftDefinition) {
-		return _kaleoDraftDefinitionLocalService.updateKaleoDraftDefinition(kaleoDraftDefinition);
-	}
-
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _kaleoDraftDefinitionLocalService.getBeanIdentifier();
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_kaleoDraftDefinitionLocalService.setBeanIdentifier(beanIdentifier);
-	}
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _kaleoDraftDefinitionLocalService.invokeMethod(name,
-			parameterTypes, arguments);
-	}
-
-	@Override
-	public com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition addKaleoDraftDefinition(
-		long userId, long groupId, java.lang.String name,
-		java.util.Map<java.util.Locale, java.lang.String> titleMap,
-		java.lang.String content, int version, int draftVersion,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kaleoDraftDefinitionLocalService.addKaleoDraftDefinition(userId,
-			groupId, name, titleMap, content, version, draftVersion,
-			serviceContext);
-	}
-
-	@Override
-	public com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition deleteKaleoDraftDefinition(
-		java.lang.String name, int version, int draftVersion,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kaleoDraftDefinitionLocalService.deleteKaleoDraftDefinition(name,
-			version, draftVersion, serviceContext);
-	}
-
-	@Override
-	public void deleteKaleoDraftDefinitions(java.lang.String name, int version,
-		com.liferay.portal.service.ServiceContext serviceContext) {
-		_kaleoDraftDefinitionLocalService.deleteKaleoDraftDefinitions(name,
-			version, serviceContext);
-	}
-
-	@Override
-	public com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition getKaleoDraftDefinition(
-		java.lang.String name, int version, int draftVersion,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kaleoDraftDefinitionLocalService.getKaleoDraftDefinition(name,
-			version, draftVersion, serviceContext);
-	}
-
-	@Override
-	public java.util.List<com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition> getKaleoDraftDefinitions(
-		java.lang.String name, int version, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator,
-		com.liferay.portal.service.ServiceContext serviceContext) {
-		return _kaleoDraftDefinitionLocalService.getKaleoDraftDefinitions(name,
-			version, start, end, orderByComparator, serviceContext);
 	}
 
 	@Override
@@ -354,12 +317,27 @@ public class KaleoDraftDefinitionLocalServiceWrapper
 	}
 
 	@Override
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kaleoDraftDefinitionLocalService.getPersistedModel(primaryKeyObj);
+	}
+
+	@Override
 	public com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition incrementKaleoDraftDefinitionDraftVersion(
 		long userId, java.lang.String name, int version,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kaleoDraftDefinitionLocalService.incrementKaleoDraftDefinitionDraftVersion(userId,
 			name, version, serviceContext);
+	}
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _kaleoDraftDefinitionLocalService.invokeMethod(name,
+			parameterTypes, arguments);
 	}
 
 	@Override
@@ -371,6 +349,28 @@ public class KaleoDraftDefinitionLocalServiceWrapper
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kaleoDraftDefinitionLocalService.publishKaleoDraftDefinition(userId,
 			groupId, name, titleMap, content, serviceContext);
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	@Override
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_kaleoDraftDefinitionLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	/**
+	* Updates the kaleo draft definition in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param kaleoDraftDefinition the kaleo draft definition
+	* @return the kaleo draft definition that was updated
+	*/
+	@Override
+	public com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition updateKaleoDraftDefinition(
+		com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition kaleoDraftDefinition) {
+		return _kaleoDraftDefinitionLocalService.updateKaleoDraftDefinition(kaleoDraftDefinition);
 	}
 
 	@Override

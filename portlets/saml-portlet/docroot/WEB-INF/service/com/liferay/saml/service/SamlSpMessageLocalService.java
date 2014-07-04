@@ -16,6 +16,7 @@ package com.liferay.saml.service;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
@@ -44,6 +45,10 @@ public interface SamlSpMessageLocalService extends BaseLocalService,
 	 *
 	 * Never modify or reference this interface directly. Always use {@link SamlSpMessageLocalServiceUtil} to access the saml sp message local service. Add custom service methods to {@link com.liferay.saml.service.impl.SamlSpMessageLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public com.liferay.saml.model.SamlSpMessage addSamlSpMessage(
+		java.lang.String samlIdpEntityId, java.lang.String samlIdpResponseKey,
+		java.util.Date expirationDate,
+		com.liferay.portal.service.ServiceContext serviceContext);
 
 	/**
 	* Adds the saml sp message to the database. Also notifies the appropriate model listeners.
@@ -51,6 +56,7 @@ public interface SamlSpMessageLocalService extends BaseLocalService,
 	* @param samlSpMessage the saml sp message
 	* @return the saml sp message that was added
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
 	public com.liferay.saml.model.SamlSpMessage addSamlSpMessage(
 		com.liferay.saml.model.SamlSpMessage samlSpMessage);
 
@@ -64,14 +70,11 @@ public interface SamlSpMessageLocalService extends BaseLocalService,
 		long samlSpMessageId);
 
 	/**
-	* Deletes the saml sp message with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param samlSpMessageId the primary key of the saml sp message
-	* @return the saml sp message that was removed
-	* @throws PortalException if a saml sp message with the primary key could not be found
+	* @throws PortalException
 	*/
-	public com.liferay.saml.model.SamlSpMessage deleteSamlSpMessage(
-		long samlSpMessageId)
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
@@ -80,8 +83,21 @@ public interface SamlSpMessageLocalService extends BaseLocalService,
 	* @param samlSpMessage the saml sp message
 	* @return the saml sp message that was removed
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.saml.model.SamlSpMessage deleteSamlSpMessage(
 		com.liferay.saml.model.SamlSpMessage samlSpMessage);
+
+	/**
+	* Deletes the saml sp message with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param samlSpMessageId the primary key of the saml sp message
+	* @return the saml sp message that was removed
+	* @throws PortalException if a saml sp message with the primary key could not be found
+	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
+	public com.liferay.saml.model.SamlSpMessage deleteSamlSpMessage(
+		long samlSpMessageId)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
 
@@ -150,7 +166,32 @@ public interface SamlSpMessageLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.saml.model.SamlSpMessage fetchSamlSpMessage(
+		java.lang.String samlIdpEntityId, java.lang.String samlIdpResponseKey);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.saml.model.SamlSpMessage fetchSamlSpMessage(
 		long samlSpMessageId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier();
+
+	@Override
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.saml.model.SamlSpMessage getSamlSpMessage(
+		java.lang.String samlIdpEntityId, java.lang.String samlIdpResponseKey)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Returns the saml sp message with the primary key.
@@ -162,23 +203,6 @@ public interface SamlSpMessageLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.saml.model.SamlSpMessage getSamlSpMessage(
 		long samlSpMessageId)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
-
-	/**
-	* @throws PortalException
-	*/
-	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Override
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
@@ -204,21 +228,10 @@ public interface SamlSpMessageLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getSamlSpMessagesCount();
 
-	/**
-	* Updates the saml sp message in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param samlSpMessage the saml sp message
-	* @return the saml sp message that was updated
-	*/
-	public com.liferay.saml.model.SamlSpMessage updateSamlSpMessage(
-		com.liferay.saml.model.SamlSpMessage samlSpMessage);
-
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public java.lang.String getBeanIdentifier();
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
 
 	/**
 	* Sets the Spring bean ID for this bean.
@@ -227,22 +240,13 @@ public interface SamlSpMessageLocalService extends BaseLocalService,
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier);
 
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
-
-	public com.liferay.saml.model.SamlSpMessage addSamlSpMessage(
-		java.lang.String samlIdpEntityId, java.lang.String samlIdpResponseKey,
-		java.util.Date expirationDate,
-		com.liferay.portal.service.ServiceContext serviceContext);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.saml.model.SamlSpMessage fetchSamlSpMessage(
-		java.lang.String samlIdpEntityId, java.lang.String samlIdpResponseKey);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.saml.model.SamlSpMessage getSamlSpMessage(
-		java.lang.String samlIdpEntityId, java.lang.String samlIdpResponseKey)
-		throws com.liferay.portal.kernel.exception.PortalException;
+	/**
+	* Updates the saml sp message in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param samlSpMessage the saml sp message
+	* @return the saml sp message that was updated
+	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
+	public com.liferay.saml.model.SamlSpMessage updateSamlSpMessage(
+		com.liferay.saml.model.SamlSpMessage samlSpMessage);
 }

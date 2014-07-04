@@ -30,6 +30,13 @@ public class KaleoProcessLinkServiceWrapper implements KaleoProcessLinkService,
 		_kaleoProcessLinkService = kaleoProcessLinkService;
 	}
 
+	@Override
+	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink fetchKaleoProcessLink(
+		long kaleoProcessId, java.lang.String workflowTaskName) {
+		return _kaleoProcessLinkService.fetchKaleoProcessLink(kaleoProcessId,
+			workflowTaskName);
+	}
+
 	/**
 	* Returns the Spring bean ID for this bean.
 	*
@@ -38,6 +45,14 @@ public class KaleoProcessLinkServiceWrapper implements KaleoProcessLinkService,
 	@Override
 	public java.lang.String getBeanIdentifier() {
 		return _kaleoProcessLinkService.getBeanIdentifier();
+	}
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _kaleoProcessLinkService.invokeMethod(name, parameterTypes,
+			arguments);
 	}
 
 	/**
@@ -51,18 +66,11 @@ public class KaleoProcessLinkServiceWrapper implements KaleoProcessLinkService,
 	}
 
 	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _kaleoProcessLinkService.invokeMethod(name, parameterTypes,
-			arguments);
-	}
-
-	@Override
-	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink fetchKaleoProcessLink(
-		long kaleoProcessId, java.lang.String workflowTaskName) {
-		return _kaleoProcessLinkService.fetchKaleoProcessLink(kaleoProcessId,
-			workflowTaskName);
+	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink updateKaleoProcessLink(
+		long kaleoProcessId, java.lang.String workflowTaskName,
+		long ddmTemplateId) {
+		return _kaleoProcessLinkService.updateKaleoProcessLink(kaleoProcessId,
+			workflowTaskName, ddmTemplateId);
 	}
 
 	@Override
@@ -72,14 +80,6 @@ public class KaleoProcessLinkServiceWrapper implements KaleoProcessLinkService,
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kaleoProcessLinkService.updateKaleoProcessLink(kaleoProcessLinkId,
 			kaleoProcessId, workflowTaskName, ddmTemplateId);
-	}
-
-	@Override
-	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink updateKaleoProcessLink(
-		long kaleoProcessId, java.lang.String workflowTaskName,
-		long ddmTemplateId) {
-		return _kaleoProcessLinkService.updateKaleoProcessLink(kaleoProcessId,
-			workflowTaskName, ddmTemplateId);
 	}
 
 	/**

@@ -38,6 +38,14 @@ public class WebExAccountLocalServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link com.liferay.meeting.webex.service.impl.WebExAccountLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static void addWebExAccount(long userId, long groupId,
+		long webExSiteId, java.lang.String login, java.lang.String password,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		getService()
+			.addWebExAccount(userId, groupId, webExSiteId, login, password,
+			serviceContext);
+	}
 
 	/**
 	* Adds the web ex account to the database. Also notifies the appropriate model listeners.
@@ -62,16 +70,12 @@ public class WebExAccountLocalServiceUtil {
 	}
 
 	/**
-	* Deletes the web ex account with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param webExAccountId the primary key of the web ex account
-	* @return the web ex account that was removed
-	* @throws PortalException if a web ex account with the primary key could not be found
+	* @throws PortalException
 	*/
-	public static com.liferay.meeting.webex.model.WebExAccount deleteWebExAccount(
-		long webExAccountId)
+	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().deleteWebExAccount(webExAccountId);
+		return getService().deletePersistedModel(persistedModel);
 	}
 
 	/**
@@ -85,6 +89,25 @@ public class WebExAccountLocalServiceUtil {
 		com.liferay.meeting.webex.model.WebExAccount webExAccount)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteWebExAccount(webExAccount);
+	}
+
+	/**
+	* Deletes the web ex account with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param webExAccountId the primary key of the web ex account
+	* @return the web ex account that was removed
+	* @throws PortalException if a web ex account with the primary key could not be found
+	*/
+	public static com.liferay.meeting.webex.model.WebExAccount deleteWebExAccount(
+		long webExAccountId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deleteWebExAccount(webExAccountId);
+	}
+
+	public static void deleteWebExSiteWebExAccounts(long groupId,
+		long webExSiteId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		getService().deleteWebExSiteWebExAccounts(groupId, webExSiteId);
 	}
 
 	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
@@ -194,6 +217,30 @@ public class WebExAccountLocalServiceUtil {
 		return getService().fetchWebExAccountByUuidAndGroupId(uuid, groupId);
 	}
 
+	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return getService().getActionableDynamicQuery();
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public static java.lang.String getBeanIdentifier() {
+		return getService().getBeanIdentifier();
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
+		com.liferay.portal.kernel.lar.PortletDataContext portletDataContext) {
+		return getService().getExportActionableDynamicQuery(portletDataContext);
+	}
+
+	public static com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getPersistedModel(primaryKeyObj);
+	}
+
 	/**
 	* Returns the web ex account with the primary key.
 	*
@@ -205,30 +252,6 @@ public class WebExAccountLocalServiceUtil {
 		long webExAccountId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getWebExAccount(webExAccountId);
-	}
-
-	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return getService().getActionableDynamicQuery();
-	}
-
-	public static com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
-		com.liferay.portal.kernel.lar.PortletDataContext portletDataContext) {
-		return getService().getExportActionableDynamicQuery(portletDataContext);
-	}
-
-	/**
-	* @throws PortalException
-	*/
-	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().deletePersistedModel(persistedModel);
-	}
-
-	public static com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getPersistedModel(primaryKeyObj);
 	}
 
 	/**
@@ -284,56 +307,6 @@ public class WebExAccountLocalServiceUtil {
 		return getService().getWebExAccountsCount();
 	}
 
-	/**
-	* Updates the web ex account in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param webExAccount the web ex account
-	* @return the web ex account that was updated
-	*/
-	public static com.liferay.meeting.webex.model.WebExAccount updateWebExAccount(
-		com.liferay.meeting.webex.model.WebExAccount webExAccount) {
-		return getService().updateWebExAccount(webExAccount);
-	}
-
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public static java.lang.String getBeanIdentifier() {
-		return getService().getBeanIdentifier();
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
-		getService().setBeanIdentifier(beanIdentifier);
-	}
-
-	public static java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return getService().invokeMethod(name, parameterTypes, arguments);
-	}
-
-	public static void addWebExAccount(long userId, long groupId,
-		long webExSiteId, java.lang.String login, java.lang.String password,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		getService()
-			.addWebExAccount(userId, groupId, webExSiteId, login, password,
-			serviceContext);
-	}
-
-	public static void deleteWebExSiteWebExAccounts(long groupId,
-		long webExSiteId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		getService().deleteWebExSiteWebExAccounts(groupId, webExSiteId);
-	}
-
 	public static java.util.List<com.liferay.meeting.webex.model.WebExAccount> getWebExSiteWebExAccounts(
 		long groupId, long webExSiteId) {
 		return getService().getWebExSiteWebExAccounts(groupId, webExSiteId);
@@ -356,6 +329,32 @@ public class WebExAccountLocalServiceUtil {
 	public static int getWebExSiteWebExAccountsCount(long groupId,
 		long webExSiteId) {
 		return getService().getWebExSiteWebExAccountsCount(groupId, webExSiteId);
+	}
+
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
+		getService().setBeanIdentifier(beanIdentifier);
+	}
+
+	/**
+	* Updates the web ex account in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param webExAccount the web ex account
+	* @return the web ex account that was updated
+	*/
+	public static com.liferay.meeting.webex.model.WebExAccount updateWebExAccount(
+		com.liferay.meeting.webex.model.WebExAccount webExAccount) {
+		return getService().updateWebExAccount(webExAccount);
 	}
 
 	public static void updateWebExAccount(long webExAccountId,

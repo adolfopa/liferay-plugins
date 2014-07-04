@@ -31,6 +31,22 @@ public class SamlSpIdpConnectionLocalServiceWrapper
 		_samlSpIdpConnectionLocalService = samlSpIdpConnectionLocalService;
 	}
 
+	@Override
+	public com.liferay.saml.model.SamlSpIdpConnection addSamlSpIdpConnection(
+		java.lang.String samlIdpEntityId, boolean assertionSignatureRequired,
+		long clockSkew, boolean enabled, boolean ldapImportEnabled,
+		java.lang.String metadataUrl,
+		java.io.InputStream metadataXmlInputStream, java.lang.String name,
+		java.lang.String nameIdFormat, boolean signAuthnRequest,
+		java.lang.String userAttributeMappings,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _samlSpIdpConnectionLocalService.addSamlSpIdpConnection(samlIdpEntityId,
+			assertionSignatureRequired, clockSkew, enabled, ldapImportEnabled,
+			metadataUrl, metadataXmlInputStream, name, nameIdFormat,
+			signAuthnRequest, userAttributeMappings, serviceContext);
+	}
+
 	/**
 	* Adds the saml sp idp connection to the database. Also notifies the appropriate model listeners.
 	*
@@ -56,17 +72,13 @@ public class SamlSpIdpConnectionLocalServiceWrapper
 	}
 
 	/**
-	* Deletes the saml sp idp connection with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param samlSpIdpConnectionId the primary key of the saml sp idp connection
-	* @return the saml sp idp connection that was removed
-	* @throws PortalException if a saml sp idp connection with the primary key could not be found
+	* @throws PortalException
 	*/
 	@Override
-	public com.liferay.saml.model.SamlSpIdpConnection deleteSamlSpIdpConnection(
-		long samlSpIdpConnectionId)
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _samlSpIdpConnectionLocalService.deleteSamlSpIdpConnection(samlSpIdpConnectionId);
+		return _samlSpIdpConnectionLocalService.deletePersistedModel(persistedModel);
 	}
 
 	/**
@@ -79,6 +91,20 @@ public class SamlSpIdpConnectionLocalServiceWrapper
 	public com.liferay.saml.model.SamlSpIdpConnection deleteSamlSpIdpConnection(
 		com.liferay.saml.model.SamlSpIdpConnection samlSpIdpConnection) {
 		return _samlSpIdpConnectionLocalService.deleteSamlSpIdpConnection(samlSpIdpConnection);
+	}
+
+	/**
+	* Deletes the saml sp idp connection with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param samlSpIdpConnectionId the primary key of the saml sp idp connection
+	* @return the saml sp idp connection that was removed
+	* @throws PortalException if a saml sp idp connection with the primary key could not be found
+	*/
+	@Override
+	public com.liferay.saml.model.SamlSpIdpConnection deleteSamlSpIdpConnection(
+		long samlSpIdpConnectionId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _samlSpIdpConnectionLocalService.deleteSamlSpIdpConnection(samlSpIdpConnectionId);
 	}
 
 	@Override
@@ -173,6 +199,36 @@ public class SamlSpIdpConnectionLocalServiceWrapper
 		return _samlSpIdpConnectionLocalService.fetchSamlSpIdpConnection(samlSpIdpConnectionId);
 	}
 
+	@Override
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return _samlSpIdpConnectionLocalService.getActionableDynamicQuery();
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	@Override
+	public java.lang.String getBeanIdentifier() {
+		return _samlSpIdpConnectionLocalService.getBeanIdentifier();
+	}
+
+	@Override
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _samlSpIdpConnectionLocalService.getPersistedModel(primaryKeyObj);
+	}
+
+	@Override
+	public com.liferay.saml.model.SamlSpIdpConnection getSamlSpIdpConnection(
+		long companyId, java.lang.String samlIdpEntityId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _samlSpIdpConnectionLocalService.getSamlSpIdpConnection(companyId,
+			samlIdpEntityId);
+	}
+
 	/**
 	* Returns the saml sp idp connection with the primary key.
 	*
@@ -188,25 +244,24 @@ public class SamlSpIdpConnectionLocalServiceWrapper
 	}
 
 	@Override
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return _samlSpIdpConnectionLocalService.getActionableDynamicQuery();
-	}
-
-	/**
-	* @throws PortalException
-	*/
-	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _samlSpIdpConnectionLocalService.deletePersistedModel(persistedModel);
+	public java.util.List<com.liferay.saml.model.SamlSpIdpConnection> getSamlSpIdpConnections(
+		long companyId) {
+		return _samlSpIdpConnectionLocalService.getSamlSpIdpConnections(companyId);
 	}
 
 	@Override
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _samlSpIdpConnectionLocalService.getPersistedModel(primaryKeyObj);
+	public java.util.List<com.liferay.saml.model.SamlSpIdpConnection> getSamlSpIdpConnections(
+		long companyId, int start, int end) {
+		return _samlSpIdpConnectionLocalService.getSamlSpIdpConnections(companyId,
+			start, end);
+	}
+
+	@Override
+	public java.util.List<com.liferay.saml.model.SamlSpIdpConnection> getSamlSpIdpConnections(
+		long companyId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		return _samlSpIdpConnectionLocalService.getSamlSpIdpConnections(companyId,
+			start, end, orderByComparator);
 	}
 
 	/**
@@ -237,26 +292,17 @@ public class SamlSpIdpConnectionLocalServiceWrapper
 		return _samlSpIdpConnectionLocalService.getSamlSpIdpConnectionsCount();
 	}
 
-	/**
-	* Updates the saml sp idp connection in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param samlSpIdpConnection the saml sp idp connection
-	* @return the saml sp idp connection that was updated
-	*/
 	@Override
-	public com.liferay.saml.model.SamlSpIdpConnection updateSamlSpIdpConnection(
-		com.liferay.saml.model.SamlSpIdpConnection samlSpIdpConnection) {
-		return _samlSpIdpConnectionLocalService.updateSamlSpIdpConnection(samlSpIdpConnection);
+	public int getSamlSpIdpConnectionsCount(long companyId) {
+		return _samlSpIdpConnectionLocalService.getSamlSpIdpConnectionsCount(companyId);
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
 	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _samlSpIdpConnectionLocalService.getBeanIdentifier();
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _samlSpIdpConnectionLocalService.invokeMethod(name,
+			parameterTypes, arguments);
 	}
 
 	/**
@@ -270,67 +316,21 @@ public class SamlSpIdpConnectionLocalServiceWrapper
 	}
 
 	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _samlSpIdpConnectionLocalService.invokeMethod(name,
-			parameterTypes, arguments);
-	}
-
-	@Override
-	public com.liferay.saml.model.SamlSpIdpConnection addSamlSpIdpConnection(
-		java.lang.String samlIdpEntityId, boolean assertionSignatureRequired,
-		long clockSkew, boolean enabled, boolean ldapImportEnabled,
-		java.lang.String metadataUrl,
-		java.io.InputStream metadataXmlInputStream, java.lang.String name,
-		java.lang.String nameIdFormat, boolean signAuthnRequest,
-		java.lang.String userAttributeMappings,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _samlSpIdpConnectionLocalService.addSamlSpIdpConnection(samlIdpEntityId,
-			assertionSignatureRequired, clockSkew, enabled, ldapImportEnabled,
-			metadataUrl, metadataXmlInputStream, name, nameIdFormat,
-			signAuthnRequest, userAttributeMappings, serviceContext);
-	}
-
-	@Override
-	public com.liferay.saml.model.SamlSpIdpConnection getSamlSpIdpConnection(
-		long companyId, java.lang.String samlIdpEntityId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _samlSpIdpConnectionLocalService.getSamlSpIdpConnection(companyId,
-			samlIdpEntityId);
-	}
-
-	@Override
-	public java.util.List<com.liferay.saml.model.SamlSpIdpConnection> getSamlSpIdpConnections(
-		long companyId) {
-		return _samlSpIdpConnectionLocalService.getSamlSpIdpConnections(companyId);
-	}
-
-	@Override
-	public java.util.List<com.liferay.saml.model.SamlSpIdpConnection> getSamlSpIdpConnections(
-		long companyId, int start, int end) {
-		return _samlSpIdpConnectionLocalService.getSamlSpIdpConnections(companyId,
-			start, end);
-	}
-
-	@Override
-	public java.util.List<com.liferay.saml.model.SamlSpIdpConnection> getSamlSpIdpConnections(
-		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
-		return _samlSpIdpConnectionLocalService.getSamlSpIdpConnections(companyId,
-			start, end, orderByComparator);
-	}
-
-	@Override
-	public int getSamlSpIdpConnectionsCount(long companyId) {
-		return _samlSpIdpConnectionLocalService.getSamlSpIdpConnectionsCount(companyId);
-	}
-
-	@Override
 	public void updateMetadata(long samlSpIdpConnectionId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		_samlSpIdpConnectionLocalService.updateMetadata(samlSpIdpConnectionId);
+	}
+
+	/**
+	* Updates the saml sp idp connection in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param samlSpIdpConnection the saml sp idp connection
+	* @return the saml sp idp connection that was updated
+	*/
+	@Override
+	public com.liferay.saml.model.SamlSpIdpConnection updateSamlSpIdpConnection(
+		com.liferay.saml.model.SamlSpIdpConnection samlSpIdpConnection) {
+		return _samlSpIdpConnectionLocalService.updateSamlSpIdpConnection(samlSpIdpConnection);
 	}
 
 	@Override

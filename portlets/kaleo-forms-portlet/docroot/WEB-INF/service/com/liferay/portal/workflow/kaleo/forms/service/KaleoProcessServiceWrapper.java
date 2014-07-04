@@ -29,33 +29,6 @@ public class KaleoProcessServiceWrapper implements KaleoProcessService,
 		_kaleoProcessService = kaleoProcessService;
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _kaleoProcessService.getBeanIdentifier();
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_kaleoProcessService.setBeanIdentifier(beanIdentifier);
-	}
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _kaleoProcessService.invokeMethod(name, parameterTypes, arguments);
-	}
-
 	@Override
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess addKaleoProcess(
 		long groupId, long ddlRecordSetId, long ddmTemplateId,
@@ -82,6 +55,16 @@ public class KaleoProcessServiceWrapper implements KaleoProcessService,
 		_kaleoProcessService.deleteKaleoProcessData(kaleoProcessId);
 	}
 
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	@Override
+	public java.lang.String getBeanIdentifier() {
+		return _kaleoProcessService.getBeanIdentifier();
+	}
+
 	@Override
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess getKaleoProcess(
 		long kaleoProcessId)
@@ -100,6 +83,23 @@ public class KaleoProcessServiceWrapper implements KaleoProcessService,
 	@Override
 	public int getKaleoProcessesCount(long groupId) {
 		return _kaleoProcessService.getKaleoProcessesCount(groupId);
+	}
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _kaleoProcessService.invokeMethod(name, parameterTypes, arguments);
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	@Override
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_kaleoProcessService.setBeanIdentifier(beanIdentifier);
 	}
 
 	@Override

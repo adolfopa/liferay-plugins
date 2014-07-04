@@ -29,33 +29,6 @@ public class SourceServiceWrapper implements SourceService,
 		_sourceService = sourceService;
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _sourceService.getBeanIdentifier();
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_sourceService.setBeanIdentifier(beanIdentifier);
-	}
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _sourceService.invokeMethod(name, parameterTypes, arguments);
-	}
-
 	@Override
 	public com.liferay.reports.model.Source addSource(long groupId,
 		java.util.Map<java.util.Locale, java.lang.String> nameMap,
@@ -71,6 +44,16 @@ public class SourceServiceWrapper implements SourceService,
 	public com.liferay.reports.model.Source deleteSource(long sourceId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _sourceService.deleteSource(sourceId);
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	@Override
+	public java.lang.String getBeanIdentifier() {
+		return _sourceService.getBeanIdentifier();
 	}
 
 	@Override
@@ -94,6 +77,23 @@ public class SourceServiceWrapper implements SourceService,
 		java.lang.String driverUrl, boolean andSearch) {
 		return _sourceService.getSourcesCount(groupId, name, driverUrl,
 			andSearch);
+	}
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _sourceService.invokeMethod(name, parameterTypes, arguments);
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	@Override
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_sourceService.setBeanIdentifier(beanIdentifier);
 	}
 
 	@Override

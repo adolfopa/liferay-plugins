@@ -29,33 +29,6 @@ public class WebExSiteServiceWrapper implements WebExSiteService,
 		_webExSiteService = webExSiteService;
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _webExSiteService.getBeanIdentifier();
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_webExSiteService.setBeanIdentifier(beanIdentifier);
-	}
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _webExSiteService.invokeMethod(name, parameterTypes, arguments);
-	}
-
 	@Override
 	public void addWebExSite(long groupId, java.lang.String name,
 		java.lang.String apiURL, java.lang.String login,
@@ -80,6 +53,16 @@ public class WebExSiteServiceWrapper implements WebExSiteService,
 		return _webExSiteService.fetchSiteKeyWebExSite(siteKey);
 	}
 
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	@Override
+	public java.lang.String getBeanIdentifier() {
+		return _webExSiteService.getBeanIdentifier();
+	}
+
 	@Override
 	public com.liferay.meeting.webex.model.WebExSite getWebExSite(
 		long webExSiteId)
@@ -97,6 +80,23 @@ public class WebExSiteServiceWrapper implements WebExSiteService,
 	@Override
 	public int getWebExSitesCount(long groupId) {
 		return _webExSiteService.getWebExSitesCount(groupId);
+	}
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _webExSiteService.invokeMethod(name, parameterTypes, arguments);
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	@Override
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_webExSiteService.setBeanIdentifier(beanIdentifier);
 	}
 
 	@Override

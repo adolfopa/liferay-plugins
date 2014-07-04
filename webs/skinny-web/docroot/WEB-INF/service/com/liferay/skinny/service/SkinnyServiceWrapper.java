@@ -39,23 +39,6 @@ public class SkinnyServiceWrapper implements SkinnyService,
 		return _skinnyService.getBeanIdentifier();
 	}
 
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_skinnyService.setBeanIdentifier(beanIdentifier);
-	}
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _skinnyService.invokeMethod(name, parameterTypes, arguments);
-	}
-
 	@Override
 	public java.util.List<com.liferay.skinny.model.SkinnyDDLRecord> getSkinnyDDLRecords(
 		long ddlRecordSetId) throws java.lang.Exception {
@@ -69,6 +52,23 @@ public class SkinnyServiceWrapper implements SkinnyService,
 		throws java.lang.Exception {
 		return _skinnyService.getSkinnyJournalArticles(companyId, groupName,
 			journalStructureId, locale);
+	}
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _skinnyService.invokeMethod(name, parameterTypes, arguments);
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	@Override
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_skinnyService.setBeanIdentifier(beanIdentifier);
 	}
 
 	/**

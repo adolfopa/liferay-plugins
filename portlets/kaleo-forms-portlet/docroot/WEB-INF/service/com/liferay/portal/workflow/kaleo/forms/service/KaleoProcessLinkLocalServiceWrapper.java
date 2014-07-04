@@ -31,6 +31,14 @@ public class KaleoProcessLinkLocalServiceWrapper
 		_kaleoProcessLinkLocalService = kaleoProcessLinkLocalService;
 	}
 
+	@Override
+	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink addKaleoProcessLink(
+		long kaleoProcessId, java.lang.String workflowTaskName,
+		long ddmTemplateId) {
+		return _kaleoProcessLinkLocalService.addKaleoProcessLink(kaleoProcessId,
+			workflowTaskName, ddmTemplateId);
+	}
+
 	/**
 	* Adds the kaleo process link to the database. Also notifies the appropriate model listeners.
 	*
@@ -56,6 +64,18 @@ public class KaleoProcessLinkLocalServiceWrapper
 	}
 
 	/**
+	* Deletes the kaleo process link from the database. Also notifies the appropriate model listeners.
+	*
+	* @param kaleoProcessLink the kaleo process link
+	* @return the kaleo process link that was removed
+	*/
+	@Override
+	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink deleteKaleoProcessLink(
+		com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink kaleoProcessLink) {
+		return _kaleoProcessLinkLocalService.deleteKaleoProcessLink(kaleoProcessLink);
+	}
+
+	/**
 	* Deletes the kaleo process link with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoProcessLinkId the primary key of the kaleo process link
@@ -69,16 +89,19 @@ public class KaleoProcessLinkLocalServiceWrapper
 		return _kaleoProcessLinkLocalService.deleteKaleoProcessLink(kaleoProcessLinkId);
 	}
 
+	@Override
+	public void deleteKaleoProcessLinks(long kaleoProcessId) {
+		_kaleoProcessLinkLocalService.deleteKaleoProcessLinks(kaleoProcessId);
+	}
+
 	/**
-	* Deletes the kaleo process link from the database. Also notifies the appropriate model listeners.
-	*
-	* @param kaleoProcessLink the kaleo process link
-	* @return the kaleo process link that was removed
+	* @throws PortalException
 	*/
 	@Override
-	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink deleteKaleoProcessLink(
-		com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink kaleoProcessLink) {
-		return _kaleoProcessLinkLocalService.deleteKaleoProcessLink(kaleoProcessLink);
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kaleoProcessLinkLocalService.deletePersistedModel(persistedModel);
 	}
 
 	@Override
@@ -169,8 +192,30 @@ public class KaleoProcessLinkLocalServiceWrapper
 
 	@Override
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink fetchKaleoProcessLink(
+		long kaleoProcessId, java.lang.String workflowTaskName) {
+		return _kaleoProcessLinkLocalService.fetchKaleoProcessLink(kaleoProcessId,
+			workflowTaskName);
+	}
+
+	@Override
+	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink fetchKaleoProcessLink(
 		long kaleoProcessLinkId) {
 		return _kaleoProcessLinkLocalService.fetchKaleoProcessLink(kaleoProcessLinkId);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return _kaleoProcessLinkLocalService.getActionableDynamicQuery();
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	@Override
+	public java.lang.String getBeanIdentifier() {
+		return _kaleoProcessLinkLocalService.getBeanIdentifier();
 	}
 
 	/**
@@ -188,25 +233,9 @@ public class KaleoProcessLinkLocalServiceWrapper
 	}
 
 	@Override
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return _kaleoProcessLinkLocalService.getActionableDynamicQuery();
-	}
-
-	/**
-	* @throws PortalException
-	*/
-	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kaleoProcessLinkLocalService.deletePersistedModel(persistedModel);
-	}
-
-	@Override
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kaleoProcessLinkLocalService.getPersistedModel(primaryKeyObj);
+	public java.util.List<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink> getKaleoProcessLinks(
+		long kaleoProcessId) {
+		return _kaleoProcessLinkLocalService.getKaleoProcessLinks(kaleoProcessId);
 	}
 
 	/**
@@ -236,26 +265,19 @@ public class KaleoProcessLinkLocalServiceWrapper
 		return _kaleoProcessLinkLocalService.getKaleoProcessLinksCount();
 	}
 
-	/**
-	* Updates the kaleo process link in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param kaleoProcessLink the kaleo process link
-	* @return the kaleo process link that was updated
-	*/
 	@Override
-	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink updateKaleoProcessLink(
-		com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink kaleoProcessLink) {
-		return _kaleoProcessLinkLocalService.updateKaleoProcessLink(kaleoProcessLink);
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kaleoProcessLinkLocalService.getPersistedModel(primaryKeyObj);
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
 	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _kaleoProcessLinkLocalService.getBeanIdentifier();
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _kaleoProcessLinkLocalService.invokeMethod(name, parameterTypes,
+			arguments);
 	}
 
 	/**
@@ -269,37 +291,23 @@ public class KaleoProcessLinkLocalServiceWrapper
 	}
 
 	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _kaleoProcessLinkLocalService.invokeMethod(name, parameterTypes,
-			arguments);
-	}
-
-	@Override
-	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink addKaleoProcessLink(
+	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink updateKaleoProcessLink(
 		long kaleoProcessId, java.lang.String workflowTaskName,
 		long ddmTemplateId) {
-		return _kaleoProcessLinkLocalService.addKaleoProcessLink(kaleoProcessId,
+		return _kaleoProcessLinkLocalService.updateKaleoProcessLink(kaleoProcessId,
 			workflowTaskName, ddmTemplateId);
 	}
 
+	/**
+	* Updates the kaleo process link in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param kaleoProcessLink the kaleo process link
+	* @return the kaleo process link that was updated
+	*/
 	@Override
-	public void deleteKaleoProcessLinks(long kaleoProcessId) {
-		_kaleoProcessLinkLocalService.deleteKaleoProcessLinks(kaleoProcessId);
-	}
-
-	@Override
-	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink fetchKaleoProcessLink(
-		long kaleoProcessId, java.lang.String workflowTaskName) {
-		return _kaleoProcessLinkLocalService.fetchKaleoProcessLink(kaleoProcessId,
-			workflowTaskName);
-	}
-
-	@Override
-	public java.util.List<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink> getKaleoProcessLinks(
-		long kaleoProcessId) {
-		return _kaleoProcessLinkLocalService.getKaleoProcessLinks(kaleoProcessId);
+	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink updateKaleoProcessLink(
+		com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink kaleoProcessLink) {
+		return _kaleoProcessLinkLocalService.updateKaleoProcessLink(kaleoProcessLink);
 	}
 
 	@Override
@@ -317,14 +325,6 @@ public class KaleoProcessLinkLocalServiceWrapper
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kaleoProcessLinkLocalService.updateKaleoProcessLink(kaleoProcessLinkId,
 			kaleoProcessId, workflowTaskName, ddmTemplateId);
-	}
-
-	@Override
-	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink updateKaleoProcessLink(
-		long kaleoProcessId, java.lang.String workflowTaskName,
-		long ddmTemplateId) {
-		return _kaleoProcessLinkLocalService.updateKaleoProcessLink(kaleoProcessId,
-			workflowTaskName, ddmTemplateId);
 	}
 
 	/**

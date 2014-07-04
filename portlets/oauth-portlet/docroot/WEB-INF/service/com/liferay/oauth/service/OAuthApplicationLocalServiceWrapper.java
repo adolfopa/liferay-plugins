@@ -43,6 +43,18 @@ public class OAuthApplicationLocalServiceWrapper
 		return _oAuthApplicationLocalService.addOAuthApplication(oAuthApplication);
 	}
 
+	@Override
+	public com.liferay.oauth.model.OAuthApplication addOAuthApplication(
+		long userId, java.lang.String name, java.lang.String description,
+		int accessLevel, boolean shareableAccessToken,
+		java.lang.String callbackURI, java.lang.String websiteURL,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _oAuthApplicationLocalService.addOAuthApplication(userId, name,
+			description, accessLevel, shareableAccessToken, callbackURI,
+			websiteURL, serviceContext);
+	}
+
 	/**
 	* Creates a new o auth application with the primary key. Does not add the o auth application to the database.
 	*
@@ -53,6 +65,26 @@ public class OAuthApplicationLocalServiceWrapper
 	public com.liferay.oauth.model.OAuthApplication createOAuthApplication(
 		long oAuthApplicationId) {
 		return _oAuthApplicationLocalService.createOAuthApplication(oAuthApplicationId);
+	}
+
+	@Override
+	public void deleteLogo(long oAuthApplicationId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		_oAuthApplicationLocalService.deleteLogo(oAuthApplicationId);
+	}
+
+	/**
+	* Deletes the o auth application from the database. Also notifies the appropriate model listeners.
+	*
+	* @param oAuthApplication the o auth application
+	* @return the o auth application that was removed
+	* @throws PortalException
+	*/
+	@Override
+	public com.liferay.oauth.model.OAuthApplication deleteOAuthApplication(
+		com.liferay.oauth.model.OAuthApplication oAuthApplication)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _oAuthApplicationLocalService.deleteOAuthApplication(oAuthApplication);
 	}
 
 	/**
@@ -70,17 +102,13 @@ public class OAuthApplicationLocalServiceWrapper
 	}
 
 	/**
-	* Deletes the o auth application from the database. Also notifies the appropriate model listeners.
-	*
-	* @param oAuthApplication the o auth application
-	* @return the o auth application that was removed
 	* @throws PortalException
 	*/
 	@Override
-	public com.liferay.oauth.model.OAuthApplication deleteOAuthApplication(
-		com.liferay.oauth.model.OAuthApplication oAuthApplication)
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _oAuthApplicationLocalService.deleteOAuthApplication(oAuthApplication);
+		return _oAuthApplicationLocalService.deletePersistedModel(persistedModel);
 	}
 
 	@Override
@@ -171,8 +199,36 @@ public class OAuthApplicationLocalServiceWrapper
 
 	@Override
 	public com.liferay.oauth.model.OAuthApplication fetchOAuthApplication(
+		java.lang.String consumerKey) {
+		return _oAuthApplicationLocalService.fetchOAuthApplication(consumerKey);
+	}
+
+	@Override
+	public com.liferay.oauth.model.OAuthApplication fetchOAuthApplication(
 		long oAuthApplicationId) {
 		return _oAuthApplicationLocalService.fetchOAuthApplication(oAuthApplicationId);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return _oAuthApplicationLocalService.getActionableDynamicQuery();
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	@Override
+	public java.lang.String getBeanIdentifier() {
+		return _oAuthApplicationLocalService.getBeanIdentifier();
+	}
+
+	@Override
+	public com.liferay.oauth.model.OAuthApplication getOAuthApplication(
+		java.lang.String consumerKey)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _oAuthApplicationLocalService.getOAuthApplication(consumerKey);
 	}
 
 	/**
@@ -190,25 +246,11 @@ public class OAuthApplicationLocalServiceWrapper
 	}
 
 	@Override
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return _oAuthApplicationLocalService.getActionableDynamicQuery();
-	}
-
-	/**
-	* @throws PortalException
-	*/
-	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _oAuthApplicationLocalService.deletePersistedModel(persistedModel);
-	}
-
-	@Override
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _oAuthApplicationLocalService.getPersistedModel(primaryKeyObj);
+	public java.util.List<com.liferay.oauth.model.OAuthApplication> getOAuthApplications(
+		long companyId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		return _oAuthApplicationLocalService.getOAuthApplications(companyId,
+			start, end, orderByComparator);
 	}
 
 	/**
@@ -238,36 +280,16 @@ public class OAuthApplicationLocalServiceWrapper
 		return _oAuthApplicationLocalService.getOAuthApplicationsCount();
 	}
 
-	/**
-	* Updates the o auth application in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param oAuthApplication the o auth application
-	* @return the o auth application that was updated
-	*/
 	@Override
-	public com.liferay.oauth.model.OAuthApplication updateOAuthApplication(
-		com.liferay.oauth.model.OAuthApplication oAuthApplication) {
-		return _oAuthApplicationLocalService.updateOAuthApplication(oAuthApplication);
+	public int getOAuthApplicationsCount(long companyId) {
+		return _oAuthApplicationLocalService.getOAuthApplicationsCount(companyId);
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
 	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _oAuthApplicationLocalService.getBeanIdentifier();
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_oAuthApplicationLocalService.setBeanIdentifier(beanIdentifier);
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _oAuthApplicationLocalService.getPersistedModel(primaryKeyObj);
 	}
 
 	@Override
@@ -276,50 +298,6 @@ public class OAuthApplicationLocalServiceWrapper
 		throws java.lang.Throwable {
 		return _oAuthApplicationLocalService.invokeMethod(name, parameterTypes,
 			arguments);
-	}
-
-	@Override
-	public com.liferay.oauth.model.OAuthApplication addOAuthApplication(
-		long userId, java.lang.String name, java.lang.String description,
-		int accessLevel, boolean shareableAccessToken,
-		java.lang.String callbackURI, java.lang.String websiteURL,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _oAuthApplicationLocalService.addOAuthApplication(userId, name,
-			description, accessLevel, shareableAccessToken, callbackURI,
-			websiteURL, serviceContext);
-	}
-
-	@Override
-	public void deleteLogo(long oAuthApplicationId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		_oAuthApplicationLocalService.deleteLogo(oAuthApplicationId);
-	}
-
-	@Override
-	public com.liferay.oauth.model.OAuthApplication fetchOAuthApplication(
-		java.lang.String consumerKey) {
-		return _oAuthApplicationLocalService.fetchOAuthApplication(consumerKey);
-	}
-
-	@Override
-	public com.liferay.oauth.model.OAuthApplication getOAuthApplication(
-		java.lang.String consumerKey)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _oAuthApplicationLocalService.getOAuthApplication(consumerKey);
-	}
-
-	@Override
-	public java.util.List<com.liferay.oauth.model.OAuthApplication> getOAuthApplications(
-		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
-		return _oAuthApplicationLocalService.getOAuthApplications(companyId,
-			start, end, orderByComparator);
-	}
-
-	@Override
-	public int getOAuthApplicationsCount(long companyId) {
-		return _oAuthApplicationLocalService.getOAuthApplicationsCount(companyId);
 	}
 
 	@Override
@@ -339,12 +317,34 @@ public class OAuthApplicationLocalServiceWrapper
 			params);
 	}
 
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	@Override
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_oAuthApplicationLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
 	@Override
 	public com.liferay.oauth.model.OAuthApplication updateLogo(
 		long oAuthApplicationId, java.io.InputStream inputStream)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _oAuthApplicationLocalService.updateLogo(oAuthApplicationId,
 			inputStream);
+	}
+
+	/**
+	* Updates the o auth application in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param oAuthApplication the o auth application
+	* @return the o auth application that was updated
+	*/
+	@Override
+	public com.liferay.oauth.model.OAuthApplication updateOAuthApplication(
+		com.liferay.oauth.model.OAuthApplication oAuthApplication) {
+		return _oAuthApplicationLocalService.updateOAuthApplication(oAuthApplication);
 	}
 
 	@Override

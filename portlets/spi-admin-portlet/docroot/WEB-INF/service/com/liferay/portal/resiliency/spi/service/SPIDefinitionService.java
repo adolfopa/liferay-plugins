@@ -45,26 +45,6 @@ public interface SPIDefinitionService extends BaseService, InvokableService {
 	 *
 	 * Never modify or reference this interface directly. Always use {@link SPIDefinitionServiceUtil} to access the s p i definition remote service. Add custom service methods to {@link com.liferay.portal.resiliency.spi.service.impl.SPIDefinitionServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public java.lang.String getBeanIdentifier();
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	public void setBeanIdentifier(java.lang.String beanIdentifier);
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
-
 	public com.liferay.portal.resiliency.spi.model.SPIDefinition addSPIDefinition(
 		java.lang.String name, java.lang.String connectorAddress,
 		int connectorPort, java.lang.String description,
@@ -77,13 +57,15 @@ public interface SPIDefinitionService extends BaseService, InvokableService {
 		long spiDefinitionId)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.util.Tuple getPortletIdsAndServletContextNames()
-		throws com.liferay.portal.kernel.exception.PortalException;
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.resiliency.spi.model.SPIDefinition getSPIDefinition(
-		long spiDefinitionId)
+	public com.liferay.portal.kernel.util.Tuple getPortletIdsAndServletContextNames()
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -92,8 +74,25 @@ public interface SPIDefinitionService extends BaseService, InvokableService {
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.resiliency.spi.model.SPIDefinition getSPIDefinition(
+		long spiDefinitionId)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> getSPIDefinitions()
 		throws com.liferay.portal.kernel.exception.PortalException;
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier);
 
 	public void startSPI(long spiDefinitionId)
 		throws com.liferay.portal.kernel.exception.PortalException;

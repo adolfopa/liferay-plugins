@@ -30,41 +30,6 @@ public class SalesforceLocalServiceWrapper implements SalesforceLocalService,
 		_salesforceLocalService = salesforceLocalService;
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _salesforceLocalService.getBeanIdentifier();
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_salesforceLocalService.setBeanIdentifier(beanIdentifier);
-	}
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _salesforceLocalService.invokeMethod(name, parameterTypes,
-			arguments);
-	}
-
-	@Override
-	public void executeAdd(long companyId,
-		java.util.List<com.liferay.portal.kernel.messaging.Message> messages)
-		throws com.liferay.salesforce.service.MultipleSalesforceException {
-		_salesforceLocalService.executeAdd(companyId, messages);
-	}
-
 	@Override
 	public java.lang.String executeAdd(long companyId,
 		com.liferay.portal.kernel.messaging.Message message)
@@ -73,11 +38,10 @@ public class SalesforceLocalServiceWrapper implements SalesforceLocalService,
 	}
 
 	@Override
-	public void executeAddOrUpdate(long companyId, java.lang.String externalId,
+	public void executeAdd(long companyId,
 		java.util.List<com.liferay.portal.kernel.messaging.Message> messages)
 		throws com.liferay.salesforce.service.MultipleSalesforceException {
-		_salesforceLocalService.executeAddOrUpdate(companyId, externalId,
-			messages);
+		_salesforceLocalService.executeAdd(companyId, messages);
 	}
 
 	@Override
@@ -89,10 +53,11 @@ public class SalesforceLocalServiceWrapper implements SalesforceLocalService,
 	}
 
 	@Override
-	public void executeDelete(long companyId,
-		java.util.List<java.lang.String> objectIds)
+	public void executeAddOrUpdate(long companyId, java.lang.String externalId,
+		java.util.List<com.liferay.portal.kernel.messaging.Message> messages)
 		throws com.liferay.salesforce.service.MultipleSalesforceException {
-		_salesforceLocalService.executeDelete(companyId, objectIds);
+		_salesforceLocalService.executeAddOrUpdate(companyId, externalId,
+			messages);
 	}
 
 	@Override
@@ -102,9 +67,10 @@ public class SalesforceLocalServiceWrapper implements SalesforceLocalService,
 	}
 
 	@Override
-	public com.liferay.portal.kernel.messaging.MessageBatch executeQuery(
-		long companyId, java.lang.String queryString) {
-		return _salesforceLocalService.executeQuery(companyId, queryString);
+	public void executeDelete(long companyId,
+		java.util.List<java.lang.String> objectIds)
+		throws com.liferay.salesforce.service.MultipleSalesforceException {
+		_salesforceLocalService.executeDelete(companyId, objectIds);
 	}
 
 	@Override
@@ -114,6 +80,12 @@ public class SalesforceLocalServiceWrapper implements SalesforceLocalService,
 		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException {
 		return _salesforceLocalService.executeQuery(companyId, objectId,
 			objectType, fieldNames);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.messaging.MessageBatch executeQuery(
+		long companyId, java.lang.String queryString) {
+		return _salesforceLocalService.executeQuery(companyId, queryString);
 	}
 
 	@Override
@@ -130,16 +102,44 @@ public class SalesforceLocalServiceWrapper implements SalesforceLocalService,
 
 	@Override
 	public void executeUpdate(long companyId,
+		com.liferay.portal.kernel.messaging.Message message)
+		throws com.liferay.salesforce.service.SalesforceException {
+		_salesforceLocalService.executeUpdate(companyId, message);
+	}
+
+	@Override
+	public void executeUpdate(long companyId,
 		java.util.List<com.liferay.portal.kernel.messaging.Message> messages)
 		throws com.liferay.salesforce.service.MultipleSalesforceException {
 		_salesforceLocalService.executeUpdate(companyId, messages);
 	}
 
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
 	@Override
-	public void executeUpdate(long companyId,
-		com.liferay.portal.kernel.messaging.Message message)
-		throws com.liferay.salesforce.service.SalesforceException {
-		_salesforceLocalService.executeUpdate(companyId, message);
+	public java.lang.String getBeanIdentifier() {
+		return _salesforceLocalService.getBeanIdentifier();
+	}
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _salesforceLocalService.invokeMethod(name, parameterTypes,
+			arguments);
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	@Override
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_salesforceLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
 	/**

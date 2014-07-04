@@ -43,6 +43,19 @@ public class SPIDefinitionLocalServiceWrapper
 		return _spiDefinitionLocalService.addSPIDefinition(spiDefinition);
 	}
 
+	@Override
+	public com.liferay.portal.resiliency.spi.model.SPIDefinition addSPIDefinition(
+		long userId, java.lang.String name, java.lang.String connectorAddress,
+		int connectorPort, java.lang.String description,
+		java.lang.String jvmArguments, java.lang.String portletIds,
+		java.lang.String servletContextNames, java.lang.String typeSettings,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _spiDefinitionLocalService.addSPIDefinition(userId, name,
+			connectorAddress, connectorPort, description, jvmArguments,
+			portletIds, servletContextNames, typeSettings, serviceContext);
+	}
+
 	/**
 	* Creates a new s p i definition with the primary key. Does not add the s p i definition to the database.
 	*
@@ -56,17 +69,13 @@ public class SPIDefinitionLocalServiceWrapper
 	}
 
 	/**
-	* Deletes the s p i definition with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param spiDefinitionId the primary key of the s p i definition
-	* @return the s p i definition that was removed
-	* @throws PortalException if a s p i definition with the primary key could not be found
+	* @throws PortalException
 	*/
 	@Override
-	public com.liferay.portal.resiliency.spi.model.SPIDefinition deleteSPIDefinition(
-		long spiDefinitionId)
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _spiDefinitionLocalService.deleteSPIDefinition(spiDefinitionId);
+		return _spiDefinitionLocalService.deletePersistedModel(persistedModel);
 	}
 
 	/**
@@ -81,6 +90,20 @@ public class SPIDefinitionLocalServiceWrapper
 		com.liferay.portal.resiliency.spi.model.SPIDefinition spiDefinition)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _spiDefinitionLocalService.deleteSPIDefinition(spiDefinition);
+	}
+
+	/**
+	* Deletes the s p i definition with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param spiDefinitionId the primary key of the s p i definition
+	* @return the s p i definition that was removed
+	* @throws PortalException if a s p i definition with the primary key could not be found
+	*/
+	@Override
+	public com.liferay.portal.resiliency.spi.model.SPIDefinition deleteSPIDefinition(
+		long spiDefinitionId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _spiDefinitionLocalService.deleteSPIDefinition(spiDefinitionId);
 	}
 
 	@Override
@@ -174,6 +197,40 @@ public class SPIDefinitionLocalServiceWrapper
 		return _spiDefinitionLocalService.fetchSPIDefinition(spiDefinitionId);
 	}
 
+	@Override
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return _spiDefinitionLocalService.getActionableDynamicQuery();
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	@Override
+	public java.lang.String getBeanIdentifier() {
+		return _spiDefinitionLocalService.getBeanIdentifier();
+	}
+
+	@Override
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _spiDefinitionLocalService.getPersistedModel(primaryKeyObj);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.util.Tuple getPortletIdsAndServletContextNames() {
+		return _spiDefinitionLocalService.getPortletIdsAndServletContextNames();
+	}
+
+	@Override
+	public com.liferay.portal.resiliency.spi.model.SPIDefinition getSPIDefinition(
+		long companyId, java.lang.String name)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _spiDefinitionLocalService.getSPIDefinition(companyId, name);
+	}
+
 	/**
 	* Returns the s p i definition with the primary key.
 	*
@@ -189,25 +246,20 @@ public class SPIDefinitionLocalServiceWrapper
 	}
 
 	@Override
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return _spiDefinitionLocalService.getActionableDynamicQuery();
-	}
-
-	/**
-	* @throws PortalException
-	*/
-	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _spiDefinitionLocalService.deletePersistedModel(persistedModel);
+	public java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> getSPIDefinitions() {
+		return _spiDefinitionLocalService.getSPIDefinitions();
 	}
 
 	@Override
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _spiDefinitionLocalService.getPersistedModel(primaryKeyObj);
+	public java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> getSPIDefinitions(
+		long companyId, int status) {
+		return _spiDefinitionLocalService.getSPIDefinitions(companyId, status);
+	}
+
+	@Override
+	public java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> getSPIDefinitions(
+		long companyId, int[] statuses) {
+		return _spiDefinitionLocalService.getSPIDefinitions(companyId, statuses);
 	}
 
 	/**
@@ -237,26 +289,12 @@ public class SPIDefinitionLocalServiceWrapper
 		return _spiDefinitionLocalService.getSPIDefinitionsCount();
 	}
 
-	/**
-	* Updates the s p i definition in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param spiDefinition the s p i definition
-	* @return the s p i definition that was updated
-	*/
 	@Override
-	public com.liferay.portal.resiliency.spi.model.SPIDefinition updateSPIDefinition(
-		com.liferay.portal.resiliency.spi.model.SPIDefinition spiDefinition) {
-		return _spiDefinitionLocalService.updateSPIDefinition(spiDefinition);
-	}
-
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _spiDefinitionLocalService.getBeanIdentifier();
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _spiDefinitionLocalService.invokeMethod(name, parameterTypes,
+			arguments);
 	}
 
 	/**
@@ -267,56 +305,6 @@ public class SPIDefinitionLocalServiceWrapper
 	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_spiDefinitionLocalService.setBeanIdentifier(beanIdentifier);
-	}
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _spiDefinitionLocalService.invokeMethod(name, parameterTypes,
-			arguments);
-	}
-
-	@Override
-	public com.liferay.portal.resiliency.spi.model.SPIDefinition addSPIDefinition(
-		long userId, java.lang.String name, java.lang.String connectorAddress,
-		int connectorPort, java.lang.String description,
-		java.lang.String jvmArguments, java.lang.String portletIds,
-		java.lang.String servletContextNames, java.lang.String typeSettings,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _spiDefinitionLocalService.addSPIDefinition(userId, name,
-			connectorAddress, connectorPort, description, jvmArguments,
-			portletIds, servletContextNames, typeSettings, serviceContext);
-	}
-
-	@Override
-	public com.liferay.portal.kernel.util.Tuple getPortletIdsAndServletContextNames() {
-		return _spiDefinitionLocalService.getPortletIdsAndServletContextNames();
-	}
-
-	@Override
-	public com.liferay.portal.resiliency.spi.model.SPIDefinition getSPIDefinition(
-		long companyId, java.lang.String name)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _spiDefinitionLocalService.getSPIDefinition(companyId, name);
-	}
-
-	@Override
-	public java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> getSPIDefinitions() {
-		return _spiDefinitionLocalService.getSPIDefinitions();
-	}
-
-	@Override
-	public java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> getSPIDefinitions(
-		long companyId, int status) {
-		return _spiDefinitionLocalService.getSPIDefinitions(companyId, status);
-	}
-
-	@Override
-	public java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> getSPIDefinitions(
-		long companyId, int[] statuses) {
-		return _spiDefinitionLocalService.getSPIDefinitions(companyId, statuses);
 	}
 
 	@Override
@@ -351,6 +339,18 @@ public class SPIDefinitionLocalServiceWrapper
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _spiDefinitionLocalService.stopSPIinBackground(userId,
 			spiDefinitionId);
+	}
+
+	/**
+	* Updates the s p i definition in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param spiDefinition the s p i definition
+	* @return the s p i definition that was updated
+	*/
+	@Override
+	public com.liferay.portal.resiliency.spi.model.SPIDefinition updateSPIDefinition(
+		com.liferay.portal.resiliency.spi.model.SPIDefinition spiDefinition) {
+		return _spiDefinitionLocalService.updateSPIDefinition(spiDefinition);
 	}
 
 	@Override

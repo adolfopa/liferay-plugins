@@ -99,44 +99,14 @@ public class SamlSpMessageWrapper implements SamlSpMessage,
 		}
 	}
 
-	/**
-	* Returns the primary key of this saml sp message.
-	*
-	* @return the primary key of this saml sp message
-	*/
 	@Override
-	public long getPrimaryKey() {
-		return _samlSpMessage.getPrimaryKey();
+	public java.lang.Object clone() {
+		return new SamlSpMessageWrapper((SamlSpMessage)_samlSpMessage.clone());
 	}
 
-	/**
-	* Sets the primary key of this saml sp message.
-	*
-	* @param primaryKey the primary key of this saml sp message
-	*/
 	@Override
-	public void setPrimaryKey(long primaryKey) {
-		_samlSpMessage.setPrimaryKey(primaryKey);
-	}
-
-	/**
-	* Returns the saml sp message ID of this saml sp message.
-	*
-	* @return the saml sp message ID of this saml sp message
-	*/
-	@Override
-	public long getSamlSpMessageId() {
-		return _samlSpMessage.getSamlSpMessageId();
-	}
-
-	/**
-	* Sets the saml sp message ID of this saml sp message.
-	*
-	* @param samlSpMessageId the saml sp message ID of this saml sp message
-	*/
-	@Override
-	public void setSamlSpMessageId(long samlSpMessageId) {
-		_samlSpMessage.setSamlSpMessageId(samlSpMessageId);
+	public int compareTo(com.liferay.saml.model.SamlSpMessage samlSpMessage) {
+		return _samlSpMessage.compareTo(samlSpMessage);
 	}
 
 	/**
@@ -150,16 +120,6 @@ public class SamlSpMessageWrapper implements SamlSpMessage,
 	}
 
 	/**
-	* Sets the company ID of this saml sp message.
-	*
-	* @param companyId the company ID of this saml sp message
-	*/
-	@Override
-	public void setCompanyId(long companyId) {
-		_samlSpMessage.setCompanyId(companyId);
-	}
-
-	/**
 	* Returns the create date of this saml sp message.
 	*
 	* @return the create date of this saml sp message
@@ -169,54 +129,9 @@ public class SamlSpMessageWrapper implements SamlSpMessage,
 		return _samlSpMessage.getCreateDate();
 	}
 
-	/**
-	* Sets the create date of this saml sp message.
-	*
-	* @param createDate the create date of this saml sp message
-	*/
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
-		_samlSpMessage.setCreateDate(createDate);
-	}
-
-	/**
-	* Returns the saml idp entity ID of this saml sp message.
-	*
-	* @return the saml idp entity ID of this saml sp message
-	*/
-	@Override
-	public java.lang.String getSamlIdpEntityId() {
-		return _samlSpMessage.getSamlIdpEntityId();
-	}
-
-	/**
-	* Sets the saml idp entity ID of this saml sp message.
-	*
-	* @param samlIdpEntityId the saml idp entity ID of this saml sp message
-	*/
-	@Override
-	public void setSamlIdpEntityId(java.lang.String samlIdpEntityId) {
-		_samlSpMessage.setSamlIdpEntityId(samlIdpEntityId);
-	}
-
-	/**
-	* Returns the saml idp response key of this saml sp message.
-	*
-	* @return the saml idp response key of this saml sp message
-	*/
-	@Override
-	public java.lang.String getSamlIdpResponseKey() {
-		return _samlSpMessage.getSamlIdpResponseKey();
-	}
-
-	/**
-	* Sets the saml idp response key of this saml sp message.
-	*
-	* @param samlIdpResponseKey the saml idp response key of this saml sp message
-	*/
-	@Override
-	public void setSamlIdpResponseKey(java.lang.String samlIdpResponseKey) {
-		_samlSpMessage.setSamlIdpResponseKey(samlIdpResponseKey);
+	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
+		return _samlSpMessage.getExpandoBridge();
 	}
 
 	/**
@@ -230,23 +145,53 @@ public class SamlSpMessageWrapper implements SamlSpMessage,
 	}
 
 	/**
-	* Sets the expiration date of this saml sp message.
+	* Returns the primary key of this saml sp message.
 	*
-	* @param expirationDate the expiration date of this saml sp message
+	* @return the primary key of this saml sp message
 	*/
 	@Override
-	public void setExpirationDate(java.util.Date expirationDate) {
-		_samlSpMessage.setExpirationDate(expirationDate);
+	public long getPrimaryKey() {
+		return _samlSpMessage.getPrimaryKey();
 	}
 
 	@Override
-	public boolean isNew() {
-		return _samlSpMessage.isNew();
+	public java.io.Serializable getPrimaryKeyObj() {
+		return _samlSpMessage.getPrimaryKeyObj();
+	}
+
+	/**
+	* Returns the saml idp entity ID of this saml sp message.
+	*
+	* @return the saml idp entity ID of this saml sp message
+	*/
+	@Override
+	public java.lang.String getSamlIdpEntityId() {
+		return _samlSpMessage.getSamlIdpEntityId();
+	}
+
+	/**
+	* Returns the saml idp response key of this saml sp message.
+	*
+	* @return the saml idp response key of this saml sp message
+	*/
+	@Override
+	public java.lang.String getSamlIdpResponseKey() {
+		return _samlSpMessage.getSamlIdpResponseKey();
+	}
+
+	/**
+	* Returns the saml sp message ID of this saml sp message.
+	*
+	* @return the saml sp message ID of this saml sp message
+	*/
+	@Override
+	public long getSamlSpMessageId() {
+		return _samlSpMessage.getSamlSpMessageId();
 	}
 
 	@Override
-	public void setNew(boolean n) {
-		_samlSpMessage.setNew(n);
+	public int hashCode() {
+		return _samlSpMessage.hashCode();
 	}
 
 	@Override
@@ -255,28 +200,48 @@ public class SamlSpMessageWrapper implements SamlSpMessage,
 	}
 
 	@Override
-	public void setCachedModel(boolean cachedModel) {
-		_samlSpMessage.setCachedModel(cachedModel);
-	}
-
-	@Override
 	public boolean isEscapedModel() {
 		return _samlSpMessage.isEscapedModel();
 	}
 
 	@Override
-	public java.io.Serializable getPrimaryKeyObj() {
-		return _samlSpMessage.getPrimaryKeyObj();
+	public boolean isExpired() {
+		return _samlSpMessage.isExpired();
 	}
 
 	@Override
-	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
-		_samlSpMessage.setPrimaryKeyObj(primaryKeyObj);
+	public boolean isNew() {
+		return _samlSpMessage.isNew();
 	}
 
 	@Override
-	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
-		return _samlSpMessage.getExpandoBridge();
+	public void persist() {
+		_samlSpMessage.persist();
+	}
+
+	@Override
+	public void setCachedModel(boolean cachedModel) {
+		_samlSpMessage.setCachedModel(cachedModel);
+	}
+
+	/**
+	* Sets the company ID of this saml sp message.
+	*
+	* @param companyId the company ID of this saml sp message
+	*/
+	@Override
+	public void setCompanyId(long companyId) {
+		_samlSpMessage.setCompanyId(companyId);
+	}
+
+	/**
+	* Sets the create date of this saml sp message.
+	*
+	* @param createDate the create date of this saml sp message
+	*/
+	@Override
+	public void setCreateDate(java.util.Date createDate) {
+		_samlSpMessage.setCreateDate(createDate);
 	}
 
 	@Override
@@ -297,19 +262,64 @@ public class SamlSpMessageWrapper implements SamlSpMessage,
 		_samlSpMessage.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	/**
+	* Sets the expiration date of this saml sp message.
+	*
+	* @param expirationDate the expiration date of this saml sp message
+	*/
 	@Override
-	public java.lang.Object clone() {
-		return new SamlSpMessageWrapper((SamlSpMessage)_samlSpMessage.clone());
+	public void setExpirationDate(java.util.Date expirationDate) {
+		_samlSpMessage.setExpirationDate(expirationDate);
 	}
 
 	@Override
-	public int compareTo(com.liferay.saml.model.SamlSpMessage samlSpMessage) {
-		return _samlSpMessage.compareTo(samlSpMessage);
+	public void setNew(boolean n) {
+		_samlSpMessage.setNew(n);
+	}
+
+	/**
+	* Sets the primary key of this saml sp message.
+	*
+	* @param primaryKey the primary key of this saml sp message
+	*/
+	@Override
+	public void setPrimaryKey(long primaryKey) {
+		_samlSpMessage.setPrimaryKey(primaryKey);
 	}
 
 	@Override
-	public int hashCode() {
-		return _samlSpMessage.hashCode();
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_samlSpMessage.setPrimaryKeyObj(primaryKeyObj);
+	}
+
+	/**
+	* Sets the saml idp entity ID of this saml sp message.
+	*
+	* @param samlIdpEntityId the saml idp entity ID of this saml sp message
+	*/
+	@Override
+	public void setSamlIdpEntityId(java.lang.String samlIdpEntityId) {
+		_samlSpMessage.setSamlIdpEntityId(samlIdpEntityId);
+	}
+
+	/**
+	* Sets the saml idp response key of this saml sp message.
+	*
+	* @param samlIdpResponseKey the saml idp response key of this saml sp message
+	*/
+	@Override
+	public void setSamlIdpResponseKey(java.lang.String samlIdpResponseKey) {
+		_samlSpMessage.setSamlIdpResponseKey(samlIdpResponseKey);
+	}
+
+	/**
+	* Sets the saml sp message ID of this saml sp message.
+	*
+	* @param samlSpMessageId the saml sp message ID of this saml sp message
+	*/
+	@Override
+	public void setSamlSpMessageId(long samlSpMessageId) {
+		_samlSpMessage.setSamlSpMessageId(samlSpMessageId);
 	}
 
 	@Override
@@ -323,28 +333,18 @@ public class SamlSpMessageWrapper implements SamlSpMessage,
 	}
 
 	@Override
-	public com.liferay.saml.model.SamlSpMessage toUnescapedModel() {
-		return new SamlSpMessageWrapper(_samlSpMessage.toUnescapedModel());
-	}
-
-	@Override
 	public java.lang.String toString() {
 		return _samlSpMessage.toString();
 	}
 
 	@Override
+	public com.liferay.saml.model.SamlSpMessage toUnescapedModel() {
+		return new SamlSpMessageWrapper(_samlSpMessage.toUnescapedModel());
+	}
+
+	@Override
 	public java.lang.String toXmlString() {
 		return _samlSpMessage.toXmlString();
-	}
-
-	@Override
-	public void persist() {
-		_samlSpMessage.persist();
-	}
-
-	@Override
-	public boolean isExpired() {
-		return _samlSpMessage.isExpired();
 	}
 
 	@Override

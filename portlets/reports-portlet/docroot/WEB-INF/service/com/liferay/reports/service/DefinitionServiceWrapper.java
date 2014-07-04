@@ -29,33 +29,6 @@ public class DefinitionServiceWrapper implements DefinitionService,
 		_definitionService = definitionService;
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _definitionService.getBeanIdentifier();
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_definitionService.setBeanIdentifier(beanIdentifier);
-	}
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _definitionService.invokeMethod(name, parameterTypes, arguments);
-	}
-
 	@Override
 	public com.liferay.reports.model.Definition addDefinition(long groupId,
 		java.util.Map<java.util.Locale, java.lang.String> nameMap,
@@ -74,6 +47,16 @@ public class DefinitionServiceWrapper implements DefinitionService,
 		long definitionId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _definitionService.deleteDefinition(definitionId);
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	@Override
+	public java.lang.String getBeanIdentifier() {
+		return _definitionService.getBeanIdentifier();
 	}
 
 	@Override
@@ -101,6 +84,23 @@ public class DefinitionServiceWrapper implements DefinitionService,
 		boolean andSearch) {
 		return _definitionService.getDefinitionsCount(groupId, definitionName,
 			description, sourceId, reportName, andSearch);
+	}
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _definitionService.invokeMethod(name, parameterTypes, arguments);
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	@Override
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_definitionService.setBeanIdentifier(beanIdentifier);
 	}
 
 	@Override

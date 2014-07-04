@@ -38,31 +38,6 @@ public class DefinitionServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link com.liferay.reports.service.impl.DefinitionServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
-
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public static java.lang.String getBeanIdentifier() {
-		return getService().getBeanIdentifier();
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
-		getService().setBeanIdentifier(beanIdentifier);
-	}
-
-	public static java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return getService().invokeMethod(name, parameterTypes, arguments);
-	}
-
 	public static com.liferay.reports.model.Definition addDefinition(
 		long groupId,
 		java.util.Map<java.util.Locale, java.lang.String> nameMap,
@@ -80,6 +55,15 @@ public class DefinitionServiceUtil {
 		long definitionId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteDefinition(definitionId);
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public static java.lang.String getBeanIdentifier() {
+		return getService().getBeanIdentifier();
 	}
 
 	public static com.liferay.reports.model.Definition getDefinition(
@@ -106,6 +90,21 @@ public class DefinitionServiceUtil {
 		return getService()
 				   .getDefinitionsCount(groupId, definitionName, description,
 			sourceId, reportName, andSearch);
+	}
+
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
+		getService().setBeanIdentifier(beanIdentifier);
 	}
 
 	public static com.liferay.reports.model.Definition updateDefinition(

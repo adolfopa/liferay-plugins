@@ -38,6 +38,11 @@ public class OAuthUserServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link com.liferay.oauth.service.impl.OAuthUserServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static com.liferay.oauth.model.OAuthUser deleteOAuthUser(
+		long oAuthApplicationId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deleteOAuthUser(oAuthApplicationId);
+	}
 
 	/**
 	* Returns the Spring bean ID for this bean.
@@ -48,6 +53,12 @@ public class OAuthUserServiceUtil {
 		return getService().getBeanIdentifier();
 	}
 
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
 	/**
 	* Sets the Spring bean ID for this bean.
 	*
@@ -55,18 +66,6 @@ public class OAuthUserServiceUtil {
 	*/
 	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
 		getService().setBeanIdentifier(beanIdentifier);
-	}
-
-	public static java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return getService().invokeMethod(name, parameterTypes, arguments);
-	}
-
-	public static com.liferay.oauth.model.OAuthUser deleteOAuthUser(
-		long oAuthApplicationId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().deleteOAuthUser(oAuthApplicationId);
 	}
 
 	public static void clearService() {

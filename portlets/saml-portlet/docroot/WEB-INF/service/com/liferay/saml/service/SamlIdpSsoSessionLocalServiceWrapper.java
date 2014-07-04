@@ -43,6 +43,15 @@ public class SamlIdpSsoSessionLocalServiceWrapper
 		return _samlIdpSsoSessionLocalService.addSamlIdpSsoSession(samlIdpSsoSession);
 	}
 
+	@Override
+	public com.liferay.saml.model.SamlIdpSsoSession addSamlIdpSsoSession(
+		java.lang.String samlIdpSsoSessionKey,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _samlIdpSsoSessionLocalService.addSamlIdpSsoSession(samlIdpSsoSessionKey,
+			serviceContext);
+	}
+
 	/**
 	* Creates a new saml idp sso session with the primary key. Does not add the saml idp sso session to the database.
 	*
@@ -53,6 +62,28 @@ public class SamlIdpSsoSessionLocalServiceWrapper
 	public com.liferay.saml.model.SamlIdpSsoSession createSamlIdpSsoSession(
 		long samlIdpSsoSessionId) {
 		return _samlIdpSsoSessionLocalService.createSamlIdpSsoSession(samlIdpSsoSessionId);
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _samlIdpSsoSessionLocalService.deletePersistedModel(persistedModel);
+	}
+
+	/**
+	* Deletes the saml idp sso session from the database. Also notifies the appropriate model listeners.
+	*
+	* @param samlIdpSsoSession the saml idp sso session
+	* @return the saml idp sso session that was removed
+	*/
+	@Override
+	public com.liferay.saml.model.SamlIdpSsoSession deleteSamlIdpSsoSession(
+		com.liferay.saml.model.SamlIdpSsoSession samlIdpSsoSession) {
+		return _samlIdpSsoSessionLocalService.deleteSamlIdpSsoSession(samlIdpSsoSession);
 	}
 
 	/**
@@ -67,18 +98,6 @@ public class SamlIdpSsoSessionLocalServiceWrapper
 		long samlIdpSsoSessionId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _samlIdpSsoSessionLocalService.deleteSamlIdpSsoSession(samlIdpSsoSessionId);
-	}
-
-	/**
-	* Deletes the saml idp sso session from the database. Also notifies the appropriate model listeners.
-	*
-	* @param samlIdpSsoSession the saml idp sso session
-	* @return the saml idp sso session that was removed
-	*/
-	@Override
-	public com.liferay.saml.model.SamlIdpSsoSession deleteSamlIdpSsoSession(
-		com.liferay.saml.model.SamlIdpSsoSession samlIdpSsoSession) {
-		return _samlIdpSsoSessionLocalService.deleteSamlIdpSsoSession(samlIdpSsoSession);
 	}
 
 	@Override
@@ -168,9 +187,44 @@ public class SamlIdpSsoSessionLocalServiceWrapper
 	}
 
 	@Override
+	public com.liferay.saml.model.SamlIdpSsoSession fetchSamlIdpSso(
+		java.lang.String samlIdpSsoSessionKey) {
+		return _samlIdpSsoSessionLocalService.fetchSamlIdpSso(samlIdpSsoSessionKey);
+	}
+
+	@Override
 	public com.liferay.saml.model.SamlIdpSsoSession fetchSamlIdpSsoSession(
 		long samlIdpSsoSessionId) {
 		return _samlIdpSsoSessionLocalService.fetchSamlIdpSsoSession(samlIdpSsoSessionId);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return _samlIdpSsoSessionLocalService.getActionableDynamicQuery();
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	@Override
+	public java.lang.String getBeanIdentifier() {
+		return _samlIdpSsoSessionLocalService.getBeanIdentifier();
+	}
+
+	@Override
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _samlIdpSsoSessionLocalService.getPersistedModel(primaryKeyObj);
+	}
+
+	@Override
+	public com.liferay.saml.model.SamlIdpSsoSession getSamlIdpSso(
+		java.lang.String samlIdpSsoSessionKey)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _samlIdpSsoSessionLocalService.getSamlIdpSso(samlIdpSsoSessionKey);
 	}
 
 	/**
@@ -185,28 +239,6 @@ public class SamlIdpSsoSessionLocalServiceWrapper
 		long samlIdpSsoSessionId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _samlIdpSsoSessionLocalService.getSamlIdpSsoSession(samlIdpSsoSessionId);
-	}
-
-	@Override
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return _samlIdpSsoSessionLocalService.getActionableDynamicQuery();
-	}
-
-	/**
-	* @throws PortalException
-	*/
-	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _samlIdpSsoSessionLocalService.deletePersistedModel(persistedModel);
-	}
-
-	@Override
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _samlIdpSsoSessionLocalService.getPersistedModel(primaryKeyObj);
 	}
 
 	/**
@@ -236,26 +268,12 @@ public class SamlIdpSsoSessionLocalServiceWrapper
 		return _samlIdpSsoSessionLocalService.getSamlIdpSsoSessionsCount();
 	}
 
-	/**
-	* Updates the saml idp sso session in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param samlIdpSsoSession the saml idp sso session
-	* @return the saml idp sso session that was updated
-	*/
 	@Override
-	public com.liferay.saml.model.SamlIdpSsoSession updateSamlIdpSsoSession(
-		com.liferay.saml.model.SamlIdpSsoSession samlIdpSsoSession) {
-		return _samlIdpSsoSessionLocalService.updateSamlIdpSsoSession(samlIdpSsoSession);
-	}
-
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _samlIdpSsoSessionLocalService.getBeanIdentifier();
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _samlIdpSsoSessionLocalService.invokeMethod(name,
+			parameterTypes, arguments);
 	}
 
 	/**
@@ -269,40 +287,22 @@ public class SamlIdpSsoSessionLocalServiceWrapper
 	}
 
 	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _samlIdpSsoSessionLocalService.invokeMethod(name,
-			parameterTypes, arguments);
-	}
-
-	@Override
-	public com.liferay.saml.model.SamlIdpSsoSession addSamlIdpSsoSession(
-		java.lang.String samlIdpSsoSessionKey,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _samlIdpSsoSessionLocalService.addSamlIdpSsoSession(samlIdpSsoSessionKey,
-			serviceContext);
-	}
-
-	@Override
-	public com.liferay.saml.model.SamlIdpSsoSession fetchSamlIdpSso(
-		java.lang.String samlIdpSsoSessionKey) {
-		return _samlIdpSsoSessionLocalService.fetchSamlIdpSso(samlIdpSsoSessionKey);
-	}
-
-	@Override
-	public com.liferay.saml.model.SamlIdpSsoSession getSamlIdpSso(
-		java.lang.String samlIdpSsoSessionKey)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _samlIdpSsoSessionLocalService.getSamlIdpSso(samlIdpSsoSessionKey);
-	}
-
-	@Override
 	public com.liferay.saml.model.SamlIdpSsoSession updateModifiedDate(
 		java.lang.String samlIdpSsoSessionKey)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _samlIdpSsoSessionLocalService.updateModifiedDate(samlIdpSsoSessionKey);
+	}
+
+	/**
+	* Updates the saml idp sso session in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param samlIdpSsoSession the saml idp sso session
+	* @return the saml idp sso session that was updated
+	*/
+	@Override
+	public com.liferay.saml.model.SamlIdpSsoSession updateSamlIdpSsoSession(
+		com.liferay.saml.model.SamlIdpSsoSession samlIdpSsoSession) {
+		return _samlIdpSsoSessionLocalService.updateSamlIdpSsoSession(samlIdpSsoSession);
 	}
 
 	/**

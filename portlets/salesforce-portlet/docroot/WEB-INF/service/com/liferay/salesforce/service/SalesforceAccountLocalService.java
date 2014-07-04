@@ -43,26 +43,6 @@ public interface SalesforceAccountLocalService extends BaseLocalService,
 	 *
 	 * Never modify or reference this interface directly. Always use {@link SalesforceAccountLocalServiceUtil} to access the salesforce account local service. Add custom service methods to {@link com.liferay.salesforce.service.impl.SalesforceAccountLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public java.lang.String getBeanIdentifier();
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	public void setBeanIdentifier(java.lang.String beanIdentifier);
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
-
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.kernel.messaging.MessageBatch getAccountsByName(
 		long companyId, java.lang.String name,
@@ -79,4 +59,23 @@ public interface SalesforceAccountLocalService extends BaseLocalService,
 		long companyId, java.lang.String userName,
 		java.util.List<java.lang.String> fieldNames)
 		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException;
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier();
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier);
 }

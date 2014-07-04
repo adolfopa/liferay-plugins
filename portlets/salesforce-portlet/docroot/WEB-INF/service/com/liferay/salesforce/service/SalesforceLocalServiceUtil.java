@@ -38,48 +38,16 @@ public class SalesforceLocalServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link com.liferay.salesforce.service.impl.SalesforceLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
-
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public static java.lang.String getBeanIdentifier() {
-		return getService().getBeanIdentifier();
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
-		getService().setBeanIdentifier(beanIdentifier);
-	}
-
-	public static java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return getService().invokeMethod(name, parameterTypes, arguments);
-	}
-
-	public static void executeAdd(long companyId,
-		java.util.List<com.liferay.portal.kernel.messaging.Message> messages)
-		throws com.liferay.salesforce.service.MultipleSalesforceException {
-		getService().executeAdd(companyId, messages);
-	}
-
 	public static java.lang.String executeAdd(long companyId,
 		com.liferay.portal.kernel.messaging.Message message)
 		throws com.liferay.salesforce.service.SalesforceException {
 		return getService().executeAdd(companyId, message);
 	}
 
-	public static void executeAddOrUpdate(long companyId,
-		java.lang.String externalId,
+	public static void executeAdd(long companyId,
 		java.util.List<com.liferay.portal.kernel.messaging.Message> messages)
 		throws com.liferay.salesforce.service.MultipleSalesforceException {
-		getService().executeAddOrUpdate(companyId, externalId, messages);
+		getService().executeAdd(companyId, messages);
 	}
 
 	public static void executeAddOrUpdate(long companyId,
@@ -89,10 +57,11 @@ public class SalesforceLocalServiceUtil {
 		getService().executeAddOrUpdate(companyId, externalId, message);
 	}
 
-	public static void executeDelete(long companyId,
-		java.util.List<java.lang.String> objectIds)
+	public static void executeAddOrUpdate(long companyId,
+		java.lang.String externalId,
+		java.util.List<com.liferay.portal.kernel.messaging.Message> messages)
 		throws com.liferay.salesforce.service.MultipleSalesforceException {
-		getService().executeDelete(companyId, objectIds);
+		getService().executeAddOrUpdate(companyId, externalId, messages);
 	}
 
 	public static boolean executeDelete(long companyId,
@@ -101,9 +70,10 @@ public class SalesforceLocalServiceUtil {
 		return getService().executeDelete(companyId, objectId);
 	}
 
-	public static com.liferay.portal.kernel.messaging.MessageBatch executeQuery(
-		long companyId, java.lang.String queryString) {
-		return getService().executeQuery(companyId, queryString);
+	public static void executeDelete(long companyId,
+		java.util.List<java.lang.String> objectIds)
+		throws com.liferay.salesforce.service.MultipleSalesforceException {
+		getService().executeDelete(companyId, objectIds);
 	}
 
 	public static com.liferay.portal.kernel.messaging.Message executeQuery(
@@ -112,6 +82,11 @@ public class SalesforceLocalServiceUtil {
 		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException {
 		return getService()
 				   .executeQuery(companyId, objectId, objectType, fieldNames);
+	}
+
+	public static com.liferay.portal.kernel.messaging.MessageBatch executeQuery(
+		long companyId, java.lang.String queryString) {
+		return getService().executeQuery(companyId, queryString);
 	}
 
 	public static com.liferay.portal.kernel.messaging.MessageBatch executeQueryMore(
@@ -125,15 +100,39 @@ public class SalesforceLocalServiceUtil {
 	}
 
 	public static void executeUpdate(long companyId,
+		com.liferay.portal.kernel.messaging.Message message)
+		throws com.liferay.salesforce.service.SalesforceException {
+		getService().executeUpdate(companyId, message);
+	}
+
+	public static void executeUpdate(long companyId,
 		java.util.List<com.liferay.portal.kernel.messaging.Message> messages)
 		throws com.liferay.salesforce.service.MultipleSalesforceException {
 		getService().executeUpdate(companyId, messages);
 	}
 
-	public static void executeUpdate(long companyId,
-		com.liferay.portal.kernel.messaging.Message message)
-		throws com.liferay.salesforce.service.SalesforceException {
-		getService().executeUpdate(companyId, message);
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public static java.lang.String getBeanIdentifier() {
+		return getService().getBeanIdentifier();
+	}
+
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
+		getService().setBeanIdentifier(beanIdentifier);
 	}
 
 	public static void clearService() {

@@ -29,6 +29,13 @@ public class OAuthUserServiceWrapper implements OAuthUserService,
 		_oAuthUserService = oAuthUserService;
 	}
 
+	@Override
+	public com.liferay.oauth.model.OAuthUser deleteOAuthUser(
+		long oAuthApplicationId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _oAuthUserService.deleteOAuthUser(oAuthApplicationId);
+	}
+
 	/**
 	* Returns the Spring bean ID for this bean.
 	*
@@ -39,6 +46,13 @@ public class OAuthUserServiceWrapper implements OAuthUserService,
 		return _oAuthUserService.getBeanIdentifier();
 	}
 
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _oAuthUserService.invokeMethod(name, parameterTypes, arguments);
+	}
+
 	/**
 	* Sets the Spring bean ID for this bean.
 	*
@@ -47,20 +61,6 @@ public class OAuthUserServiceWrapper implements OAuthUserService,
 	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_oAuthUserService.setBeanIdentifier(beanIdentifier);
-	}
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _oAuthUserService.invokeMethod(name, parameterTypes, arguments);
-	}
-
-	@Override
-	public com.liferay.oauth.model.OAuthUser deleteOAuthUser(
-		long oAuthApplicationId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _oAuthUserService.deleteOAuthUser(oAuthApplicationId);
 	}
 
 	/**

@@ -135,84 +135,15 @@ public class WebExAccountWrapper implements WebExAccount,
 		}
 	}
 
-	/**
-	* Returns the primary key of this web ex account.
-	*
-	* @return the primary key of this web ex account
-	*/
 	@Override
-	public long getPrimaryKey() {
-		return _webExAccount.getPrimaryKey();
+	public java.lang.Object clone() {
+		return new WebExAccountWrapper((WebExAccount)_webExAccount.clone());
 	}
 
-	/**
-	* Sets the primary key of this web ex account.
-	*
-	* @param primaryKey the primary key of this web ex account
-	*/
 	@Override
-	public void setPrimaryKey(long primaryKey) {
-		_webExAccount.setPrimaryKey(primaryKey);
-	}
-
-	/**
-	* Returns the uuid of this web ex account.
-	*
-	* @return the uuid of this web ex account
-	*/
-	@Override
-	public java.lang.String getUuid() {
-		return _webExAccount.getUuid();
-	}
-
-	/**
-	* Sets the uuid of this web ex account.
-	*
-	* @param uuid the uuid of this web ex account
-	*/
-	@Override
-	public void setUuid(java.lang.String uuid) {
-		_webExAccount.setUuid(uuid);
-	}
-
-	/**
-	* Returns the web ex account ID of this web ex account.
-	*
-	* @return the web ex account ID of this web ex account
-	*/
-	@Override
-	public long getWebExAccountId() {
-		return _webExAccount.getWebExAccountId();
-	}
-
-	/**
-	* Sets the web ex account ID of this web ex account.
-	*
-	* @param webExAccountId the web ex account ID of this web ex account
-	*/
-	@Override
-	public void setWebExAccountId(long webExAccountId) {
-		_webExAccount.setWebExAccountId(webExAccountId);
-	}
-
-	/**
-	* Returns the group ID of this web ex account.
-	*
-	* @return the group ID of this web ex account
-	*/
-	@Override
-	public long getGroupId() {
-		return _webExAccount.getGroupId();
-	}
-
-	/**
-	* Sets the group ID of this web ex account.
-	*
-	* @param groupId the group ID of this web ex account
-	*/
-	@Override
-	public void setGroupId(long groupId) {
-		_webExAccount.setGroupId(groupId);
+	public int compareTo(
+		com.liferay.meeting.webex.model.WebExAccount webExAccount) {
+		return _webExAccount.compareTo(webExAccount);
 	}
 
 	/**
@@ -226,76 +157,6 @@ public class WebExAccountWrapper implements WebExAccount,
 	}
 
 	/**
-	* Sets the company ID of this web ex account.
-	*
-	* @param companyId the company ID of this web ex account
-	*/
-	@Override
-	public void setCompanyId(long companyId) {
-		_webExAccount.setCompanyId(companyId);
-	}
-
-	/**
-	* Returns the user ID of this web ex account.
-	*
-	* @return the user ID of this web ex account
-	*/
-	@Override
-	public long getUserId() {
-		return _webExAccount.getUserId();
-	}
-
-	/**
-	* Sets the user ID of this web ex account.
-	*
-	* @param userId the user ID of this web ex account
-	*/
-	@Override
-	public void setUserId(long userId) {
-		_webExAccount.setUserId(userId);
-	}
-
-	/**
-	* Returns the user uuid of this web ex account.
-	*
-	* @return the user uuid of this web ex account
-	*/
-	@Override
-	public java.lang.String getUserUuid() {
-		return _webExAccount.getUserUuid();
-	}
-
-	/**
-	* Sets the user uuid of this web ex account.
-	*
-	* @param userUuid the user uuid of this web ex account
-	*/
-	@Override
-	public void setUserUuid(java.lang.String userUuid) {
-		_webExAccount.setUserUuid(userUuid);
-	}
-
-	/**
-	* Returns the user name of this web ex account.
-	*
-	* @return the user name of this web ex account
-	*/
-	@Override
-	public java.lang.String getUserName() {
-		return _webExAccount.getUserName();
-	}
-
-	/**
-	* Sets the user name of this web ex account.
-	*
-	* @param userName the user name of this web ex account
-	*/
-	@Override
-	public void setUserName(java.lang.String userName) {
-		_webExAccount.setUserName(userName);
-	}
-
-	/**
 	* Returns the create date of this web ex account.
 	*
 	* @return the create date of this web ex account
@@ -305,14 +166,35 @@ public class WebExAccountWrapper implements WebExAccount,
 		return _webExAccount.getCreateDate();
 	}
 
+	@Override
+	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
+		return _webExAccount.getExpandoBridge();
+	}
+
 	/**
-	* Sets the create date of this web ex account.
+	* Returns the group ID of this web ex account.
 	*
-	* @param createDate the create date of this web ex account
+	* @return the group ID of this web ex account
 	*/
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
-		_webExAccount.setCreateDate(createDate);
+	public long getGroupId() {
+		return _webExAccount.getGroupId();
+	}
+
+	/**
+	* Returns the login of this web ex account.
+	*
+	* @return the login of this web ex account
+	*/
+	@Override
+	public java.lang.String getLogin() {
+		return _webExAccount.getLogin();
+	}
+
+	@Override
+	public com.liferay.meeting.MeetingContext getMeetingContext()
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _webExAccount.getMeetingContext();
 	}
 
 	/**
@@ -326,13 +208,84 @@ public class WebExAccountWrapper implements WebExAccount,
 	}
 
 	/**
-	* Sets the modified date of this web ex account.
+	* Returns the password of this web ex account.
 	*
-	* @param modifiedDate the modified date of this web ex account
+	* @return the password of this web ex account
 	*/
 	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
-		_webExAccount.setModifiedDate(modifiedDate);
+	public java.lang.String getPassword() {
+		return _webExAccount.getPassword();
+	}
+
+	/**
+	* Returns the primary key of this web ex account.
+	*
+	* @return the primary key of this web ex account
+	*/
+	@Override
+	public long getPrimaryKey() {
+		return _webExAccount.getPrimaryKey();
+	}
+
+	@Override
+	public java.io.Serializable getPrimaryKeyObj() {
+		return _webExAccount.getPrimaryKeyObj();
+	}
+
+	/**
+	* Returns the user ID of this web ex account.
+	*
+	* @return the user ID of this web ex account
+	*/
+	@Override
+	public long getUserId() {
+		return _webExAccount.getUserId();
+	}
+
+	/**
+	* Returns the user name of this web ex account.
+	*
+	* @return the user name of this web ex account
+	*/
+	@Override
+	public java.lang.String getUserName() {
+		return _webExAccount.getUserName();
+	}
+
+	/**
+	* Returns the user uuid of this web ex account.
+	*
+	* @return the user uuid of this web ex account
+	*/
+	@Override
+	public java.lang.String getUserUuid() {
+		return _webExAccount.getUserUuid();
+	}
+
+	/**
+	* Returns the uuid of this web ex account.
+	*
+	* @return the uuid of this web ex account
+	*/
+	@Override
+	public java.lang.String getUuid() {
+		return _webExAccount.getUuid();
+	}
+
+	/**
+	* Returns the web ex account ID of this web ex account.
+	*
+	* @return the web ex account ID of this web ex account
+	*/
+	@Override
+	public long getWebExAccountId() {
+		return _webExAccount.getWebExAccountId();
+	}
+
+	@Override
+	public com.liferay.meeting.webex.model.WebExSite getWebExSite()
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _webExAccount.getWebExSite();
 	}
 
 	/**
@@ -345,64 +298,9 @@ public class WebExAccountWrapper implements WebExAccount,
 		return _webExAccount.getWebExSiteId();
 	}
 
-	/**
-	* Sets the web ex site ID of this web ex account.
-	*
-	* @param webExSiteId the web ex site ID of this web ex account
-	*/
 	@Override
-	public void setWebExSiteId(long webExSiteId) {
-		_webExAccount.setWebExSiteId(webExSiteId);
-	}
-
-	/**
-	* Returns the login of this web ex account.
-	*
-	* @return the login of this web ex account
-	*/
-	@Override
-	public java.lang.String getLogin() {
-		return _webExAccount.getLogin();
-	}
-
-	/**
-	* Sets the login of this web ex account.
-	*
-	* @param login the login of this web ex account
-	*/
-	@Override
-	public void setLogin(java.lang.String login) {
-		_webExAccount.setLogin(login);
-	}
-
-	/**
-	* Returns the password of this web ex account.
-	*
-	* @return the password of this web ex account
-	*/
-	@Override
-	public java.lang.String getPassword() {
-		return _webExAccount.getPassword();
-	}
-
-	/**
-	* Sets the password of this web ex account.
-	*
-	* @param password the password of this web ex account
-	*/
-	@Override
-	public void setPassword(java.lang.String password) {
-		_webExAccount.setPassword(password);
-	}
-
-	@Override
-	public boolean isNew() {
-		return _webExAccount.isNew();
-	}
-
-	@Override
-	public void setNew(boolean n) {
-		_webExAccount.setNew(n);
+	public int hashCode() {
+		return _webExAccount.hashCode();
 	}
 
 	@Override
@@ -411,28 +309,43 @@ public class WebExAccountWrapper implements WebExAccount,
 	}
 
 	@Override
-	public void setCachedModel(boolean cachedModel) {
-		_webExAccount.setCachedModel(cachedModel);
-	}
-
-	@Override
 	public boolean isEscapedModel() {
 		return _webExAccount.isEscapedModel();
 	}
 
 	@Override
-	public java.io.Serializable getPrimaryKeyObj() {
-		return _webExAccount.getPrimaryKeyObj();
+	public boolean isNew() {
+		return _webExAccount.isNew();
 	}
 
 	@Override
-	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
-		_webExAccount.setPrimaryKeyObj(primaryKeyObj);
+	public void persist() {
+		_webExAccount.persist();
 	}
 
 	@Override
-	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
-		return _webExAccount.getExpandoBridge();
+	public void setCachedModel(boolean cachedModel) {
+		_webExAccount.setCachedModel(cachedModel);
+	}
+
+	/**
+	* Sets the company ID of this web ex account.
+	*
+	* @param companyId the company ID of this web ex account
+	*/
+	@Override
+	public void setCompanyId(long companyId) {
+		_webExAccount.setCompanyId(companyId);
+	}
+
+	/**
+	* Sets the create date of this web ex account.
+	*
+	* @param createDate the create date of this web ex account
+	*/
+	@Override
+	public void setCreateDate(java.util.Date createDate) {
+		_webExAccount.setCreateDate(createDate);
 	}
 
 	@Override
@@ -453,20 +366,124 @@ public class WebExAccountWrapper implements WebExAccount,
 		_webExAccount.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	/**
+	* Sets the group ID of this web ex account.
+	*
+	* @param groupId the group ID of this web ex account
+	*/
 	@Override
-	public java.lang.Object clone() {
-		return new WebExAccountWrapper((WebExAccount)_webExAccount.clone());
+	public void setGroupId(long groupId) {
+		_webExAccount.setGroupId(groupId);
+	}
+
+	/**
+	* Sets the login of this web ex account.
+	*
+	* @param login the login of this web ex account
+	*/
+	@Override
+	public void setLogin(java.lang.String login) {
+		_webExAccount.setLogin(login);
+	}
+
+	/**
+	* Sets the modified date of this web ex account.
+	*
+	* @param modifiedDate the modified date of this web ex account
+	*/
+	@Override
+	public void setModifiedDate(java.util.Date modifiedDate) {
+		_webExAccount.setModifiedDate(modifiedDate);
 	}
 
 	@Override
-	public int compareTo(
-		com.liferay.meeting.webex.model.WebExAccount webExAccount) {
-		return _webExAccount.compareTo(webExAccount);
+	public void setNew(boolean n) {
+		_webExAccount.setNew(n);
+	}
+
+	/**
+	* Sets the password of this web ex account.
+	*
+	* @param password the password of this web ex account
+	*/
+	@Override
+	public void setPassword(java.lang.String password) {
+		_webExAccount.setPassword(password);
+	}
+
+	/**
+	* Sets the primary key of this web ex account.
+	*
+	* @param primaryKey the primary key of this web ex account
+	*/
+	@Override
+	public void setPrimaryKey(long primaryKey) {
+		_webExAccount.setPrimaryKey(primaryKey);
 	}
 
 	@Override
-	public int hashCode() {
-		return _webExAccount.hashCode();
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
+		_webExAccount.setPrimaryKeyObj(primaryKeyObj);
+	}
+
+	/**
+	* Sets the user ID of this web ex account.
+	*
+	* @param userId the user ID of this web ex account
+	*/
+	@Override
+	public void setUserId(long userId) {
+		_webExAccount.setUserId(userId);
+	}
+
+	/**
+	* Sets the user name of this web ex account.
+	*
+	* @param userName the user name of this web ex account
+	*/
+	@Override
+	public void setUserName(java.lang.String userName) {
+		_webExAccount.setUserName(userName);
+	}
+
+	/**
+	* Sets the user uuid of this web ex account.
+	*
+	* @param userUuid the user uuid of this web ex account
+	*/
+	@Override
+	public void setUserUuid(java.lang.String userUuid) {
+		_webExAccount.setUserUuid(userUuid);
+	}
+
+	/**
+	* Sets the uuid of this web ex account.
+	*
+	* @param uuid the uuid of this web ex account
+	*/
+	@Override
+	public void setUuid(java.lang.String uuid) {
+		_webExAccount.setUuid(uuid);
+	}
+
+	/**
+	* Sets the web ex account ID of this web ex account.
+	*
+	* @param webExAccountId the web ex account ID of this web ex account
+	*/
+	@Override
+	public void setWebExAccountId(long webExAccountId) {
+		_webExAccount.setWebExAccountId(webExAccountId);
+	}
+
+	/**
+	* Sets the web ex site ID of this web ex account.
+	*
+	* @param webExSiteId the web ex site ID of this web ex account
+	*/
+	@Override
+	public void setWebExSiteId(long webExSiteId) {
+		_webExAccount.setWebExSiteId(webExSiteId);
 	}
 
 	@Override
@@ -480,35 +497,18 @@ public class WebExAccountWrapper implements WebExAccount,
 	}
 
 	@Override
-	public com.liferay.meeting.webex.model.WebExAccount toUnescapedModel() {
-		return new WebExAccountWrapper(_webExAccount.toUnescapedModel());
-	}
-
-	@Override
 	public java.lang.String toString() {
 		return _webExAccount.toString();
 	}
 
 	@Override
+	public com.liferay.meeting.webex.model.WebExAccount toUnescapedModel() {
+		return new WebExAccountWrapper(_webExAccount.toUnescapedModel());
+	}
+
+	@Override
 	public java.lang.String toXmlString() {
 		return _webExAccount.toXmlString();
-	}
-
-	@Override
-	public void persist() {
-		_webExAccount.persist();
-	}
-
-	@Override
-	public com.liferay.meeting.MeetingContext getMeetingContext()
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _webExAccount.getMeetingContext();
-	}
-
-	@Override
-	public com.liferay.meeting.webex.model.WebExSite getWebExSite()
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _webExAccount.getWebExSite();
 	}
 
 	@Override

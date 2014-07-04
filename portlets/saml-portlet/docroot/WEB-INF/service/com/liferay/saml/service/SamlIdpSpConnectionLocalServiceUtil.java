@@ -50,6 +50,22 @@ public class SamlIdpSpConnectionLocalServiceUtil {
 		return getService().addSamlIdpSpConnection(samlIdpSpConnection);
 	}
 
+	public static com.liferay.saml.model.SamlIdpSpConnection addSamlIdpSpConnection(
+		java.lang.String samlSpEntityId, int assertionLifetime,
+		java.lang.String attributeNames, boolean attributesEnabled,
+		boolean attributesNamespaceEnabled, boolean enabled,
+		java.lang.String metadataUrl,
+		java.io.InputStream metadataXmlInputStream, java.lang.String name,
+		java.lang.String nameIdAttribute, java.lang.String nameIdFormat,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .addSamlIdpSpConnection(samlSpEntityId, assertionLifetime,
+			attributeNames, attributesEnabled, attributesNamespaceEnabled,
+			enabled, metadataUrl, metadataXmlInputStream, name,
+			nameIdAttribute, nameIdFormat, serviceContext);
+	}
+
 	/**
 	* Creates a new saml idp sp connection with the primary key. Does not add the saml idp sp connection to the database.
 	*
@@ -59,6 +75,26 @@ public class SamlIdpSpConnectionLocalServiceUtil {
 	public static com.liferay.saml.model.SamlIdpSpConnection createSamlIdpSpConnection(
 		long samlIdpSpConnectionId) {
 		return getService().createSamlIdpSpConnection(samlIdpSpConnectionId);
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deletePersistedModel(persistedModel);
+	}
+
+	/**
+	* Deletes the saml idp sp connection from the database. Also notifies the appropriate model listeners.
+	*
+	* @param samlIdpSpConnection the saml idp sp connection
+	* @return the saml idp sp connection that was removed
+	*/
+	public static com.liferay.saml.model.SamlIdpSpConnection deleteSamlIdpSpConnection(
+		com.liferay.saml.model.SamlIdpSpConnection samlIdpSpConnection) {
+		return getService().deleteSamlIdpSpConnection(samlIdpSpConnection);
 	}
 
 	/**
@@ -72,17 +108,6 @@ public class SamlIdpSpConnectionLocalServiceUtil {
 		long samlIdpSpConnectionId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteSamlIdpSpConnection(samlIdpSpConnectionId);
-	}
-
-	/**
-	* Deletes the saml idp sp connection from the database. Also notifies the appropriate model listeners.
-	*
-	* @param samlIdpSpConnection the saml idp sp connection
-	* @return the saml idp sp connection that was removed
-	*/
-	public static com.liferay.saml.model.SamlIdpSpConnection deleteSamlIdpSpConnection(
-		com.liferay.saml.model.SamlIdpSpConnection samlIdpSpConnection) {
-		return getService().deleteSamlIdpSpConnection(samlIdpSpConnection);
 	}
 
 	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
@@ -168,6 +193,31 @@ public class SamlIdpSpConnectionLocalServiceUtil {
 		return getService().fetchSamlIdpSpConnection(samlIdpSpConnectionId);
 	}
 
+	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return getService().getActionableDynamicQuery();
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public static java.lang.String getBeanIdentifier() {
+		return getService().getBeanIdentifier();
+	}
+
+	public static com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getPersistedModel(primaryKeyObj);
+	}
+
+	public static com.liferay.saml.model.SamlIdpSpConnection getSamlIdpSpConnection(
+		long companyId, java.lang.String samlSpEntityId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getSamlIdpSpConnection(companyId, samlSpEntityId);
+	}
+
 	/**
 	* Returns the saml idp sp connection with the primary key.
 	*
@@ -181,23 +231,22 @@ public class SamlIdpSpConnectionLocalServiceUtil {
 		return getService().getSamlIdpSpConnection(samlIdpSpConnectionId);
 	}
 
-	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return getService().getActionableDynamicQuery();
+	public static java.util.List<com.liferay.saml.model.SamlIdpSpConnection> getSamlIdpSpConnections(
+		long companyId) {
+		return getService().getSamlIdpSpConnections(companyId);
 	}
 
-	/**
-	* @throws PortalException
-	*/
-	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().deletePersistedModel(persistedModel);
+	public static java.util.List<com.liferay.saml.model.SamlIdpSpConnection> getSamlIdpSpConnections(
+		long companyId, int start, int end) {
+		return getService().getSamlIdpSpConnections(companyId, start, end);
 	}
 
-	public static com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getPersistedModel(primaryKeyObj);
+	public static java.util.List<com.liferay.saml.model.SamlIdpSpConnection> getSamlIdpSpConnections(
+		long companyId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		return getService()
+				   .getSamlIdpSpConnections(companyId, start, end,
+			orderByComparator);
 	}
 
 	/**
@@ -225,24 +274,14 @@ public class SamlIdpSpConnectionLocalServiceUtil {
 		return getService().getSamlIdpSpConnectionsCount();
 	}
 
-	/**
-	* Updates the saml idp sp connection in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param samlIdpSpConnection the saml idp sp connection
-	* @return the saml idp sp connection that was updated
-	*/
-	public static com.liferay.saml.model.SamlIdpSpConnection updateSamlIdpSpConnection(
-		com.liferay.saml.model.SamlIdpSpConnection samlIdpSpConnection) {
-		return getService().updateSamlIdpSpConnection(samlIdpSpConnection);
+	public static int getSamlIdpSpConnectionsCount(long companyId) {
+		return getService().getSamlIdpSpConnectionsCount(companyId);
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public static java.lang.String getBeanIdentifier() {
-		return getService().getBeanIdentifier();
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
 	/**
@@ -254,59 +293,20 @@ public class SamlIdpSpConnectionLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
-	public static java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return getService().invokeMethod(name, parameterTypes, arguments);
-	}
-
-	public static com.liferay.saml.model.SamlIdpSpConnection addSamlIdpSpConnection(
-		java.lang.String samlSpEntityId, int assertionLifetime,
-		java.lang.String attributeNames, boolean attributesEnabled,
-		boolean attributesNamespaceEnabled, boolean enabled,
-		java.lang.String metadataUrl,
-		java.io.InputStream metadataXmlInputStream, java.lang.String name,
-		java.lang.String nameIdAttribute, java.lang.String nameIdFormat,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService()
-				   .addSamlIdpSpConnection(samlSpEntityId, assertionLifetime,
-			attributeNames, attributesEnabled, attributesNamespaceEnabled,
-			enabled, metadataUrl, metadataXmlInputStream, name,
-			nameIdAttribute, nameIdFormat, serviceContext);
-	}
-
-	public static com.liferay.saml.model.SamlIdpSpConnection getSamlIdpSpConnection(
-		long companyId, java.lang.String samlSpEntityId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getSamlIdpSpConnection(companyId, samlSpEntityId);
-	}
-
-	public static java.util.List<com.liferay.saml.model.SamlIdpSpConnection> getSamlIdpSpConnections(
-		long companyId) {
-		return getService().getSamlIdpSpConnections(companyId);
-	}
-
-	public static java.util.List<com.liferay.saml.model.SamlIdpSpConnection> getSamlIdpSpConnections(
-		long companyId, int start, int end) {
-		return getService().getSamlIdpSpConnections(companyId, start, end);
-	}
-
-	public static java.util.List<com.liferay.saml.model.SamlIdpSpConnection> getSamlIdpSpConnections(
-		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
-		return getService()
-				   .getSamlIdpSpConnections(companyId, start, end,
-			orderByComparator);
-	}
-
-	public static int getSamlIdpSpConnectionsCount(long companyId) {
-		return getService().getSamlIdpSpConnectionsCount(companyId);
-	}
-
 	public static void updateMetadata(long samlIdpSpConnectionId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().updateMetadata(samlIdpSpConnectionId);
+	}
+
+	/**
+	* Updates the saml idp sp connection in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param samlIdpSpConnection the saml idp sp connection
+	* @return the saml idp sp connection that was updated
+	*/
+	public static com.liferay.saml.model.SamlIdpSpConnection updateSamlIdpSpConnection(
+		com.liferay.saml.model.SamlIdpSpConnection samlIdpSpConnection) {
+		return getService().updateSamlIdpSpConnection(samlIdpSpConnection);
 	}
 
 	public static com.liferay.saml.model.SamlIdpSpConnection updateSamlIdpSpConnection(

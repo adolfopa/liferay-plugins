@@ -50,6 +50,20 @@ public class SamlSpSessionLocalServiceUtil {
 		return getService().addSamlSpSession(samlSpSession);
 	}
 
+	public static com.liferay.saml.model.SamlSpSession addSamlSpSession(
+		java.lang.String samlSpSessionKey, java.lang.String assertionXml,
+		java.lang.String jSessionId, java.lang.String nameIdFormat,
+		java.lang.String nameIdNameQualifier,
+		java.lang.String nameIdSPNameQualifier, java.lang.String nameIdValue,
+		java.lang.String sessionIndex,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .addSamlSpSession(samlSpSessionKey, assertionXml,
+			jSessionId, nameIdFormat, nameIdNameQualifier,
+			nameIdSPNameQualifier, nameIdValue, sessionIndex, serviceContext);
+	}
+
 	/**
 	* Creates a new saml sp session with the primary key. Does not add the saml sp session to the database.
 	*
@@ -59,6 +73,26 @@ public class SamlSpSessionLocalServiceUtil {
 	public static com.liferay.saml.model.SamlSpSession createSamlSpSession(
 		long samlSpSessionId) {
 		return getService().createSamlSpSession(samlSpSessionId);
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deletePersistedModel(persistedModel);
+	}
+
+	/**
+	* Deletes the saml sp session from the database. Also notifies the appropriate model listeners.
+	*
+	* @param samlSpSession the saml sp session
+	* @return the saml sp session that was removed
+	*/
+	public static com.liferay.saml.model.SamlSpSession deleteSamlSpSession(
+		com.liferay.saml.model.SamlSpSession samlSpSession) {
+		return getService().deleteSamlSpSession(samlSpSession);
 	}
 
 	/**
@@ -72,17 +106,6 @@ public class SamlSpSessionLocalServiceUtil {
 		long samlSpSessionId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteSamlSpSession(samlSpSessionId);
-	}
-
-	/**
-	* Deletes the saml sp session from the database. Also notifies the appropriate model listeners.
-	*
-	* @param samlSpSession the saml sp session
-	* @return the saml sp session that was removed
-	*/
-	public static com.liferay.saml.model.SamlSpSession deleteSamlSpSession(
-		com.liferay.saml.model.SamlSpSession samlSpSession) {
-		return getService().deleteSamlSpSession(samlSpSession);
 	}
 
 	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
@@ -168,6 +191,41 @@ public class SamlSpSessionLocalServiceUtil {
 		return getService().fetchSamlSpSession(samlSpSessionId);
 	}
 
+	public static com.liferay.saml.model.SamlSpSession fetchSamlSpSessionByJSessionId(
+		java.lang.String jSessionId) {
+		return getService().fetchSamlSpSessionByJSessionId(jSessionId);
+	}
+
+	public static com.liferay.saml.model.SamlSpSession fetchSamlSpSessionBySamlSpSessionKey(
+		java.lang.String samlSpSessionKey) {
+		return getService()
+				   .fetchSamlSpSessionBySamlSpSessionKey(samlSpSessionKey);
+	}
+
+	public static com.liferay.saml.model.SamlSpSession fetchSamlSpSessionBySessionIndex(
+		java.lang.String sessionIndex) {
+		return getService().fetchSamlSpSessionBySessionIndex(sessionIndex);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return getService().getActionableDynamicQuery();
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public static java.lang.String getBeanIdentifier() {
+		return getService().getBeanIdentifier();
+	}
+
+	public static com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getPersistedModel(primaryKeyObj);
+	}
+
 	/**
 	* Returns the saml sp session with the primary key.
 	*
@@ -181,23 +239,27 @@ public class SamlSpSessionLocalServiceUtil {
 		return getService().getSamlSpSession(samlSpSessionId);
 	}
 
-	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return getService().getActionableDynamicQuery();
+	public static com.liferay.saml.model.SamlSpSession getSamlSpSessionByJSessionId(
+		java.lang.String jSessionId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getSamlSpSessionByJSessionId(jSessionId);
 	}
 
-	/**
-	* @throws PortalException
-	*/
-	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
+	public static com.liferay.saml.model.SamlSpSession getSamlSpSessionBySamlSpSessionKey(
+		java.lang.String samlSpSessionKey)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().deletePersistedModel(persistedModel);
+		return getService().getSamlSpSessionBySamlSpSessionKey(samlSpSessionKey);
 	}
 
-	public static com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
+	public static com.liferay.saml.model.SamlSpSession getSamlSpSessionBySessionIndex(
+		java.lang.String sessionIndex)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getPersistedModel(primaryKeyObj);
+		return getService().getSamlSpSessionBySessionIndex(sessionIndex);
+	}
+
+	public static java.util.List<com.liferay.saml.model.SamlSpSession> getSamlSpSessions(
+		java.lang.String nameIdValue) {
+		return getService().getSamlSpSessions(nameIdValue);
 	}
 
 	/**
@@ -225,24 +287,10 @@ public class SamlSpSessionLocalServiceUtil {
 		return getService().getSamlSpSessionsCount();
 	}
 
-	/**
-	* Updates the saml sp session in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param samlSpSession the saml sp session
-	* @return the saml sp session that was updated
-	*/
-	public static com.liferay.saml.model.SamlSpSession updateSamlSpSession(
-		com.liferay.saml.model.SamlSpSession samlSpSession) {
-		return getService().updateSamlSpSession(samlSpSession);
-	}
-
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public static java.lang.String getBeanIdentifier() {
-		return getService().getBeanIdentifier();
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
 	/**
@@ -254,63 +302,15 @@ public class SamlSpSessionLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
-	public static java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return getService().invokeMethod(name, parameterTypes, arguments);
-	}
-
-	public static com.liferay.saml.model.SamlSpSession addSamlSpSession(
-		java.lang.String samlSpSessionKey, java.lang.String assertionXml,
-		java.lang.String jSessionId, java.lang.String nameIdFormat,
-		java.lang.String nameIdNameQualifier,
-		java.lang.String nameIdSPNameQualifier, java.lang.String nameIdValue,
-		java.lang.String sessionIndex,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService()
-				   .addSamlSpSession(samlSpSessionKey, assertionXml,
-			jSessionId, nameIdFormat, nameIdNameQualifier,
-			nameIdSPNameQualifier, nameIdValue, sessionIndex, serviceContext);
-	}
-
-	public static com.liferay.saml.model.SamlSpSession fetchSamlSpSessionByJSessionId(
-		java.lang.String jSessionId) {
-		return getService().fetchSamlSpSessionByJSessionId(jSessionId);
-	}
-
-	public static com.liferay.saml.model.SamlSpSession fetchSamlSpSessionBySamlSpSessionKey(
-		java.lang.String samlSpSessionKey) {
-		return getService()
-				   .fetchSamlSpSessionBySamlSpSessionKey(samlSpSessionKey);
-	}
-
-	public static com.liferay.saml.model.SamlSpSession fetchSamlSpSessionBySessionIndex(
-		java.lang.String sessionIndex) {
-		return getService().fetchSamlSpSessionBySessionIndex(sessionIndex);
-	}
-
-	public static com.liferay.saml.model.SamlSpSession getSamlSpSessionByJSessionId(
-		java.lang.String jSessionId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getSamlSpSessionByJSessionId(jSessionId);
-	}
-
-	public static com.liferay.saml.model.SamlSpSession getSamlSpSessionBySamlSpSessionKey(
-		java.lang.String samlSpSessionKey)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getSamlSpSessionBySamlSpSessionKey(samlSpSessionKey);
-	}
-
-	public static com.liferay.saml.model.SamlSpSession getSamlSpSessionBySessionIndex(
-		java.lang.String sessionIndex)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getSamlSpSessionBySessionIndex(sessionIndex);
-	}
-
-	public static java.util.List<com.liferay.saml.model.SamlSpSession> getSamlSpSessions(
-		java.lang.String nameIdValue) {
-		return getService().getSamlSpSessions(nameIdValue);
+	/**
+	* Updates the saml sp session in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param samlSpSession the saml sp session
+	* @return the saml sp session that was updated
+	*/
+	public static com.liferay.saml.model.SamlSpSession updateSamlSpSession(
+		com.liferay.saml.model.SamlSpSession samlSpSession) {
+		return getService().updateSamlSpSession(samlSpSession);
 	}
 
 	public static com.liferay.saml.model.SamlSpSession updateSamlSpSession(

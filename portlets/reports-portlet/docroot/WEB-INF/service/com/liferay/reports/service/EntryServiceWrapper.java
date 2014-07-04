@@ -29,33 +29,6 @@ public class EntryServiceWrapper implements EntryService,
 		_entryService = entryService;
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _entryService.getBeanIdentifier();
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_entryService.setBeanIdentifier(beanIdentifier);
-	}
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _entryService.invokeMethod(name, parameterTypes, arguments);
-	}
-
 	@Override
 	public com.liferay.reports.model.Entry addEntry(long groupId,
 		long definitionId, java.lang.String format, boolean schedulerRequest,
@@ -85,6 +58,16 @@ public class EntryServiceWrapper implements EntryService,
 		return _entryService.deleteEntry(entryId);
 	}
 
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	@Override
+	public java.lang.String getBeanIdentifier() {
+		return _entryService.getBeanIdentifier();
+	}
+
 	@Override
 	public java.util.List<com.liferay.reports.model.Entry> getEntries(
 		long groupId, java.lang.String definitionName,
@@ -105,10 +88,27 @@ public class EntryServiceWrapper implements EntryService,
 	}
 
 	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _entryService.invokeMethod(name, parameterTypes, arguments);
+	}
+
+	@Override
 	public void sendEmails(long entryId, java.lang.String fileName,
 		java.lang.String[] emailAddresses, boolean notification)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		_entryService.sendEmails(entryId, fileName, emailAddresses, notification);
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	@Override
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_entryService.setBeanIdentifier(beanIdentifier);
 	}
 
 	@Override

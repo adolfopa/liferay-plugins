@@ -42,6 +42,16 @@ public class OAuthUserLocalServiceWrapper implements OAuthUserLocalService,
 		return _oAuthUserLocalService.addOAuthUser(oAuthUser);
 	}
 
+	@Override
+	public com.liferay.oauth.model.OAuthUser addOAuthUser(long userId,
+		long oAuthApplicationId, java.lang.String accessToken,
+		java.lang.String accessSecret,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _oAuthUserLocalService.addOAuthUser(userId, oAuthApplicationId,
+			accessToken, accessSecret, serviceContext);
+	}
+
 	/**
 	* Creates a new o auth user with the primary key. Does not add the o auth user to the database.
 	*
@@ -51,6 +61,20 @@ public class OAuthUserLocalServiceWrapper implements OAuthUserLocalService,
 	@Override
 	public com.liferay.oauth.model.OAuthUser createOAuthUser(long oAuthUserId) {
 		return _oAuthUserLocalService.createOAuthUser(oAuthUserId);
+	}
+
+	/**
+	* Deletes the o auth user from the database. Also notifies the appropriate model listeners.
+	*
+	* @param oAuthUser the o auth user
+	* @return the o auth user that was removed
+	* @throws PortalException
+	*/
+	@Override
+	public com.liferay.oauth.model.OAuthUser deleteOAuthUser(
+		com.liferay.oauth.model.OAuthUser oAuthUser)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _oAuthUserLocalService.deleteOAuthUser(oAuthUser);
 	}
 
 	/**
@@ -66,18 +90,21 @@ public class OAuthUserLocalServiceWrapper implements OAuthUserLocalService,
 		return _oAuthUserLocalService.deleteOAuthUser(oAuthUserId);
 	}
 
+	@Override
+	public com.liferay.oauth.model.OAuthUser deleteOAuthUser(long userId,
+		long oAuthApplicationId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _oAuthUserLocalService.deleteOAuthUser(userId, oAuthApplicationId);
+	}
+
 	/**
-	* Deletes the o auth user from the database. Also notifies the appropriate model listeners.
-	*
-	* @param oAuthUser the o auth user
-	* @return the o auth user that was removed
 	* @throws PortalException
 	*/
 	@Override
-	public com.liferay.oauth.model.OAuthUser deleteOAuthUser(
-		com.liferay.oauth.model.OAuthUser oAuthUser)
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _oAuthUserLocalService.deleteOAuthUser(oAuthUser);
+		return _oAuthUserLocalService.deletePersistedModel(persistedModel);
 	}
 
 	@Override
@@ -165,8 +192,55 @@ public class OAuthUserLocalServiceWrapper implements OAuthUserLocalService,
 	}
 
 	@Override
+	public com.liferay.oauth.model.OAuthUser fetchOAuthUser(
+		java.lang.String accessToken) {
+		return _oAuthUserLocalService.fetchOAuthUser(accessToken);
+	}
+
+	@Override
 	public com.liferay.oauth.model.OAuthUser fetchOAuthUser(long oAuthUserId) {
 		return _oAuthUserLocalService.fetchOAuthUser(oAuthUserId);
+	}
+
+	@Override
+	public com.liferay.oauth.model.OAuthUser fetchOAuthUser(long userId,
+		long oAuthApplicationId) {
+		return _oAuthUserLocalService.fetchOAuthUser(userId, oAuthApplicationId);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return _oAuthUserLocalService.getActionableDynamicQuery();
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	@Override
+	public java.lang.String getBeanIdentifier() {
+		return _oAuthUserLocalService.getBeanIdentifier();
+	}
+
+	@Override
+	public java.util.List<com.liferay.oauth.model.OAuthUser> getOAuthApplicationOAuthUsers(
+		long oAuthApplicationId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		return _oAuthUserLocalService.getOAuthApplicationOAuthUsers(oAuthApplicationId,
+			start, end, orderByComparator);
+	}
+
+	@Override
+	public int getOAuthApplicationOAuthUsersCount(long oAuthApplicationId) {
+		return _oAuthUserLocalService.getOAuthApplicationOAuthUsersCount(oAuthApplicationId);
+	}
+
+	@Override
+	public com.liferay.oauth.model.OAuthUser getOAuthUser(
+		java.lang.String accessToken)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _oAuthUserLocalService.getOAuthUser(accessToken);
 	}
 
 	/**
@@ -183,25 +257,10 @@ public class OAuthUserLocalServiceWrapper implements OAuthUserLocalService,
 	}
 
 	@Override
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return _oAuthUserLocalService.getActionableDynamicQuery();
-	}
-
-	/**
-	* @throws PortalException
-	*/
-	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
+	public com.liferay.oauth.model.OAuthUser getOAuthUser(long userId,
+		long oAuthApplicationId)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _oAuthUserLocalService.deletePersistedModel(persistedModel);
-	}
-
-	@Override
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _oAuthUserLocalService.getPersistedModel(primaryKeyObj);
+		return _oAuthUserLocalService.getOAuthUser(userId, oAuthApplicationId);
 	}
 
 	/**
@@ -231,100 +290,11 @@ public class OAuthUserLocalServiceWrapper implements OAuthUserLocalService,
 		return _oAuthUserLocalService.getOAuthUsersCount();
 	}
 
-	/**
-	* Updates the o auth user in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param oAuthUser the o auth user
-	* @return the o auth user that was updated
-	*/
 	@Override
-	public com.liferay.oauth.model.OAuthUser updateOAuthUser(
-		com.liferay.oauth.model.OAuthUser oAuthUser) {
-		return _oAuthUserLocalService.updateOAuthUser(oAuthUser);
-	}
-
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _oAuthUserLocalService.getBeanIdentifier();
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_oAuthUserLocalService.setBeanIdentifier(beanIdentifier);
-	}
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _oAuthUserLocalService.invokeMethod(name, parameterTypes,
-			arguments);
-	}
-
-	@Override
-	public com.liferay.oauth.model.OAuthUser addOAuthUser(long userId,
-		long oAuthApplicationId, java.lang.String accessToken,
-		java.lang.String accessSecret,
-		com.liferay.portal.service.ServiceContext serviceContext)
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _oAuthUserLocalService.addOAuthUser(userId, oAuthApplicationId,
-			accessToken, accessSecret, serviceContext);
-	}
-
-	@Override
-	public com.liferay.oauth.model.OAuthUser deleteOAuthUser(long userId,
-		long oAuthApplicationId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _oAuthUserLocalService.deleteOAuthUser(userId, oAuthApplicationId);
-	}
-
-	@Override
-	public com.liferay.oauth.model.OAuthUser fetchOAuthUser(long userId,
-		long oAuthApplicationId) {
-		return _oAuthUserLocalService.fetchOAuthUser(userId, oAuthApplicationId);
-	}
-
-	@Override
-	public com.liferay.oauth.model.OAuthUser fetchOAuthUser(
-		java.lang.String accessToken) {
-		return _oAuthUserLocalService.fetchOAuthUser(accessToken);
-	}
-
-	@Override
-	public java.util.List<com.liferay.oauth.model.OAuthUser> getOAuthApplicationOAuthUsers(
-		long oAuthApplicationId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
-		return _oAuthUserLocalService.getOAuthApplicationOAuthUsers(oAuthApplicationId,
-			start, end, orderByComparator);
-	}
-
-	@Override
-	public int getOAuthApplicationOAuthUsersCount(long oAuthApplicationId) {
-		return _oAuthUserLocalService.getOAuthApplicationOAuthUsersCount(oAuthApplicationId);
-	}
-
-	@Override
-	public com.liferay.oauth.model.OAuthUser getOAuthUser(long userId,
-		long oAuthApplicationId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _oAuthUserLocalService.getOAuthUser(userId, oAuthApplicationId);
-	}
-
-	@Override
-	public com.liferay.oauth.model.OAuthUser getOAuthUser(
-		java.lang.String accessToken)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _oAuthUserLocalService.getOAuthUser(accessToken);
+		return _oAuthUserLocalService.getPersistedModel(primaryKeyObj);
 	}
 
 	@Override
@@ -338,6 +308,36 @@ public class OAuthUserLocalServiceWrapper implements OAuthUserLocalService,
 	@Override
 	public int getUserOAuthUsersCount(long userId) {
 		return _oAuthUserLocalService.getUserOAuthUsersCount(userId);
+	}
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _oAuthUserLocalService.invokeMethod(name, parameterTypes,
+			arguments);
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	@Override
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_oAuthUserLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	/**
+	* Updates the o auth user in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param oAuthUser the o auth user
+	* @return the o auth user that was updated
+	*/
+	@Override
+	public com.liferay.oauth.model.OAuthUser updateOAuthUser(
+		com.liferay.oauth.model.OAuthUser oAuthUser) {
+		return _oAuthUserLocalService.updateOAuthUser(oAuthUser);
 	}
 
 	@Override

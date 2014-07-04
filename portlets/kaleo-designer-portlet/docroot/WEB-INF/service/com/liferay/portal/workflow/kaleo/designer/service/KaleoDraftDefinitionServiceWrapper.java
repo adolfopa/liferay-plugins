@@ -31,34 +31,6 @@ public class KaleoDraftDefinitionServiceWrapper
 		_kaleoDraftDefinitionService = kaleoDraftDefinitionService;
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _kaleoDraftDefinitionService.getBeanIdentifier();
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_kaleoDraftDefinitionService.setBeanIdentifier(beanIdentifier);
-	}
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _kaleoDraftDefinitionService.invokeMethod(name, parameterTypes,
-			arguments);
-	}
-
 	@Override
 	public com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition addKaleoDraftDefinition(
 		long userId, long groupId, java.lang.String name,
@@ -69,6 +41,16 @@ public class KaleoDraftDefinitionServiceWrapper
 		return _kaleoDraftDefinitionService.addKaleoDraftDefinition(userId,
 			groupId, name, titleMap, content, version, draftVersion,
 			serviceContext);
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	@Override
+	public java.lang.String getBeanIdentifier() {
+		return _kaleoDraftDefinitionService.getBeanIdentifier();
 	}
 
 	@Override
@@ -105,6 +87,14 @@ public class KaleoDraftDefinitionServiceWrapper
 	}
 
 	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _kaleoDraftDefinitionService.invokeMethod(name, parameterTypes,
+			arguments);
+	}
+
+	@Override
 	public com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition publishKaleoDraftDefinition(
 		long userId, long groupId, java.lang.String name,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
@@ -113,6 +103,16 @@ public class KaleoDraftDefinitionServiceWrapper
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kaleoDraftDefinitionService.publishKaleoDraftDefinition(userId,
 			groupId, name, titleMap, content, serviceContext);
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	@Override
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_kaleoDraftDefinitionService.setBeanIdentifier(beanIdentifier);
 	}
 
 	@Override

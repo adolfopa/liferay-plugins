@@ -148,84 +148,30 @@ public class SourceWrapper implements Source, ModelWrapper<Source> {
 		}
 	}
 
-	/**
-	* Returns the primary key of this source.
-	*
-	* @return the primary key of this source
-	*/
 	@Override
-	public long getPrimaryKey() {
-		return _source.getPrimaryKey();
+	public java.lang.Object clone() {
+		return new SourceWrapper((Source)_source.clone());
 	}
 
-	/**
-	* Sets the primary key of this source.
-	*
-	* @param primaryKey the primary key of this source
-	*/
 	@Override
-	public void setPrimaryKey(long primaryKey) {
-		_source.setPrimaryKey(primaryKey);
+	public int compareTo(com.liferay.reports.model.Source source) {
+		return _source.compareTo(source);
 	}
 
-	/**
-	* Returns the uuid of this source.
-	*
-	* @return the uuid of this source
-	*/
 	@Override
-	public java.lang.String getUuid() {
-		return _source.getUuid();
+	public java.lang.String getAttachmentsDir() {
+		return _source.getAttachmentsDir();
 	}
 
-	/**
-	* Sets the uuid of this source.
-	*
-	* @param uuid the uuid of this source
-	*/
 	@Override
-	public void setUuid(java.lang.String uuid) {
-		_source.setUuid(uuid);
+	public java.lang.String[] getAttachmentsFiles()
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _source.getAttachmentsFiles();
 	}
 
-	/**
-	* Returns the source ID of this source.
-	*
-	* @return the source ID of this source
-	*/
 	@Override
-	public long getSourceId() {
-		return _source.getSourceId();
-	}
-
-	/**
-	* Sets the source ID of this source.
-	*
-	* @param sourceId the source ID of this source
-	*/
-	@Override
-	public void setSourceId(long sourceId) {
-		_source.setSourceId(sourceId);
-	}
-
-	/**
-	* Returns the group ID of this source.
-	*
-	* @return the group ID of this source
-	*/
-	@Override
-	public long getGroupId() {
-		return _source.getGroupId();
-	}
-
-	/**
-	* Sets the group ID of this source.
-	*
-	* @param groupId the group ID of this source
-	*/
-	@Override
-	public void setGroupId(long groupId) {
-		_source.setGroupId(groupId);
+	public java.lang.String[] getAvailableLanguageIds() {
+		return _source.getAvailableLanguageIds();
 	}
 
 	/**
@@ -239,76 +185,6 @@ public class SourceWrapper implements Source, ModelWrapper<Source> {
 	}
 
 	/**
-	* Sets the company ID of this source.
-	*
-	* @param companyId the company ID of this source
-	*/
-	@Override
-	public void setCompanyId(long companyId) {
-		_source.setCompanyId(companyId);
-	}
-
-	/**
-	* Returns the user ID of this source.
-	*
-	* @return the user ID of this source
-	*/
-	@Override
-	public long getUserId() {
-		return _source.getUserId();
-	}
-
-	/**
-	* Sets the user ID of this source.
-	*
-	* @param userId the user ID of this source
-	*/
-	@Override
-	public void setUserId(long userId) {
-		_source.setUserId(userId);
-	}
-
-	/**
-	* Returns the user uuid of this source.
-	*
-	* @return the user uuid of this source
-	*/
-	@Override
-	public java.lang.String getUserUuid() {
-		return _source.getUserUuid();
-	}
-
-	/**
-	* Sets the user uuid of this source.
-	*
-	* @param userUuid the user uuid of this source
-	*/
-	@Override
-	public void setUserUuid(java.lang.String userUuid) {
-		_source.setUserUuid(userUuid);
-	}
-
-	/**
-	* Returns the user name of this source.
-	*
-	* @return the user name of this source
-	*/
-	@Override
-	public java.lang.String getUserName() {
-		return _source.getUserName();
-	}
-
-	/**
-	* Sets the user name of this source.
-	*
-	* @param userName the user name of this source
-	*/
-	@Override
-	public void setUserName(java.lang.String userName) {
-		_source.setUserName(userName);
-	}
-
-	/**
 	* Returns the create date of this source.
 	*
 	* @return the create date of this source
@@ -318,14 +194,64 @@ public class SourceWrapper implements Source, ModelWrapper<Source> {
 		return _source.getCreateDate();
 	}
 
+	@Override
+	public java.lang.String getDefaultLanguageId() {
+		return _source.getDefaultLanguageId();
+	}
+
 	/**
-	* Sets the create date of this source.
+	* Returns the driver class name of this source.
 	*
-	* @param createDate the create date of this source
+	* @return the driver class name of this source
 	*/
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
-		_source.setCreateDate(createDate);
+	public java.lang.String getDriverClassName() {
+		return _source.getDriverClassName();
+	}
+
+	/**
+	* Returns the driver password of this source.
+	*
+	* @return the driver password of this source
+	*/
+	@Override
+	public java.lang.String getDriverPassword() {
+		return _source.getDriverPassword();
+	}
+
+	/**
+	* Returns the driver url of this source.
+	*
+	* @return the driver url of this source
+	*/
+	@Override
+	public java.lang.String getDriverUrl() {
+		return _source.getDriverUrl();
+	}
+
+	/**
+	* Returns the driver user name of this source.
+	*
+	* @return the driver user name of this source
+	*/
+	@Override
+	public java.lang.String getDriverUserName() {
+		return _source.getDriverUserName();
+	}
+
+	@Override
+	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
+		return _source.getExpandoBridge();
+	}
+
+	/**
+	* Returns the group ID of this source.
+	*
+	* @return the group ID of this source
+	*/
+	@Override
+	public long getGroupId() {
+		return _source.getGroupId();
 	}
 
 	/**
@@ -339,16 +265,6 @@ public class SourceWrapper implements Source, ModelWrapper<Source> {
 	}
 
 	/**
-	* Sets the modified date of this source.
-	*
-	* @param modifiedDate the modified date of this source
-	*/
-	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
-		_source.setModifiedDate(modifiedDate);
-	}
-
-	/**
 	* Returns the name of this source.
 	*
 	* @return the name of this source
@@ -356,29 +272,6 @@ public class SourceWrapper implements Source, ModelWrapper<Source> {
 	@Override
 	public java.lang.String getName() {
 		return _source.getName();
-	}
-
-	/**
-	* Returns the localized name of this source in the language. Uses the default language if no localization exists for the requested language.
-	*
-	* @param locale the locale of the language
-	* @return the localized name of this source
-	*/
-	@Override
-	public java.lang.String getName(java.util.Locale locale) {
-		return _source.getName(locale);
-	}
-
-	/**
-	* Returns the localized name of this source in the language, optionally using the default language if no localization exists for the requested language.
-	*
-	* @param locale the local of the language
-	* @param useDefault whether to use the default language if no localization exists for the requested language
-	* @return the localized name of this source. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
-	*/
-	@Override
-	public java.lang.String getName(java.util.Locale locale, boolean useDefault) {
-		return _source.getName(locale, useDefault);
 	}
 
 	/**
@@ -405,6 +298,29 @@ public class SourceWrapper implements Source, ModelWrapper<Source> {
 		return _source.getName(languageId, useDefault);
 	}
 
+	/**
+	* Returns the localized name of this source in the language. Uses the default language if no localization exists for the requested language.
+	*
+	* @param locale the locale of the language
+	* @return the localized name of this source
+	*/
+	@Override
+	public java.lang.String getName(java.util.Locale locale) {
+		return _source.getName(locale);
+	}
+
+	/**
+	* Returns the localized name of this source in the language, optionally using the default language if no localization exists for the requested language.
+	*
+	* @param locale the local of the language
+	* @param useDefault whether to use the default language if no localization exists for the requested language
+	* @return the localized name of this source. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
+	*/
+	@Override
+	public java.lang.String getName(java.util.Locale locale, boolean useDefault) {
+		return _source.getName(locale, useDefault);
+	}
+
 	@Override
 	public java.lang.String getNameCurrentLanguageId() {
 		return _source.getNameCurrentLanguageId();
@@ -423,6 +339,212 @@ public class SourceWrapper implements Source, ModelWrapper<Source> {
 	@Override
 	public java.util.Map<java.util.Locale, java.lang.String> getNameMap() {
 		return _source.getNameMap();
+	}
+
+	/**
+	* Returns the primary key of this source.
+	*
+	* @return the primary key of this source
+	*/
+	@Override
+	public long getPrimaryKey() {
+		return _source.getPrimaryKey();
+	}
+
+	@Override
+	public java.io.Serializable getPrimaryKeyObj() {
+		return _source.getPrimaryKeyObj();
+	}
+
+	/**
+	* Returns the source ID of this source.
+	*
+	* @return the source ID of this source
+	*/
+	@Override
+	public long getSourceId() {
+		return _source.getSourceId();
+	}
+
+	/**
+	* Returns the user ID of this source.
+	*
+	* @return the user ID of this source
+	*/
+	@Override
+	public long getUserId() {
+		return _source.getUserId();
+	}
+
+	/**
+	* Returns the user name of this source.
+	*
+	* @return the user name of this source
+	*/
+	@Override
+	public java.lang.String getUserName() {
+		return _source.getUserName();
+	}
+
+	/**
+	* Returns the user uuid of this source.
+	*
+	* @return the user uuid of this source
+	*/
+	@Override
+	public java.lang.String getUserUuid() {
+		return _source.getUserUuid();
+	}
+
+	/**
+	* Returns the uuid of this source.
+	*
+	* @return the uuid of this source
+	*/
+	@Override
+	public java.lang.String getUuid() {
+		return _source.getUuid();
+	}
+
+	@Override
+	public int hashCode() {
+		return _source.hashCode();
+	}
+
+	@Override
+	public boolean isCachedModel() {
+		return _source.isCachedModel();
+	}
+
+	@Override
+	public boolean isEscapedModel() {
+		return _source.isEscapedModel();
+	}
+
+	@Override
+	public boolean isNew() {
+		return _source.isNew();
+	}
+
+	@Override
+	public void persist() {
+		_source.persist();
+	}
+
+	@Override
+	public void prepareLocalizedFieldsForImport()
+		throws com.liferay.portal.LocaleException {
+		_source.prepareLocalizedFieldsForImport();
+	}
+
+	@Override
+	public void prepareLocalizedFieldsForImport(
+		java.util.Locale defaultImportLocale)
+		throws com.liferay.portal.LocaleException {
+		_source.prepareLocalizedFieldsForImport(defaultImportLocale);
+	}
+
+	@Override
+	public void setCachedModel(boolean cachedModel) {
+		_source.setCachedModel(cachedModel);
+	}
+
+	/**
+	* Sets the company ID of this source.
+	*
+	* @param companyId the company ID of this source
+	*/
+	@Override
+	public void setCompanyId(long companyId) {
+		_source.setCompanyId(companyId);
+	}
+
+	/**
+	* Sets the create date of this source.
+	*
+	* @param createDate the create date of this source
+	*/
+	@Override
+	public void setCreateDate(java.util.Date createDate) {
+		_source.setCreateDate(createDate);
+	}
+
+	/**
+	* Sets the driver class name of this source.
+	*
+	* @param driverClassName the driver class name of this source
+	*/
+	@Override
+	public void setDriverClassName(java.lang.String driverClassName) {
+		_source.setDriverClassName(driverClassName);
+	}
+
+	/**
+	* Sets the driver password of this source.
+	*
+	* @param driverPassword the driver password of this source
+	*/
+	@Override
+	public void setDriverPassword(java.lang.String driverPassword) {
+		_source.setDriverPassword(driverPassword);
+	}
+
+	/**
+	* Sets the driver url of this source.
+	*
+	* @param driverUrl the driver url of this source
+	*/
+	@Override
+	public void setDriverUrl(java.lang.String driverUrl) {
+		_source.setDriverUrl(driverUrl);
+	}
+
+	/**
+	* Sets the driver user name of this source.
+	*
+	* @param driverUserName the driver user name of this source
+	*/
+	@Override
+	public void setDriverUserName(java.lang.String driverUserName) {
+		_source.setDriverUserName(driverUserName);
+	}
+
+	@Override
+	public void setExpandoBridgeAttributes(
+		com.liferay.portal.model.BaseModel<?> baseModel) {
+		_source.setExpandoBridgeAttributes(baseModel);
+	}
+
+	@Override
+	public void setExpandoBridgeAttributes(
+		com.liferay.portlet.expando.model.ExpandoBridge expandoBridge) {
+		_source.setExpandoBridgeAttributes(expandoBridge);
+	}
+
+	@Override
+	public void setExpandoBridgeAttributes(
+		com.liferay.portal.service.ServiceContext serviceContext) {
+		_source.setExpandoBridgeAttributes(serviceContext);
+	}
+
+	/**
+	* Sets the group ID of this source.
+	*
+	* @param groupId the group ID of this source
+	*/
+	@Override
+	public void setGroupId(long groupId) {
+		_source.setGroupId(groupId);
+	}
+
+	/**
+	* Sets the modified date of this source.
+	*
+	* @param modifiedDate the modified date of this source
+	*/
+	@Override
+	public void setModifiedDate(java.util.Date modifiedDate) {
+		_source.setModifiedDate(modifiedDate);
 	}
 
 	/**
@@ -488,114 +610,19 @@ public class SourceWrapper implements Source, ModelWrapper<Source> {
 		_source.setNameMap(nameMap, defaultLocale);
 	}
 
-	/**
-	* Returns the driver class name of this source.
-	*
-	* @return the driver class name of this source
-	*/
-	@Override
-	public java.lang.String getDriverClassName() {
-		return _source.getDriverClassName();
-	}
-
-	/**
-	* Sets the driver class name of this source.
-	*
-	* @param driverClassName the driver class name of this source
-	*/
-	@Override
-	public void setDriverClassName(java.lang.String driverClassName) {
-		_source.setDriverClassName(driverClassName);
-	}
-
-	/**
-	* Returns the driver url of this source.
-	*
-	* @return the driver url of this source
-	*/
-	@Override
-	public java.lang.String getDriverUrl() {
-		return _source.getDriverUrl();
-	}
-
-	/**
-	* Sets the driver url of this source.
-	*
-	* @param driverUrl the driver url of this source
-	*/
-	@Override
-	public void setDriverUrl(java.lang.String driverUrl) {
-		_source.setDriverUrl(driverUrl);
-	}
-
-	/**
-	* Returns the driver user name of this source.
-	*
-	* @return the driver user name of this source
-	*/
-	@Override
-	public java.lang.String getDriverUserName() {
-		return _source.getDriverUserName();
-	}
-
-	/**
-	* Sets the driver user name of this source.
-	*
-	* @param driverUserName the driver user name of this source
-	*/
-	@Override
-	public void setDriverUserName(java.lang.String driverUserName) {
-		_source.setDriverUserName(driverUserName);
-	}
-
-	/**
-	* Returns the driver password of this source.
-	*
-	* @return the driver password of this source
-	*/
-	@Override
-	public java.lang.String getDriverPassword() {
-		return _source.getDriverPassword();
-	}
-
-	/**
-	* Sets the driver password of this source.
-	*
-	* @param driverPassword the driver password of this source
-	*/
-	@Override
-	public void setDriverPassword(java.lang.String driverPassword) {
-		_source.setDriverPassword(driverPassword);
-	}
-
-	@Override
-	public boolean isNew() {
-		return _source.isNew();
-	}
-
 	@Override
 	public void setNew(boolean n) {
 		_source.setNew(n);
 	}
 
+	/**
+	* Sets the primary key of this source.
+	*
+	* @param primaryKey the primary key of this source
+	*/
 	@Override
-	public boolean isCachedModel() {
-		return _source.isCachedModel();
-	}
-
-	@Override
-	public void setCachedModel(boolean cachedModel) {
-		_source.setCachedModel(cachedModel);
-	}
-
-	@Override
-	public boolean isEscapedModel() {
-		return _source.isEscapedModel();
-	}
-
-	@Override
-	public java.io.Serializable getPrimaryKeyObj() {
-		return _source.getPrimaryKeyObj();
+	public void setPrimaryKey(long primaryKey) {
+		_source.setPrimaryKey(primaryKey);
 	}
 
 	@Override
@@ -603,65 +630,54 @@ public class SourceWrapper implements Source, ModelWrapper<Source> {
 		_source.setPrimaryKeyObj(primaryKeyObj);
 	}
 
+	/**
+	* Sets the source ID of this source.
+	*
+	* @param sourceId the source ID of this source
+	*/
 	@Override
-	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
-		return _source.getExpandoBridge();
+	public void setSourceId(long sourceId) {
+		_source.setSourceId(sourceId);
 	}
 
+	/**
+	* Sets the user ID of this source.
+	*
+	* @param userId the user ID of this source
+	*/
 	@Override
-	public void setExpandoBridgeAttributes(
-		com.liferay.portal.model.BaseModel<?> baseModel) {
-		_source.setExpandoBridgeAttributes(baseModel);
+	public void setUserId(long userId) {
+		_source.setUserId(userId);
 	}
 
+	/**
+	* Sets the user name of this source.
+	*
+	* @param userName the user name of this source
+	*/
 	@Override
-	public void setExpandoBridgeAttributes(
-		com.liferay.portlet.expando.model.ExpandoBridge expandoBridge) {
-		_source.setExpandoBridgeAttributes(expandoBridge);
+	public void setUserName(java.lang.String userName) {
+		_source.setUserName(userName);
 	}
 
+	/**
+	* Sets the user uuid of this source.
+	*
+	* @param userUuid the user uuid of this source
+	*/
 	@Override
-	public void setExpandoBridgeAttributes(
-		com.liferay.portal.service.ServiceContext serviceContext) {
-		_source.setExpandoBridgeAttributes(serviceContext);
+	public void setUserUuid(java.lang.String userUuid) {
+		_source.setUserUuid(userUuid);
 	}
 
+	/**
+	* Sets the uuid of this source.
+	*
+	* @param uuid the uuid of this source
+	*/
 	@Override
-	public java.lang.String[] getAvailableLanguageIds() {
-		return _source.getAvailableLanguageIds();
-	}
-
-	@Override
-	public java.lang.String getDefaultLanguageId() {
-		return _source.getDefaultLanguageId();
-	}
-
-	@Override
-	public void prepareLocalizedFieldsForImport()
-		throws com.liferay.portal.LocaleException {
-		_source.prepareLocalizedFieldsForImport();
-	}
-
-	@Override
-	public void prepareLocalizedFieldsForImport(
-		java.util.Locale defaultImportLocale)
-		throws com.liferay.portal.LocaleException {
-		_source.prepareLocalizedFieldsForImport(defaultImportLocale);
-	}
-
-	@Override
-	public java.lang.Object clone() {
-		return new SourceWrapper((Source)_source.clone());
-	}
-
-	@Override
-	public int compareTo(com.liferay.reports.model.Source source) {
-		return _source.compareTo(source);
-	}
-
-	@Override
-	public int hashCode() {
-		return _source.hashCode();
+	public void setUuid(java.lang.String uuid) {
+		_source.setUuid(uuid);
 	}
 
 	@Override
@@ -675,34 +691,18 @@ public class SourceWrapper implements Source, ModelWrapper<Source> {
 	}
 
 	@Override
-	public com.liferay.reports.model.Source toUnescapedModel() {
-		return new SourceWrapper(_source.toUnescapedModel());
-	}
-
-	@Override
 	public java.lang.String toString() {
 		return _source.toString();
 	}
 
 	@Override
+	public com.liferay.reports.model.Source toUnescapedModel() {
+		return new SourceWrapper(_source.toUnescapedModel());
+	}
+
+	@Override
 	public java.lang.String toXmlString() {
 		return _source.toXmlString();
-	}
-
-	@Override
-	public void persist() {
-		_source.persist();
-	}
-
-	@Override
-	public java.lang.String getAttachmentsDir() {
-		return _source.getAttachmentsDir();
-	}
-
-	@Override
-	public java.lang.String[] getAttachmentsFiles()
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _source.getAttachmentsFiles();
 	}
 
 	@Override

@@ -41,24 +41,6 @@ public class SalesforceLeadLocalServiceWrapper
 		return _salesforceLeadLocalService.getBeanIdentifier();
 	}
 
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_salesforceLeadLocalService.setBeanIdentifier(beanIdentifier);
-	}
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _salesforceLeadLocalService.invokeMethod(name, parameterTypes,
-			arguments);
-	}
-
 	@Override
 	public com.liferay.portal.kernel.messaging.MessageBatch getLeadsByCountry(
 		long companyId, java.lang.String country,
@@ -99,6 +81,24 @@ public class SalesforceLeadLocalServiceWrapper
 		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException {
 		return _salesforceLeadLocalService.getLeadsByUserName(companyId,
 			userName, fieldNames);
+	}
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _salesforceLeadLocalService.invokeMethod(name, parameterTypes,
+			arguments);
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	@Override
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_salesforceLeadLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
 	/**

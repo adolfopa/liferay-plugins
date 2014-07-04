@@ -42,31 +42,15 @@ public interface SalesforceLocalService extends BaseLocalService,
 	 *
 	 * Never modify or reference this interface directly. Always use {@link SalesforceLocalServiceUtil} to access the salesforce local service. Add custom service methods to {@link com.liferay.salesforce.service.impl.SalesforceLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public java.lang.String getBeanIdentifier();
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	public void setBeanIdentifier(java.lang.String beanIdentifier);
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
+	public java.lang.String executeAdd(long companyId,
+		com.liferay.portal.kernel.messaging.Message message)
+		throws com.liferay.salesforce.service.SalesforceException;
 
 	public void executeAdd(long companyId,
 		java.util.List<com.liferay.portal.kernel.messaging.Message> messages)
 		throws com.liferay.salesforce.service.MultipleSalesforceException;
 
-	public java.lang.String executeAdd(long companyId,
+	public void executeAddOrUpdate(long companyId, java.lang.String externalId,
 		com.liferay.portal.kernel.messaging.Message message)
 		throws com.liferay.salesforce.service.SalesforceException;
 
@@ -74,24 +58,20 @@ public interface SalesforceLocalService extends BaseLocalService,
 		java.util.List<com.liferay.portal.kernel.messaging.Message> messages)
 		throws com.liferay.salesforce.service.MultipleSalesforceException;
 
-	public void executeAddOrUpdate(long companyId, java.lang.String externalId,
-		com.liferay.portal.kernel.messaging.Message message)
+	public boolean executeDelete(long companyId, java.lang.String objectId)
 		throws com.liferay.salesforce.service.SalesforceException;
 
 	public void executeDelete(long companyId,
 		java.util.List<java.lang.String> objectIds)
 		throws com.liferay.salesforce.service.MultipleSalesforceException;
 
-	public boolean executeDelete(long companyId, java.lang.String objectId)
-		throws com.liferay.salesforce.service.SalesforceException;
-
-	public com.liferay.portal.kernel.messaging.MessageBatch executeQuery(
-		long companyId, java.lang.String queryString);
-
 	public com.liferay.portal.kernel.messaging.Message executeQuery(
 		long companyId, java.lang.String objectId, java.lang.String objectType,
 		java.util.List<java.lang.String> fieldNames)
 		throws com.liferay.portal.kernel.dao.orm.ObjectNotFoundException;
+
+	public com.liferay.portal.kernel.messaging.MessageBatch executeQuery(
+		long companyId, java.lang.String queryString);
 
 	public com.liferay.portal.kernel.messaging.MessageBatch executeQueryMore(
 		long companyId, java.lang.String queryLocator);
@@ -100,10 +80,29 @@ public interface SalesforceLocalService extends BaseLocalService,
 		long companyId, java.lang.String searchString);
 
 	public void executeUpdate(long companyId,
+		com.liferay.portal.kernel.messaging.Message message)
+		throws com.liferay.salesforce.service.SalesforceException;
+
+	public void executeUpdate(long companyId,
 		java.util.List<com.liferay.portal.kernel.messaging.Message> messages)
 		throws com.liferay.salesforce.service.MultipleSalesforceException;
 
-	public void executeUpdate(long companyId,
-		com.liferay.portal.kernel.messaging.Message message)
-		throws com.liferay.salesforce.service.SalesforceException;
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier();
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier);
 }

@@ -30,34 +30,6 @@ public class SPIDefinitionServiceWrapper implements SPIDefinitionService,
 		_spiDefinitionService = spiDefinitionService;
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _spiDefinitionService.getBeanIdentifier();
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_spiDefinitionService.setBeanIdentifier(beanIdentifier);
-	}
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _spiDefinitionService.invokeMethod(name, parameterTypes,
-			arguments);
-	}
-
 	@Override
 	public com.liferay.portal.resiliency.spi.model.SPIDefinition addSPIDefinition(
 		java.lang.String name, java.lang.String connectorAddress,
@@ -78,17 +50,20 @@ public class SPIDefinitionServiceWrapper implements SPIDefinitionService,
 		return _spiDefinitionService.deleteSPIDefinition(spiDefinitionId);
 	}
 
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	@Override
+	public java.lang.String getBeanIdentifier() {
+		return _spiDefinitionService.getBeanIdentifier();
+	}
+
 	@Override
 	public com.liferay.portal.kernel.util.Tuple getPortletIdsAndServletContextNames()
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _spiDefinitionService.getPortletIdsAndServletContextNames();
-	}
-
-	@Override
-	public com.liferay.portal.resiliency.spi.model.SPIDefinition getSPIDefinition(
-		long spiDefinitionId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _spiDefinitionService.getSPIDefinition(spiDefinitionId);
 	}
 
 	@Override
@@ -99,9 +74,34 @@ public class SPIDefinitionServiceWrapper implements SPIDefinitionService,
 	}
 
 	@Override
+	public com.liferay.portal.resiliency.spi.model.SPIDefinition getSPIDefinition(
+		long spiDefinitionId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _spiDefinitionService.getSPIDefinition(spiDefinitionId);
+	}
+
+	@Override
 	public java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> getSPIDefinitions()
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _spiDefinitionService.getSPIDefinitions();
+	}
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _spiDefinitionService.invokeMethod(name, parameterTypes,
+			arguments);
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	@Override
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_spiDefinitionService.setBeanIdentifier(beanIdentifier);
 	}
 
 	@Override

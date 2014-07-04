@@ -38,31 +38,6 @@ public class SPIDefinitionServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link com.liferay.portal.resiliency.spi.service.impl.SPIDefinitionServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
-
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public static java.lang.String getBeanIdentifier() {
-		return getService().getBeanIdentifier();
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
-		getService().setBeanIdentifier(beanIdentifier);
-	}
-
-	public static java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return getService().invokeMethod(name, parameterTypes, arguments);
-	}
-
 	public static com.liferay.portal.resiliency.spi.model.SPIDefinition addSPIDefinition(
 		java.lang.String name, java.lang.String connectorAddress,
 		int connectorPort, java.lang.String description,
@@ -82,15 +57,18 @@ public class SPIDefinitionServiceUtil {
 		return getService().deleteSPIDefinition(spiDefinitionId);
 	}
 
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public static java.lang.String getBeanIdentifier() {
+		return getService().getBeanIdentifier();
+	}
+
 	public static com.liferay.portal.kernel.util.Tuple getPortletIdsAndServletContextNames()
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getPortletIdsAndServletContextNames();
-	}
-
-	public static com.liferay.portal.resiliency.spi.model.SPIDefinition getSPIDefinition(
-		long spiDefinitionId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getSPIDefinition(spiDefinitionId);
 	}
 
 	public static com.liferay.portal.resiliency.spi.model.SPIDefinition getSPIDefinition(
@@ -99,9 +77,30 @@ public class SPIDefinitionServiceUtil {
 		return getService().getSPIDefinition(companyId, name);
 	}
 
+	public static com.liferay.portal.resiliency.spi.model.SPIDefinition getSPIDefinition(
+		long spiDefinitionId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getSPIDefinition(spiDefinitionId);
+	}
+
 	public static java.util.List<com.liferay.portal.resiliency.spi.model.SPIDefinition> getSPIDefinitions()
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getSPIDefinitions();
+	}
+
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
+		getService().setBeanIdentifier(beanIdentifier);
 	}
 
 	public static void startSPI(long spiDefinitionId)

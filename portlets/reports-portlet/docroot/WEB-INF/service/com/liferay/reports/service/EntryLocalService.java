@@ -16,6 +16,7 @@ package com.liferay.reports.service;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
@@ -51,8 +52,28 @@ public interface EntryLocalService extends BaseLocalService,
 	* @param entry the entry
 	* @return the entry that was added
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
 	public com.liferay.reports.model.Entry addEntry(
 		com.liferay.reports.model.Entry entry);
+
+	public com.liferay.reports.model.Entry addEntry(long userId, long groupId,
+		long definitionId, java.lang.String format, boolean schedulerRequest,
+		java.util.Date startDate, java.util.Date endDate, boolean repeating,
+		java.lang.String recurrence, java.lang.String emailNotifications,
+		java.lang.String emailDelivery, java.lang.String portletId,
+		java.lang.String pageURL, java.lang.String reportName,
+		java.lang.String reportParameters,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	public void addEntryResources(com.liferay.reports.model.Entry entry,
+		boolean addCommunityPermissions, boolean addGuestPermissions)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	public void addEntryResources(com.liferay.reports.model.Entry entry,
+		java.lang.String[] communityPermissions,
+		java.lang.String[] guestPermissions)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Creates a new entry with the primary key. Does not add the entry to the database.
@@ -62,14 +83,7 @@ public interface EntryLocalService extends BaseLocalService,
 	*/
 	public com.liferay.reports.model.Entry createEntry(long entryId);
 
-	/**
-	* Deletes the entry with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param entryId the primary key of the entry
-	* @return the entry that was removed
-	* @throws PortalException if a entry with the primary key could not be found
-	*/
-	public com.liferay.reports.model.Entry deleteEntry(long entryId)
+	public void deleteAttachment(long companyId, java.lang.String fileName)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
@@ -79,8 +93,28 @@ public interface EntryLocalService extends BaseLocalService,
 	* @return the entry that was removed
 	* @throws PortalException
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.reports.model.Entry deleteEntry(
 		com.liferay.reports.model.Entry entry)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	/**
+	* Deletes the entry with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param entryId the primary key of the entry
+	* @return the entry that was removed
+	* @throws PortalException if a entry with the primary key could not be found
+	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
+	public com.liferay.reports.model.Entry deleteEntry(long entryId)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	/**
+	* @throws PortalException
+	*/
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
@@ -151,33 +185,29 @@ public interface EntryLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.reports.model.Entry fetchEntry(long entryId);
 
-	/**
-	* Returns the entry with the primary key.
-	*
-	* @param entryId the primary key of the entry
-	* @return the entry
-	* @throws PortalException if a entry with the primary key could not be found
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.reports.model.Entry getEntry(long entryId)
+	public void generateReport(long entryId)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	public void generateReport(long entryId, java.lang.String reportName)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
 
 	/**
-	* @throws PortalException
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
 	*/
-	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException;
+	public java.lang.String getBeanIdentifier();
 
-	@Override
+	@java.lang.SuppressWarnings(value = "unchecked")
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException;
+	public java.util.List<com.liferay.reports.model.Entry> getEntries(
+		long groupId, java.lang.String definitionName,
+		java.lang.String userName, java.util.Date createDateGT,
+		java.util.Date createDateLT, boolean andSearch, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns a range of all the entries.
@@ -202,21 +232,36 @@ public interface EntryLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getEntriesCount();
 
-	/**
-	* Updates the entry in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param entry the entry
-	* @return the entry that was updated
-	*/
-	public com.liferay.reports.model.Entry updateEntry(
-		com.liferay.reports.model.Entry entry);
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getEntriesCount(long groupId, java.lang.String definitionName,
+		java.lang.String userName, java.util.Date createDateGT,
+		java.util.Date createDateLT, boolean andSearch);
 
 	/**
-	* Returns the Spring bean ID for this bean.
+	* Returns the entry with the primary key.
 	*
-	* @return the Spring bean ID for this bean
+	* @param entryId the primary key of the entry
+	* @return the entry
+	* @throws PortalException if a entry with the primary key could not be found
 	*/
-	public java.lang.String getBeanIdentifier();
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.reports.model.Entry getEntry(long entryId)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	@Override
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
+
+	public void sendEmails(long entryId, java.lang.String fileName,
+		java.lang.String[] emailAddresses, boolean notification)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Sets the Spring bean ID for this bean.
@@ -225,57 +270,18 @@ public interface EntryLocalService extends BaseLocalService,
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier);
 
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
-
-	public com.liferay.reports.model.Entry addEntry(long userId, long groupId,
-		long definitionId, java.lang.String format, boolean schedulerRequest,
-		java.util.Date startDate, java.util.Date endDate, boolean repeating,
-		java.lang.String recurrence, java.lang.String emailNotifications,
-		java.lang.String emailDelivery, java.lang.String portletId,
-		java.lang.String pageURL, java.lang.String reportName,
-		java.lang.String reportParameters,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	public void addEntryResources(com.liferay.reports.model.Entry entry,
-		boolean addCommunityPermissions, boolean addGuestPermissions)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	public void addEntryResources(com.liferay.reports.model.Entry entry,
-		java.lang.String[] communityPermissions,
-		java.lang.String[] guestPermissions)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	public void deleteAttachment(long companyId, java.lang.String fileName)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	public void generateReport(long entryId)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	public void generateReport(long entryId, java.lang.String reportName)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.reports.model.Entry> getEntries(
-		long groupId, java.lang.String definitionName,
-		java.lang.String userName, java.util.Date createDateGT,
-		java.util.Date createDateLT, boolean andSearch, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getEntriesCount(long groupId, java.lang.String definitionName,
-		java.lang.String userName, java.util.Date createDateGT,
-		java.util.Date createDateLT, boolean andSearch);
-
-	public void sendEmails(long entryId, java.lang.String fileName,
-		java.lang.String[] emailAddresses, boolean notification)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
 	public void unscheduleEntry(long entryId)
 		throws com.liferay.portal.kernel.exception.PortalException;
+
+	/**
+	* Updates the entry in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param entry the entry
+	* @return the entry that was updated
+	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
+	public com.liferay.reports.model.Entry updateEntry(
+		com.liferay.reports.model.Entry entry);
 
 	public void updateEntry(long entryId, java.lang.String reportName,
 		byte[] reportResults)

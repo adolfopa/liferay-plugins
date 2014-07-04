@@ -38,6 +38,14 @@ public class SamlSpAuthRequestLocalServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link com.liferay.saml.service.impl.SamlSpAuthRequestLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static com.liferay.saml.model.SamlSpAuthRequest addSamlSpAuthRequest(
+		java.lang.String samlIdpEntityId,
+		java.lang.String samlSpAuthRequestKey,
+		com.liferay.portal.service.ServiceContext serviceContext) {
+		return getService()
+				   .addSamlSpAuthRequest(samlIdpEntityId, samlSpAuthRequestKey,
+			serviceContext);
+	}
 
 	/**
 	* Adds the saml sp auth request to the database. Also notifies the appropriate model listeners.
@@ -62,16 +70,12 @@ public class SamlSpAuthRequestLocalServiceUtil {
 	}
 
 	/**
-	* Deletes the saml sp auth request with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param samlSpAuthnRequestId the primary key of the saml sp auth request
-	* @return the saml sp auth request that was removed
-	* @throws PortalException if a saml sp auth request with the primary key could not be found
+	* @throws PortalException
 	*/
-	public static com.liferay.saml.model.SamlSpAuthRequest deleteSamlSpAuthRequest(
-		long samlSpAuthnRequestId)
+	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().deleteSamlSpAuthRequest(samlSpAuthnRequestId);
+		return getService().deletePersistedModel(persistedModel);
 	}
 
 	/**
@@ -83,6 +87,19 @@ public class SamlSpAuthRequestLocalServiceUtil {
 	public static com.liferay.saml.model.SamlSpAuthRequest deleteSamlSpAuthRequest(
 		com.liferay.saml.model.SamlSpAuthRequest samlSpAuthRequest) {
 		return getService().deleteSamlSpAuthRequest(samlSpAuthRequest);
+	}
+
+	/**
+	* Deletes the saml sp auth request with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param samlSpAuthnRequestId the primary key of the saml sp auth request
+	* @return the saml sp auth request that was removed
+	* @throws PortalException if a saml sp auth request with the primary key could not be found
+	*/
+	public static com.liferay.saml.model.SamlSpAuthRequest deleteSamlSpAuthRequest(
+		long samlSpAuthnRequestId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deleteSamlSpAuthRequest(samlSpAuthnRequestId);
 	}
 
 	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
@@ -164,8 +181,40 @@ public class SamlSpAuthRequestLocalServiceUtil {
 	}
 
 	public static com.liferay.saml.model.SamlSpAuthRequest fetchSamlSpAuthRequest(
+		java.lang.String samlIdpEntityId, java.lang.String samlSpAuthRequestKey) {
+		return getService()
+				   .fetchSamlSpAuthRequest(samlIdpEntityId, samlSpAuthRequestKey);
+	}
+
+	public static com.liferay.saml.model.SamlSpAuthRequest fetchSamlSpAuthRequest(
 		long samlSpAuthnRequestId) {
 		return getService().fetchSamlSpAuthRequest(samlSpAuthnRequestId);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return getService().getActionableDynamicQuery();
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public static java.lang.String getBeanIdentifier() {
+		return getService().getBeanIdentifier();
+	}
+
+	public static com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getPersistedModel(primaryKeyObj);
+	}
+
+	public static com.liferay.saml.model.SamlSpAuthRequest getSamlSpAuthRequest(
+		java.lang.String samlIdpEntityId, java.lang.String samlSpAuthRequestKey)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .getSamlSpAuthRequest(samlIdpEntityId, samlSpAuthRequestKey);
 	}
 
 	/**
@@ -179,25 +228,6 @@ public class SamlSpAuthRequestLocalServiceUtil {
 		long samlSpAuthnRequestId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getSamlSpAuthRequest(samlSpAuthnRequestId);
-	}
-
-	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return getService().getActionableDynamicQuery();
-	}
-
-	/**
-	* @throws PortalException
-	*/
-	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().deletePersistedModel(persistedModel);
-	}
-
-	public static com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getPersistedModel(primaryKeyObj);
 	}
 
 	/**
@@ -225,24 +255,10 @@ public class SamlSpAuthRequestLocalServiceUtil {
 		return getService().getSamlSpAuthRequestsCount();
 	}
 
-	/**
-	* Updates the saml sp auth request in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param samlSpAuthRequest the saml sp auth request
-	* @return the saml sp auth request that was updated
-	*/
-	public static com.liferay.saml.model.SamlSpAuthRequest updateSamlSpAuthRequest(
-		com.liferay.saml.model.SamlSpAuthRequest samlSpAuthRequest) {
-		return getService().updateSamlSpAuthRequest(samlSpAuthRequest);
-	}
-
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public static java.lang.String getBeanIdentifier() {
-		return getService().getBeanIdentifier();
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
 	/**
@@ -254,32 +270,15 @@ public class SamlSpAuthRequestLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
-	public static java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return getService().invokeMethod(name, parameterTypes, arguments);
-	}
-
-	public static com.liferay.saml.model.SamlSpAuthRequest addSamlSpAuthRequest(
-		java.lang.String samlIdpEntityId,
-		java.lang.String samlSpAuthRequestKey,
-		com.liferay.portal.service.ServiceContext serviceContext) {
-		return getService()
-				   .addSamlSpAuthRequest(samlIdpEntityId, samlSpAuthRequestKey,
-			serviceContext);
-	}
-
-	public static com.liferay.saml.model.SamlSpAuthRequest fetchSamlSpAuthRequest(
-		java.lang.String samlIdpEntityId, java.lang.String samlSpAuthRequestKey) {
-		return getService()
-				   .fetchSamlSpAuthRequest(samlIdpEntityId, samlSpAuthRequestKey);
-	}
-
-	public static com.liferay.saml.model.SamlSpAuthRequest getSamlSpAuthRequest(
-		java.lang.String samlIdpEntityId, java.lang.String samlSpAuthRequestKey)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService()
-				   .getSamlSpAuthRequest(samlIdpEntityId, samlSpAuthRequestKey);
+	/**
+	* Updates the saml sp auth request in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param samlSpAuthRequest the saml sp auth request
+	* @return the saml sp auth request that was updated
+	*/
+	public static com.liferay.saml.model.SamlSpAuthRequest updateSamlSpAuthRequest(
+		com.liferay.saml.model.SamlSpAuthRequest samlSpAuthRequest) {
+		return getService().updateSamlSpAuthRequest(samlSpAuthRequest);
 	}
 
 	public static void clearService() {

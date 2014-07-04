@@ -16,6 +16,7 @@ package com.liferay.oauth.service;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
@@ -51,8 +52,15 @@ public interface OAuthUserLocalService extends BaseLocalService,
 	* @param oAuthUser the o auth user
 	* @return the o auth user that was added
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
 	public com.liferay.oauth.model.OAuthUser addOAuthUser(
 		com.liferay.oauth.model.OAuthUser oAuthUser);
+
+	public com.liferay.oauth.model.OAuthUser addOAuthUser(long userId,
+		long oAuthApplicationId, java.lang.String accessToken,
+		java.lang.String accessSecret,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Creates a new o auth user with the primary key. Does not add the o auth user to the database.
@@ -63,24 +71,38 @@ public interface OAuthUserLocalService extends BaseLocalService,
 	public com.liferay.oauth.model.OAuthUser createOAuthUser(long oAuthUserId);
 
 	/**
-	* Deletes the o auth user with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param oAuthUserId the primary key of the o auth user
-	* @return the o auth user that was removed
-	* @throws PortalException if a o auth user with the primary key could not be found
-	*/
-	public com.liferay.oauth.model.OAuthUser deleteOAuthUser(long oAuthUserId)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	/**
 	* Deletes the o auth user from the database. Also notifies the appropriate model listeners.
 	*
 	* @param oAuthUser the o auth user
 	* @return the o auth user that was removed
 	* @throws PortalException
 	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.oauth.model.OAuthUser deleteOAuthUser(
 		com.liferay.oauth.model.OAuthUser oAuthUser)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	/**
+	* Deletes the o auth user with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param oAuthUserId the primary key of the o auth user
+	* @return the o auth user that was removed
+	* @throws PortalException if a o auth user with the primary key could not be found
+	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
+	public com.liferay.oauth.model.OAuthUser deleteOAuthUser(long oAuthUserId)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	public com.liferay.oauth.model.OAuthUser deleteOAuthUser(long userId,
+		long oAuthApplicationId)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	/**
+	* @throws PortalException
+	*/
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
@@ -149,7 +171,38 @@ public interface OAuthUserLocalService extends BaseLocalService,
 		com.liferay.portal.kernel.dao.orm.Projection projection);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.oauth.model.OAuthUser fetchOAuthUser(
+		java.lang.String accessToken);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.oauth.model.OAuthUser fetchOAuthUser(long oAuthUserId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.oauth.model.OAuthUser fetchOAuthUser(long userId,
+		long oAuthApplicationId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.oauth.model.OAuthUser> getOAuthApplicationOAuthUsers(
+		long oAuthApplicationId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getOAuthApplicationOAuthUsersCount(long oAuthApplicationId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.oauth.model.OAuthUser getOAuthUser(
+		java.lang.String accessToken)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Returns the o auth user with the primary key.
@@ -163,20 +216,8 @@ public interface OAuthUserLocalService extends BaseLocalService,
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
-
-	/**
-	* @throws PortalException
-	*/
-	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Override
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
+	public com.liferay.oauth.model.OAuthUser getOAuthUser(long userId,
+		long oAuthApplicationId)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
@@ -202,68 +243,10 @@ public interface OAuthUserLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getOAuthUsersCount();
 
-	/**
-	* Updates the o auth user in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param oAuthUser the o auth user
-	* @return the o auth user that was updated
-	*/
-	public com.liferay.oauth.model.OAuthUser updateOAuthUser(
-		com.liferay.oauth.model.OAuthUser oAuthUser);
-
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public java.lang.String getBeanIdentifier();
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	public void setBeanIdentifier(java.lang.String beanIdentifier);
-
 	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
-
-	public com.liferay.oauth.model.OAuthUser addOAuthUser(long userId,
-		long oAuthApplicationId, java.lang.String accessToken,
-		java.lang.String accessSecret,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	public com.liferay.oauth.model.OAuthUser deleteOAuthUser(long userId,
-		long oAuthApplicationId)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.oauth.model.OAuthUser fetchOAuthUser(long userId,
-		long oAuthApplicationId);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.oauth.model.OAuthUser fetchOAuthUser(
-		java.lang.String accessToken);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.oauth.model.OAuthUser> getOAuthApplicationOAuthUsers(
-		long oAuthApplicationId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getOAuthApplicationOAuthUsersCount(long oAuthApplicationId);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.oauth.model.OAuthUser getOAuthUser(long userId,
-		long oAuthApplicationId)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.oauth.model.OAuthUser getOAuthUser(
-		java.lang.String accessToken)
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -273,6 +256,28 @@ public interface OAuthUserLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getUserOAuthUsersCount(long userId);
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier);
+
+	/**
+	* Updates the o auth user in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param oAuthUser the o auth user
+	* @return the o auth user that was updated
+	*/
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
+	public com.liferay.oauth.model.OAuthUser updateOAuthUser(
+		com.liferay.oauth.model.OAuthUser oAuthUser);
 
 	public com.liferay.oauth.model.OAuthUser updateOAuthUser(long userId,
 		long oAuthApplicationId, java.lang.String accessToken,

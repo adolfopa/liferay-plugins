@@ -29,33 +29,6 @@ public class WebExAccountServiceWrapper implements WebExAccountService,
 		_webExAccountService = webExAccountService;
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _webExAccountService.getBeanIdentifier();
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_webExAccountService.setBeanIdentifier(beanIdentifier);
-	}
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _webExAccountService.invokeMethod(name, parameterTypes, arguments);
-	}
-
 	@Override
 	public void addWebExAccount(long groupId, long webExSiteId,
 		java.lang.String login, java.lang.String password,
@@ -69,6 +42,16 @@ public class WebExAccountServiceWrapper implements WebExAccountService,
 	public void deleteWebExAccount(long webExAccountId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		_webExAccountService.deleteWebExAccount(webExAccountId);
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	@Override
+	public java.lang.String getBeanIdentifier() {
+		return _webExAccountService.getBeanIdentifier();
 	}
 
 	@Override
@@ -90,6 +73,23 @@ public class WebExAccountServiceWrapper implements WebExAccountService,
 	public int getWebExSiteWebExAccountsCount(long groupId, long webExSiteId) {
 		return _webExAccountService.getWebExSiteWebExAccountsCount(groupId,
 			webExSiteId);
+	}
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _webExAccountService.invokeMethod(name, parameterTypes, arguments);
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	@Override
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_webExAccountService.setBeanIdentifier(beanIdentifier);
 	}
 
 	@Override

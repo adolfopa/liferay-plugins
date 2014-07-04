@@ -30,6 +30,16 @@ public class WebExSiteLocalServiceWrapper implements WebExSiteLocalService,
 		_webExSiteLocalService = webExSiteLocalService;
 	}
 
+	@Override
+	public void addWebExSite(long userId, long groupId, java.lang.String name,
+		java.lang.String apiURL, java.lang.String login,
+		java.lang.String password, java.lang.String partnerKey, long siteKey,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		_webExSiteLocalService.addWebExSite(userId, groupId, name, apiURL,
+			login, password, partnerKey, siteKey, serviceContext);
+	}
+
 	/**
 	* Adds the web ex site to the database. Also notifies the appropriate model listeners.
 	*
@@ -55,17 +65,13 @@ public class WebExSiteLocalServiceWrapper implements WebExSiteLocalService,
 	}
 
 	/**
-	* Deletes the web ex site with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param webExSiteId the primary key of the web ex site
-	* @return the web ex site that was removed
-	* @throws PortalException if a web ex site with the primary key could not be found
+	* @throws PortalException
 	*/
 	@Override
-	public com.liferay.meeting.webex.model.WebExSite deleteWebExSite(
-		long webExSiteId)
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _webExSiteLocalService.deleteWebExSite(webExSiteId);
+		return _webExSiteLocalService.deletePersistedModel(persistedModel);
 	}
 
 	/**
@@ -80,6 +86,20 @@ public class WebExSiteLocalServiceWrapper implements WebExSiteLocalService,
 		com.liferay.meeting.webex.model.WebExSite webExSite)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _webExSiteLocalService.deleteWebExSite(webExSite);
+	}
+
+	/**
+	* Deletes the web ex site with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param webExSiteId the primary key of the web ex site
+	* @return the web ex site that was removed
+	* @throws PortalException if a web ex site with the primary key could not be found
+	*/
+	@Override
+	public com.liferay.meeting.webex.model.WebExSite deleteWebExSite(
+		long webExSiteId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _webExSiteLocalService.deleteWebExSite(webExSiteId);
 	}
 
 	@Override
@@ -167,6 +187,12 @@ public class WebExSiteLocalServiceWrapper implements WebExSiteLocalService,
 	}
 
 	@Override
+	public com.liferay.meeting.webex.model.WebExSite fetchSiteKeyWebExSite(
+		long siteKey) {
+		return _webExSiteLocalService.fetchSiteKeyWebExSite(siteKey);
+	}
+
+	@Override
 	public com.liferay.meeting.webex.model.WebExSite fetchWebExSite(
 		long webExSiteId) {
 		return _webExSiteLocalService.fetchWebExSite(webExSiteId);
@@ -200,6 +226,41 @@ public class WebExSiteLocalServiceWrapper implements WebExSiteLocalService,
 			groupId);
 	}
 
+	@Override
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return _webExSiteLocalService.getActionableDynamicQuery();
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	@Override
+	public java.lang.String getBeanIdentifier() {
+		return _webExSiteLocalService.getBeanIdentifier();
+	}
+
+	@Override
+	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
+		com.liferay.portal.kernel.lar.PortletDataContext portletDataContext) {
+		return _webExSiteLocalService.getExportActionableDynamicQuery(portletDataContext);
+	}
+
+	@Override
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _webExSiteLocalService.getPersistedModel(primaryKeyObj);
+	}
+
+	@Override
+	public com.liferay.meeting.webex.model.WebExSite getSiteKeyWebExSite(
+		long siteKey)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _webExSiteLocalService.getSiteKeyWebExSite(siteKey);
+	}
+
 	/**
 	* Returns the web ex site with the primary key.
 	*
@@ -212,34 +273,6 @@ public class WebExSiteLocalServiceWrapper implements WebExSiteLocalService,
 		long webExSiteId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _webExSiteLocalService.getWebExSite(webExSiteId);
-	}
-
-	@Override
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return _webExSiteLocalService.getActionableDynamicQuery();
-	}
-
-	@Override
-	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
-		com.liferay.portal.kernel.lar.PortletDataContext portletDataContext) {
-		return _webExSiteLocalService.getExportActionableDynamicQuery(portletDataContext);
-	}
-
-	/**
-	* @throws PortalException
-	*/
-	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _webExSiteLocalService.deletePersistedModel(persistedModel);
-	}
-
-	@Override
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _webExSiteLocalService.getPersistedModel(primaryKeyObj);
 	}
 
 	/**
@@ -273,6 +306,19 @@ public class WebExSiteLocalServiceWrapper implements WebExSiteLocalService,
 		return _webExSiteLocalService.getWebExSiteByUuidAndGroupId(uuid, groupId);
 	}
 
+	@Override
+	public java.util.List<com.liferay.meeting.webex.model.WebExSite> getWebExSites(
+		long groupId, int start, int end) {
+		return _webExSiteLocalService.getWebExSites(groupId, start, end);
+	}
+
+	@Override
+	public java.util.List<com.liferay.meeting.webex.model.WebExSite> getWebExSites(
+		long groupId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc) {
+		return _webExSiteLocalService.getWebExSites(groupId, start, end, obc);
+	}
+
 	/**
 	* Returns a range of all the web ex sites.
 	*
@@ -300,26 +346,12 @@ public class WebExSiteLocalServiceWrapper implements WebExSiteLocalService,
 		return _webExSiteLocalService.getWebExSitesCount();
 	}
 
-	/**
-	* Updates the web ex site in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param webExSite the web ex site
-	* @return the web ex site that was updated
-	*/
 	@Override
-	public com.liferay.meeting.webex.model.WebExSite updateWebExSite(
-		com.liferay.meeting.webex.model.WebExSite webExSite) {
-		return _webExSiteLocalService.updateWebExSite(webExSite);
-	}
-
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _webExSiteLocalService.getBeanIdentifier();
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _webExSiteLocalService.invokeMethod(name, parameterTypes,
+			arguments);
 	}
 
 	/**
@@ -332,48 +364,16 @@ public class WebExSiteLocalServiceWrapper implements WebExSiteLocalService,
 		_webExSiteLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
+	/**
+	* Updates the web ex site in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param webExSite the web ex site
+	* @return the web ex site that was updated
+	*/
 	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _webExSiteLocalService.invokeMethod(name, parameterTypes,
-			arguments);
-	}
-
-	@Override
-	public void addWebExSite(long userId, long groupId, java.lang.String name,
-		java.lang.String apiURL, java.lang.String login,
-		java.lang.String password, java.lang.String partnerKey, long siteKey,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		_webExSiteLocalService.addWebExSite(userId, groupId, name, apiURL,
-			login, password, partnerKey, siteKey, serviceContext);
-	}
-
-	@Override
-	public com.liferay.meeting.webex.model.WebExSite fetchSiteKeyWebExSite(
-		long siteKey) {
-		return _webExSiteLocalService.fetchSiteKeyWebExSite(siteKey);
-	}
-
-	@Override
-	public com.liferay.meeting.webex.model.WebExSite getSiteKeyWebExSite(
-		long siteKey)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _webExSiteLocalService.getSiteKeyWebExSite(siteKey);
-	}
-
-	@Override
-	public java.util.List<com.liferay.meeting.webex.model.WebExSite> getWebExSites(
-		long groupId, int start, int end) {
-		return _webExSiteLocalService.getWebExSites(groupId, start, end);
-	}
-
-	@Override
-	public java.util.List<com.liferay.meeting.webex.model.WebExSite> getWebExSites(
-		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator obc) {
-		return _webExSiteLocalService.getWebExSites(groupId, start, end, obc);
+	public com.liferay.meeting.webex.model.WebExSite updateWebExSite(
+		com.liferay.meeting.webex.model.WebExSite webExSite) {
+		return _webExSiteLocalService.updateWebExSite(webExSite);
 	}
 
 	@Override

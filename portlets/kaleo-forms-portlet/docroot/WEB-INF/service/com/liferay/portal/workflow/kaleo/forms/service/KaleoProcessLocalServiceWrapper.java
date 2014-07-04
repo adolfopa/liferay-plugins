@@ -42,6 +42,19 @@ public class KaleoProcessLocalServiceWrapper implements KaleoProcessLocalService
 		return _kaleoProcessLocalService.addKaleoProcess(kaleoProcess);
 	}
 
+	@Override
+	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess addKaleoProcess(
+		long userId, long groupId, long ddlRecordSetId, long ddmTemplateId,
+		java.lang.String workflowDefinitionName,
+		long workflowDefinitionVersion,
+		com.liferay.portal.workflow.kaleo.forms.util.TaskFormPairs taskFormPairs,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kaleoProcessLocalService.addKaleoProcess(userId, groupId,
+			ddlRecordSetId, ddmTemplateId, workflowDefinitionName,
+			workflowDefinitionVersion, taskFormPairs, serviceContext);
+	}
+
 	/**
 	* Creates a new kaleo process with the primary key. Does not add the kaleo process to the database.
 	*
@@ -52,6 +65,20 @@ public class KaleoProcessLocalServiceWrapper implements KaleoProcessLocalService
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess createKaleoProcess(
 		long kaleoProcessId) {
 		return _kaleoProcessLocalService.createKaleoProcess(kaleoProcessId);
+	}
+
+	/**
+	* Deletes the kaleo process from the database. Also notifies the appropriate model listeners.
+	*
+	* @param kaleoProcess the kaleo process
+	* @return the kaleo process that was removed
+	* @throws PortalException
+	*/
+	@Override
+	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess deleteKaleoProcess(
+		com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess kaleoProcess)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kaleoProcessLocalService.deleteKaleoProcess(kaleoProcess);
 	}
 
 	/**
@@ -68,18 +95,27 @@ public class KaleoProcessLocalServiceWrapper implements KaleoProcessLocalService
 		return _kaleoProcessLocalService.deleteKaleoProcess(kaleoProcessId);
 	}
 
+	@Override
+	public void deleteKaleoProcessData(
+		com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess kaleoProcess)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		_kaleoProcessLocalService.deleteKaleoProcessData(kaleoProcess);
+	}
+
+	@Override
+	public void deleteKaleoProcessData(long kaleoProcessId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		_kaleoProcessLocalService.deleteKaleoProcessData(kaleoProcessId);
+	}
+
 	/**
-	* Deletes the kaleo process from the database. Also notifies the appropriate model listeners.
-	*
-	* @param kaleoProcess the kaleo process
-	* @return the kaleo process that was removed
 	* @throws PortalException
 	*/
 	@Override
-	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess deleteKaleoProcess(
-		com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess kaleoProcess)
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kaleoProcessLocalService.deleteKaleoProcess(kaleoProcess);
+		return _kaleoProcessLocalService.deletePersistedModel(persistedModel);
 	}
 
 	@Override
@@ -173,6 +209,28 @@ public class KaleoProcessLocalServiceWrapper implements KaleoProcessLocalService
 		return _kaleoProcessLocalService.fetchKaleoProcess(kaleoProcessId);
 	}
 
+	@Override
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return _kaleoProcessLocalService.getActionableDynamicQuery();
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	@Override
+	public java.lang.String getBeanIdentifier() {
+		return _kaleoProcessLocalService.getBeanIdentifier();
+	}
+
+	@Override
+	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess getDDLRecordSetKaleoProcess(
+		long ddlRecordSetId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kaleoProcessLocalService.getDDLRecordSetKaleoProcess(ddlRecordSetId);
+	}
+
 	/**
 	* Returns the kaleo process with the primary key.
 	*
@@ -188,25 +246,17 @@ public class KaleoProcessLocalServiceWrapper implements KaleoProcessLocalService
 	}
 
 	@Override
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return _kaleoProcessLocalService.getActionableDynamicQuery();
-	}
-
-	/**
-	* @throws PortalException
-	*/
-	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kaleoProcessLocalService.deletePersistedModel(persistedModel);
+	public java.util.List<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess> getKaleoProcesses(
+		long groupId) {
+		return _kaleoProcessLocalService.getKaleoProcesses(groupId);
 	}
 
 	@Override
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kaleoProcessLocalService.getPersistedModel(primaryKeyObj);
+	public java.util.List<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess> getKaleoProcesses(
+		long groupId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		return _kaleoProcessLocalService.getKaleoProcesses(groupId, start, end,
+			orderByComparator);
 	}
 
 	/**
@@ -236,26 +286,24 @@ public class KaleoProcessLocalServiceWrapper implements KaleoProcessLocalService
 		return _kaleoProcessLocalService.getKaleoProcessesCount();
 	}
 
-	/**
-	* Updates the kaleo process in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param kaleoProcess the kaleo process
-	* @return the kaleo process that was updated
-	*/
 	@Override
-	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess updateKaleoProcess(
-		com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess kaleoProcess) {
-		return _kaleoProcessLocalService.updateKaleoProcess(kaleoProcess);
+	public int getKaleoProcessesCount(long groupId) {
+		return _kaleoProcessLocalService.getKaleoProcessesCount(groupId);
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
 	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _kaleoProcessLocalService.getBeanIdentifier();
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kaleoProcessLocalService.getPersistedModel(primaryKeyObj);
+	}
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _kaleoProcessLocalService.invokeMethod(name, parameterTypes,
+			arguments);
 	}
 
 	/**
@@ -268,64 +316,16 @@ public class KaleoProcessLocalServiceWrapper implements KaleoProcessLocalService
 		_kaleoProcessLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
+	/**
+	* Updates the kaleo process in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param kaleoProcess the kaleo process
+	* @return the kaleo process that was updated
+	*/
 	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _kaleoProcessLocalService.invokeMethod(name, parameterTypes,
-			arguments);
-	}
-
-	@Override
-	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess addKaleoProcess(
-		long userId, long groupId, long ddlRecordSetId, long ddmTemplateId,
-		java.lang.String workflowDefinitionName,
-		long workflowDefinitionVersion,
-		com.liferay.portal.workflow.kaleo.forms.util.TaskFormPairs taskFormPairs,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kaleoProcessLocalService.addKaleoProcess(userId, groupId,
-			ddlRecordSetId, ddmTemplateId, workflowDefinitionName,
-			workflowDefinitionVersion, taskFormPairs, serviceContext);
-	}
-
-	@Override
-	public void deleteKaleoProcessData(
-		com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess kaleoProcess)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		_kaleoProcessLocalService.deleteKaleoProcessData(kaleoProcess);
-	}
-
-	@Override
-	public void deleteKaleoProcessData(long kaleoProcessId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		_kaleoProcessLocalService.deleteKaleoProcessData(kaleoProcessId);
-	}
-
-	@Override
-	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess getDDLRecordSetKaleoProcess(
-		long ddlRecordSetId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kaleoProcessLocalService.getDDLRecordSetKaleoProcess(ddlRecordSetId);
-	}
-
-	@Override
-	public java.util.List<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess> getKaleoProcesses(
-		long groupId) {
-		return _kaleoProcessLocalService.getKaleoProcesses(groupId);
-	}
-
-	@Override
-	public java.util.List<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess> getKaleoProcesses(
-		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
-		return _kaleoProcessLocalService.getKaleoProcesses(groupId, start, end,
-			orderByComparator);
-	}
-
-	@Override
-	public int getKaleoProcessesCount(long groupId) {
-		return _kaleoProcessLocalService.getKaleoProcessesCount(groupId);
+	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess updateKaleoProcess(
+		com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess kaleoProcess) {
+		return _kaleoProcessLocalService.updateKaleoProcess(kaleoProcess);
 	}
 
 	@Override
