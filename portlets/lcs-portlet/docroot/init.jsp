@@ -22,7 +22,7 @@
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
-<%@ page import="com.liferay.compat.portlet.PortletURLUtil" %><%@
+<%@ page import="com.liferay.portlet.PortletURLUtil" %><%@
 page import="com.liferay.lcs.oauth.OAuthUtil" %><%@
 page import="com.liferay.lcs.util.HandshakeManagerUtil" %><%@
 page import="com.liferay.lcs.util.KeyGeneratorUtil" %><%@
