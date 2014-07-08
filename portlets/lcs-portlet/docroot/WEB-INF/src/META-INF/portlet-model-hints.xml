@@ -32,17 +32,6 @@
 		</field>
 		<field name="location" type="String" />
 	</model>
-	<model name="com.liferay.osb.lcs.model.LCSClusterUser">
-		<field name="lcsClusterUserId" type="long" />
-		<field name="userId" type="long">
-			<validator name="required" />
-		</field>
-		<field name="corpEntryId" type="long" />
-		<field name="lcsClusterEntryId" type="long" />
-		<field name="role" type="int">
-			<validator name="required" />
-		</field>
-	</model>
 	<model name="com.liferay.osb.lcs.model.LCSPatchEntry">
 		<field name="lcsPatchEntryId" type="long" />
 		<field name="patchId" type="String" />
@@ -65,5 +54,16 @@
 		<field name="tunnelWeb" type="boolean" />
 		<field name="buildDate" type="Date" />
 		<field name="builtFor" type="String" />
+	</model>
+	<model name="com.liferay.osb.lcs.model.LCSRole">
+		<field name="lcsRoleId" type="long" />
+		<field name="userId" type="long">
+			<validator name="required" />
+		</field>
+		<field name="corpEntryId" type="long" />
+		<field name="lcsClusterEntryId" type="long" />
+		<field name="role" type="int">
+			<validator name="required" />
+		</field>
 	</model>
 </model-hints>
