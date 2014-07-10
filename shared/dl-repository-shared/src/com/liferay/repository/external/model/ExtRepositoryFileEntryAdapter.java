@@ -59,18 +59,14 @@ public class ExtRepositoryFileEntryAdapter
 	}
 
 	@Override
-	public InputStream getContentStream()
-		throws PortalException, SystemException {
-
+	public InputStream getContentStream() throws PortalException {
 		ExtRepositoryAdapter extRepositoryAdapter = getRepository();
 
 		return extRepositoryAdapter.getContentStream(this);
 	}
 
 	@Override
-	public InputStream getContentStream(String version)
-		throws PortalException, SystemException {
-
+	public InputStream getContentStream(String version) throws PortalException {
 		ExtRepositoryAdapter extRepositoryAdapter = getRepository();
 
 		FileVersion fileVersion = getFileVersion(version);
@@ -90,7 +86,7 @@ public class ExtRepositoryFileEntryAdapter
 	}
 
 	@Override
-	public FileVersion getFileVersion() throws SystemException {
+	public FileVersion getFileVersion() {
 		try {
 			List<ExtRepositoryFileVersionAdapter>
 				extRepositoryFileVersionAdapters =
@@ -104,9 +100,7 @@ public class ExtRepositoryFileEntryAdapter
 	}
 
 	@Override
-	public FileVersion getFileVersion(String version)
-		throws PortalException, SystemException {
-
+	public FileVersion getFileVersion(String version) throws PortalException {
 		List<ExtRepositoryFileVersionAdapter> extRepositoryFileVersionAdapters =
 			_getExtRepositoryFileVersionAdapters();
 
@@ -127,9 +121,7 @@ public class ExtRepositoryFileEntryAdapter
 
 	@Override
 	@SuppressWarnings({"rawtypes"})
-	public List<FileVersion> getFileVersions(int status)
-		throws SystemException {
-
+	public List<FileVersion> getFileVersions(int status) {
 		if ((status == WorkflowConstants.STATUS_ANY) ||
 			(status == WorkflowConstants.STATUS_APPROVED)) {
 
@@ -178,16 +170,14 @@ public class ExtRepositoryFileEntryAdapter
 
 	@Override
 	@SuppressWarnings("unused")
-	public FileVersion getLatestFileVersion()
-		throws PortalException, SystemException {
-
+	public FileVersion getLatestFileVersion() throws PortalException {
 		return getFileVersion();
 	}
 
 	@Override
 	@SuppressWarnings("unused")
 	public FileVersion getLatestFileVersion(boolean trusted)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		return getFileVersion();
 	}
@@ -315,7 +305,7 @@ public class ExtRepositoryFileEntryAdapter
 
 	@Override
 	@SuppressWarnings("unused")
-	public String getVersionUserUuid() throws SystemException {
+	public String getVersionUserUuid() {
 		return getUserUuid();
 	}
 
@@ -345,7 +335,7 @@ public class ExtRepositoryFileEntryAdapter
 
 	private List<ExtRepositoryFileVersionAdapter>
 			_getExtRepositoryFileVersionAdapters()
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (_extRepositoryFileVersionAdapters == null) {
 			ExtRepositoryAdapter extRepositoryAdapter = getRepository();
