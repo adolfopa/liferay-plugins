@@ -65,6 +65,7 @@ import com.liferay.portlet.dynamicdatalists.RecordSetNameException;
 import com.liferay.portlet.dynamicdatalists.model.DDLRecord;
 import com.liferay.portlet.dynamicdatalists.model.DDLRecordSet;
 import com.liferay.portlet.dynamicdatalists.model.DDLRecordSetConstants;
+import com.liferay.portlet.dynamicdatalists.service.DDLRecordLocalServiceUtil;
 import com.liferay.portlet.dynamicdatalists.service.DDLRecordSetLocalServiceUtil;
 import com.liferay.portlet.dynamicdatalists.util.DDLExportFormat;
 import com.liferay.portlet.dynamicdatalists.util.DDLExporter;
@@ -168,6 +169,23 @@ public class KaleoFormsPortlet extends MVCPortlet {
 		WorkflowTaskManagerUtil.completeWorkflowTask(
 			themeDisplay.getCompanyId(), themeDisplay.getUserId(),
 			workflowTaskId, transitionName, comment, null);
+	}
+
+	public void deleteDDLRecord(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		long workflowInstanceId = ParamUtil.getLong(
+			actionRequest, "workflowInstanceId");
+		long ddlRecordId = ParamUtil.getLong(actionRequest, "ddlRecordId");
+
+		WorkflowInstanceManagerUtil.deleteWorkflowInstance(
+			themeDisplay.getCompanyId(), workflowInstanceId);
+
+		DDLRecordLocalServiceUtil.deleteDDLRecord(ddlRecordId);
 	}
 
 	public void deleteKaleoProcess(

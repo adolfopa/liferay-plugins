@@ -22,6 +22,12 @@ String backURL = ParamUtil.getString(request, "backURL");
 KaleoProcess kaleoProcess = (KaleoProcess)request.getAttribute(WebKeys.KALEO_PROCESS);
 
 long kaleoProcessId = BeanParamUtil.getLong(kaleoProcess, request, "kaleoProcessId");
+
+PortletURL portletURL = renderResponse.createRenderURL();
+
+portletURL.setParameter("mvcPath", "/admin/view_kaleo_process.jsp");
+portletURL.setParameter("backURL", backURL);
+portletURL.setParameter("kaleoProcessId", String.valueOf(kaleoProcessId));
 %>
 
 <liferay-ui:header
@@ -29,85 +35,136 @@ long kaleoProcessId = BeanParamUtil.getLong(kaleoProcess, request, "kaleoProcess
 	title="<%= kaleoProcess.getName(locale) %>"
 />
 
-<%
-PortletURL portletURL = renderResponse.createRenderURL();
+<aui:form action="<%= portletURL.toString() %>" method="post" name="fm">
 
-portletURL.setParameter("mvcPath", "/admin/view_kaleo_process.jsp");
-portletURL.setParameter("backURL", backURL);
-portletURL.setParameter("kaleoProcessId", String.valueOf(kaleoProcessId));
+	<%
+	DDLRecordSet ddlRecordSet = kaleoProcess.getDDLRecordSet();
 
-DDLRecordSet ddlRecordSet = kaleoProcess.getDDLRecordSet();
+	DDMStructure ddmStructure = ddlRecordSet.getDDMStructure();
 
-DDMStructure ddmStructure = ddlRecordSet.getDDMStructure();
+	DDMTemplate ddmTemplate = kaleoProcess.getDDMTemplate();
 
-Map<String, Map<String, String>> fieldsMap = ddmStructure.getFieldsMap();
+	Map<String, Map<String, String>> fieldsMap = ddmStructure.getFieldsMap();
 
-List<String> headerNames = new ArrayList<String>();
-
-for (Map<String, String> fields : fieldsMap.values()) {
-	if (GetterUtil.getBoolean(fields.get(FieldConstants.PRIVATE))) {
-		continue;
-	}
-
-	String label = fields.get(FieldConstants.LABEL);
-
-	headerNames.add(label);
-}
-
-headerNames.add("status");
-headerNames.add("modified-date");
-headerNames.add("author");
-
-SearchContainer searchContainer = new SearchContainer(renderRequest, portletURL, headerNames, "no-records-were-found");
-
-int total = DDLRecordLocalServiceUtil.getRecordsCount(kaleoProcess.getDDLRecordSetId(), WorkflowConstants.STATUS_ANY);
-
-searchContainer.setTotal(total);
-
-List<DDLRecord> results = DDLRecordLocalServiceUtil.getRecords(kaleoProcess.getDDLRecordSetId(), WorkflowConstants.STATUS_ANY, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
-
-searchContainer.setResults(results);
-
-List resultRows = searchContainer.getResultRows();
-
-for (int i = 0; i < results.size(); i++) {
-	DDLRecord ddlRecord = results.get(i);
-
-	Fields fieldsModel = ddlRecord.getFields();
-
-	ResultRow row = new ResultRow(ddlRecord, ddlRecord.getRecordId(), i);
-
-	// Columns
+	List<String> headerNames = new ArrayList<String>();
 
 	for (Map<String, String> fields : fieldsMap.values()) {
 		if (GetterUtil.getBoolean(fields.get(FieldConstants.PRIVATE))) {
 			continue;
 		}
 
-		String name = fields.get(FieldConstants.NAME);
+		String label = fields.get(FieldConstants.LABEL);
 
-		String value = null;
-
-		if (fieldsModel.contains(name)) {
-			com.liferay.portlet.dynamicdatamapping.storage.Field field = fieldsModel.get(name);
-
-			value = field.getRenderedValue(themeDisplay.getLocale());
-		}
-		else {
-			value = StringPool.BLANK;
-		}
-
-		row.addText(HtmlUtil.escape(value));
+		headerNames.add(label);
 	}
 
-	row.addText(LanguageUtil.get(request, WorkflowConstants.getStatusLabel(ddlRecord.getStatus())));
-	row.addDate(ddlRecord.getModifiedDate());
-	row.addText(HtmlUtil.escape(PortalUtil.getUserName(ddlRecord.getUserId(), ddlRecord.getUserName())));
+	headerNames.add("status");
+	headerNames.add("modified-date");
+	headerNames.add("author");
+	headerNames.add(StringPool.BLANK);
+	%>
 
-	// Add result row
+	<liferay-ui:search-container
+		searchContainer='<%= new SearchContainer(renderRequest, new DisplayTerms(request), null, SearchContainer.DEFAULT_CUR_PARAM, SearchContainer.DEFAULT_DELTA, portletURL, headerNames, "no-records-were-found") %>'
+	>
 
-	resultRows.add(row);
-}
-%>
+		<aui:nav-bar>
+			<aui:nav cssClass="navbar-nav" searchContainer="<%= searchContainer %>">
+				<portlet:renderURL var="submitURL">
+					<portlet:param name="mvcPath" value="/admin/edit_request.jsp" />
+					<portlet:param name="redirect" value="<%= currentURL %>" />
+					<portlet:param name="backURL" value="<%= currentURL %>" />
+					<portlet:param name="kaleoProcessId" value="<%= String.valueOf(kaleoProcessId) %>" />
+				</portlet:renderURL>
 
-<liferay-ui:search-iterator searchContainer="<%= searchContainer %>" />
+				<aui:nav-item href="<%= submitURL %>" iconCssClass="icon-plus" label='<%= LanguageUtil.format(request, "submit-new-x", HtmlUtil.escape(kaleoProcess.getName(locale)), false) %>' />
+
+				<portlet:resourceURL id="kaleoProcess" var="exportURL">
+					<portlet:param name="kaleoProcessId" value="<%= String.valueOf(kaleoProcess.getKaleoProcessId()) %>" />
+				</portlet:resourceURL>
+
+				<%
+				StringBundler sb = new StringBundler(6);
+
+				sb.append("javascript:");
+				sb.append(renderResponse.getNamespace());
+				sb.append("exportKaleoProcess");
+				sb.append("('");
+				sb.append(exportURL);
+				sb.append("');");
+				%>
+
+				<aui:nav-item href="<%= sb.toString() %>" iconCssClass="icon-arrow-up" label="export" />
+			</aui:nav>
+
+			<aui:nav-bar-search cssClass="navbar-search-advanced" searchContainer="<%= searchContainer %>">
+				<%@ include file="/admin/record_search.jspf" %>
+			</aui:nav-bar-search>
+		</aui:nav-bar>
+
+		<liferay-ui:search-container-results>
+			<%@ include file="/admin/record_search_results.jspf" %>
+		</liferay-ui:search-container-results>
+
+		<%
+		List resultRows = searchContainer.getResultRows();
+
+		for (int i = 0; i < results.size(); i++) {
+			DDLRecord ddlRecord = (DDLRecord)results.get(i);
+
+			DDLRecordVersion ddlRecordVersion = ddlRecord.getLatestRecordVersion();
+
+			PortletURL rowURL = renderResponse.createRenderURL();
+
+			rowURL.setParameter("mvcPath", "/admin/view_record.jsp");
+			rowURL.setParameter("redirect", currentURL);
+			rowURL.setParameter("ddlRecordId", String.valueOf(ddlRecord.getRecordId()));
+			rowURL.setParameter("kaleoProcessId", String.valueOf(kaleoProcessId));
+			rowURL.setParameter("version", String.valueOf(ddlRecordVersion.getVersion()));
+
+			Fields fieldsModel = ddlRecord.getFields();
+
+			ResultRow row = new ResultRow(ddlRecord, ddlRecord.getRecordId(), i);
+
+			// Columns
+
+			for (Map<String, String> fields : fieldsMap.values()) {
+				if (GetterUtil.getBoolean(fields.get(FieldConstants.PRIVATE))) {
+					continue;
+				}
+
+				String name = fields.get(FieldConstants.NAME);
+
+				String value = null;
+
+				if (fieldsModel.contains(name)) {
+					com.liferay.portlet.dynamicdatamapping.storage.Field field = fieldsModel.get(name);
+
+					value = field.getRenderedValue(themeDisplay.getLocale());
+				}
+				else {
+					value = StringPool.BLANK;
+				}
+
+				row.addText(HtmlUtil.escape(value), rowURL);
+			}
+
+			row.addText(LanguageUtil.get(request, WorkflowConstants.getStatusLabel(ddlRecord.getStatus())), rowURL);
+			row.addDate(ddlRecord.getModifiedDate(), rowURL);
+			row.addText(HtmlUtil.escape(PortalUtil.getUserName(ddlRecord.getUserId(), ddlRecord.getUserName())), rowURL);
+
+			// Action
+
+			row.setParameter("kaleoProcessId", String.valueOf(kaleoProcessId));
+
+			row.addJSP("/admin/record_action.jsp", application, request, response);
+
+			// Add result row
+
+			resultRows.add(row);
+		}
+		%>
+
+		<liferay-ui:search-iterator />
+	</liferay-ui:search-container>
+</aui:form>

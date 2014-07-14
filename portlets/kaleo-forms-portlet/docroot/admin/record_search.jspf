@@ -1,3 +1,4 @@
+<%--
 /**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
@@ -11,16 +12,21 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
+--%>
 
-package com.liferay.portal.workflow.kaleo.forms.util;
+<%
+DisplayTerms displayTerms = searchContainer.getDisplayTerms();
 
-/**
- * @author Marcellus Tavares
- */
-public class PortletKeys extends com.liferay.portal.util.PortletKeys {
+WindowState windowState = renderRequest.getWindowState();
+%>
 
-	public static final String KALEO_DESIGNER = "2_WAR_kaleodesignerportlet";
-
-	public static final String KALEO_FORMS_DISPLAY = "1_WAR_kaleoformsportlet";
-
-}
+<liferay-ui:search-toggle
+	autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) %>"
+	buttonLabel="search"
+	displayTerms="<%= displayTerms %>"
+	id="toggle_id_kaleo_process_record_search"
+>
+	<aui:fieldset>
+		<aui:input name="<%= displayTerms.KEYWORDS %>" size="30" value="<%= displayTerms.getKeywords() %>" />
+	</aui:fieldset>
+</liferay-ui:search-toggle>

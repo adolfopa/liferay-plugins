@@ -20,6 +20,9 @@
 page import="com.liferay.portal.kernel.exception.PortalException" %><%@
 page import="com.liferay.portal.kernel.language.UnicodeLanguageUtil" %><%@
 page import="com.liferay.portal.kernel.portlet.LiferayWindowState" %><%@
+page import="com.liferay.portal.kernel.search.BaseModelSearchResult" %><%@
+page import="com.liferay.portal.kernel.search.SearchContext" %><%@
+page import="com.liferay.portal.kernel.search.SearchContextFactory" %><%@
 page import="com.liferay.portal.kernel.util.CharPool" %><%@
 page import="com.liferay.portal.kernel.util.Constants" %><%@
 page import="com.liferay.portal.kernel.util.HttpUtil" %><%@
@@ -28,7 +31,9 @@ page import="com.liferay.portal.kernel.util.StringUtil" %><%@
 page import="com.liferay.portal.kernel.workflow.WorkflowDefinition" %><%@
 page import="com.liferay.portal.kernel.workflow.WorkflowDefinitionManagerUtil" %><%@
 page import="com.liferay.portal.model.Portlet" %><%@
+page import="com.liferay.portal.model.WorkflowInstanceLink" %><%@
 page import="com.liferay.portal.service.PortletLocalServiceUtil" %><%@
+page import="com.liferay.portal.service.WorkflowInstanceLinkLocalServiceUtil" %><%@
 page import="com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition" %><%@
 page import="com.liferay.portal.workflow.kaleo.designer.service.KaleoDraftDefinitionLocalServiceUtil" %><%@
 page import="com.liferay.portal.workflow.kaleo.forms.KaleoProcessDDMTemplateIdException" %><%@
@@ -43,16 +48,21 @@ page import="com.liferay.portal.workflow.kaleo.forms.util.TaskFormPairs" %><%@
 page import="com.liferay.portlet.PortletURLFactoryUtil" %><%@
 page import="com.liferay.portlet.dynamicdatalists.RecordSetDDMStructureIdException" %><%@
 page import="com.liferay.portlet.dynamicdatalists.RecordSetNameException" %><%@
+page import="com.liferay.portlet.dynamicdatalists.model.DDLRecordConstants" %><%@
+page import="com.liferay.portlet.dynamicdatalists.model.DDLRecordVersion" %><%@
+page import="com.liferay.portlet.dynamicdatalists.service.DDLRecordServiceUtil" %><%@
 page import="com.liferay.portlet.dynamicdatalists.service.DDLRecordSetLocalServiceUtil" %><%@
 page import="com.liferay.portlet.dynamicdatamapping.model.DDMTemplateConstants" %><%@
 page import="com.liferay.portlet.dynamicdatamapping.service.DDMStructureLocalServiceUtil" %><%@
 page import="com.liferay.portlet.dynamicdatamapping.service.DDMStructureServiceUtil" %><%@
 page import="com.liferay.portlet.dynamicdatamapping.storage.FieldConstants" %><%@
+page import="com.liferay.portlet.dynamicdatamapping.storage.StorageEngineUtil" %><%@
 page import="com.liferay.portlet.dynamicdatamapping.storage.StorageType" %><%@
 page import="com.liferay.portlet.dynamicdatamapping.util.DDMDisplay" %><%@
 page import="com.liferay.portlet.dynamicdatamapping.util.DDMDisplayRegistryUtil" %>
 
-<%@ page import="javax.portlet.PortletRequest" %>
+<%@ page import="javax.portlet.PortletRequest" %><%@
+page import="javax.portlet.WindowState" %>
 
 <%
 String refererPortletName = ParamUtil.getString(request, "refererPortletName", portletName);

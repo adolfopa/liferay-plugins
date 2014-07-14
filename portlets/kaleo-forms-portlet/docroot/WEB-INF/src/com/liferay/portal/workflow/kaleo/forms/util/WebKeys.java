@@ -19,6 +19,9 @@ package com.liferay.portal.workflow.kaleo.forms.util;
  */
 public class WebKeys implements com.liferay.portal.kernel.util.WebKeys {
 
+	public static final String DYNAMIC_DATA_LISTS_RECORD =
+		"DYNAMIC_DATA_LISTS_RECORD";
+
 	public static final String DYNAMIC_DATA_MAPPING_STRUCTURE =
 		"DYNAMIC_DATA_MAPPING_STRUCTURE";
 
