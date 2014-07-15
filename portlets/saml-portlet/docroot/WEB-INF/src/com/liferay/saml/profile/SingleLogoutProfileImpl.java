@@ -164,7 +164,7 @@ public class SingleLogoutProfileImpl
 
 					JspUtil.dispatch(
 						request, response, JspUtil.PATH_PORTAL_SAML_SLO,
-						"single-sign-on");
+						"single-sign-out");
 				}
 				else if (cmd.equals("logout")) {
 					performIdpSpLogout(request, response, samlSloContext);
@@ -409,7 +409,7 @@ public class SingleLogoutProfileImpl
 
 			JspUtil.dispatch(
 				request, response, JspUtil.PATH_PORTAL_SAML_ERROR,
-				"single-sign-on", true);
+				"single-sign-out", true);
 
 			return;
 		}
@@ -423,7 +423,7 @@ public class SingleLogoutProfileImpl
 
 			JspUtil.dispatch(
 				request, response, JspUtil.PATH_PORTAL_SAML_SLO_SP_STATUS,
-				"single-sign-on", true);
+				"single-sign-out", true);
 
 			return;
 		}
@@ -456,7 +456,7 @@ public class SingleLogoutProfileImpl
 
 			JspUtil.dispatch(
 				request, response, JspUtil.PATH_PORTAL_SAML_SLO_SP_STATUS,
-				"single-sign-on", true);
+				"single-sign-out", true);
 		}
 		else {
 			try {
@@ -488,7 +488,7 @@ public class SingleLogoutProfileImpl
 
 				JspUtil.dispatch(
 					request, response, JspUtil.PATH_PORTAL_SAML_SLO_SP_STATUS,
-					"single-sign-on", true);
+					"single-sign-out", true);
 			}
 		}
 	}
@@ -596,7 +596,7 @@ public class SingleLogoutProfileImpl
 
 		JspUtil.dispatch(
 			request, response, JspUtil.PATH_PORTAL_SAML_SLO_SP_STATUS,
-			"single-sign-on", true);
+			"single-sign-out", true);
 	}
 
 	protected void processSingleLogoutRequest(
@@ -849,7 +849,7 @@ public class SingleLogoutProfileImpl
 
 			JspUtil.dispatch(
 				request, response, JspUtil.PATH_PORTAL_SAML_SLO_SP_STATUS,
-				"single-sign-on", true);
+				"single-sign-out", true);
 		}
 		else {
 			sendAsyncLogoutRequest(samlMessageContext, samlSloContext);
