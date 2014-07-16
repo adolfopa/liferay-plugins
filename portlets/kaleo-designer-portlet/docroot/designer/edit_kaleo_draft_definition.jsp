@@ -140,8 +140,8 @@
 					</liferay-ui:panel-container>
 				</c:if>
 
-				<div class="diagram-builder" id="<portlet:namespace />diagramBuilder">
-					<div class="diagram-builder-content" id="<portlet:namespace />diagramBuilderContent">
+				<div class="property-builder" id="<portlet:namespace />propertyBuilder">
+					<div class="property-builder-content" id="<portlet:namespace />propertyBuilderContent">
 						<div class="tabbable">
 							<div class="tabbable-content">
 								<ul class="nav nav-tabs">
@@ -164,7 +164,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="diagram-builder-content-container">
+						<div class="property-builder-content-container">
 							<div class="tabbable">
 								<div class="tabbable-content">
 									<ul class="nav nav-tabs">
@@ -182,8 +182,8 @@
 
 									<div class="tab-content">
 										<div class="tab-pane">
-											<div class="diagram-builder-canvas">
-												<div class="diagram-builder-drop-container"></div>
+											<div class="property-builder-canvas">
+												<div class="property-builder-drop-container"></div>
 											</div>
 										</div>
 										<div class="tab-pane">
@@ -529,7 +529,7 @@
 								availablePropertyModels: A.Object.getValue(window, '<%= HtmlUtil.escapeJS(availablePropertyModels) %>'.split('.')),
 							</c:if>
 
-							boundingBox: '#<portlet:namespace />diagramBuilder',
+							boundingBox: '#<portlet:namespace />propertyBuilder',
 							data: {
 
 								<%
@@ -558,7 +558,7 @@
 							%>
 
 							portletResourceNamespace: '<%= HtmlUtil.escapeJS(portletResourceNamespace) %>',
-							srcNode: '#<portlet:namespace />diagramBuilderContent'
+							srcNode: '#<portlet:namespace />propertyBuilderContent'
 						}
 					).render();
 
