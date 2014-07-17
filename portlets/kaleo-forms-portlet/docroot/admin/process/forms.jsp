@@ -30,7 +30,7 @@ String workflowDefinition = KaleoFormsUtil.getWorkflowDefinition(kaleoProcess, p
 
 <h3 class="kaleo-process-header"><liferay-ui:message key="forms" /></h3>
 
-<p class="kaleo-process-message"><liferay-ui:message key="please-select-or-create-one-form-for-each-workflow-task.-each-form-is-a-subset-of-the-fields-definition-defined-in-step-2" /></p>
+<p class="kaleo-process-message"><liferay-ui:message key="please-select-or-create-one-form-for-each-workflow-task.-each-form-is-a-subset-of-the-field-set-defined-in-step-2" /></p>
 
 <aui:field-wrapper>
 

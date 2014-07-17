@@ -18,7 +18,7 @@
 
 <%
 String redirect = ParamUtil.getString(request, "redirect");
-String currentSectionURL = HttpUtil.setParameter(currentURL, renderResponse.getNamespace() + "historyKey", "fields-definition");
+String currentSectionURL = HttpUtil.setParameter(currentURL, renderResponse.getNamespace() + "historyKey", "field-set");
 
 KaleoProcess kaleoProcess = (KaleoProcess)request.getAttribute(WebKeys.KALEO_PROCESS);
 
@@ -37,12 +37,12 @@ if (ddmStructureId > 0) {
 }
 %>
 
-<h3 class="kaleo-process-header"><liferay-ui:message key="fields-definition" /></h3>
+<h3 class="kaleo-process-header"><liferay-ui:message key="fields" /></h3>
 
-<p class="kaleo-process-message"><liferay-ui:message key="please-select-or-create-a-new-fields-definition-containing-all-the-fields-that-will-be-used-by-your-forms" /></p>
+<p class="kaleo-process-message"><liferay-ui:message key="please-select-or-create-a-new-field-set-containing-all-the-fields-that-will-be-used-by-your-forms" /></p>
 
 <aui:field-wrapper>
-	<liferay-ui:message key="selected-definition" />:
+	<liferay-ui:message key="selected-field-set" />:
 
 	<span class="badge badge-info" id="<portlet:namespace />ddmStructureDisplay"><%= HtmlUtil.escape(ddmStructureName) %></span>
 
@@ -59,7 +59,7 @@ if (ddmStructureId > 0) {
 <liferay-portlet:renderURL varImpl="iteratorURL">
 	<portlet:param name="mvcPath" value="/admin/edit_kaleo_process.jsp" />
 	<portlet:param name="redirect" value="<%= redirect %>" />
-	<portlet:param name="historyKey" value="fields-definition" />
+	<portlet:param name="historyKey" value="field-set" />
 </liferay-portlet:renderURL>
 
 <liferay-ui:search-container
@@ -89,7 +89,7 @@ if (ddmStructureId > 0) {
 		<portlet:param name="redirect" value="<%= currentSectionURL %>" />
 	</portlet:renderURL>
 
-	<aui:button href="<%= editDefinitionURL.toString() %>" primary="<%= true %>" value="add-fields-definition" />
+	<aui:button href="<%= editDefinitionURL.toString() %>" primary="<%= true %>" value="add-field-set" />
 
 	<liferay-ui:search-container-row
 		className="com.liferay.portlet.dynamicdatamapping.model.DDMStructure"

@@ -54,7 +54,7 @@ if (kaleoProcess != null) {
 
 <c:if test="<%= kaleoProcessStarted %>">
 	<div class="alert alert-info">
-		<liferay-ui:message key="updating-the-fields-definition-or-workflow-will-cause-loss-of-data" />
+		<liferay-ui:message key="updating-the-field-set-or-workflow-will-cause-loss-of-data" />
 	</div>
 </c:if>
 
@@ -131,5 +131,5 @@ if (kaleoProcess != null) {
 <%!
 private static final String[] _CATEGORY_NAMES = {""};
 
-private static final String[][] _CATEGORY_SECTIONS = {{"details", "fields-definition", "workflow", "forms"}};
+private static final String[][] _CATEGORY_SECTIONS = {{"details", "fields", "workflow", "forms"}};
 %>

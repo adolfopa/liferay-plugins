@@ -39,8 +39,8 @@ public class KaleoFormsDDMDisplay extends BaseDDMDisplay {
 
 		if ((structure != null) && (template == null)) {
 			return LanguageUtil.format(
-				locale, "new-form-for-fields-definition-x",
-				structure.getName(locale), false);
+				locale, "new-form-for-field-set-x", structure.getName(locale),
+				false);
 		}
 
 		return super.getEditTemplateTitle(structure, template, locale);
@@ -63,7 +63,7 @@ public class KaleoFormsDDMDisplay extends BaseDDMDisplay {
 
 	@Override
 	public String getStructureName(Locale locale) {
-		return LanguageUtil.get(locale, "fields-definition");
+		return LanguageUtil.get(locale, "field-set");
 	}
 
 	@Override

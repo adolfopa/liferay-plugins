@@ -6,8 +6,8 @@ AUI.add(
 		var Lang = A.Lang;
 
 		var STEPS_MAP = {
-			DEFINITION: 2,
 			DETAILS: 1,
+			FIELDS: 2,
 			FORMS: 4,
 			WORKFLOW: 3
 		};
