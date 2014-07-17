@@ -18,7 +18,7 @@
 
 <%
 String redirect = ParamUtil.getString(request, "redirect");
-String currentSectionURL = HttpUtil.setParameter(currentURL, renderResponse.getNamespace() + "historyKey", "field-set");
+String currentSectionURL = HttpUtil.setParameter(currentURL, renderResponse.getNamespace() + "historyKey", "fields");
 
 KaleoProcess kaleoProcess = (KaleoProcess)request.getAttribute(WebKeys.KALEO_PROCESS);
 
@@ -59,7 +59,7 @@ if (ddmStructureId > 0) {
 <liferay-portlet:renderURL varImpl="iteratorURL">
 	<portlet:param name="mvcPath" value="/admin/edit_kaleo_process.jsp" />
 	<portlet:param name="redirect" value="<%= redirect %>" />
-	<portlet:param name="historyKey" value="field-set" />
+	<portlet:param name="historyKey" value="fields" />
 </liferay-portlet:renderURL>
 
 <liferay-ui:search-container
