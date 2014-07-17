@@ -21,6 +21,9 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.PortletResponseUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
+import com.liferay.portal.kernel.transaction.Isolation;
+import com.liferay.portal.kernel.transaction.Propagation;
+import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.Constants;
@@ -171,21 +174,24 @@ public class KaleoFormsPortlet extends MVCPortlet {
 			workflowTaskId, transitionName, comment, null);
 	}
 
+	/**
+	 * This method is invoked in a transaction because we may result in a
+	 * persistence call before and/or after the call to super.processAction()
+	 * which itself results in a persistence call.
+	 */
+	@Transactional(
+		isolation = Isolation.PORTAL, propagation = Propagation.REQUIRES_NEW,
+		rollbackFor = {Exception.class}
+	)
 	public void deleteDDLRecord(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		long workflowInstanceId = ParamUtil.getLong(
-			actionRequest, "workflowInstanceId");
 		long ddlRecordId = ParamUtil.getLong(actionRequest, "ddlRecordId");
 
-		WorkflowInstanceManagerUtil.deleteWorkflowInstance(
-			themeDisplay.getCompanyId(), workflowInstanceId);
-
 		DDLRecordLocalServiceUtil.deleteDDLRecord(ddlRecordId);
+
+		deleteWorkflowInstance(actionRequest, actionResponse);
 	}
 
 	public void deleteKaleoProcess(
