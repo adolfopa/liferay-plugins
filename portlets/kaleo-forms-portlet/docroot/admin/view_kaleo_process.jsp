@@ -38,24 +38,22 @@ portletURL.setParameter("kaleoProcessId", String.valueOf(kaleoProcessId));
 <aui:form action="<%= portletURL.toString() %>" method="post" name="fm">
 
 	<%
+	List<String> headerNames = new ArrayList<String>();
+
 	DDLRecordSet ddlRecordSet = kaleoProcess.getDDLRecordSet();
 
 	DDMStructure ddmStructure = ddlRecordSet.getDDMStructure();
 
-	DDMTemplate ddmTemplate = kaleoProcess.getDDMTemplate();
+	List<DDMFormField> ddmFormfields = ddmStructure.getDDMFormFields(false);
 
-	Map<String, Map<String, String>> fieldsMap = ddmStructure.getFieldsMap();
-
-	List<String> headerNames = new ArrayList<String>();
-
-	for (Map<String, String> fields : fieldsMap.values()) {
-		if (GetterUtil.getBoolean(fields.get(FieldConstants.PRIVATE))) {
+	for (DDMFormField ddmFormField : ddmFormfields) {
+		if (ddmStructure.isFieldPrivate(ddmFormField.getName())) {
 			continue;
 		}
 
-		String label = fields.get(FieldConstants.LABEL);
+		LocalizedValue label = ddmFormField.getLabel();
 
-		headerNames.add(label);
+		headerNames.add(label.getValue(locale));
 	}
 
 	headerNames.add("status");
@@ -122,23 +120,23 @@ portletURL.setParameter("kaleoProcessId", String.valueOf(kaleoProcessId));
 			rowURL.setParameter("kaleoProcessId", String.valueOf(kaleoProcessId));
 			rowURL.setParameter("version", String.valueOf(ddlRecordVersion.getVersion()));
 
-			Fields fieldsModel = ddlRecord.getFields();
+			Fields fields = ddlRecord.getFields();
 
 			ResultRow row = new ResultRow(ddlRecord, ddlRecord.getRecordId(), i);
 
 			// Columns
 
-			for (Map<String, String> fields : fieldsMap.values()) {
-				if (GetterUtil.getBoolean(fields.get(FieldConstants.PRIVATE))) {
+			for (DDMFormField ddmFormField : ddmFormfields) {
+				String name = ddmFormField.getName();
+
+				if (ddmStructure.isFieldPrivate(name)) {
 					continue;
 				}
 
-				String name = fields.get(FieldConstants.NAME);
-
 				String value = null;
 
-				if (fieldsModel.contains(name)) {
-					com.liferay.portlet.dynamicdatamapping.storage.Field field = fieldsModel.get(name);
+				if (fields.contains(name)) {
+					com.liferay.portlet.dynamicdatamapping.storage.Field field = fields.get(name);
 
 					value = field.getRenderedValue(themeDisplay.getLocale());
 				}
