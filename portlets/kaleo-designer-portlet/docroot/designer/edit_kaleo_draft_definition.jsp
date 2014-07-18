@@ -140,7 +140,7 @@
 					</liferay-ui:panel-container>
 				</c:if>
 
-				<div class="property-builder" id="<portlet:namespace />propertyBuilder">
+				<div class="diagram-builder property-builder" id="<portlet:namespace />propertyBuilder">
 					<div class="property-builder-content" id="<portlet:namespace />propertyBuilderContent">
 						<div class="tabbable">
 							<div class="tabbable-content">

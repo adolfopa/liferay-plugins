@@ -2,23 +2,45 @@
 	display: none;
 }
 
+.celleditor-actions-view, .celleditor-notifications-view, .celleditor-assignment-view {
+	background: #EEE;
+	border: 1px solid #DBDCDC;
+	margin: 10px 0;
+	padding: 5px;
+}
+
+.celleditor-label {
+	display: block;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+.celleditor-label-checkbox {
+	font-weight: bold;
+	padding-left: 3px;
+}
+
+.celleditor-textarea, .celleditor-textarea-small {
+	height: 100px;
+	width: 300px;
+}
+
+.celleditor-textarea-small {
+	height: 100px;
+}
+
+.celleditor-view-menu {
+	text-align: right;
+}
+
 .diagram-builder {
 	height: 600px;
 
-	.diagram-builder-field {
-		position: relative;
-		width: 78px;
-
-		.diagram-builder-field-icon {
-			font-size: 32px;
-		}
-	}
-
-	.diagram-builder-fields-container {
+	.property-builder-fields-container {
 		margin: 0;
 	}
 
-	.diagram-builder-canvas .diagram-node {
+	.property-builder-canvas .diagram-node {
 		font-size: 34px;
 		padding-top: 2px;
 		text-align: center;
@@ -53,68 +75,47 @@
 		}
 	}
 
-	.diagram-builder-content-content {
+	.property-builder-content-content {
 		.tabbable {
 			width: 15%;
 		}
 	}
 
-	.diagram-builder-content-container {
-		.tabbable {
-			width: 75%;
+	.property-builder-field {
+		position: relative;
+		width: 78px;
+
+		.property-builder-field-icon {
+			font-size: 32px;
 		}
 	}
 }
 
-.celleditor-actions-view, .celleditor-notifications-view, .celleditor-assignment-view {
-	background: #EEE;
-	border: 1px solid #DBDCDC;
-	margin: 10px 0;
-	padding: 5px;
+.diagram-node-suggest-connector .popover-content {
+	.diagram-node-label {
+		font-size: 14px;
+		text-align: center;
+		white-space: nowrap;
+	}
+
+	.property-builder-field {
+		margin: 5px 0;
+		position: relative;
+		width: 50%;
+
+		.property-builder-field-icon {
+			font-size: 32px;
+		}
+	}
 }
 
-.celleditor-label {
-	display: block;
-	font-size: 11px;
-	font-weight: bold;
-}
-
-.celleditor-label-checkbox {
-	font-weight: bold;
-	padding-left: 3px;
-}
-
-.celleditor-textarea, .celleditor-textarea-small {
-	height: 100px;
-	width: 300px;
-}
-
-.celleditor-textarea-small {
-	height: 100px;
-}
-
-.celleditor-view-menu {
-	text-align: right;
-}
-
-.diagram-builder-disabled {
-	.diagram-builder-controls {
+.property-builder-disabled {
+	.property-builder-controls {
 		display: none;
 	}
 
-	.diagram-builder-field-draggable, .diagram-builder-anchor-node {
+	.property-builder-field-draggable, .property-builder-anchor-node {
 		cursor: auto;
-	}
-}
-
-.diagram-node-label {
-	text-align: center;
-	white-space: nowrap;
-}
-
-.diagram-node-suggest-connector {
-	.diagram-builder-field {
-		width: 78px;
 	}
 }
 
