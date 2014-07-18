@@ -65,7 +65,7 @@ portletURL.setParameter("kaleoProcessId", String.valueOf(kaleoProcessId));
 				sb.append("');");
 				%>
 
-				<aui:nav-item href="<%= sb.toString() %>" iconCssClass="icon-arrow-up" label="export" />
+				<aui:nav-item href="<%= sb.toString() %>" iconCssClass="icon-arrow-down" label="export" />
 			</aui:nav>
 
 			<aui:nav-bar-search cssClass="navbar-search-advanced" searchContainer="<%= searchContainer %>">
