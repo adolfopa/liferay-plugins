@@ -32,11 +32,11 @@ long groupId = BeanParamUtil.getLong(kaleoProcess, request, "groupId", scopeGrou
 	title='<%= LanguageUtil.format(locale, "new-x", kaleoProcess.getName(locale)) %>'
 />
 
-<portlet:actionURL name="startWorkflowInstance" var="startWorkflowInstanceURL">
-	<portlet:param name="redirect" value="<%= redirect %>" />
-</portlet:actionURL>
+<portlet:actionURL name="startWorkflowInstance" var="startWorkflowInstanceURL" />
 
 <aui:form action="<%= startWorkflowInstanceURL %>" cssClass="lfr-dynamic-form" enctype="multipart/form-data" method="post" name="fm1">
+	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
+	<aui:input name="backURL" type="hidden" value="<%= backURL %>" />
 	<aui:input name="kaleoProcessId" type="hidden" value="<%= String.valueOf(kaleoProcessId) %>" />
 	<aui:input name="groupId" type="hidden" value="<%= groupId %>" />
 	<aui:input name="ddlRecordSetId" type="hidden" value="<%= String.valueOf(kaleoProcess.getDDLRecordSetId()) %>" />
