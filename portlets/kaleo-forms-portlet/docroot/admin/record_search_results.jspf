@@ -29,7 +29,7 @@ if (Validator.isNull(displayTerms.getKeywords())) {
 else {
 	SearchContext searchContext = SearchContextFactory.getInstance(request);
 
-	searchContext.setAttribute("ddlRecordSetId", kaleoProcess.getDDLRecordSetId());
+	searchContext.setAttribute("recordSetId", kaleoProcess.getDDLRecordSetId());
 	searchContext.setEnd(searchContainer.getEnd());
 	searchContext.setKeywords(displayTerms.getKeywords());
 	searchContext.setStart(searchContainer.getStart());
