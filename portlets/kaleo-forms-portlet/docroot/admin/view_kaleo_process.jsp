@@ -166,3 +166,5 @@ portletURL.setParameter("kaleoProcessId", String.valueOf(kaleoProcessId));
 		<liferay-ui:search-iterator />
 	</liferay-ui:search-container>
 </aui:form>
+
+<%@ include file="/admin/export_kaleo_process.jspf" %>

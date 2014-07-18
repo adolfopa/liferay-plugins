@@ -63,63 +63,8 @@
 	<liferay-ui:search-iterator />
 </liferay-ui:search-container>
 
+<%@ include file="/admin/export_kaleo_process.jspf" %>
+
 <%
 KaleoFormsUtil.cleanUpPortletSession(portletSession);
 %>
-
-<div class="hide" id="<portlet:namespace />export-process">
-	<aui:select label="file-extension" name="fileExtension">
-		<aui:option value="csv">CSV</aui:option>
-		<aui:option value="xml">XML</aui:option>
-	</aui:select>
-</div>
-
-<aui:script>
-	Liferay.provide(
-		window,
-		'<portlet:namespace />exportKaleoProcess',
-		function(url) {
-			var A = AUI();
-
-			var form = A.Node.create('<form method="post" />');
-
-			var content = A.one('#<portlet:namespace />export-process');
-
-			if (content) {
-				form.append(content);
-
-				content.show();
-			}
-
-			var dialog = Liferay.Util.Window.getWindow(
-				{
-					dialog: {
-						bodyContent: form,
-						toolbars: {
-							footer: [
-								{
-									label: '<%= UnicodeLanguageUtil.get(request, "ok") %>',
-									on: {
-										click: function() {
-											submitForm(form, url, false);
-										}
-									}
-								},
-								{
-									label: '<%= UnicodeLanguageUtil.get(request, "cancel") %>',
-									on: {
-										click: function() {
-											dialog.hide();
-										}
-									}
-								}
-							]
-						}
-					},
-					title: '<%= UnicodeLanguageUtil.get(request, "export") %>'
-				}
-			)
-		},
-		['liferay-util-window']
-	);
-</aui:script>
