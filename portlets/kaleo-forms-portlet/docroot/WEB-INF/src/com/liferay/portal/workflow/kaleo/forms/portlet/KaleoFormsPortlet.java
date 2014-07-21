@@ -42,6 +42,7 @@ import com.liferay.portal.kernel.workflow.WorkflowInstanceManagerUtil;
 import com.liferay.portal.kernel.workflow.WorkflowTask;
 import com.liferay.portal.kernel.workflow.WorkflowTaskDueDateException;
 import com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil;
+import com.liferay.portal.model.WorkflowInstanceLink;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.ServiceContext;
@@ -181,10 +182,15 @@ public class KaleoFormsPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
 		final long ddlRecordId = ParamUtil.getLong(
 			actionRequest, "ddlRecordId");
-		final long workflowInstanceLinkId = ParamUtil.getLong(
-			actionRequest, "workflowInstanceLinkId");
+
+		final long workflowInstanceLinkId = getDDLRecordWorkfowInstanceLinkId(
+			themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
+			ddlRecordId);
 
 		try {
 			Callable<Void> callable = new Callable<Void>() {
@@ -614,6 +620,17 @@ public class KaleoFormsPortlet extends MVCPortlet {
 		else {
 			super.doDispatch(renderRequest, renderResponse);
 		}
+	}
+
+	protected long getDDLRecordWorkfowInstanceLinkId(
+			long companyId, long groupId, long ddlRecordId)
+		throws Exception {
+
+		WorkflowInstanceLink workfowInstanceLink =
+			WorkflowInstanceLinkLocalServiceUtil.getWorkflowInstanceLink(
+				companyId, groupId, KaleoProcess.class.getName(), ddlRecordId);
+
+		return workfowInstanceLink.getWorkflowInstanceLinkId();
 	}
 
 	@Override

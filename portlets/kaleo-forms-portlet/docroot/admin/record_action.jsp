@@ -28,8 +28,6 @@ DDLRecord ddlRecord = (DDLRecord)row.getObject();
 long kaleoProcessId = GetterUtil.getLong((String)row.getParameter("kaleoProcessId"));
 
 DDLRecordVersion ddlRecordVersion = ddlRecord.getLatestRecordVersion();
-
-WorkflowInstanceLink workfowInstanceLink = WorkflowInstanceLinkLocalServiceUtil.getWorkflowInstanceLink(themeDisplay.getCompanyId(), scopeGroupId, KaleoProcess.class.getName(), ddlRecord.getRecordId());
 %>
 
 <liferay-ui:icon-menu icon="<%= StringPool.BLANK %>" message="<%= StringPool.BLANK %>">
@@ -50,7 +48,6 @@ WorkflowInstanceLink workfowInstanceLink = WorkflowInstanceLinkLocalServiceUtil.
 	<portlet:actionURL name="deleteDDLRecord" var="deleteDDLRecordURL">
 		<portlet:param name="redirect" value="<%= redirect %>" />
 		<portlet:param name="ddlRecordId" value="<%= String.valueOf(ddlRecord.getRecordId()) %>" />
-		<portlet:param name="workflowInstanceLinkId" value="<%= StringUtil.valueOf(workfowInstanceLink.getWorkflowInstanceLinkId()) %>" />
 	</portlet:actionURL>
 
 	<liferay-ui:icon-delete url="<%= deleteDDLRecordURL %>" />
