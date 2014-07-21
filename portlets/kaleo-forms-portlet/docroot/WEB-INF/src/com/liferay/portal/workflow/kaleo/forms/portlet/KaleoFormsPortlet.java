@@ -206,8 +206,7 @@ public class KaleoFormsPortlet extends MVCPortlet {
 				}
 			};
 
-			TransactionInvokerUtil.invoke(
-				_REQUIRES_NEW_TRANSACTION_ATTRIBUTE, callable);
+			TransactionInvokerUtil.invoke(_transactionAttribute, callable);
 		}
 		catch (Throwable t) {
 			if (t instanceof PortalException) {
@@ -857,8 +856,7 @@ public class KaleoFormsPortlet extends MVCPortlet {
 
 	private static Log _log = LogFactoryUtil.getLog(KaleoFormsPortlet.class);
 
-	private static TransactionAttribute
-		_REQUIRES_NEW_TRANSACTION_ATTRIBUTE;
+	private static TransactionAttribute _transactionAttribute;
 
 	static {
 		TransactionAttribute.Builder builder =
@@ -867,7 +865,7 @@ public class KaleoFormsPortlet extends MVCPortlet {
 		builder.setPropagation(Propagation.REQUIRES_NEW);
 		builder.setRollbackForClasses(Exception.class);
 
-		_REQUIRES_NEW_TRANSACTION_ATTRIBUTE = builder.build();
+		_transactionAttribute = builder.build();
 	}
 
 }

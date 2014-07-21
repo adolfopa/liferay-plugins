@@ -127,7 +127,7 @@ portletURL.setParameter("kaleoProcessId", String.valueOf(kaleoProcessId));
 					value="<%= value %>"
 				/>
 
-				<%
+			<%
 				row.setParameter("kaleoProcessId", String.valueOf(kaleoProcessId));
 			}
 			%>
