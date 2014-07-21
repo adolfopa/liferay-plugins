@@ -15,15 +15,16 @@
 package com.liferay.portal.workflow.kaleo.forms.portlet;
 
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.PortletResponseUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
-import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
-import com.liferay.portal.kernel.transaction.Transactional;
+import com.liferay.portal.kernel.transaction.TransactionAttribute;
+import com.liferay.portal.kernel.transaction.TransactionInvokerUtil;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.Constants;
@@ -68,7 +69,7 @@ import com.liferay.portlet.dynamicdatalists.RecordSetNameException;
 import com.liferay.portlet.dynamicdatalists.model.DDLRecord;
 import com.liferay.portlet.dynamicdatalists.model.DDLRecordSet;
 import com.liferay.portlet.dynamicdatalists.model.DDLRecordSetConstants;
-import com.liferay.portlet.dynamicdatalists.service.DDLRecordLocalServiceUtil;
+import com.liferay.portlet.dynamicdatalists.service.DDLRecordServiceUtil;
 import com.liferay.portlet.dynamicdatalists.service.DDLRecordSetLocalServiceUtil;
 import com.liferay.portlet.dynamicdatalists.util.DDLExportFormat;
 import com.liferay.portlet.dynamicdatalists.util.DDLExporter;
@@ -88,6 +89,7 @@ import java.util.Enumeration;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.concurrent.Callable;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -174,24 +176,42 @@ public class KaleoFormsPortlet extends MVCPortlet {
 			workflowTaskId, transitionName, comment, null);
 	}
 
-	/**
-	 * This method is invoked in a transaction because we may result in a
-	 * persistence call before and/or after the call to super.processAction()
-	 * which itself results in a persistence call.
-	 */
-	@Transactional(
-		isolation = Isolation.PORTAL, propagation = Propagation.REQUIRES_NEW,
-		rollbackFor = {Exception.class}
-	)
 	public void deleteDDLRecord(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		long ddlRecordId = ParamUtil.getLong(actionRequest, "ddlRecordId");
+		final ThemeDisplay themeDisplay =
+			(ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
 
-		DDLRecordLocalServiceUtil.deleteDDLRecord(ddlRecordId);
+		final long ddlRecordId = ParamUtil.getLong(
+			actionRequest, "ddlRecordId");
+		final long workflowInstanceId = ParamUtil.getLong(
+			actionRequest, "workflowInstanceId");
 
-		deleteWorkflowInstance(actionRequest, actionResponse);
+		try {
+			Callable<Void> callable = new Callable<Void>() {
+
+				@Override
+				public Void call() throws Exception {
+					DDLRecordServiceUtil.deleteRecord(ddlRecordId);
+
+					WorkflowInstanceManagerUtil.deleteWorkflowInstance(
+						themeDisplay.getCompanyId(), workflowInstanceId);
+
+					return null;
+				}
+			};
+
+			TransactionInvokerUtil.invoke(
+				_REQUIRES_NEW_TRANSACTION_ATTRIBUTE, callable);
+		}
+		catch (Throwable t) {
+			if (t instanceof PortalException) {
+				throw (PortalException)t;
+			}
+
+			throw new SystemException(t);
+		}
 	}
 
 	public void deleteKaleoProcess(
@@ -821,5 +841,18 @@ public class KaleoFormsPortlet extends MVCPortlet {
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(KaleoFormsPortlet.class);
+
+	private static TransactionAttribute
+		_REQUIRES_NEW_TRANSACTION_ATTRIBUTE;
+
+	static {
+		TransactionAttribute.Builder builder =
+			new TransactionAttribute.Builder();
+
+		builder.setPropagation(Propagation.REQUIRES_NEW);
+		builder.setRollbackForClasses(Exception.class);
+
+		_REQUIRES_NEW_TRANSACTION_ATTRIBUTE = builder.build();
+	}
 
 }
