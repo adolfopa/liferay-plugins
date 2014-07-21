@@ -30,8 +30,6 @@ long kaleoProcessId = GetterUtil.getLong((String)row.getParameter("kaleoProcessI
 DDLRecordVersion ddlRecordVersion = ddlRecord.getLatestRecordVersion();
 
 WorkflowInstanceLink workfowInstanceLink = WorkflowInstanceLinkLocalServiceUtil.getWorkflowInstanceLink(themeDisplay.getCompanyId(), scopeGroupId, KaleoProcess.class.getName(), ddlRecord.getRecordId());
-
-WorkflowInstance workflowInstance = WorkflowInstanceManagerUtil.getWorkflowInstance(themeDisplay.getCompanyId(), workfowInstanceLink.getWorkflowInstanceId());
 %>
 
 <liferay-ui:icon-menu icon="<%= StringPool.BLANK %>" message="<%= StringPool.BLANK %>">
@@ -49,17 +47,11 @@ WorkflowInstance workflowInstance = WorkflowInstanceManagerUtil.getWorkflowInsta
 		url="<%= viewDDLRecordURL %>"
 	/>
 
-	<c:if test="<%= !workflowInstance.isComplete() %>">
-		<portlet:actionURL name="deleteDDLRecord" var="deleteDDLRecordURL">
-			<portlet:param name="redirect" value="<%= redirect %>" />
-			<portlet:param name="ddlRecordId" value="<%= String.valueOf(ddlRecord.getRecordId()) %>" />
-			<portlet:param name="workflowInstanceId" value="<%= StringUtil.valueOf(workfowInstanceLink.getWorkflowInstanceId()) %>" />
-		</portlet:actionURL>
+	<portlet:actionURL name="deleteDDLRecord" var="deleteDDLRecordURL">
+		<portlet:param name="redirect" value="<%= redirect %>" />
+		<portlet:param name="ddlRecordId" value="<%= String.valueOf(ddlRecord.getRecordId()) %>" />
+		<portlet:param name="workflowInstanceId" value="<%= StringUtil.valueOf(workfowInstanceLink.getWorkflowInstanceId()) %>" />
+	</portlet:actionURL>
 
-		<liferay-ui:icon
-			iconCssClass="icon-undo"
-			message="withdraw-submission"
-			url="<%= deleteDDLRecordURL %>"
-		/>
-	</c:if>
+	<liferay-ui:icon-delete url="<%= deleteDDLRecordURL %>" />
 </liferay-ui:icon-menu>
