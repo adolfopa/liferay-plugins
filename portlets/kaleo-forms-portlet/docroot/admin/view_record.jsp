@@ -48,13 +48,13 @@ DDLRecordVersion ddlRecordVersion = ddlRecord.getRecordVersion(version);
 <aui:fieldset>
 
 	<%
+	DDMStructure ddmStructure = ddlRecordSet.getDDMStructure();
+
 	Fields fields = null;
 
 	if (ddlRecordVersion != null) {
 		fields = StorageEngineUtil.getFields(ddlRecordVersion.getDDMStorageId());
 	}
-
-	DDMStructure ddmStructure = ddlRecordSet.getDDMStructure();
 	%>
 
 	<liferay-ddm:html
