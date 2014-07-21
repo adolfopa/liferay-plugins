@@ -55,8 +55,6 @@ DDLRecordVersion ddlRecordVersion = ddlRecord.getRecordVersion(version);
 	}
 
 	DDMStructure ddmStructure = ddlRecordSet.getDDMStructure();
-
-	DDMTemplate ddmTemplate = kaleoProcess.getDDMTemplate();
 	%>
 
 	<liferay-ddm:html
