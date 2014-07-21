@@ -31,7 +31,6 @@ page import="com.liferay.portal.kernel.util.StringUtil" %><%@
 page import="com.liferay.portal.kernel.workflow.WorkflowDefinition" %><%@
 page import="com.liferay.portal.kernel.workflow.WorkflowDefinitionManagerUtil" %><%@
 page import="com.liferay.portal.kernel.workflow.WorkflowInstance" %><%@
-page import="com.liferay.portal.kernel.workflow.WorkflowInstanceManagerUtil" %><%@
 page import="com.liferay.portal.model.Portlet" %><%@
 page import="com.liferay.portal.model.WorkflowInstanceLink" %><%@
 page import="com.liferay.portal.service.PortletLocalServiceUtil" %><%@
