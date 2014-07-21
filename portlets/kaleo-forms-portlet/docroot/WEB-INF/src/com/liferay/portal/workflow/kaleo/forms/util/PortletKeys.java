@@ -21,6 +21,4 @@ public class PortletKeys extends com.liferay.portal.util.PortletKeys {
 
 	public static final String KALEO_DESIGNER = "2_WAR_kaleodesignerportlet";
 
-	public static final String KALEO_FORMS_DISPLAY = "1_WAR_kaleoformsportlet";
-
 }

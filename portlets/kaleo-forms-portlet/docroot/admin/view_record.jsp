@@ -32,8 +32,6 @@ long kaleoProcessId = BeanParamUtil.getLong(kaleoProcess, request, "kaleoProcess
 String version = ParamUtil.getString(request, "version", DDLRecordConstants.VERSION_DEFAULT);
 
 DDLRecordVersion ddlRecordVersion = ddlRecord.getRecordVersion(version);
-
-DDLRecordVersion latestDDLRecordVersion = ddlRecord.getLatestRecordVersion();
 %>
 
 <liferay-ui:header
