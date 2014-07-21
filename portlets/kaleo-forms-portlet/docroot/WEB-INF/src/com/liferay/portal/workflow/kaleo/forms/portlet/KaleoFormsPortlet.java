@@ -47,6 +47,7 @@ import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.service.WorkflowDefinitionLinkLocalServiceUtil;
+import com.liferay.portal.service.WorkflowInstanceLinkLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.workflow.kaleo.designer.DuplicateKaleoDraftDefinitionNameException;
@@ -180,13 +181,10 @@ public class KaleoFormsPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		final ThemeDisplay themeDisplay =
-			(ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
-
 		final long ddlRecordId = ParamUtil.getLong(
 			actionRequest, "ddlRecordId");
-		final long workflowInstanceId = ParamUtil.getLong(
-			actionRequest, "workflowInstanceId");
+		final long workflowInstanceLinkId = ParamUtil.getLong(
+			actionRequest, "workflowInstanceLinkId");
 
 		try {
 			Callable<Void> callable = new Callable<Void>() {
@@ -195,8 +193,8 @@ public class KaleoFormsPortlet extends MVCPortlet {
 				public Void call() throws Exception {
 					DDLRecordServiceUtil.deleteRecord(ddlRecordId);
 
-					WorkflowInstanceManagerUtil.deleteWorkflowInstance(
-						themeDisplay.getCompanyId(), workflowInstanceId);
+					WorkflowInstanceLinkLocalServiceUtil.
+						deleteWorkflowInstanceLink(workflowInstanceLinkId);
 
 					return null;
 				}

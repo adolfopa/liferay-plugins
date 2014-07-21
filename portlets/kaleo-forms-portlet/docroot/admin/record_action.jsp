@@ -50,7 +50,7 @@ WorkflowInstanceLink workfowInstanceLink = WorkflowInstanceLinkLocalServiceUtil.
 	<portlet:actionURL name="deleteDDLRecord" var="deleteDDLRecordURL">
 		<portlet:param name="redirect" value="<%= redirect %>" />
 		<portlet:param name="ddlRecordId" value="<%= String.valueOf(ddlRecord.getRecordId()) %>" />
-		<portlet:param name="workflowInstanceId" value="<%= StringUtil.valueOf(workfowInstanceLink.getWorkflowInstanceId()) %>" />
+		<portlet:param name="workflowInstanceLinkId" value="<%= StringUtil.valueOf(workfowInstanceLink.getWorkflowInstanceLinkId()) %>" />
 	</portlet:actionURL>
 
 	<liferay-ui:icon-delete url="<%= deleteDDLRecordURL %>" />
