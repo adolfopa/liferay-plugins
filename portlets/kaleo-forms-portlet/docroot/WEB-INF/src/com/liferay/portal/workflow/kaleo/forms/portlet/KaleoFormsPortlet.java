@@ -787,14 +787,22 @@ public class KaleoFormsPortlet extends MVCPortlet {
 			kaleoProcess.getName(themeDisplay.getLocale()) +
 				CharPool.PERIOD + fileExtension;
 
+		boolean exportOnlyApproved = ParamUtil.getBoolean(
+			resourceRequest, "exportOnlyApproved");
+
+		int status = WorkflowConstants.STATUS_ANY;
+
+		if (exportOnlyApproved) {
+			status = WorkflowConstants.STATUS_APPROVED;
+		}
+
 		DDLExportFormat ddlExportFormat = DDLExportFormat.parse(fileExtension);
 
 		DDLExporter ddlExporter = DDLExporterFactory.getDDLExporter(
 			ddlExportFormat);
 
 		byte[] bytes = ddlExporter.export(
-			kaleoProcess.getDDLRecordSetId(),
-			WorkflowConstants.STATUS_APPROVED);
+			kaleoProcess.getDDLRecordSetId(), status);
 
 		String contentType = MimeTypesUtil.getContentType(fileName);
 
