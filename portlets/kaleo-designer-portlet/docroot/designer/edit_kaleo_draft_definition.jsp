@@ -62,6 +62,7 @@
 			<aui:input name="mvcPath" type="hidden" value="<%= mvcPath %>" />
 			<aui:input name="backURL" type="hidden" value="<%= backURL %>" />
 			<aui:input name="kaleoDraftDefinitionId" type="hidden" />
+			<aui:input name="name"  type="hidden" />
 			<aui:input name="content" type="hidden" value="<%= content %>" />
 			<aui:input name="version" type="hidden" />
 			<aui:input name="draftVersion" type="hidden" />
@@ -73,17 +74,6 @@
 			<liferay-ui:error exception="<%= WorkflowException.class %>" message="an-error-occurred-in-the-workflow-engine" />
 
 			<aui:fieldset>
-
-				<%
-				boolean disabled = (kaleoDraftDefinition == null) ? false : true;
-				%>
-
-				<c:if test="<%= disabled %>">
-					<aui:input name="name" type="hidden" />
-				</c:if>
-
-				<aui:input disabled="<%= disabled %>" name="name" />
-
 				<aui:input name="title" />
 
 				<c:if test="<%= kaleoDraftDefinition != null %>">
@@ -688,13 +678,17 @@
 
 					<c:choose>
 						<c:when test="<%= kaleoDraftDefinition == null %>">
-							var name = A.one('#<portlet:namespace />name');
+							var titleComponent = Liferay.component('<portlet:namespace />title');
 
-							if (name) {
-								name.on(
-									'valueChange',
+							var placeholder = titleComponent.get('inputPlaceholder');
+
+							var title = titleComponent._getInputLanguage(themeDisplay.getDefaultLanguageId());
+
+							if (placeholder) {
+								placeholder.after(
+									'change',
 									function(event) {
-										<portlet:namespace />kaleoDesigner.set('definitionName', name.val());
+										<portlet:namespace />kaleoDesigner.set('definitionName', title.val());
 									}
 								);
 							}
