@@ -89,6 +89,10 @@ public class KaleoDesignerPortlet extends MVCPortlet {
 				actionRequest, "title");
 			content = ParamUtil.getString(actionRequest, "content");
 
+			if (Validator.isNull(name)) {
+				name = titleMap.get(themeDisplay.getSiteDefaultLocale());
+			}
+
 			ServiceContext serviceContext = ServiceContextFactory.getInstance(
 				actionRequest);
 
@@ -183,7 +187,6 @@ public class KaleoDesignerPortlet extends MVCPortlet {
 			long kaleoDraftDefinitionId = ParamUtil.getLong(
 				actionRequest, "kaleoDraftDefinitionId");
 
-			String name = ParamUtil.getString(actionRequest, "name");
 			Map<Locale, String> titleMap = LocalizationUtil.getLocalizationMap(
 				actionRequest, "title");
 			content = ParamUtil.getString(actionRequest, "content");
@@ -195,6 +198,8 @@ public class KaleoDesignerPortlet extends MVCPortlet {
 			KaleoDraftDefinition kaleoDraftDefinition = null;
 
 			if (kaleoDraftDefinitionId <= 0) {
+				String name = titleMap.get(themeDisplay.getSiteDefaultLocale());
+
 				kaleoDraftDefinition =
 					KaleoDraftDefinitionServiceUtil.addKaleoDraftDefinition(
 						themeDisplay.getUserId(),
@@ -202,6 +207,8 @@ public class KaleoDesignerPortlet extends MVCPortlet {
 						content, version, 1, serviceContext);
 			}
 			else {
+				String name = ParamUtil.getString(actionRequest, "name");
+
 				kaleoDraftDefinition =
 					KaleoDraftDefinitionServiceUtil.updateKaleoDraftDefinition(
 						themeDisplay.getUserId(), name, titleMap, content,

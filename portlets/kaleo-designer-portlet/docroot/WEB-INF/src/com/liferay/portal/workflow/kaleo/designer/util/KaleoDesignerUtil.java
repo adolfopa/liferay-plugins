@@ -33,7 +33,6 @@ import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition;
 import com.liferay.portal.workflow.kaleo.designer.service.KaleoDraftDefinitionLocalServiceUtil;
 
-import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
@@ -86,7 +85,14 @@ public class KaleoDesignerUtil {
 				kaleoDraftDefinitionId);
 		}
 
-		String name = ParamUtil.getString(request, "name");
+		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		Map<Locale, String> titleMap = LocalizationUtil.getLocalizationMap(
+			request, "title");
+
+		String name = ParamUtil.getString(
+			request, "name", titleMap.get(themeDisplay.getSiteDefaultLocale()));
 
 		if (Validator.isNull(name)) {
 			return null;
@@ -118,13 +124,6 @@ public class KaleoDesignerUtil {
 		if (version <= 0) {
 			return null;
 		}
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		Map<Locale, String> titleMap = new HashMap<Locale, String>();
-
-		titleMap.put(LocaleUtil.getDefault(), name);
 
 		WorkflowDefinition workflowDefinition =
 			WorkflowDefinitionManagerUtil.getWorkflowDefinition(
