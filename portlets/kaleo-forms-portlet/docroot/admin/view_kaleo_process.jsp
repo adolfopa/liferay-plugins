@@ -132,10 +132,9 @@ portletURL.setParameter("kaleoProcessId", String.valueOf(kaleoProcessId));
 			}
 			%>
 
-			<liferay-ui:search-container-column-text
+			<liferay-ui:search-container-column-status
 				href="<%= rowURL %>"
-				name="status"
-				value="<%= LanguageUtil.get(request, WorkflowConstants.getStatusLabel(ddlRecord.getStatus())) %>"
+				property="status"
 			/>
 
 			<liferay-ui:search-container-column-date
