@@ -44,6 +44,9 @@
 				{
 					dialog: {
 						bodyContent: form,
+						cssClass: 'kaleo-process-export-dialog',
+						height: 286,
+						render: '.kaleo-forms-admin-portlet',
 						toolbars: {
 							footer: [
 								{
@@ -77,11 +80,12 @@
 									}
 								}
 							]
-						}
+						},
+						width: 350
 					},
 					title: '<%= UnicodeLanguageUtil.get(request, "export") %>'
 				}
-			)
+			);
 		},
 		['liferay-util-window']
 	);

@@ -10,6 +10,16 @@
 		margin-left: 5px;
 	}
 
+	.kaleo-process-export-dialog .modal-content {
+		.modal-body .checkbox {
+			margin-bottom: 0
+		}
+
+		.modal-footer {
+			margin-top: 0;
+		}
+	}
+
 	.kaleo-process-header {
 		line-height: 10px;
 	}
