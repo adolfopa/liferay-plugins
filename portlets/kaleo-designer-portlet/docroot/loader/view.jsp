@@ -37,7 +37,6 @@
 			kaleoURL.setParameter('propertiesSaveCallback', config.propertiesSaveCallback);
 			kaleoURL.setParameter('refreshOpenerOnClose', config.refreshOpenerOnClose);
 			kaleoURL.setParameter('saveCallback', config.saveCallback);
-			kaleoURL.setParameter('uiScope', config.uiScope);
 			kaleoURL.setParameter('version', config.version);
 			kaleoURL.setWindowState('pop_up');
 

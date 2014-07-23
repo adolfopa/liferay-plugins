@@ -49,14 +49,6 @@
 				content = kaleoDraftDefinition.getContent();
 			}
 		}
-
-		boolean editable = true;
-
-		String uiScope = ParamUtil.getString(request, "uiScope");
-
-		if ((uiScope != null) && uiScope.equals("assign-task-forms")) {
-			editable = false;
-		}
 		%>
 
 		<liferay-ui:header
@@ -92,9 +84,7 @@
 
 				<aui:input disabled="<%= disabled %>" name="name" />
 
-				<c:if test="<%= editable %>">
-					<aui:input name="title" />
-				</c:if>
+				<aui:input name="title" />
 
 				<c:if test="<%= kaleoDraftDefinition != null %>">
 					<liferay-ui:panel-container extended="<%= false %>" id="kaleoDesignerDetailsPanelContainer" persistState="<%= true %>">
@@ -129,11 +119,9 @@
 										</div>
 									</aui:field-wrapper>
 
-									<c:if test="<%= editable %>">
-										<aui:field-wrapper label="draft-history">
-											<div class="lfr-portlet-workflowdesigner-toolbar" id="<portlet:namespace />kaleoDesignerToolbarContainer"></div>
-										</aui:field-wrapper>
-									</c:if>
+									<aui:field-wrapper label="draft-history">
+										<div class="lfr-portlet-workflowdesigner-toolbar" id="<portlet:namespace />kaleoDesignerToolbarContainer"></div>
+									</aui:field-wrapper>
 								</c:if>
 							</div>
 						</liferay-ui:panel>
@@ -505,21 +493,14 @@
 
 					<portlet:namespace />kaleoDesigner = new Liferay.KaleoDesigner(
 						{
-							<c:choose>
-								<c:when test="<%= editable %>">
 
-									<%
-									String availableFields = ParamUtil.getString(request, "availableFields");
-									%>
+							<%
+							String availableFields = ParamUtil.getString(request, "availableFields");
+							%>
 
-									<c:if test="<%= Validator.isNotNull(availableFields) %>">
-										availableFields: A.Object.getValue(window, '<%= HtmlUtil.escapeJS(availableFields) %>'.split('.')),
-									</c:if>
-								</c:when>
-								<c:otherwise>
-									availableFields: [],
-								</c:otherwise>
-							</c:choose>
+							<c:if test="<%= Validator.isNotNull(availableFields) %>">
+								availableFields: A.Object.getValue(window, '<%= HtmlUtil.escapeJS(availableFields) %>'.split('.')),
+							</c:if>
 
 							<%
 							String availablePropertyModels = ParamUtil.getString(request, "availablePropertyModels", "Liferay.KaleoDesigner.AVAILABLE_PROPERTY_MODELS.KALEO_FORMS_EDIT");
@@ -539,7 +520,6 @@
 								kaleoProcessId: '<%= kaleoProcessId %>'
 							},
 							definition: '<%= HtmlUtil.escapeJS(content) %>',
-							disabled: <%= !editable %>,
 
 							<%
 							String propertiesSaveCallback = ParamUtil.getString(request, "propertiesSaveCallback");
@@ -707,98 +687,20 @@
 					);
 
 					<c:choose>
-						<c:when test="<%= editable %>">
-							<c:choose>
-								<c:when test="<%= kaleoDraftDefinition == null %>">
-									var name = A.one('#<portlet:namespace />name');
+						<c:when test="<%= kaleoDraftDefinition == null %>">
+							var name = A.one('#<portlet:namespace />name');
 
-									if (name) {
-										name.on(
-											'valueChange',
-											function(event) {
-												<portlet:namespace />kaleoDesigner.set('definitionName', name.val());
-											}
-										);
+							if (name) {
+								name.on(
+									'valueChange',
+									function(event) {
+										<portlet:namespace />kaleoDesigner.set('definitionName', name.val());
 									}
-								</c:when>
-								<c:otherwise>
-									<portlet:namespace />initKaleoDraftDefinitionToolbar();
-								</c:otherwise>
-							</c:choose>
+								);
+							}
 						</c:when>
 						<c:otherwise>
-							var disableKaleoDesignerInteractions = function() {
-								var kaleoDesigner = <portlet:namespace />kaleoDesigner;
-
-								kaleoDesigner.close = emptyFn;
-
-								kaleoDesigner.deleteConnectors = emptyFn;
-
-								kaleoDesigner.deleteSelectedNode = emptyFn;
-
-								kaleoDesigner.editConnector = emptyFn;
-
-								kaleoDesigner.contentTabView.disableTab(1);
-
-								kaleoDesigner.availableFieldsDrag.dd.set('lock', true);
-
-								kaleoDesigner.fieldsDrag.dd.set('lock', true);
-
-								kaleoDesigner.get('fields').each(
-									function(item, index, collection) {
-										if (item.anchorsDrag) {
-											item.anchorsDrag.dd.set('lock', true);
-										}
-									}
-								);
-							};
-
-							var loadKaleoDesignerAssignedTaskForms = function() {
-								var kaleoDesigner = <portlet:namespace />kaleoDesigner;
-
-								kaleoDesigner.get('fields').each(
-									function(item, index, collection) {
-										if (item.get('type') === 'task') {
-											var workflowTaskName = item.get('name');
-
-											var getDDMTemplate = Liferay.Util.getOpener()['<%= HtmlUtil.escapeJS(portletResourceNamespace) %>getDDMTemplate'];
-
-											if (getDDMTemplate) {
-												getDDMTemplate(
-													'<%= kaleoProcessId %>',
-													workflowTaskName,
-													function(json1, json2) {
-														var templateName = kaleoDesigner.getLocalizedName(json2.name);
-
-														if (templateName) {
-															item.set(
-																'forms',
-																{
-																	templateId: [json1.DDMTemplateId],
-																	templateName: [templateName]
-																}
-															);
-
-															item._uiSetName(
-																A.Lang.sub(
-																	'{workflowTaskName} ({templateName})',
-																	{
-																		templateName: Liferay.Util.escapeHTML(templateName),
-																		workflowTaskName: workflowTaskName
-																	}
-																)
-															);
-														}
-													}
-												);
-											}
-										}
-									}
-								);
-							};
-
-							disableKaleoDesignerInteractions();
-							loadKaleoDesignerAssignedTaskForms();
+							<portlet:namespace />initKaleoDraftDefinitionToolbar();
 						</c:otherwise>
 					</c:choose>
 
@@ -848,14 +750,12 @@
 				</aui:script>
 
 				<aui:button-row>
-					<c:if test="<%= editable %>">
-						<c:if test="<%= KaleoDesignerPermission.contains(permissionChecker, themeDisplay.getCompanyGroupId(), ActionKeys.ADD_DRAFT) || ((kaleoDraftDefinition != null) && KaleoDraftDefinitionPermission.contains(permissionChecker, kaleoDraftDefinition, ActionKeys.UPDATE)) %>">
-							<aui:button onClick='<%= renderResponse.getNamespace() + "updateKaleoDraftDefinition();" %>' value="save-as-draft" />
-						</c:if>
+					<c:if test="<%= KaleoDesignerPermission.contains(permissionChecker, themeDisplay.getCompanyGroupId(), ActionKeys.ADD_DRAFT) || ((kaleoDraftDefinition != null) && KaleoDraftDefinitionPermission.contains(permissionChecker, kaleoDraftDefinition, ActionKeys.UPDATE)) %>">
+						<aui:button onClick='<%= renderResponse.getNamespace() + "updateKaleoDraftDefinition();" %>' value="save-as-draft" />
+					</c:if>
 
-						<c:if test="<%= KaleoDesignerPermission.contains(permissionChecker, themeDisplay.getCompanyGroupId(), ActionKeys.PUBLISH) %>">
-							<aui:button onClick='<%= renderResponse.getNamespace() + "publishKaleoDraftDefinition();" %>' primary="<%= true %>" value="publish" />
-						</c:if>
+					<c:if test="<%= KaleoDesignerPermission.contains(permissionChecker, themeDisplay.getCompanyGroupId(), ActionKeys.PUBLISH) %>">
+						<aui:button onClick='<%= renderResponse.getNamespace() + "publishKaleoDraftDefinition();" %>' primary="<%= true %>" value="publish" />
 					</c:if>
 
 					<span class="lfr-portlet-workflowdesigner-message" id="<portlet:namespace />toolbarMessage"></span>
