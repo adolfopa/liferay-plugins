@@ -787,10 +787,10 @@ public class KaleoFormsPortlet extends MVCPortlet {
 			kaleoProcess.getName(themeDisplay.getLocale()) +
 				CharPool.PERIOD + fileExtension;
 
+		int status = WorkflowConstants.STATUS_ANY;
+
 		boolean exportOnlyApproved = ParamUtil.getBoolean(
 			resourceRequest, "exportOnlyApproved");
-
-		int status = WorkflowConstants.STATUS_ANY;
 
 		if (exportOnlyApproved) {
 			status = WorkflowConstants.STATUS_APPROVED;
