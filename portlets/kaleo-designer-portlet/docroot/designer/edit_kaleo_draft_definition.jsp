@@ -680,15 +680,13 @@
 						<c:when test="<%= kaleoDraftDefinition == null %>">
 							var titleComponent = Liferay.component('<portlet:namespace />title');
 
-							var placeholder = titleComponent.get('inputPlaceholder');
+							var titlePlaceholderInput = titleComponent.get('inputPlaceholder');
 
-							var title = titleComponent._getInputLanguage(themeDisplay.getDefaultLanguageId());
-
-							if (placeholder) {
-								placeholder.after(
+							if (titlePlaceholderInput) {
+								titlePlaceholderInput.after(
 									'change',
 									function(event) {
-										<portlet:namespace />kaleoDesigner.set('definitionName', title.val());
+										<portlet:namespace />kaleoDesigner.set('definitionName', titleComponent.getValue());
 									}
 								);
 							}
