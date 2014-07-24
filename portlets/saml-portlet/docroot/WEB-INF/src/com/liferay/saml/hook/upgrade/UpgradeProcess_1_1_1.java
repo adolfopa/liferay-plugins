@@ -15,7 +15,7 @@
 package com.liferay.saml.hook.upgrade;
 
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
-import com.liferay.saml.hook.upgrade.v1_1_0.UpgradeSamlSpSession;
+import com.liferay.saml.hook.upgrade.v1_1_1.UpgradeSamlSpSession;
 
 /**
  * @author Mika Koivisto
