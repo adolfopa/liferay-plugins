@@ -34,6 +34,7 @@ import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.workflow.RequiredWorkflowDefinitionException;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.kernel.workflow.WorkflowException;
 import com.liferay.portal.kernel.workflow.WorkflowHandlerRegistryUtil;
@@ -64,8 +65,10 @@ import com.liferay.portal.workflow.kaleo.forms.service.KaleoProcessLocalServiceU
 import com.liferay.portal.workflow.kaleo.forms.service.KaleoProcessServiceUtil;
 import com.liferay.portal.workflow.kaleo.forms.service.permission.KaleoProcessPermission;
 import com.liferay.portal.workflow.kaleo.forms.util.ActionKeys;
+import com.liferay.portal.workflow.kaleo.forms.util.KaleoFormsUtil;
 import com.liferay.portal.workflow.kaleo.forms.util.TaskFormPairs;
 import com.liferay.portal.workflow.kaleo.forms.util.WebKeys;
+import com.liferay.portal.workflow.kaleo.service.KaleoDefinitionLocalServiceUtil;
 import com.liferay.portlet.dynamicdatalists.RecordSetDDMStructureIdException;
 import com.liferay.portlet.dynamicdatalists.RecordSetNameException;
 import com.liferay.portlet.dynamicdatalists.model.DDLRecord;
@@ -77,6 +80,7 @@ import com.liferay.portlet.dynamicdatalists.util.DDLExportFormat;
 import com.liferay.portlet.dynamicdatalists.util.DDLExporter;
 import com.liferay.portlet.dynamicdatalists.util.DDLExporterFactory;
 import com.liferay.portlet.dynamicdatalists.util.DDLUtil;
+import com.liferay.portlet.dynamicdatamapping.RequiredStructureException;
 import com.liferay.portlet.dynamicdatamapping.StructureDefinitionException;
 import com.liferay.portlet.dynamicdatamapping.model.DDMStructure;
 import com.liferay.portlet.dynamicdatamapping.model.DDMStructureConstants;
@@ -217,6 +221,32 @@ public class KaleoFormsPortlet extends MVCPortlet {
 		}
 	}
 
+	public void deleteDDMStructure(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		long ddmStructureId = ParamUtil.getLong(
+			actionRequest, "ddmStructureId");
+
+		try {
+			DDMStructureServiceUtil.deleteStructure(ddmStructureId);
+		}
+		catch (Exception e) {
+			if (isSessionErrorException(e)) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(e, e);
+				}
+
+				SessionErrors.add(actionRequest, e.getClass(), e);
+
+				sendRedirect(actionRequest, actionResponse);
+			}
+			else {
+				throw e;
+			}
+		}
+	}
+
 	public void deleteKaleoProcess(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
@@ -225,6 +255,62 @@ public class KaleoFormsPortlet extends MVCPortlet {
 			actionRequest, "kaleoProcessId");
 
 		KaleoProcessServiceUtil.deleteKaleoProcess(kaleoProcessId);
+	}
+
+	public void deleteWorflowDefinition(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		long kaleoProcessId = ParamUtil.getLong(
+			actionRequest, "kaleoProcessId");
+
+		PortletSession portletSession = actionRequest.getPortletSession();
+
+		String name = ParamUtil.getString(actionRequest, "name");
+		int version = ParamUtil.getInteger(actionRequest, "version");
+
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			actionRequest);
+
+		try {
+			if (kaleoProcessId > 0) {
+				KaleoProcess kaleoProcess =
+					KaleoProcessLocalServiceUtil.getKaleoProcess(
+						kaleoProcessId);
+
+				String workflowDefinition =
+					KaleoFormsUtil.getWorkflowDefinition(
+						kaleoProcess, portletSession);
+
+				if (workflowDefinition.equals(
+						kaleoProcess.getWorkflowDefinition())) {
+
+					throw new RequiredWorkflowDefinitionException();
+				}
+			}
+
+			KaleoDefinitionLocalServiceUtil.deactivateKaleoDefinition(
+				name, version, serviceContext);
+
+			KaleoDefinitionLocalServiceUtil.deleteKaleoDefinition(
+				name, version, serviceContext);
+
+			portletSession.removeAttribute("workflowDefinition");
+		}
+		catch (Exception e) {
+			if (isSessionErrorException(e)) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(e, e);
+				}
+
+				SessionErrors.add(actionRequest, e.getClass(), e);
+
+				sendRedirect(actionRequest, actionResponse);
+			}
+			else {
+				throw e;
+			}
+		}
 	}
 
 	public void deleteWorkflowInstance(
@@ -648,6 +734,8 @@ public class KaleoFormsPortlet extends MVCPortlet {
 			cause instanceof NoSuchKaleoDraftDefinitionException ||
 			cause instanceof RecordSetDDMStructureIdException ||
 			cause instanceof RecordSetNameException ||
+			cause instanceof RequiredStructureException ||
+			cause instanceof RequiredWorkflowDefinitionException ||
 			cause instanceof StructureDefinitionException ||
 			cause instanceof WorkflowException) {
 

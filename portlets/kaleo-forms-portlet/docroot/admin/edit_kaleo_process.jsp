@@ -46,6 +46,10 @@ if (kaleoProcess != null) {
 }
 %>
 
+<liferay-ui:error exception="<%= RequiredStructureException.class %>" message="cannot-delete-field-set-with-forms-associated-with-it" />
+
+<liferay-ui:error exception="<%= RequiredWorkflowDefinitionException.class %>" message="cannot-delete-the-worflow-definition-that-is-currently-being-used" />
+
 <liferay-ui:header
 	backURL="<%= redirect %>"
 	localizeTitle="<%= (kaleoProcess == null) %>"

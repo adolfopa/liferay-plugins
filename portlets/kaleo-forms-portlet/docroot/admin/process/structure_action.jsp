@@ -48,4 +48,11 @@ String redirect = (String)row.getParameter("redirect");
 		onClick="<%= taglibOnClick %>"
 		url="javascript:;"
 	/>
+
+	<portlet:actionURL name="deleteDDMStructure" var="deleteDDMStructureURL">
+		<portlet:param name="redirect" value="<%= redirect %>" />
+		<portlet:param name="ddmStructureId" value="<%= String.valueOf(ddmStructure.getStructureId()) %>" />
+	</portlet:actionURL>
+
+	<liferay-ui:icon-delete url="<%= deleteDDMStructureURL %>" />
 </liferay-ui:icon-menu>

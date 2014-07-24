@@ -110,6 +110,13 @@ if (Validator.isNotNull(workflowDefinition)) {
 					value="<%= currentSectionURL %>"
 				/>
 
+				<c:if test="<%= kaleoProcess != null %>">
+					<liferay-ui:search-container-row-parameter
+						name="kaleoProcessId"
+						value="<%= String.valueOf(kaleoProcess.getKaleoProcessId()) %>"
+					/>
+				</c:if>
+
 				<liferay-ui:search-container-column-text
 					name="name"
 					value="<%= HtmlUtil.escape(workflowDefinitionVar.getName()) %>"
@@ -146,6 +153,13 @@ if (Validator.isNotNull(workflowDefinition)) {
 					name="backURL"
 					value="<%= currentSectionURL %>"
 				/>
+
+				<c:if test="<%= kaleoProcess != null %>">
+					<liferay-ui:search-container-row-parameter
+						name="kaleoProcessId"
+						value="<%= String.valueOf(kaleoProcess.getKaleoProcessId()) %>"
+					/>
+				</c:if>
 
 				<liferay-ui:search-container-row-parameter
 					name="name"

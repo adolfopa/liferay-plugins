@@ -22,6 +22,7 @@ ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_
 WorkflowDefinition workflowDefinition = (WorkflowDefinition)row.getObject();
 
 String backURL = (String)row.getParameter("backURL");
+long kaleoProcessId = GetterUtil.getLong((String)row.getParameter("kaleoProcessId"));
 %>
 
 <liferay-ui:icon-menu icon="<%= StringPool.BLANK %>" message="<%= StringPool.BLANK %>">
@@ -48,4 +49,13 @@ String backURL = (String)row.getParameter("backURL");
 		onClick="<%= taglibOnClick %>"
 		url="javascript:;"
 	/>
+
+	<portlet:actionURL name="deleteWorflowDefinition" var="deleteWorflowDefinitionURL">
+		<portlet:param name="redirect" value="<%= backURL %>" />
+		<portlet:param name="kaleoProcessId" value="<%= String.valueOf(kaleoProcessId) %>" />
+		<portlet:param name="name" value="<%= workflowDefinition.getName() %>" />
+		<portlet:param name="version" value="<%= String.valueOf(workflowDefinition.getVersion()) %>" />
+	</portlet:actionURL>
+
+	<liferay-ui:icon-delete url="<%= deleteWorflowDefinitionURL %>" />
 </liferay-ui:icon-menu>
