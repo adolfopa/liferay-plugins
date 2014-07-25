@@ -36,6 +36,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.RequiredWorkflowDefinitionException;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
+import com.liferay.portal.kernel.workflow.WorkflowDefinitionManagerUtil;
 import com.liferay.portal.kernel.workflow.WorkflowException;
 import com.liferay.portal.kernel.workflow.WorkflowHandlerRegistryUtil;
 import com.liferay.portal.kernel.workflow.WorkflowInstance;
@@ -65,10 +66,8 @@ import com.liferay.portal.workflow.kaleo.forms.service.KaleoProcessLocalServiceU
 import com.liferay.portal.workflow.kaleo.forms.service.KaleoProcessServiceUtil;
 import com.liferay.portal.workflow.kaleo.forms.service.permission.KaleoProcessPermission;
 import com.liferay.portal.workflow.kaleo.forms.util.ActionKeys;
-import com.liferay.portal.workflow.kaleo.forms.util.KaleoFormsUtil;
 import com.liferay.portal.workflow.kaleo.forms.util.TaskFormPairs;
 import com.liferay.portal.workflow.kaleo.forms.util.WebKeys;
-import com.liferay.portal.workflow.kaleo.service.KaleoDefinitionLocalServiceUtil;
 import com.liferay.portlet.dynamicdatalists.RecordSetDDMStructureIdException;
 import com.liferay.portlet.dynamicdatalists.RecordSetNameException;
 import com.liferay.portlet.dynamicdatalists.model.DDLRecord;
@@ -182,6 +181,37 @@ public class KaleoFormsPortlet extends MVCPortlet {
 			workflowTaskId, transitionName, comment, null);
 	}
 
+	public void deactivateWorkflowDefinition(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		String name = ParamUtil.getString(actionRequest, "name");
+		int version = ParamUtil.getInteger(actionRequest, "version");
+
+		try {
+			WorkflowDefinitionManagerUtil.updateActive(
+				themeDisplay.getCompanyId(), themeDisplay.getUserId(), name,
+				version, false);
+		}
+		catch (Exception e) {
+			if (isSessionErrorException(e)) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(e, e);
+				}
+
+				SessionErrors.add(actionRequest, e.getClass(), e);
+
+				sendRedirect(actionRequest, actionResponse);
+			}
+			else {
+				throw e;
+			}
+		}
+	}
+
 	public void deleteDDLRecord(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
@@ -255,62 +285,6 @@ public class KaleoFormsPortlet extends MVCPortlet {
 			actionRequest, "kaleoProcessId");
 
 		KaleoProcessServiceUtil.deleteKaleoProcess(kaleoProcessId);
-	}
-
-	public void deleteWorflowDefinition(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		long kaleoProcessId = ParamUtil.getLong(
-			actionRequest, "kaleoProcessId");
-
-		PortletSession portletSession = actionRequest.getPortletSession();
-
-		String name = ParamUtil.getString(actionRequest, "name");
-		int version = ParamUtil.getInteger(actionRequest, "version");
-
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			actionRequest);
-
-		try {
-			if (kaleoProcessId > 0) {
-				KaleoProcess kaleoProcess =
-					KaleoProcessLocalServiceUtil.getKaleoProcess(
-						kaleoProcessId);
-
-				String workflowDefinition =
-					KaleoFormsUtil.getWorkflowDefinition(
-						kaleoProcess, portletSession);
-
-				if (workflowDefinition.equals(
-						kaleoProcess.getWorkflowDefinition())) {
-
-					throw new RequiredWorkflowDefinitionException();
-				}
-			}
-
-			KaleoDefinitionLocalServiceUtil.deactivateKaleoDefinition(
-				name, version, serviceContext);
-
-			KaleoDefinitionLocalServiceUtil.deleteKaleoDefinition(
-				name, version, serviceContext);
-
-			portletSession.removeAttribute("workflowDefinition");
-		}
-		catch (Exception e) {
-			if (isSessionErrorException(e)) {
-				if (_log.isDebugEnabled()) {
-					_log.debug(e, e);
-				}
-
-				SessionErrors.add(actionRequest, e.getClass(), e);
-
-				sendRedirect(actionRequest, actionResponse);
-			}
-			else {
-				throw e;
-			}
-		}
 	}
 
 	public void deleteWorkflowInstance(

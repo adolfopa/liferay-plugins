@@ -256,6 +256,21 @@ public class KaleoFormsUtil {
 		return workflowDefinition;
 	}
 
+	public static boolean isWorkflowDefinitionActive(
+		long companyId, String name, int version) {
+
+		try {
+			WorkflowDefinition workflowDefinition =
+				WorkflowDefinitionManagerUtil.getWorkflowDefinition(
+					companyId, name, version);
+
+			return workflowDefinition.isActive();
+		}
+		catch (Exception e) {
+			return false;
+		}
+	}
+
 	private static void _addTaskNames(Element element, List<String> taskNames) {
 		for (Element taskElement : element.elements("task")) {
 			taskNames.add(taskElement.elementText("name"));

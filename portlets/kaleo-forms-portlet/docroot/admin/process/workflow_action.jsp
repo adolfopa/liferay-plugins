@@ -50,12 +50,13 @@ long kaleoProcessId = GetterUtil.getLong((String)row.getParameter("kaleoProcessI
 		url="javascript:;"
 	/>
 
-	<portlet:actionURL name="deleteWorflowDefinition" var="deleteWorflowDefinitionURL">
+	<portlet:actionURL name="deactivateWorkflowDefinition" var="deactivateWorkflowDefinition">
 		<portlet:param name="redirect" value="<%= backURL %>" />
-		<portlet:param name="kaleoProcessId" value="<%= String.valueOf(kaleoProcessId) %>" />
 		<portlet:param name="name" value="<%= workflowDefinition.getName() %>" />
 		<portlet:param name="version" value="<%= String.valueOf(workflowDefinition.getVersion()) %>" />
 	</portlet:actionURL>
 
-	<liferay-ui:icon-delete url="<%= deleteWorflowDefinitionURL %>" />
+	<liferay-ui:icon-deactivate
+	 	url="<%= deactivateWorkflowDefinition %>"
+	 />
 </liferay-ui:icon-menu>

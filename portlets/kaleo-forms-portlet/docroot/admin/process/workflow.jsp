@@ -34,6 +34,10 @@ if (Validator.isNotNull(workflowDefinition)) {
 
 	workflowDefinitionName = workflowDefinitionParts[0];
 	workflowDefinitionVersion = GetterUtil.getInteger(workflowDefinitionParts[1]);
+
+	if (!KaleoFormsUtil.isWorkflowDefinitionActive(themeDisplay.getCompanyId(), workflowDefinitionName, workflowDefinitionVersion)) {
+		workflowDefinition = StringPool.BLANK;
+	}
 }
 %>
 
