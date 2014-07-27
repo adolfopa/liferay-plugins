@@ -70,8 +70,8 @@ if (kaleoProcess != null) {
 	<aui:input name="oldDDMStructureId" type="hidden" value="<%= ddmStructureId %>" />
 
 	<liferay-ui:error exception="<%= KaleoProcessDDMTemplateIdException.class %>" message="please-enter-a-valid-initial-form" />
-	<liferay-ui:error exception="<%= RequiredStructureException.class %>" message="cannot-delete-field-set-with-forms-associated-with-it" />
-	<liferay-ui:error exception="<%= RequiredWorkflowDefinitionException.class %>" message="cannot-delete-the-worflow-definition-that-is-currently-being-used" />
+	<liferay-ui:error exception="<%= RequiredStructureException.class %>" message="unable-to-delete-field-set-with-forms-associated-with-it" />
+	<liferay-ui:error exception="<%= RequiredWorkflowDefinitionException.class %>" message="unable-to-delete-the-worflow-definition-that-is-in-use" />
 
 	<liferay-util:buffer var="htmlBottom">
 		<aui:button-row cssClass="kaleo-process-buttons">
