@@ -22,7 +22,6 @@ ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_
 WorkflowDefinition workflowDefinition = (WorkflowDefinition)row.getObject();
 
 String backURL = (String)row.getParameter("backURL");
-long kaleoProcessId = GetterUtil.getLong((String)row.getParameter("kaleoProcessId"));
 %>
 
 <liferay-ui:icon-menu icon="<%= StringPool.BLANK %>" message="<%= StringPool.BLANK %>">
