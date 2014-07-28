@@ -31,5 +31,5 @@ KaleoProcess kaleoProcess = (KaleoProcess)request.getAttribute(WebKeys.KALEO_PRO
 		<aui:validator name="required" />
 	</aui:input>
 
-	<aui:input cssClass="lfr-textarea" localized="<%= true %>" name="description" type="textarea" value="<%= KaleoFormsUtil.getKaleoProcessDescription(kaleoProcess, portletSession) %>" />
+	<aui:input localized="<%= true %>" name="description" type="textarea" value="<%= KaleoFormsUtil.getKaleoProcessDescription(kaleoProcess, portletSession) %>" wrapperCssClass="lfr-textarea-container" />
 </aui:fieldset>
