@@ -81,6 +81,9 @@ import com.liferay.portlet.dynamicdatalists.util.DDLExporterFactory;
 import com.liferay.portlet.dynamicdatalists.util.DDLUtil;
 import com.liferay.portlet.dynamicdatamapping.RequiredStructureException;
 import com.liferay.portlet.dynamicdatamapping.StructureDefinitionException;
+import com.liferay.portlet.dynamicdatamapping.io.DDMFormJSONDeserializerUtil;
+import com.liferay.portlet.dynamicdatamapping.io.DDMFormXSDSerializerUtil;
+import com.liferay.portlet.dynamicdatamapping.model.DDMForm;
 import com.liferay.portlet.dynamicdatamapping.model.DDMStructure;
 import com.liferay.portlet.dynamicdatamapping.model.DDMStructureConstants;
 import com.liferay.portlet.dynamicdatamapping.service.DDMStructureServiceUtil;
@@ -556,8 +559,7 @@ public class KaleoFormsPortlet extends MVCPortlet {
 			Map<Locale, String> descriptionMap =
 				LocalizationUtil.getLocalizationMap(
 					actionRequest, "description");
-			String definition = ParamUtil.getString(
-				actionRequest, "definition");
+			String definition = getDefinition(actionRequest);
 			String storageType = ParamUtil.getString(
 				actionRequest, "storageType");
 
@@ -697,6 +699,20 @@ public class KaleoFormsPortlet extends MVCPortlet {
 				companyId, groupId, KaleoProcess.class.getName(), ddlRecordId);
 
 		return workfowInstanceLink.getWorkflowInstanceLinkId();
+	}
+
+	protected DDMForm getDDMForm(ActionRequest actionRequest) throws Exception {
+		String definition = ParamUtil.getString(actionRequest, "definition");
+
+		return DDMFormJSONDeserializerUtil.deserialize(definition);
+	}
+
+	protected String getDefinition(ActionRequest actionRequest)
+		throws Exception {
+
+		DDMForm ddmForm = getDDMForm(actionRequest);
+
+		return DDMFormXSDSerializerUtil.serialize(ddmForm);
 	}
 
 	@Override
