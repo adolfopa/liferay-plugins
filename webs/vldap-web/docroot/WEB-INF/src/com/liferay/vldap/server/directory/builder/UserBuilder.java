@@ -151,13 +151,18 @@ public class UserBuilder extends DirectoryBuilder {
 		}
 
 		for (FilterConstraint filterConstraint : filterConstraints) {
+			LinkedHashMap<String, Object> curParams =
+				new LinkedHashMap<String, Object>();
+
+			curParams.putAll(params);
+
 			if (!isValidFilterConstraint(filterConstraint)) {
 				continue;
 			}
 
 			String member = filterConstraint.getValue("member");
 
-			if (!putParams(params, member)) {
+			if (!putParams(curParams, member)) {
 				continue;
 			}
 
@@ -247,7 +252,7 @@ public class UserBuilder extends DirectoryBuilder {
 				searchUsers = UserLocalServiceUtil.search(
 					company.getCompanyId(), firstName, null, lastName,
 					screenName, emailAddress, WorkflowConstants.STATUS_APPROVED,
-					params, true, 0, PortletPropsValues.SEARCH_MAX_SIZE,
+					curParams, true, 0, PortletPropsValues.SEARCH_MAX_SIZE,
 					new UserScreenNameComparator());
 			}
 
