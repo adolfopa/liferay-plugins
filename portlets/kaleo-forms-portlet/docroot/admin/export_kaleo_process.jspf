@@ -46,7 +46,7 @@
 						bodyContent: form,
 						cssClass: 'kaleo-process-export-dialog',
 						height: 286,
-						render: '.kaleo-forms-admin-portlet',
+						render: '#p_p_id<portlet:namespace />',
 						toolbars: {
 							footer: [
 								{
