@@ -58,6 +58,16 @@ BEGIN
 		END AS feedbackComments
 	FROM
 		OSB_TicketsView
+		LEFT OUTER JOIN
+		(
+			SELECT
+				OSB_TicketsView.ticketEntryId,
+				MAX(OSB_TicketsView.closedDate) AS maxClosedDate
+			FROM
+				OSB_TicketsView
+			GROUP BY
+				OSB_TicketsView.ticketEntryId
+		) TEMP_TABLE_MAX_CLOSED_DATE ON OSB_TicketsView.ticketEntryId = TEMP_TABLE_MAX_CLOSED_DATE.ticketEntryId				
 	WHERE
 		(
 			(
@@ -67,7 +77,7 @@ BEGIN
 			(
 				(TO_DAYS(OSB_TicketsView.feedbackDate) >= TO_DAYS(startDate)) AND
 				(TO_DAYS(OSB_TicketsView.feedbackDate) <= TO_DAYS(endDate)) AND
-				(OSB_TicketsView.closedDate IS NOT NULL) AND
+				(MONTH(OSB_TicketsView.feedbackDate) != MONTH(TEMP_TABLE_MAX_CLOSED_DATE.maxClosedDate)) AND
 				(OSB_TicketsView.averageFeedbackRating > 0)
 			)
 		) AND
