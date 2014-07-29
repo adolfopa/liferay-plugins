@@ -67,7 +67,7 @@ BEGIN
 				OSB_TicketsView
 			GROUP BY
 				OSB_TicketsView.ticketEntryId
-		) TEMP_TABLE_MAX_CLOSED_DATE ON OSB_TicketsView.ticketEntryId = TEMP_TABLE_MAX_CLOSED_DATE.ticketEntryId				
+		) TEMP_TABLE_MAX_CLOSED_DATE ON OSB_TicketsView.ticketEntryId = TEMP_TABLE_MAX_CLOSED_DATE.ticketEntryId
 	WHERE
 		(
 			(
