@@ -183,6 +183,8 @@ AUI.add(
 							)
 						);
 
+						instance._hideSuccessMessage();
+
 						var currentStep = event.newVal;
 
 						if (currentStep !== STEPS_MAP.DETAILS) {
@@ -249,6 +251,16 @@ AUI.add(
 
 						if (instance.formWizard.validateStep(STEPS_MAP.FORMS)) {
 							submitForm(event.target);
+						}
+					},
+
+					_hideSuccessMessage: function() {
+						var instance = this;
+
+						var sucessMessageNode = instance.one('.alert-success');
+
+						if (sucessMessageNode) {
+							sucessMessageNode.hide();
 						}
 					},
 
