@@ -23,6 +23,10 @@ AUI.add(
 						value: null
 					},
 
+					kaleoProcessId: {
+						value: null
+					},
+
 					portletId: {
 						value: null
 					},
@@ -253,6 +257,8 @@ AUI.add(
 
 						var currentURL = instance.get('currentURL');
 
+						var kaleoProcessId = instance.get('kaleoProcessId');
+
 						var resultsContainer = instance.one('#resultsContainer');
 
 						var workflowDefinition = instance.one('#workflowDefinition').val();
@@ -265,6 +271,7 @@ AUI.add(
 
 						formsURL.setParameter('mvcPath', '/admin/process/task_template_search_container.jsp');
 						formsURL.setParameter('backURL', backURL.toString());
+						formsURL.setParameter('kaleoProcessId', kaleoProcessId);
 						formsURL.setParameter('workflowDefinition', workflowDefinition);
 
 						resultsContainer.plug(A.LoadingMask).loadingmask.show();

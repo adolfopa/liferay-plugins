@@ -107,6 +107,7 @@ if (kaleoProcess != null) {
 							{
 								currentURL: '<%= currentURL %>',
 								form: form,
+								kaleoProcessId: <%= kaleoProcessId %>,
 								namespace: '<portlet:namespace />',
 								portletId: '<%= PortalUtil.getPortletId(request) %>',
 								saveInPortletSessionURL: '<portlet:resourceURL id="saveInPortletSession" />',

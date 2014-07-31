@@ -22,6 +22,8 @@ String currentSectionURL = HttpUtil.setParameter(currentURL, renderResponse.getN
 
 KaleoProcess kaleoProcess = (KaleoProcess)request.getAttribute(WebKeys.KALEO_PROCESS);
 
+long kaleoProcessId = BeanParamUtil.getLong(kaleoProcess, request, "kaleoProcessId");
+
 long ddlRecordSetId = BeanParamUtil.getLong(kaleoProcess, request, "DDLRecordSetId");
 
 long ddmStructureId = KaleoFormsUtil.getKaleoProcessDDMStructureId(kaleoProcess, portletSession);
@@ -60,6 +62,7 @@ if (ddmStructureId > 0) {
 	<portlet:param name="mvcPath" value="/admin/edit_kaleo_process.jsp" />
 	<portlet:param name="redirect" value="<%= redirect %>" />
 	<portlet:param name="historyKey" value="fields" />
+	<portlet:param name="kaleoProcessId" value="<%= String.valueOf(kaleoProcessId) %>" />
 </liferay-portlet:renderURL>
 
 <liferay-ui:search-container

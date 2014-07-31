@@ -24,6 +24,8 @@ String tabs1 = ParamUtil.getString(request, "tabs1", "published");
 
 KaleoProcess kaleoProcess = (KaleoProcess)request.getAttribute(WebKeys.KALEO_PROCESS);
 
+long kaleoProcessId = BeanParamUtil.getLong(kaleoProcess, request, "kaleoProcessId");
+
 String workflowDefinition = KaleoFormsUtil.getWorkflowDefinition(kaleoProcess, portletSession);
 
 String workflowDefinitionName = StringPool.BLANK;
@@ -71,6 +73,7 @@ if (Validator.isNotNull(workflowDefinition)) {
 	<portlet:param name="redirect" value="<%= redirect %>" />
 	<portlet:param name="tabs1" value="<%= tabs1 %>" />
 	<portlet:param name="historyKey" value="workflow" />
+	<portlet:param name="kaleoProcessId" value="<%= String.valueOf(kaleoProcessId) %>" />
 </liferay-portlet:renderURL>
 
 <liferay-ui:search-container
@@ -92,6 +95,7 @@ if (Validator.isNotNull(workflowDefinition)) {
 		<portlet:param name="redirect" value="<%= redirect %>" />
 		<portlet:param name="tabs1" value="<%= tabs1 %>" />
 		<portlet:param name="historyKey" value="workflow" />
+		<portlet:param name="kaleoProcessId" value="<%= String.valueOf(kaleoProcessId) %>" />
 	</liferay-portlet:renderURL>
 
 	<liferay-ui:tabs
