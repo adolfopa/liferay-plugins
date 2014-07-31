@@ -122,7 +122,7 @@ AUI.add(
 						var taskFormPairsData = instance.one('#taskFormPairsData').val();
 						var workflowDefinition = instance.one('#workflowDefinition').val();
 
-						instance._saveInPortletSession(
+						instance.saveInPortletSession(
 							A.merge(
 								sessionMap,
 								{
@@ -204,17 +204,6 @@ AUI.add(
 						}
 					},
 
-					_saveInPortletSession: function(data) {
-						var instance = this;
-
-						A.io.request(
-							instance.get('saveInPortletSessionURL'),
-							{
-								data: instance.ns(data)
-							}
-						);
-					},
-
 					_showForms: function() {
 						var instance = this;
 
@@ -241,6 +230,17 @@ AUI.add(
 							'#' + instance.NS + 'formsSearchContainer',
 							function() {
 								resultsContainer.unplug(A.LoadingMask);
+							}
+						);
+					},
+
+					saveInPortletSession: function(data) {
+						var instance = this;
+
+						A.io.request(
+							instance.get('saveInPortletSessionURL'),
+							{
+								data: instance.ns(data)
 							}
 						);
 					},

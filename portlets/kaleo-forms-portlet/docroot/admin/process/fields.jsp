@@ -132,11 +132,23 @@ if (ddmStructureId > 0) {
 		function(event) {
 			var A = AUI();
 
-			A.one('#<portlet:namespace />ddmStructureDisplay').html(Liferay.Util.unescapeHTML(event.name));
-			A.one('#<portlet:namespace />ddmStructureId').val(event.ddmstructureid);
-			A.one('#<portlet:namespace />ddmStructureName').val(Liferay.Util.unescapeHTML(event.name));
+			var ddmStructureId = event.ddmstructureid;
+			var ddmStructureName = event.name;
 
-			Liferay.component('<portlet:namespace/>KaleoFormsAdmin').updateNavigationControls();
+			A.one('#<portlet:namespace />ddmStructureDisplay').html(Liferay.Util.unescapeHTML(ddmStructureName));
+			A.one('#<portlet:namespace />ddmStructureId').val(ddmStructureId);
+			A.one('#<portlet:namespace />ddmStructureName').val(Liferay.Util.unescapeHTML(ddmStructureName));
+
+			var kaleoFormsAdmin = Liferay.component('<portlet:namespace/>KaleoFormsAdmin');
+
+			kaleoFormsAdmin.saveInPortletSession(
+				{
+					ddmStructureId: ddmStructureId,
+					ddmStructureName: ddmStructureName
+				}
+			);
+
+			kaleoFormsAdmin.updateNavigationControls();
 		},
 		['aui-base']
 	);

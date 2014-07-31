@@ -212,7 +212,9 @@ if (Validator.isNotNull(workflowDefinition)) {
 		function(event) {
 			var A = AUI();
 
-			A.one('#<portlet:namespace />workflowDefinition').val(event.name + '@' + event.version);
+			var workflowDefinition = event.name + '@' + event.version;
+
+			A.one('#<portlet:namespace />workflowDefinition').val(workflowDefinition);
 
 			A.one('#<portlet:namespace />workflowDefinitionDisplay').html(
 				A.Lang.sub(
@@ -225,7 +227,15 @@ if (Validator.isNotNull(workflowDefinition)) {
 				)
 			);
 
-			Liferay.component('<portlet:namespace/>KaleoFormsAdmin').updateNavigationControls();
+			var kaleoFormsAdmin = Liferay.component('<portlet:namespace/>KaleoFormsAdmin');
+
+			kaleoFormsAdmin.saveInPortletSession(
+				{
+					workflowDefinition: workflowDefinition
+				}
+			);
+
+			kaleoFormsAdmin.updateNavigationControls();
 		},
 		['aui-base']
 	);
