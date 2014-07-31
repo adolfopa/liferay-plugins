@@ -135,55 +135,9 @@ AUI.add(
 					_afterCurrentStepChange: function(event) {
 						var instance = this;
 
-						var descriptionLocalized = Liferay.component(instance.ns('description'));
-						var nameLocalized = Liferay.component(instance.ns('name'));
+						var sessionMap = instance._getSessionMap();
 
-						var translatedLanguagesDescription = descriptionLocalized.get('translatedLanguages').values();
-						var translatedLanguagesName = nameLocalized.get('translatedLanguages').values();
-
-						var sessionMap = {
-							'translatedLanguagesDescription': translatedLanguagesDescription.join(),
-							'translatedLanguagesName': translatedLanguagesName.join()
-						};
-
-						AArray.each(
-							translatedLanguagesDescription,
-							function(item, index, collection) {
-								var val = instance.one('#description_' + item).val();
-
-								sessionMap['description' + item] = val;
-							}
-						);
-
-						AArray.each(
-							translatedLanguagesName,
-							function(item, index, collection) {
-								var val = instance.one('#name_' + item).val();
-
-								sessionMap['name' + item] = val;
-							}
-						);
-
-						var ddmStructureId = instance.one('#ddmStructureId').val();
-						var ddmStructureName = instance.one('#ddmStructureName').val();
-						var ddmTemplateId = instance.one('#ddmTemplateId').val();
-						var taskFormPairsData = instance.one('#taskFormPairsData').val();
-						var workflowDefinition = instance.one('#workflowDefinition').val();
-
-						instance.saveInPortletSession(
-							A.merge(
-								sessionMap,
-								{
-									ddmStructureId: ddmStructureId,
-									ddmStructureName: ddmStructureName,
-									ddmTemplateId: ddmTemplateId,
-									taskFormPairsData: taskFormPairsData,
-									workflowDefinition: workflowDefinition
-								}
-							)
-						);
-
-						instance._hideSuccessMessage();
+						instance.saveInPortletSession(sessionMap);
 
 						var currentStep = event.newVal;
 
@@ -196,6 +150,8 @@ AUI.add(
 						if (currentStep === STEPS_MAP.FORMS) {
 							instance._showForms();
 						}
+
+						instance._hideSuccessMessage();
 
 						instance.syncUI();
 					},
@@ -220,6 +176,56 @@ AUI.add(
 
 							instance.updateNavigationControls(currentStepValid);
 						}
+					},
+
+					_getInputLocalizedValuesMap: function(inputLocalized) {
+						var instance = this;
+
+						var localizedValuesMap = {};
+
+						var name = inputLocalized.get('name');
+
+						var translatedLanguages = inputLocalized.get('translatedLanguages').values();
+
+						localizedValuesMap['translatedLanguages' + Lang.String.capitalize(name)] = translatedLanguages.join();
+
+						AArray.each(
+							translatedLanguages,
+							function(item, index, collection) {
+								localizedValuesMap[name + item] = inputLocalized.getValue(item);
+							}
+						);
+
+						return localizedValuesMap;
+					},
+
+					_getSessionMap: function() {
+						var instance = this;
+
+						var descriptionInputLocalized = Liferay.component(instance.ns('description'));
+						var nameInputLocalized = Liferay.component(instance.ns('name'));
+
+						var sessionMap = A.merge(
+							instance._getInputLocalizedValuesMap(descriptionInputLocalized),
+							instance._getInputLocalizedValuesMap(nameInputLocalized)
+						);
+
+						var ddmStructureId = instance.one('#ddmStructureId').val();
+						var ddmStructureName = instance.one('#ddmStructureName').val();
+						var ddmTemplateId = instance.one('#ddmTemplateId').val();
+						var taskFormPairsData = instance.one('#taskFormPairsData').val();
+						var workflowDefinition = instance.one('#workflowDefinition').val();
+
+						return A.merge(
+							sessionMap,
+							{
+								ddmStructureId: ddmStructureId,
+								ddmStructureName: ddmStructureName,
+								ddmTemplateId: ddmTemplateId,
+								taskFormPairsData: taskFormPairsData,
+								workflowDefinition: workflowDefinition
+							}
+						);
 					},
 
 					_isCurrentStepValid: function() {
