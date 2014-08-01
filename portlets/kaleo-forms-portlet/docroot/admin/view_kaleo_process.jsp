@@ -123,7 +123,7 @@ portletURL.setParameter("kaleoProcessId", String.valueOf(kaleoProcessId));
 
 				<liferay-ui:search-container-column-text
 					href="<%= rowURL %>"
-					name="<%= label.getValue(locale) %>"
+					name="<%= label.getString(locale) %>"
 					value="<%= value %>"
 				/>
 
