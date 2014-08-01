@@ -18,8 +18,8 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess;
 import com.liferay.portal.workflow.kaleo.forms.service.permission.KaleoFormsPermission;
-import com.liferay.portlet.dynamicdatalists.model.DDLRecordSet;
 import com.liferay.portlet.dynamicdatamapping.model.DDMStructure;
 import com.liferay.portlet.dynamicdatamapping.model.DDMTemplate;
 import com.liferay.portlet.dynamicdatamapping.model.DDMTemplateConstants;
@@ -68,7 +68,7 @@ public class KaleoFormsDDMDisplay extends BaseDDMDisplay {
 
 	@Override
 	public String getStructureType() {
-		return DDLRecordSet.class.getName();
+		return KaleoProcess.class.getName();
 	}
 
 	@Override
