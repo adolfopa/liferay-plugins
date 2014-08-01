@@ -84,6 +84,50 @@ AUI.add(
 						instance.formWizard.validator.resetAllFields();
 					},
 
+					saveInPortletSession: function(data) {
+						var instance = this;
+
+						A.io.request(
+							instance.get('saveInPortletSessionURL'),
+							{
+								data: instance.ns(data)
+							}
+						);
+					},
+
+					updateNavigationControls: function(currentStepValid) {
+						var instance = this;
+
+						if (currentStepValid === undefined) {
+							currentStepValid = instance._isCurrentStepValid();
+						}
+
+						instance.nextBtn.attr('disabled', !currentStepValid);
+						instance.nextBtn.toggleClass('disabled', !currentStepValid);
+						instance.submitBtn.attr('disabled', !currentStepValid);
+						instance.submitBtn.toggleClass('disabled', !currentStepValid);
+
+						var formWizard = instance.formWizard;
+
+						var currentStep = formWizard.get('currentStep');
+
+						if (currentStep === STEPS_MAP.DETAILS) {
+							instance.nextBtn.show();
+							instance.prevBtn.hide();
+							instance.submitBtn.hide();
+						}
+						else if (currentStep === STEPS_MAP.FORMS) {
+							instance.nextBtn.hide();
+							instance.prevBtn.show();
+							instance.submitBtn.show();
+						}
+						else {
+							instance.nextBtn.show();
+							instance.prevBtn.show();
+							instance.submitBtn.hide();
+						}
+					},
+
 					_afterCurrentStepChange: function(event) {
 						var instance = this;
 
@@ -232,50 +276,6 @@ AUI.add(
 								resultsContainer.unplug(A.LoadingMask);
 							}
 						);
-					},
-
-					saveInPortletSession: function(data) {
-						var instance = this;
-
-						A.io.request(
-							instance.get('saveInPortletSessionURL'),
-							{
-								data: instance.ns(data)
-							}
-						);
-					},
-
-					updateNavigationControls: function(currentStepValid) {
-						var instance = this;
-
-						if (currentStepValid === undefined) {
-							currentStepValid = instance._isCurrentStepValid();
-						}
-
-						instance.nextBtn.attr('disabled', !currentStepValid);
-						instance.nextBtn.toggleClass('disabled', !currentStepValid);
-						instance.submitBtn.attr('disabled', !currentStepValid);
-						instance.submitBtn.toggleClass('disabled', !currentStepValid);
-
-						var formWizard = instance.formWizard;
-
-						var currentStep = formWizard.get('currentStep');
-
-						if (currentStep === STEPS_MAP.DETAILS) {
-							instance.nextBtn.show();
-							instance.prevBtn.hide();
-							instance.submitBtn.hide();
-						}
-						else if (currentStep === STEPS_MAP.FORMS) {
-							instance.nextBtn.hide();
-							instance.prevBtn.show();
-							instance.submitBtn.show();
-						}
-						else {
-							instance.nextBtn.show();
-							instance.prevBtn.show();
-							instance.submitBtn.hide();
-						}
 					}
 				}
 			}
