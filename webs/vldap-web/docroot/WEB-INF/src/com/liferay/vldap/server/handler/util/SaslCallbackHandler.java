@@ -55,7 +55,7 @@ public class SaslCallbackHandler implements CallbackHandler {
 				throw uce;
 			}
 			catch (Exception e) {
-				throw new IOException(e.getMessage());
+				throw new IOException(e);
 			}
 		}
 	}
