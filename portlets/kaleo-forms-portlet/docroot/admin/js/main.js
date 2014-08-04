@@ -187,10 +187,10 @@ AUI.add(
 					_hideSuccessMessage: function() {
 						var instance = this;
 
-						var sucessMessageNode = instance.one('.alert-success');
+						var successMessageNode = instance.one('.alert-success');
 
-						if (sucessMessageNode) {
-							sucessMessageNode.hide();
+						if (successMessageNode) {
+							successMessageNode.hide();
 						}
 					},
 
@@ -279,6 +279,7 @@ AUI.add(
 
 						instance.nextBtn.attr('disabled', !currentStepValid);
 						instance.nextBtn.toggleClass('disabled', !currentStepValid);
+
 						instance.submitBtn.attr('disabled', !currentStepValid);
 						instance.submitBtn.toggleClass('disabled', !currentStepValid);
 
