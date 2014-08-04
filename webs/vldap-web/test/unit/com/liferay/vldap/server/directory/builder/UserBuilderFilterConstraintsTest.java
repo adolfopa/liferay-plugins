@@ -74,7 +74,7 @@ public class UserBuilderFilterConstraintsTest extends BaseVLDAPTestCase {
 		FilterConstraint organizationFilterConstraint = new FilterConstraint();
 
 		organizationFilterConstraint.addAttribute(
-			"mail", "testUserWithOrganization@email");
+			"mail", "testHasOrganizationUser@email");
 		organizationFilterConstraint.addAttribute(
 			"member",
 			"cn=testOrganizationName,ou=testOrganizationName," +
@@ -116,13 +116,13 @@ public class UserBuilderFilterConstraintsTest extends BaseVLDAPTestCase {
 		);
 
 		when(
-			_userWithOrganization.getExpandoBridge()
+			_hasOrganizationUser.getExpandoBridge()
 		).thenReturn(
 			expandBridge
 		);
 
 		when(
-			_userWithRole.getExpandoBridge()
+			_hasRoleUser.getExpandoBridge()
 		).thenReturn(
 			expandBridge
 		);
@@ -175,7 +175,7 @@ public class UserBuilderFilterConstraintsTest extends BaseVLDAPTestCase {
 		);
 
 		when(
-			_userWithOrganization.getOrganizations()
+			_hasOrganizationUser.getOrganizations()
 		).thenReturn(
 			organizations
 		);
@@ -239,13 +239,13 @@ public class UserBuilderFilterConstraintsTest extends BaseVLDAPTestCase {
 		);
 
 		when(
-			_userWithOrganization.getPasswordPolicy()
+			_hasOrganizationUser.getPasswordPolicy()
 		).thenReturn(
 			passwordPolicy
 		);
 
 		when(
-			_userWithRole.getPasswordPolicy()
+			_hasRoleUser.getPasswordPolicy()
 		).thenReturn(
 			passwordPolicy
 		);
@@ -291,140 +291,140 @@ public class UserBuilderFilterConstraintsTest extends BaseVLDAPTestCase {
 		);
 
 		when(
-			_userWithRole.getRoles()
+			_hasRoleUser.getRoles()
 		).thenReturn(
 			roles
 		);
 	}
 
 	protected void setupUsers() throws Exception {
-		_userWithOrganization = mock(User.class);
+		_hasOrganizationUser = mock(User.class);
 
 		when(
-			_userWithOrganization.getCompanyId()
+			_hasOrganizationUser.getCompanyId()
 		).thenReturn(
 			42l
 		);
 
 		when(
-			_userWithOrganization.getCreateDate()
+			_hasOrganizationUser.getCreateDate()
 		).thenReturn(
 			null
 		);
 
 		when(
-			_userWithOrganization.getEmailAddress()
+			_hasOrganizationUser.getEmailAddress()
 		).thenReturn(
-			"testUserWithOrganization@email"
+			"testHasOrganizationUser@email"
 		);
 
 		when(
-			_userWithOrganization.getFirstName()
+			_hasOrganizationUser.getFirstName()
 		).thenReturn(
-			"testUserWithOrganizationFirstName"
+			"testHasOrganizationUserFirstName"
 		);
 
 		when(
-			_userWithOrganization.getFullName()
+			_hasOrganizationUser.getFullName()
 		).thenReturn(
-			"testUserWithOrganizationFullName"
+			"testHasOrganizationUserFullName"
 		);
 
 		when(
-			_userWithOrganization.getLastName()
+			_hasOrganizationUser.getLastName()
 		).thenReturn(
-			"testUserWithOrganizationLastName"
+			"testHasOrganizationUserLastName"
 		);
 
 		when(
-			_userWithOrganization.getModifiedDate()
+			_hasOrganizationUser.getModifiedDate()
 		).thenReturn(
 			null
 		);
 
 		when(
-			_userWithOrganization.getScreenName()
+			_hasOrganizationUser.getScreenName()
 		).thenReturn(
-			"testUserWithOrganizationScreenName"
+			"testHasOrganizationUserScreenName"
 		);
 
 		when(
-			_userWithOrganization.getUserId()
+			_hasOrganizationUser.getUserId()
 		).thenReturn(
 			42l
 		);
 
 		when(
-			_userWithOrganization.getUuid()
+			_hasOrganizationUser.getUuid()
 		).thenReturn(
-			"testUserWithOrganizationUuid"
+			"testHasOrganizationUserUuid"
 		);
 
-		_users.add(_userWithOrganization);
+		_users.add(_hasOrganizationUser);
 
-		_userWithRole = mock(User.class);
+		_hasRoleUser = mock(User.class);
 
 		when(
-			_userWithRole.getCompanyId()
+			_hasRoleUser.getCompanyId()
 		).thenReturn(
 			42l
 		);
 
 		when(
-			_userWithRole.getCreateDate()
+			_hasRoleUser.getCreateDate()
 		).thenReturn(
 			null
 		);
 
 		when(
-			_userWithRole.getEmailAddress()
+			_hasRoleUser.getEmailAddress()
 		).thenReturn(
 			"testUserWtihRole@email"
 		);
 
 		when(
-			_userWithRole.getFirstName()
+			_hasRoleUser.getFirstName()
 		).thenReturn(
-			"testUserWithRoleFirstName"
+			"testHasRoleUserFirstName"
 		);
 
 		when(
-			_userWithRole.getFullName()
+			_hasRoleUser.getFullName()
 		).thenReturn(
-			"testUserWithRoleFullName"
+			"testHasRoleUserFullName"
 		);
 
 		when(
-			_userWithRole.getLastName()
+			_hasRoleUser.getLastName()
 		).thenReturn(
-			"testUserWithRoleLastName"
+			"testHasRoleUserLastName"
 		);
 
 		when(
-			_userWithRole.getModifiedDate()
+			_hasRoleUser.getModifiedDate()
 		).thenReturn(
 			null
 		);
 
 		when(
-			_userWithRole.getScreenName()
+			_hasRoleUser.getScreenName()
 		).thenReturn(
-			"testUserWithRoleScreenName"
+			"testHasRoleUserScreenName"
 		);
 
 		when(
-			_userWithRole.getUserId()
+			_hasRoleUser.getUserId()
 		).thenReturn(
 			42l
 		);
 
 		when(
-			_userWithRole.getUuid()
+			_hasRoleUser.getUuid()
 		).thenReturn(
-			"testUserWithRoleUuid"
+			"testHasRoleUserUuid"
 		);
 
-		_users.add(_userWithRole);
+		_users.add(_hasRoleUser);
 
 		when(
 			userLocalService.getCompanyUsers(
@@ -446,7 +446,7 @@ public class UserBuilderFilterConstraintsTest extends BaseVLDAPTestCase {
 				Mockito.anyBoolean(), Mockito.anyInt(), Mockito.anyInt(),
 				Mockito.any(UserScreenNameComparator.class))
 		).thenReturn(
-			Arrays.asList(_userWithRole)
+			Arrays.asList(_hasRoleUser)
 		);
 
 		LinkedHashMap<String, Object> usersOrgsParams =
@@ -462,13 +462,13 @@ public class UserBuilderFilterConstraintsTest extends BaseVLDAPTestCase {
 				Mockito.anyBoolean(), Mockito.anyInt(), Mockito.anyInt(),
 				Mockito.any(UserScreenNameComparator.class))
 		).thenReturn(
-			Arrays.asList(_userWithOrganization)
+			Arrays.asList(_hasOrganizationUser)
 		);
 	}
 
 	private UserBuilder _userBuilder = new UserBuilder();
 	private List<User> _users = new ArrayList<User>();
-	private User _userWithOrganization;
-	private User _userWithRole;
+	private User _hasOrganizationUser;
+	private User _hasRoleUser;
 
 }
