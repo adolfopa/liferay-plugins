@@ -44,9 +44,9 @@ public class RoleBuilderTest extends BaseVLDAPTestCase {
 	public void setUp() throws Exception {
 		super.setUp();
 
-		setupUsers();
+		setUpUsers();
 
-		setupRoles();
+		setUpRoles();
 	}
 
 	@Test
@@ -117,7 +117,7 @@ public class RoleBuilderTest extends BaseVLDAPTestCase {
 		Assert.assertTrue(directory.hasAttribute("ou", "testName"));
 	}
 
-	protected void setupRoles() throws Exception {
+	protected void setUpRoles() throws Exception {
 		Role role = mock(Role.class);
 
 		when(
@@ -155,7 +155,7 @@ public class RoleBuilderTest extends BaseVLDAPTestCase {
 		);
 	}
 
-	protected void setupUsers() throws Exception {
+	protected void setUpUsers() throws Exception {
 		_user = mock(
 			User.class
 		);

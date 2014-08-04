@@ -60,16 +60,16 @@ public class UserBuilderTest extends BaseVLDAPTestCase {
 	public void setUp() throws Exception {
 		super.setUp();
 
-		setupUsers();
+		setUpUsers();
 
-		setupExpando();
-		setupFastDateFormat();
-		setupGroups();
-		setupOrganizations();
-		setupPasswordPolicy();
-		setupPortalUtil();
-		setupRoles();
-		setupUserGroups();
+		setUpExpando();
+		setUpFastDateFormat();
+		setUpGroups();
+		setUpOrganizations();
+		setUpPasswordPolicy();
+		setUpPortalUtil();
+		setUpRoles();
+		setUpUserGroups();
 	}
 
 	@Test
@@ -315,7 +315,7 @@ public class UserBuilderTest extends BaseVLDAPTestCase {
 		Assert.assertTrue(directory.hasAttribute("sn", "testLastName"));
 	}
 
-	protected void setupExpando() throws Exception {
+	protected void setUpExpando() throws Exception {
 		ExpandoBridge expandBridge = mock(ExpandoBridge.class);
 
 		when(
@@ -339,7 +339,7 @@ public class UserBuilderTest extends BaseVLDAPTestCase {
 		);
 	}
 
-	protected void setupFastDateFormat() throws Exception {
+	protected void setUpFastDateFormat() throws Exception {
 		FastDateFormat fastDateFormat = FastDateFormat.getInstance(
 			"yyyyMMddHHmmss.SZ", (TimeZone)null, LocaleUtil.getDefault());
 
@@ -359,7 +359,7 @@ public class UserBuilderTest extends BaseVLDAPTestCase {
 			fastDateFormatFactory);
 	}
 
-	protected void setupGroups() throws Exception {
+	protected void setUpGroups() throws Exception {
 		Group group = mock(Group.class);
 
 		when(
@@ -402,7 +402,7 @@ public class UserBuilderTest extends BaseVLDAPTestCase {
 		);
 	}
 
-	protected void setupOrganizations() throws Exception {
+	protected void setUpOrganizations() throws Exception {
 		Organization organization = mock(Organization.class);
 
 		when(
@@ -434,7 +434,7 @@ public class UserBuilderTest extends BaseVLDAPTestCase {
 		);
 	}
 
-	protected void setupPasswordPolicy() throws Exception {
+	protected void setUpPasswordPolicy() throws Exception {
 		PasswordPolicy passwordPolicy = mock(PasswordPolicy.class);
 
 		when(
@@ -498,7 +498,7 @@ public class UserBuilderTest extends BaseVLDAPTestCase {
 		);
 	}
 
-	protected void setupPortalUtil() throws Exception {
+	protected void setUpPortalUtil() throws Exception {
 		Portal portal = mock(Portal.class);
 
 		when(
@@ -513,8 +513,8 @@ public class UserBuilderTest extends BaseVLDAPTestCase {
 	}
 
 	@Override
-	protected void setupProps() {
-		super.setupProps();
+	protected void setUpProps() {
+		super.setUpProps();
 
 		when(
 			props.get(PortletPropsValues.POSIX_GROUP_ID)
@@ -523,7 +523,7 @@ public class UserBuilderTest extends BaseVLDAPTestCase {
 		);
 	}
 
-	protected void setupRoles() throws Exception {
+	protected void setUpRoles() throws Exception {
 		Role role = mock(Role.class);
 
 		when(
@@ -555,7 +555,7 @@ public class UserBuilderTest extends BaseVLDAPTestCase {
 		);
 	}
 
-	protected void setupUserGroups() throws Exception {
+	protected void setUpUserGroups() throws Exception {
 		UserGroup userGroup = mock(UserGroup.class);
 
 		when(
@@ -587,7 +587,7 @@ public class UserBuilderTest extends BaseVLDAPTestCase {
 		);
 	}
 
-	protected void setupUsers() throws Exception {
+	protected void setUpUsers() throws Exception {
 		_user = mock(User.class);
 
 		when(

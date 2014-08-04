@@ -45,8 +45,8 @@ public class CommunityBuilderTest extends BaseVLDAPTestCase {
 	public void setUp() throws Exception {
 		super.setUp();
 
-		setupGroups();
-		setupUsers();
+		setUpGroups();
+		setUpUsers();
 	}
 
 	@Test
@@ -157,7 +157,7 @@ public class CommunityBuilderTest extends BaseVLDAPTestCase {
 		Assert.assertTrue(directory.hasAttribute("ou", "testName"));
 	}
 
-	protected void setupGroups() throws Exception {
+	protected void setUpGroups() throws Exception {
 		Group group = mock(Group.class);
 
 		when(
@@ -181,7 +181,7 @@ public class CommunityBuilderTest extends BaseVLDAPTestCase {
 		_groups.add(group);
 	}
 
-	protected void setupUsers() throws Exception {
+	protected void setUpUsers() throws Exception {
 		_user = mock(User.class);
 
 		when(

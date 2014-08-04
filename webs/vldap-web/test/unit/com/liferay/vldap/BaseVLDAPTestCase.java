@@ -66,13 +66,13 @@ public class BaseVLDAPTestCase extends PowerMockito {
 
 	@Before
 	public void setUp() throws Exception {
-		setupPortal();
+		setUpPortal();
 
-		setupConfiguration();
-		setupCompany();
-		setupORM();
-		setupProps();
-		setupSearchBase();
+		setUpConfiguration();
+		setUpCompany();
+		setUpORM();
+		setUpProps();
+		setUpSearchBase();
 	}
 
 	@After
@@ -106,7 +106,7 @@ public class BaseVLDAPTestCase extends PowerMockito {
 		return serviceMock;
 	}
 
-	protected void setupCompany() throws Exception {
+	protected void setUpCompany() throws Exception {
 		company = mock(Company.class);
 
 		when(
@@ -145,7 +145,7 @@ public class BaseVLDAPTestCase extends PowerMockito {
 		);
 	}
 
-	protected void setupConfiguration() {
+	protected void setUpConfiguration() {
 		Thread currentThread = Thread.currentThread();
 
 		PortletClassLoaderUtil.setClassLoader(
@@ -185,7 +185,7 @@ public class BaseVLDAPTestCase extends PowerMockito {
 		ConfigurationFactoryUtil.setConfigurationFactory(configurationFactory);
 	}
 
-	protected void setupORM() throws Exception {
+	protected void setUpORM() throws Exception {
 		Criterion criterion = mock(Criterion.class);
 
 		DynamicQuery dynamicQuery = mock(DynamicQuery.class);
@@ -228,7 +228,7 @@ public class BaseVLDAPTestCase extends PowerMockito {
 		restrictionsFactoryUtil.setRestrictionsFactory(restrictionsFactory);
 	}
 
-	protected void setupPortal() {
+	protected void setUpPortal() {
 		portalBeanLocator = mock(BeanLocator.class);
 
 		PortalBeanLocatorUtil.setBeanLocator(portalBeanLocator);
@@ -245,7 +245,7 @@ public class BaseVLDAPTestCase extends PowerMockito {
 			UserLocalServiceUtil.class, UserLocalService.class);
 	}
 
-	protected void setupProps() {
+	protected void setUpProps() {
 		props = mock(Props.class);
 
 		PropsUtil.setProps(props);
@@ -257,7 +257,7 @@ public class BaseVLDAPTestCase extends PowerMockito {
 		);
 	}
 
-	protected void setupSearchBase() {
+	protected void setUpSearchBase() {
 		searchBase = mock(SearchBase.class);
 
 		when(

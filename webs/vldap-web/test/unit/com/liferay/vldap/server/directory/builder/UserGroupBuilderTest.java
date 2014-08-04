@@ -44,9 +44,9 @@ public class UserGroupBuilderTest extends BaseVLDAPTestCase {
 	public void setUp() throws Exception {
 		super.setUp();
 
-		setupUsers();
+		setUpUsers();
 
-		setupUserGroups();
+		setUpUserGroups();
 	}
 
 	@Test
@@ -135,7 +135,7 @@ public class UserGroupBuilderTest extends BaseVLDAPTestCase {
 		Assert.assertTrue(directory.hasAttribute("ou", "testName"));
 	}
 
-	protected void setupUserGroups() throws Exception {
+	protected void setUpUserGroups() throws Exception {
 		UserGroup userGroup = mock(UserGroup.class);
 
 		when(
@@ -173,7 +173,7 @@ public class UserGroupBuilderTest extends BaseVLDAPTestCase {
 		);
 	}
 
-	protected void setupUsers() throws Exception {
+	protected void setUpUsers() throws Exception {
 		_user = mock(User.class);
 
 		when(

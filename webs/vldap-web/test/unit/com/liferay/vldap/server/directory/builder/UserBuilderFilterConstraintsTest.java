@@ -56,14 +56,14 @@ public class UserBuilderFilterConstraintsTest extends BaseVLDAPTestCase {
 	public void setUp() throws Exception {
 		super.setUp();
 
-		setupUsers();
+		setUpUsers();
 
-		setupExpando();
-		setupFastDateFormat();
-		setupOrganizations();
-		setupPasswordPolicy();
-		setupPortalUtil();
-		setupRoles();
+		setUpExpando();
+		setUpFastDateFormat();
+		setUpOrganizations();
+		setUpPasswordPolicy();
+		setUpPortalUtil();
+		setUpRoles();
 	}
 
 	@Test
@@ -98,7 +98,7 @@ public class UserBuilderFilterConstraintsTest extends BaseVLDAPTestCase {
 		Assert.assertEquals(2, users.size());
 	}
 
-	protected void setupExpando() {
+	protected void setUpExpando() {
 		ExpandoBridge expandBridge = mock(ExpandoBridge.class);
 
 		when(
@@ -128,7 +128,7 @@ public class UserBuilderFilterConstraintsTest extends BaseVLDAPTestCase {
 		);
 	}
 
-	protected void setupFastDateFormat() {
+	protected void setUpFastDateFormat() {
 		FastDateFormat fastDateFormat = FastDateFormat.getInstance(
 			"yyyyMMddHHmmss.SZ", (TimeZone)null, LocaleUtil.getDefault());
 
@@ -148,7 +148,7 @@ public class UserBuilderFilterConstraintsTest extends BaseVLDAPTestCase {
 			fastDateFormatFactory);
 	}
 
-	protected void setupOrganizations() throws Exception {
+	protected void setUpOrganizations() throws Exception {
 		Organization organization = mock(Organization.class);
 
 		when(
@@ -181,7 +181,7 @@ public class UserBuilderFilterConstraintsTest extends BaseVLDAPTestCase {
 		);
 	}
 
-	protected void setupPasswordPolicy() throws Exception {
+	protected void setUpPasswordPolicy() throws Exception {
 		PasswordPolicy passwordPolicy = mock(PasswordPolicy.class);
 
 		when(
@@ -251,7 +251,7 @@ public class UserBuilderFilterConstraintsTest extends BaseVLDAPTestCase {
 		);
 	}
 
-	protected void setupPortalUtil() {
+	protected void setUpPortalUtil() {
 		Portal portal = mock(Portal.class);
 
 		when(
@@ -265,7 +265,7 @@ public class UserBuilderFilterConstraintsTest extends BaseVLDAPTestCase {
 		portalUtil.setPortal(portal);
 	}
 
-	protected void setupRoles() throws Exception {
+	protected void setUpRoles() throws Exception {
 		Role role = mock(Role.class);
 
 		when(
@@ -297,7 +297,7 @@ public class UserBuilderFilterConstraintsTest extends BaseVLDAPTestCase {
 		);
 	}
 
-	protected void setupUsers() throws Exception {
+	protected void setUpUsers() throws Exception {
 		_hasOrganizationUser = mock(User.class);
 
 		when(
