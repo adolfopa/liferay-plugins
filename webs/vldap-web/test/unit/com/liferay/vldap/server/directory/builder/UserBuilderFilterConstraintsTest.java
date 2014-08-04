@@ -466,9 +466,9 @@ public class UserBuilderFilterConstraintsTest extends BaseVLDAPTestCase {
 		);
 	}
 
-	private UserBuilder _userBuilder = new UserBuilder();
-	private List<User> _users = new ArrayList<User>();
 	private User _hasOrganizationUser;
 	private User _hasRoleUser;
+	private UserBuilder _userBuilder = new UserBuilder();
+	private List<User> _users = new ArrayList<User>();
 
 }
