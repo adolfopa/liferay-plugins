@@ -185,17 +185,6 @@ public interface DefinitionLocalService extends BaseLocalService,
 		long definitionId);
 
 	/**
-	* Returns the definition with the matching UUID and company.
-	*
-	* @param uuid the definition's UUID
-	* @param companyId the primary key of the company
-	* @return the matching definition, or <code>null</code> if a matching definition could not be found
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.reports.model.Definition fetchDefinitionByUuidAndCompanyId(
-		java.lang.String uuid, long companyId);
-
-	/**
 	* Returns the definition matching the UUID and group.
 	*
 	* @param uuid the definition's UUID
@@ -225,19 +214,6 @@ public interface DefinitionLocalService extends BaseLocalService,
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.reports.model.Definition getDefinition(long definitionId)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	/**
-	* Returns the definition with the matching UUID and company.
-	*
-	* @param uuid the definition's UUID
-	* @param companyId the primary key of the company
-	* @return the matching definition
-	* @throws PortalException if a matching definition could not be found
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.reports.model.Definition getDefinitionByUuidAndCompanyId(
-		java.lang.String uuid, long companyId)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
@@ -274,6 +250,15 @@ public interface DefinitionLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.reports.model.Definition> getDefinitions(
 		int start, int end);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.reports.model.Definition> getDefinitionsByUuidAndCompanyId(
+		java.lang.String uuid, long companyId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.reports.model.Definition> getDefinitionsByUuidAndCompanyId(
+		java.lang.String uuid, long companyId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator);
 
 	/**
 	* Returns the number of definitions.

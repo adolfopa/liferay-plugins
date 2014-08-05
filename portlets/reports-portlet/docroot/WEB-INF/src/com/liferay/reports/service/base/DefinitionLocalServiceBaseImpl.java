@@ -218,19 +218,6 @@ public abstract class DefinitionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the definition with the matching UUID and company.
-	 *
-	 * @param uuid the definition's UUID
-	 * @param  companyId the primary key of the company
-	 * @return the matching definition, or <code>null</code> if a matching definition could not be found
-	 */
-	@Override
-	public Definition fetchDefinitionByUuidAndCompanyId(String uuid,
-		long companyId) {
-		return definitionPersistence.fetchByUuid_C_First(uuid, companyId, null);
-	}
-
-	/**
 	 * Returns the definition matching the UUID and group.
 	 *
 	 * @param uuid the definition's UUID
@@ -347,18 +334,18 @@ public abstract class DefinitionLocalServiceBaseImpl
 		return definitionPersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
-	/**
-	 * Returns the definition with the matching UUID and company.
-	 *
-	 * @param uuid the definition's UUID
-	 * @param  companyId the primary key of the company
-	 * @return the matching definition
-	 * @throws PortalException if a matching definition could not be found
-	 */
 	@Override
-	public Definition getDefinitionByUuidAndCompanyId(String uuid,
-		long companyId) throws PortalException {
-		return definitionPersistence.findByUuid_C_First(uuid, companyId, null);
+	public List<Definition> getDefinitionsByUuidAndCompanyId(String uuid,
+		long companyId) {
+		return definitionPersistence.findByUuid_C(uuid, companyId);
+	}
+
+	@Override
+	public List<Definition> getDefinitionsByUuidAndCompanyId(String uuid,
+		long companyId, int start, int end,
+		OrderByComparator<Definition> orderByComparator) {
+		return definitionPersistence.findByUuid_C(uuid, companyId, start, end,
+			orderByComparator);
 	}
 
 	/**

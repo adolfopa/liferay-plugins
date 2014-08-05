@@ -204,18 +204,6 @@ public class DefinitionLocalServiceUtil {
 	}
 
 	/**
-	* Returns the definition with the matching UUID and company.
-	*
-	* @param uuid the definition's UUID
-	* @param companyId the primary key of the company
-	* @return the matching definition, or <code>null</code> if a matching definition could not be found
-	*/
-	public static com.liferay.reports.model.Definition fetchDefinitionByUuidAndCompanyId(
-		java.lang.String uuid, long companyId) {
-		return getService().fetchDefinitionByUuidAndCompanyId(uuid, companyId);
-	}
-
-	/**
 	* Returns the definition matching the UUID and group.
 	*
 	* @param uuid the definition's UUID
@@ -251,20 +239,6 @@ public class DefinitionLocalServiceUtil {
 		long definitionId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getDefinition(definitionId);
-	}
-
-	/**
-	* Returns the definition with the matching UUID and company.
-	*
-	* @param uuid the definition's UUID
-	* @param companyId the primary key of the company
-	* @return the matching definition
-	* @throws PortalException if a matching definition could not be found
-	*/
-	public static com.liferay.reports.model.Definition getDefinitionByUuidAndCompanyId(
-		java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getDefinitionByUuidAndCompanyId(uuid, companyId);
 	}
 
 	/**
@@ -305,6 +279,19 @@ public class DefinitionLocalServiceUtil {
 	public static java.util.List<com.liferay.reports.model.Definition> getDefinitions(
 		int start, int end) {
 		return getService().getDefinitions(start, end);
+	}
+
+	public static java.util.List<com.liferay.reports.model.Definition> getDefinitionsByUuidAndCompanyId(
+		java.lang.String uuid, long companyId) {
+		return getService().getDefinitionsByUuidAndCompanyId(uuid, companyId);
+	}
+
+	public static java.util.List<com.liferay.reports.model.Definition> getDefinitionsByUuidAndCompanyId(
+		java.lang.String uuid, long companyId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Definition> orderByComparator) {
+		return getService()
+				   .getDefinitionsByUuidAndCompanyId(uuid, companyId, start,
+			end, orderByComparator);
 	}
 
 	/**

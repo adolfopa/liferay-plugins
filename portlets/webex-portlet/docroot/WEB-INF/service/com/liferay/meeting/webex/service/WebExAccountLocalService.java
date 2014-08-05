@@ -174,17 +174,6 @@ public interface WebExAccountLocalService extends BaseLocalService,
 		long webExAccountId);
 
 	/**
-	* Returns the web ex account with the matching UUID and company.
-	*
-	* @param uuid the web ex account's UUID
-	* @param companyId the primary key of the company
-	* @return the matching web ex account, or <code>null</code> if a matching web ex account could not be found
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.meeting.webex.model.WebExAccount fetchWebExAccountByUuidAndCompanyId(
-		java.lang.String uuid, long companyId);
-
-	/**
 	* Returns the web ex account matching the UUID and group.
 	*
 	* @param uuid the web ex account's UUID
@@ -228,19 +217,6 @@ public interface WebExAccountLocalService extends BaseLocalService,
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
-	* Returns the web ex account with the matching UUID and company.
-	*
-	* @param uuid the web ex account's UUID
-	* @param companyId the primary key of the company
-	* @return the matching web ex account
-	* @throws PortalException if a matching web ex account could not be found
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.meeting.webex.model.WebExAccount getWebExAccountByUuidAndCompanyId(
-		java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException;
-
-	/**
 	* Returns the web ex account matching the UUID and group.
 	*
 	* @param uuid the web ex account's UUID
@@ -267,6 +243,15 @@ public interface WebExAccountLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.meeting.webex.model.WebExAccount> getWebExAccounts(
 		int start, int end);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.meeting.webex.model.WebExAccount> getWebExAccountsByUuidAndCompanyId(
+		java.lang.String uuid, long companyId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.meeting.webex.model.WebExAccount> getWebExAccountsByUuidAndCompanyId(
+		java.lang.String uuid, long companyId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.meeting.webex.model.WebExAccount> orderByComparator);
 
 	/**
 	* Returns the number of web ex accounts.

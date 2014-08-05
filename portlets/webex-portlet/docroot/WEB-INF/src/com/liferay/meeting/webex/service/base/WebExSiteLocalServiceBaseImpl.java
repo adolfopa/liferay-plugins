@@ -218,19 +218,6 @@ public abstract class WebExSiteLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	/**
-	 * Returns the web ex site with the matching UUID and company.
-	 *
-	 * @param uuid the web ex site's UUID
-	 * @param  companyId the primary key of the company
-	 * @return the matching web ex site, or <code>null</code> if a matching web ex site could not be found
-	 */
-	@Override
-	public WebExSite fetchWebExSiteByUuidAndCompanyId(String uuid,
-		long companyId) {
-		return webExSitePersistence.fetchByUuid_C_First(uuid, companyId, null);
-	}
-
-	/**
 	 * Returns the web ex site matching the UUID and group.
 	 *
 	 * @param uuid the web ex site's UUID
@@ -346,18 +333,18 @@ public abstract class WebExSiteLocalServiceBaseImpl extends BaseLocalServiceImpl
 		return webExSitePersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
-	/**
-	 * Returns the web ex site with the matching UUID and company.
-	 *
-	 * @param uuid the web ex site's UUID
-	 * @param  companyId the primary key of the company
-	 * @return the matching web ex site
-	 * @throws PortalException if a matching web ex site could not be found
-	 */
 	@Override
-	public WebExSite getWebExSiteByUuidAndCompanyId(String uuid, long companyId)
-		throws PortalException {
-		return webExSitePersistence.findByUuid_C_First(uuid, companyId, null);
+	public List<WebExSite> getWebExSitesByUuidAndCompanyId(String uuid,
+		long companyId) {
+		return webExSitePersistence.findByUuid_C(uuid, companyId);
+	}
+
+	@Override
+	public List<WebExSite> getWebExSitesByUuidAndCompanyId(String uuid,
+		long companyId, int start, int end,
+		OrderByComparator<WebExSite> orderByComparator) {
+		return webExSitePersistence.findByUuid_C(uuid, companyId, start, end,
+			orderByComparator);
 	}
 
 	/**

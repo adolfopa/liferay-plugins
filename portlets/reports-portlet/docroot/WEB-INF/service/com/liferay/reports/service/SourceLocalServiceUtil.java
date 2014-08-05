@@ -194,18 +194,6 @@ public class SourceLocalServiceUtil {
 	}
 
 	/**
-	* Returns the source with the matching UUID and company.
-	*
-	* @param uuid the source's UUID
-	* @param companyId the primary key of the company
-	* @return the matching source, or <code>null</code> if a matching source could not be found
-	*/
-	public static com.liferay.reports.model.Source fetchSourceByUuidAndCompanyId(
-		java.lang.String uuid, long companyId) {
-		return getService().fetchSourceByUuidAndCompanyId(uuid, companyId);
-	}
-
-	/**
 	* Returns the source matching the UUID and group.
 	*
 	* @param uuid the source's UUID
@@ -254,20 +242,6 @@ public class SourceLocalServiceUtil {
 	}
 
 	/**
-	* Returns the source with the matching UUID and company.
-	*
-	* @param uuid the source's UUID
-	* @param companyId the primary key of the company
-	* @return the matching source
-	* @throws PortalException if a matching source could not be found
-	*/
-	public static com.liferay.reports.model.Source getSourceByUuidAndCompanyId(
-		java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getSourceByUuidAndCompanyId(uuid, companyId);
-	}
-
-	/**
 	* Returns the source matching the UUID and group.
 	*
 	* @param uuid the source's UUID
@@ -304,6 +278,19 @@ public class SourceLocalServiceUtil {
 	public static java.util.List<com.liferay.reports.model.Source> getSources(
 		int start, int end) {
 		return getService().getSources(start, end);
+	}
+
+	public static java.util.List<com.liferay.reports.model.Source> getSourcesByUuidAndCompanyId(
+		java.lang.String uuid, long companyId) {
+		return getService().getSourcesByUuidAndCompanyId(uuid, companyId);
+	}
+
+	public static java.util.List<com.liferay.reports.model.Source> getSourcesByUuidAndCompanyId(
+		java.lang.String uuid, long companyId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.reports.model.Source> orderByComparator) {
+		return getService()
+				   .getSourcesByUuidAndCompanyId(uuid, companyId, start, end,
+			orderByComparator);
 	}
 
 	/**

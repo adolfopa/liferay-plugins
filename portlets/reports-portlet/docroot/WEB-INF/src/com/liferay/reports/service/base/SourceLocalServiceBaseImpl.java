@@ -213,18 +213,6 @@ public abstract class SourceLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	/**
-	 * Returns the source with the matching UUID and company.
-	 *
-	 * @param uuid the source's UUID
-	 * @param  companyId the primary key of the company
-	 * @return the matching source, or <code>null</code> if a matching source could not be found
-	 */
-	@Override
-	public Source fetchSourceByUuidAndCompanyId(String uuid, long companyId) {
-		return sourcePersistence.fetchByUuid_C_First(uuid, companyId, null);
-	}
-
-	/**
 	 * Returns the source matching the UUID and group.
 	 *
 	 * @param uuid the source's UUID
@@ -340,18 +328,17 @@ public abstract class SourceLocalServiceBaseImpl extends BaseLocalServiceImpl
 		return sourcePersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
-	/**
-	 * Returns the source with the matching UUID and company.
-	 *
-	 * @param uuid the source's UUID
-	 * @param  companyId the primary key of the company
-	 * @return the matching source
-	 * @throws PortalException if a matching source could not be found
-	 */
 	@Override
-	public Source getSourceByUuidAndCompanyId(String uuid, long companyId)
-		throws PortalException {
-		return sourcePersistence.findByUuid_C_First(uuid, companyId, null);
+	public List<Source> getSourcesByUuidAndCompanyId(String uuid, long companyId) {
+		return sourcePersistence.findByUuid_C(uuid, companyId);
+	}
+
+	@Override
+	public List<Source> getSourcesByUuidAndCompanyId(String uuid,
+		long companyId, int start, int end,
+		OrderByComparator<Source> orderByComparator) {
+		return sourcePersistence.findByUuid_C(uuid, companyId, start, end,
+			orderByComparator);
 	}
 
 	/**

@@ -219,19 +219,6 @@ public abstract class WebExAccountLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the web ex account with the matching UUID and company.
-	 *
-	 * @param uuid the web ex account's UUID
-	 * @param  companyId the primary key of the company
-	 * @return the matching web ex account, or <code>null</code> if a matching web ex account could not be found
-	 */
-	@Override
-	public WebExAccount fetchWebExAccountByUuidAndCompanyId(String uuid,
-		long companyId) {
-		return webExAccountPersistence.fetchByUuid_C_First(uuid, companyId, null);
-	}
-
-	/**
 	 * Returns the web ex account matching the UUID and group.
 	 *
 	 * @param uuid the web ex account's UUID
@@ -349,18 +336,18 @@ public abstract class WebExAccountLocalServiceBaseImpl
 		return webExAccountPersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
-	/**
-	 * Returns the web ex account with the matching UUID and company.
-	 *
-	 * @param uuid the web ex account's UUID
-	 * @param  companyId the primary key of the company
-	 * @return the matching web ex account
-	 * @throws PortalException if a matching web ex account could not be found
-	 */
 	@Override
-	public WebExAccount getWebExAccountByUuidAndCompanyId(String uuid,
-		long companyId) throws PortalException {
-		return webExAccountPersistence.findByUuid_C_First(uuid, companyId, null);
+	public List<WebExAccount> getWebExAccountsByUuidAndCompanyId(String uuid,
+		long companyId) {
+		return webExAccountPersistence.findByUuid_C(uuid, companyId);
+	}
+
+	@Override
+	public List<WebExAccount> getWebExAccountsByUuidAndCompanyId(String uuid,
+		long companyId, int start, int end,
+		OrderByComparator<WebExAccount> orderByComparator) {
+		return webExAccountPersistence.findByUuid_C(uuid, companyId, start,
+			end, orderByComparator);
 	}
 
 	/**
