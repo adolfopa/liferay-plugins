@@ -67,7 +67,9 @@ String mode = ParamUtil.getString(request, "mode");
 	String taglibOnClick = "javascript:" + renderResponse.getNamespace() + "openDDMPortlet();";
 	%>
 
-	<aui:button onClick="<%= taglibOnClick %>" primary="<%= true %>" value="add-form" />
+	<aui:button-row>
+		<aui:button onClick="<%= taglibOnClick %>" primary="<%= true %>" value="add-form" />
+	</aui:button-row>
 
 	<liferay-ui:search-container-row
 		className="com.liferay.portlet.dynamicdatamapping.model.DDMTemplate"

@@ -92,7 +92,9 @@ if (ddmStructureId > 0) {
 		<portlet:param name="redirect" value="<%= currentSectionURL %>" />
 	</portlet:renderURL>
 
-	<aui:button href="<%= editDefinitionURL.toString() %>" primary="<%= true %>" value="add-field-set" />
+	<aui:button-row>
+		<aui:button href="<%= editDefinitionURL.toString() %>" primary="<%= true %>" value="add-field-set" />
+	</aui:button-row>
 
 	<liferay-ui:search-container-row
 		className="com.liferay.portlet.dynamicdatamapping.model.DDMStructure"
