@@ -202,9 +202,7 @@ JSONArray availableDefinitionsJSONArray = JSONFactoryUtil.createJSONArray();
 	A.one('#p_p_id<portlet:namespace />').delegate(
 		'click',
 		function(event) {
-			var target = event.target;
-
-			var definitionId = target.attr('data-definition-id');
+			var definitionId = event.target.attr('data-definition-id');
 
 			kaleoDefinitionPreview.select(definitionId);
 

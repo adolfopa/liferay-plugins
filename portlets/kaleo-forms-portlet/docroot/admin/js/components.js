@@ -210,6 +210,7 @@ AUI.add(
 					var field = A.Widget.getByNode(event.currentTarget);
 
 					field.controlsToolbar.hide();
+
 					field.get('boundingBox').removeClass('form-builder-field-hover');
 				},
 
@@ -276,7 +277,7 @@ AUI.add(
 							Lang.sub(
 								TPL_MESSAGE,
 								{
-									message: Liferay.Language.get('press-enter-to-choose-this-field-set-or-use-arrow-keys-to-navigate-throught-the-available-definitions.-press-esc-at-anytime-to-close-this-dialog')
+									message: Liferay.Language.get('press-enter-to-choose-this-field-set-or-use-arrow-keys-to-navigate-through-the-available-definitions.-press-esc-at-anytime-to-close-this-dialog')
 								}
 							)
 						);
@@ -392,7 +393,7 @@ AUI.add(
 								width: instance.get('width')
 							},
 							title: Liferay.Language.get('preview')
-						}
+						};
 					},
 
 					choose: function() {
