@@ -10,13 +10,31 @@
 		margin-left: 5px;
 	}
 
-	.kaleo-process-export-dialog .modal-content {
-		.modal-body .checkbox {
-			margin-bottom: 0
-		}
+	.kaleo-process-export-dialog, .kaleo-process-preview-fields-dialog {
+		.modal-content {
+			.modal-body {
+				.checkbox {
+					margin-bottom: 0
+				}
 
-		.modal-footer {
-			margin-top: 0;
+				.property-builder-content {
+					margin: 0;
+					min-height: 320px;
+
+					.property-builder-content-container {
+						padding-right: 0;
+						width: 100%;
+
+						.property-builder-drop-container {
+							min-height: 0;
+						}
+					}
+				}
+			}
+
+			.modal-footer {
+				margin-top: 0;
+			}
 		}
 	}
 

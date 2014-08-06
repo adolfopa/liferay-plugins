@@ -311,6 +311,6 @@ AUI.add(
 	},
 	'',
 	{
-		requires: ['aui-base', 'aui-loading-mask-deprecated', 'aui-parse-content', 'aui-url', 'liferay-kaleo-forms-components', 'liferay-portlet-base', 'liferay-portlet-url', 'liferay-store', 'node-load']
+		requires: ['aui-base', 'aui-loading-mask-deprecated', 'aui-parse-content', 'aui-url', 'liferay-kaleo-forms-components', 'liferay-portlet-url', 'liferay-store', 'node-load']
 	}
 );

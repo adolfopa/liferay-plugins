@@ -37,6 +37,8 @@ if (ddmStructureId > 0) {
 		ddmStructureName = ddmStructure.getName(locale);
 	}
 }
+
+JSONArray availableDefinitionsJSONArray = JSONFactoryUtil.createJSONArray();
 %>
 
 <h3 class="kaleo-process-header"><liferay-ui:message key="fields" /></h3>
@@ -46,7 +48,7 @@ if (ddmStructureId > 0) {
 <aui:field-wrapper>
 	<liferay-ui:message key="selected-field-set" />:
 
-	<span class="badge badge-info" id="<portlet:namespace />ddmStructureDisplay"><%= HtmlUtil.escape(ddmStructureName) %></span>
+	<aui:a cssClass="badge badge-info kaleo-process-preview-definition" data-definition-id="<%= ddmStructureId %>" href="javascript:;" id="ddmStructureDisplay" label="<%= ddmStructureName %>" />
 
 	<aui:input name="ddlRecordSetId" type="hidden" value="<%= ddlRecordSetId %>" />
 	<aui:input name="ddmStructureId" type="hidden" value="<%= ddmStructureId %>" />
@@ -106,9 +108,26 @@ if (ddmStructureId > 0) {
 			value="<%= currentSectionURL %>"
 		/>
 
+		<liferay-util:buffer var="structureNameBuffer">
+
+			<%
+			JSONArray definitionFieldsJSONArray = DDMXSDUtil.getJSONArray(structure.getDefinition());
+
+			JSONObject definitionJSONObject = JSONFactoryUtil.createJSONObject();
+
+			definitionJSONObject.put("definitionFields", definitionFieldsJSONArray);
+			definitionJSONObject.put("definitionId", structure.getStructureId());
+			definitionJSONObject.put("definitionName", structure.getName(locale));
+
+			availableDefinitionsJSONArray.put(definitionJSONObject);
+			%>
+
+			(<aui:a cssClass="kaleo-process-preview-definition" data-definition-id="<%= structure.getStructureId() %>" href="javascript:;" label="view-fields" />)
+		</liferay-util:buffer>
+
 		<liferay-ui:search-container-column-text
 			name="name"
-			value="<%= HtmlUtil.escape(structure.getName(locale)) %>"
+			value="<%= HtmlUtil.escape(structure.getName(locale)) + StringPool.SPACE + structureNameBuffer %>"
 		/>
 
 		<liferay-ui:search-container-column-text
@@ -137,7 +156,7 @@ if (ddmStructureId > 0) {
 		function(event) {
 			var A = AUI();
 
-			var ddmStructureId = event.ddmstructureid;
+			var ddmStructureId = event.ddmStructureId;
 			var ddmStructureName = event.name;
 
 			A.one('#<portlet:namespace />ddmStructureDisplay').html(Liferay.Util.unescapeHTML(ddmStructureName));
@@ -156,5 +175,41 @@ if (ddmStructureId > 0) {
 			kaleoFormsAdmin.updateNavigationControls();
 		},
 		['aui-base']
+	);
+</aui:script>
+
+<aui:script use="liferay-kaleo-forms-components">
+	var kaleoDefinitionPreview = new Liferay.KaleoDefinitionPreview(
+		{
+			availableDefinitions: <%= availableDefinitionsJSONArray.toString() %>,
+			height: 600,
+			namespace: '<portlet:namespace />',
+			on: {
+				choose: function(event) {
+					Liferay.fire(
+						'<portlet:namespace />chooseDefinition',
+						{
+							ddmStructureId: event.definitionId,
+							name: event.definitionName
+						}
+					);
+				}
+			},
+			width: 700
+		}
+	);
+
+	A.one('#p_p_id<portlet:namespace />').delegate(
+		'click',
+		function(event) {
+			var target = event.target;
+
+			var definitionId = target.attr('data-definition-id');
+
+			kaleoDefinitionPreview.select(definitionId);
+
+			kaleoDefinitionPreview.preview();
+		},
+		'.kaleo-process-preview-definition'
 	);
 </aui:script>
