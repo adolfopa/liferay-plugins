@@ -277,7 +277,7 @@ AUI.add(
 							Lang.sub(
 								TPL_MESSAGE,
 								{
-									message: Liferay.Language.get('press-enter-to-choose-this-field-set-or-use-arrow-keys-to-navigate-through-the-available-definitions.-press-esc-at-anytime-to-close-this-dialog')
+									message: Liferay.Language.get('press-enter-to-choose-this-field-set-or-use-arrow-keys-to-navigate-through-the-available-field-sets.-press-esc-at-anytime-to-close-this-dialog')
 								}
 							)
 						);
