@@ -54,7 +54,11 @@ if (Validator.isNotNull(workflowDefinition)) {
 	String workflowDefinitionDisplay = StringPool.BLANK;
 
 	if (Validator.isNotNull(workflowDefinitionName)) {
-		workflowDefinitionDisplay = workflowDefinitionName + " (" + LanguageUtil.get(locale, "version") + " " + workflowDefinitionVersion + ")";
+		WorkflowDefinition kaleoWorkflowDefinition = KaleoFormsUtil.getWorkflowDefinition(themeDisplay.getCompanyId(), workflowDefinitionName, workflowDefinitionVersion);
+
+		if (kaleoWorkflowDefinition != null) {
+			workflowDefinitionDisplay = kaleoWorkflowDefinition.getTitle(themeDisplay.getLanguageId()) + " (" + LanguageUtil.get(locale, "version") + " " + workflowDefinitionVersion + ")";
+		}
 	}
 	%>
 
@@ -126,11 +130,6 @@ if (Validator.isNotNull(workflowDefinition)) {
 				</c:if>
 
 				<liferay-ui:search-container-column-text
-					name="name"
-					value="<%= HtmlUtil.escape(workflowDefinitionVar.getName()) %>"
-				/>
-
-				<liferay-ui:search-container-column-text
 					name="title"
 					value="<%= HtmlUtil.escape(workflowDefinitionVar.getTitle(themeDisplay.getLanguageId())) %>"
 				/>
@@ -185,11 +184,6 @@ if (Validator.isNotNull(workflowDefinition)) {
 				/>
 
 				<liferay-ui:search-container-column-text
-					name="name"
-					value="<%= HtmlUtil.escape(kaleoDraftDefinition.getName()) %>"
-				/>
-
-				<liferay-ui:search-container-column-text
 					name="title"
 					value="<%= HtmlUtil.escape(kaleoDraftDefinition.getTitle(themeDisplay.getLanguageId())) %>"
 				/>
@@ -222,11 +216,10 @@ if (Validator.isNotNull(workflowDefinition)) {
 
 			A.one('#<portlet:namespace />workflowDefinitionDisplay').html(
 				A.Lang.sub(
-					'{name} ({versionLabel} {version})',
+					'{title} (<liferay-ui:message key="version" /> {version})',
 					{
-						name: Liferay.Util.escapeHTML(event.name),
-						version: event.version,
-						versionLabel: '<liferay-ui:message key="version" />'
+						title: Liferay.Util.escapeHTML(event.title),
+						version: event.version
 					}
 				)
 			);

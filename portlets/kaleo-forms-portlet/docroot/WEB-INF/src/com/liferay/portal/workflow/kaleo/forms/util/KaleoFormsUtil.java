@@ -256,7 +256,7 @@ public class KaleoFormsUtil {
 		return workflowDefinition;
 	}
 
-	public static boolean isWorkflowDefinitionActive(
+	public static WorkflowDefinition getWorkflowDefinition(
 		long companyId, String name, int version) {
 
 		try {
@@ -264,11 +264,24 @@ public class KaleoFormsUtil {
 				WorkflowDefinitionManagerUtil.getWorkflowDefinition(
 					companyId, name, version);
 
-			return workflowDefinition.isActive();
+			return workflowDefinition;
 		}
 		catch (Exception e) {
-			return false;
+			return null;
 		}
+	}
+
+	public static boolean isWorkflowDefinitionActive(
+		long companyId, String name, int version) {
+
+		WorkflowDefinition workflowDefinition =
+			KaleoFormsUtil.getWorkflowDefinition(companyId, name, version);
+
+		if (workflowDefinition != null) {
+			return workflowDefinition.isActive();
+		}
+
+		return false;
 	}
 
 	private static void _addTaskNames(Element element, List<String> taskNames) {
