@@ -134,12 +134,10 @@ AUI.add(
 						}
 					},
 
-					_getInputLocalizedValuesMap: function(inputLocalized) {
+					_getInputLocalizedValuesMap: function(inputLocalized, name) {
 						var instance = this;
 
 						var localizedValuesMap = {};
-
-						var name = inputLocalized.get('name');
 
 						var translatedLanguages = inputLocalized.get('translatedLanguages').values();
 
@@ -162,8 +160,8 @@ AUI.add(
 						var nameInputLocalized = Liferay.component(instance.ns('name'));
 
 						var sessionMap = A.merge(
-							instance._getInputLocalizedValuesMap(descriptionInputLocalized),
-							instance._getInputLocalizedValuesMap(nameInputLocalized)
+							instance._getInputLocalizedValuesMap(descriptionInputLocalized, 'description'),
+							instance._getInputLocalizedValuesMap(nameInputLocalized, 'name')
 						);
 
 						var ddmStructureId = instance.one('#ddmStructureId').val();
