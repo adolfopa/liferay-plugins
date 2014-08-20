@@ -339,6 +339,7 @@ AUI.add(
 				var i;
 				var pad = 0;
 				var formatted = STR_BLANK;
+				var inCDATA = false;
 
 				var lines = xml.replace(instance.REGEX_TOKEN_1, '$1' + STR_CHAR_CRLF + '$2$3').split(/\r?\n/g);
 
@@ -347,19 +348,30 @@ AUI.add(
 					function(item, index, collection) {
 						var indent = 0;
 
-						if (item.match(instance.REGEX_TOKEN_2)) {
-							indent = 0;
-						}
-						else if (item.match(instance.REGEX_TOKEN_3)) {
-							if (pad !== 0) {
-								pad -= 1;
+						if (!inCDATA) {
+							if (item.match(instance.REGEX_TOKEN_2)) {
+								indent = 0;
 							}
-						}
-						else if (item.match(instance.REGEX_TOKEN_4)) {
-							indent = 1;
+							else if (item.match(instance.REGEX_TOKEN_3)) {
+								if (pad !== 0) {
+									pad -= 1;
+								}
+							}
+							else if (item.match(instance.REGEX_TOKEN_4)) {
+								indent = 1;
+							}
+
+							formatted += LString.repeat(STR_CHAR_TAB, pad);
 						}
 
-						formatted += LString.repeat(STR_CHAR_TAB, pad) + item + STR_CHAR_CRLF;
+						formatted += item + STR_CHAR_CRLF;
+
+						if (item.trim() == STR_CDATA_OPEN) {
+							inCDATA = true;
+						}
+						else if (item.trim() == STR_CDATA_CLOSE) {
+							inCDATA = false;
+						}
 
 						pad += indent;
 					}
@@ -551,7 +563,12 @@ AUI.add(
 					sanitizeDefinitionXML: function(val) {
 						var instance = this;
 
-						return decodeURIComponent(val).replace(/(<workflow-definition)[^>]*(>)/, '$1$2');
+						val = decodeURIComponent(val);
+
+						val = val.replace(/\s*(<!\[CDATA\[)/g, '$1');
+						val = val.replace(/(\]\]>)\s*/g, '$1');
+
+						return val.replace(/(<workflow-definition)[^>]*(>)/, '$1$2');
 					},
 
 					showEditor: function() {
