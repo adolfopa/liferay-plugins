@@ -14,9 +14,9 @@
 
 package com.liferay.testoauth.oauth;
 
-import com.liferay.compat.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 import org.scribe.builder.api.Api;
