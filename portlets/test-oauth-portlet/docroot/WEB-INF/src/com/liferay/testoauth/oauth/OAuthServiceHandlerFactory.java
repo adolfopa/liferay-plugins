@@ -14,8 +14,8 @@
 
 package com.liferay.testoauth.oauth;
 
-import com.liferay.compat.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.util.HashMap;
