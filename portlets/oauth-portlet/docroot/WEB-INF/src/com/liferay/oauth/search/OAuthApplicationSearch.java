@@ -83,7 +83,7 @@ public class OAuthApplicationSearch extends SearchContainer<OAuthApplication> {
 					"desc");
 			}
 
-			OrderByComparator orderByComparator = null;
+			OrderByComparator<OAuthApplication> orderByComparator = null;
 
 			boolean ascending = false;
 
