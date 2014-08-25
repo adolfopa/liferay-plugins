@@ -152,6 +152,7 @@ public abstract class ExtRepositoryObjectAdapter<T>
 
 	static {
 		_unsupportedActionIds.put(ActionKeys.SUBSCRIBE, Boolean.FALSE);
+		_unsupportedActionIds.put(ActionKeys.OVERRIDE_CHECKOUT, Boolean.FALSE);
 	}
 
 	private ExtRepositoryObject _extRepositoryObject;
