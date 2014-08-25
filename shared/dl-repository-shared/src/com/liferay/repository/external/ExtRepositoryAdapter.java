@@ -980,23 +980,9 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 				ExtRepositoryObjectType.FILE, extRepositoryFileEntryKey);
 		}
 		else {
-			try {
-				_extRepository.checkOutExtRepositoryFileEntry(
-					extRepositoryFileEntryKey);
-			}
-			catch (UnsupportedOperationException uoe) {
-			}
-
 			extRepositoryFileEntry =
 				_extRepository.updateExtRepositoryFileEntry(
 					extRepositoryFileEntryKey, mimeType, inputStream);
-
-			try {
-				_extRepository.checkInExtRepositoryFileEntry(
-					extRepositoryFileEntryKey, majorVersion, changeLog);
-			}
-			catch (UnsupportedOperationException uoe) {
-			}
 		}
 
 		if (!title.equals(extRepositoryFileEntry.getTitle())) {
