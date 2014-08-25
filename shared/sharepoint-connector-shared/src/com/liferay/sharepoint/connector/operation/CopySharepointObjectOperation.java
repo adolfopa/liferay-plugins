@@ -16,7 +16,6 @@ package com.liferay.sharepoint.connector.operation;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.sharepoint.connector.SharepointConnection;
 import com.liferay.sharepoint.connector.SharepointException;
 import com.liferay.sharepoint.connector.SharepointObject;
@@ -42,7 +41,6 @@ public class CopySharepointObjectOperation extends BaseOperation {
 	@Override
 	public void afterPropertiesSet() {
 		_addFolderOperation = getOperation(AddFolderOperation.class);
-		_checkInFileOperation = getOperation(CheckInFileOperation.class);
 		_getSharepointObjectByPathOperation = getOperation(
 			GetSharepointObjectByPathOperation.class);
 		_getSharepointObjectsByFolderOperation = getOperation(
@@ -95,9 +93,6 @@ public class CopySharepointObjectOperation extends BaseOperation {
 			throw new SharepointResultException(
 				copyErrorCode.toString(), copyResult.getErrorMessage());
 		}
-
-		_checkInFileOperation.execute(
-			newPath, StringPool.BLANK, SharepointConnection.CheckInType.MAJOR);
 	}
 
 	protected void copyFolder(String path, String newPath)
@@ -145,7 +140,6 @@ public class CopySharepointObjectOperation extends BaseOperation {
 		CopySharepointObjectOperation.class);
 
 	private AddFolderOperation _addFolderOperation;
-	private CheckInFileOperation _checkInFileOperation;
 	private GetSharepointObjectByPathOperation
 		_getSharepointObjectByPathOperation;
 	private GetSharepointObjectsByFolderOperation
