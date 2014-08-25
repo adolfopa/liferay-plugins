@@ -151,8 +151,8 @@ public abstract class ExtRepositoryObjectAdapter<T>
 		new HashMap<String, Boolean>();
 
 	static {
-		_unsupportedActionIds.put(ActionKeys.SUBSCRIBE, Boolean.FALSE);
 		_unsupportedActionIds.put(ActionKeys.OVERRIDE_CHECKOUT, Boolean.FALSE);
+		_unsupportedActionIds.put(ActionKeys.SUBSCRIBE, Boolean.FALSE);
 	}
 
 	private ExtRepositoryObject _extRepositoryObject;
