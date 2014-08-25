@@ -14,12 +14,15 @@
 
 package com.liferay.reports.lar;
 
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.lar.BaseStagedModelDataHandler;
 import com.liferay.portal.kernel.lar.ExportImportPathUtil;
 import com.liferay.portal.kernel.lar.PortletDataContext;
 import com.liferay.portal.kernel.lar.StagedModelDataHandlerUtil;
+import com.liferay.portal.kernel.lar.StagedModelModifiedDateComparator;
 import com.liferay.portal.kernel.util.FileUtil;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.xml.Element;
@@ -30,10 +33,10 @@ import com.liferay.reports.model.Definition;
 import com.liferay.reports.model.Source;
 import com.liferay.reports.service.DefinitionLocalServiceUtil;
 import com.liferay.reports.service.SourceLocalServiceUtil;
-import com.liferay.reports.service.persistence.DefinitionUtil;
 
 import java.io.InputStream;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -49,13 +52,35 @@ public class DefinitionStagedModelDataHandler
 			String uuid, long groupId, String className, String extraData)
 		throws PortalException {
 
-		Definition definition =
-			DefinitionLocalServiceUtil.fetchDefinitionByUuidAndGroupId(
-				uuid, groupId);
+		Definition definition = fetchStagedModelByUuidAndGroupId(uuid, groupId);
 
 		if (definition != null) {
 			DefinitionLocalServiceUtil.deleteDefinition(definition);
 		}
+	}
+
+	@Override
+	public Definition fetchStagedModelByUuidAndCompanyId(
+		String uuid, long companyId) {
+
+		List<Definition> definitions =
+			DefinitionLocalServiceUtil.getDefinitionsByUuidAndCompanyId(
+				uuid, companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+				new StagedModelModifiedDateComparator<Definition>());
+
+		if (ListUtil.isEmpty(definitions)) {
+			return null;
+		}
+
+		return definitions.get(0);
+	}
+
+	@Override
+	public Definition fetchStagedModelByUuidAndGroupId(
+		String uuid, long groupId) {
+
+		return DefinitionLocalServiceUtil.fetchDefinitionByUuidAndGroupId(
+			uuid, groupId);
 	}
 
 	@Override
@@ -151,8 +176,10 @@ public class DefinitionStagedModelDataHandler
 			Definition importedDefinition = null;
 
 			if (portletDataContext.isDataStrategyMirror()) {
-				Definition existingDefinition = DefinitionUtil.fetchByUUID_G(
-					definition.getUuid(), portletDataContext.getScopeGroupId());
+				Definition existingDefinition =
+					fetchStagedModelByUuidAndGroupId(
+						definition.getUuid(),
+						portletDataContext.getScopeGroupId());
 
 				if (existingDefinition == null) {
 					serviceContext.setUuid(definition.getUuid());

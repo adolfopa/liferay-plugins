@@ -14,15 +14,19 @@
 
 package com.liferay.reports.lar;
 
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.lar.BaseStagedModelDataHandler;
 import com.liferay.portal.kernel.lar.ExportImportPathUtil;
 import com.liferay.portal.kernel.lar.PortletDataContext;
+import com.liferay.portal.kernel.lar.StagedModelModifiedDateComparator;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.reports.model.Source;
 import com.liferay.reports.service.SourceLocalServiceUtil;
-import com.liferay.reports.service.persistence.SourceUtil;
+
+import java.util.List;
 
 /**
  * @author Mate Thurzo
@@ -37,12 +41,33 @@ public class SourceStagedModelDataHandler
 			String uuid, long groupId, String className, String extraData)
 		throws PortalException {
 
-		Source source = SourceLocalServiceUtil.fetchSourceByUuidAndGroupId(
-			uuid, groupId);
+		Source source = fetchStagedModelByUuidAndGroupId(uuid, groupId);
 
 		if (source != null) {
 			SourceLocalServiceUtil.deleteSource(source);
 		}
+	}
+
+	@Override
+	public Source fetchStagedModelByUuidAndCompanyId(
+		String uuid, long companyId) {
+
+		List<Source> sources =
+			SourceLocalServiceUtil.getSourcesByUuidAndCompanyId(
+				uuid, companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+				new StagedModelModifiedDateComparator<Source>());
+
+		if (ListUtil.isEmpty(sources)) {
+			return null;
+		}
+
+		return sources.get(0);
+	}
+
+	@Override
+	public Source fetchStagedModelByUuidAndGroupId(String uuid, long groupId) {
+		return SourceLocalServiceUtil.fetchSourceByUuidAndGroupId(
+			uuid, groupId);
 	}
 
 	@Override
@@ -79,7 +104,7 @@ public class SourceStagedModelDataHandler
 		Source importedSource = null;
 
 		if (portletDataContext.isDataStrategyMirror()) {
-			Source existingSource = SourceUtil.fetchByUUID_G(
+			Source existingSource = fetchStagedModelByUuidAndGroupId(
 				source.getUuid(), portletDataContext.getScopeGroupId());
 
 			if (existingSource == null) {
