@@ -321,11 +321,9 @@ public class ExtRepositoryFileEntryAdapter
 			User checkedOutByUser = getUser(
 				_extRepositoryFileEntry.getCheckedOutBy());
 
-			long userId = PrincipalThreadLocal.getUserId();
+			if (checkedOutByUser.getUserId() !=
+					PrincipalThreadLocal.getUserId()) {
 
-			User currentUser = UserLocalServiceUtil.getUser(userId);
-
-			if (checkedOutByUser.getUserId() != currentUser.getUserId()) {
 				return false;
 			}
 		}
