@@ -58,13 +58,13 @@ public class PathHelper {
 	public String getNameWithoutExtension(String path) {
 		String name = getName(path);
 
-		int pos = path.lastIndexOf(StringPool.PERIOD);
+		int pos = name.lastIndexOf(StringPool.PERIOD);
 
 		if (pos == -1) {
 			return name;
 		}
 
-		return name.substring(0, pos - 1);
+		return name.substring(0, pos);
 	}
 
 	public String getParentFolderPath(String path) {
