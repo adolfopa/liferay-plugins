@@ -27,6 +27,8 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Lock;
 import com.liferay.portal.model.User;
+import com.liferay.portal.security.auth.PrincipalThreadLocal;
+import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.service.persistence.LockUtil;
 import com.liferay.portlet.documentlibrary.NoSuchFileVersionException;
 import com.liferay.portlet.documentlibrary.model.DLFileEntryConstants;
@@ -311,7 +313,27 @@ public class ExtRepositoryFileEntryAdapter
 
 	@Override
 	public boolean hasLock() {
-		return isCheckedOut();
+		if (!isCheckedOut()) {
+			return false;
+		}
+
+		try {
+			User checkedOutByUser = getUser(
+				_extRepositoryFileEntry.getCheckedOutBy());
+
+			long userId = PrincipalThreadLocal.getUserId();
+
+			User currentUser = UserLocalServiceUtil.getUser(userId);
+
+			if (checkedOutByUser.getUserId() != currentUser.getUserId()) {
+				return false;
+			}
+		}
+		catch (PortalException pe) {
+			return false;
+		}
+
+		return true;
 	}
 
 	@Override
