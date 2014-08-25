@@ -34,12 +34,12 @@ public class BatchMethod extends BaseNode {
 
 		DELETE("Delete"), NEW("New"), UPDATE("Update");
 
-		private Command(String protocolValue) {
-			_protocolValue = protocolValue;
-		}
-
 		public String getProtocolValue() {
 			return _protocolValue;
+		}
+
+		private Command(String protocolValue) {
+			_protocolValue = protocolValue;
 		}
 
 		private String _protocolValue;

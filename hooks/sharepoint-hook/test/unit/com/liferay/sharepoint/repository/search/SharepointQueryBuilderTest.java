@@ -14,10 +14,11 @@
 
 package com.liferay.sharepoint.repository.search;
 
+import static org.mockito.Matchers.any;
+
 import com.liferay.portal.kernel.bean.BeanLocator;
 import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.repository.search.RepositorySearchQueryBuilderUtil;
 import com.liferay.portal.kernel.search.BaseSearchEngine;
 import com.liferay.portal.kernel.search.BooleanQuery;
@@ -94,8 +95,6 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import static org.mockito.Matchers.any;
-
 /**
  * @author Ivan Zaera
  */
@@ -104,7 +103,7 @@ import static org.mockito.Matchers.any;
 public class SharepointQueryBuilderTest extends PowerMockito {
 
 	@Before
-	public void setUp() throws PortalException, SystemException {
+	public void setUp() throws PortalException {
 		mockBeanLocator();
 
 		mockDateFormatFactory();
@@ -559,8 +558,7 @@ public class SharepointQueryBuilderTest extends PowerMockito {
 					new EqOperator(
 						new QueryField(SharepointField.MODIFIED_BY),
 						new QueryValue("test")))),
-			new QueryOptionsList(
-				new FolderQueryOption("")),
+			new QueryOptionsList(new FolderQueryOption("")),
 			sharepointQueryBuilder);
 	}
 
@@ -779,7 +777,7 @@ public class SharepointQueryBuilderTest extends PowerMockito {
 			});
 	}
 
-	protected void mockFolders(long...folderIds) throws SystemException {
+	protected void mockFolders(long... folderIds) {
 		getService(DLAppServiceUtil.class, DLAppService.class);
 
 		RepositoryEntryLocalService repositoryEntryLocalService = getService(
@@ -826,9 +824,7 @@ public class SharepointQueryBuilderTest extends PowerMockito {
 		);
 	}
 
-	protected void mockSharepointExtRepository()
-		throws PortalException, SystemException {
-
+	protected void mockSharepointExtRepository() throws PortalException {
 		SharepointConnection sharepointConnection = mock(
 			SharepointConnection.class);
 
