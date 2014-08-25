@@ -164,7 +164,7 @@ public class ExtRepositoryFileVersionAdapter
 
 	@Override
 	public boolean isApproved() {
-		return true;
+		return false;
 	}
 
 	@Override
