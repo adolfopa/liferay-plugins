@@ -139,8 +139,8 @@ AUI.add(
 			addSection: Liferay.Language.get('add-section'),
 			approve: Liferay.Language.get('approve'),
 			assetCreator: Liferay.Language.get('asset-creator'),
-			assignmentType: Liferay.Language.get('assignment-type'),
 			assignments: Liferay.Language.get('assignments'),
+			assignmentType: Liferay.Language.get('assignment-type'),
 			autoCreate: Liferay.Language.get('auto-create'),
 			beanshell: Liferay.Language.get('beanshell'),
 			cancel: Liferay.Language.get('cancel'),
@@ -156,8 +156,8 @@ AUI.add(
 			email: Liferay.Language.get('email'),
 			emailAddress: Liferay.Language.get('email-address'),
 			executionType: Liferay.Language.get('execution-type'),
-			formTemplate: Liferay.Language.get('form-template'),
 			forms: Liferay.Language.get('forms'),
+			formTemplate: Liferay.Language.get('form-template'),
 			freemarker: Liferay.Language.get('freemarker'),
 			groovy: Liferay.Language.get('groovy'),
 			im: Liferay.Language.get('instant-messenger'),
@@ -167,8 +167,8 @@ AUI.add(
 			language: Liferay.Language.get('language'),
 			name: Liferay.Language.get('name'),
 			notificationRecipients: Liferay.Language.get('notification-recipients'),
-			notificationType: Liferay.Language.get('notification-type'),
 			notifications: Liferay.Language.get('notifications'),
+			notificationType: Liferay.Language.get('notification-type'),
 			onAssignment: Liferay.Language.get('on-assignment'),
 			onEntry: Liferay.Language.get('on-entry'),
 			onExit: Liferay.Language.get('on-exit'),
@@ -188,8 +188,8 @@ AUI.add(
 			save: Liferay.Language.get('save'),
 			screenName: Liferay.Language.get('screen-name'),
 			script: Liferay.Language.get('script'),
-			scriptLanguage: Liferay.Language.get('script-language'),
 			scriptedAssignment: Liferay.Language.get('scripted-assignment'),
+			scriptLanguage: Liferay.Language.get('script-language'),
 			search: Liferay.Language.get('search'),
 			site: Liferay.Language.get('site'),
 			taskAssignees: Liferay.Language.get('task-assignees'),
@@ -1381,32 +1381,6 @@ AUI.add(
 						return val;
 					},
 
-					_translateXMLToJSON: function(tagName) {
-						var instance = this;
-
-						var schema = {
-							resultFields: [
-								'description',
-								'initial',
-								'metadata',
-								'name',
-								'script',
-								{
-									key: 'scriptLanguage',
-									locator: 'script-language'
-								},
-								instance._getSchemaActions(),
-								instance._getSchemaAssignments(),
-								instance._getSchemaNotifications(),
-								instance._getSchemaTaskTimers(),
-								instance._getSchemaTransitions()
-							],
-							resultListLocator: tagName
-						};
-
-						return A.DataSchema.XML.apply(schema, instance.definitionDoc);
-					},
-
 					_translateXMLtoFields: function() {
 						var instance = this;
 
@@ -1461,6 +1435,32 @@ AUI.add(
 						);
 
 						return fields;
+					},
+
+					_translateXMLToJSON: function(tagName) {
+						var instance = this;
+
+						var schema = {
+							resultFields: [
+								'description',
+								'initial',
+								'metadata',
+								'name',
+								'script',
+								{
+									key: 'scriptLanguage',
+									locator: 'script-language'
+								},
+								instance._getSchemaActions(),
+								instance._getSchemaAssignments(),
+								instance._getSchemaNotifications(),
+								instance._getSchemaTaskTimers(),
+								instance._getSchemaTransitions()
+							],
+							resultListLocator: tagName
+						};
+
+						return A.DataSchema.XML.apply(schema, instance.definitionDoc);
 					},
 
 					_uiSetAvailableFields: function(val) {
@@ -1556,7 +1556,7 @@ AUI.add(
 					getViewNodes: function() {
 						var instance = this;
 
-						return instance.bodyNode.all(STR_DOT+CSS_CELLEDITOR_ASSIGNMENT_VIEW);
+						return instance.bodyNode.all(STR_DOT + CSS_CELLEDITOR_ASSIGNMENT_VIEW);
 					},
 
 					handleAddViewSection: emptyFn,
@@ -3644,6 +3644,6 @@ AUI.add(
 	},
 	'',
 	{
-		requires: ['aui-ace-editor', 'aui-ace-editor-mode-xml', 'aui-diagram-builder', 'aui-tpl-snippets-deprecated', 'autocomplete', 'autocomplete-highlighters', 'datasource', 'datatype-xml', 'dataschema-xml', 'event-valuechange', 'io-form', 'liferay-util-window']
+		requires: ['aui-ace-editor', 'aui-ace-editor-mode-xml', 'aui-diagram-builder', 'aui-tpl-snippets-deprecated', 'autocomplete', 'autocomplete-highlighters', 'dataschema-xml', 'datasource', 'datatype-xml', 'event-valuechange', 'io-form', 'liferay-util-window']
 	}
 );
