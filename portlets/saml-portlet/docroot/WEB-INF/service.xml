@@ -212,11 +212,11 @@
 		<finder name="SamlSpSessionKey" return-type="SamlSpSession" unique="true">
 			<finder-column name="samlSpSessionKey" />
 		</finder>
-		<finder name="NameIdValue" return-type="Collection">
-			<finder-column name="nameIdValue" />
-		</finder>
 		<finder name="JSessionId" return-type="SamlSpSession">
 			<finder-column name="jSessionId" />
+		</finder>
+		<finder name="NameIdValue" return-type="Collection">
+			<finder-column name="nameIdValue" />
 		</finder>
 		<finder name="SessionIndex" return-type="SamlSpSession">
 			<finder-column name="sessionIndex" />
