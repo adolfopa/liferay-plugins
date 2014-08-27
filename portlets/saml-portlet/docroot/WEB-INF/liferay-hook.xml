@@ -54,11 +54,11 @@
 		<struts-action-impl>com.liferay.saml.hook.action.MetadataAction</struts-action-impl>
 	</struts-action>
 	<struts-action>
-		<struts-action-path>/portal/saml/slo_logout</struts-action-path>
+		<struts-action-path>/portal/saml/slo</struts-action-path>
 		<struts-action-impl>com.liferay.saml.hook.action.SingleLogoutAction</struts-action-impl>
 	</struts-action>
 	<struts-action>
-		<struts-action-path>/portal/saml/slo</struts-action-path>
+		<struts-action-path>/portal/saml/slo_logout</struts-action-path>
 		<struts-action-impl>com.liferay.saml.hook.action.SingleLogoutAction</struts-action-impl>
 	</struts-action>
 	<struts-action>
