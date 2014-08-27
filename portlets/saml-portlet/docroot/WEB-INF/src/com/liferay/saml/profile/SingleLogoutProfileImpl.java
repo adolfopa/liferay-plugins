@@ -207,7 +207,7 @@ public class SingleLogoutProfileImpl
 				SAMLConstants.SAML2_REDIRECT_BINDING_URI);
 		}
 		else if (requestPath.endsWith("/slo") &&
-				StringUtil.equalsIgnoreCase(method, HttpMethods.POST)) {
+				 StringUtil.equalsIgnoreCase(method, HttpMethods.POST)) {
 
 			samlBinding = getSamlBinding(SAMLConstants.SAML2_POST_BINDING_URI);
 		}
