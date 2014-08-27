@@ -316,17 +316,12 @@ public class ExtRepositoryFileEntryAdapter
 			return false;
 		}
 
-		try {
-			User checkedOutByUser = getUser(
-				_extRepositoryFileEntry.getCheckedOutBy());
+		User checkedOutByUser = getUser(
+			_extRepositoryFileEntry.getCheckedOutBy());
 
-			if (checkedOutByUser.getUserId() !=
-					PrincipalThreadLocal.getUserId()) {
+		if (checkedOutByUser.getUserId() !=
+				PrincipalThreadLocal.getUserId()) {
 
-				return false;
-			}
-		}
-		catch (PortalException pe) {
 			return false;
 		}
 
