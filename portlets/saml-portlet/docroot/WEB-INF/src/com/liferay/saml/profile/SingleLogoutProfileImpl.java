@@ -200,11 +200,16 @@ public class SingleLogoutProfileImpl
 		String method = request.getMethod();
 		String requestPath = SamlUtil.getRequestPath(request);
 
-		if (requestPath.endsWith("/slo_redirect") &&
+		if (requestPath.endsWith("/slo") &&
 			StringUtil.equalsIgnoreCase(method, HttpMethods.GET)) {
 
 			samlBinding = getSamlBinding(
 				SAMLConstants.SAML2_REDIRECT_BINDING_URI);
+		}
+		else if (requestPath.endsWith("/slo") &&
+				StringUtil.equalsIgnoreCase(method, HttpMethods.POST)) {
+
+			samlBinding = getSamlBinding(SAMLConstants.SAML2_POST_BINDING_URI);
 		}
 		else if (requestPath.endsWith("/slo_soap") &&
 				 StringUtil.equalsIgnoreCase(method, HttpMethods.POST)) {
@@ -957,7 +962,7 @@ public class SingleLogoutProfileImpl
 
 		SingleLogoutService singleLogoutService =
 			SamlUtil.resolveSingleLogoutService(
-				idpSsoDescriptor, SAMLConstants.SAML2_REDIRECT_BINDING_URI);
+				idpSsoDescriptor, SAMLConstants.SAML2_POST_BINDING_URI);
 
 		logoutRequest.setDestination(singleLogoutService.getLocation());
 

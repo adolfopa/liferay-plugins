@@ -120,12 +120,19 @@ public class MetadataGeneratorUtil {
 		List<SingleLogoutService> singleLogoutServices =
 			idpSsoDescriptor.getSingleLogoutServices();
 
-		SingleLogoutService singleLogoutService =
+		SingleLogoutService postSingleLogoutService =
+			OpenSamlUtil.buildSingleLogoutService(
+				SAMLConstants.SAML2_POST_BINDING_URI,
+				portalURL.concat(pathMain).concat("/portal/saml/slo"));
+
+		singleLogoutServices.add(postSingleLogoutService);
+
+		SingleLogoutService redirectSingleLogoutService =
 			OpenSamlUtil.buildSingleLogoutService(
 				SAMLConstants.SAML2_REDIRECT_BINDING_URI,
-				portalURL.concat(pathMain).concat("/portal/saml/slo_redirect"));
+				portalURL.concat(pathMain).concat("/portal/saml/slo"));
 
-		singleLogoutServices.add(singleLogoutService);
+		singleLogoutServices.add(redirectSingleLogoutService);
 
 		return idpSsoDescriptor;
 	}
@@ -195,10 +202,17 @@ public class MetadataGeneratorUtil {
 		List<SingleLogoutService> singleLogoutServices =
 			spSsoDescriptor.getSingleLogoutServices();
 
+		SingleLogoutService postSingleLogoutService =
+			OpenSamlUtil.buildSingleLogoutService(
+				SAMLConstants.SAML2_POST_BINDING_URI,
+				portalURL.concat(pathMain).concat("/portal/saml/slo"));
+
+		singleLogoutServices.add(postSingleLogoutService);
+
 		SingleLogoutService redirectSingleLogoutService =
 			OpenSamlUtil.buildSingleLogoutService(
 				SAMLConstants.SAML2_REDIRECT_BINDING_URI,
-				portalURL.concat(pathMain).concat("/portal/saml/slo_redirect"));
+				portalURL.concat(pathMain).concat("/portal/saml/slo"));
 
 		singleLogoutServices.add(redirectSingleLogoutService);
 
