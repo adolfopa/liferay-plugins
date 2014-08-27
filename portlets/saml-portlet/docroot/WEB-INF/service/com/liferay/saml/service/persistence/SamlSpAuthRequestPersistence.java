@@ -14,6 +14,8 @@
 
 package com.liferay.saml.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.persistence.BasePersistence;
 
 import com.liferay.saml.model.SamlSpAuthRequest;
@@ -30,6 +32,7 @@ import com.liferay.saml.model.SamlSpAuthRequest;
  * @see SamlSpAuthRequestUtil
  * @generated
  */
+@ProviderType
 public interface SamlSpAuthRequestPersistence extends BasePersistence<SamlSpAuthRequest> {
 	/*
 	 * NOTE FOR DEVELOPERS:

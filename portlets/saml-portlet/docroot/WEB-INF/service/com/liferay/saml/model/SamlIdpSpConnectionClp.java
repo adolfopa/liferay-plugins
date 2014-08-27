@@ -14,6 +14,8 @@
 
 package com.liferay.saml.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -39,6 +41,7 @@ import java.util.Map;
 /**
  * @author Mika Koivisto
  */
+@ProviderType
 public class SamlIdpSpConnectionClp extends BaseModelImpl<SamlIdpSpConnection>
 	implements SamlIdpSpConnection {
 	public SamlIdpSpConnectionClp() {

@@ -14,6 +14,8 @@
 
 package com.liferay.saml.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.saml.model.SamlIdpSsoSession;
 import com.liferay.saml.service.SamlIdpSsoSessionLocalServiceUtil;
 
@@ -29,6 +31,7 @@ import com.liferay.saml.service.SamlIdpSsoSessionLocalServiceUtil;
  * @see com.liferay.saml.model.SamlIdpSsoSession
  * @generated
  */
+@ProviderType
 public abstract class SamlIdpSsoSessionBaseImpl
 	extends SamlIdpSsoSessionModelImpl implements SamlIdpSsoSession {
 	/*

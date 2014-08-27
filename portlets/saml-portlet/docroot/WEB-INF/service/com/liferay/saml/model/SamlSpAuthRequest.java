@@ -14,6 +14,8 @@
 
 package com.liferay.saml.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.model.PersistedModel;
 
 /**
@@ -25,6 +27,7 @@ import com.liferay.portal.model.PersistedModel;
  * @see com.liferay.saml.model.impl.SamlSpAuthRequestModelImpl
  * @generated
  */
+@ProviderType
 public interface SamlSpAuthRequest extends SamlSpAuthRequestModel, PersistedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:

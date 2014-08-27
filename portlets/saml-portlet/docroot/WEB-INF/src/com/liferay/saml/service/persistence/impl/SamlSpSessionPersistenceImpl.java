@@ -14,6 +14,8 @@
 
 package com.liferay.saml.service.persistence.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -64,6 +66,7 @@ import java.util.Set;
  * @see SamlSpSessionUtil
  * @generated
  */
+@ProviderType
 public class SamlSpSessionPersistenceImpl extends BasePersistenceImpl<SamlSpSession>
 	implements SamlSpSessionPersistence {
 	/*
@@ -328,6 +331,249 @@ public class SamlSpSessionPersistenceImpl extends BasePersistenceImpl<SamlSpSess
 		"samlSpSession.samlSpSessionKey = ?";
 	private static final String _FINDER_COLUMN_SAMLSPSESSIONKEY_SAMLSPSESSIONKEY_3 =
 		"(samlSpSession.samlSpSessionKey IS NULL OR samlSpSession.samlSpSessionKey = '')";
+	public static final FinderPath FINDER_PATH_FETCH_BY_JSESSIONID = new FinderPath(SamlSpSessionModelImpl.ENTITY_CACHE_ENABLED,
+			SamlSpSessionModelImpl.FINDER_CACHE_ENABLED,
+			SamlSpSessionImpl.class, FINDER_CLASS_NAME_ENTITY,
+			"fetchByJSessionId", new String[] { String.class.getName() },
+			SamlSpSessionModelImpl.JSESSIONID_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_JSESSIONID = new FinderPath(SamlSpSessionModelImpl.ENTITY_CACHE_ENABLED,
+			SamlSpSessionModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByJSessionId",
+			new String[] { String.class.getName() });
+
+	/**
+	 * Returns the saml sp session where jSessionId = &#63; or throws a {@link com.liferay.saml.NoSuchSpSessionException} if it could not be found.
+	 *
+	 * @param jSessionId the j session ID
+	 * @return the matching saml sp session
+	 * @throws com.liferay.saml.NoSuchSpSessionException if a matching saml sp session could not be found
+	 */
+	@Override
+	public SamlSpSession findByJSessionId(String jSessionId)
+		throws NoSuchSpSessionException {
+		SamlSpSession samlSpSession = fetchByJSessionId(jSessionId);
+
+		if (samlSpSession == null) {
+			StringBundler msg = new StringBundler(4);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("jSessionId=");
+			msg.append(jSessionId);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			if (_log.isWarnEnabled()) {
+				_log.warn(msg.toString());
+			}
+
+			throw new NoSuchSpSessionException(msg.toString());
+		}
+
+		return samlSpSession;
+	}
+
+	/**
+	 * Returns the saml sp session where jSessionId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param jSessionId the j session ID
+	 * @return the matching saml sp session, or <code>null</code> if a matching saml sp session could not be found
+	 */
+	@Override
+	public SamlSpSession fetchByJSessionId(String jSessionId) {
+		return fetchByJSessionId(jSessionId, true);
+	}
+
+	/**
+	 * Returns the saml sp session where jSessionId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param jSessionId the j session ID
+	 * @param retrieveFromCache whether to use the finder cache
+	 * @return the matching saml sp session, or <code>null</code> if a matching saml sp session could not be found
+	 */
+	@Override
+	public SamlSpSession fetchByJSessionId(String jSessionId,
+		boolean retrieveFromCache) {
+		Object[] finderArgs = new Object[] { jSessionId };
+
+		Object result = null;
+
+		if (retrieveFromCache) {
+			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_JSESSIONID,
+					finderArgs, this);
+		}
+
+		if (result instanceof SamlSpSession) {
+			SamlSpSession samlSpSession = (SamlSpSession)result;
+
+			if (!Validator.equals(jSessionId, samlSpSession.getJSessionId())) {
+				result = null;
+			}
+		}
+
+		if (result == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_SELECT_SAMLSPSESSION_WHERE);
+
+			boolean bindJSessionId = false;
+
+			if (jSessionId == null) {
+				query.append(_FINDER_COLUMN_JSESSIONID_JSESSIONID_1);
+			}
+			else if (jSessionId.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_JSESSIONID_JSESSIONID_3);
+			}
+			else {
+				bindJSessionId = true;
+
+				query.append(_FINDER_COLUMN_JSESSIONID_JSESSIONID_2);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (bindJSessionId) {
+					qPos.add(jSessionId);
+				}
+
+				List<SamlSpSession> list = q.list();
+
+				if (list.isEmpty()) {
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_JSESSIONID,
+						finderArgs, list);
+				}
+				else {
+					if ((list.size() > 1) && _log.isWarnEnabled()) {
+						_log.warn(
+							"SamlSpSessionPersistenceImpl.fetchByJSessionId(String, boolean) with parameters (" +
+							StringUtil.merge(finderArgs) +
+							") yields a result set with more than 1 result. This violates the logical unique restriction. There is no order guarantee on which result is returned by this finder.");
+					}
+
+					SamlSpSession samlSpSession = list.get(0);
+
+					result = samlSpSession;
+
+					cacheResult(samlSpSession);
+
+					if ((samlSpSession.getJSessionId() == null) ||
+							!samlSpSession.getJSessionId().equals(jSessionId)) {
+						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_JSESSIONID,
+							finderArgs, samlSpSession);
+					}
+				}
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_JSESSIONID,
+					finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		if (result instanceof List<?>) {
+			return null;
+		}
+		else {
+			return (SamlSpSession)result;
+		}
+	}
+
+	/**
+	 * Removes the saml sp session where jSessionId = &#63; from the database.
+	 *
+	 * @param jSessionId the j session ID
+	 * @return the saml sp session that was removed
+	 */
+	@Override
+	public SamlSpSession removeByJSessionId(String jSessionId)
+		throws NoSuchSpSessionException {
+		SamlSpSession samlSpSession = findByJSessionId(jSessionId);
+
+		return remove(samlSpSession);
+	}
+
+	/**
+	 * Returns the number of saml sp sessions where jSessionId = &#63;.
+	 *
+	 * @param jSessionId the j session ID
+	 * @return the number of matching saml sp sessions
+	 */
+	@Override
+	public int countByJSessionId(String jSessionId) {
+		FinderPath finderPath = FINDER_PATH_COUNT_BY_JSESSIONID;
+
+		Object[] finderArgs = new Object[] { jSessionId };
+
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_COUNT_SAMLSPSESSION_WHERE);
+
+			boolean bindJSessionId = false;
+
+			if (jSessionId == null) {
+				query.append(_FINDER_COLUMN_JSESSIONID_JSESSIONID_1);
+			}
+			else if (jSessionId.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_JSESSIONID_JSESSIONID_3);
+			}
+			else {
+				bindJSessionId = true;
+
+				query.append(_FINDER_COLUMN_JSESSIONID_JSESSIONID_2);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (bindJSessionId) {
+					qPos.add(jSessionId);
+				}
+
+				count = (Long)q.uniqueResult();
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_JSESSIONID_JSESSIONID_1 = "samlSpSession.jSessionId IS NULL";
+	private static final String _FINDER_COLUMN_JSESSIONID_JSESSIONID_2 = "samlSpSession.jSessionId = ?";
+	private static final String _FINDER_COLUMN_JSESSIONID_JSESSIONID_3 = "(samlSpSession.jSessionId IS NULL OR samlSpSession.jSessionId = '')";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_NAMEIDVALUE =
 		new FinderPath(SamlSpSessionModelImpl.ENTITY_CACHE_ENABLED,
 			SamlSpSessionModelImpl.FINDER_CACHE_ENABLED,
@@ -855,249 +1101,6 @@ public class SamlSpSessionPersistenceImpl extends BasePersistenceImpl<SamlSpSess
 	private static final String _FINDER_COLUMN_NAMEIDVALUE_NAMEIDVALUE_1 = "samlSpSession.nameIdValue IS NULL";
 	private static final String _FINDER_COLUMN_NAMEIDVALUE_NAMEIDVALUE_2 = "samlSpSession.nameIdValue = ?";
 	private static final String _FINDER_COLUMN_NAMEIDVALUE_NAMEIDVALUE_3 = "(samlSpSession.nameIdValue IS NULL OR samlSpSession.nameIdValue = '')";
-	public static final FinderPath FINDER_PATH_FETCH_BY_JSESSIONID = new FinderPath(SamlSpSessionModelImpl.ENTITY_CACHE_ENABLED,
-			SamlSpSessionModelImpl.FINDER_CACHE_ENABLED,
-			SamlSpSessionImpl.class, FINDER_CLASS_NAME_ENTITY,
-			"fetchByJSessionId", new String[] { String.class.getName() },
-			SamlSpSessionModelImpl.JSESSIONID_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_JSESSIONID = new FinderPath(SamlSpSessionModelImpl.ENTITY_CACHE_ENABLED,
-			SamlSpSessionModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByJSessionId",
-			new String[] { String.class.getName() });
-
-	/**
-	 * Returns the saml sp session where jSessionId = &#63; or throws a {@link com.liferay.saml.NoSuchSpSessionException} if it could not be found.
-	 *
-	 * @param jSessionId the j session ID
-	 * @return the matching saml sp session
-	 * @throws com.liferay.saml.NoSuchSpSessionException if a matching saml sp session could not be found
-	 */
-	@Override
-	public SamlSpSession findByJSessionId(String jSessionId)
-		throws NoSuchSpSessionException {
-		SamlSpSession samlSpSession = fetchByJSessionId(jSessionId);
-
-		if (samlSpSession == null) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("jSessionId=");
-			msg.append(jSessionId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			if (_log.isWarnEnabled()) {
-				_log.warn(msg.toString());
-			}
-
-			throw new NoSuchSpSessionException(msg.toString());
-		}
-
-		return samlSpSession;
-	}
-
-	/**
-	 * Returns the saml sp session where jSessionId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
-	 *
-	 * @param jSessionId the j session ID
-	 * @return the matching saml sp session, or <code>null</code> if a matching saml sp session could not be found
-	 */
-	@Override
-	public SamlSpSession fetchByJSessionId(String jSessionId) {
-		return fetchByJSessionId(jSessionId, true);
-	}
-
-	/**
-	 * Returns the saml sp session where jSessionId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
-	 *
-	 * @param jSessionId the j session ID
-	 * @param retrieveFromCache whether to use the finder cache
-	 * @return the matching saml sp session, or <code>null</code> if a matching saml sp session could not be found
-	 */
-	@Override
-	public SamlSpSession fetchByJSessionId(String jSessionId,
-		boolean retrieveFromCache) {
-		Object[] finderArgs = new Object[] { jSessionId };
-
-		Object result = null;
-
-		if (retrieveFromCache) {
-			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_JSESSIONID,
-					finderArgs, this);
-		}
-
-		if (result instanceof SamlSpSession) {
-			SamlSpSession samlSpSession = (SamlSpSession)result;
-
-			if (!Validator.equals(jSessionId, samlSpSession.getJSessionId())) {
-				result = null;
-			}
-		}
-
-		if (result == null) {
-			StringBundler query = new StringBundler(3);
-
-			query.append(_SQL_SELECT_SAMLSPSESSION_WHERE);
-
-			boolean bindJSessionId = false;
-
-			if (jSessionId == null) {
-				query.append(_FINDER_COLUMN_JSESSIONID_JSESSIONID_1);
-			}
-			else if (jSessionId.equals(StringPool.BLANK)) {
-				query.append(_FINDER_COLUMN_JSESSIONID_JSESSIONID_3);
-			}
-			else {
-				bindJSessionId = true;
-
-				query.append(_FINDER_COLUMN_JSESSIONID_JSESSIONID_2);
-			}
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				if (bindJSessionId) {
-					qPos.add(jSessionId);
-				}
-
-				List<SamlSpSession> list = q.list();
-
-				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_JSESSIONID,
-						finderArgs, list);
-				}
-				else {
-					if ((list.size() > 1) && _log.isWarnEnabled()) {
-						_log.warn(
-							"SamlSpSessionPersistenceImpl.fetchByJSessionId(String, boolean) with parameters (" +
-							StringUtil.merge(finderArgs) +
-							") yields a result set with more than 1 result. This violates the logical unique restriction. There is no order guarantee on which result is returned by this finder.");
-					}
-
-					SamlSpSession samlSpSession = list.get(0);
-
-					result = samlSpSession;
-
-					cacheResult(samlSpSession);
-
-					if ((samlSpSession.getJSessionId() == null) ||
-							!samlSpSession.getJSessionId().equals(jSessionId)) {
-						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_JSESSIONID,
-							finderArgs, samlSpSession);
-					}
-				}
-			}
-			catch (Exception e) {
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_JSESSIONID,
-					finderArgs);
-
-				throw processException(e);
-			}
-			finally {
-				closeSession(session);
-			}
-		}
-
-		if (result instanceof List<?>) {
-			return null;
-		}
-		else {
-			return (SamlSpSession)result;
-		}
-	}
-
-	/**
-	 * Removes the saml sp session where jSessionId = &#63; from the database.
-	 *
-	 * @param jSessionId the j session ID
-	 * @return the saml sp session that was removed
-	 */
-	@Override
-	public SamlSpSession removeByJSessionId(String jSessionId)
-		throws NoSuchSpSessionException {
-		SamlSpSession samlSpSession = findByJSessionId(jSessionId);
-
-		return remove(samlSpSession);
-	}
-
-	/**
-	 * Returns the number of saml sp sessions where jSessionId = &#63;.
-	 *
-	 * @param jSessionId the j session ID
-	 * @return the number of matching saml sp sessions
-	 */
-	@Override
-	public int countByJSessionId(String jSessionId) {
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_JSESSIONID;
-
-		Object[] finderArgs = new Object[] { jSessionId };
-
-		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
-				this);
-
-		if (count == null) {
-			StringBundler query = new StringBundler(2);
-
-			query.append(_SQL_COUNT_SAMLSPSESSION_WHERE);
-
-			boolean bindJSessionId = false;
-
-			if (jSessionId == null) {
-				query.append(_FINDER_COLUMN_JSESSIONID_JSESSIONID_1);
-			}
-			else if (jSessionId.equals(StringPool.BLANK)) {
-				query.append(_FINDER_COLUMN_JSESSIONID_JSESSIONID_3);
-			}
-			else {
-				bindJSessionId = true;
-
-				query.append(_FINDER_COLUMN_JSESSIONID_JSESSIONID_2);
-			}
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				if (bindJSessionId) {
-					qPos.add(jSessionId);
-				}
-
-				count = (Long)q.uniqueResult();
-
-				FinderCacheUtil.putResult(finderPath, finderArgs, count);
-			}
-			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
-
-				throw processException(e);
-			}
-			finally {
-				closeSession(session);
-			}
-		}
-
-		return count.intValue();
-	}
-
-	private static final String _FINDER_COLUMN_JSESSIONID_JSESSIONID_1 = "samlSpSession.jSessionId IS NULL";
-	private static final String _FINDER_COLUMN_JSESSIONID_JSESSIONID_2 = "samlSpSession.jSessionId = ?";
-	private static final String _FINDER_COLUMN_JSESSIONID_JSESSIONID_3 = "(samlSpSession.jSessionId IS NULL OR samlSpSession.jSessionId = '')";
 	public static final FinderPath FINDER_PATH_FETCH_BY_SESSIONINDEX = new FinderPath(SamlSpSessionModelImpl.ENTITY_CACHE_ENABLED,
 			SamlSpSessionModelImpl.FINDER_CACHE_ENABLED,
 			SamlSpSessionImpl.class, FINDER_CLASS_NAME_ENTITY,
@@ -2124,11 +2127,11 @@ public class SamlSpSessionPersistenceImpl extends BasePersistenceImpl<SamlSpSess
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No SamlSpSession exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
-	private static Log _log = LogFactoryUtil.getLog(SamlSpSessionPersistenceImpl.class);
-	private static Set<String> _badColumnNames = SetUtil.fromArray(new String[] {
+	private static final Log _log = LogFactoryUtil.getLog(SamlSpSessionPersistenceImpl.class);
+	private static final Set<String> _badColumnNames = SetUtil.fromArray(new String[] {
 				"terminated"
 			});
-	private static SamlSpSession _nullSamlSpSession = new SamlSpSessionImpl() {
+	private static final SamlSpSession _nullSamlSpSession = new SamlSpSessionImpl() {
 			@Override
 			public Object clone() {
 				return this;
@@ -2140,7 +2143,7 @@ public class SamlSpSessionPersistenceImpl extends BasePersistenceImpl<SamlSpSess
 			}
 		};
 
-	private static CacheModel<SamlSpSession> _nullSamlSpSessionCacheModel = new CacheModel<SamlSpSession>() {
+	private static final CacheModel<SamlSpSession> _nullSamlSpSessionCacheModel = new CacheModel<SamlSpSession>() {
 			@Override
 			public SamlSpSession toEntityModel() {
 				return _nullSamlSpSession;

@@ -14,6 +14,8 @@
 
 package com.liferay.saml.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
@@ -50,6 +52,7 @@ import java.util.Map;
  * @see com.liferay.saml.model.SamlSpAuthRequestModel
  * @generated
  */
+@ProviderType
 public class SamlSpAuthRequestModelImpl extends BaseModelImpl<SamlSpAuthRequest>
 	implements SamlSpAuthRequestModel {
 	/*
@@ -81,9 +84,9 @@ public class SamlSpAuthRequestModelImpl extends BaseModelImpl<SamlSpAuthRequest>
 	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.column.bitmask.enabled.com.liferay.saml.model.SamlSpAuthRequest"),
 			true);
-	public static long SAMLIDPENTITYID_COLUMN_BITMASK = 1L;
-	public static long SAMLSPAUTHREQUESTKEY_COLUMN_BITMASK = 2L;
-	public static long SAMLSPAUTHNREQUESTID_COLUMN_BITMASK = 4L;
+	public static final long SAMLIDPENTITYID_COLUMN_BITMASK = 1L;
+	public static final long SAMLSPAUTHREQUESTKEY_COLUMN_BITMASK = 2L;
+	public static final long SAMLSPAUTHNREQUESTID_COLUMN_BITMASK = 4L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.saml.model.SamlSpAuthRequest"));
 
@@ -445,8 +448,8 @@ public class SamlSpAuthRequestModelImpl extends BaseModelImpl<SamlSpAuthRequest>
 		return sb.toString();
 	}
 
-	private static ClassLoader _classLoader = SamlSpAuthRequest.class.getClassLoader();
-	private static Class<?>[] _escapedModelInterfaces = new Class[] {
+	private static final ClassLoader _classLoader = SamlSpAuthRequest.class.getClassLoader();
+	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
 			SamlSpAuthRequest.class
 		};
 	private long _samlSpAuthnRequestId;

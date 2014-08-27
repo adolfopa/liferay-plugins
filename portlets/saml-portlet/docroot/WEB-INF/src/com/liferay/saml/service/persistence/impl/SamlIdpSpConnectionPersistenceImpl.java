@@ -14,6 +14,8 @@
 
 package com.liferay.saml.service.persistence.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -63,6 +65,7 @@ import java.util.Set;
  * @see SamlIdpSpConnectionUtil
  * @generated
  */
+@ProviderType
 public class SamlIdpSpConnectionPersistenceImpl extends BasePersistenceImpl<SamlIdpSpConnection>
 	implements SamlIdpSpConnectionPersistence {
 	/*
@@ -1575,8 +1578,8 @@ public class SamlIdpSpConnectionPersistenceImpl extends BasePersistenceImpl<Saml
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No SamlIdpSpConnection exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
-	private static Log _log = LogFactoryUtil.getLog(SamlIdpSpConnectionPersistenceImpl.class);
-	private static SamlIdpSpConnection _nullSamlIdpSpConnection = new SamlIdpSpConnectionImpl() {
+	private static final Log _log = LogFactoryUtil.getLog(SamlIdpSpConnectionPersistenceImpl.class);
+	private static final SamlIdpSpConnection _nullSamlIdpSpConnection = new SamlIdpSpConnectionImpl() {
 			@Override
 			public Object clone() {
 				return this;
@@ -1588,7 +1591,7 @@ public class SamlIdpSpConnectionPersistenceImpl extends BasePersistenceImpl<Saml
 			}
 		};
 
-	private static CacheModel<SamlIdpSpConnection> _nullSamlIdpSpConnectionCacheModel =
+	private static final CacheModel<SamlIdpSpConnection> _nullSamlIdpSpConnectionCacheModel =
 		new CacheModel<SamlIdpSpConnection>() {
 			@Override
 			public SamlIdpSpConnection toEntityModel() {

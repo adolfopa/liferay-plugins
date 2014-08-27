@@ -14,6 +14,8 @@
 
 package com.liferay.saml.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
@@ -38,6 +40,7 @@ import java.util.Date;
  * @see com.liferay.saml.model.impl.SamlSpMessageModelImpl
  * @generated
  */
+@ProviderType
 public interface SamlSpMessageModel extends BaseModel<SamlSpMessage> {
 	/*
 	 * NOTE FOR DEVELOPERS:

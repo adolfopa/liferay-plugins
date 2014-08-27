@@ -14,6 +14,8 @@
 
 package com.liferay.saml.service.persistence.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -63,6 +65,7 @@ import java.util.Set;
  * @see SamlSpAuthRequestUtil
  * @generated
  */
+@ProviderType
 public class SamlSpAuthRequestPersistenceImpl extends BasePersistenceImpl<SamlSpAuthRequest>
 	implements SamlSpAuthRequestPersistence {
 	/*
@@ -1086,8 +1089,8 @@ public class SamlSpAuthRequestPersistenceImpl extends BasePersistenceImpl<SamlSp
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No SamlSpAuthRequest exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
-	private static Log _log = LogFactoryUtil.getLog(SamlSpAuthRequestPersistenceImpl.class);
-	private static SamlSpAuthRequest _nullSamlSpAuthRequest = new SamlSpAuthRequestImpl() {
+	private static final Log _log = LogFactoryUtil.getLog(SamlSpAuthRequestPersistenceImpl.class);
+	private static final SamlSpAuthRequest _nullSamlSpAuthRequest = new SamlSpAuthRequestImpl() {
 			@Override
 			public Object clone() {
 				return this;
@@ -1099,7 +1102,7 @@ public class SamlSpAuthRequestPersistenceImpl extends BasePersistenceImpl<SamlSp
 			}
 		};
 
-	private static CacheModel<SamlSpAuthRequest> _nullSamlSpAuthRequestCacheModel =
+	private static final CacheModel<SamlSpAuthRequest> _nullSamlSpAuthRequestCacheModel =
 		new CacheModel<SamlSpAuthRequest>() {
 			@Override
 			public SamlSpAuthRequest toEntityModel() {

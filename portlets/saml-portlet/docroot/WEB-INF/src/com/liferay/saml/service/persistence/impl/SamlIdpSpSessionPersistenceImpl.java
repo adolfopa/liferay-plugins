@@ -14,6 +14,8 @@
 
 package com.liferay.saml.service.persistence.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -63,6 +65,7 @@ import java.util.Set;
  * @see SamlIdpSpSessionUtil
  * @generated
  */
+@ProviderType
 public class SamlIdpSpSessionPersistenceImpl extends BasePersistenceImpl<SamlIdpSpSession>
 	implements SamlIdpSpSessionPersistence {
 	/*
@@ -1577,8 +1580,8 @@ public class SamlIdpSpSessionPersistenceImpl extends BasePersistenceImpl<SamlIdp
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No SamlIdpSpSession exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
-	private static Log _log = LogFactoryUtil.getLog(SamlIdpSpSessionPersistenceImpl.class);
-	private static SamlIdpSpSession _nullSamlIdpSpSession = new SamlIdpSpSessionImpl() {
+	private static final Log _log = LogFactoryUtil.getLog(SamlIdpSpSessionPersistenceImpl.class);
+	private static final SamlIdpSpSession _nullSamlIdpSpSession = new SamlIdpSpSessionImpl() {
 			@Override
 			public Object clone() {
 				return this;
@@ -1590,7 +1593,8 @@ public class SamlIdpSpSessionPersistenceImpl extends BasePersistenceImpl<SamlIdp
 			}
 		};
 
-	private static CacheModel<SamlIdpSpSession> _nullSamlIdpSpSessionCacheModel = new CacheModel<SamlIdpSpSession>() {
+	private static final CacheModel<SamlIdpSpSession> _nullSamlIdpSpSessionCacheModel =
+		new CacheModel<SamlIdpSpSession>() {
 			@Override
 			public SamlIdpSpSession toEntityModel() {
 				return _nullSamlIdpSpSession;

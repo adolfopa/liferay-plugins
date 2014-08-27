@@ -14,6 +14,8 @@
 
 package com.liferay.saml.service.persistence.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -63,6 +65,7 @@ import java.util.Set;
  * @see SamlSpMessageUtil
  * @generated
  */
+@ProviderType
 public class SamlSpMessagePersistenceImpl extends BasePersistenceImpl<SamlSpMessage>
 	implements SamlSpMessagePersistence {
 	/*
@@ -1080,8 +1083,8 @@ public class SamlSpMessagePersistenceImpl extends BasePersistenceImpl<SamlSpMess
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No SamlSpMessage exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
-	private static Log _log = LogFactoryUtil.getLog(SamlSpMessagePersistenceImpl.class);
-	private static SamlSpMessage _nullSamlSpMessage = new SamlSpMessageImpl() {
+	private static final Log _log = LogFactoryUtil.getLog(SamlSpMessagePersistenceImpl.class);
+	private static final SamlSpMessage _nullSamlSpMessage = new SamlSpMessageImpl() {
 			@Override
 			public Object clone() {
 				return this;
@@ -1093,7 +1096,7 @@ public class SamlSpMessagePersistenceImpl extends BasePersistenceImpl<SamlSpMess
 			}
 		};
 
-	private static CacheModel<SamlSpMessage> _nullSamlSpMessageCacheModel = new CacheModel<SamlSpMessage>() {
+	private static final CacheModel<SamlSpMessage> _nullSamlSpMessageCacheModel = new CacheModel<SamlSpMessage>() {
 			@Override
 			public SamlSpMessage toEntityModel() {
 				return _nullSamlSpMessage;

@@ -14,6 +14,8 @@
 
 package com.liferay.saml.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.model.AuditedModel;
 import com.liferay.portal.model.BaseModel;
@@ -39,6 +41,7 @@ import java.util.Date;
  * @see com.liferay.saml.model.impl.SamlSpSessionModelImpl
  * @generated
  */
+@ProviderType
 public interface SamlSpSessionModel extends AuditedModel,
 	BaseModel<SamlSpSession> {
 	/*

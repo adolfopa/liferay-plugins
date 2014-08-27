@@ -14,6 +14,8 @@
 
 package com.liferay.saml.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -36,6 +38,7 @@ import java.util.List;
  * @see SamlSpSessionPersistenceImpl
  * @generated
  */
+@ProviderType
 public class SamlSpSessionUtil {
 	/*
 	 * NOTE FOR DEVELOPERS:
@@ -163,6 +166,64 @@ public class SamlSpSessionUtil {
 	*/
 	public static int countBySamlSpSessionKey(java.lang.String samlSpSessionKey) {
 		return getPersistence().countBySamlSpSessionKey(samlSpSessionKey);
+	}
+
+	/**
+	* Returns the saml sp session where jSessionId = &#63; or throws a {@link com.liferay.saml.NoSuchSpSessionException} if it could not be found.
+	*
+	* @param jSessionId the j session ID
+	* @return the matching saml sp session
+	* @throws com.liferay.saml.NoSuchSpSessionException if a matching saml sp session could not be found
+	*/
+	public static com.liferay.saml.model.SamlSpSession findByJSessionId(
+		java.lang.String jSessionId)
+		throws com.liferay.saml.NoSuchSpSessionException {
+		return getPersistence().findByJSessionId(jSessionId);
+	}
+
+	/**
+	* Returns the saml sp session where jSessionId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	*
+	* @param jSessionId the j session ID
+	* @return the matching saml sp session, or <code>null</code> if a matching saml sp session could not be found
+	*/
+	public static com.liferay.saml.model.SamlSpSession fetchByJSessionId(
+		java.lang.String jSessionId) {
+		return getPersistence().fetchByJSessionId(jSessionId);
+	}
+
+	/**
+	* Returns the saml sp session where jSessionId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	*
+	* @param jSessionId the j session ID
+	* @param retrieveFromCache whether to use the finder cache
+	* @return the matching saml sp session, or <code>null</code> if a matching saml sp session could not be found
+	*/
+	public static com.liferay.saml.model.SamlSpSession fetchByJSessionId(
+		java.lang.String jSessionId, boolean retrieveFromCache) {
+		return getPersistence().fetchByJSessionId(jSessionId, retrieveFromCache);
+	}
+
+	/**
+	* Removes the saml sp session where jSessionId = &#63; from the database.
+	*
+	* @param jSessionId the j session ID
+	* @return the saml sp session that was removed
+	*/
+	public static com.liferay.saml.model.SamlSpSession removeByJSessionId(
+		java.lang.String jSessionId)
+		throws com.liferay.saml.NoSuchSpSessionException {
+		return getPersistence().removeByJSessionId(jSessionId);
+	}
+
+	/**
+	* Returns the number of saml sp sessions where jSessionId = &#63;.
+	*
+	* @param jSessionId the j session ID
+	* @return the number of matching saml sp sessions
+	*/
+	public static int countByJSessionId(java.lang.String jSessionId) {
+		return getPersistence().countByJSessionId(jSessionId);
 	}
 
 	/**
@@ -308,64 +369,6 @@ public class SamlSpSessionUtil {
 	*/
 	public static int countByNameIdValue(java.lang.String nameIdValue) {
 		return getPersistence().countByNameIdValue(nameIdValue);
-	}
-
-	/**
-	* Returns the saml sp session where jSessionId = &#63; or throws a {@link com.liferay.saml.NoSuchSpSessionException} if it could not be found.
-	*
-	* @param jSessionId the j session ID
-	* @return the matching saml sp session
-	* @throws com.liferay.saml.NoSuchSpSessionException if a matching saml sp session could not be found
-	*/
-	public static com.liferay.saml.model.SamlSpSession findByJSessionId(
-		java.lang.String jSessionId)
-		throws com.liferay.saml.NoSuchSpSessionException {
-		return getPersistence().findByJSessionId(jSessionId);
-	}
-
-	/**
-	* Returns the saml sp session where jSessionId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
-	*
-	* @param jSessionId the j session ID
-	* @return the matching saml sp session, or <code>null</code> if a matching saml sp session could not be found
-	*/
-	public static com.liferay.saml.model.SamlSpSession fetchByJSessionId(
-		java.lang.String jSessionId) {
-		return getPersistence().fetchByJSessionId(jSessionId);
-	}
-
-	/**
-	* Returns the saml sp session where jSessionId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
-	*
-	* @param jSessionId the j session ID
-	* @param retrieveFromCache whether to use the finder cache
-	* @return the matching saml sp session, or <code>null</code> if a matching saml sp session could not be found
-	*/
-	public static com.liferay.saml.model.SamlSpSession fetchByJSessionId(
-		java.lang.String jSessionId, boolean retrieveFromCache) {
-		return getPersistence().fetchByJSessionId(jSessionId, retrieveFromCache);
-	}
-
-	/**
-	* Removes the saml sp session where jSessionId = &#63; from the database.
-	*
-	* @param jSessionId the j session ID
-	* @return the saml sp session that was removed
-	*/
-	public static com.liferay.saml.model.SamlSpSession removeByJSessionId(
-		java.lang.String jSessionId)
-		throws com.liferay.saml.NoSuchSpSessionException {
-		return getPersistence().removeByJSessionId(jSessionId);
-	}
-
-	/**
-	* Returns the number of saml sp sessions where jSessionId = &#63;.
-	*
-	* @param jSessionId the j session ID
-	* @return the number of matching saml sp sessions
-	*/
-	public static int countByJSessionId(java.lang.String jSessionId) {
-		return getPersistence().countByJSessionId(jSessionId);
 	}
 
 	/**

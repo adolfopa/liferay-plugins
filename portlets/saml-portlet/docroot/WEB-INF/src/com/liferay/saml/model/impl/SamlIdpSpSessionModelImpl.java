@@ -14,6 +14,8 @@
 
 package com.liferay.saml.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -53,6 +55,7 @@ import java.util.Map;
  * @see com.liferay.saml.model.SamlIdpSpSessionModel
  * @generated
  */
+@ProviderType
 public class SamlIdpSpSessionModelImpl extends BaseModelImpl<SamlIdpSpSession>
 	implements SamlIdpSpSessionModel {
 	/*
@@ -89,9 +92,9 @@ public class SamlIdpSpSessionModelImpl extends BaseModelImpl<SamlIdpSpSession>
 	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.column.bitmask.enabled.com.liferay.saml.model.SamlIdpSpSession"),
 			true);
-	public static long SAMLIDPSSOSESSIONID_COLUMN_BITMASK = 1L;
-	public static long SAMLSPENTITYID_COLUMN_BITMASK = 2L;
-	public static long SAMLIDPSPSESSIONID_COLUMN_BITMASK = 4L;
+	public static final long SAMLIDPSSOSESSIONID_COLUMN_BITMASK = 1L;
+	public static final long SAMLSPENTITYID_COLUMN_BITMASK = 2L;
+	public static final long SAMLIDPSPSESSIONID_COLUMN_BITMASK = 4L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.saml.model.SamlIdpSpSession"));
 
@@ -630,8 +633,8 @@ public class SamlIdpSpSessionModelImpl extends BaseModelImpl<SamlIdpSpSession>
 		return sb.toString();
 	}
 
-	private static ClassLoader _classLoader = SamlIdpSpSession.class.getClassLoader();
-	private static Class<?>[] _escapedModelInterfaces = new Class[] {
+	private static final ClassLoader _classLoader = SamlIdpSpSession.class.getClassLoader();
+	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
 			SamlIdpSpSession.class
 		};
 	private long _samlIdpSpSessionId;

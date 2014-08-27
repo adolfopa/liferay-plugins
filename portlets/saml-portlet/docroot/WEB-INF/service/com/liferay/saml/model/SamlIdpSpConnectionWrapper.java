@@ -14,6 +14,8 @@
 
 package com.liferay.saml.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
@@ -30,6 +32,7 @@ import java.util.Map;
  * @see SamlIdpSpConnection
  * @generated
  */
+@ProviderType
 public class SamlIdpSpConnectionWrapper implements SamlIdpSpConnection,
 	ModelWrapper<SamlIdpSpConnection> {
 	public SamlIdpSpConnectionWrapper(SamlIdpSpConnection samlIdpSpConnection) {
@@ -769,5 +772,5 @@ public class SamlIdpSpConnectionWrapper implements SamlIdpSpConnection,
 		_samlIdpSpConnection.resetOriginalValues();
 	}
 
-	private SamlIdpSpConnection _samlIdpSpConnection;
+	private final SamlIdpSpConnection _samlIdpSpConnection;
 }

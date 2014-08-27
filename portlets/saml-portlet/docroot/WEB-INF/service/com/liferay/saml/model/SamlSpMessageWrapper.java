@@ -14,6 +14,8 @@
 
 package com.liferay.saml.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
@@ -30,6 +32,7 @@ import java.util.Map;
  * @see SamlSpMessage
  * @generated
  */
+@ProviderType
 public class SamlSpMessageWrapper implements SamlSpMessage,
 	ModelWrapper<SamlSpMessage> {
 	public SamlSpMessageWrapper(SamlSpMessage samlSpMessage) {
@@ -394,5 +397,5 @@ public class SamlSpMessageWrapper implements SamlSpMessage,
 		_samlSpMessage.resetOriginalValues();
 	}
 
-	private SamlSpMessage _samlSpMessage;
+	private final SamlSpMessage _samlSpMessage;
 }

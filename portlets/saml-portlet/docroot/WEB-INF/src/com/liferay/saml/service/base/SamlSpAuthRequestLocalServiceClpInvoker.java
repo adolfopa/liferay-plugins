@@ -14,6 +14,8 @@
 
 package com.liferay.saml.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.saml.service.SamlSpAuthRequestLocalServiceUtil;
 
 import java.util.Arrays;
@@ -22,6 +24,7 @@ import java.util.Arrays;
  * @author Mika Koivisto
  * @generated
  */
+@ProviderType
 public class SamlSpAuthRequestLocalServiceClpInvoker {
 	public SamlSpAuthRequestLocalServiceClpInvoker() {
 		_methodName0 = "addSamlSpAuthRequest";

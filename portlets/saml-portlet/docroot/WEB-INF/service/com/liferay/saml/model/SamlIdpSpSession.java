@@ -14,6 +14,8 @@
 
 package com.liferay.saml.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.model.PersistedModel;
 
 /**
@@ -25,6 +27,7 @@ import com.liferay.portal.model.PersistedModel;
  * @see com.liferay.saml.model.impl.SamlIdpSpSessionModelImpl
  * @generated
  */
+@ProviderType
 public interface SamlIdpSpSession extends SamlIdpSpSessionModel, PersistedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:

@@ -14,6 +14,8 @@
 
 package com.liferay.saml.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.persistence.BasePersistence;
 
 import com.liferay.saml.model.SamlIdpSpConnection;
@@ -30,6 +32,7 @@ import com.liferay.saml.model.SamlIdpSpConnection;
  * @see SamlIdpSpConnectionUtil
  * @generated
  */
+@ProviderType
 public interface SamlIdpSpConnectionPersistence extends BasePersistence<SamlIdpSpConnection> {
 	/*
 	 * NOTE FOR DEVELOPERS:

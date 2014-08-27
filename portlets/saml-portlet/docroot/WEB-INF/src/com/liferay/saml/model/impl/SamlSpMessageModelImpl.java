@@ -14,6 +14,8 @@
 
 package com.liferay.saml.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
@@ -50,6 +52,7 @@ import java.util.Map;
  * @see com.liferay.saml.model.SamlSpMessageModel
  * @generated
  */
+@ProviderType
 public class SamlSpMessageModelImpl extends BaseModelImpl<SamlSpMessage>
 	implements SamlSpMessageModel {
 	/*
@@ -82,9 +85,9 @@ public class SamlSpMessageModelImpl extends BaseModelImpl<SamlSpMessage>
 	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.column.bitmask.enabled.com.liferay.saml.model.SamlSpMessage"),
 			true);
-	public static long SAMLIDPENTITYID_COLUMN_BITMASK = 1L;
-	public static long SAMLIDPRESPONSEKEY_COLUMN_BITMASK = 2L;
-	public static long SAMLSPMESSAGEID_COLUMN_BITMASK = 4L;
+	public static final long SAMLIDPENTITYID_COLUMN_BITMASK = 1L;
+	public static final long SAMLIDPRESPONSEKEY_COLUMN_BITMASK = 2L;
+	public static final long SAMLSPMESSAGEID_COLUMN_BITMASK = 4L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.saml.model.SamlSpMessage"));
 
@@ -477,8 +480,8 @@ public class SamlSpMessageModelImpl extends BaseModelImpl<SamlSpMessage>
 		return sb.toString();
 	}
 
-	private static ClassLoader _classLoader = SamlSpMessage.class.getClassLoader();
-	private static Class<?>[] _escapedModelInterfaces = new Class[] {
+	private static final ClassLoader _classLoader = SamlSpMessage.class.getClassLoader();
+	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
 			SamlSpMessage.class
 		};
 	private long _samlSpMessageId;

@@ -14,12 +14,15 @@
 
 package com.liferay.saml.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * @author Mika Koivisto
  * @generated
  */
+@ProviderType
 public class SamlSpAuthRequestLocalServiceClp
 	implements SamlSpAuthRequestLocalService {
 	public SamlSpAuthRequestLocalServiceClp(

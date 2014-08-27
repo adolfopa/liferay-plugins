@@ -14,6 +14,8 @@
 
 package com.liferay.saml.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import java.io.Serializable;
 
 import java.util.ArrayList;
@@ -26,6 +28,7 @@ import java.util.List;
  * @author Mika Koivisto
  * @generated
  */
+@ProviderType
 public class SamlIdpSpConnectionSoap implements Serializable {
 	public static SamlIdpSpConnectionSoap toSoapModel(SamlIdpSpConnection model) {
 		SamlIdpSpConnectionSoap soapModel = new SamlIdpSpConnectionSoap();

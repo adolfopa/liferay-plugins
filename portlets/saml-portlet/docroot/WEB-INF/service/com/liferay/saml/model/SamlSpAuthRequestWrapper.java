@@ -14,6 +14,8 @@
 
 package com.liferay.saml.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
@@ -30,6 +32,7 @@ import java.util.Map;
  * @see SamlSpAuthRequest
  * @generated
  */
+@ProviderType
 public class SamlSpAuthRequestWrapper implements SamlSpAuthRequest,
 	ModelWrapper<SamlSpAuthRequest> {
 	public SamlSpAuthRequestWrapper(SamlSpAuthRequest samlSpAuthRequest) {
@@ -365,5 +368,5 @@ public class SamlSpAuthRequestWrapper implements SamlSpAuthRequest,
 		_samlSpAuthRequest.resetOriginalValues();
 	}
 
-	private SamlSpAuthRequest _samlSpAuthRequest;
+	private final SamlSpAuthRequest _samlSpAuthRequest;
 }

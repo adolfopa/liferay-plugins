@@ -14,6 +14,8 @@
 
 package com.liferay.saml.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.saml.model.SamlSpAuthRequest;
 import com.liferay.saml.service.SamlSpAuthRequestLocalServiceUtil;
 
@@ -29,6 +31,7 @@ import com.liferay.saml.service.SamlSpAuthRequestLocalServiceUtil;
  * @see com.liferay.saml.model.SamlSpAuthRequest
  * @generated
  */
+@ProviderType
 public abstract class SamlSpAuthRequestBaseImpl
 	extends SamlSpAuthRequestModelImpl implements SamlSpAuthRequest {
 	/*

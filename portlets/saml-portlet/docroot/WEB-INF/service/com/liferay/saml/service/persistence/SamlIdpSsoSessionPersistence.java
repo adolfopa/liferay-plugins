@@ -14,6 +14,8 @@
 
 package com.liferay.saml.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.persistence.BasePersistence;
 
 import com.liferay.saml.model.SamlIdpSsoSession;
@@ -30,6 +32,7 @@ import com.liferay.saml.model.SamlIdpSsoSession;
  * @see SamlIdpSsoSessionUtil
  * @generated
  */
+@ProviderType
 public interface SamlIdpSsoSessionPersistence extends BasePersistence<SamlIdpSsoSession> {
 	/*
 	 * NOTE FOR DEVELOPERS:

@@ -14,6 +14,8 @@
 
 package com.liferay.saml.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.saml.model.SamlSpIdpConnection;
 import com.liferay.saml.service.SamlSpIdpConnectionLocalServiceUtil;
 
@@ -29,6 +31,7 @@ import com.liferay.saml.service.SamlSpIdpConnectionLocalServiceUtil;
  * @see com.liferay.saml.model.SamlSpIdpConnection
  * @generated
  */
+@ProviderType
 public abstract class SamlSpIdpConnectionBaseImpl
 	extends SamlSpIdpConnectionModelImpl implements SamlSpIdpConnection {
 	/*

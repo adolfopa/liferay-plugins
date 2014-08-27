@@ -14,6 +14,8 @@
 
 package com.liferay.saml.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -53,6 +55,7 @@ import java.util.Map;
  * @see com.liferay.saml.model.SamlSpSessionModel
  * @generated
  */
+@ProviderType
 public class SamlSpSessionModelImpl extends BaseModelImpl<SamlSpSession>
 	implements SamlSpSessionModel {
 	/*
@@ -94,11 +97,11 @@ public class SamlSpSessionModelImpl extends BaseModelImpl<SamlSpSession>
 	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.column.bitmask.enabled.com.liferay.saml.model.SamlSpSession"),
 			true);
-	public static long JSESSIONID_COLUMN_BITMASK = 1L;
-	public static long NAMEIDVALUE_COLUMN_BITMASK = 2L;
-	public static long SAMLSPSESSIONKEY_COLUMN_BITMASK = 4L;
-	public static long SESSIONINDEX_COLUMN_BITMASK = 8L;
-	public static long SAMLSPSESSIONID_COLUMN_BITMASK = 16L;
+	public static final long JSESSIONID_COLUMN_BITMASK = 1L;
+	public static final long NAMEIDVALUE_COLUMN_BITMASK = 2L;
+	public static final long SAMLSPSESSIONKEY_COLUMN_BITMASK = 4L;
+	public static final long SESSIONINDEX_COLUMN_BITMASK = 8L;
+	public static final long SAMLSPSESSIONID_COLUMN_BITMASK = 16L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.saml.model.SamlSpSession"));
 
@@ -851,8 +854,8 @@ public class SamlSpSessionModelImpl extends BaseModelImpl<SamlSpSession>
 		return sb.toString();
 	}
 
-	private static ClassLoader _classLoader = SamlSpSession.class.getClassLoader();
-	private static Class<?>[] _escapedModelInterfaces = new Class[] {
+	private static final ClassLoader _classLoader = SamlSpSession.class.getClassLoader();
+	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
 			SamlSpSession.class
 		};
 	private long _samlSpSessionId;

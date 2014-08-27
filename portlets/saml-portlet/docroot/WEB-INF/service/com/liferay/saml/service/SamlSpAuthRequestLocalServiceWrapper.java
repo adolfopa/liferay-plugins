@@ -14,6 +14,8 @@
 
 package com.liferay.saml.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.ServiceWrapper;
 
 /**
@@ -23,6 +25,7 @@ import com.liferay.portal.service.ServiceWrapper;
  * @see SamlSpAuthRequestLocalService
  * @generated
  */
+@ProviderType
 public class SamlSpAuthRequestLocalServiceWrapper
 	implements SamlSpAuthRequestLocalService,
 		ServiceWrapper<SamlSpAuthRequestLocalService> {

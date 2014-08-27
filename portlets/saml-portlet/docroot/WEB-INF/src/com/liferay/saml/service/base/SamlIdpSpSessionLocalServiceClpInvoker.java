@@ -14,6 +14,8 @@
 
 package com.liferay.saml.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.saml.service.SamlIdpSpSessionLocalServiceUtil;
 
 import java.util.Arrays;
@@ -22,6 +24,7 @@ import java.util.Arrays;
  * @author Mika Koivisto
  * @generated
  */
+@ProviderType
 public class SamlIdpSpSessionLocalServiceClpInvoker {
 	public SamlIdpSpSessionLocalServiceClpInvoker() {
 		_methodName0 = "addSamlIdpSpSession";

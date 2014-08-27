@@ -14,6 +14,8 @@
 
 package com.liferay.saml.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.persistence.BasePersistence;
 
 import com.liferay.saml.model.SamlSpMessage;
@@ -30,6 +32,7 @@ import com.liferay.saml.model.SamlSpMessage;
  * @see SamlSpMessageUtil
  * @generated
  */
+@ProviderType
 public interface SamlSpMessagePersistence extends BasePersistence<SamlSpMessage> {
 	/*
 	 * NOTE FOR DEVELOPERS:

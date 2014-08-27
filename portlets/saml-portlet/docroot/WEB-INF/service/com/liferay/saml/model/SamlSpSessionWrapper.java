@@ -14,6 +14,8 @@
 
 package com.liferay.saml.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
@@ -30,6 +32,7 @@ import java.util.Map;
  * @see SamlSpSession
  * @generated
  */
+@ProviderType
 public class SamlSpSessionWrapper implements SamlSpSession,
 	ModelWrapper<SamlSpSession> {
 	public SamlSpSessionWrapper(SamlSpSession samlSpSession) {
@@ -664,5 +667,5 @@ public class SamlSpSessionWrapper implements SamlSpSession,
 		_samlSpSession.resetOriginalValues();
 	}
 
-	private SamlSpSession _samlSpSession;
+	private final SamlSpSession _samlSpSession;
 }
