@@ -79,7 +79,9 @@ public class SamlIdpSpSessionLocalServiceImpl
 	}
 
 	@Override
-	public List<SamlIdpSpSession> getSamlIdpSpSessions(long samlIdpSsoSessionId) {
+	public List<SamlIdpSpSession> getSamlIdpSpSessions(
+		long samlIdpSsoSessionId) {
+
 		return samlIdpSpSessionPersistence.findBySamlIdpSsoSessionId(
 			samlIdpSsoSessionId);
 	}
