@@ -42,12 +42,20 @@ public class MoveSharepointObjectOperation extends BaseOperation {
 		throws SharepointException {
 
 		if (isRename(path, newPath)) {
+			String oldExtension = pathHelper.getExtension(path);
+
+			String newExtension = pathHelper.getExtension(newPath);
+
+			if (!oldExtension.equals(newExtension)) {
+				throw new SharepointException(
+					"Sharepoint does not support changing file extensions");
+			}
+
 			SharepointObject sharepointObject =
 				_getSharepointObjectByPathOperation.execute(path);
 
 			URL url = sharepointObject.getURL();
 			String newName = pathHelper.getNameWithoutExtension(newPath);
-			String newExtension = pathHelper.getExtension(newPath);
 
 			_batchOperation.execute(
 				new Batch(
@@ -58,8 +66,7 @@ public class MoveSharepointObjectOperation extends BaseOperation {
 						new BatchField(
 							"ID", sharepointObject.getSharepointObjectId()),
 						new BatchField("FileRef", url.toString()),
-						new BatchField("BaseName", newName),
-						new BatchField("File_x0020_Type", newExtension))));
+						new BatchField("BaseName", newName))));
 		}
 		else {
 			_copySharepointObjectOperation.execute(path, newPath);

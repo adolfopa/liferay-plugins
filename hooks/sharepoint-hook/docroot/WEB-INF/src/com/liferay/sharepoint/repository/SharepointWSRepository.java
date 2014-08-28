@@ -765,6 +765,13 @@ public class SharepointWSRepository
 
 			String newPath = pathHelper.buildPath(folderPath, newTitle);
 
+			newPath = _resetNewPathExtension(path, newPath);
+
+			if (path.equals(newPath)) {
+				return toExtRepositoryObject(
+					extRepositoryObjectType, sharepointObject);
+			}
+
 			if ((extRepositoryObjectType == ExtRepositoryObjectType.FILE) &&
 				!isCheckedOut(sharepointObject)) {
 
@@ -998,6 +1005,23 @@ public class SharepointWSRepository
 
 	protected static PathHelper pathHelper = new PathHelper();
 	protected static URLHelper urlHelper = new URLHelper();
+
+	private String _resetNewPathExtension(String oldPath, String newPath) {
+		String oldExtension = pathHelper.getExtension(oldPath);
+
+		String newExtension = pathHelper.getExtension(newPath);
+
+		if (newExtension.equals(oldExtension)) {
+			return newPath;
+		}
+
+		String parentFolderPath = pathHelper.getParentFolderPath(newPath);
+
+		String newName = pathHelper.getNameWithoutExtension(newPath);
+
+		return pathHelper.buildPath(
+			parentFolderPath, newName + "." + oldExtension);
+	}
 
 	private static final String _CONFIGURATION_WS = "SHAREPOINT_WS";
 
