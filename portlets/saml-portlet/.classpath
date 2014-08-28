@@ -59,6 +59,7 @@
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/opensaml.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/openws.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/portal-compat-shared.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/saml-shared.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/servlet-api.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/xalan.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/xercesImpl.jar" />

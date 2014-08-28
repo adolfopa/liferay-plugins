@@ -1,3 +1,5 @@
+/bcpkix-jdk15on.jar
+/bcprov-jdk15on.jar
 /commons-codec.jar
 /commons-collections.jar
 /commons-httpclient.jar
@@ -6,6 +8,8 @@
 /jstl-api.jar
 /jstl-impl.jar
 /log4j.jar
+/portal-compat-shared.jar
+/saml-shared.jar
 /serializer.jar
 /slf4j-api.jar
 /util-bridges.jar
