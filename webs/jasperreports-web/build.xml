@@ -2,9 +2,9 @@
 <!DOCTYPE project>
 
 <project name="jasperreports-web" basedir="." default="deploy">
-	<import file="../build-common-web.xml" />
-
 	<property name="original.war.file" value="jasperreports-5.2.0-project.zip" />
+
+	<import file="../build-common-web.xml" />
 
 	<target name="merge-unzip">
 		<unzip
