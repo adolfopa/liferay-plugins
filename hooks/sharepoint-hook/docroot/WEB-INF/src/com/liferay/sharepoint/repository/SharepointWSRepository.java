@@ -765,7 +765,7 @@ public class SharepointWSRepository
 
 			String newPath = pathHelper.buildPath(folderPath, newTitle);
 
-			newPath = _resetNewPathExtension(path, newPath);
+			newPath = resetNewPathExtension(path, newPath);
 
 			if (path.equals(newPath)) {
 				return toExtRepositoryObject(
@@ -1006,7 +1006,7 @@ public class SharepointWSRepository
 	protected static PathHelper pathHelper = new PathHelper();
 	protected static URLHelper urlHelper = new URLHelper();
 
-	private String _resetNewPathExtension(String oldPath, String newPath) {
+	protected String resetNewPathExtension(String oldPath, String newPath) {
 		String oldExtension = pathHelper.getExtension(oldPath);
 
 		String newExtension = pathHelper.getExtension(newPath);
