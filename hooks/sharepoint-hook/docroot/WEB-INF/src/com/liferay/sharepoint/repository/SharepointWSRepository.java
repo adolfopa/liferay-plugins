@@ -24,7 +24,6 @@ import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portlet.documentlibrary.DuplicateFileException;
 import com.liferay.portlet.documentlibrary.DuplicateFolderNameException;
@@ -772,20 +771,7 @@ public class SharepointWSRepository
 					extRepositoryObjectType, sharepointObject);
 			}
 
-			if ((extRepositoryObjectType == ExtRepositoryObjectType.FILE) &&
-				!isCheckedOut(sharepointObject)) {
-
-				sharepointConnection.checkOutFile(path);
-			}
-
 			sharepointConnection.moveSharepointObject(path, newPath);
-
-			if ((extRepositoryObjectType == ExtRepositoryObjectType.FILE) &&
-				!isCheckedOut(sharepointObject)) {
-
-				sharepointConnection.checkInFile(
-					newPath, StringPool.BLANK, CheckInType.MAJOR);
-			}
 
 			sharepointObject = sharepointConnection.getSharepointObject(
 				newPath);
@@ -913,16 +899,6 @@ public class SharepointWSRepository
 		catch (SharepointException se) {
 			throw new SystemException(se);
 		}
-	}
-
-	protected boolean isCheckedOut(SharepointObject sharepointObject) {
-		String checkedOutBy = sharepointObject.getCheckedOutBy();
-
-		if (Validator.isNull(checkedOutBy)) {
-			return false;
-		}
-
-		return true;
 	}
 
 	protected void processSharepointObjectException(
