@@ -820,11 +820,17 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 			InputStream inputStream = _extRepository.getContentStream(
 				extRepositoryFileVersion);
 
-			try {
-				_extRepository.checkOutExtRepositoryFileEntry(
-					extRepositoryFileEntryKey);
-			}
-			catch (UnsupportedOperationException uoe) {
+			boolean needsCheckIn = false;
+
+			if (!isCheckedOut(extRepositoryFileEntry)) {
+				try {
+					_extRepository.checkOutExtRepositoryFileEntry(
+						extRepositoryFileEntryKey);
+
+					needsCheckIn = true;
+				}
+				catch (UnsupportedOperationException uoe) {
+				}
 			}
 
 			_extRepository.updateExtRepositoryFileEntry(
@@ -833,11 +839,13 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 
 			String changeLog = "Reverted to " + version;
 
-			try {
-				_extRepository.checkInExtRepositoryFileEntry(
-					extRepositoryFileEntryKey, true, changeLog);
-			}
-			catch (UnsupportedOperationException uoe) {
+			if (needsCheckIn) {
+				try {
+					_extRepository.checkInExtRepositoryFileEntry(
+						extRepositoryFileEntryKey, true, changeLog);
+				}
+				catch (UnsupportedOperationException uoe) {
+				}
 			}
 		}
 		else {
