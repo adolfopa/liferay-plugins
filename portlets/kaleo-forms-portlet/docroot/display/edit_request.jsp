@@ -41,6 +41,7 @@ long groupId = BeanParamUtil.getLong(kaleoProcess, request, "groupId", scopeGrou
 	<aui:input name="groupId" type="hidden" value="<%= groupId %>" />
 	<aui:input name="ddlRecordSetId" type="hidden" value="<%= String.valueOf(kaleoProcess.getDDLRecordSetId()) %>" />
 	<aui:input name="ddmTemplateId" type="hidden" value="<%= String.valueOf(kaleoProcess.getDDMTemplateId()) %>" />
+	<aui:input name="defaultLanguageId" type="hidden" value="<%= themeDisplay.getLanguageId() %>" />
 	<aui:input name="workflowAction" type="hidden" value="<%= WorkflowConstants.ACTION_PUBLISH %>" />
 
 	<aui:fieldset>
