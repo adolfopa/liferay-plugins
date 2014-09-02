@@ -24,11 +24,11 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.oauth.OAuthException;
 import com.liferay.portal.kernel.util.Digester;
 import com.liferay.portal.kernel.util.DigesterUtil;
-import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.PwdGenerator;
+import com.liferay.util.portlet.PortletProps;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -46,6 +46,7 @@ import net.oauth.server.OAuthServlet;
 /**
  * @author Ivica Cardic
  * @author Raymond Augé
+ * @author Igor Beslic
  */
 public class V10aOAuth implements OAuth {
 
@@ -273,17 +274,11 @@ public class V10aOAuth implements OAuth {
 			Exception exception, boolean sendBody)
 		throws OAuthException {
 
-		String realm = Http.HTTP_WITH_SLASH;
-
-		if (request.isSecure()) {
-			realm = Http.HTTPS_WITH_SLASH;
-		}
-
-		realm = realm.concat(request.getLocalName());
-
 		if (exception.getCause() != null) {
 			exception = (Exception)exception.getCause();
 		}
+
+		String realm = PortletProps.get("oauth.realm");
 
 		try {
 			OAuthServlet.handleException(response, exception, realm, sendBody);
