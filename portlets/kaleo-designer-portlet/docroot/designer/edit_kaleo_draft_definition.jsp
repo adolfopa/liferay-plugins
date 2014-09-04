@@ -429,9 +429,9 @@
 
 							var content = A.one('#<portlet:namespace />content');
 
-							var activeTab = <portlet:namespace />kaleoDesigner.contentTabView.get('selection');
+							var activeTab = <portlet:namespace />kaleoDesigner.contentTabView.getActiveTab();
 
-							if (activeTab.get('contentNode') === <portlet:namespace />kaleoDesigner.sourceNode) {
+							if (activeTab === <portlet:namespace />kaleoDesigner.sourceNode) {
 								content.val(<portlet:namespace />kaleoDesigner.editor.get('value'));
 							}
 							else {
