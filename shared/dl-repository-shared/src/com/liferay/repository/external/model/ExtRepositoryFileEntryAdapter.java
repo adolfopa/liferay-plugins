@@ -36,7 +36,6 @@ import com.liferay.repository.external.ExtRepositoryAdapter;
 import com.liferay.repository.external.ExtRepositoryFileEntry;
 
 import java.io.InputStream;
-
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -84,6 +83,11 @@ public class ExtRepositoryFileEntryAdapter
 	@Override
 	public long getFileEntryId() {
 		return getPrimaryKey();
+	}
+
+	@Override
+	public String getFileName() {
+		return DLUtil.getSanitizedFileName(getTitle(), getExtension());
 	}
 
 	@Override
