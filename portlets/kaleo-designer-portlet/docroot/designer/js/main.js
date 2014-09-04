@@ -16,7 +16,6 @@ AUI.add(
 		var emptyFn = Lang.emptyFn;
 		var emptyFnFalse = Lang.emptyFnFalse;
 		var isArray = Lang.isArray;
-		var isBoolean = Lang.isBoolean;
 		var isNumber = Lang.isNumber;
 		var isObject = Lang.isObject;
 		var isString = Lang.isString;
