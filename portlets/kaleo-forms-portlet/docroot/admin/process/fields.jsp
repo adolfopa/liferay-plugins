@@ -52,6 +52,7 @@ JSONArray availableDefinitionsJSONArray = JSONFactoryUtil.createJSONArray();
 
 	<aui:input name="ddlRecordSetId" type="hidden" value="<%= ddlRecordSetId %>" />
 	<aui:input name="ddmStructureId" type="hidden" value="<%= ddmStructureId %>" />
+	<aui:input name="oldDDMStructureId" type="hidden" value="<%= ddmStructureId %>" />
 
 	<aui:input name="ddmStructureName" type="hidden" value="<%= ddmStructureName %>">
 		<aui:validator name="required" />

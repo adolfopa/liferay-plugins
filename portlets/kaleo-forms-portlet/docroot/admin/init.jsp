@@ -55,7 +55,6 @@ page import="com.liferay.portlet.dynamicdatalists.RecordSetNameException" %><%@
 page import="com.liferay.portlet.dynamicdatalists.model.DDLRecordConstants" %><%@
 page import="com.liferay.portlet.dynamicdatalists.model.DDLRecordVersion" %><%@
 page import="com.liferay.portlet.dynamicdatalists.service.DDLRecordServiceUtil" %><%@
-page import="com.liferay.portlet.dynamicdatalists.service.DDLRecordSetLocalServiceUtil" %><%@
 page import="com.liferay.portlet.dynamicdatamapping.RequiredStructureException" %><%@
 page import="com.liferay.portlet.dynamicdatamapping.model.DDMFormField" %><%@
 page import="com.liferay.portlet.dynamicdatamapping.model.DDMTemplateConstants" %><%@

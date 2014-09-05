@@ -25,16 +25,6 @@ long kaleoProcessId = BeanParamUtil.getLong(kaleoProcess, request, "kaleoProcess
 
 long groupId = BeanParamUtil.getLong(kaleoProcess, request, "groupId", scopeGroupId);
 
-long ddlRecordSetId = BeanParamUtil.getLong(kaleoProcess, request, "DDLRecordSetId");
-
-DDLRecordSet ddlRecordSet = null;
-
-if (ddlRecordSetId > 0) {
-	ddlRecordSet = DDLRecordSetLocalServiceUtil.getRecordSet(ddlRecordSetId);
-}
-
-long ddmStructureId = BeanParamUtil.getLong(ddlRecordSet, request, "DDMStructureId");
-
 boolean kaleoProcessStarted = false;
 
 String kaleoProcessName = StringPool.BLANK;
@@ -67,7 +57,6 @@ if (kaleoProcess != null) {
 	<aui:input name="kaleoProcessId" type="hidden" value="<%= kaleoProcessId %>" />
 	<aui:input name="groupId" type="hidden" value="<%= groupId %>" />
 	<aui:input name="scope" type="hidden" value="1" />
-	<aui:input name="oldDDMStructureId" type="hidden" value="<%= ddmStructureId %>" />
 
 	<liferay-ui:error exception="<%= KaleoProcessDDMTemplateIdException.class %>" message="please-enter-a-valid-initial-form" />
 	<liferay-ui:error exception="<%= RequiredStructureException.class %>" message="unable-to-delete-field-set-with-forms-associated-with-it" />
