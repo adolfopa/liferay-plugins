@@ -19,9 +19,11 @@ import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.markdown.converter.MarkdownConverter;
 import com.liferay.markdown.converter.factory.MarkdownConverterFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
+import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
@@ -31,7 +33,7 @@ import com.liferay.portal.kernel.zip.ZipReader;
 import com.liferay.portlet.documentlibrary.util.DLUtil;
 
 import java.io.IOException;
-
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
@@ -66,13 +68,17 @@ public class KBArticleMarkdownConverter {
 				"Unable to extract heading from converted HTML: " + html);
 		}
 
-		_urlTitle = getUrlTitle(heading);
+		parseMetadata(heading);
 
 		_title = stripIds(heading);
 
 		html = stripIds(html);
 
 		_html = stripHeading(html);
+	}
+
+	public String getSourceUrl() {
+		return _sourceUrl;
 	}
 
 	public String getTitle() {
@@ -86,7 +92,7 @@ public class KBArticleMarkdownConverter {
 	public String processAttachmentsReferences(
 			long userId, KBArticle kbArticle, ZipReader zipReader,
 			Map<String, FileEntry> fileEntriesMap)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		Set<Integer> indexes = new TreeSet<Integer>();
 
@@ -195,24 +201,47 @@ public class KBArticleMarkdownConverter {
 		return html.substring(x + 4, y);
 	}
 
-	protected String getUrlTitle(String heading) {
-		String urlTitle = null;
+	protected void parseMetadata(String heading) {
+		int x = heading.indexOf("[](");
 
-		int x = heading.indexOf("[](id=");
+		if (x == -1) {
+			return;
+		}
+
+		x = x + 3;
+
 		int y = heading.indexOf(StringPool.CLOSE_PARENTHESIS, x);
 
 		if (y > (x + 1)) {
-			int equalsSign = heading.indexOf(StringPool.EQUAL, x);
+			String text = heading.substring(x, y);
 
-			urlTitle = heading.substring(equalsSign + 1, y);
+			String[] metadata = StringUtil.split(text, StringPool.SPACE);
 
-			urlTitle = StringUtil.replace(
-				urlTitle, StringPool.SPACE, StringPool.DASH);
+			if ((metadata == null) || (metadata.length == 0)) {
+				return;
+			}
 
-			urlTitle = StringUtil.toLowerCase(urlTitle);
+			Map<String, String> map = new HashMap<String, String>();
+
+			int length = metadata.length;
+
+			for (int i = 0; i < length; i++) {
+
+				String[] keyValuePairs = StringUtil.split(
+					metadata[i], CharPool.EQUAL);
+
+				if ((keyValuePairs != null) && (keyValuePairs.length > 1)) {
+					System.out.println(keyValuePairs[0] + " " + keyValuePairs[1]);
+					map.put(keyValuePairs[0], keyValuePairs[1]);
+				}
+			}
+
+			if (!map.isEmpty()) {
+				_urlTitle = map.get("id");
+
+				_sourceUrl = map.get("sourceUrl");
+			}
 		}
-
-		return urlTitle;
 	}
 
 	protected String stripHeading(String html) {
@@ -278,6 +307,7 @@ public class KBArticleMarkdownConverter {
 		KBArticleMarkdownConverter.class);
 
 	private String _html;
+	private String _sourceUrl;
 	private String _title;
 	private String _urlTitle;
 
