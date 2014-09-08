@@ -21,6 +21,7 @@ import com.liferay.oauth.util.OAuthAccessor;
 import com.liferay.oauth.util.OAuthConsumer;
 import com.liferay.oauth.util.OAuthMessage;
 import com.liferay.oauth.util.OAuthUtil;
+import com.liferay.oauth.util.WebServerUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.oauth.OAuthException;
 import com.liferay.portal.kernel.servlet.HttpHeaders;
@@ -65,7 +66,9 @@ public class OAuthVerifier implements AuthVerifier {
 		}
 
 		try {
-			OAuthMessage oAuthMessage = OAuthUtil.getOAuthMessage(request);
+			OAuthMessage oAuthMessage = OAuthUtil.getOAuthMessage(
+				request,
+				WebServerUtil.getWebServerURL(request.getRequestURL()));
 
 			OAuthUser oAuthUser = getOAuthUser(oAuthMessage);
 
