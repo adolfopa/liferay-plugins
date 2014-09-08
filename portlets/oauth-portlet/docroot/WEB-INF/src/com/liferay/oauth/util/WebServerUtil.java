@@ -14,6 +14,7 @@
 
 package com.liferay.oauth.util;
 
+import com.liferay.compat.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.PropsKeys;
@@ -55,7 +56,7 @@ public class WebServerUtil {
 			}
 		}
 
-		if (webServerProtocol.equalsIgnoreCase(Http.HTTPS)) {
+		if (StringUtil.equalsIgnoreCase(webServerProtocol, Http.HTTPS)) {
 			if (webServerHttpsPort != -1) {
 				webServerPort = webServerHttpsPort;
 			}
@@ -89,9 +90,7 @@ public class WebServerUtil {
 	}
 
 	private static String _getAuthority(URI uri) {
-		String authority = uri.getAuthority();
-
-		authority = authority.toLowerCase();
+		String authority = StringUtil.toLowerCase(uri.getAuthority());
 
 		int index = authority.lastIndexOf(StringPool.COLON);
 
