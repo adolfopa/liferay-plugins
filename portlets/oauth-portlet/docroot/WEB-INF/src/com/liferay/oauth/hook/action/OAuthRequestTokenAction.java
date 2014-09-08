@@ -19,6 +19,7 @@ import com.liferay.oauth.util.OAuthAccessor;
 import com.liferay.oauth.util.OAuthConsumer;
 import com.liferay.oauth.util.OAuthMessage;
 import com.liferay.oauth.util.OAuthUtil;
+import com.liferay.oauth.util.WebServerUtil;
 import com.liferay.portal.kernel.struts.BaseStrutsAction;
 import com.liferay.portal.kernel.util.ContentTypes;
 
@@ -40,7 +41,8 @@ public class OAuthRequestTokenAction extends BaseStrutsAction {
 
 		try {
 			OAuthMessage oAuthMessage = OAuthUtil.getOAuthMessage(
-				request, null);
+				request,
+				WebServerUtil.getWebServerURL(request.getRequestURL()));
 
 			OAuthConsumer oAuthConsumer = OAuthUtil.getOAuthConsumer(
 				oAuthMessage);
