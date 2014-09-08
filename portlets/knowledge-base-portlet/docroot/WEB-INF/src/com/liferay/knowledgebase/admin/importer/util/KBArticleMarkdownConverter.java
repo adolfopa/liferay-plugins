@@ -231,7 +231,6 @@ public class KBArticleMarkdownConverter {
 					metadata[i], CharPool.EQUAL);
 
 				if ((keyValuePairs != null) && (keyValuePairs.length > 1)) {
-					System.out.println(keyValuePairs[0] + " " + keyValuePairs[1]);
 					map.put(keyValuePairs[0], keyValuePairs[1]);
 				}
 			}
