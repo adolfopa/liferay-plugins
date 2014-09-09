@@ -509,7 +509,10 @@
 
 								kaleoProcessId: '<%= kaleoProcessId %>'
 							},
-							definition: '<%= HtmlUtil.escapeJS(content) %>',
+
+							<c:if test="<%= Validator.isNotNull(content) %>">
+								definition: '<%= HtmlUtil.escapeJS(content) %>',
+							</c:if>
 
 							<%
 							String propertiesSaveCallback = ParamUtil.getString(request, "propertiesSaveCallback");

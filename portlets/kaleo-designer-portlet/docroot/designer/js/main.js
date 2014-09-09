@@ -16,6 +16,7 @@ AUI.add(
 		var emptyFn = Lang.emptyFn;
 		var emptyFnFalse = Lang.emptyFnFalse;
 		var isArray = Lang.isArray;
+		var isNull = Lang.isNull;
 		var isNumber = Lang.isNumber;
 		var isObject = Lang.isObject;
 		var isString = Lang.isString;
@@ -581,7 +582,13 @@ AUI.add(
 							instance.editor = editor;
 						}
 
-						editor.set('value', instance.toFormattedXML());
+						var content = instance.get('definition');
+
+						if (!content || instance.validateDefinition(content)) {
+							content = instance.toFormattedXML();
+						}
+
+						editor.set('value', content);
 					},
 
 					toFormattedXML: function() {
@@ -658,6 +665,20 @@ AUI.add(
 						buffer.push(xmlWorkflowDefinition.close);
 
 						return buffer.join(STR_BLANK);
+					},
+
+					validateDefinition: function(definition) {
+						var instance = this;
+
+						var doc = A.DataType.XML.parse(definition);
+
+						var valid = true;
+
+						if ((isNull(doc)) || (isNull(doc.documentElement)) || A.one(doc).one('parsererror')) {
+							valid = false;
+						}
+
+						return valid;
 					},
 
 					_afterRenderKaleoDesigner: function() {
