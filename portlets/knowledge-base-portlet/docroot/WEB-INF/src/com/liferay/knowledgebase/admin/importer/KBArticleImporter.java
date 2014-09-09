@@ -20,6 +20,7 @@ import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBArticleConstants;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.util.PortletPropsValues;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
@@ -51,7 +52,7 @@ public class KBArticleImporter {
 	public void processZipFile(
 			long userId, long groupId, InputStream inputStream,
 			ServiceContext serviceContext)
-		throws KBArticleImportException {
+		throws KBArticleImportException, SystemException {
 
 		if (inputStream == null) {
 			throw new KBArticleImportException("Input stream is null");
@@ -72,7 +73,7 @@ public class KBArticleImporter {
 			long userId, long groupId, long parentResourcePrimaryKey,
 			String markdown, String fileEntryName, ZipReader zipReader,
 			ServiceContext serviceContext)
-		throws KBArticleImportException {
+		throws KBArticleImportException, SystemException {
 
 		if (Validator.isNull(markdown)) {
 			throw new KBArticleImportException(
@@ -93,7 +94,8 @@ public class KBArticleImporter {
 				kbArticle = KBArticleLocalServiceUtil.addKBArticle(
 					userId, parentResourcePrimaryKey,
 					kbArticleMarkdownConverter.getTitle(), urlTitle, markdown,
-					null, null, null, null, serviceContext);
+					kbArticleMarkdownConverter.getSourceUrl(), null, null, null,
+					serviceContext);
 			}
 		}
 		catch (Exception e) {
@@ -116,7 +118,8 @@ public class KBArticleImporter {
 			return KBArticleLocalServiceUtil.updateKBArticle(
 				userId, kbArticle.getResourcePrimKey(),
 				kbArticleMarkdownConverter.getTitle(), html,
-				kbArticle.getDescription(), null, null, null, null,
+				kbArticle.getDescription(),
+				kbArticleMarkdownConverter.getSourceUrl(), null, null, null,
 				serviceContext);
 		}
 		catch (Exception e) {
@@ -170,7 +173,7 @@ public class KBArticleImporter {
 	protected void processKBArticleFiles(
 			long userId, long groupId, ZipReader zipReader,
 			ServiceContext serviceContext)
-		throws KBArticleImportException {
+		throws KBArticleImportException, SystemException {
 
 		long parentResourcePrimKey =
 			KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY;
@@ -198,7 +201,7 @@ public class KBArticleImporter {
 			ZipReader zipReader,
 			Map<String, List<String>> folderNameFileEntryNamesMap,
 			ServiceContext serviceContext)
-		throws KBArticleImportException {
+		throws KBArticleImportException, SystemException {
 
 		Set<String> folderNames = folderNameFileEntryNamesMap.keySet();
 
