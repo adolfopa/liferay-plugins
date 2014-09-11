@@ -14,7 +14,6 @@
 
 package com.liferay.vldap.server.directory.builder;
 
-import com.liferay.compat.portal.util.PortalUtil;
 import com.liferay.portal.kernel.util.FastDateFormatFactory;
 import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
@@ -23,6 +22,7 @@ import com.liferay.portal.model.PasswordPolicy;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.User;
 import com.liferay.portal.util.Portal;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.comparator.UserScreenNameComparator;
 import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.vldap.BaseVLDAPTestCase;
