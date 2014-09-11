@@ -140,10 +140,6 @@ public class DefinitionStagedModelDataHandler
 
 		long userId = portletDataContext.getUserId(definition.getUserUuid());
 
-		StagedModelDataHandlerUtil.importReferenceStagedModel(
-			portletDataContext, definition, Source.class,
-			definition.getSourceId());
-
 		Map<Long, Long> sourceIds =
 			(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
 				Source.class);
