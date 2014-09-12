@@ -310,7 +310,6 @@ public class ExtRepositoryFileEntryAdapter
 	}
 
 	@Override
-	@SuppressWarnings("unused")
 	public String getVersionUserUuid() {
 		return getUserUuid();
 	}
