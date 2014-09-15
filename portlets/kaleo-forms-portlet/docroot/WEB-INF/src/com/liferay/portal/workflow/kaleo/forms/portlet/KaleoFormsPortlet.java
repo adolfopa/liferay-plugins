@@ -886,6 +886,8 @@ public class KaleoFormsPortlet extends MVCPortlet {
 		DDLExporter ddlExporter = DDLExporterFactory.getDDLExporter(
 			ddlExportFormat);
 
+		ddlExporter.setLocale(themeDisplay.getLocale());
+
 		byte[] bytes = ddlExporter.export(
 			kaleoProcess.getDDLRecordSetId(), status);
 
