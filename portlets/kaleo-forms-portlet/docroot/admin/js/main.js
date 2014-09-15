@@ -98,7 +98,11 @@ AUI.add(
 						var currentStep = event.newVal;
 
 						if (currentStep !== STEPS_MAP.DETAILS) {
-							var currentName = sessionMap['name' + themeDisplay.getDefaultLanguageId()];
+							var currentName = sessionMap['name' + themeDisplay.getLanguageId()];
+
+							if (!currentName) {
+								currentName = sessionMap['name' + themeDisplay.getDefaultLanguageId()];
+							}
 
 							instance.one('.header-title span').setContent(currentName);
 						}

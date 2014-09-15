@@ -217,6 +217,31 @@ public class KaleoFormsUtil {
 		return StringPool.BLANK;
 	}
 
+	public static String getKaleoProcessName(
+			KaleoProcess kaleoProcess, PortletSession portletSession,
+			Locale locale)
+		throws Exception {
+
+		String defaultName = GetterUtil.getString(
+			portletSession.getAttribute("name" + _getDefaultLanguageId()),
+			StringPool.BLANK);
+
+		String languageId = LocaleUtil.toLanguageId(locale);
+
+		String name = GetterUtil.getString(
+			portletSession.getAttribute("name" + languageId), defaultName);
+
+		if (Validator.isNotNull(name)) {
+			return name;
+		}
+
+		if (kaleoProcess != null) {
+			return kaleoProcess.getName(locale);
+		}
+
+		return StringPool.BLANK;
+	}
+
 	public static TaskFormPairs getTaskFormPairs(
 			long companyId, long kaleoProcessId, long ddmStructureId,
 			String workflowDefinition, PortletSession portletSession)

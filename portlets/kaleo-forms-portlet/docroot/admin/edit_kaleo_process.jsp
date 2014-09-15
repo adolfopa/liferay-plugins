@@ -25,14 +25,12 @@ long kaleoProcessId = BeanParamUtil.getLong(kaleoProcess, request, "kaleoProcess
 
 long groupId = BeanParamUtil.getLong(kaleoProcess, request, "groupId", scopeGroupId);
 
-boolean kaleoProcessStarted = false;
+String kaleoProcessName = KaleoFormsUtil.getKaleoProcessName(kaleoProcess, portletSession, locale);
 
-String kaleoProcessName = StringPool.BLANK;
+boolean kaleoProcessStarted = false;
 
 if (kaleoProcess != null) {
 	kaleoProcessStarted = (DDLRecordLocalServiceUtil.getRecordsCount(kaleoProcess.getDDLRecordSetId(), WorkflowConstants.STATUS_ANY) > 0);
-
-	kaleoProcessName = kaleoProcess.getName(locale);
 }
 %>
 
