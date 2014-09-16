@@ -186,6 +186,11 @@ public class DocumentumFileEntry extends DocumentumModel implements FileEntry {
 	}
 
 	@Override
+	public String getFileName() {
+		return getTitle();
+	}
+
+	@Override
 	public FileVersion getFileVersion() {
 		return new DocumentumFileVersion(_documentumRepository, this);
 	}

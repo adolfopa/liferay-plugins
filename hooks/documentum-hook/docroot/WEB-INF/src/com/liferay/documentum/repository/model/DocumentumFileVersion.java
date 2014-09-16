@@ -131,6 +131,11 @@ public class DocumentumFileVersion
 	}
 
 	@Override
+	public String getFileName() {
+		return getTitle();
+	}
+
+	@Override
 	public long getFileVersionId() {
 		return _fileEntry.getFileEntryId();
 	}
