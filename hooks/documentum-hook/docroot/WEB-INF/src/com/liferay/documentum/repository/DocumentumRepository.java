@@ -221,7 +221,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 
 	@Override
 	public Folder addFolder(
-			long parentFolderId, String title, String description,
+			long parentFolderId, String name, String description,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
@@ -230,12 +230,12 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 		try {
 			idfSession = getIdfSession();
 
-			validateTitle(idfSession, parentFolderId, title);
+			validateTitle(idfSession, parentFolderId, name);
 
 			IDfFolder idfFolder = (IDfFolder)idfSession.newObject(
 				Constants.DM_FOLDER);
 
-			idfFolder.setObjectName(title);
+			idfFolder.setObjectName(name);
 			idfFolder.setTitle(description);
 
 			IDfId idfId = toFolderObjectId(idfSession, parentFolderId);
@@ -730,7 +730,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 	}
 
 	@Override
-	public Folder getFolder(long parentFolderId, String title)
+	public Folder getFolder(long parentFolderId, String name)
 		throws PortalException, SystemException {
 
 		IDfSession idfSession = null;
@@ -738,7 +738,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 		try {
 			idfSession = getIdfSession();
 
-			IDfId idfId = getObjectId(idfSession, parentFolderId, false, title);
+			IDfId idfId = getObjectId(idfSession, parentFolderId, false, name);
 
 			if (idfId != null) {
 				IDfFolder idfFolder = (IDfFolder)idfSession.getObject(idfId);
@@ -757,7 +757,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 
 		throw new NoSuchFolderException(
 			"No Documentum folder with {parentFolderId=" + parentFolderId +
-				", title=" + title + "}");
+				", name=" + name + "}");
 	}
 
 	@Override
@@ -1457,7 +1457,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 
 	@Override
 	public Folder updateFolder(
-			long folderId, String title, String description,
+			long folderId, String name, String description,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
@@ -1470,7 +1470,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 
 			IDfFolder idfFolder = (IDfFolder)idfSession.getObject(idfId);
 
-			idfFolder.setObjectName(title);
+			idfFolder.setObjectName(name);
 			idfFolder.setTitle(description);
 
 			idfFolder.save();
