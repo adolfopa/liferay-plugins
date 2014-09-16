@@ -15,7 +15,6 @@
 package com.liferay.documentum.repository.model;
 
 import com.liferay.documentum.repository.DocumentumRepository;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.lar.StagedModelType;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -70,9 +69,7 @@ public class DocumentumFileVersion
 	}
 
 	@Override
-	public InputStream getContentStream(boolean incrementCounter)
-		throws SystemException {
-
+	public InputStream getContentStream(boolean incrementCounter) {
 		InputStream inputStream = _documentumRepository.getContentStream(
 			_fileEntry.getFileEntryId());
 
@@ -216,7 +213,7 @@ public class DocumentumFileVersion
 	}
 
 	@Override
-	public String getStatusByUserUuid() throws SystemException {
+	public String getStatusByUserUuid() {
 		return _fileEntry.getVersionUserUuid();
 	}
 
@@ -241,7 +238,7 @@ public class DocumentumFileVersion
 	}
 
 	@Override
-	public String getUserUuid() throws SystemException {
+	public String getUserUuid() {
 		return _fileEntry.getUserUuid();
 	}
 

@@ -15,7 +15,6 @@
 package com.liferay.documentum.repository.model;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringPool;
@@ -136,7 +135,7 @@ public abstract class DocumentumModel {
 	}
 
 	@SuppressWarnings("unused")
-	protected Folder getParentFolder() throws PortalException, SystemException {
+	protected Folder getParentFolder() throws PortalException {
 		return _parentFolder;
 	}
 
@@ -179,9 +178,6 @@ public abstract class DocumentumModel {
 
 	private static Set<String> _unsupportedActionKeys = new HashSet<String>();
 
-	private Folder _parentFolder;
-	private long _parentFolderId;
-
 	static {
 		_unsupportedActionKeys.add(ActionKeys.ADD_DISCUSSION);
 		_unsupportedActionKeys.add(ActionKeys.ADD_SHORTCUT);
@@ -189,5 +185,8 @@ public abstract class DocumentumModel {
 		_unsupportedActionKeys.add(ActionKeys.PERMISSIONS);
 		_unsupportedActionKeys.add(ActionKeys.UPDATE_DISCUSSION);
 	}
+
+	private Folder _parentFolder;
+	private long _parentFolderId;
 
 }

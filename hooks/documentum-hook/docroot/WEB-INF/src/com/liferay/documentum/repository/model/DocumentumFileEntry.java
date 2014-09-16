@@ -20,7 +20,6 @@ import com.documentum.fc.common.IDfTime;
 
 import com.liferay.documentum.repository.DocumentumRepository;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.lar.StagedModelType;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -133,7 +132,7 @@ public class DocumentumFileEntry extends DocumentumModel implements FileEntry {
 	}
 
 	@Override
-	public InputStream getContentStream() throws SystemException {
+	public InputStream getContentStream() {
 		InputStream inputStream = _documentumRepository.getContentStream(
 			_fileEntryId);
 
@@ -149,9 +148,7 @@ public class DocumentumFileEntry extends DocumentumModel implements FileEntry {
 	}
 
 	@Override
-	public InputStream getContentStream(String version)
-		throws PortalException, SystemException {
-
+	public InputStream getContentStream(String version) throws PortalException {
 		if (version.equals(getVersion())) {
 			return getContentStream();
 		}
@@ -194,9 +191,7 @@ public class DocumentumFileEntry extends DocumentumModel implements FileEntry {
 	}
 
 	@Override
-	public FileVersion getFileVersion(String version)
-		throws PortalException, SystemException {
-
+	public FileVersion getFileVersion(String version) throws PortalException {
 		DocumentumVersionLabel documentumVersionLabel = getVersionLabel(
 			version);
 
@@ -207,9 +202,7 @@ public class DocumentumFileEntry extends DocumentumModel implements FileEntry {
 	}
 
 	@Override
-	public List<FileVersion> getFileVersions(int status)
-		throws SystemException {
-
+	public List<FileVersion> getFileVersions(int status) {
 		List<FileVersion> fileVersions = new ArrayList<FileVersion>();
 
 		for (DocumentumVersionLabel documentumVersionLabel :
@@ -283,14 +276,12 @@ public class DocumentumFileEntry extends DocumentumModel implements FileEntry {
 	}
 
 	@Override
-	public FileVersion getLatestFileVersion()
-		throws PortalException, SystemException {
-
+	public FileVersion getLatestFileVersion() throws PortalException {
 		return getLatestFileVersion(false);
 	}
 
 	public FileVersion getLatestFileVersion(boolean trusted)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		DocumentumVersionLabel documentumVersionLabel =
 			_documentumVersionLabels.get(0);
@@ -402,7 +393,7 @@ public class DocumentumFileEntry extends DocumentumModel implements FileEntry {
 	}
 
 	@Override
-	public String getUserUuid() throws SystemException {
+	public String getUserUuid() {
 		User user = getUser(_creatorName);
 
 		if (user != null) {
@@ -445,7 +436,7 @@ public class DocumentumFileEntry extends DocumentumModel implements FileEntry {
 	}
 
 	@Override
-	public String getVersionUserUuid() throws SystemException {
+	public String getVersionUserUuid() {
 		User user = getUser(_modifier);
 
 		if (user != null) {

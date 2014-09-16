@@ -137,7 +137,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 			long folderId, String sourceFileName, String mimeType, String title,
 			String description, String changeLog, InputStream is, long size,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (Validator.isNull(title)) {
 			if (size == 0) {
@@ -223,7 +223,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 	public Folder addFolder(
 			long parentFolderId, String name, String description,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		IDfSession idfSession = null;
 
@@ -259,9 +259,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 	}
 
 	@Override
-	public FileVersion cancelCheckOut(long fileEntryId)
-		throws PortalException, SystemException {
-
+	public FileVersion cancelCheckOut(long fileEntryId) throws PortalException {
 		IDfSession idfSession = null;
 
 		try {
@@ -289,7 +287,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 	public void checkInFileEntry(
 			long fileEntryId, boolean major, String changeLog,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		clearManualCheckInRequired(fileEntryId, serviceContext);
 
@@ -324,7 +322,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 	@Override
 	public FileEntry checkOutFileEntry(
 			long fileEntryId, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		setManualCheckInRequired(fileEntryId, serviceContext);
 
@@ -363,7 +361,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 	public FileEntry copyFileEntry(
 			long groupId, long fileEntryId, long destFolderId,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		IDfSession idfSession = null;
 
@@ -413,9 +411,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 	}
 
 	@Override
-	public void deleteFileEntry(long fileEntryId)
-		throws PortalException, SystemException {
-
+	public void deleteFileEntry(long fileEntryId) throws PortalException {
 		IDfSession idfSession = null;
 
 		try {
@@ -440,9 +436,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 	}
 
 	@Override
-	public void deleteFolder(long folderId)
-		throws PortalException, SystemException {
-
+	public void deleteFolder(long folderId) throws PortalException {
 		IDfSession idfSession = null;
 
 		try {
@@ -468,9 +462,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 		}
 	}
 
-	public Map<String, Serializable> getAttributes(long fileEntryId)
-		throws SystemException {
-
+	public Map<String, Serializable> getAttributes(long fileEntryId) {
 		IDfSession idfSession = null;
 
 		try {
@@ -531,9 +523,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 		}
 	}
 
-	public InputStream getContentStream(long fileEntryId)
-		throws SystemException {
-
+	public InputStream getContentStream(long fileEntryId) {
 		IDfSession idfSession = null;
 
 		try {
@@ -558,8 +548,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 
 	@Override
 	public List<FileEntry> getFileEntries(
-			long folderId, int start, int end, OrderByComparator obc)
-		throws SystemException {
+		long folderId, int start, int end, OrderByComparator obc) {
 
 		return getFileEntries(folderId, null, start, end, obc);
 	}
@@ -574,9 +563,8 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 
 	@Override
 	public List<FileEntry> getFileEntries(
-			long folderId, String[] mimeTypes, int start, int end,
-			OrderByComparator obc)
-		throws SystemException {
+		long folderId, String[] mimeTypes, int start, int end,
+		OrderByComparator obc) {
 
 		IDfSession idfSession = null;
 
@@ -604,7 +592,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 	}
 
 	@Override
-	public int getFileEntriesCount(long folderId) throws SystemException {
+	public int getFileEntriesCount(long folderId) {
 		return getFileEntriesCount(folderId, null);
 	}
 
@@ -614,9 +602,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 	}
 
 	@Override
-	public int getFileEntriesCount(long folderId, String[] mimeTypes)
-		throws SystemException {
-
+	public int getFileEntriesCount(long folderId, String[] mimeTypes) {
 		IDfSession idfSession = null;
 
 		try {
@@ -642,9 +628,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 	}
 
 	@Override
-	public FileEntry getFileEntry(long fileEntryId)
-		throws PortalException, SystemException {
-
+	public FileEntry getFileEntry(long fileEntryId) throws PortalException {
 		IDfSession idfSession = null;
 
 		try {
@@ -659,7 +643,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 
 	@Override
 	public FileEntry getFileEntry(long folderId, String title)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		IDfSession idfSession = null;
 
@@ -690,9 +674,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 	}
 
 	@Override
-	public FileEntry getFileEntryByUuid(String uuid)
-		throws PortalException, SystemException {
-
+	public FileEntry getFileEntryByUuid(String uuid) throws PortalException {
 		RepositoryEntry repositoryEntry = RepositoryEntryUtil.findByUUID_G(
 			uuid, getGroupId());
 
@@ -706,7 +688,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 
 	@Override
 	public FileVersion getFileVersion(long fileVersionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		FileEntry fileEntry = getFileEntry(fileVersionId);
 
@@ -714,9 +696,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 	}
 
 	@Override
-	public Folder getFolder(long folderId)
-		throws PortalException, SystemException {
-
+	public Folder getFolder(long folderId) throws PortalException {
 		IDfSession idfSession = null;
 
 		try {
@@ -731,7 +711,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 
 	@Override
 	public Folder getFolder(long parentFolderId, String name)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		IDfSession idfSession = null;
 
@@ -762,9 +742,8 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 
 	@Override
 	public List<Folder> getFolders(
-			long parentFolderId, boolean includeMountFolders, int start,
-			int end, OrderByComparator obc)
-		throws SystemException {
+		long parentFolderId, boolean includeMountFolders, int start,
+		int end, OrderByComparator obc) {
 
 		IDfSession idfSession = null;
 
@@ -790,17 +769,15 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 
 	@Override
 	public List<Object> getFoldersAndFileEntries(
-			long folderId, int start, int end, OrderByComparator obc)
-		throws SystemException {
+		long folderId, int start, int end, OrderByComparator obc) {
 
 		return getFoldersAndFileEntries(folderId, null, start, end, obc);
 	}
 
 	@Override
 	public List<Object> getFoldersAndFileEntries(
-			long folderId, String[] mimeTypes, int start, int end,
-			OrderByComparator obc)
-		throws SystemException {
+		long folderId, String[] mimeTypes, int start, int end,
+		OrderByComparator obc) {
 
 		IDfSession idfSession = null;
 
@@ -828,16 +805,12 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 	}
 
 	@Override
-	public int getFoldersAndFileEntriesCount(long folderId)
-		throws SystemException {
-
+	public int getFoldersAndFileEntriesCount(long folderId) {
 		return getFoldersAndFileEntriesCount(folderId, null);
 	}
 
 	@Override
-	public int getFoldersAndFileEntriesCount(long folderId, String[] mimeTypes)
-		throws SystemException {
-
+	public int getFoldersAndFileEntriesCount(long folderId, String[] mimeTypes) {
 		IDfSession idfSession = null;
 
 		try {
@@ -863,9 +836,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 	}
 
 	@Override
-	public int getFoldersCount(long parentFolderId, boolean includeMountfolders)
-		throws SystemException {
-
+	public int getFoldersCount(long parentFolderId, boolean includeMountfolders) {
 		IDfSession idfSession = null;
 
 		try {
@@ -888,9 +859,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 	}
 
 	@Override
-	public int getFoldersFileEntriesCount(List<Long> folderIds, int status)
-		throws SystemException {
-
+	public int getFoldersFileEntriesCount(List<Long> folderIds, int status) {
 		int count = 0;
 
 		for (long folderId : folderIds) {
@@ -913,9 +882,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 	}
 
 	@Override
-	public void getSubfolderIds(List<Long> folderIds, long folderId)
-		throws SystemException {
-
+	public void getSubfolderIds(List<Long> folderIds, long folderId) {
 		List<Folder> subfolders = getFolders(
 			folderId, false, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
@@ -923,9 +890,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 	}
 
 	@Override
-	public List<Long> getSubfolderIds(long folderId, boolean recurse)
-		throws SystemException {
-
+	public List<Long> getSubfolderIds(long folderId, boolean recurse) {
 		List<Long> subfolderIds = new ArrayList<Long>();
 
 		List<Folder> subfolders = getFolders(
@@ -947,7 +912,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 	}
 
 	@Override
-	public void initRepository() throws PortalException, SystemException {
+	public void initRepository() throws PortalException {
 		UnicodeProperties unicodeProperties = getTypeSettingsProperties();
 
 		_cabinet = unicodeProperties.getProperty(_CABINET);
@@ -982,7 +947,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 	@Override
 	public FileEntry moveFileEntry(
 			long fileEntryId, long newFolderId, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		IDfSession idfSession = null;
 
@@ -1026,7 +991,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 	public Folder moveFolder(
 			long folderId, long newParentFolderId,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		IDfSession idfSession = null;
 
@@ -1095,7 +1060,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 	@Override
 	public void revertFileEntry(
 			long fileEntryId, String version, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		IDfSession idfSession = null;
 
@@ -1332,9 +1297,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 		}
 	}
 
-	public String toFolderObjectId(long folderId)
-		throws PortalException, SystemException {
-
+	public String toFolderObjectId(long folderId) throws PortalException {
 		IDfSession idfSession = null;
 
 		try {
@@ -1360,7 +1323,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 			String title, String description, String changeLog,
 			boolean majorVersion, InputStream is, long size,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		IDfSession idfSession = null;
 
@@ -1459,7 +1422,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 	public Folder updateFolder(
 			long folderId, String name, String description,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		IDfSession idfSession = null;
 
@@ -1498,7 +1461,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 	}
 
 	protected void cancelCheckOut(IDfDocument idfDocument)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			IDfCancelCheckoutOperation idfCancelCheckoutOperation =
@@ -1525,7 +1488,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 	protected IDfDocument checkinFileEntry(
 			IDfDocument idfDocument, boolean incrementVersion,
 			boolean majorVersion)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			IDfCheckinOperation idfCheckinOperation =
@@ -1579,7 +1542,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 	}
 
 	protected File checkoutFileEntry(IDfDocument idfDocument, boolean download)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			IDfCheckoutOperation idfCheckoutOperation =
@@ -1791,7 +1754,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 	}
 
 	protected FileEntry getFileEntry(IDfSession idfSession, long fileEntryId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			IDfId idfId = toFileEntryObjectId(idfSession, fileEntryId);
@@ -1806,8 +1769,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 	}
 
 	protected List<?> getFoldersOrFileEntries(
-			IDfSession idfSession, String queryString, int start, int end)
-		throws SystemException {
+		IDfSession idfSession, String queryString, int start, int end) {
 
 		IDfCollection idfCollection = null;
 
@@ -1894,8 +1856,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 	}
 
 	protected int getFoldersOrFileEntriesCount(
-			IDfSession idfSession, String queryString)
-		throws SystemException {
+		IDfSession idfSession, String queryString) {
 
 		IDfCollection idfCollection = null;
 
@@ -1945,7 +1906,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 	}
 
 	protected IDfFolder getIdfFolder(IDfSession idfSession, long folderId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			IDfId idfId = toFolderObjectId(idfSession, folderId);
@@ -1959,9 +1920,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 		}
 	}
 
-	protected IDfSession getIdfSession()
-		throws PortalException, SystemException {
-
+	protected IDfSession getIdfSession() throws PortalException {
 		try {
 			IDfSessionManager idfSessionManager = getIdfSessionManager();
 
@@ -1974,7 +1933,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 		}
 	}
 
-	protected IDfSessionManager getIdfSessionManager() throws SystemException {
+	protected IDfSessionManager getIdfSessionManager() {
 		HttpSession httpSession = PortalSessionThreadLocal.getHttpSession();
 
 		IDfSessionManager idfSessionManager = null;
@@ -2065,9 +2024,8 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 	}
 
 	protected IDfId getObjectId(
-			IDfSession idfSession, long folderId, boolean fileEntry,
-			String name)
-		throws SystemException {
+		IDfSession idfSession, long folderId, boolean fileEntry,
+		String name) {
 
 		IDfCollection idfCollection = null;
 
@@ -2133,8 +2091,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 	}
 
 	protected void getSubfolderIds(
-			List<Long> subfolderIds, List<Folder> subfolders, boolean recurse)
-		throws SystemException {
+		List<Long> subfolderIds, List<Folder> subfolders, boolean recurse) {
 
 		for (Folder subfolder : subfolders) {
 			long subfolderId = subfolder.getFolderId();
@@ -2180,9 +2137,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 		}
 	}
 
-	protected String[] toContentTypes(IDfSession idfSession, String[] mimeTypes)
-		throws SystemException {
-
+	protected String[] toContentTypes(IDfSession idfSession, String[] mimeTypes) {
 		if ((mimeTypes == null) || (mimeTypes.length == 0)) {
 			return mimeTypes;
 		}
@@ -2247,7 +2202,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 	}
 
 	protected FileEntry toFileEntry(IDfDocument idfDocument)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			IDfId fileEntryIDfId = idfDocument.getObjectId();
@@ -2354,7 +2309,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 	}
 
 	protected IDfId toFileEntryObjectId(IDfSession idfSession, long fileEntryId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		RepositoryEntry repositoryEntry = RepositoryEntryUtil.fetchByPrimaryKey(
 			fileEntryId);
@@ -2368,7 +2323,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 		return toObjectId(idfSession, repositoryEntry.getMappedId());
 	}
 
-	protected Folder toFolder(IDfFolder idfFolder) throws SystemException {
+	protected Folder toFolder(IDfFolder idfFolder) {
 		try {
 			IDfId idfId = idfFolder.getObjectId();
 
@@ -2408,7 +2363,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 	}
 
 	protected IDfId toFolderObjectId(IDfSession idfSession, long folderId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			RepositoryEntry repositoryEntry =
@@ -2447,7 +2402,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 	}
 
 	protected Object toFolderOrFileEntry(IDfSysObject idfSysObject)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (idfSysObject instanceof IDfDocument) {
 			IDfDocument idfDocument = (IDfDocument)idfSysObject;
@@ -2465,9 +2420,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 		}
 	}
 
-	protected IDfId toObjectId(IDfSession idfSession, String objectId)
-		throws SystemException {
-
+	protected IDfId toObjectId(IDfSession idfSession, String objectId) {
 		try {
 			return idfSession.getIdByQualification(
 				"dm_sysobject (ALL) where r_object_id = '" + objectId + "'");
@@ -2477,9 +2430,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 		}
 	}
 
-	protected void updateMappedId(String oldMappedId, String mappedId)
-		throws SystemException {
-
+	protected void updateMappedId(String oldMappedId, String mappedId) {
 		RepositoryEntry repositoryEntry = RepositoryEntryUtil.fetchByR_M(
 			getRepositoryId(), oldMappedId);
 
@@ -2496,7 +2447,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 
 	protected void validateTitle(
 			IDfSession idfSession, long folderId, String title)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		IDfId idfObjectId = getObjectId(idfSession, folderId, true, title);
 

@@ -20,7 +20,6 @@ import com.documentum.fc.common.IDfTime;
 
 import com.liferay.documentum.repository.DocumentumRepository;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.lar.StagedModelType;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -76,9 +75,7 @@ public class DocumentumFolder extends DocumentumModel implements Folder {
 	}
 
 	@Override
-	public List<Long> getAncestorFolderIds()
-		throws PortalException, SystemException {
-
+	public List<Long> getAncestorFolderIds() throws PortalException {
 		List<Long> folderIds = new ArrayList<Long>();
 
 		Folder folder = this;
@@ -93,7 +90,7 @@ public class DocumentumFolder extends DocumentumModel implements Folder {
 	}
 
 	@Override
-	public List<Folder> getAncestors() throws PortalException, SystemException {
+	public List<Folder> getAncestors() throws PortalException {
 		List<Folder> folders = new ArrayList<Folder>();
 
 		Folder folder = this;
@@ -175,7 +172,7 @@ public class DocumentumFolder extends DocumentumModel implements Folder {
 	}
 
 	@Override
-	public Folder getParentFolder() throws PortalException, SystemException {
+	public Folder getParentFolder() throws PortalException {
 		Folder parentFolder = null;
 
 		try {
@@ -234,7 +231,7 @@ public class DocumentumFolder extends DocumentumModel implements Folder {
 	}
 
 	@Override
-	public String getUserUuid() throws SystemException {
+	public String getUserUuid() {
 		User user = getUser(_creatorName);
 
 		if (user != null) {
