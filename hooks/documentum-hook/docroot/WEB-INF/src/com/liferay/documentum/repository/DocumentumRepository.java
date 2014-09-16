@@ -810,7 +810,9 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 	}
 
 	@Override
-	public int getFoldersAndFileEntriesCount(long folderId, String[] mimeTypes) {
+	public int getFoldersAndFileEntriesCount(
+		long folderId, String[] mimeTypes) {
+
 		IDfSession idfSession = null;
 
 		try {
@@ -836,7 +838,9 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 	}
 
 	@Override
-	public int getFoldersCount(long parentFolderId, boolean includeMountfolders) {
+	public int getFoldersCount(
+		long parentFolderId, boolean includeMountfolders) {
+
 		IDfSession idfSession = null;
 
 		try {
@@ -2137,7 +2141,9 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 		}
 	}
 
-	protected String[] toContentTypes(IDfSession idfSession, String[] mimeTypes) {
+	protected String[] toContentTypes(
+		IDfSession idfSession, String[] mimeTypes) {
+
 		if ((mimeTypes == null) || (mimeTypes.length == 0)) {
 			return mimeTypes;
 		}
