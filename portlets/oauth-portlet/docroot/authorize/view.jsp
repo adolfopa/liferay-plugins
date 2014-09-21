@@ -26,7 +26,7 @@
 	if (exceptionMessage.contains("token_expired")) {
 	%>
 
-		<liferay-ui:message key="temporary-token-expired.-please-go-back-to-client-application-and-repeat-oauth-authorization" />
+		<liferay-ui:message key="the-temporary-oauth-token-expired.-please-go-back-to-your-client-application-and-repeat-the-oauth-authorization" />
 
 	<%
 	}
