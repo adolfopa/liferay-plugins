@@ -19,6 +19,10 @@ import com.liferay.oauth.util.OAuthConsumer;
 import com.liferay.oauth.util.OAuthMessage;
 import com.liferay.oauth.util.OAuthUtil;
 import com.liferay.oauth.util.OAuthWebKeys;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.oauth.OAuthException;
+import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.Digester;
 import com.liferay.portal.kernel.util.DigesterUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -32,6 +36,7 @@ import javax.portlet.ActionResponse;
 
 /**
  * @author Ivica Cardic
+ * @author Igor Beslic
  */
 public class AuthorizePortlet extends MVCPortlet {
 
@@ -39,19 +44,41 @@ public class AuthorizePortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
+		String oAuthCallbackURL = ParamUtil.getString(
+			actionRequest, net.oauth.OAuth.OAUTH_CALLBACK);
+
 		OAuthMessage oAuthMessage = OAuthUtil.getOAuthMessage(
 			actionRequest, null);
 
-		OAuthAccessor oAuthAccessor = OAuthUtil.getOAuthAccessor(oAuthMessage);
+		OAuthAccessor oAuthAccessor = null;
+
+		try {
+			oAuthAccessor = OAuthUtil.getOAuthAccessor(oAuthMessage);
+		}
+		catch (OAuthException oae) {
+			if (_log.isErrorEnabled()) {
+				_log.error("OAuth authorisation failed: " + oae.getMessage());
+			}
+
+			if (Validator.isNotNull(oAuthCallbackURL)) {
+				oAuthCallbackURL = OAuthUtil.addParameters(
+					oAuthCallbackURL, "oauth_problem", oae.getMessage());
+
+				actionResponse.sendRedirect(oAuthCallbackURL);
+
+				return;
+			}
+
+			SessionErrors.add(actionRequest, OAuthException.class, oae);
+
+			return;
+		}
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			actionRequest);
 
 		OAuthUtil.authorize(
 			oAuthAccessor, serviceContext.getUserId(), serviceContext);
-
-		String oAuthCallbackURL = ParamUtil.getString(
-			actionRequest, net.oauth.OAuth.OAUTH_CALLBACK);
 
 		OAuthConsumer oAuthConsumer = oAuthAccessor.getOAuthConsumer();
 
@@ -84,5 +111,7 @@ public class AuthorizePortlet extends MVCPortlet {
 			actionResponse.sendRedirect(oAuthCallbackURL);
 		}
 	}
+
+	private static Log _log = LogFactoryUtil.getLog(AuthorizePortlet.class);
 
 }
