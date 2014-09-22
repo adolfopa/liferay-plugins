@@ -56,7 +56,7 @@ public class AuthorizePortlet extends MVCPortlet {
 			oAuthAccessor = OAuthUtil.getOAuthAccessor(oAuthMessage);
 		}
 		catch (OAuthException oae) {
-			if (_log.isWarnEanbled()) {
+			if (_log.isWarnEnabled()) {
 				_log.warn("OAuth authorisation failed", oae);
 			}
 
