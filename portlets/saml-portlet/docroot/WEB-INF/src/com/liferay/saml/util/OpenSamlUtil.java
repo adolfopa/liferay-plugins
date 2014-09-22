@@ -135,6 +135,125 @@ public class OpenSamlUtil {
 	}
 
 	public static Attribute buildAttribute(
+		String name, String nameFormat, Boolean value) {
+
+		Attribute attribute = OpenSamlUtil.buildAttribute();
+
+		attribute.setName(name);
+		attribute.setNameFormat(nameFormat);
+
+		XMLObject xmlObject = OpenSamlUtil.buildAttributeValue(value);
+
+		List<XMLObject> xmlObjects = attribute.getAttributeValues();
+
+		xmlObjects.add(xmlObject);
+
+		return attribute;
+	}
+
+	public static Attribute buildAttribute(
+		String name, String nameFormat, boolean[] values) {
+
+		Attribute attribute = OpenSamlUtil.buildAttribute();
+
+		attribute.setName(name);
+		attribute.setNameFormat(nameFormat);
+
+		List<XMLObject> xmlObjects = attribute.getAttributeValues();
+
+		for (boolean value : values) {
+			XMLObject xmlObject = OpenSamlUtil.buildAttributeValue(
+				Boolean.valueOf(value));
+
+			xmlObjects.add(xmlObject);
+		}
+
+		return attribute;
+	}
+
+	public static Attribute buildAttribute(
+		String name, String nameFormat, Date value) {
+
+		DateTime dateTime = new DateTime((Date)value);
+		dateTime = dateTime.withZone(DateTimeZone.UTC);
+
+		return buildAttribute(name, nameFormat, dateTime);
+	}
+
+	public static Attribute buildAttribute(
+		String name, String nameFormat, Date[] values) {
+
+		DateTime[] dateTimeValues = new DateTime[values.length];
+
+		int i = 0;
+
+		for (Date value : values) {
+			DateTime dateTime = new DateTime((Date)value);
+			dateTime = dateTime.withZone(DateTimeZone.UTC);
+
+			dateTimeValues[i++] = dateTime;
+		}
+
+		return buildAttribute(name, nameFormat, dateTimeValues);
+	}
+
+	public static Attribute buildAttribute(
+		String name, String nameFormat, DateTime value) {
+
+		Attribute attribute = OpenSamlUtil.buildAttribute();
+
+		attribute.setName(name);
+		attribute.setNameFormat(nameFormat);
+
+		XMLObject xmlObject = OpenSamlUtil.buildAttributeValue(value);
+
+		List<XMLObject> xmlObjects = attribute.getAttributeValues();
+
+		xmlObjects.add(xmlObject);
+
+		return attribute;
+	}
+
+	public static Attribute buildAttribute(
+		String name, String nameFormat, DateTime[] values) {
+
+		Attribute attribute = OpenSamlUtil.buildAttribute();
+
+		attribute.setName(name);
+		attribute.setNameFormat(nameFormat);
+
+		List<XMLObject> xmlObjects = attribute.getAttributeValues();
+
+		for (DateTime value : values) {
+			XMLObject xmlObject = OpenSamlUtil.buildAttributeValue(value);
+
+			xmlObjects.add(xmlObject);
+		}
+
+		return attribute;
+	}
+
+	public static Attribute buildAttribute(
+		String name, String nameFormat, int[] values) {
+
+		Attribute attribute = OpenSamlUtil.buildAttribute();
+
+		attribute.setName(name);
+		attribute.setNameFormat(nameFormat);
+
+		List<XMLObject> xmlObjects = attribute.getAttributeValues();
+
+		for (int value : values) {
+			XMLObject xmlObject = OpenSamlUtil.buildAttributeValue(
+				Integer.valueOf(value));
+
+			xmlObjects.add(xmlObject);
+		}
+
+		return attribute;
+	}
+
+	public static Attribute buildAttribute(
 		String name, String nameFormat, Serializable value) {
 
 		if (value instanceof Boolean) {
@@ -223,125 +342,6 @@ public class OpenSamlUtil {
 		else {
 			return buildAttribute(name, nameFormat, String.valueOf(value));
 		}
-	}
-
-	public static Attribute buildAttribute(
-		String name, String nameFormat, Boolean value) {
-
-		Attribute attribute = OpenSamlUtil.buildAttribute();
-
-		attribute.setName(name);
-		attribute.setNameFormat(nameFormat);
-
-		XMLObject xmlObject = OpenSamlUtil.buildAttributeValue(value);
-
-		List<XMLObject> xmlObjects = attribute.getAttributeValues();
-
-		xmlObjects.add(xmlObject);
-
-		return attribute;
-	}
-
-	public static Attribute buildAttribute(
-		String name, String nameFormat, boolean[] values) {
-
-		Attribute attribute = OpenSamlUtil.buildAttribute();
-
-		attribute.setName(name);
-		attribute.setNameFormat(nameFormat);
-
-		List<XMLObject> xmlObjects = attribute.getAttributeValues();
-
-		for (boolean value: values) {
-			XMLObject xmlObject = OpenSamlUtil.buildAttributeValue(
-				Boolean.valueOf(value));
-
-			xmlObjects.add(xmlObject);
-		}
-
-		return attribute;
-	}
-
-	public static Attribute buildAttribute(
-		String name, String nameFormat, Date value) {
-
-		DateTime dateTime = new DateTime((Date)value);
-		dateTime = dateTime.withZone(DateTimeZone.UTC);
-
-		return buildAttribute(name, nameFormat, dateTime);
-	}
-
-	public static Attribute buildAttribute(
-		String name, String nameFormat, Date[] values) {
-
-		DateTime[] dateTimeValues = new DateTime[values.length];
-
-		int i = 0;
-
-		for (Date value : values) {
-			DateTime dateTime = new DateTime((Date)value);
-			dateTime = dateTime.withZone(DateTimeZone.UTC);
-
-			dateTimeValues[i++] = dateTime;
-		}
-
-		return buildAttribute(name, nameFormat, dateTimeValues);
-	}
-
-	public static Attribute buildAttribute(
-		String name, String nameFormat, DateTime value) {
-
-		Attribute attribute = OpenSamlUtil.buildAttribute();
-
-		attribute.setName(name);
-		attribute.setNameFormat(nameFormat);
-
-		XMLObject xmlObject = OpenSamlUtil.buildAttributeValue(value);
-
-		List<XMLObject> xmlObjects = attribute.getAttributeValues();
-
-		xmlObjects.add(xmlObject);
-
-		return attribute;
-	}
-
-	public static Attribute buildAttribute(
-		String name, String nameFormat, DateTime[] values) {
-
-		Attribute attribute = OpenSamlUtil.buildAttribute();
-
-		attribute.setName(name);
-		attribute.setNameFormat(nameFormat);
-
-		List<XMLObject> xmlObjects = attribute.getAttributeValues();
-
-		for (DateTime value: values) {
-			XMLObject xmlObject = OpenSamlUtil.buildAttributeValue(value);
-
-			xmlObjects.add(xmlObject);
-		}
-
-		return attribute;
-	}
-
-	public static Attribute buildAttribute(
-		String name, String nameFormat, int[] values) {
-
-		Attribute attribute = OpenSamlUtil.buildAttribute();
-
-		attribute.setName(name);
-		attribute.setNameFormat(nameFormat);
-
-		List<XMLObject> xmlObjects = attribute.getAttributeValues();
-
-		for (int value : values) {
-			XMLObject xmlObject = OpenSamlUtil.buildAttributeValue(
-				Integer.valueOf(value));
-
-			xmlObjects.add(xmlObject);
-		}
-
-		return attribute;
 	}
 
 	public static Attribute buildAttribute(

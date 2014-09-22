@@ -199,8 +199,8 @@ public class DefaultUserResolver implements UserResolver {
 			Properties userAttributeMappingsProperties = new Properties();
 
 			if (Validator.isNotNull(userAttributeMappings)) {
-				userAttributeMappingsProperties =
-					PropertiesUtil.load(userAttributeMappings);
+				userAttributeMappingsProperties = PropertiesUtil.load(
+					userAttributeMappings);
 			}
 
 			return SamlUtil.getAttributesMap(
@@ -213,7 +213,7 @@ public class DefaultUserResolver implements UserResolver {
 	}
 
 	protected DateTime getDateTimeValue(
-		String key, Map<String, List<Serializable>> map){
+		String key, Map<String, List<Serializable>> map) {
 
 		List<Serializable> values = map.get(key);
 
@@ -422,7 +422,7 @@ public class DefaultUserResolver implements UserResolver {
 		Contact contact = user.getContact();
 
 		if (!StringUtil.equalsIgnoreCase(
-			emailAddress, user.getEmailAddress())) {
+				emailAddress, user.getEmailAddress())) {
 
 			user = UserLocalServiceUtil.updateEmailAddress(
 				user.getUserId(), StringPool.BLANK, emailAddress, emailAddress);

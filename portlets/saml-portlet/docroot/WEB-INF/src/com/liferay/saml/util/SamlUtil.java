@@ -217,38 +217,6 @@ public class SamlUtil {
 			"Binding " + binding + " is not supported");
 	}
 
-	public static Serializable getXMLObjectValue(XMLObject xmlObject) {
-		if (xmlObject instanceof XSAny) {
-			XSAny xsAny = (XSAny)xmlObject;
-
-			return xsAny.getTextContent();
-		}
-		else if (xmlObject instanceof XSBoolean) {
-			XSBoolean xsBoolean = (XSBoolean)xmlObject;
-
-			XSBooleanValue xsBooleanValue = xsBoolean.getValue();
-
-			return xsBooleanValue.getValue();
-		}
-		else if (xmlObject instanceof XSInteger) {
-			XSInteger xsInteger = (XSInteger)xmlObject;
-
-			return xsInteger.getValue();
-		}
-		else if (xmlObject instanceof XSString) {
-			XSString xsString = (XSString)xmlObject;
-
-			return xsString.getValue();
-		}
-		else if (xmlObject instanceof XSDateTime) {
-			XSDateTime xsDateTime = (XSDateTime)xmlObject;
-
-			return xsDateTime.getValue().toString();
-		}
-
-		return null;
-	}
-
 	public static String getValueAsString(Attribute attribute) {
 		if (attribute == null) {
 			return null;
@@ -268,6 +236,38 @@ public class SamlUtil {
 			XSAny xsAny = (XSAny)xmlObject;
 
 			return xsAny.getTextContent();
+		}
+		else if (xmlObject instanceof XSString) {
+			XSString xsString = (XSString)xmlObject;
+
+			return xsString.getValue();
+		}
+		else if (xmlObject instanceof XSDateTime) {
+			XSDateTime xsDateTime = (XSDateTime)xmlObject;
+
+			return xsDateTime.getValue().toString();
+		}
+
+		return null;
+	}
+
+	public static Serializable getXMLObjectValue(XMLObject xmlObject) {
+		if (xmlObject instanceof XSAny) {
+			XSAny xsAny = (XSAny)xmlObject;
+
+			return xsAny.getTextContent();
+		}
+		else if (xmlObject instanceof XSBoolean) {
+			XSBoolean xsBoolean = (XSBoolean)xmlObject;
+
+			XSBooleanValue xsBooleanValue = xsBoolean.getValue();
+
+			return xsBooleanValue.getValue();
+		}
+		else if (xmlObject instanceof XSInteger) {
+			XSInteger xsInteger = (XSInteger)xmlObject;
+
+			return xsInteger.getValue();
 		}
 		else if (xmlObject instanceof XSString) {
 			XSString xsString = (XSString)xmlObject;
