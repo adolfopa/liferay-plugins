@@ -18,6 +18,8 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.CookieKeys;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.saml.SamlException;
 import com.liferay.saml.binding.SamlBinding;
@@ -30,6 +32,7 @@ import com.liferay.saml.util.SamlUtil;
 
 import java.util.List;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -277,6 +280,80 @@ public abstract class BaseProfile {
 	public String getSamlSsoSessionId(HttpServletRequest request) {
 		return CookieKeys.getCookie(
 			request, PortletWebKeys.SAML_SSO_SESSION_ID);
+	}
+
+	public void logout(
+		HttpServletRequest request, HttpServletResponse response) {
+
+		String domain = CookieKeys.getDomain(request);
+
+		Cookie companyIdCookie = new Cookie(
+			CookieKeys.COMPANY_ID, StringPool.BLANK);
+
+		if (Validator.isNotNull(domain)) {
+			companyIdCookie.setDomain(domain);
+		}
+
+		companyIdCookie.setMaxAge(0);
+		companyIdCookie.setPath(StringPool.SLASH);
+
+		Cookie idCookie = new Cookie(CookieKeys.ID, StringPool.BLANK);
+
+		if (Validator.isNotNull(domain)) {
+			idCookie.setDomain(domain);
+		}
+
+		idCookie.setMaxAge(0);
+		idCookie.setPath(StringPool.SLASH);
+
+		Cookie passwordCookie = new Cookie(
+			CookieKeys.PASSWORD, StringPool.BLANK);
+
+		if (Validator.isNotNull(domain)) {
+			passwordCookie.setDomain(domain);
+		}
+
+		passwordCookie.setMaxAge(0);
+		passwordCookie.setPath(StringPool.SLASH);
+
+		boolean rememberMe = GetterUtil.getBoolean(
+			CookieKeys.getCookie(request, CookieKeys.REMEMBER_ME));
+
+		if (!rememberMe) {
+			Cookie loginCookie = new Cookie(CookieKeys.LOGIN, StringPool.BLANK);
+
+			if (Validator.isNotNull(domain)) {
+				loginCookie.setDomain(domain);
+			}
+
+			loginCookie.setMaxAge(0);
+			loginCookie.setPath(StringPool.SLASH);
+
+			CookieKeys.addCookie(request, response, loginCookie);
+		}
+
+		Cookie rememberMeCookie = new Cookie(
+			CookieKeys.REMEMBER_ME, StringPool.BLANK);
+
+		if (Validator.isNotNull(domain)) {
+			rememberMeCookie.setDomain(domain);
+		}
+
+		rememberMeCookie.setMaxAge(0);
+		rememberMeCookie.setPath(StringPool.SLASH);
+
+		CookieKeys.addCookie(request, response, companyIdCookie);
+		CookieKeys.addCookie(request, response, idCookie);
+		CookieKeys.addCookie(request, response, passwordCookie);
+		CookieKeys.addCookie(request, response, rememberMeCookie);
+
+		HttpSession session = request.getSession();
+
+		try {
+			session.invalidate();
+		}
+		catch (Exception e) {
+		}
 	}
 
 	public void sendSamlMessage(SAMLMessageContext<?, ?, ?> samlMessageContext)
