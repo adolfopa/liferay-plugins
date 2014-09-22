@@ -280,6 +280,89 @@ public class SingleLogoutProfileImpl
 		}
 	}
 
+	@Override
+	public void terminateSpSession(
+		HttpServletRequest request, HttpServletResponse response) {
+
+		try {
+			SamlSpSession samlSpSession = getSamlSpSession(request);
+
+			if (samlSpSession != null) {
+				SamlSpSessionLocalServiceUtil.deleteSamlSpSession(
+					samlSpSession);
+
+				Cookie cookie = new Cookie(
+					PortletWebKeys.SAML_SP_SESSION_KEY, StringPool.BLANK);
+
+				cookie.setMaxAge(0);
+
+				if (Validator.isNull(PortalUtil.getPathContext())) {
+					cookie.setPath(StringPool.SLASH);
+				}
+				else {
+					cookie.setPath(PortalUtil.getPathContext());
+				}
+
+				cookie.setSecure(request.isSecure());
+
+				response.addCookie(cookie);
+			}
+		}
+		catch (SystemException se) {
+			_log.error(se, se);
+		}
+	}
+
+	@Override
+	public void terminateSsoSession(
+		HttpServletRequest request, HttpServletResponse response) {
+
+		String samlSsoSessionId = getSamlSsoSessionId(request);
+
+		if (Validator.isNotNull(samlSsoSessionId)) {
+			try {
+				SamlIdpSsoSession samlIdpSsoSession =
+					SamlIdpSsoSessionLocalServiceUtil.fetchSamlIdpSso(
+						samlSsoSessionId);
+
+				if (samlIdpSsoSession != null) {
+					SamlIdpSsoSessionLocalServiceUtil.deleteSamlIdpSsoSession(
+						samlIdpSsoSession);
+
+					List<SamlIdpSpSession> samlIdpSpSessions =
+						SamlIdpSpSessionLocalServiceUtil.getSamlIdpSpSessions(
+							samlIdpSsoSession.getSamlIdpSsoSessionId());
+
+					for (SamlIdpSpSession samlIdpSpSession :
+							samlIdpSpSessions) {
+
+						SamlIdpSpSessionLocalServiceUtil.deleteSamlIdpSpSession(
+							samlIdpSpSession);
+					}
+				}
+			}
+			catch (SystemException se) {
+				_log.error(se, se);
+			}
+		}
+
+		Cookie cookie = new Cookie(
+			PortletWebKeys.SAML_SSO_SESSION_ID, StringPool.BLANK);
+
+		cookie.setMaxAge(0);
+
+		if (Validator.isNull(PortalUtil.getPathContext())) {
+			cookie.setPath(StringPool.SLASH);
+		}
+		else {
+			cookie.setPath(PortalUtil.getPathContext());
+		}
+
+		cookie.setSecure(request.isSecure());
+
+		response.addCookie(cookie);
+	}
+
 	protected void addSessionIndex(
 		LogoutRequest logoutRequest, String sessionIndexString) {
 
@@ -1077,87 +1160,6 @@ public class SingleLogoutProfileImpl
 		StatusCode statusCode = status.getStatusCode();
 
 		return statusCode.getValue();
-	}
-
-	protected void terminateSpSession(
-		HttpServletRequest request, HttpServletResponse response) {
-
-		try {
-			SamlSpSession samlSpSession = getSamlSpSession(request);
-
-			if (samlSpSession != null) {
-				SamlSpSessionLocalServiceUtil.deleteSamlSpSession(
-					samlSpSession);
-
-				Cookie cookie = new Cookie(
-					PortletWebKeys.SAML_SP_SESSION_KEY, StringPool.BLANK);
-
-				cookie.setMaxAge(0);
-
-				if (Validator.isNull(PortalUtil.getPathContext())) {
-					cookie.setPath(StringPool.SLASH);
-				}
-				else {
-					cookie.setPath(PortalUtil.getPathContext());
-				}
-
-				cookie.setSecure(request.isSecure());
-
-				response.addCookie(cookie);
-			}
-		}
-		catch (SystemException se) {
-			_log.error(se, se);
-		}
-	}
-
-	protected void terminateSsoSession(
-		HttpServletRequest request, HttpServletResponse response) {
-
-		String samlSsoSessionId = getSamlSsoSessionId(request);
-
-		if (Validator.isNotNull(samlSsoSessionId)) {
-			try {
-				SamlIdpSsoSession samlIdpSsoSession =
-					SamlIdpSsoSessionLocalServiceUtil.fetchSamlIdpSso(
-						samlSsoSessionId);
-
-				if (samlIdpSsoSession != null) {
-					SamlIdpSsoSessionLocalServiceUtil.deleteSamlIdpSsoSession(
-						samlIdpSsoSession);
-
-					List<SamlIdpSpSession> samlIdpSpSessions =
-						SamlIdpSpSessionLocalServiceUtil.getSamlIdpSpSessions(
-							samlIdpSsoSession.getSamlIdpSsoSessionId());
-
-					for (SamlIdpSpSession samlIdpSpSession :
-							samlIdpSpSessions) {
-
-						SamlIdpSpSessionLocalServiceUtil.deleteSamlIdpSpSession(
-							samlIdpSpSession);
-					}
-				}
-			}
-			catch (SystemException se) {
-				_log.error(se, se);
-			}
-		}
-
-		Cookie cookie = new Cookie(
-			PortletWebKeys.SAML_SSO_SESSION_ID, StringPool.BLANK);
-
-		cookie.setMaxAge(0);
-
-		if (Validator.isNull(PortalUtil.getPathContext())) {
-			cookie.setPath(StringPool.SLASH);
-		}
-		else {
-			cookie.setPath(PortalUtil.getPathContext());
-		}
-
-		cookie.setSecure(request.isSecure());
-
-		response.addCookie(cookie);
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(

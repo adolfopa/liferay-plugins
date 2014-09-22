@@ -29,6 +29,9 @@ public interface SingleLogoutProfile {
 
 	public boolean isSingleLogoutSupported(HttpServletRequest request);
 
+	public void logout(
+		HttpServletRequest request, HttpServletResponse response);
+
 	public void processIdpLogout(
 			HttpServletRequest request, HttpServletResponse response)
 		throws PortalException;
@@ -40,5 +43,11 @@ public interface SingleLogoutProfile {
 	public void processSpLogout(
 			HttpServletRequest request, HttpServletResponse response)
 		throws PortalException;
+
+	public void terminateSpSession(
+		HttpServletRequest request, HttpServletResponse response);
+
+	public void terminateSsoSession(
+		HttpServletRequest request, HttpServletResponse response);
 
 }

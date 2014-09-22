@@ -37,6 +37,12 @@ public class SingleLogoutProfileUtil {
 		return getSingleLogoutProfile().isSingleLogoutSupported(request);
 	}
 
+	public static void logout(
+		HttpServletRequest request, HttpServletResponse response) {
+
+		getSingleLogoutProfile().logout(request, response);
+	}
+
 	public static void processIdpLogout(
 			HttpServletRequest request, HttpServletResponse response)
 		throws PortalException {
@@ -56,6 +62,18 @@ public class SingleLogoutProfileUtil {
 		throws PortalException {
 
 		getSingleLogoutProfile().processSpLogout(request, response);
+	}
+
+	public static void terminateSpSession(
+		HttpServletRequest request, HttpServletResponse response) {
+
+		getSingleLogoutProfile().terminateSpSession(request, response);
+	}
+
+	public static void terminateSsoSession(
+		HttpServletRequest request, HttpServletResponse response) {
+
+		getSingleLogoutProfile().terminateSsoSession(request, response);
 	}
 
 	public void setSingleLogoutProfile(
