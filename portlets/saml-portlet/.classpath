@@ -17,6 +17,7 @@
 	<classpathentry kind="lib" path="/portal-master/lib/development/mail.jar" />
 	<classpathentry kind="lib" path="/portal-master/lib/development/servlet-api.jar" />
 	<classpathentry kind="lib" path="/portal-master/lib/global/portlet.jar" />
+	<classpathentry kind="lib" path="/portal-master/lib/portal/bnd.jar" />
 	<classpathentry kind="lib" path="/portal-master/lib/portal/commons-codec.jar" />
 	<classpathentry kind="lib" path="/portal-master/lib/portal/commons-collections.jar" />
 	<classpathentry kind="lib" path="/portal-master/lib/portal/commons-httpclient.jar" />
@@ -35,38 +36,16 @@
 	<classpathentry kind="lib" path="/portal-master/util-java/util-java.jar" />
 	<classpathentry kind="lib" path="/portal-master/util-slf4j/util-slf4j.jar" />
 	<classpathentry kind="lib" path="/portal-master/util-taglib/util-taglib.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/antisamy.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/avalon-framework.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/batik-css.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/batik-ext.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/batik-util.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/bcpkix-jdk15on.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/bcprov-jdk15on.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/bsh-core.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/commons-beanutils-core.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/commons-beanutils.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/commons-configuration.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/commons-digester.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/commons-fileupload.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/dom4j.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/esapi.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jaxen.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jdom.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/joda-time.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/logkit.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/nekohtml.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/not-yet-commons-ssl.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/opensaml.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/openws.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/portal-compat-shared.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/saml-shared.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/servlet-api.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/xalan.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/xercesImpl.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/xml-apis-ext.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/xml-resolver.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/xmlParserAPIs.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/xmltooling.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/xom.jar" />
 	<classpathentry kind="output" path="bin" />
 </classpath>
