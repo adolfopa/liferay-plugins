@@ -1007,13 +1007,7 @@ public class SingleLogoutProfileImpl
 		if (!statusCodeURI.equals(StatusCode.UNSUPPORTED_BINDING_URI)) {
 			terminateSsoSession(request, response);
 
-			HttpSession session = request.getSession();
-
-			try {
-				session.invalidate();
-			}
-			catch (Exception e) {
-			}
+			logout(request, response);
 		}
 
 		sendSamlMessage(samlMessageContext);

@@ -925,7 +925,7 @@ public class WebSsoProfileImpl extends BaseProfile implements WebSsoProfile {
 		HttpSession session = request.getSession();
 
 		if (forceAuthn) {
-			session.invalidate();
+			logout(request, response);
 
 			session = request.getSession(true);
 
