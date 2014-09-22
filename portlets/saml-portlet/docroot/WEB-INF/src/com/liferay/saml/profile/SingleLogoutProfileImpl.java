@@ -287,26 +287,27 @@ public class SingleLogoutProfileImpl
 		try {
 			SamlSpSession samlSpSession = getSamlSpSession(request);
 
-			if (samlSpSession != null) {
-				SamlSpSessionLocalServiceUtil.deleteSamlSpSession(
-					samlSpSession);
-
-				Cookie cookie = new Cookie(
-					PortletWebKeys.SAML_SP_SESSION_KEY, StringPool.BLANK);
-
-				cookie.setMaxAge(0);
-
-				if (Validator.isNull(PortalUtil.getPathContext())) {
-					cookie.setPath(StringPool.SLASH);
-				}
-				else {
-					cookie.setPath(PortalUtil.getPathContext());
-				}
-
-				cookie.setSecure(request.isSecure());
-
-				response.addCookie(cookie);
+			if (samlSpSession == null) {
+				return;
 			}
+
+			SamlSpSessionLocalServiceUtil.deleteSamlSpSession(samlSpSession);
+
+			Cookie cookie = new Cookie(
+				PortletWebKeys.SAML_SP_SESSION_KEY, StringPool.BLANK);
+
+			cookie.setMaxAge(0);
+
+			if (Validator.isNull(PortalUtil.getPathContext())) {
+				cookie.setPath(StringPool.SLASH);
+			}
+			else {
+				cookie.setPath(PortalUtil.getPathContext());
+			}
+
+			cookie.setSecure(request.isSecure());
+
+			response.addCookie(cookie);
 		}
 		catch (SystemException se) {
 			_log.error(se, se);
