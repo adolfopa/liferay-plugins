@@ -18,10 +18,14 @@ import com.liferay.portal.NoSuchUserException;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.CalendarFactoryUtil;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.PropertiesUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.Contact;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.auth.CompanyThreadLocal;
 import com.liferay.portal.security.ldap.PortalLDAPImporterUtil;
@@ -31,13 +35,18 @@ import com.liferay.saml.metadata.MetadataManagerUtil;
 import com.liferay.saml.util.SamlUtil;
 import com.liferay.util.PwdGenerator;
 
+import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
+
+import org.joda.time.DateTime;
 
 import org.opensaml.common.SAMLObject;
 import org.opensaml.common.binding.SAMLMessageContext;
@@ -92,7 +101,7 @@ public class DefaultUserResolver implements UserResolver {
 	}
 
 	protected User addUser(
-			long companyId, Map<String, String> attributesMap,
+			long companyId, Map<String, List<Serializable>> attributesMap,
 			ServiceContext serviceContext)
 		throws PortalException {
 
@@ -107,14 +116,14 @@ public class DefaultUserResolver implements UserResolver {
 		String password1 = PwdGenerator.getPassword();
 		String password2 = password1;
 		boolean autoScreenName = false;
-		String screenName = attributesMap.get("screenName");
-		String emailAddress = attributesMap.get("emailAddress");
+		String screenName = getStringValue("screenName", attributesMap);
+		String emailAddress = getStringValue("emailAddress", attributesMap);
 		long facebookId = 0;
 		String openId = StringPool.BLANK;
 		Locale locale = serviceContext.getLocale();
-		String firstName = attributesMap.get("firstName");
+		String firstName = getStringValue("firstName", attributesMap);
 		String middleName = StringPool.BLANK;
-		String lastName = attributesMap.get("lastName");
+		String lastName = getStringValue("lastName", attributesMap);
 		int prefixId = 0;
 		int suffixId = 0;
 		boolean male = true;
@@ -128,7 +137,7 @@ public class DefaultUserResolver implements UserResolver {
 		long[] userGroupIds = null;
 		boolean sendEmail = false;
 
-		String uuid = attributesMap.get("uuid");
+		String uuid = getStringValue("uuid", attributesMap);
 
 		serviceContext.setUuid(uuid);
 
@@ -139,9 +148,18 @@ public class DefaultUserResolver implements UserResolver {
 			birthdayMonth, birthdayDay, birthdayYear, jobTitle, groupIds,
 			organizationIds, roleIds, userGroupIds, sendEmail, serviceContext);
 
-		UserLocalServiceUtil.updatePasswordReset(user.getUserId(), false);
+		user = UserLocalServiceUtil.updatePasswordReset(
+			user.getUserId(), false);
 
-		UserLocalServiceUtil.updateEmailAddressVerified(user.getUserId(), true);
+		user = UserLocalServiceUtil.updateEmailAddressVerified(
+			user.getUserId(), true);
+
+		DateTime modifiedDate = getDateTimeValue("modifiedDate", attributesMap);
+
+		if (Validator.isNotNull(modifiedDate)) {
+			user = UserLocalServiceUtil.updateModifiedDate(
+				user.getUserId(), modifiedDate.toDate());
+		}
 
 		return user;
 	}
@@ -162,7 +180,7 @@ public class DefaultUserResolver implements UserResolver {
 		return attributes;
 	}
 
-	protected Map<String, String> getAttributesMap(
+	protected Map<String, List<Serializable>> getAttributesMap(
 		List<Attribute> attributes,
 		SAMLMessageContext<Response, SAMLObject, NameID> samlMessageContext) {
 
@@ -178,18 +196,44 @@ public class DefaultUserResolver implements UserResolver {
 						userAttributeMappings);
 			}
 
-			if (Validator.isNotNull(userAttributeMappings)) {
-				Properties userAttributeMappingsProperties =
-					PropertiesUtil.load(userAttributeMappings);
+			Properties userAttributeMappingsProperties = new Properties();
 
-				return SamlUtil.getAttributesMap(
-					attributes, userAttributeMappingsProperties);
+			if (Validator.isNotNull(userAttributeMappings)) {
+				userAttributeMappingsProperties =
+					PropertiesUtil.load(userAttributeMappings);
 			}
-		}
+
+			return SamlUtil.getAttributesMap(
+				attributes, userAttributeMappingsProperties);
+}
 		catch (Exception e) {
 		}
 
 		return Collections.emptyMap();
+	}
+
+	protected DateTime getDateTimeValue(
+		String key, Map<String, List<Serializable>> map){
+
+		List<Serializable> values = map.get(key);
+
+		if (ListUtil.isEmpty(values)) {
+			return null;
+		}
+
+		return new DateTime(values.get(0));
+	}
+
+	protected String getStringValue(
+		String key, Map<String, List<Serializable>> map) {
+
+		List<Serializable> values = map.get(key);
+
+		if (ListUtil.isEmpty(values)) {
+			return null;
+		}
+
+		return String.valueOf(values.get(0));
 	}
 
 	protected String getSubjectNameIdentifier(
@@ -288,6 +332,12 @@ public class DefaultUserResolver implements UserResolver {
 					" of type " + subjectNameIdentifierType);
 		}
 
+		List<Attribute> attributes = getAttributes(
+			assertion, samlMessageContext);
+
+		Map<String, List<Serializable>> attributesMap = getAttributesMap(
+			attributes, samlMessageContext);
+
 		User user = getUser(
 			companyId, subjectNameIdentifier, subjectNameIdentifierType);
 
@@ -296,19 +346,123 @@ public class DefaultUserResolver implements UserResolver {
 				_log.debug("Found user " + user.toString());
 			}
 
-			return user;
+			user = updateUser(companyId, user, attributesMap, serviceContext);
+		}
+		else {
+			user = addUser(companyId, attributesMap, serviceContext);
+
+			if (_log.isDebugEnabled()) {
+				_log.debug("Added user " + user.toString());
+			}
 		}
 
-		List<Attribute> attributes = getAttributes(
-			assertion, samlMessageContext);
+		return user;
+	}
 
-		Map<String, String> attributesMap = getAttributesMap(
-			attributes, samlMessageContext);
-
-		user = addUser(companyId, attributesMap, serviceContext);
+	protected User updateUser(
+			long companyId, User user,
+			Map<String, List<Serializable>> attributesMap,
+			ServiceContext serviceContext)
+		throws PortalException {
 
 		if (_log.isDebugEnabled()) {
-			_log.debug("Added user " + user.toString());
+			_log.debug(
+				"Updating user " + user.getUserId() + " with attributes map " +
+					MapUtil.toString(attributesMap));
+		}
+
+		String screenName = null;
+		String firstName = null;
+		String lastName = null;
+		String emailAddress = null;
+		Date modifiedDate = null;
+
+		if (Validator.isNotNull(getStringValue("screenName", attributesMap))) {
+			screenName = getStringValue("screenName", attributesMap);
+		}
+		else {
+			screenName = user.getScreenName();
+		}
+
+		if (Validator.isNotNull(getStringValue("firstName", attributesMap))) {
+			firstName = getStringValue("firstName", attributesMap);
+		}
+		else {
+			firstName = user.getFirstName();
+		}
+
+		if (Validator.isNotNull(getStringValue("lastName", attributesMap))) {
+			lastName = getStringValue("lastName", attributesMap);
+		}
+		else {
+			lastName = user.getScreenName();
+		}
+
+		if (Validator.isNotNull(
+				getStringValue("emailAddress", attributesMap))) {
+
+			emailAddress = getStringValue("emailAddress", attributesMap);
+		}
+		else {
+			emailAddress = user.getEmailAddress();
+		}
+
+		if (Validator.isNotNull(
+				getDateTimeValue("modifiedDate", attributesMap))) {
+
+			DateTime modifiedDateTime = getDateTimeValue(
+				"modifiedDate", attributesMap);
+
+			modifiedDate = modifiedDateTime.toDate();
+		}
+		else {
+			modifiedDate = user.getModifiedDate();
+		}
+
+		Contact contact = user.getContact();
+
+		if (!StringUtil.equalsIgnoreCase(
+			emailAddress, user.getEmailAddress())) {
+
+			user = UserLocalServiceUtil.updateEmailAddress(
+				user.getUserId(), StringPool.BLANK, emailAddress, emailAddress);
+
+			user = UserLocalServiceUtil.updateEmailAddressVerified(
+				user.getUserId(), true);
+		}
+
+		if (!Validator.equals(user.getFirstName(), firstName) ||
+			!Validator.equals(user.getLastName(), lastName) ||
+			!Validator.equals(user.getScreenName(), screenName) ||
+			!Validator.equals(user.getModifiedDate(), modifiedDate)) {
+
+			Date oldModifiedDate = user.getModifiedDate();
+
+			Calendar birthdayCal = CalendarFactoryUtil.getCalendar();
+
+			birthdayCal.setTime(contact.getBirthday());
+
+			user = UserLocalServiceUtil.updateUser(
+				user.getUserId(), StringPool.BLANK, StringPool.BLANK,
+				StringPool.BLANK, false, user.getReminderQueryQuestion(),
+				user.getReminderQueryAnswer(), screenName, emailAddress,
+				user.getFacebookId(), user.getOpenId(), false, null,
+				user.getLanguageId(), user.getTimeZoneId(), user.getGreeting(),
+				user.getComments(), firstName, user.getMiddleName(), lastName,
+				contact.getPrefixId(), contact.getSuffixId(), user.getMale(),
+				birthdayCal.get(Calendar.MONTH), birthdayCal.get(Calendar.DATE),
+				birthdayCal.get(Calendar.YEAR), contact.getSmsSn(),
+				contact.getAimSn(), contact.getFacebookSn(), contact.getIcqSn(),
+				contact.getJabberSn(), contact.getMsnSn(),
+				contact.getMySpaceSn(), contact.getSkypeSn(),
+				contact.getTwitterSn(), contact.getYmSn(),
+				contact.getJobTitle(), null, null, null, null, null,
+				serviceContext);
+
+			if (!Validator.equals(oldModifiedDate, modifiedDate)) {
+				user = UserLocalServiceUtil.updateModifiedDate(
+					user.getUserId(), modifiedDate);
+			}
 		}
 
 		return user;
