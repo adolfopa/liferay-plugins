@@ -35,6 +35,8 @@ import com.liferay.saml.util.OpenSamlUtil;
 import com.liferay.saml.util.PortletPropsKeys;
 import com.liferay.saml.util.SamlUtil;
 
+import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -134,8 +136,7 @@ public class DefaultAttributeResolver implements AttributeResolver {
 
 		ExpandoBridge expandoBridge = user.getExpandoBridge();
 
-		String value = String.valueOf(
-			expandoBridge.getAttribute(attributeName));
+		Serializable value = expandoBridge.getAttribute(attributeName);
 
 		if (!namespaceEnabled) {
 			attribute = OpenSamlUtil.buildAttribute(attributeName, value);
@@ -309,8 +310,8 @@ public class DefaultAttributeResolver implements AttributeResolver {
 
 		Attribute attribute = null;
 
-		String value = String.valueOf(
-			BeanPropertiesUtil.getObject(user, attributeName));
+		Serializable value = (Serializable)BeanPropertiesUtil.getObject(
+			user, attributeName);
 
 		if (!namespaceEnabled) {
 			attribute = OpenSamlUtil.buildAttribute(attributeName, value);

@@ -18,6 +18,9 @@ import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 
+import java.io.Serializable;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,6 +42,10 @@ import org.opensaml.saml2.metadata.SingleSignOnService;
 import org.opensaml.saml2.metadata.provider.MetadataProviderException;
 import org.opensaml.xml.XMLObject;
 import org.opensaml.xml.schema.XSAny;
+import org.opensaml.xml.schema.XSBoolean;
+import org.opensaml.xml.schema.XSBooleanValue;
+import org.opensaml.xml.schema.XSDateTime;
+import org.opensaml.xml.schema.XSInteger;
 import org.opensaml.xml.schema.XSString;
 import org.opensaml.xml.util.DatatypeHelper;
 
@@ -86,21 +93,38 @@ public class SamlUtil {
 		return null;
 	}
 
-	public static Map<String, String> getAttributesMap(
+	public static Map<String, List<Serializable>> getAttributesMap(
 		List<Attribute> attributes, Properties attributeMappingsProperties) {
 
-		Map<String, String> attributesMap = new HashMap<String, String>();
+		Map<String, List<Serializable>> attributesMap =
+			new HashMap<String, List<Serializable>>();
 
-		for (Object key : attributeMappingsProperties.keySet()) {
-			String keyString = (String)key;
+		for (Attribute attribute : attributes) {
+			String attributeName = attribute.getName();
+			String mappedName = attributeMappingsProperties.getProperty(
+				attributeName);
 
-			String name = attributeMappingsProperties.getProperty(keyString);
+			if (Validator.isNull(mappedName)) {
+				mappedName = attributeName;
+			}
 
-			Attribute attribute = getAttribute(attributes, name);
+			List<XMLObject> xmlValues = attribute.getAttributeValues();
 
-			String value = getValueAsString(attribute);
+			List<Serializable> valueList = attributesMap.get(mappedName);
 
-			attributesMap.put(keyString, value);
+			if (Validator.isNull(valueList)) {
+				valueList = new ArrayList<Serializable>(xmlValues.size());
+			}
+
+			for (XMLObject xmlObject : xmlValues) {
+				Serializable value = getXMLObjectValue(xmlObject);
+
+				if (Validator.isNotNull(value)) {
+					valueList.add(value);
+				}
+			}
+
+			attributesMap.put(mappedName, valueList);
 		}
 
 		return attributesMap;
@@ -193,6 +217,38 @@ public class SamlUtil {
 			"Binding " + binding + " is not supported");
 	}
 
+	public static Serializable getXMLObjectValue(XMLObject xmlObject) {
+		if (xmlObject instanceof XSAny) {
+			XSAny xsAny = (XSAny)xmlObject;
+
+			return xsAny.getTextContent();
+		}
+		else if (xmlObject instanceof XSBoolean) {
+			XSBoolean xsBoolean = (XSBoolean)xmlObject;
+
+			XSBooleanValue xsBooleanValue = xsBoolean.getValue();
+
+			return xsBooleanValue.getValue();
+		}
+		else if (xmlObject instanceof XSInteger) {
+			XSInteger xsInteger = (XSInteger)xmlObject;
+
+			return xsInteger.getValue();
+		}
+		else if (xmlObject instanceof XSString) {
+			XSString xsString = (XSString)xmlObject;
+
+			return xsString.getValue();
+		}
+		else if (xmlObject instanceof XSDateTime) {
+			XSDateTime xsDateTime = (XSDateTime)xmlObject;
+
+			return xsDateTime.getValue().toString();
+		}
+
+		return null;
+	}
+
 	public static String getValueAsString(Attribute attribute) {
 		if (attribute == null) {
 			return null;
@@ -217,6 +273,11 @@ public class SamlUtil {
 			XSString xsString = (XSString)xmlObject;
 
 			return xsString.getValue();
+		}
+		else if (xmlObject instanceof XSDateTime) {
+			XSDateTime xsDateTime = (XSDateTime)xmlObject;
+
+			return xsDateTime.getValue().toString();
 		}
 
 		return null;

@@ -16,8 +16,10 @@ package com.liferay.saml.util;
 
 import com.liferay.portal.kernel.util.Validator;
 
+import java.io.Serializable;
 import java.io.StringWriter;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.xml.namespace.QName;
@@ -65,6 +67,10 @@ import org.opensaml.xml.XMLObjectBuilderFactory;
 import org.opensaml.xml.io.Marshaller;
 import org.opensaml.xml.io.MarshallerFactory;
 import org.opensaml.xml.io.MarshallingException;
+import org.opensaml.xml.schema.XSBoolean;
+import org.opensaml.xml.schema.XSBooleanValue;
+import org.opensaml.xml.schema.XSDateTime;
+import org.opensaml.xml.schema.XSInteger;
 import org.opensaml.xml.schema.XSString;
 import org.opensaml.xml.security.SecurityConfiguration;
 import org.opensaml.xml.security.SecurityException;
@@ -124,8 +130,218 @@ public class OpenSamlUtil {
 		return samlObjectBuilder.buildObject();
 	}
 
-	public static Attribute buildAttribute(String name, String value) {
+	public static Attribute buildAttribute(String name, Serializable value) {
 		return buildAttribute(name, Attribute.UNSPECIFIED, value);
+	}
+
+	public static Attribute buildAttribute(
+		String name, String nameFormat, Serializable value) {
+
+		if (value instanceof Boolean) {
+			return buildAttribute(name, nameFormat, (Boolean)value);
+		}
+		else if (value instanceof boolean[]) {
+			return buildAttribute(name, nameFormat, (boolean[])value);
+		}
+		else if (value instanceof Date) {
+			return buildAttribute(name, nameFormat, (Date)value);
+		}
+		else if (value instanceof Date) {
+			return buildAttribute(name, nameFormat, (Date[])value);
+		}
+		else if (value instanceof double[]) {
+			double[] values = (double[])value;
+
+			String[] stringValues = new String[values.length];
+
+			int i = 0;
+
+			for (double doubleValue : values) {
+				stringValues[i++] = String.valueOf(doubleValue);
+			}
+
+			return buildAttribute(name, nameFormat, stringValues);
+		}
+		else if (value instanceof float[]) {
+			float[] values = (float[])value;
+
+			String[] stringValues = new String[values.length];
+
+			int i = 0;
+
+			for (float floatValue : values) {
+				stringValues[i++] = String.valueOf(floatValue);
+			}
+
+			return buildAttribute(name, nameFormat, stringValues);
+		}
+		else if (value instanceof int[]) {
+			return buildAttribute(name, nameFormat, (int[])value);
+		}
+		else if (value instanceof long[]) {
+			long[] values = (long[])value;
+
+			String[] stringValues = new String[values.length];
+
+			int i = 0;
+
+			for (long longValue : values) {
+				stringValues[i++] = String.valueOf(longValue);
+			}
+
+			return buildAttribute(name, nameFormat, stringValues);
+		}
+		else if (value instanceof Number[]) {
+			Number[] values = (Number[])value;
+
+			String[] stringValues = new String[values.length];
+
+			int i = 0;
+
+			for (Number numberValue : values) {
+				stringValues[i++] = String.valueOf(numberValue);
+			}
+
+			return buildAttribute(name, nameFormat, stringValues);
+		}
+		else if (value instanceof short[]) {
+			short[] values = (short[])value;
+
+			String[] stringValues = new String[values.length];
+
+			int i = 0;
+
+			for (short shortValue : values) {
+				stringValues[i++] = String.valueOf(shortValue);
+			}
+
+			return buildAttribute(name, nameFormat, stringValues);
+		}
+		else if (value instanceof String[]) {
+			return buildAttribute(name, nameFormat, (String[])value);
+		}
+		else {
+			return buildAttribute(name, nameFormat, String.valueOf(value));
+		}
+	}
+
+	public static Attribute buildAttribute(
+		String name, String nameFormat, Boolean value) {
+
+		Attribute attribute = OpenSamlUtil.buildAttribute();
+
+		attribute.setName(name);
+		attribute.setNameFormat(nameFormat);
+
+		XMLObject xmlObject = OpenSamlUtil.buildAttributeValue(value);
+
+		List<XMLObject> xmlObjects = attribute.getAttributeValues();
+
+		xmlObjects.add(xmlObject);
+
+		return attribute;
+	}
+
+	public static Attribute buildAttribute(
+		String name, String nameFormat, boolean[] values) {
+
+		Attribute attribute = OpenSamlUtil.buildAttribute();
+
+		attribute.setName(name);
+		attribute.setNameFormat(nameFormat);
+
+		List<XMLObject> xmlObjects = attribute.getAttributeValues();
+
+		for (boolean value: values) {
+			XMLObject xmlObject = OpenSamlUtil.buildAttributeValue(
+				Boolean.valueOf(value));
+
+			xmlObjects.add(xmlObject);
+		}
+
+		return attribute;
+	}
+
+	public static Attribute buildAttribute(
+		String name, String nameFormat, Date value) {
+
+		DateTime dateTime = new DateTime((Date)value);
+		dateTime = dateTime.withZone(DateTimeZone.UTC);
+
+		return buildAttribute(name, nameFormat, dateTime);
+	}
+
+	public static Attribute buildAttribute(
+		String name, String nameFormat, Date[] values) {
+
+		DateTime[] dateTimeValues = new DateTime[values.length];
+
+		int i = 0;
+
+		for (Date value : values) {
+			DateTime dateTime = new DateTime((Date)value);
+			dateTime = dateTime.withZone(DateTimeZone.UTC);
+
+			dateTimeValues[i++] = dateTime;
+		}
+
+		return buildAttribute(name, nameFormat, dateTimeValues);
+	}
+
+	public static Attribute buildAttribute(
+		String name, String nameFormat, DateTime value) {
+
+		Attribute attribute = OpenSamlUtil.buildAttribute();
+
+		attribute.setName(name);
+		attribute.setNameFormat(nameFormat);
+
+		XMLObject xmlObject = OpenSamlUtil.buildAttributeValue(value);
+
+		List<XMLObject> xmlObjects = attribute.getAttributeValues();
+
+		xmlObjects.add(xmlObject);
+
+		return attribute;
+	}
+
+	public static Attribute buildAttribute(
+		String name, String nameFormat, DateTime[] values) {
+
+		Attribute attribute = OpenSamlUtil.buildAttribute();
+
+		attribute.setName(name);
+		attribute.setNameFormat(nameFormat);
+
+		List<XMLObject> xmlObjects = attribute.getAttributeValues();
+
+		for (DateTime value: values) {
+			XMLObject xmlObject = OpenSamlUtil.buildAttributeValue(value);
+
+			xmlObjects.add(xmlObject);
+		}
+
+		return attribute;
+	}
+
+	public static Attribute buildAttribute(
+		String name, String nameFormat, int[] values) {
+
+		Attribute attribute = OpenSamlUtil.buildAttribute();
+
+		attribute.setName(name);
+		attribute.setNameFormat(nameFormat);
+
+		List<XMLObject> xmlObjects = attribute.getAttributeValues();
+
+		for (int value : values) {
+			XMLObject xmlObject = OpenSamlUtil.buildAttributeValue(
+				Integer.valueOf(value));
+
+			xmlObjects.add(xmlObject);
+		}
+
+		return attribute;
 	}
 
 	public static Attribute buildAttribute(
@@ -145,12 +361,69 @@ public class OpenSamlUtil {
 		return attribute;
 	}
 
+	public static Attribute buildAttribute(
+		String name, String nameFormat, String[] values) {
+
+		Attribute attribute = OpenSamlUtil.buildAttribute();
+
+		attribute.setName(name);
+		attribute.setNameFormat(nameFormat);
+
+		List<XMLObject> xmlObjects = attribute.getAttributeValues();
+
+		for (String value : values) {
+			XMLObject xmlObject = OpenSamlUtil.buildAttributeValue(value);
+
+			xmlObjects.add(xmlObject);
+		}
+
+		return attribute;
+	}
+
 	public static AttributeStatement buildAttributeStatement() {
 		SAMLObjectBuilder<AttributeStatement> samlObjectBuilder =
 			(SAMLObjectBuilder<AttributeStatement>)_getBuilder(
 				AttributeStatement.DEFAULT_ELEMENT_NAME);
 
 		return samlObjectBuilder.buildObject();
+	}
+
+	public static XMLObject buildAttributeValue(Boolean value) {
+		XMLObjectBuilder<XSBoolean> xmlObjectBuilder = _getBuilder(
+			XSBoolean.TYPE_NAME);
+
+		XSBoolean xsBoolean = xmlObjectBuilder.buildObject(
+			AttributeValue.DEFAULT_ELEMENT_NAME, XSBoolean.TYPE_NAME);
+
+		XSBooleanValue xsBooleanValue = new XSBooleanValue(value, false);
+
+		xsBoolean.setValue(xsBooleanValue);
+
+		return xsBoolean;
+	}
+
+	public static XMLObject buildAttributeValue(DateTime value) {
+		XMLObjectBuilder<XSDateTime> xmlObjectBuilder = _getBuilder(
+			XSDateTime.TYPE_NAME);
+
+		XSDateTime xsDateTime = xmlObjectBuilder.buildObject(
+			AttributeValue.DEFAULT_ELEMENT_NAME, XSDateTime.TYPE_NAME);
+
+		xsDateTime.setValue(value);
+
+		return xsDateTime;
+	}
+
+	public static XMLObject buildAttributeValue(Integer value) {
+		XMLObjectBuilder<XSInteger> xmlObjectBuilder = _getBuilder(
+			XSInteger.TYPE_NAME);
+
+		XSInteger xsInteger = xmlObjectBuilder.buildObject(
+			AttributeValue.DEFAULT_ELEMENT_NAME, XSInteger.TYPE_NAME);
+
+		xsInteger.setValue(value);
+
+		return xsInteger;
 	}
 
 	public static XMLObject buildAttributeValue(String value) {
