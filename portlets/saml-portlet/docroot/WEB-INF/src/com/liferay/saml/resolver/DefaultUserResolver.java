@@ -435,9 +435,9 @@ public class DefaultUserResolver implements UserResolver {
 
 			Date oldModifiedDate = user.getModifiedDate();
 
-			Calendar birthdayCal = CalendarFactoryUtil.getCalendar();
+			Calendar birthdayCalendar = CalendarFactoryUtil.getCalendar();
 
-			birthdayCal.setTime(contact.getBirthday());
+			birthdayCalendar.setTime(contact.getBirthday());
 
 			user = UserLocalServiceUtil.updateUser(
 				user.getUserId(), StringPool.BLANK, StringPool.BLANK,
@@ -447,8 +447,9 @@ public class DefaultUserResolver implements UserResolver {
 				user.getLanguageId(), user.getTimeZoneId(), user.getGreeting(),
 				user.getComments(), firstName, user.getMiddleName(), lastName,
 				contact.getPrefixId(), contact.getSuffixId(), user.getMale(),
-				birthdayCal.get(Calendar.MONTH), birthdayCal.get(Calendar.DATE),
-				birthdayCal.get(Calendar.YEAR), contact.getSmsSn(),
+				birthdayCalendar.get(Calendar.MONTH),
+				birthdayCalendar.get(Calendar.DATE),
+				birthdayCalendar.get(Calendar.YEAR), contact.getSmsSn(),
 				contact.getAimSn(), contact.getFacebookSn(), contact.getIcqSn(),
 				contact.getJabberSn(), contact.getMsnSn(),
 				contact.getMySpaceSn(), contact.getSkypeSn(),
