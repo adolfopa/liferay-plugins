@@ -28,6 +28,10 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.kernel.workflow.WorkflowException;
+import com.liferay.portal.kernel.xml.Document;
+import com.liferay.portal.kernel.xml.DocumentException;
+import com.liferay.portal.kernel.xml.Element;
+import com.liferay.portal.kernel.xml.SAXReaderUtil;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.RoleConstants;
 import com.liferay.portal.model.User;
@@ -90,7 +94,8 @@ public class KaleoDesignerPortlet extends MVCPortlet {
 			content = ParamUtil.getString(actionRequest, "content");
 
 			if (Validator.isNull(name)) {
-				name = titleMap.get(themeDisplay.getSiteDefaultLocale());
+				name = getName(
+					content, titleMap.get(themeDisplay.getSiteDefaultLocale()));
 			}
 
 			ServiceContext serviceContext = ServiceContextFactory.getInstance(
@@ -198,7 +203,8 @@ public class KaleoDesignerPortlet extends MVCPortlet {
 			KaleoDraftDefinition kaleoDraftDefinition = null;
 
 			if (kaleoDraftDefinitionId <= 0) {
-				String name = titleMap.get(themeDisplay.getSiteDefaultLocale());
+				String name = getName(
+					content, titleMap.get(themeDisplay.getSiteDefaultLocale()));
 
 				kaleoDraftDefinition =
 					KaleoDraftDefinitionServiceUtil.addKaleoDraftDefinition(
@@ -232,6 +238,23 @@ public class KaleoDesignerPortlet extends MVCPortlet {
 			else {
 				throw e;
 			}
+		}
+	}
+
+	protected String getName(String content, String defaultName) {
+		if (Validator.isNull(content)) {
+			return defaultName;
+		}
+
+		try {
+			Document document = SAXReaderUtil.read(content);
+
+			Element rootElement = document.getRootElement();
+
+			return rootElement.elementText("name");
+		}
+		catch (DocumentException de) {
+			return defaultName;
 		}
 	}
 
