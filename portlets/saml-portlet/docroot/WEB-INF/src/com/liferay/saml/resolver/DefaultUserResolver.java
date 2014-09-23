@@ -148,11 +148,11 @@ public class DefaultUserResolver implements UserResolver {
 			birthdayMonth, birthdayDay, birthdayYear, jobTitle, groupIds,
 			organizationIds, roleIds, userGroupIds, sendEmail, serviceContext);
 
-		user = UserLocalServiceUtil.updatePasswordReset(
-			user.getUserId(), false);
-
 		user = UserLocalServiceUtil.updateEmailAddressVerified(
 			user.getUserId(), true);
+
+		user = UserLocalServiceUtil.updatePasswordReset(
+			user.getUserId(), false);
 
 		Date modifiedDate = getValueDate("modifiedDate", attributesMap);
 
