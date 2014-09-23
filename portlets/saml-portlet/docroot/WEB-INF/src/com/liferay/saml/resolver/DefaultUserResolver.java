@@ -212,32 +212,6 @@ public class DefaultUserResolver implements UserResolver {
 		return Collections.emptyMap();
 	}
 
-	protected Date getValueDate(
-		String key, Map<String, List<Serializable>> map) {
-
-		List<Serializable> values = map.get(key);
-
-		if (ListUtil.isEmpty(values)) {
-			return null;
-		}
-
-		DateTime dateTime = new DateTime(values.get(0));
-
-		return dateTime.toDate();
-	}
-
-	protected String getValueString(
-		String key, Map<String, List<Serializable>> map) {
-
-		List<Serializable> values = map.get(key);
-
-		if (ListUtil.isEmpty(values)) {
-			return null;
-		}
-
-		return String.valueOf(values.get(0));
-	}
-
 	protected String getSubjectNameIdentifier(
 		long companyId, Assertion assertion,
 		SAMLMessageContext<Response, SAMLObject, NameID> samlMessageContext) {
@@ -291,6 +265,32 @@ public class DefaultUserResolver implements UserResolver {
 		}
 
 		return null;
+	}
+
+	protected Date getValueDate(
+		String key, Map<String, List<Serializable>> map) {
+
+		List<Serializable> values = map.get(key);
+
+		if (ListUtil.isEmpty(values)) {
+			return null;
+		}
+
+		DateTime dateTime = new DateTime(values.get(0));
+
+		return dateTime.toDate();
+	}
+
+	protected String getValueString(
+		String key, Map<String, List<Serializable>> map) {
+
+		List<Serializable> values = map.get(key);
+
+		if (ListUtil.isEmpty(values)) {
+			return null;
+		}
+
+		return String.valueOf(values.get(0));
 	}
 
 	protected User importLdapUser(
