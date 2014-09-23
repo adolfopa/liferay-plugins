@@ -614,21 +614,6 @@ public class BaseSamlTestCase extends PowerMockito {
 					entityDescriptor.getIDPSSODescriptor(
 						SAMLConstants.SAML20P_NS);
 
-				List<SingleSignOnService> singleSignOnServices =
-					idpSsoDescriptor.getSingleSignOnServices();
-
-				for (SingleSignOnService singleSignOnService :
-						singleSignOnServices) {
-
-					String binding = singleSignOnService.getBinding();
-
-					if (binding.equals(SAMLConstants.SAML2_POST_BINDING_URI)) {
-						singleSignOnServices.remove(singleSignOnService);
-
-						break;
-					}
-				}
-
 				List<SingleLogoutService> singleLogoutServices =
 					idpSsoDescriptor.getSingleLogoutServices();
 
@@ -639,6 +624,21 @@ public class BaseSamlTestCase extends PowerMockito {
 
 					if (binding.equals(SAMLConstants.SAML2_POST_BINDING_URI)) {
 						singleLogoutServices.remove(singleLogoutService);
+
+						break;
+					}
+				}
+
+				List<SingleSignOnService> singleSignOnServices =
+					idpSsoDescriptor.getSingleSignOnServices();
+
+				for (SingleSignOnService singleSignOnService :
+						singleSignOnServices) {
+
+					String binding = singleSignOnService.getBinding();
+
+					if (binding.equals(SAMLConstants.SAML2_POST_BINDING_URI)) {
+						singleSignOnServices.remove(singleSignOnService);
 
 						break;
 					}

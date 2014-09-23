@@ -97,15 +97,15 @@ public class DefaultUserResolverTest extends BaseSamlTestCase {
 		);
 
 		when(
-			userLocalService.updatePasswordReset(
-				Mockito.anyLong(), Mockito.eq(false))
+			userLocalService.updateEmailAddressVerified(
+				Mockito.anyLong(), Mockito.eq(true))
 		).thenReturn(
 			user
 		);
 
 		when(
-			userLocalService.updateEmailAddressVerified(
-				Mockito.anyLong(), Mockito.eq(true))
+			userLocalService.updatePasswordReset(
+				Mockito.anyLong(), Mockito.eq(false))
 		).thenReturn(
 			user
 		);
