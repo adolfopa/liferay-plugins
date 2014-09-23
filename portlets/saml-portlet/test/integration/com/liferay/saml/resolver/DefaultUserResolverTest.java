@@ -96,6 +96,20 @@ public class DefaultUserResolverTest extends BaseSamlTestCase {
 			user
 		);
 
+		when(
+			userLocalService.updatePasswordReset(
+				Mockito.anyLong(), Mockito.eq(false))
+		).thenReturn(
+			user
+		);
+
+		when(
+			userLocalService.updateEmailAddressVerified(
+				Mockito.anyLong(), Mockito.eq(true))
+		).thenReturn(
+			user
+		);
+
 		Assertion assertion = OpenSamlUtil.buildAssertion();
 
 		List<AttributeStatement> attributeStatements =

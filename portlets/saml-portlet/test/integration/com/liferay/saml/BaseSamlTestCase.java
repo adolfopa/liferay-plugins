@@ -29,6 +29,12 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.Group;
+import com.liferay.portal.model.GroupConstants;
+import com.liferay.portal.service.GroupLocalService;
+import com.liferay.portal.service.GroupLocalServiceUtil;
+import com.liferay.portal.service.LayoutLocalService;
+import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.util.Portal;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.saml.binding.SamlBinding;
@@ -56,6 +62,8 @@ import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.httpclient.HttpClient;
 
 import org.junit.After;
@@ -70,6 +78,7 @@ import org.opensaml.common.IdentifierGenerator;
 import org.opensaml.common.xml.SAMLConstants;
 import org.opensaml.saml2.metadata.EntityDescriptor;
 import org.opensaml.saml2.metadata.IDPSSODescriptor;
+import org.opensaml.saml2.metadata.SingleLogoutService;
 import org.opensaml.saml2.metadata.SingleSignOnService;
 import org.opensaml.saml2.metadata.provider.MetadataProvider;
 import org.opensaml.saml2.metadata.provider.MetadataProviderException;
@@ -355,7 +364,7 @@ public class BaseSamlTestCase extends PowerMockito {
 			new MockMetadataProvider());
 	}
 
-	protected void setupPortal() {
+	protected void setupPortal() throws Exception {
 		httpClient = mock(HttpClient.class);
 
 		when(
@@ -375,6 +384,12 @@ public class BaseSamlTestCase extends PowerMockito {
 		portal = mock(Portal.class);
 
 		portalUtil.setPortal(portal);
+
+		when(
+			portal.getCompanyId(Mockito.any(HttpServletRequest.class))
+		).thenReturn(
+			COMPANY_ID
+		);
 
 		when(
 			portal.getPathMain()
@@ -413,6 +428,26 @@ public class BaseSamlTestCase extends PowerMockito {
 
 		PortletBeanLocatorUtil.setBeanLocator(
 			"saml-portlet", portletBeanLocator);
+
+		GroupLocalService groupLocalService = getMockPortalService(
+			GroupLocalServiceUtil.class, GroupLocalService.class);
+
+		Group guestGroup = mock(Group.class);
+
+		when(
+			groupLocalService.getGroup(
+				Mockito.anyLong(), Mockito.eq(GroupConstants.GUEST))
+		).thenReturn(
+			guestGroup
+		);
+
+		LayoutLocalService layoutLocalService = getMockPortalService(
+			LayoutLocalServiceUtil.class, LayoutLocalService.class);
+
+		when(
+			layoutLocalService.getDefaultPlid(
+				Mockito.anyLong(), Mockito.anyBoolean())
+		).thenReturn(1l);
 	}
 
 	protected void setupProps() {
@@ -589,6 +624,21 @@ public class BaseSamlTestCase extends PowerMockito {
 
 					if (binding.equals(SAMLConstants.SAML2_POST_BINDING_URI)) {
 						singleSignOnServices.remove(singleSignOnService);
+
+						break;
+					}
+				}
+
+				List<SingleLogoutService> singleLogoutServices =
+					idpSsoDescriptor.getSingleLogoutServices();
+
+				for (SingleLogoutService singleLogoutService :
+						singleLogoutServices) {
+
+					String binding = singleLogoutService.getBinding();
+
+					if (binding.equals(SAMLConstants.SAML2_POST_BINDING_URI)) {
+						singleLogoutServices.remove(singleLogoutService);
 
 						break;
 					}
