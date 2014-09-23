@@ -100,31 +100,30 @@ public class SamlUtil {
 			new HashMap<String, List<Serializable>>();
 
 		for (Attribute attribute : attributes) {
-			String attributeName = attribute.getName();
-			String mappedName = attributeMappingsProperties.getProperty(
-				attributeName);
+			String name = attributeMappingsProperties.getProperty(
+				attribute.getName());
 
-			if (Validator.isNull(mappedName)) {
-				mappedName = attributeName;
+			if (Validator.isNull(name)) {
+				name = attribute.getName();
 			}
 
 			List<XMLObject> xmlValues = attribute.getAttributeValues();
 
-			List<Serializable> valueList = attributesMap.get(mappedName);
+			List<Serializable> values = attributesMap.get(name);
 
-			if (Validator.isNull(valueList)) {
-				valueList = new ArrayList<Serializable>(xmlValues.size());
+			if (values == null) {
+				values = new ArrayList<Serializable>(xmlValues.size());
 			}
 
 			for (XMLObject xmlObject : xmlValues) {
 				Serializable value = getXMLObjectValue(xmlObject);
 
 				if (Validator.isNotNull(value)) {
-					valueList.add(value);
+					values.add(value);
 				}
 			}
 
-			attributesMap.put(mappedName, valueList);
+			attributesMap.put(name, values);
 		}
 
 		return attributesMap;
@@ -237,15 +236,15 @@ public class SamlUtil {
 
 			return xsAny.getTextContent();
 		}
+		else if (xmlObject instanceof XSDateTime) {
+			XSDateTime xsDateTime = (XSDateTime)xmlObject;
+
+			return String.valueOf(xsDateTime.getValue());
+		}
 		else if (xmlObject instanceof XSString) {
 			XSString xsString = (XSString)xmlObject;
 
 			return xsString.getValue();
-		}
-		else if (xmlObject instanceof XSDateTime) {
-			XSDateTime xsDateTime = (XSDateTime)xmlObject;
-
-			return xsDateTime.getValue().toString();
 		}
 
 		return null;
@@ -264,6 +263,11 @@ public class SamlUtil {
 
 			return xsBooleanValue.getValue();
 		}
+		else if (xmlObject instanceof XSDateTime) {
+			XSDateTime xsDateTime = (XSDateTime)xmlObject;
+
+			return String.valueOf(xsDateTime.getValue());
+		}
 		else if (xmlObject instanceof XSInteger) {
 			XSInteger xsInteger = (XSInteger)xmlObject;
 
@@ -273,11 +277,6 @@ public class SamlUtil {
 			XSString xsString = (XSString)xmlObject;
 
 			return xsString.getValue();
-		}
-		else if (xmlObject instanceof XSDateTime) {
-			XSDateTime xsDateTime = (XSDateTime)xmlObject;
-
-			return xsDateTime.getValue().toString();
 		}
 
 		return null;
