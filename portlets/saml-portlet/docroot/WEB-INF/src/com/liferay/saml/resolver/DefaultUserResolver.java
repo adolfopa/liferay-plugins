@@ -116,14 +116,14 @@ public class DefaultUserResolver implements UserResolver {
 		String password1 = PwdGenerator.getPassword();
 		String password2 = password1;
 		boolean autoScreenName = false;
-		String screenName = getStringValue("screenName", attributesMap);
-		String emailAddress = getStringValue("emailAddress", attributesMap);
+		String screenName = getValueString("screenName", attributesMap);
+		String emailAddress = getValueString("emailAddress", attributesMap);
 		long facebookId = 0;
 		String openId = StringPool.BLANK;
 		Locale locale = serviceContext.getLocale();
-		String firstName = getStringValue("firstName", attributesMap);
+		String firstName = getValueString("firstName", attributesMap);
 		String middleName = StringPool.BLANK;
-		String lastName = getStringValue("lastName", attributesMap);
+		String lastName = getValueString("lastName", attributesMap);
 		int prefixId = 0;
 		int suffixId = 0;
 		boolean male = true;
@@ -137,7 +137,7 @@ public class DefaultUserResolver implements UserResolver {
 		long[] userGroupIds = null;
 		boolean sendEmail = false;
 
-		String uuid = getStringValue("uuid", attributesMap);
+		String uuid = getValueString("uuid", attributesMap);
 
 		serviceContext.setUuid(uuid);
 
@@ -154,11 +154,11 @@ public class DefaultUserResolver implements UserResolver {
 		user = UserLocalServiceUtil.updateEmailAddressVerified(
 			user.getUserId(), true);
 
-		DateTime modifiedDate = getDateTimeValue("modifiedDate", attributesMap);
+		Date modifiedDate = getValueDate("modifiedDate", attributesMap);
 
-		if (Validator.isNotNull(modifiedDate)) {
+		if (modifiedDate != null) {
 			user = UserLocalServiceUtil.updateModifiedDate(
-				user.getUserId(), modifiedDate.toDate());
+				user.getUserId(), modifiedDate);
 		}
 
 		return user;
@@ -212,7 +212,7 @@ public class DefaultUserResolver implements UserResolver {
 		return Collections.emptyMap();
 	}
 
-	protected DateTime getDateTimeValue(
+	protected Date getValueDate(
 		String key, Map<String, List<Serializable>> map) {
 
 		List<Serializable> values = map.get(key);
@@ -221,10 +221,12 @@ public class DefaultUserResolver implements UserResolver {
 			return null;
 		}
 
-		return new DateTime(values.get(0));
+		DateTime dateTime = new DateTime(values.get(0));
+
+		return dateTime.toDate();
 	}
 
-	protected String getStringValue(
+	protected String getValueString(
 		String key, Map<String, List<Serializable>> map) {
 
 		List<Serializable> values = map.get(key);
@@ -377,43 +379,38 @@ public class DefaultUserResolver implements UserResolver {
 		String emailAddress = null;
 		Date modifiedDate = null;
 
-		if (Validator.isNotNull(getStringValue("screenName", attributesMap))) {
-			screenName = getStringValue("screenName", attributesMap);
+		if (Validator.isNotNull(getValueString("screenName", attributesMap))) {
+			screenName = getValueString("screenName", attributesMap);
 		}
 		else {
 			screenName = user.getScreenName();
 		}
 
-		if (Validator.isNotNull(getStringValue("firstName", attributesMap))) {
-			firstName = getStringValue("firstName", attributesMap);
+		if (Validator.isNotNull(getValueString("firstName", attributesMap))) {
+			firstName = getValueString("firstName", attributesMap);
 		}
 		else {
 			firstName = user.getFirstName();
 		}
 
-		if (Validator.isNotNull(getStringValue("lastName", attributesMap))) {
-			lastName = getStringValue("lastName", attributesMap);
+		if (Validator.isNotNull(getValueString("lastName", attributesMap))) {
+			lastName = getValueString("lastName", attributesMap);
 		}
 		else {
 			lastName = user.getScreenName();
 		}
 
 		if (Validator.isNotNull(
-				getStringValue("emailAddress", attributesMap))) {
+				getValueString("emailAddress", attributesMap))) {
 
-			emailAddress = getStringValue("emailAddress", attributesMap);
+			emailAddress = getValueString("emailAddress", attributesMap);
 		}
 		else {
 			emailAddress = user.getEmailAddress();
 		}
 
-		if (Validator.isNotNull(
-				getDateTimeValue("modifiedDate", attributesMap))) {
-
-			DateTime modifiedDateTime = getDateTimeValue(
-				"modifiedDate", attributesMap);
-
-			modifiedDate = modifiedDateTime.toDate();
+		if (getValueDate("modifiedDate", attributesMap) != null) {
+			modifiedDate = getValueDate("modifiedDate", attributesMap);
 		}
 		else {
 			modifiedDate = user.getModifiedDate();

@@ -175,6 +175,7 @@ public class OpenSamlUtil {
 		String name, String nameFormat, Date value) {
 
 		DateTime dateTime = new DateTime(value);
+
 		dateTime = dateTime.withZone(DateTimeZone.UTC);
 
 		return buildAttribute(name, nameFormat, dateTime);
@@ -189,6 +190,7 @@ public class OpenSamlUtil {
 
 		for (Date value : values) {
 			DateTime dateTime = new DateTime(value);
+
 			dateTime = dateTime.withZone(DateTimeZone.UTC);
 
 			dateTimeValues[i++] = dateTime;
