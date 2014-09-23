@@ -656,16 +656,17 @@ public class KaleoFormsPortlet extends MVCPortlet {
 		}
 
 		long ddmSructureId = ParamUtil.getLong(actionRequest, "ddmStructureId");
-		long oldDDMStructureId = ParamUtil.getLong(
-			actionRequest, "oldDDMStructureId");
 
 		String workflowDefinition = ParamUtil.getString(
 			actionRequest, "workflowDefinition");
-		String oldWorkflowDefinition = ParamUtil.getString(
-			actionRequest, "oldWorkflowDefinition");
 
-		if ((ddmSructureId != oldDDMStructureId) ||
-			!workflowDefinition.equals(oldWorkflowDefinition)) {
+		KaleoProcess kaleoProcess = KaleoProcessServiceUtil.getKaleoProcess(
+			kaleoProcessId);
+
+		DDLRecordSet ddlRecordSet = kaleoProcess.getDDLRecordSet();
+
+		if ((ddmSructureId != ddlRecordSet.getDDMStructureId()) ||
+			!workflowDefinition.equals(kaleoProcess.getWorkflowDefinition())) {
 
 			KaleoProcessServiceUtil.deleteKaleoProcessData(kaleoProcessId);
 		}
