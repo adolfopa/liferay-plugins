@@ -39,7 +39,7 @@
 				</portlet:renderURL>
 
 				<div class="btn-toolbar">
-					<aui:button href="<%= editKaleoDraftDefinitionURL %>" value="add-definition" />
+					<aui:button href="<%= editKaleoDraftDefinitionURL %>" primary="<%= true %>" value='<%= LanguageUtil.format(request, "add-new-x", "definition") %>' />
 				</div>
 			</c:if>
 
