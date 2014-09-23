@@ -116,14 +116,14 @@ public class DefaultUserResolver implements UserResolver {
 		String password1 = PwdGenerator.getPassword();
 		String password2 = password1;
 		boolean autoScreenName = false;
-		String screenName = getValueString("screenName", attributesMap);
-		String emailAddress = getValueString("emailAddress", attributesMap);
+		String screenName = getValueAsString("screenName", attributesMap);
+		String emailAddress = getValueAsString("emailAddress", attributesMap);
 		long facebookId = 0;
 		String openId = StringPool.BLANK;
 		Locale locale = serviceContext.getLocale();
-		String firstName = getValueString("firstName", attributesMap);
+		String firstName = getValueAsString("firstName", attributesMap);
 		String middleName = StringPool.BLANK;
-		String lastName = getValueString("lastName", attributesMap);
+		String lastName = getValueAsString("lastName", attributesMap);
 		int prefixId = 0;
 		int suffixId = 0;
 		boolean male = true;
@@ -137,7 +137,7 @@ public class DefaultUserResolver implements UserResolver {
 		long[] userGroupIds = null;
 		boolean sendEmail = false;
 
-		String uuid = getValueString("uuid", attributesMap);
+		String uuid = getValueAsString("uuid", attributesMap);
 
 		serviceContext.setUuid(uuid);
 
@@ -154,7 +154,7 @@ public class DefaultUserResolver implements UserResolver {
 		user = UserLocalServiceUtil.updatePasswordReset(
 			user.getUserId(), false);
 
-		Date modifiedDate = getValueDate("modifiedDate", attributesMap);
+		Date modifiedDate = getValueAsDate("modifiedDate", attributesMap);
 
 		if (modifiedDate != null) {
 			user = UserLocalServiceUtil.updateModifiedDate(
@@ -267,10 +267,10 @@ public class DefaultUserResolver implements UserResolver {
 		return null;
 	}
 
-	protected Date getValueDate(
-		String key, Map<String, List<Serializable>> map) {
+	protected Date getValueAsDate(
+		String key, Map<String, List<Serializable>> attributesMap) {
 
-		List<Serializable> values = map.get(key);
+		List<Serializable> values = attributesMap.get(key);
 
 		if (ListUtil.isEmpty(values)) {
 			return null;
@@ -281,10 +281,10 @@ public class DefaultUserResolver implements UserResolver {
 		return dateTime.toDate();
 	}
 
-	protected String getValueString(
-		String key, Map<String, List<Serializable>> map) {
+	protected String getValueAsString(
+		String key, Map<String, List<Serializable>> attributesMap) {
 
-		List<Serializable> values = map.get(key);
+		List<Serializable> values = attributesMap.get(key);
 
 		if (ListUtil.isEmpty(values)) {
 			return null;
@@ -379,38 +379,38 @@ public class DefaultUserResolver implements UserResolver {
 		String firstName = null;
 		String lastName = null;
 
-		if (getValueDate("modifiedDate", attributesMap) != null) {
-			modifiedDate = getValueDate("modifiedDate", attributesMap);
+		if (getValueAsDate("modifiedDate", attributesMap) != null) {
+			modifiedDate = getValueAsDate("modifiedDate", attributesMap);
 		}
 		else {
 			modifiedDate = user.getModifiedDate();
 		}
 
-		if (Validator.isNotNull(getValueString("screenName", attributesMap))) {
-			screenName = getValueString("screenName", attributesMap);
+		if (Validator.isNotNull(getValueAsString("screenName", attributesMap))) {
+			screenName = getValueAsString("screenName", attributesMap);
 		}
 		else {
 			screenName = user.getScreenName();
 		}
 
 		if (Validator.isNotNull(
-				getValueString("emailAddress", attributesMap))) {
+				getValueAsString("emailAddress", attributesMap))) {
 
-			emailAddress = getValueString("emailAddress", attributesMap);
+			emailAddress = getValueAsString("emailAddress", attributesMap);
 		}
 		else {
 			emailAddress = user.getEmailAddress();
 		}
 
-		if (Validator.isNotNull(getValueString("firstName", attributesMap))) {
-			firstName = getValueString("firstName", attributesMap);
+		if (Validator.isNotNull(getValueAsString("firstName", attributesMap))) {
+			firstName = getValueAsString("firstName", attributesMap);
 		}
 		else {
 			firstName = user.getFirstName();
 		}
 
-		if (Validator.isNotNull(getValueString("lastName", attributesMap))) {
-			lastName = getValueString("lastName", attributesMap);
+		if (Validator.isNotNull(getValueAsString("lastName", attributesMap))) {
+			lastName = getValueAsString("lastName", attributesMap);
 		}
 		else {
 			lastName = user.getScreenName();

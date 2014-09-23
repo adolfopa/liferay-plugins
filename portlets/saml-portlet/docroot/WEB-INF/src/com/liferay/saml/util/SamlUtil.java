@@ -100,16 +100,16 @@ public class SamlUtil {
 			new HashMap<String, List<Serializable>>();
 
 		for (Attribute attribute : attributes) {
-			String name = attributeMappingsProperties.getProperty(
+			String key = attributeMappingsProperties.getProperty(
 				attribute.getName());
 
-			if (Validator.isNull(name)) {
-				name = attribute.getName();
+			if (Validator.isNull(key)) {
+				key = attribute.getName();
 			}
 
 			List<XMLObject> xmlValues = attribute.getAttributeValues();
 
-			List<Serializable> values = attributesMap.get(name);
+			List<Serializable> values = attributesMap.get(key);
 
 			if (values == null) {
 				values = new ArrayList<Serializable>(xmlValues.size());
@@ -123,7 +123,7 @@ public class SamlUtil {
 				}
 			}
 
-			attributesMap.put(name, values);
+			attributesMap.put(key, values);
 		}
 
 		return attributesMap;
