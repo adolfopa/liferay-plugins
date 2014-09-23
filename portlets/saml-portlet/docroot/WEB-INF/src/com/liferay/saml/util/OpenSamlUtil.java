@@ -14,6 +14,7 @@
 
 package com.liferay.saml.util;
 
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.io.Serializable;
@@ -270,29 +271,15 @@ public class OpenSamlUtil {
 		}
 		else if (value instanceof double[]) {
 			double[] values = (double[])value;
-
-			String[] stringValues = new String[values.length];
-
-			int i = 0;
-
-			for (double doubleValue : values) {
-				stringValues[i++] = String.valueOf(doubleValue);
-			}
-
-			return buildAttribute(name, nameFormat, stringValues);
+			
+			return buildAttribute(
+				name, nameFormat, ArrayUtil.toStringArray(values));
 		}
 		else if (value instanceof float[]) {
 			float[] values = (float[])value;
 
-			String[] stringValues = new String[values.length];
-
-			int i = 0;
-
-			for (float floatValue : values) {
-				stringValues[i++] = String.valueOf(floatValue);
-			}
-
-			return buildAttribute(name, nameFormat, stringValues);
+			return buildAttribute(
+				name, nameFormat, ArrayUtil.toStringArray(values));
 		}
 		else if (value instanceof int[]) {
 			return buildAttribute(name, nameFormat, (int[])value);
@@ -300,41 +287,20 @@ public class OpenSamlUtil {
 		else if (value instanceof long[]) {
 			long[] values = (long[])value;
 
-			String[] stringValues = new String[values.length];
-
-			int i = 0;
-
-			for (long longValue : values) {
-				stringValues[i++] = String.valueOf(longValue);
-			}
-
-			return buildAttribute(name, nameFormat, stringValues);
+			return buildAttribute(
+				name, nameFormat, ArrayUtil.toStringArray(values));
 		}
 		else if (value instanceof Number[]) {
 			Number[] values = (Number[])value;
 
-			String[] stringValues = new String[values.length];
-
-			int i = 0;
-
-			for (Number numberValue : values) {
-				stringValues[i++] = String.valueOf(numberValue);
-			}
-
-			return buildAttribute(name, nameFormat, stringValues);
+			return buildAttribute(
+				name, nameFormat, ArrayUtil.toStringArray(values));
 		}
 		else if (value instanceof short[]) {
 			short[] values = (short[])value;
 
-			String[] stringValues = new String[values.length];
-
-			int i = 0;
-
-			for (short shortValue : values) {
-				stringValues[i++] = String.valueOf(shortValue);
-			}
-
-			return buildAttribute(name, nameFormat, stringValues);
+			return buildAttribute(
+				name, nameFormat, ArrayUtil.toStringArray(values));
 		}
 		else if (value instanceof String[]) {
 			return buildAttribute(name, nameFormat, (String[])value);
