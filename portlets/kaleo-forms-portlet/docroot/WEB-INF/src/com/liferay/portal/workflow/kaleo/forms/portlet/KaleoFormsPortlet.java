@@ -44,6 +44,10 @@ import com.liferay.portal.kernel.workflow.WorkflowInstanceManagerUtil;
 import com.liferay.portal.kernel.workflow.WorkflowTask;
 import com.liferay.portal.kernel.workflow.WorkflowTaskDueDateException;
 import com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil;
+import com.liferay.portal.kernel.xml.Document;
+import com.liferay.portal.kernel.xml.DocumentException;
+import com.liferay.portal.kernel.xml.Element;
+import com.liferay.portal.kernel.xml.SAXReaderUtil;
 import com.liferay.portal.model.WorkflowInstanceLink;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.permission.PermissionChecker;
@@ -322,7 +326,8 @@ public class KaleoFormsPortlet extends MVCPortlet {
 			content = ParamUtil.getString(actionRequest, "content");
 
 			if (Validator.isNull(name)) {
-				name = titleMap.get(themeDisplay.getSiteDefaultLocale());
+				name = getName(
+					content, titleMap.get(themeDisplay.getSiteDefaultLocale()));
 			}
 
 			ServiceContext serviceContext = ServiceContextFactory.getInstance(
@@ -453,7 +458,8 @@ public class KaleoFormsPortlet extends MVCPortlet {
 			KaleoDraftDefinition kaleoDraftDefinition = null;
 
 			if (kaleoDraftDefinitionId <= 0) {
-				String name = titleMap.get(themeDisplay.getSiteDefaultLocale());
+				String name = getName(
+					content, titleMap.get(themeDisplay.getSiteDefaultLocale()));
 
 				kaleoDraftDefinition =
 					KaleoDraftDefinitionServiceUtil.addKaleoDraftDefinition(
@@ -714,6 +720,23 @@ public class KaleoFormsPortlet extends MVCPortlet {
 		DDMForm ddmForm = getDDMForm(actionRequest);
 
 		return DDMFormXSDSerializerUtil.serialize(ddmForm);
+	}
+
+	protected String getName(String content, String defaultName) {
+		if (Validator.isNull(content)) {
+			return defaultName;
+		}
+
+		try {
+			Document document = SAXReaderUtil.read(content);
+
+			Element rootElement = document.getRootElement();
+
+			return rootElement.elementText("name");
+		}
+		catch (DocumentException de) {
+			return defaultName;
+		}
 	}
 
 	@Override
