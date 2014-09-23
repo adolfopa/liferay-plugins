@@ -186,14 +186,12 @@ public class OpenSamlUtil {
 
 		DateTime[] dateTimeValues = new DateTime[values.length];
 
-		int i = 0;
-
-		for (Date value : values) {
-			DateTime dateTime = new DateTime(value);
+		for (int i = 0; i < values.length; i++) {
+			DateTime dateTime = new DateTime(values[i]);
 
 			dateTime = dateTime.withZone(DateTimeZone.UTC);
 
-			dateTimeValues[i++] = dateTime;
+			dateTimeValues[i] = dateTime;
 		}
 
 		return buildAttribute(name, nameFormat, dateTimeValues);
