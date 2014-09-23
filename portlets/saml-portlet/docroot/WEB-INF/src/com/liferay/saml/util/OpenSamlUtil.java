@@ -271,7 +271,7 @@ public class OpenSamlUtil {
 		}
 		else if (value instanceof double[]) {
 			double[] values = (double[])value;
-			
+
 			return buildAttribute(
 				name, nameFormat, ArrayUtil.toStringArray(values));
 		}

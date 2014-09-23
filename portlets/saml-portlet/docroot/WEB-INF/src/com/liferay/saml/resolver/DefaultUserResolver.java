@@ -386,7 +386,9 @@ public class DefaultUserResolver implements UserResolver {
 			modifiedDate = user.getModifiedDate();
 		}
 
-		if (Validator.isNotNull(getValueAsString("screenName", attributesMap))) {
+		if (Validator.isNotNull(
+				getValueAsString("screenName", attributesMap))) {
+
 			screenName = getValueAsString("screenName", attributesMap);
 		}
 		else {
