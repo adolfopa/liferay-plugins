@@ -91,8 +91,10 @@ public class KaleoDesignerUtil {
 		Map<Locale, String> titleMap = LocalizationUtil.getLocalizationMap(
 			request, "title");
 
+		Locale defaultLocale = themeDisplay.getSiteDefaultLocale();
+
 		String name = ParamUtil.getString(
-			request, "name", titleMap.get(themeDisplay.getSiteDefaultLocale()));
+			request, "name", titleMap.get(defaultLocale));
 
 		if (Validator.isNull(name)) {
 			return null;
@@ -128,6 +130,10 @@ public class KaleoDesignerUtil {
 		WorkflowDefinition workflowDefinition =
 			WorkflowDefinitionManagerUtil.getWorkflowDefinition(
 				serviceContext.getCompanyId(), name, version);
+
+		if (!titleMap.containsValue(defaultLocale)) {
+			titleMap.put(defaultLocale, name);
+		}
 
 		String content = workflowDefinition.getContent();
 
