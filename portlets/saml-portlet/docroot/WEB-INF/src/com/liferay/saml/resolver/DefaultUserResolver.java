@@ -373,17 +373,33 @@ public class DefaultUserResolver implements UserResolver {
 					MapUtil.toString(attributesMap));
 		}
 
+		Date modifiedDate = null;
 		String screenName = null;
+		String emailAddress = null;
 		String firstName = null;
 		String lastName = null;
-		String emailAddress = null;
-		Date modifiedDate = null;
+
+		if (getValueDate("modifiedDate", attributesMap) != null) {
+			modifiedDate = getValueDate("modifiedDate", attributesMap);
+		}
+		else {
+			modifiedDate = user.getModifiedDate();
+		}
 
 		if (Validator.isNotNull(getValueString("screenName", attributesMap))) {
 			screenName = getValueString("screenName", attributesMap);
 		}
 		else {
 			screenName = user.getScreenName();
+		}
+
+		if (Validator.isNotNull(
+				getValueString("emailAddress", attributesMap))) {
+
+			emailAddress = getValueString("emailAddress", attributesMap);
+		}
+		else {
+			emailAddress = user.getEmailAddress();
 		}
 
 		if (Validator.isNotNull(getValueString("firstName", attributesMap))) {
@@ -398,22 +414,6 @@ public class DefaultUserResolver implements UserResolver {
 		}
 		else {
 			lastName = user.getScreenName();
-		}
-
-		if (Validator.isNotNull(
-				getValueString("emailAddress", attributesMap))) {
-
-			emailAddress = getValueString("emailAddress", attributesMap);
-		}
-		else {
-			emailAddress = user.getEmailAddress();
-		}
-
-		if (getValueDate("modifiedDate", attributesMap) != null) {
-			modifiedDate = getValueDate("modifiedDate", attributesMap);
-		}
-		else {
-			modifiedDate = user.getModifiedDate();
 		}
 
 		Contact contact = user.getContact();
