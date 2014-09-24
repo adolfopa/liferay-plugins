@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.designer.service.messaging;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.workflow.kaleo.designer.service.ClpSerializer;
@@ -23,6 +25,7 @@ import com.liferay.portal.workflow.kaleo.designer.service.KaleoDraftDefinitionSe
 /**
  * @author Eduardo Lundgren
  */
+@ProviderType
 public class ClpMessageListener extends BaseMessageListener {
 	public static String getServletContextName() {
 		return ClpSerializer.getServletContextName();

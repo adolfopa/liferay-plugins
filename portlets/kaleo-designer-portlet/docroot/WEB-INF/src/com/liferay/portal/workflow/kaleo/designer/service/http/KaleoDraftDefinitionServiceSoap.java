@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.designer.service.http;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
@@ -64,6 +66,7 @@ import java.util.Map;
  * @see com.liferay.portal.workflow.kaleo.designer.service.KaleoDraftDefinitionServiceUtil
  * @generated
  */
+@ProviderType
 public class KaleoDraftDefinitionServiceSoap {
 	public static com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinitionSoap addKaleoDraftDefinition(
 		long userId, long groupId, java.lang.String name,
@@ -82,6 +85,20 @@ public class KaleoDraftDefinitionServiceSoap {
 					serviceContext);
 
 			return com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinitionSoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static void deleteKaleoDraftDefinitions(java.lang.String name,
+		int version, com.liferay.portal.service.ServiceContext serviceContext)
+		throws RemoteException {
+		try {
+			KaleoDraftDefinitionServiceUtil.deleteKaleoDraftDefinitions(name,
+				version, serviceContext);
 		}
 		catch (Exception e) {
 			_log.error(e, e);

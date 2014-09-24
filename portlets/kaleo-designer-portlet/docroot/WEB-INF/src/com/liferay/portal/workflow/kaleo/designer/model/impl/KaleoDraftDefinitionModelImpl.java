@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.designer.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.LocaleException;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -64,6 +66,7 @@ import java.util.TreeSet;
  * @generated
  */
 @JSON(strict = true)
+@ProviderType
 public class KaleoDraftDefinitionModelImpl extends BaseModelImpl<KaleoDraftDefinition>
 	implements KaleoDraftDefinitionModel {
 	/*
@@ -102,10 +105,10 @@ public class KaleoDraftDefinitionModelImpl extends BaseModelImpl<KaleoDraftDefin
 	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.column.bitmask.enabled.com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition"),
 			true);
-	public static long COMPANYID_COLUMN_BITMASK = 1L;
-	public static long DRAFTVERSION_COLUMN_BITMASK = 2L;
-	public static long NAME_COLUMN_BITMASK = 4L;
-	public static long VERSION_COLUMN_BITMASK = 8L;
+	public static final long COMPANYID_COLUMN_BITMASK = 1L;
+	public static final long DRAFTVERSION_COLUMN_BITMASK = 2L;
+	public static final long NAME_COLUMN_BITMASK = 4L;
+	public static final long VERSION_COLUMN_BITMASK = 8L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -946,8 +949,8 @@ public class KaleoDraftDefinitionModelImpl extends BaseModelImpl<KaleoDraftDefin
 		return sb.toString();
 	}
 
-	private static ClassLoader _classLoader = KaleoDraftDefinition.class.getClassLoader();
-	private static Class<?>[] _escapedModelInterfaces = new Class[] {
+	private static final ClassLoader _classLoader = KaleoDraftDefinition.class.getClassLoader();
+	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
 			KaleoDraftDefinition.class
 		};
 	private long _kaleoDraftDefinitionId;

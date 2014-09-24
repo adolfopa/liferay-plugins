@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.designer.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.bean.IdentifiableBean;
 import com.liferay.portal.kernel.dao.db.DB;
@@ -58,6 +60,7 @@ import javax.sql.DataSource;
  * @see com.liferay.portal.workflow.kaleo.designer.service.KaleoDraftDefinitionLocalServiceUtil
  * @generated
  */
+@ProviderType
 public abstract class KaleoDraftDefinitionLocalServiceBaseImpl
 	extends BaseLocalServiceImpl implements KaleoDraftDefinitionLocalService,
 		IdentifiableBean {
@@ -113,11 +116,12 @@ public abstract class KaleoDraftDefinitionLocalServiceBaseImpl
 	 *
 	 * @param kaleoDraftDefinition the kaleo draft definition
 	 * @return the kaleo draft definition that was removed
+	 * @throws PortalException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public KaleoDraftDefinition deleteKaleoDraftDefinition(
-		KaleoDraftDefinition kaleoDraftDefinition) {
+		KaleoDraftDefinition kaleoDraftDefinition) throws PortalException {
 		return kaleoDraftDefinitionPersistence.remove(kaleoDraftDefinition);
 	}
 

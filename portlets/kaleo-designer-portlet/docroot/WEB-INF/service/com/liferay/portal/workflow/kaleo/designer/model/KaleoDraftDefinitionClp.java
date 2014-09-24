@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.designer.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.LocaleException;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -46,6 +48,7 @@ import java.util.TreeSet;
 /**
  * @author Eduardo Lundgren
  */
+@ProviderType
 public class KaleoDraftDefinitionClp extends BaseModelImpl<KaleoDraftDefinition>
 	implements KaleoDraftDefinition {
 	public KaleoDraftDefinitionClp() {

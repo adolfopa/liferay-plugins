@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.designer.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.model.PersistedModel;
 
 /**
@@ -25,6 +27,7 @@ import com.liferay.portal.model.PersistedModel;
  * @see com.liferay.portal.workflow.kaleo.designer.model.impl.KaleoDraftDefinitionModelImpl
  * @generated
  */
+@ProviderType
 public interface KaleoDraftDefinition extends KaleoDraftDefinitionModel,
 	PersistedModel {
 	/*

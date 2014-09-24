@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.designer.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.LocaleException;
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.model.BaseModel;
@@ -43,6 +45,7 @@ import java.util.Map;
  * @see com.liferay.portal.workflow.kaleo.designer.model.impl.KaleoDraftDefinitionModelImpl
  * @generated
  */
+@ProviderType
 public interface KaleoDraftDefinitionModel extends BaseModel<KaleoDraftDefinition>,
 	GroupedModel, LocalizedModel {
 	/*

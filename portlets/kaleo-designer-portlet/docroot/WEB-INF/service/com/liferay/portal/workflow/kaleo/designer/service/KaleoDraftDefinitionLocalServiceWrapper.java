@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.designer.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.ServiceWrapper;
 
 /**
@@ -23,6 +25,7 @@ import com.liferay.portal.service.ServiceWrapper;
  * @see KaleoDraftDefinitionLocalService
  * @generated
  */
+@ProviderType
 public class KaleoDraftDefinitionLocalServiceWrapper
 	implements KaleoDraftDefinitionLocalService,
 		ServiceWrapper<KaleoDraftDefinitionLocalService> {
@@ -72,10 +75,12 @@ public class KaleoDraftDefinitionLocalServiceWrapper
 	*
 	* @param kaleoDraftDefinition the kaleo draft definition
 	* @return the kaleo draft definition that was removed
+	* @throws PortalException
 	*/
 	@Override
 	public com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition deleteKaleoDraftDefinition(
-		com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition kaleoDraftDefinition) {
+		com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition kaleoDraftDefinition)
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kaleoDraftDefinitionLocalService.deleteKaleoDraftDefinition(kaleoDraftDefinition);
 	}
 
@@ -104,7 +109,8 @@ public class KaleoDraftDefinitionLocalServiceWrapper
 
 	@Override
 	public void deleteKaleoDraftDefinitions(java.lang.String name, int version,
-		com.liferay.portal.service.ServiceContext serviceContext) {
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
 		_kaleoDraftDefinitionLocalService.deleteKaleoDraftDefinitions(name,
 			version, serviceContext);
 	}

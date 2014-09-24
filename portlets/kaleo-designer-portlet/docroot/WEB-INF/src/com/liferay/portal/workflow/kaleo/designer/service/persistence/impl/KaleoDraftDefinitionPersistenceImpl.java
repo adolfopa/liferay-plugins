@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.designer.service.persistence.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -61,6 +63,7 @@ import java.util.Set;
  * @see KaleoDraftDefinitionUtil
  * @generated
  */
+@ProviderType
 public class KaleoDraftDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDraftDefinition>
 	implements KaleoDraftDefinitionPersistence {
 	/*
@@ -2250,8 +2253,8 @@ public class KaleoDraftDefinitionPersistenceImpl extends BasePersistenceImpl<Kal
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No KaleoDraftDefinition exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
-	private static Log _log = LogFactoryUtil.getLog(KaleoDraftDefinitionPersistenceImpl.class);
-	private static KaleoDraftDefinition _nullKaleoDraftDefinition = new KaleoDraftDefinitionImpl() {
+	private static final Log _log = LogFactoryUtil.getLog(KaleoDraftDefinitionPersistenceImpl.class);
+	private static final KaleoDraftDefinition _nullKaleoDraftDefinition = new KaleoDraftDefinitionImpl() {
 			@Override
 			public Object clone() {
 				return this;
@@ -2263,7 +2266,7 @@ public class KaleoDraftDefinitionPersistenceImpl extends BasePersistenceImpl<Kal
 			}
 		};
 
-	private static CacheModel<KaleoDraftDefinition> _nullKaleoDraftDefinitionCacheModel =
+	private static final CacheModel<KaleoDraftDefinition> _nullKaleoDraftDefinitionCacheModel =
 		new CacheModel<KaleoDraftDefinition>() {
 			@Override
 			public KaleoDraftDefinition toEntityModel() {

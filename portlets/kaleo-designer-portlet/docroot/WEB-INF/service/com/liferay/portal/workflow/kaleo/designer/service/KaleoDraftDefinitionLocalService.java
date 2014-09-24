@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.designer.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.search.IndexableType;
@@ -36,6 +38,7 @@ import com.liferay.portal.service.PersistedModelLocalService;
  * @see com.liferay.portal.workflow.kaleo.designer.service.impl.KaleoDraftDefinitionLocalServiceImpl
  * @generated
  */
+@ProviderType
 @Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
 	PortalException.class, SystemException.class})
 public interface KaleoDraftDefinitionLocalService extends BaseLocalService,
@@ -77,10 +80,12 @@ public interface KaleoDraftDefinitionLocalService extends BaseLocalService,
 	*
 	* @param kaleoDraftDefinition the kaleo draft definition
 	* @return the kaleo draft definition that was removed
+	* @throws PortalException
 	*/
 	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition deleteKaleoDraftDefinition(
-		com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition kaleoDraftDefinition);
+		com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition kaleoDraftDefinition)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Deletes the kaleo draft definition with the primary key from the database. Also notifies the appropriate model listeners.
@@ -100,7 +105,8 @@ public interface KaleoDraftDefinitionLocalService extends BaseLocalService,
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public void deleteKaleoDraftDefinitions(java.lang.String name, int version,
-		com.liferay.portal.service.ServiceContext serviceContext);
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* @throws PortalException

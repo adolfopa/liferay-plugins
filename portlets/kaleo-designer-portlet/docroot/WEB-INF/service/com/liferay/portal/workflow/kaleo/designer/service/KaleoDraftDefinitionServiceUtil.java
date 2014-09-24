@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.designer.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableService;
@@ -32,6 +34,7 @@ import com.liferay.portal.service.InvokableService;
  * @see com.liferay.portal.workflow.kaleo.designer.service.impl.KaleoDraftDefinitionServiceImpl
  * @generated
  */
+@ProviderType
 public class KaleoDraftDefinitionServiceUtil {
 	/*
 	 * NOTE FOR DEVELOPERS:
@@ -47,6 +50,12 @@ public class KaleoDraftDefinitionServiceUtil {
 		return getService()
 				   .addKaleoDraftDefinition(userId, groupId, name, titleMap,
 			content, version, draftVersion, serviceContext);
+	}
+
+	public static void deleteKaleoDraftDefinitions(java.lang.String name,
+		int version, com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		getService().deleteKaleoDraftDefinitions(name, version, serviceContext);
 	}
 
 	/**

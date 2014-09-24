@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.designer.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition;
 import com.liferay.portal.workflow.kaleo.designer.service.KaleoDraftDefinitionLocalServiceUtil;
 
@@ -29,6 +31,7 @@ import com.liferay.portal.workflow.kaleo.designer.service.KaleoDraftDefinitionLo
  * @see com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition
  * @generated
  */
+@ProviderType
 public abstract class KaleoDraftDefinitionBaseImpl
 	extends KaleoDraftDefinitionModelImpl implements KaleoDraftDefinition {
 	/*

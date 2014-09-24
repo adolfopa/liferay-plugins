@@ -78,6 +78,20 @@ import javax.portlet.ResourceResponse;
  */
 public class KaleoDesignerPortlet extends MVCPortlet {
 
+	public void deleteKaleoDraftDefinition(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		String name = ParamUtil.getString(actionRequest, "name");
+		int version = ParamUtil.getInteger(actionRequest, "version");
+
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			actionRequest);
+
+		KaleoDraftDefinitionServiceUtil.deleteKaleoDraftDefinitions(
+			name, version, serviceContext);
+	}
+
 	public void publishKaleoDraftDefinition(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {

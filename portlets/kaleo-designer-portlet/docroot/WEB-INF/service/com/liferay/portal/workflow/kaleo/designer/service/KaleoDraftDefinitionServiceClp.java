@@ -14,12 +14,15 @@
 
 package com.liferay.portal.workflow.kaleo.designer.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.InvokableService;
 
 /**
  * @author Eduardo Lundgren
  * @generated
  */
+@ProviderType
 public class KaleoDraftDefinitionServiceClp
 	implements KaleoDraftDefinitionService {
 	public KaleoDraftDefinitionServiceClp(InvokableService invokableService) {
@@ -33,49 +36,56 @@ public class KaleoDraftDefinitionServiceClp
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName1 = "getBeanIdentifier";
+		_methodName1 = "deleteKaleoDraftDefinitions";
 
-		_methodParameterTypes1 = new String[] {  };
-
-		_methodName2 = "getKaleoDraftDefinition";
-
-		_methodParameterTypes2 = new String[] {
-				"java.lang.String", "int", "int",
-				"com.liferay.portal.service.ServiceContext"
-			};
-
-		_methodName3 = "getKaleoDraftDefinitions";
-
-		_methodParameterTypes3 = new String[] {  };
-
-		_methodName4 = "getLatestKaleoDraftDefinition";
-
-		_methodParameterTypes4 = new String[] {
+		_methodParameterTypes1 = new String[] {
 				"java.lang.String", "int",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName5 = "getLatestKaleoDraftDefinitions";
+		_methodName2 = "getBeanIdentifier";
+
+		_methodParameterTypes2 = new String[] {  };
+
+		_methodName3 = "getKaleoDraftDefinition";
+
+		_methodParameterTypes3 = new String[] {
+				"java.lang.String", "int", "int",
+				"com.liferay.portal.service.ServiceContext"
+			};
+
+		_methodName4 = "getKaleoDraftDefinitions";
+
+		_methodParameterTypes4 = new String[] {  };
+
+		_methodName5 = "getLatestKaleoDraftDefinition";
 
 		_methodParameterTypes5 = new String[] {
+				"java.lang.String", "int",
+				"com.liferay.portal.service.ServiceContext"
+			};
+
+		_methodName6 = "getLatestKaleoDraftDefinitions";
+
+		_methodParameterTypes6 = new String[] {
 				"long", "int", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName7 = "publishKaleoDraftDefinition";
+		_methodName8 = "publishKaleoDraftDefinition";
 
-		_methodParameterTypes7 = new String[] {
+		_methodParameterTypes8 = new String[] {
 				"long", "long", "java.lang.String", "java.util.Map",
 				"java.lang.String", "com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName8 = "setBeanIdentifier";
+		_methodName9 = "setBeanIdentifier";
 
-		_methodParameterTypes8 = new String[] { "java.lang.String" };
+		_methodParameterTypes9 = new String[] { "java.lang.String" };
 
-		_methodName9 = "updateKaleoDraftDefinition";
+		_methodName10 = "updateKaleoDraftDefinition";
 
-		_methodParameterTypes9 = new String[] {
+		_methodParameterTypes10 = new String[] {
 				"long", "java.lang.String", "java.util.Map", "java.lang.String",
 				"int", "com.liferay.portal.service.ServiceContext"
 			};
@@ -131,12 +141,44 @@ public class KaleoDraftDefinitionServiceClp
 	}
 
 	@Override
+	public void deleteKaleoDraftDefinitions(java.lang.String name, int version,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		try {
+			_invokableService.invokeMethod(_methodName1,
+				_methodParameterTypes1,
+				new Object[] {
+					ClpSerializer.translateInput(name),
+					
+				version,
+					
+				ClpSerializer.translateInput(serviceContext)
+				});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
+	@Override
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName1,
-					_methodParameterTypes1, new Object[] {  });
+			returnObj = _invokableService.invokeMethod(_methodName2,
+					_methodParameterTypes2, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -161,8 +203,8 @@ public class KaleoDraftDefinitionServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName2,
-					_methodParameterTypes2,
+			returnObj = _invokableService.invokeMethod(_methodName3,
+					_methodParameterTypes3,
 					new Object[] {
 						ClpSerializer.translateInput(name),
 						
@@ -198,8 +240,8 @@ public class KaleoDraftDefinitionServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName3,
-					_methodParameterTypes3, new Object[] {  });
+			returnObj = _invokableService.invokeMethod(_methodName4,
+					_methodParameterTypes4, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -228,8 +270,8 @@ public class KaleoDraftDefinitionServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName4,
-					_methodParameterTypes4,
+			returnObj = _invokableService.invokeMethod(_methodName5,
+					_methodParameterTypes5,
 					new Object[] {
 						ClpSerializer.translateInput(name),
 						
@@ -265,8 +307,8 @@ public class KaleoDraftDefinitionServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName5,
-					_methodParameterTypes5,
+			returnObj = _invokableService.invokeMethod(_methodName6,
+					_methodParameterTypes6,
 					new Object[] {
 						companyId,
 						
@@ -315,8 +357,8 @@ public class KaleoDraftDefinitionServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName7,
-					_methodParameterTypes7,
+			returnObj = _invokableService.invokeMethod(_methodName8,
+					_methodParameterTypes8,
 					new Object[] {
 						userId,
 						
@@ -353,8 +395,8 @@ public class KaleoDraftDefinitionServiceClp
 	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		try {
-			_invokableService.invokeMethod(_methodName8,
-				_methodParameterTypes8,
+			_invokableService.invokeMethod(_methodName9,
+				_methodParameterTypes9,
 				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
 		}
 		catch (Throwable t) {
@@ -380,8 +422,8 @@ public class KaleoDraftDefinitionServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName9,
-					_methodParameterTypes9,
+			returnObj = _invokableService.invokeMethod(_methodName10,
+					_methodParameterTypes10,
 					new Object[] {
 						userId,
 						
@@ -428,10 +470,12 @@ public class KaleoDraftDefinitionServiceClp
 	private String[] _methodParameterTypes4;
 	private String _methodName5;
 	private String[] _methodParameterTypes5;
-	private String _methodName7;
-	private String[] _methodParameterTypes7;
+	private String _methodName6;
+	private String[] _methodParameterTypes6;
 	private String _methodName8;
 	private String[] _methodParameterTypes8;
 	private String _methodName9;
 	private String[] _methodParameterTypes9;
+	private String _methodName10;
+	private String[] _methodParameterTypes10;
 }

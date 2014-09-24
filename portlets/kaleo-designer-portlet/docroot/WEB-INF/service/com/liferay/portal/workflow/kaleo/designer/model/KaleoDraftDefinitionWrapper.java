@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.designer.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
@@ -30,6 +32,7 @@ import java.util.Map;
  * @see KaleoDraftDefinition
  * @generated
  */
+@ProviderType
 public class KaleoDraftDefinitionWrapper implements KaleoDraftDefinition,
 	ModelWrapper<KaleoDraftDefinition> {
 	public KaleoDraftDefinitionWrapper(
@@ -718,5 +721,5 @@ public class KaleoDraftDefinitionWrapper implements KaleoDraftDefinition,
 		_kaleoDraftDefinition.resetOriginalValues();
 	}
 
-	private KaleoDraftDefinition _kaleoDraftDefinition;
+	private final KaleoDraftDefinition _kaleoDraftDefinition;
 }

@@ -14,12 +14,15 @@
 
 package com.liferay.portal.workflow.kaleo.designer.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * @author Eduardo Lundgren
  * @generated
  */
+@ProviderType
 public class KaleoDraftDefinitionLocalServiceClp
 	implements KaleoDraftDefinitionLocalService {
 	public KaleoDraftDefinitionLocalServiceClp(
@@ -313,7 +316,8 @@ public class KaleoDraftDefinitionLocalServiceClp
 
 	@Override
 	public com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition deleteKaleoDraftDefinition(
-		com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition kaleoDraftDefinition) {
+		com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition kaleoDraftDefinition)
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -325,6 +329,10 @@ public class KaleoDraftDefinitionLocalServiceClp
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -409,7 +417,8 @@ public class KaleoDraftDefinitionLocalServiceClp
 
 	@Override
 	public void deleteKaleoDraftDefinitions(java.lang.String name, int version,
-		com.liferay.portal.service.ServiceContext serviceContext) {
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			_invokableLocalService.invokeMethod(_methodName6,
 				_methodParameterTypes6,
@@ -423,6 +432,10 @@ public class KaleoDraftDefinitionLocalServiceClp
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
