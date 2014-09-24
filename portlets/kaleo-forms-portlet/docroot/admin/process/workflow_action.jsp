@@ -39,7 +39,7 @@ String backURL = (String)row.getParameter("backURL");
 	/>
 
 	<%
-	String taglibOnClick = "Liferay.fire('" + renderResponse.getNamespace() + "chooseWorkflow', {name: '" + workflowDefinition.getName() + "', title: '" + HtmlUtil.escape(workflowDefinition.getTitle(themeDisplay.getLanguageId())) + "', version: '" + workflowDefinition.getVersion() + "'});";
+	String taglibOnClick = "Liferay.fire('" + renderResponse.getNamespace() + "chooseWorkflow', {name: '" + HtmlUtil.escapeJS(workflowDefinition.getName()) + "', title: '" + HtmlUtil.escapeJS(workflowDefinition.getTitle(themeDisplay.getLanguageId())) + "', version: '" + workflowDefinition.getVersion() + "'});";
 	%>
 
 	<liferay-ui:icon
