@@ -57,4 +57,16 @@ KaleoDraftDefinition kaleoDraftDefinition = (KaleoDraftDefinition)row.getObject(
 			useDialog="<%= true %>"
 		/>
 	</c:if>
+
+	<c:if test="<%= (kaleoDraftDefinition.getVersion() == 0) && KaleoDraftDefinitionPermission.contains(permissionChecker, kaleoDraftDefinition, ActionKeys.DELETE) %>">
+		<portlet:actionURL name="deleteKaleoDraftDefinition" var="deleteURL">
+			<portlet:param name="redirect" value="<%= currentURL %>" />
+			<portlet:param name="name" value="<%= kaleoDraftDefinition.getName() %>" />
+			<portlet:param name="version" value="<%= String.valueOf(kaleoDraftDefinition.getVersion()) %>" />
+		</portlet:actionURL>
+
+		<liferay-ui:icon-delete
+			url="<%= deleteURL %>"
+		/>
+	</c:if>
 </liferay-ui:icon-menu>

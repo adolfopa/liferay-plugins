@@ -91,28 +91,35 @@ public class KaleoDraftDefinitionLocalServiceImpl
 		return kaleoDraftDefinition;
 	}
 
+	@Override
 	public KaleoDraftDefinition deleteKaleoDraftDefinition(
-			String name, int version, int draftVersion,
-			ServiceContext serviceContext)
+			KaleoDraftDefinition kaleoDraftDefinition)
 		throws PortalException {
-
-		// Kaleo draft definition
-
-		KaleoDraftDefinition kaleoDraftDefinition = getKaleoDraftDefinition(
-			name, version, draftVersion, serviceContext);
-
-		kaleoDraftDefinitionPersistence.remove(kaleoDraftDefinition);
 
 		// Resources
 
 		resourceLocalService.deleteResource(
 			kaleoDraftDefinition, ResourceConstants.SCOPE_COMPANY);
 
-		return kaleoDraftDefinition;
+		// Kaleo draft definition
+
+		return kaleoDraftDefinitionPersistence.remove(kaleoDraftDefinition);
+	}
+
+	public KaleoDraftDefinition deleteKaleoDraftDefinition(
+			String name, int version, int draftVersion,
+			ServiceContext serviceContext)
+		throws PortalException {
+
+		KaleoDraftDefinition kaleoDraftDefinition = getKaleoDraftDefinition(
+			name, version, draftVersion, serviceContext);
+
+		return deleteKaleoDraftDefinition(kaleoDraftDefinition);
 	}
 
 	public void deleteKaleoDraftDefinitions(
-		String name, int version, ServiceContext serviceContext) {
+			String name, int version, ServiceContext serviceContext)
+		throws PortalException {
 
 		List<KaleoDraftDefinition> kaleoDraftDefinitions =
 			kaleoDraftDefinitionPersistence.findByC_N_V(

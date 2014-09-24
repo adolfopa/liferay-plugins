@@ -53,6 +53,21 @@ public class KaleoDraftDefinitionServiceImpl
 			serviceContext);
 	}
 
+	public void deleteKaleoDraftDefinitions(
+			String name, int version, ServiceContext serviceContext)
+		throws PortalException {
+
+		KaleoDraftDefinition kaleoDraftDefinition =
+			kaleoDraftDefinitionLocalService.getLatestKaleoDraftDefinition(
+				name, version, serviceContext);
+
+		KaleoDraftDefinitionPermission.check(
+			getPermissionChecker(), kaleoDraftDefinition, ActionKeys.DELETE);
+
+		kaleoDraftDefinitionLocalService.deleteKaleoDraftDefinitions(
+			name, version, serviceContext);
+	}
+
 	public KaleoDraftDefinition getKaleoDraftDefinition(
 			String name, int version, int draftVersion,
 			ServiceContext serviceContext)

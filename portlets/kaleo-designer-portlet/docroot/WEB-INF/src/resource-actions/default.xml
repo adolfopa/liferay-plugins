@@ -50,6 +50,7 @@
 		</portlet-ref>
 		<permissions>
 			<supports>
+				<action-key>DELETE</action-key>
 				<action-key>PERMISSIONS</action-key>
 				<action-key>UPDATE</action-key>
 				<action-key>VIEW</action-key>
@@ -59,6 +60,7 @@
 			</site-member-defaults>
 			<guest-defaults />
 			<guest-unsupported>
+				<action-key>DELETE</action-key>
 				<action-key>PERMISSIONS</action-key>
 				<action-key>UPDATE</action-key>
 				<action-key>VIEW</action-key>
