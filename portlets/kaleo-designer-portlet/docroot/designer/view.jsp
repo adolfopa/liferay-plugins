@@ -38,9 +38,9 @@
 					<portlet:param name="backURL" value="<%= currentURL %>" />
 				</portlet:renderURL>
 
-				<div class="btn-toolbar">
+				<aui:button-row>
 					<aui:button href="<%= editKaleoDraftDefinitionURL %>" primary="<%= true %>" value='<%= LanguageUtil.format(request, "add-new-x", "definition") %>' />
-				</div>
+				</aui:button-row>
 			</c:if>
 
 			<liferay-ui:search-container-results
