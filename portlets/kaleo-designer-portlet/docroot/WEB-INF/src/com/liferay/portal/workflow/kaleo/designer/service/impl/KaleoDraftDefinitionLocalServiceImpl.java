@@ -96,14 +96,16 @@ public class KaleoDraftDefinitionLocalServiceImpl
 			KaleoDraftDefinition kaleoDraftDefinition)
 		throws PortalException {
 
+		// Kaleo draft definition
+
+		kaleoDraftDefinitionPersistence.remove(kaleoDraftDefinition);
+
 		// Resources
 
 		resourceLocalService.deleteResource(
 			kaleoDraftDefinition, ResourceConstants.SCOPE_COMPANY);
 
-		// Kaleo draft definition
-
-		return kaleoDraftDefinitionPersistence.remove(kaleoDraftDefinition);
+		return kaleoDraftDefinition;
 	}
 
 	public KaleoDraftDefinition deleteKaleoDraftDefinition(
