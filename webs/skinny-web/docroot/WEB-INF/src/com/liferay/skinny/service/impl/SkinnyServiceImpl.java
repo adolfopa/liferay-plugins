@@ -28,6 +28,7 @@ import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portlet.dynamicdatalists.model.DDLRecord;
 import com.liferay.portlet.dynamicdatalists.model.DDLRecordSet;
+import com.liferay.portlet.dynamicdatamapping.model.DDMStructure;
 import com.liferay.portlet.dynamicdatamapping.storage.Fields;
 import com.liferay.portlet.journal.NoSuchArticleException;
 import com.liferay.portlet.journal.model.JournalArticle;
@@ -80,7 +81,7 @@ public class SkinnyServiceImpl extends SkinnyServiceBaseImpl {
 	@AccessControlled(guestAccessEnabled = true)
 	@Override
 	public List<SkinnyJournalArticle> getSkinnyJournalArticles(
-			long companyId, String groupName, String journalStructureId,
+			long companyId, String groupName, long journalStructureId,
 			String locale)
 		throws Exception {
 
@@ -91,9 +92,11 @@ public class SkinnyServiceImpl extends SkinnyServiceBaseImpl {
 
 		Set<String> journalArticleIds = new HashSet<String>();
 
+		DDMStructure journalStructure = ddmStructureLocalService.getDDMStructure(journalStructureId);
+
 		List<JournalArticle> journalArticles =
 			journalArticleLocalService.getStructureArticles(
-				group.getGroupId(), journalStructureId);
+				group.getGroupId(), journalStructure.getStructureKey());
 
 		for (JournalArticle journalArticle : journalArticles) {
 			if (journalArticleIds.contains(journalArticle.getArticleId())) {
