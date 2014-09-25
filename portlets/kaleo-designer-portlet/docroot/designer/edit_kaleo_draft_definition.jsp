@@ -203,20 +203,18 @@
 						function(name, version, draftVersion, callback) {
 							var A = AUI();
 
-							<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="kaleoDraftDefinitions" var="kaleoDraftDefinitionsURL">
-								<portlet:param name="name" value="LIFERAY_NAME" />
-								<portlet:param name="version" value="LIFERAY_VERSION" />
-								<portlet:param name="draftVersion" value="LIFERAY_DRAFT_VERSION" />
-							</liferay-portlet:resourceURL>
+							var contentURL = Liferay.PortletURL.createResourceURL();
 
-							var contentURL = '<%= kaleoDraftDefinitionsURL %>';
+							contentURL.setPortletId('<%= portletDisplay.getId() %>');
 
-							contentURL = contentURL.replace('LIFERAY_NAME', name);
-							contentURL = contentURL.replace('LIFERAY_VERSION', version);
-							contentURL = contentURL.replace('LIFERAY_DRAFT_VERSION', draftVersion);
+							contentURL.setResourceId('kaleoDraftDefinitions');
+
+							contentURL.setParameter('name', name);
+							contentURL.setParameter('version', version);
+							contentURL.setParameter('draftVersion', draftVersion);
 
 							A.io.request(
-								contentURL,
+								contentURL.toString(),
 								{
 									dataType: 'JSON',
 									on: {
@@ -225,7 +223,7 @@
 								}
 							);
 						},
-						['aui-base']
+						['aui-base', 'liferay-portlet-url']
 					);
 
 					Liferay.provide(
