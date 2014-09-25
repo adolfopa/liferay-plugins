@@ -205,13 +205,11 @@
 
 							var contentURL = Liferay.PortletURL.createResourceURL();
 
-							contentURL.setPortletId('<%= portletDisplay.getId() %>');
-
-							contentURL.setResourceId('kaleoDraftDefinitions');
-
 							contentURL.setParameter('name', name);
 							contentURL.setParameter('version', version);
 							contentURL.setParameter('draftVersion', draftVersion);
+							contentURL.setPortletId('<%= portletDisplay.getId() %>');
+							contentURL.setResourceId('kaleoDraftDefinitions');
 
 							A.io.request(
 								contentURL.toString(),
