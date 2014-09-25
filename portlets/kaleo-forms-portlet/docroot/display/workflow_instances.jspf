@@ -109,10 +109,12 @@ portletURL.setParameter("tabs2", tabs2);
 			</c:otherwise>
 		</c:choose>
 
-		<liferay-ui:search-container-column-jsp
-			align="right"
-			path="/display/workflow_instance_action.jsp"
-		/>
+		<c:if test="<%= !workflowInstance.isComplete() %>">
+			<liferay-ui:search-container-column-jsp
+				align="right"
+				path="/display/workflow_instance_action.jsp"
+			/>
+		</c:if>
 	</liferay-ui:search-container-row>
 
 	<liferay-ui:search-iterator />
