@@ -22,7 +22,7 @@ import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.reports.model.Source;
 import com.liferay.reports.service.SourceServiceUtil;
-import com.liferay.util.bridges.mvc.BaseActionCommand;
+import com.liferay.portal.kernel.portlet.bridges.mvc.BaseActionCommand;
 
 import java.util.Locale;
 import java.util.Map;

@@ -26,7 +26,7 @@ import com.liferay.salesforce.connection.SalesforceConnectionManager;
 import com.liferay.salesforce.service.ClpSerializer;
 import com.liferay.salesforce.util.PortletPropsKeys;
 import com.liferay.salesforce.util.PrefsPortletPropsUtil;
-import com.liferay.util.bridges.mvc.BaseActionCommand;
+import com.liferay.portal.kernel.portlet.bridges.mvc.BaseActionCommand;
 
 import javax.portlet.PortletPreferences;
 import javax.portlet.PortletRequest;

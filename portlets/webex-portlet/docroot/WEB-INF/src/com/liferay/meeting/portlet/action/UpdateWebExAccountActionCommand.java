@@ -19,7 +19,7 @@ import com.liferay.meeting.webex.service.WebExAccountServiceUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
-import com.liferay.util.bridges.mvc.BaseActionCommand;
+import com.liferay.portal.kernel.portlet.bridges.mvc.BaseActionCommand;
 
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletResponse;

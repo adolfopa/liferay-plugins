@@ -18,7 +18,7 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.reports.model.Source;
 import com.liferay.reports.service.SourceServiceUtil;
 import com.liferay.reports.util.ReportsUtil;
-import com.liferay.util.bridges.mvc.BaseActionCommand;
+import com.liferay.portal.kernel.portlet.bridges.mvc.BaseActionCommand;
 
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletResponse;

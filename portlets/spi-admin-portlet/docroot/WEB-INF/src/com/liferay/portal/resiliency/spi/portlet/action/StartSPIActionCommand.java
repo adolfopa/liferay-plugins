@@ -16,7 +16,7 @@ package com.liferay.portal.resiliency.spi.portlet.action;
 
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.resiliency.spi.service.SPIDefinitionServiceUtil;
-import com.liferay.util.bridges.mvc.BaseActionCommand;
+import com.liferay.portal.kernel.portlet.bridges.mvc.BaseActionCommand;
 
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletResponse;

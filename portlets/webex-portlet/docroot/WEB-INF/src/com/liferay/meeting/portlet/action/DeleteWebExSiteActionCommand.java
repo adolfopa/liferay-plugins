@@ -16,7 +16,7 @@ package com.liferay.meeting.portlet.action;
 
 import com.liferay.meeting.webex.service.WebExSiteServiceUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.util.bridges.mvc.BaseActionCommand;
+import com.liferay.portal.kernel.portlet.bridges.mvc.BaseActionCommand;
 
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletResponse;

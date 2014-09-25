@@ -36,7 +36,7 @@ import com.liferay.reports.model.Entry;
 import com.liferay.reports.service.DefinitionServiceUtil;
 import com.liferay.reports.service.EntryServiceUtil;
 import com.liferay.reports.util.ReportsUtil;
-import com.liferay.util.bridges.mvc.BaseActionCommand;
+import com.liferay.portal.kernel.portlet.bridges.mvc.BaseActionCommand;
 
 import java.text.DateFormat;
 
