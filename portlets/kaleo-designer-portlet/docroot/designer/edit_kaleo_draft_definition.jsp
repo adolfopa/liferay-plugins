@@ -753,7 +753,9 @@
 						<aui:button onClick='<%= renderResponse.getNamespace() + "publishKaleoDraftDefinition();" %>' primary="<%= true %>" value="publish" />
 					</c:if>
 
-					<aui:button href="<%= backURL %>" value="cancel" />
+					<c:if test="<%= Validator.isNotNull(backURL) %>">
+						<aui:button href="<%= backURL %>" value="cancel" />
+					</c:if>
 
 					<span class="lfr-portlet-workflowdesigner-message" id="<portlet:namespace />toolbarMessage"></span>
 				</aui:button-row>
