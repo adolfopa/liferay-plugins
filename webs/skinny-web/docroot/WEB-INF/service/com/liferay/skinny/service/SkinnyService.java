@@ -14,6 +14,8 @@
 
 package com.liferay.skinny.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebService;
@@ -37,6 +39,7 @@ import com.liferay.portal.service.InvokableService;
  */
 @AccessControlled
 @JSONWebService
+@ProviderType
 @Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
 	PortalException.class, SystemException.class})
 public interface SkinnyService extends BaseService, InvokableService {
@@ -61,9 +64,8 @@ public interface SkinnyService extends BaseService, InvokableService {
 	@com.liferay.portal.security.ac.AccessControlled(guestAccessEnabled = true)
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.skinny.model.SkinnyJournalArticle> getSkinnyJournalArticles(
-		long companyId, java.lang.String groupName,
-		java.lang.String journalStructureId, java.lang.String locale)
-		throws java.lang.Exception;
+		long companyId, java.lang.String groupName, long ddmStructureId,
+		java.lang.String locale) throws java.lang.Exception;
 
 	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,

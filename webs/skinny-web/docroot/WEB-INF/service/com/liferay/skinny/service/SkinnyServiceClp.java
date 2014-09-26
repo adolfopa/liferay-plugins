@@ -14,12 +14,15 @@
 
 package com.liferay.skinny.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.InvokableService;
 
 /**
  * @author Brian Wing Shun Chan
  * @generated
  */
+@ProviderType
 public class SkinnyServiceClp implements SkinnyService {
 	public SkinnyServiceClp(InvokableService invokableService) {
 		_invokableService = invokableService;
@@ -35,8 +38,7 @@ public class SkinnyServiceClp implements SkinnyService {
 		_methodName2 = "getSkinnyJournalArticles";
 
 		_methodParameterTypes2 = new String[] {
-				"long", "java.lang.String", "java.lang.String",
-				"java.lang.String"
+				"long", "java.lang.String", "long", "java.lang.String"
 			};
 
 		_methodName4 = "setBeanIdentifier";
@@ -97,9 +99,8 @@ public class SkinnyServiceClp implements SkinnyService {
 
 	@Override
 	public java.util.List<com.liferay.skinny.model.SkinnyJournalArticle> getSkinnyJournalArticles(
-		long companyId, java.lang.String groupName,
-		java.lang.String journalStructureId, java.lang.String locale)
-		throws java.lang.Exception {
+		long companyId, java.lang.String groupName, long ddmStructureId,
+		java.lang.String locale) throws java.lang.Exception {
 		Object returnObj = null;
 
 		try {
@@ -110,7 +111,7 @@ public class SkinnyServiceClp implements SkinnyService {
 						
 					ClpSerializer.translateInput(groupName),
 						
-					ClpSerializer.translateInput(journalStructureId),
+					ddmStructureId,
 						
 					ClpSerializer.translateInput(locale)
 					});

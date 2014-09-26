@@ -14,6 +14,8 @@
 
 package com.liferay.skinny.service.http;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 
@@ -50,6 +52,7 @@ import java.rmi.RemoteException;
  * @see com.liferay.skinny.service.SkinnyServiceUtil
  * @generated
  */
+@ProviderType
 public class SkinnyServiceSoap {
 	public static com.liferay.skinny.model.SkinnyDDLRecord[] getSkinnyDDLRecords(
 		long ddlRecordSetId) throws RemoteException {
@@ -67,13 +70,12 @@ public class SkinnyServiceSoap {
 	}
 
 	public static com.liferay.skinny.model.SkinnyJournalArticle[] getSkinnyJournalArticles(
-		long companyId, java.lang.String groupName,
-		java.lang.String journalStructureId, java.lang.String locale)
-		throws RemoteException {
+		long companyId, java.lang.String groupName, long ddmStructureId,
+		java.lang.String locale) throws RemoteException {
 		try {
 			java.util.List<com.liferay.skinny.model.SkinnyJournalArticle> returnValue =
 				SkinnyServiceUtil.getSkinnyJournalArticles(companyId,
-					groupName, journalStructureId, locale);
+					groupName, ddmStructureId, locale);
 
 			return returnValue.toArray(new com.liferay.skinny.model.SkinnyJournalArticle[returnValue.size()]);
 		}

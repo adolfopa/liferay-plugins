@@ -14,6 +14,8 @@
 
 package com.liferay.skinny.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableService;
@@ -32,6 +34,7 @@ import com.liferay.portal.service.InvokableService;
  * @see com.liferay.skinny.service.impl.SkinnyServiceImpl
  * @generated
  */
+@ProviderType
 public class SkinnyServiceUtil {
 	/*
 	 * NOTE FOR DEVELOPERS:
@@ -54,12 +57,11 @@ public class SkinnyServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.skinny.model.SkinnyJournalArticle> getSkinnyJournalArticles(
-		long companyId, java.lang.String groupName,
-		java.lang.String journalStructureId, java.lang.String locale)
-		throws java.lang.Exception {
+		long companyId, java.lang.String groupName, long ddmStructureId,
+		java.lang.String locale) throws java.lang.Exception {
 		return getService()
 				   .getSkinnyJournalArticles(companyId, groupName,
-			journalStructureId, locale);
+			ddmStructureId, locale);
 	}
 
 	public static java.lang.Object invokeMethod(java.lang.String name,

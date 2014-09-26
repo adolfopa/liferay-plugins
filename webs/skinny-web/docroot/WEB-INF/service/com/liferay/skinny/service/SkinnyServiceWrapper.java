@@ -14,6 +14,8 @@
 
 package com.liferay.skinny.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.ServiceWrapper;
 
 /**
@@ -23,6 +25,7 @@ import com.liferay.portal.service.ServiceWrapper;
  * @see SkinnyService
  * @generated
  */
+@ProviderType
 public class SkinnyServiceWrapper implements SkinnyService,
 	ServiceWrapper<SkinnyService> {
 	public SkinnyServiceWrapper(SkinnyService skinnyService) {
@@ -47,11 +50,10 @@ public class SkinnyServiceWrapper implements SkinnyService,
 
 	@Override
 	public java.util.List<com.liferay.skinny.model.SkinnyJournalArticle> getSkinnyJournalArticles(
-		long companyId, java.lang.String groupName,
-		java.lang.String journalStructureId, java.lang.String locale)
-		throws java.lang.Exception {
+		long companyId, java.lang.String groupName, long ddmStructureId,
+		java.lang.String locale) throws java.lang.Exception {
 		return _skinnyService.getSkinnyJournalArticles(companyId, groupName,
-			journalStructureId, locale);
+			ddmStructureId, locale);
 	}
 
 	@Override
