@@ -81,7 +81,7 @@ public class SkinnyServiceImpl extends SkinnyServiceBaseImpl {
 	@AccessControlled(guestAccessEnabled = true)
 	@Override
 	public List<SkinnyJournalArticle> getSkinnyJournalArticles(
-			long companyId, String groupName, long journalStructureId,
+			long companyId, String groupName, long ddmStructureId,
 			String locale)
 		throws Exception {
 
@@ -90,13 +90,14 @@ public class SkinnyServiceImpl extends SkinnyServiceBaseImpl {
 
 		Group group = groupLocalService.getGroup(companyId, groupName);
 
-		Set<String> journalArticleIds = new HashSet<String>();
+		DDMStructure ddmStructure = ddmStructureLocalService.getDDMStructure(
+			ddmStructureId);
 
-		DDMStructure journalStructure = ddmStructureLocalService.getDDMStructure(journalStructureId);
+		Set<String> journalArticleIds = new HashSet<String>();
 
 		List<JournalArticle> journalArticles =
 			journalArticleLocalService.getStructureArticles(
-				group.getGroupId(), journalStructure.getStructureKey());
+				group.getGroupId(), ddmStructure.getStructureKey());
 
 		for (JournalArticle journalArticle : journalArticles) {
 			if (journalArticleIds.contains(journalArticle.getArticleId())) {
