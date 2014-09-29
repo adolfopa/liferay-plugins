@@ -104,6 +104,8 @@ AUI.add(
 								currentName = sessionMap['name' + themeDisplay.getDefaultLanguageId()];
 							}
 
+							currentName = Liferay.Util.escapeHTML(currentName);
+
 							instance.one('.header-title span').setContent(currentName);
 						}
 

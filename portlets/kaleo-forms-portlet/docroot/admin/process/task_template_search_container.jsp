@@ -54,7 +54,7 @@ TaskFormPair initialStateTaskFormPair = KaleoFormsUtil.getInitialStateTaskFormPa
 
 		<liferay-ui:search-container-column-text
 			name="task"
-			value="<%= taskFormsPair.getWorkflowTaskName() %>"
+			value="<%= HtmlUtil.escape(taskFormsPair.getWorkflowTaskName()) %>"
 		/>
 
 		<%

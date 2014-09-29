@@ -112,7 +112,7 @@ String mode = ParamUtil.getString(request, "mode");
 						}
 					},
 					data: {
-						'<%= renderResponse.getNamespace() + ddmStructureId + workflowDefinition + workflowTaskName %>' : event.ddmtemplateid
+						'<%= HtmlUtil.escapeAttribute(renderResponse.getNamespace() + ddmStructureId + workflowDefinition + workflowTaskName) %>' : event.ddmtemplateid
 					}
 				}
 			);

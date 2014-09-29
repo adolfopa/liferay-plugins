@@ -36,7 +36,7 @@ DDMTemplate ddmTemplate = (DDMTemplate)row.getObject();
 	/>
 
 	<%
-	taglibOnClick = "Liferay.fire('" + renderResponse.getNamespace() + "chooseTemplate', {ddmtemplateid: " + ddmTemplate.getTemplateId() + ", name: '" + HtmlUtil.escapeAttribute(ddmTemplate.getName(locale)) + "'});";
+	taglibOnClick = "Liferay.fire('" + renderResponse.getNamespace() + "chooseTemplate', {ddmtemplateid: " + ddmTemplate.getTemplateId() + ", name: '" + HtmlUtil.escapeJS(ddmTemplate.getName(locale)) + "'});";
 	%>
 
 	<liferay-ui:icon
