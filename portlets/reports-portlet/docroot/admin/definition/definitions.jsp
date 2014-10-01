@@ -19,8 +19,9 @@
 <%
 String definitionName = ParamUtil.getString(request, "definitionName");
 String description = ParamUtil.getString(request, "description");
-String sourceId = ParamUtil.getString(request, "sourceId");
 String reportName = ParamUtil.getString(request, "reportName");
+String sourceId = ParamUtil.getString(request, "sourceId");
+String tabs1 = ParamUtil.getString(request, "tabs1");
 %>
 
 <liferay-portlet:renderURL varImpl="searchURL">
@@ -108,6 +109,12 @@ String reportName = ParamUtil.getString(request, "reportName");
 		</liferay-ui:search-container-row>
 
 		<div class="separator"><!-- --></div>
+
+		<%
+		iteratorURL.setParameter("tabs1", tabs1);
+
+		searchContainer.setIteratorURL(iteratorURL);
+		%>
 
 		<aui:button-row cssClass="search-buttons">
 			<portlet:renderURL var="addDefinitionURL">
