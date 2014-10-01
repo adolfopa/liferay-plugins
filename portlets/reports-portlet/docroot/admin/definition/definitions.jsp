@@ -26,7 +26,7 @@ String tabs1 = ParamUtil.getString(request, "tabs1");
 
 <liferay-portlet:renderURL varImpl="searchURL">
 	<portlet:param name="mvcPath" value="/admin/view.jsp" />
-	<portlet:param name="tabs1" value="definitions" />
+	<portlet:param name="tabs1" value="<%= tabs1 %>" />
 </liferay-portlet:renderURL>
 
 <aui:form action="<%= searchURL %>" method="get" name="fm">
@@ -37,6 +37,7 @@ String tabs1 = ParamUtil.getString(request, "tabs1");
 		<portlet:param name="description" value="<%= description %>" />
 		<portlet:param name="sourceId" value="<%= sourceId %>" />
 		<portlet:param name="reportName" value="<%= reportName %>" />
+		<portlet:param name="tabs1" value="<%= tabs1 %>" />
 	</liferay-portlet:renderURL>
 
 	<liferay-ui:search-container
@@ -109,12 +110,6 @@ String tabs1 = ParamUtil.getString(request, "tabs1");
 		</liferay-ui:search-container-row>
 
 		<div class="separator"><!-- --></div>
-
-		<%
-		iteratorURL.setParameter("tabs1", tabs1);
-
-		searchContainer.setIteratorURL(iteratorURL);
-		%>
 
 		<aui:button-row cssClass="search-buttons">
 			<portlet:renderURL var="addDefinitionURL">
