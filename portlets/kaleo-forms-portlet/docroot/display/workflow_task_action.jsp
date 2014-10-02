@@ -28,7 +28,7 @@ long kaleoProcessId = 0;
 long ddlRecordId = 0;
 
 if (row != null) {
-	randomId = PwdGenerator.getPassword(PwdGenerator.KEY3, 4);
+	randomId = StringUtil.randomId();
 
 	workflowTask = (WorkflowTask)row.getObject();
 
