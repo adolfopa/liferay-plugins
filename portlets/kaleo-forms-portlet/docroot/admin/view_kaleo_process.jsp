@@ -118,6 +118,26 @@ portletURL.setParameter("kaleoProcessId", String.valueOf(kaleoProcessId));
 					com.liferay.portlet.dynamicdatamapping.storage.Field field = fields.get(name);
 
 					value = field.getRenderedValue(themeDisplay.getLocale());
+
+					String dataType = fields.get(FieldConstants.DATA_TYPE);
+					if (dataType.equals(FieldConstants.HTML)) {
+						StringBundler sbValue = new StringBundler(9);
+
+						sbValue.append("<a href=\"");
+						sbValue.append("javascript:");
+						sbValue.append(renderResponse.getNamespace());
+						sbValue.append("openPreviewDialog");
+						sbValue.append("('");
+						sbValue.append(HtmlUtil.escapeJS(value));
+						sbValue.append("')\">(");
+						sbValue.append(LanguageUtil.get(pageContext, "preview"));
+						sbValue.append(")</a>");
+
+						value = sbValue.toString();
+					}
+					else {
+						value = HtmlUtil.escape(value);
+					}
 				}
 				%>
 
@@ -160,3 +180,14 @@ portletURL.setParameter("kaleoProcessId", String.valueOf(kaleoProcessId));
 </aui:form>
 
 <%@ include file="/admin/export_kaleo_process.jspf" %>
+
+<aui:script>
+	Liferay.provide(
+		window,
+		'<portlet:namespace />openPreviewDialog',
+		function(html) {
+				Liferay.DDLUtil.openPreviewDialog(html);
+		},
+		['liferay-portlet-dynamic-data-lists']
+	);
+</aui:script>
