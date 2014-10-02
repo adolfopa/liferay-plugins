@@ -137,7 +137,7 @@ headerTitle = headerTitle.concat(StringPool.COLON + StringPool.SPACE + ddlRecord
 		<c:if test="<%= Validator.isNotNull(workflowTask.getDescription()) %>">
 			<div class="lfr-asset-field">
 				<aui:field-wrapper label="description">
-					<%= workflowTask.getDescription() %>
+					<%= HtmlUtil.escape(workflowTask.getDescription()) %>
 				</aui:field-wrapper>
 			</div>
 		</c:if>

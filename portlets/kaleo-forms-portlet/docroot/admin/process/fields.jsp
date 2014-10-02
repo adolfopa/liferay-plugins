@@ -159,9 +159,9 @@ JSONArray availableDefinitionsJSONArray = JSONFactoryUtil.createJSONArray();
 			var ddmStructureId = event.ddmStructureId;
 			var ddmStructureName = event.name;
 
-			A.one('#<portlet:namespace />ddmStructureDisplay').html(Liferay.Util.unescapeHTML(ddmStructureName));
+			A.one('#<portlet:namespace />ddmStructureDisplay').html(Liferay.Util.escapeHTML(ddmStructureName));
 			A.one('#<portlet:namespace />ddmStructureId').val(ddmStructureId);
-			A.one('#<portlet:namespace />ddmStructureName').val(Liferay.Util.unescapeHTML(ddmStructureName));
+			A.one('#<portlet:namespace />ddmStructureName').val(ddmStructureName);
 
 			var kaleoFormsAdmin = Liferay.component('<portlet:namespace/>KaleoFormsAdmin');
 

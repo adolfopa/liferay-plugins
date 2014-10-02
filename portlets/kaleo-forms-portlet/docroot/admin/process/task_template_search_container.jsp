@@ -83,7 +83,7 @@ TaskFormPair initialStateTaskFormPair = KaleoFormsUtil.getInitialStateTaskFormPa
 
 		<liferay-ui:search-container-column-text
 			name="form"
-			value="<%= formName + taskInputBuffer %>"
+			value="<%= HtmlUtil.escape(formName) + taskInputBuffer %>"
 		/>
 
 		<portlet:renderURL var="selectFormURL">
