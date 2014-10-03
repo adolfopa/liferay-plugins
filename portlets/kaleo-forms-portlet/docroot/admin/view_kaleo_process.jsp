@@ -120,20 +120,21 @@ portletURL.setParameter("kaleoProcessId", String.valueOf(kaleoProcessId));
 					value = field.getRenderedValue(themeDisplay.getLocale());
 
 					String dataType = fields.get(FieldConstants.DATA_TYPE);
+
 					if (dataType.equals(FieldConstants.HTML)) {
-						StringBundler sbValue = new StringBundler(9);
+						StringBundler sb = new StringBundler(9);
 
-						sbValue.append("<a href=\"");
-						sbValue.append("javascript:");
-						sbValue.append(renderResponse.getNamespace());
-						sbValue.append("openPreviewDialog");
-						sbValue.append("('");
-						sbValue.append(HtmlUtil.escapeJS(value));
-						sbValue.append("')\">(");
-						sbValue.append(LanguageUtil.get(pageContext, "preview"));
-						sbValue.append(")</a>");
+						sb.append("<a href=\"");
+						sb.append("javascript:");
+						sb.append(renderResponse.getNamespace());
+						sb.append("openPreviewDialog");
+						sb.append("('");
+						sb.append(HtmlUtil.escapeJS(value));
+						sb.append("')\">(");
+						sb.append(LanguageUtil.get(pageContext, "preview"));
+						sb.append(")</a>");
 
-						value = sbValue.toString();
+						value = sb.toString();
 					}
 					else {
 						value = HtmlUtil.escape(value);
