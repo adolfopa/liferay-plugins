@@ -17,9 +17,10 @@
 <%@ include file="/init.jsp" %>
 
 <%
+String tabs1 = ParamUtil.getString(request, "tabs1");
+
 String name = ParamUtil.getString(request, "name");
 String driverUrl = ParamUtil.getString(request, "driverUrl");
-String tabs1 = ParamUtil.getString(request, "tabs1");
 %>
 
 <liferay-portlet:renderURL varImpl="searchURL">
@@ -31,9 +32,9 @@ String tabs1 = ParamUtil.getString(request, "tabs1");
 	<liferay-portlet:renderURLParams varImpl="searchURL" />
 
 	<liferay-portlet:renderURL varImpl="iteratorURL">
+		<portlet:param name="tabs1" value="<%= tabs1 %>" />
 		<portlet:param name="name" value="<%= name %>" />
 		<portlet:param name="driverUrl" value="<%= driverUrl %>" />
-		<portlet:param name="tabs1" value="<%= tabs1 %>" />
 	</liferay-portlet:renderURL>
 
 	<liferay-ui:search-container

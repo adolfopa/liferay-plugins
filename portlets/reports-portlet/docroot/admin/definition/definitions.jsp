@@ -17,11 +17,12 @@
 <%@ include file="/init.jsp" %>
 
 <%
+String tabs1 = ParamUtil.getString(request, "tabs1");
+
 String definitionName = ParamUtil.getString(request, "definitionName");
 String description = ParamUtil.getString(request, "description");
-String reportName = ParamUtil.getString(request, "reportName");
 String sourceId = ParamUtil.getString(request, "sourceId");
-String tabs1 = ParamUtil.getString(request, "tabs1");
+String reportName = ParamUtil.getString(request, "reportName");
 %>
 
 <liferay-portlet:renderURL varImpl="searchURL">
@@ -33,11 +34,11 @@ String tabs1 = ParamUtil.getString(request, "tabs1");
 	<liferay-portlet:renderURLParams varImpl="searchURL" />
 
 	<liferay-portlet:renderURL varImpl="iteratorURL">
+		<portlet:param name="tabs1" value="<%= tabs1 %>" />
 		<portlet:param name="definitionName" value="<%= definitionName %>" />
 		<portlet:param name="description" value="<%= description %>" />
 		<portlet:param name="sourceId" value="<%= sourceId %>" />
 		<portlet:param name="reportName" value="<%= reportName %>" />
-		<portlet:param name="tabs1" value="<%= tabs1 %>" />
 	</liferay-portlet:renderURL>
 
 	<liferay-ui:search-container
