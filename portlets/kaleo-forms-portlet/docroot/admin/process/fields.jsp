@@ -48,7 +48,7 @@ JSONArray availableDefinitionsJSONArray = JSONFactoryUtil.createJSONArray();
 <aui:field-wrapper>
 	<liferay-ui:message key="selected-field-set" />:
 
-	<aui:a cssClass="badge badge-info kaleo-process-preview-definition" data-definition-id="<%= ddmStructureId %>" href="javascript:;" id="ddmStructureDisplay" label="<%= ddmStructureName %>" />
+	<aui:a cssClass="badge badge-info kaleo-process-preview-definition" data-definition-id="<%= ddmStructureId %>" href="javascript:;" id="ddmStructureDisplay" label="<%= HtmlUtil.escape(ddmStructureName) %>" />
 
 	<aui:input name="ddlRecordSetId" type="hidden" value="<%= ddlRecordSetId %>" />
 	<aui:input name="ddmStructureId" type="hidden" value="<%= ddmStructureId %>" />
