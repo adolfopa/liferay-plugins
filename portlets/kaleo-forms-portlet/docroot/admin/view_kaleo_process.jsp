@@ -119,7 +119,7 @@ portletURL.setParameter("kaleoProcessId", String.valueOf(kaleoProcessId));
 
 					value = field.getRenderedValue(themeDisplay.getLocale());
 
-					String dataType = fields.get(FieldConstants.DATA_TYPE);
+					String dataType = field.getDataType();
 
 					if (dataType.equals(FieldConstants.HTML)) {
 						StringBundler sb = new StringBundler(9);
@@ -131,7 +131,7 @@ portletURL.setParameter("kaleoProcessId", String.valueOf(kaleoProcessId));
 						sb.append("('");
 						sb.append(HtmlUtil.escapeJS(value));
 						sb.append("')\">(");
-						sb.append(LanguageUtil.get(pageContext, "preview"));
+						sb.append(LanguageUtil.get(request, "preview"));
 						sb.append(")</a>");
 
 						value = sb.toString();
@@ -183,12 +183,32 @@ portletURL.setParameter("kaleoProcessId", String.valueOf(kaleoProcessId));
 <%@ include file="/admin/export_kaleo_process.jspf" %>
 
 <aui:script>
+	<portlet:namespace />previewDialog = null;
+
 	Liferay.provide(
 		window,
 		'<portlet:namespace />openPreviewDialog',
-		function(html) {
-				Liferay.DDLUtil.openPreviewDialog(html);
+		function(content) {
+			var previewDialog = <portlet:namespace />previewDialog;
+
+			if (!previewDialog) {
+				previewDialog = Liferay.Util.Window.getWindow(
+					{
+						dialog: {
+							bodyContent: content
+						},
+						title: Liferay.Language.get('preview')
+					}
+				);
+
+				<portlet:namespace />previewDialog = previewDialog;
+			}
+			else {
+				previewDialog.show();
+
+				previewDialog.set('bodyContent', content);
+			}
 		},
-		['liferay-portlet-dynamic-data-lists']
+		['liferay-util-window']
 	);
 </aui:script>
