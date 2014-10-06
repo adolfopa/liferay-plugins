@@ -61,6 +61,7 @@ page import="com.liferay.portlet.dynamicdatamapping.model.DDMTemplateConstants" 
 page import="com.liferay.portlet.dynamicdatamapping.model.LocalizedValue" %><%@
 page import="com.liferay.portlet.dynamicdatamapping.service.DDMStructureLocalServiceUtil" %><%@
 page import="com.liferay.portlet.dynamicdatamapping.service.DDMStructureServiceUtil" %><%@
+page import="com.liferay.portlet.dynamicdatamapping.storage.FieldConstants" %><%@
 page import="com.liferay.portlet.dynamicdatamapping.storage.StorageEngineUtil" %><%@
 page import="com.liferay.portlet.dynamicdatamapping.storage.StorageType" %><%@
 page import="com.liferay.portlet.dynamicdatamapping.util.DDMDisplay" %><%@
