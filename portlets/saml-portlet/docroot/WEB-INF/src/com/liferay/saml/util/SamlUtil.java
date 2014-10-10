@@ -103,6 +103,13 @@ public class SamlUtil {
 			String key = attributeMappingsProperties.getProperty(
 				attribute.getName());
 
+			if (Validator.isNull(key) &&
+				Validator.isNotNull(attribute.getFriendlyName())) {
+
+				key = attributeMappingsProperties.getProperty(
+					attribute.getFriendlyName());
+			}
+
 			if (Validator.isNull(key)) {
 				key = attribute.getName();
 			}
