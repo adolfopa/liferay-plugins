@@ -502,7 +502,7 @@ public class MicroblogsEntryLocalServiceImpl
 			microblogsEntry.getUserId(), serviceContext.getScopeGroupId(),
 			MicroblogsEntry.class.getName(), rootMicroblogsEntryId);
 
-		List<String> screenNames = MicroblogsUtil.getTaggedUsersScreenNames(
+		List<String> screenNames = MicroblogsUtil.getScreenNames(
 			microblogsEntry.getContent());
 
 		for (String screenName : screenNames) {
