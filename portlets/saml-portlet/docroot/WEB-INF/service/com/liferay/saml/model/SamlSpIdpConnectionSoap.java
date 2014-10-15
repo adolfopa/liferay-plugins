@@ -43,6 +43,7 @@ public class SamlSpIdpConnectionSoap implements Serializable {
 		soapModel.setAssertionSignatureRequired(model.getAssertionSignatureRequired());
 		soapModel.setClockSkew(model.getClockSkew());
 		soapModel.setEnabled(model.getEnabled());
+		soapModel.setForceAuthn(model.getForceAuthn());
 		soapModel.setLdapImportEnabled(model.getLdapImportEnabled());
 		soapModel.setMetadataUrl(model.getMetadataUrl());
 		soapModel.setMetadataXml(model.getMetadataXml());
@@ -195,6 +196,18 @@ public class SamlSpIdpConnectionSoap implements Serializable {
 		_enabled = enabled;
 	}
 
+	public boolean getForceAuthn() {
+		return _forceAuthn;
+	}
+
+	public boolean isForceAuthn() {
+		return _forceAuthn;
+	}
+
+	public void setForceAuthn(boolean forceAuthn) {
+		_forceAuthn = forceAuthn;
+	}
+
 	public boolean getLdapImportEnabled() {
 		return _ldapImportEnabled;
 	}
@@ -277,6 +290,7 @@ public class SamlSpIdpConnectionSoap implements Serializable {
 	private boolean _assertionSignatureRequired;
 	private long _clockSkew;
 	private boolean _enabled;
+	private boolean _forceAuthn;
 	private boolean _ldapImportEnabled;
 	private String _metadataUrl;
 	private String _metadataXml;

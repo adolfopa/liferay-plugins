@@ -248,6 +248,27 @@ public interface SamlSpIdpConnectionModel extends AuditedModel,
 	public void setEnabled(boolean enabled);
 
 	/**
+	 * Returns the force authn of this saml sp idp connection.
+	 *
+	 * @return the force authn of this saml sp idp connection
+	 */
+	public boolean getForceAuthn();
+
+	/**
+	 * Returns <code>true</code> if this saml sp idp connection is force authn.
+	 *
+	 * @return <code>true</code> if this saml sp idp connection is force authn; <code>false</code> otherwise
+	 */
+	public boolean isForceAuthn();
+
+	/**
+	 * Sets whether this saml sp idp connection is force authn.
+	 *
+	 * @param forceAuthn the force authn of this saml sp idp connection
+	 */
+	public void setForceAuthn(boolean forceAuthn);
+
+	/**
 	 * Returns the ldap import enabled of this saml sp idp connection.
 	 *
 	 * @return the ldap import enabled of this saml sp idp connection
@@ -415,19 +436,20 @@ public interface SamlSpIdpConnectionModel extends AuditedModel,
 	public Object clone();
 
 	@Override
-	public int compareTo(SamlSpIdpConnection samlSpIdpConnection);
+	public int compareTo(
+		com.liferay.saml.model.SamlSpIdpConnection samlSpIdpConnection);
 
 	@Override
 	public int hashCode();
 
 	@Override
-	public CacheModel<SamlSpIdpConnection> toCacheModel();
+	public CacheModel<com.liferay.saml.model.SamlSpIdpConnection> toCacheModel();
 
 	@Override
-	public SamlSpIdpConnection toEscapedModel();
+	public com.liferay.saml.model.SamlSpIdpConnection toEscapedModel();
 
 	@Override
-	public SamlSpIdpConnection toUnescapedModel();
+	public com.liferay.saml.model.SamlSpIdpConnection toUnescapedModel();
 
 	@Override
 	public String toString();

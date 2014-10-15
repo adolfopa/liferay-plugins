@@ -41,7 +41,7 @@ public class SamlSpIdpConnectionCacheModel implements CacheModel<SamlSpIdpConnec
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(37);
+		StringBundler sb = new StringBundler(39);
 
 		sb.append("{samlSpIdpConnectionId=");
 		sb.append(samlSpIdpConnectionId);
@@ -63,6 +63,8 @@ public class SamlSpIdpConnectionCacheModel implements CacheModel<SamlSpIdpConnec
 		sb.append(clockSkew);
 		sb.append(", enabled=");
 		sb.append(enabled);
+		sb.append(", forceAuthn=");
+		sb.append(forceAuthn);
 		sb.append(", ldapImportEnabled=");
 		sb.append(ldapImportEnabled);
 		sb.append(", metadataUrl=");
@@ -123,6 +125,7 @@ public class SamlSpIdpConnectionCacheModel implements CacheModel<SamlSpIdpConnec
 		samlSpIdpConnectionImpl.setAssertionSignatureRequired(assertionSignatureRequired);
 		samlSpIdpConnectionImpl.setClockSkew(clockSkew);
 		samlSpIdpConnectionImpl.setEnabled(enabled);
+		samlSpIdpConnectionImpl.setForceAuthn(forceAuthn);
 		samlSpIdpConnectionImpl.setLdapImportEnabled(ldapImportEnabled);
 
 		if (metadataUrl == null) {
@@ -187,6 +190,7 @@ public class SamlSpIdpConnectionCacheModel implements CacheModel<SamlSpIdpConnec
 		assertionSignatureRequired = objectInput.readBoolean();
 		clockSkew = objectInput.readLong();
 		enabled = objectInput.readBoolean();
+		forceAuthn = objectInput.readBoolean();
 		ldapImportEnabled = objectInput.readBoolean();
 		metadataUrl = objectInput.readUTF();
 		metadataXml = objectInput.readUTF();
@@ -224,6 +228,7 @@ public class SamlSpIdpConnectionCacheModel implements CacheModel<SamlSpIdpConnec
 		objectOutput.writeBoolean(assertionSignatureRequired);
 		objectOutput.writeLong(clockSkew);
 		objectOutput.writeBoolean(enabled);
+		objectOutput.writeBoolean(forceAuthn);
 		objectOutput.writeBoolean(ldapImportEnabled);
 
 		if (metadataUrl == null) {
@@ -276,6 +281,7 @@ public class SamlSpIdpConnectionCacheModel implements CacheModel<SamlSpIdpConnec
 	public boolean assertionSignatureRequired;
 	public long clockSkew;
 	public boolean enabled;
+	public boolean forceAuthn;
 	public boolean ldapImportEnabled;
 	public String metadataUrl;
 	public String metadataXml;

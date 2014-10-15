@@ -1187,6 +1187,7 @@ public class SamlSpIdpConnectionPersistenceImpl extends BasePersistenceImpl<Saml
 		samlSpIdpConnectionImpl.setAssertionSignatureRequired(samlSpIdpConnection.isAssertionSignatureRequired());
 		samlSpIdpConnectionImpl.setClockSkew(samlSpIdpConnection.getClockSkew());
 		samlSpIdpConnectionImpl.setEnabled(samlSpIdpConnection.isEnabled());
+		samlSpIdpConnectionImpl.setForceAuthn(samlSpIdpConnection.isForceAuthn());
 		samlSpIdpConnectionImpl.setLdapImportEnabled(samlSpIdpConnection.isLdapImportEnabled());
 		samlSpIdpConnectionImpl.setMetadataUrl(samlSpIdpConnection.getMetadataUrl());
 		samlSpIdpConnectionImpl.setMetadataXml(samlSpIdpConnection.getMetadataXml());

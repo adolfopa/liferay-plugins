@@ -75,6 +75,7 @@ public class SamlSpIdpConnectionModelImpl extends BaseModelImpl<SamlSpIdpConnect
 			{ "assertionSignatureRequired", Types.BOOLEAN },
 			{ "clockSkew", Types.BIGINT },
 			{ "enabled", Types.BOOLEAN },
+			{ "forceAuthn", Types.BOOLEAN },
 			{ "ldapImportEnabled", Types.BOOLEAN },
 			{ "metadataUrl", Types.VARCHAR },
 			{ "metadataXml", Types.CLOB },
@@ -84,7 +85,7 @@ public class SamlSpIdpConnectionModelImpl extends BaseModelImpl<SamlSpIdpConnect
 			{ "signAuthnRequest", Types.BOOLEAN },
 			{ "userAttributeMappings", Types.VARCHAR }
 		};
-	public static final String TABLE_SQL_CREATE = "create table SamlSpIdpConnection (samlSpIdpConnectionId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,samlIdpEntityId VARCHAR(1024) null,assertionSignatureRequired BOOLEAN,clockSkew LONG,enabled BOOLEAN,ldapImportEnabled BOOLEAN,metadataUrl VARCHAR(1024) null,metadataXml TEXT null,metadataUpdatedDate DATE null,name VARCHAR(75) null,nameIdFormat VARCHAR(1024) null,signAuthnRequest BOOLEAN,userAttributeMappings STRING null)";
+	public static final String TABLE_SQL_CREATE = "create table SamlSpIdpConnection (samlSpIdpConnectionId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,samlIdpEntityId VARCHAR(1024) null,assertionSignatureRequired BOOLEAN,clockSkew LONG,enabled BOOLEAN,forceAuthn BOOLEAN,ldapImportEnabled BOOLEAN,metadataUrl VARCHAR(1024) null,metadataXml TEXT null,metadataUpdatedDate DATE null,name VARCHAR(75) null,nameIdFormat VARCHAR(1024) null,signAuthnRequest BOOLEAN,userAttributeMappings STRING null)";
 	public static final String TABLE_SQL_DROP = "drop table SamlSpIdpConnection";
 	public static final String ORDER_BY_JPQL = " ORDER BY samlSpIdpConnection.samlSpIdpConnectionId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY SamlSpIdpConnection.samlSpIdpConnectionId ASC";
@@ -154,6 +155,7 @@ public class SamlSpIdpConnectionModelImpl extends BaseModelImpl<SamlSpIdpConnect
 			getAssertionSignatureRequired());
 		attributes.put("clockSkew", getClockSkew());
 		attributes.put("enabled", getEnabled());
+		attributes.put("forceAuthn", getForceAuthn());
 		attributes.put("ldapImportEnabled", getLdapImportEnabled());
 		attributes.put("metadataUrl", getMetadataUrl());
 		attributes.put("metadataXml", getMetadataXml());
@@ -231,6 +233,12 @@ public class SamlSpIdpConnectionModelImpl extends BaseModelImpl<SamlSpIdpConnect
 
 		if (enabled != null) {
 			setEnabled(enabled);
+		}
+
+		Boolean forceAuthn = (Boolean)attributes.get("forceAuthn");
+
+		if (forceAuthn != null) {
+			setForceAuthn(forceAuthn);
 		}
 
 		Boolean ldapImportEnabled = (Boolean)attributes.get("ldapImportEnabled");
@@ -443,6 +451,21 @@ public class SamlSpIdpConnectionModelImpl extends BaseModelImpl<SamlSpIdpConnect
 	}
 
 	@Override
+	public boolean getForceAuthn() {
+		return _forceAuthn;
+	}
+
+	@Override
+	public boolean isForceAuthn() {
+		return _forceAuthn;
+	}
+
+	@Override
+	public void setForceAuthn(boolean forceAuthn) {
+		_forceAuthn = forceAuthn;
+	}
+
+	@Override
 	public boolean getLdapImportEnabled() {
 		return _ldapImportEnabled;
 	}
@@ -598,6 +621,7 @@ public class SamlSpIdpConnectionModelImpl extends BaseModelImpl<SamlSpIdpConnect
 		samlSpIdpConnectionImpl.setAssertionSignatureRequired(getAssertionSignatureRequired());
 		samlSpIdpConnectionImpl.setClockSkew(getClockSkew());
 		samlSpIdpConnectionImpl.setEnabled(getEnabled());
+		samlSpIdpConnectionImpl.setForceAuthn(getForceAuthn());
 		samlSpIdpConnectionImpl.setLdapImportEnabled(getLdapImportEnabled());
 		samlSpIdpConnectionImpl.setMetadataUrl(getMetadataUrl());
 		samlSpIdpConnectionImpl.setMetadataXml(getMetadataXml());
@@ -727,6 +751,8 @@ public class SamlSpIdpConnectionModelImpl extends BaseModelImpl<SamlSpIdpConnect
 
 		samlSpIdpConnectionCacheModel.enabled = getEnabled();
 
+		samlSpIdpConnectionCacheModel.forceAuthn = getForceAuthn();
+
 		samlSpIdpConnectionCacheModel.ldapImportEnabled = getLdapImportEnabled();
 
 		samlSpIdpConnectionCacheModel.metadataUrl = getMetadataUrl();
@@ -786,7 +812,7 @@ public class SamlSpIdpConnectionModelImpl extends BaseModelImpl<SamlSpIdpConnect
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(37);
+		StringBundler sb = new StringBundler(39);
 
 		sb.append("{samlSpIdpConnectionId=");
 		sb.append(getSamlSpIdpConnectionId());
@@ -808,6 +834,8 @@ public class SamlSpIdpConnectionModelImpl extends BaseModelImpl<SamlSpIdpConnect
 		sb.append(getClockSkew());
 		sb.append(", enabled=");
 		sb.append(getEnabled());
+		sb.append(", forceAuthn=");
+		sb.append(getForceAuthn());
 		sb.append(", ldapImportEnabled=");
 		sb.append(getLdapImportEnabled());
 		sb.append(", metadataUrl=");
@@ -831,7 +859,7 @@ public class SamlSpIdpConnectionModelImpl extends BaseModelImpl<SamlSpIdpConnect
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(58);
+		StringBundler sb = new StringBundler(61);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.saml.model.SamlSpIdpConnection");
@@ -876,6 +904,10 @@ public class SamlSpIdpConnectionModelImpl extends BaseModelImpl<SamlSpIdpConnect
 		sb.append(
 			"<column><column-name>enabled</column-name><column-value><![CDATA[");
 		sb.append(getEnabled());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>forceAuthn</column-name><column-value><![CDATA[");
+		sb.append(getForceAuthn());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>ldapImportEnabled</column-name><column-value><![CDATA[");
@@ -932,6 +964,7 @@ public class SamlSpIdpConnectionModelImpl extends BaseModelImpl<SamlSpIdpConnect
 	private boolean _assertionSignatureRequired;
 	private long _clockSkew;
 	private boolean _enabled;
+	private boolean _forceAuthn;
 	private boolean _ldapImportEnabled;
 	private String _metadataUrl;
 	private String _metadataXml;

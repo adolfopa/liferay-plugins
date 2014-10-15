@@ -185,19 +185,19 @@ public interface SamlSpMessageModel extends BaseModel<SamlSpMessage> {
 	public Object clone();
 
 	@Override
-	public int compareTo(SamlSpMessage samlSpMessage);
+	public int compareTo(com.liferay.saml.model.SamlSpMessage samlSpMessage);
 
 	@Override
 	public int hashCode();
 
 	@Override
-	public CacheModel<SamlSpMessage> toCacheModel();
+	public CacheModel<com.liferay.saml.model.SamlSpMessage> toCacheModel();
 
 	@Override
-	public SamlSpMessage toEscapedModel();
+	public com.liferay.saml.model.SamlSpMessage toEscapedModel();
 
 	@Override
-	public SamlSpMessage toUnescapedModel();
+	public com.liferay.saml.model.SamlSpMessage toUnescapedModel();
 
 	@Override
 	public String toString();

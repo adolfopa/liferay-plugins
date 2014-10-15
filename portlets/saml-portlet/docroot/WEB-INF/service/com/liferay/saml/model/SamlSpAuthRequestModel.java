@@ -171,19 +171,20 @@ public interface SamlSpAuthRequestModel extends BaseModel<SamlSpAuthRequest> {
 	public Object clone();
 
 	@Override
-	public int compareTo(SamlSpAuthRequest samlSpAuthRequest);
+	public int compareTo(
+		com.liferay.saml.model.SamlSpAuthRequest samlSpAuthRequest);
 
 	@Override
 	public int hashCode();
 
 	@Override
-	public CacheModel<SamlSpAuthRequest> toCacheModel();
+	public CacheModel<com.liferay.saml.model.SamlSpAuthRequest> toCacheModel();
 
 	@Override
-	public SamlSpAuthRequest toEscapedModel();
+	public com.liferay.saml.model.SamlSpAuthRequest toEscapedModel();
 
 	@Override
-	public SamlSpAuthRequest toUnescapedModel();
+	public com.liferay.saml.model.SamlSpAuthRequest toUnescapedModel();
 
 	@Override
 	public String toString();

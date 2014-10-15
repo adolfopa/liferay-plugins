@@ -61,6 +61,7 @@ create table SamlSpIdpConnection (
 	assertionSignatureRequired BOOLEAN,
 	clockSkew LONG,
 	enabled BOOLEAN,
+	forceAuthn BOOLEAN,
 	ldapImportEnabled BOOLEAN,
 	metadataUrl VARCHAR(1024) null,
 	metadataXml TEXT null,

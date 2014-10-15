@@ -33,9 +33,9 @@ public class SamlSpIdpConnectionLocalServiceClp
 
 		_methodParameterTypes0 = new String[] {
 				"java.lang.String", "boolean", "long", "boolean", "boolean",
-				"java.lang.String", "java.io.InputStream", "java.lang.String",
-				"java.lang.String", "boolean", "java.lang.String",
-				"com.liferay.portal.service.ServiceContext"
+				"boolean", "java.lang.String", "java.io.InputStream",
+				"java.lang.String", "java.lang.String", "boolean",
+				"java.lang.String", "com.liferay.portal.service.ServiceContext"
 			};
 
 		_methodName1 = "addSamlSpIdpConnection";
@@ -169,7 +169,7 @@ public class SamlSpIdpConnectionLocalServiceClp
 
 		_methodParameterTypes28 = new String[] {
 				"long", "java.lang.String", "boolean", "long", "boolean",
-				"boolean", "java.lang.String", "java.io.InputStream",
+				"boolean", "boolean", "java.lang.String", "java.io.InputStream",
 				"java.lang.String", "java.lang.String", "boolean",
 				"java.lang.String", "com.liferay.portal.service.ServiceContext"
 			};
@@ -178,8 +178,8 @@ public class SamlSpIdpConnectionLocalServiceClp
 	@Override
 	public com.liferay.saml.model.SamlSpIdpConnection addSamlSpIdpConnection(
 		java.lang.String samlIdpEntityId, boolean assertionSignatureRequired,
-		long clockSkew, boolean enabled, boolean ldapImportEnabled,
-		java.lang.String metadataUrl,
+		long clockSkew, boolean enabled, boolean forceAuthn,
+		boolean ldapImportEnabled, java.lang.String metadataUrl,
 		java.io.InputStream metadataXmlInputStream, java.lang.String name,
 		java.lang.String nameIdFormat, boolean signAuthnRequest,
 		java.lang.String userAttributeMappings,
@@ -198,6 +198,8 @@ public class SamlSpIdpConnectionLocalServiceClp
 					clockSkew,
 						
 					enabled,
+						
+					forceAuthn,
 						
 					ldapImportEnabled,
 						
@@ -944,7 +946,8 @@ public class SamlSpIdpConnectionLocalServiceClp
 	public com.liferay.saml.model.SamlSpIdpConnection updateSamlSpIdpConnection(
 		long samlSpIdpConnectionId, java.lang.String samlIdpEntityId,
 		boolean assertionSignatureRequired, long clockSkew, boolean enabled,
-		boolean ldapImportEnabled, java.lang.String metadataUrl,
+		boolean forceAuthn, boolean ldapImportEnabled,
+		java.lang.String metadataUrl,
 		java.io.InputStream metadataXmlInputStream, java.lang.String name,
 		java.lang.String nameIdFormat, boolean signAuthnRequest,
 		java.lang.String userAttributeMappings,
@@ -965,6 +968,8 @@ public class SamlSpIdpConnectionLocalServiceClp
 					clockSkew,
 						
 					enabled,
+						
+					forceAuthn,
 						
 					ldapImportEnabled,
 						

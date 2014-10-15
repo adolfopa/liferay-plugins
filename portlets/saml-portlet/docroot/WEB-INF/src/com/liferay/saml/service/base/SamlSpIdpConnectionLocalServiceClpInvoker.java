@@ -131,9 +131,9 @@ public class SamlSpIdpConnectionLocalServiceClpInvoker {
 
 		_methodParameterTypes71 = new String[] {
 				"java.lang.String", "boolean", "long", "boolean", "boolean",
-				"java.lang.String", "java.io.InputStream", "java.lang.String",
-				"java.lang.String", "boolean", "java.lang.String",
-				"com.liferay.portal.service.ServiceContext"
+				"boolean", "java.lang.String", "java.io.InputStream",
+				"java.lang.String", "java.lang.String", "boolean",
+				"java.lang.String", "com.liferay.portal.service.ServiceContext"
 			};
 
 		_methodName72 = "getSamlSpIdpConnection";
@@ -167,7 +167,7 @@ public class SamlSpIdpConnectionLocalServiceClpInvoker {
 
 		_methodParameterTypes78 = new String[] {
 				"long", "java.lang.String", "boolean", "long", "boolean",
-				"boolean", "java.lang.String", "java.io.InputStream",
+				"boolean", "boolean", "java.lang.String", "java.io.InputStream",
 				"java.lang.String", "java.lang.String", "boolean",
 				"java.lang.String", "com.liferay.portal.service.ServiceContext"
 			};
@@ -291,12 +291,13 @@ public class SamlSpIdpConnectionLocalServiceClpInvoker {
 				((Long)arguments[2]).longValue(),
 				((Boolean)arguments[3]).booleanValue(),
 				((Boolean)arguments[4]).booleanValue(),
-				(java.lang.String)arguments[5],
-				(java.io.InputStream)arguments[6],
-				(java.lang.String)arguments[7], (java.lang.String)arguments[8],
-				((Boolean)arguments[9]).booleanValue(),
-				(java.lang.String)arguments[10],
-				(com.liferay.portal.service.ServiceContext)arguments[11]);
+				((Boolean)arguments[5]).booleanValue(),
+				(java.lang.String)arguments[6],
+				(java.io.InputStream)arguments[7],
+				(java.lang.String)arguments[8], (java.lang.String)arguments[9],
+				((Boolean)arguments[10]).booleanValue(),
+				(java.lang.String)arguments[11],
+				(com.liferay.portal.service.ServiceContext)arguments[12]);
 		}
 
 		if (_methodName72.equals(name) &&
@@ -345,12 +346,14 @@ public class SamlSpIdpConnectionLocalServiceClpInvoker {
 				((Long)arguments[3]).longValue(),
 				((Boolean)arguments[4]).booleanValue(),
 				((Boolean)arguments[5]).booleanValue(),
-				(java.lang.String)arguments[6],
-				(java.io.InputStream)arguments[7],
-				(java.lang.String)arguments[8], (java.lang.String)arguments[9],
-				((Boolean)arguments[10]).booleanValue(),
-				(java.lang.String)arguments[11],
-				(com.liferay.portal.service.ServiceContext)arguments[12]);
+				((Boolean)arguments[6]).booleanValue(),
+				(java.lang.String)arguments[7],
+				(java.io.InputStream)arguments[8],
+				(java.lang.String)arguments[9],
+				(java.lang.String)arguments[10],
+				((Boolean)arguments[11]).booleanValue(),
+				(java.lang.String)arguments[12],
+				(com.liferay.portal.service.ServiceContext)arguments[13]);
 		}
 
 		throw new UnsupportedOperationException();

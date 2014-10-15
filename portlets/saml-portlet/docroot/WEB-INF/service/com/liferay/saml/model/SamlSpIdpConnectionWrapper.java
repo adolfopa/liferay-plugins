@@ -64,6 +64,7 @@ public class SamlSpIdpConnectionWrapper implements SamlSpIdpConnection,
 			getAssertionSignatureRequired());
 		attributes.put("clockSkew", getClockSkew());
 		attributes.put("enabled", getEnabled());
+		attributes.put("forceAuthn", getForceAuthn());
 		attributes.put("ldapImportEnabled", getLdapImportEnabled());
 		attributes.put("metadataUrl", getMetadataUrl());
 		attributes.put("metadataXml", getMetadataXml());
@@ -138,6 +139,12 @@ public class SamlSpIdpConnectionWrapper implements SamlSpIdpConnection,
 
 		if (enabled != null) {
 			setEnabled(enabled);
+		}
+
+		Boolean forceAuthn = (Boolean)attributes.get("forceAuthn");
+
+		if (forceAuthn != null) {
+			setForceAuthn(forceAuthn);
 		}
 
 		Boolean ldapImportEnabled = (Boolean)attributes.get("ldapImportEnabled");
@@ -254,6 +261,16 @@ public class SamlSpIdpConnectionWrapper implements SamlSpIdpConnection,
 	@Override
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
 		return _samlSpIdpConnection.getExpandoBridge();
+	}
+
+	/**
+	* Returns the force authn of this saml sp idp connection.
+	*
+	* @return the force authn of this saml sp idp connection
+	*/
+	@Override
+	public boolean getForceAuthn() {
+		return _samlSpIdpConnection.getForceAuthn();
 	}
 
 	/**
@@ -447,6 +464,16 @@ public class SamlSpIdpConnectionWrapper implements SamlSpIdpConnection,
 	}
 
 	/**
+	* Returns <code>true</code> if this saml sp idp connection is force authn.
+	*
+	* @return <code>true</code> if this saml sp idp connection is force authn; <code>false</code> otherwise
+	*/
+	@Override
+	public boolean isForceAuthn() {
+		return _samlSpIdpConnection.isForceAuthn();
+	}
+
+	/**
 	* Returns <code>true</code> if this saml sp idp connection is ldap import enabled.
 	*
 	* @return <code>true</code> if this saml sp idp connection is ldap import enabled; <code>false</code> otherwise
@@ -548,6 +575,16 @@ public class SamlSpIdpConnectionWrapper implements SamlSpIdpConnection,
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.service.ServiceContext serviceContext) {
 		_samlSpIdpConnection.setExpandoBridgeAttributes(serviceContext);
+	}
+
+	/**
+	* Sets whether this saml sp idp connection is force authn.
+	*
+	* @param forceAuthn the force authn of this saml sp idp connection
+	*/
+	@Override
+	public void setForceAuthn(boolean forceAuthn) {
+		_samlSpIdpConnection.setForceAuthn(forceAuthn);
 	}
 
 	/**

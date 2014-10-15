@@ -92,6 +92,7 @@ public class SamlSpIdpConnectionClp extends BaseModelImpl<SamlSpIdpConnection>
 			getAssertionSignatureRequired());
 		attributes.put("clockSkew", getClockSkew());
 		attributes.put("enabled", getEnabled());
+		attributes.put("forceAuthn", getForceAuthn());
 		attributes.put("ldapImportEnabled", getLdapImportEnabled());
 		attributes.put("metadataUrl", getMetadataUrl());
 		attributes.put("metadataXml", getMetadataXml());
@@ -169,6 +170,12 @@ public class SamlSpIdpConnectionClp extends BaseModelImpl<SamlSpIdpConnection>
 
 		if (enabled != null) {
 			setEnabled(enabled);
+		}
+
+		Boolean forceAuthn = (Boolean)attributes.get("forceAuthn");
+
+		if (forceAuthn != null) {
+			setForceAuthn(forceAuthn);
 		}
 
 		Boolean ldapImportEnabled = (Boolean)attributes.get("ldapImportEnabled");
@@ -487,6 +494,34 @@ public class SamlSpIdpConnectionClp extends BaseModelImpl<SamlSpIdpConnection>
 	}
 
 	@Override
+	public boolean getForceAuthn() {
+		return _forceAuthn;
+	}
+
+	@Override
+	public boolean isForceAuthn() {
+		return _forceAuthn;
+	}
+
+	@Override
+	public void setForceAuthn(boolean forceAuthn) {
+		_forceAuthn = forceAuthn;
+
+		if (_samlSpIdpConnectionRemoteModel != null) {
+			try {
+				Class<?> clazz = _samlSpIdpConnectionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setForceAuthn", boolean.class);
+
+				method.invoke(_samlSpIdpConnectionRemoteModel, forceAuthn);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
 	public boolean getLdapImportEnabled() {
 		return _ldapImportEnabled;
 	}
@@ -767,6 +802,7 @@ public class SamlSpIdpConnectionClp extends BaseModelImpl<SamlSpIdpConnection>
 		clone.setAssertionSignatureRequired(getAssertionSignatureRequired());
 		clone.setClockSkew(getClockSkew());
 		clone.setEnabled(getEnabled());
+		clone.setForceAuthn(getForceAuthn());
 		clone.setLdapImportEnabled(getLdapImportEnabled());
 		clone.setMetadataUrl(getMetadataUrl());
 		clone.setMetadataXml(getMetadataXml());
@@ -837,7 +873,7 @@ public class SamlSpIdpConnectionClp extends BaseModelImpl<SamlSpIdpConnection>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(37);
+		StringBundler sb = new StringBundler(39);
 
 		sb.append("{samlSpIdpConnectionId=");
 		sb.append(getSamlSpIdpConnectionId());
@@ -859,6 +895,8 @@ public class SamlSpIdpConnectionClp extends BaseModelImpl<SamlSpIdpConnection>
 		sb.append(getClockSkew());
 		sb.append(", enabled=");
 		sb.append(getEnabled());
+		sb.append(", forceAuthn=");
+		sb.append(getForceAuthn());
 		sb.append(", ldapImportEnabled=");
 		sb.append(getLdapImportEnabled());
 		sb.append(", metadataUrl=");
@@ -882,7 +920,7 @@ public class SamlSpIdpConnectionClp extends BaseModelImpl<SamlSpIdpConnection>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(58);
+		StringBundler sb = new StringBundler(61);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.saml.model.SamlSpIdpConnection");
@@ -927,6 +965,10 @@ public class SamlSpIdpConnectionClp extends BaseModelImpl<SamlSpIdpConnection>
 		sb.append(
 			"<column><column-name>enabled</column-name><column-value><![CDATA[");
 		sb.append(getEnabled());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>forceAuthn</column-name><column-value><![CDATA[");
+		sb.append(getForceAuthn());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>ldapImportEnabled</column-name><column-value><![CDATA[");
@@ -976,6 +1018,7 @@ public class SamlSpIdpConnectionClp extends BaseModelImpl<SamlSpIdpConnection>
 	private boolean _assertionSignatureRequired;
 	private long _clockSkew;
 	private boolean _enabled;
+	private boolean _forceAuthn;
 	private boolean _ldapImportEnabled;
 	private String _metadataUrl;
 	private String _metadataXml;

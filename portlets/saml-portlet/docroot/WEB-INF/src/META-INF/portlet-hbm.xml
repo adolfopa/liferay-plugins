@@ -83,6 +83,7 @@
 		<property name="assertionSignatureRequired" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="clockSkew" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="enabled" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="forceAuthn" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="ldapImportEnabled" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="metadataUrl" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="metadataXml" type="com.liferay.portal.dao.orm.hibernate.StringType" />

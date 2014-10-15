@@ -409,19 +409,20 @@ public interface SamlIdpSpConnectionModel extends AuditedModel,
 	public Object clone();
 
 	@Override
-	public int compareTo(SamlIdpSpConnection samlIdpSpConnection);
+	public int compareTo(
+		com.liferay.saml.model.SamlIdpSpConnection samlIdpSpConnection);
 
 	@Override
 	public int hashCode();
 
 	@Override
-	public CacheModel<SamlIdpSpConnection> toCacheModel();
+	public CacheModel<com.liferay.saml.model.SamlIdpSpConnection> toCacheModel();
 
 	@Override
-	public SamlIdpSpConnection toEscapedModel();
+	public com.liferay.saml.model.SamlIdpSpConnection toEscapedModel();
 
 	@Override
-	public SamlIdpSpConnection toUnescapedModel();
+	public com.liferay.saml.model.SamlIdpSpConnection toUnescapedModel();
 
 	@Override
 	public String toString();
