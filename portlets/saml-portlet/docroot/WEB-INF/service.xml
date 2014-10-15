@@ -141,6 +141,7 @@
 		<column name="assertionSignatureRequired" type="boolean" />
 		<column name="clockSkew" type="long" />
 		<column name="enabled" type="boolean" />
+		<column name="forceAuthn" type="boolean" />
 		<column name="ldapImportEnabled" type="boolean" />
 		<column name="metadataUrl" type="String" />
 		<column name="metadataXml" type="String" />

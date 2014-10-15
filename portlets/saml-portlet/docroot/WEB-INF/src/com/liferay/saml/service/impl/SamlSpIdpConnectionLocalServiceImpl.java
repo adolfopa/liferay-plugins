@@ -43,8 +43,9 @@ public class SamlSpIdpConnectionLocalServiceImpl
 	@Override
 	public SamlSpIdpConnection addSamlSpIdpConnection(
 			String samlIdpEntityId, boolean assertionSignatureRequired,
-			long clockSkew, boolean enabled, boolean ldapImportEnabled,
-			String metadataUrl, InputStream metadataXmlInputStream, String name,
+			long clockSkew, boolean enabled, boolean forceAuthn,
+			boolean ldapImportEnabled, String metadataUrl,
+			InputStream metadataXmlInputStream, String name,
 			String nameIdFormat, boolean signAuthnRequest,
 			String userAttributeMappings, ServiceContext serviceContext)
 		throws PortalException {
@@ -75,6 +76,7 @@ public class SamlSpIdpConnectionLocalServiceImpl
 			assertionSignatureRequired);
 		samlSpIdpConnection.setClockSkew(clockSkew);
 		samlSpIdpConnection.setEnabled(enabled);
+		samlSpIdpConnection.setForceAuthn(forceAuthn);
 		samlSpIdpConnection.setLdapImportEnabled(ldapImportEnabled);
 		samlSpIdpConnection.setMetadataUpdatedDate(now);
 
@@ -187,7 +189,7 @@ public class SamlSpIdpConnectionLocalServiceImpl
 	public SamlSpIdpConnection updateSamlSpIdpConnection(
 			long samlSpIdpConnectionId, String samlIdpEntityId,
 			boolean assertionSignatureRequired, long clockSkew, boolean enabled,
-			boolean ldapImportEnabled, String metadataUrl,
+			boolean forceAuthn, boolean ldapImportEnabled, String metadataUrl,
 			InputStream metadataXmlInputStream, String name,
 			String nameIdFormat, boolean signAuthnRequest,
 			String userAttributeMappings, ServiceContext serviceContext)
@@ -220,6 +222,7 @@ public class SamlSpIdpConnectionLocalServiceImpl
 			assertionSignatureRequired);
 		samlSpIdpConnection.setClockSkew(clockSkew);
 		samlSpIdpConnection.setEnabled(enabled);
+		samlSpIdpConnection.setForceAuthn(forceAuthn);
 		samlSpIdpConnection.setLdapImportEnabled(ldapImportEnabled);
 		samlSpIdpConnection.setMetadataUpdatedDate(now);
 
