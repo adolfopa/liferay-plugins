@@ -117,18 +117,22 @@ public class BaseSamlTestCase extends PowerMockito {
 		identifiers.clear();
 
 		for (Class<?> serviceUtilClass : serviceUtilClasses) {
-			try {
-				Field field = serviceUtilClass.getDeclaredField("_service");
-
-				field.setAccessible(true);
-
-				field.set(serviceUtilClass, null);
-			}
-			catch (Exception e) {
-			}
+			clearService(serviceUtilClass);
 		}
 
 		ClassLoaderPool.unregister("saml-portlet");
+	}
+
+	protected void clearService(Class<?> serviceUtilClass) {
+		try {
+			Field field = serviceUtilClass.getDeclaredField("_service");
+
+			field.setAccessible(true);
+
+			field.set(serviceUtilClass, null);
+		}
+		catch (Exception e) {
+		}
 	}
 
 	protected Credential getCredential(String entityId) throws Exception {
@@ -209,6 +213,8 @@ public class BaseSamlTestCase extends PowerMockito {
 	protected <T> T getMockPortalService(
 		Class<?> serviceUtilClass, Class<T> serviceClass) {
 
+		clearService(serviceUtilClass);
+
 		serviceUtilClasses.add(serviceUtilClass);
 
 		T service = mock(serviceClass);
@@ -224,6 +230,8 @@ public class BaseSamlTestCase extends PowerMockito {
 
 	protected <T> T getMockPortletService(
 		Class<?> serviceUtilClass, Class<T> serviceClass) {
+
+		clearService(serviceUtilClass);
 
 		serviceUtilClasses.add(serviceUtilClass);
 

@@ -25,9 +25,13 @@ import com.liferay.saml.SignatureException;
 import com.liferay.saml.SubjectException;
 import com.liferay.saml.metadata.MetadataManagerUtil;
 import com.liferay.saml.model.SamlSpAuthRequest;
+import com.liferay.saml.model.SamlSpIdpConnection;
 import com.liferay.saml.model.impl.SamlSpAuthRequestImpl;
+import com.liferay.saml.model.impl.SamlSpIdpConnectionImpl;
 import com.liferay.saml.service.SamlSpAuthRequestLocalService;
 import com.liferay.saml.service.SamlSpAuthRequestLocalServiceUtil;
+import com.liferay.saml.service.SamlSpIdpConnectionLocalService;
+import com.liferay.saml.service.SamlSpIdpConnectionLocalServiceUtil;
 import com.liferay.saml.service.SamlSpMessageLocalService;
 import com.liferay.saml.service.SamlSpMessageLocalServiceUtil;
 import com.liferay.saml.util.OpenSamlUtil;
@@ -132,6 +136,20 @@ public class WebSsoProfileIntegrationTest extends BaseSamlTestCase {
 
 	@Test
 	public void testDecodeAuthnRequestStageAuthenticated() throws Exception {
+		SamlSpIdpConnectionLocalService samlSpIdpConnectionLocalService =
+			getMockPortletService(
+				SamlSpIdpConnectionLocalServiceUtil.class,
+				SamlSpIdpConnectionLocalService.class);
+
+		SamlSpIdpConnection samlSpIdpConnection = new SamlSpIdpConnectionImpl();
+
+		when(
+			samlSpIdpConnectionLocalService.getSamlSpIdpConnection(
+				Mockito.eq(COMPANY_ID), Mockito.eq(IDP_ENTITY_ID))
+		).thenReturn(
+			samlSpIdpConnection
+		);
+
 		MockHttpServletRequest mockHttpServletRequest =
 			getMockHttpServletRequest(LOGIN_URL);
 
@@ -200,6 +218,20 @@ public class WebSsoProfileIntegrationTest extends BaseSamlTestCase {
 
 	@Test
 	public void testDecodeAuthnRequestStageInitial() throws Exception {
+		SamlSpIdpConnectionLocalService samlSpIdpConnectionLocalService =
+			getMockPortletService(
+				SamlSpIdpConnectionLocalServiceUtil.class,
+				SamlSpIdpConnectionLocalService.class);
+
+		SamlSpIdpConnection samlSpIdpConnection = new SamlSpIdpConnectionImpl();
+
+		when(
+			samlSpIdpConnectionLocalService.getSamlSpIdpConnection(
+				Mockito.eq(COMPANY_ID), Mockito.eq(IDP_ENTITY_ID))
+		).thenReturn(
+			samlSpIdpConnection
+		);
+
 		MockHttpServletRequest mockHttpServletRequest =
 			getMockHttpServletRequest(LOGIN_URL);
 
@@ -245,7 +277,57 @@ public class WebSsoProfileIntegrationTest extends BaseSamlTestCase {
 
 		Assert.assertEquals(identifiers.get(0), authnRequest.getID());
 		Assert.assertEquals(2, identifiers.size());
+		Assert.assertFalse(authnRequest.isForceAuthn());
 		Assert.assertTrue(samlSsoRequestContext.isNewSession());
+	}
+
+	@Test
+	public void testForceAuthn() throws Exception {
+		SamlSpIdpConnectionLocalService samlSpIdpConnectionLocalService =
+			getMockPortletService(
+				SamlSpIdpConnectionLocalServiceUtil.class,
+				SamlSpIdpConnectionLocalService.class);
+
+		SamlSpIdpConnection samlSpIdpConnection = new SamlSpIdpConnectionImpl();
+
+		samlSpIdpConnection.setForceAuthn(true);
+
+		when(
+			samlSpIdpConnectionLocalService.getSamlSpIdpConnection(
+				Mockito.eq(COMPANY_ID), Mockito.eq(IDP_ENTITY_ID))
+		).thenReturn(
+			samlSpIdpConnection
+		);
+
+		MockHttpServletRequest mockHttpServletRequest =
+			getMockHttpServletRequest(LOGIN_URL);
+
+		MockHttpServletResponse mockHttpServletResponse =
+			new MockHttpServletResponse();
+
+		_webSsoProfileImpl.doSendAuthnRequest(
+			mockHttpServletRequest, mockHttpServletResponse, RELAY_STATE);
+
+		String redirect = mockHttpServletResponse.getRedirectedUrl();
+
+		Assert.assertNotNull(redirect);
+
+		prepareIdentityProvider(IDP_ENTITY_ID);
+
+		mockHttpServletRequest = getMockHttpServletRequest(redirect);
+
+		mockHttpServletResponse = new MockHttpServletResponse();
+
+		SamlSsoRequestContext samlSsoRequestContext =
+			_webSsoProfileImpl.decodeAuthnRequest(
+				mockHttpServletRequest, mockHttpServletResponse);
+
+		SAMLMessageContext<AuthnRequest, Response, NameID> samlMessageContext =
+			samlSsoRequestContext.getSAMLMessageContext();
+
+		AuthnRequest authnRequest = samlMessageContext.getInboundSAMLMessage();
+
+		Assert.assertTrue(authnRequest.isForceAuthn());
 	}
 
 	@Test(expected = SignatureException.class)
