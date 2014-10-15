@@ -17,6 +17,7 @@ package com.liferay.saml.admin.portlet;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.PortletResponseUtil;
+import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.ContentTypes;
@@ -45,7 +46,6 @@ import com.liferay.saml.service.SamlIdpSpConnectionLocalServiceUtil;
 import com.liferay.saml.service.SamlSpIdpConnectionLocalServiceUtil;
 import com.liferay.saml.util.CertificateUtil;
 import com.liferay.saml.util.PortletPropsKeys;
-import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 
 import java.io.InputStream;
 
@@ -286,6 +286,8 @@ public class AdminPortlet extends MVCPortlet {
 			uploadPortletRequest, "assertionSignatureRequired");
 		long clockSkew = ParamUtil.getLong(uploadPortletRequest, "clockSkew");
 		boolean enabled = true;
+		boolean forceAuthn = ParamUtil.getBoolean(
+			uploadPortletRequest, "forceAuthn");
 		boolean ldapImportEnabled = ParamUtil.getBoolean(
 			uploadPortletRequest, "ldapImportEnabled");
 		String metadataUrl = ParamUtil.getString(
@@ -306,14 +308,14 @@ public class AdminPortlet extends MVCPortlet {
 		if (samlSpIdpConnectionId <= 0) {
 			SamlSpIdpConnectionLocalServiceUtil.addSamlSpIdpConnection(
 				samlIdpEntityId, assertionSignatureRequired, clockSkew, enabled,
-				ldapImportEnabled, metadataUrl, metadataXmlInputStream, name,
-				nameIdFormat, signAuthnRequest, userAttributeMappings,
-				serviceContext);
+				forceAuthn, ldapImportEnabled, metadataUrl,
+				metadataXmlInputStream, name, nameIdFormat, signAuthnRequest,
+				userAttributeMappings, serviceContext);
 		}
 		else {
 			SamlSpIdpConnectionLocalServiceUtil.updateSamlSpIdpConnection(
 				samlSpIdpConnectionId, samlIdpEntityId,
-				assertionSignatureRequired, clockSkew, enabled,
+				assertionSignatureRequired, clockSkew, enabled, forceAuthn,
 				ldapImportEnabled, metadataUrl, metadataXmlInputStream, name,
 				nameIdFormat, signAuthnRequest, userAttributeMappings,
 				serviceContext);

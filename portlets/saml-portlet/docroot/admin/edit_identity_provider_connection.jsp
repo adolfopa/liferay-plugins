@@ -61,6 +61,8 @@ String userAttributeMappings = ParamUtil.getString(request, "userAttributeMappin
 		<aui:input helpMessage="identity-provider-connection-entity-id-help" label="entity-id" name="samlIdpEntityId" required="true" value="<%= samlIdpEntityId %>" />
 
 		<aui:input helpMessage="clock-skew-help" name="clockSkew" value="<%= String.valueOf(clockSkew) %>" />
+
+		<aui:input helpMessage="force-authn-help" name="forceAuthn" />
 	</aui:fieldset>
 
 	<aui:fieldset helpMessage="identity-provider-metadata-help" label="metadata">

@@ -49,6 +49,7 @@ import com.liferay.saml.binding.SamlBinding;
 import com.liferay.saml.metadata.MetadataManagerUtil;
 import com.liferay.saml.model.SamlIdpSsoSession;
 import com.liferay.saml.model.SamlSpAuthRequest;
+import com.liferay.saml.model.SamlSpIdpConnection;
 import com.liferay.saml.model.SamlSpMessage;
 import com.liferay.saml.model.SamlSpSession;
 import com.liferay.saml.resolver.AttributeResolver;
@@ -59,6 +60,7 @@ import com.liferay.saml.resolver.UserResolverUtil;
 import com.liferay.saml.service.SamlIdpSpSessionLocalServiceUtil;
 import com.liferay.saml.service.SamlIdpSsoSessionLocalServiceUtil;
 import com.liferay.saml.service.SamlSpAuthRequestLocalServiceUtil;
+import com.liferay.saml.service.SamlSpIdpConnectionLocalServiceUtil;
 import com.liferay.saml.service.SamlSpMessageLocalServiceUtil;
 import com.liferay.saml.service.SamlSpSessionLocalServiceUtil;
 import com.liferay.saml.util.OpenSamlUtil;
@@ -628,6 +630,14 @@ public class WebSsoProfileImpl extends BaseProfile implements WebSsoProfile {
 			nameIdPolicy);
 
 		authnRequest.setID(generateIdentifier(20));
+
+		long companyId = PortalUtil.getCompanyId(request);
+
+		SamlSpIdpConnection samlSpIdpConnection =
+			SamlSpIdpConnectionLocalServiceUtil.getSamlSpIdpConnection(
+				companyId, entityId);
+
+		authnRequest.setForceAuthn(samlSpIdpConnection.isForceAuthn());
 
 		samlMessageContext.setOutboundSAMLMessage(authnRequest);
 
