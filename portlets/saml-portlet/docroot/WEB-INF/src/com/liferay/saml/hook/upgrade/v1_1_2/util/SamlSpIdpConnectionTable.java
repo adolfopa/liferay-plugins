@@ -22,25 +22,25 @@ import java.sql.Types;
 public class SamlSpIdpConnectionTable {
 
 	public static final Object[][] TABLE_COLUMNS = {
-		{ "samlSpIdpConnectionId", Types.BIGINT },
-		{ "companyId", Types.BIGINT },
-		{ "userId", Types.BIGINT },
-		{ "userName", Types.VARCHAR },
-		{ "createDate", Types.TIMESTAMP },
-		{ "modifiedDate", Types.TIMESTAMP },
-		{ "samlIdpEntityId", Types.VARCHAR },
-		{ "assertionSignatureRequired", Types.BOOLEAN },
-		{ "clockSkew", Types.BIGINT },
-		{ "enabled", Types.BOOLEAN },
-		{ "forceAuthn", Types.BOOLEAN },
-		{ "ldapImportEnabled", Types.BOOLEAN },
-		{ "metadataUrl", Types.VARCHAR },
-		{ "metadataXml", Types.CLOB },
-		{ "metadataUpdatedDate", Types.TIMESTAMP },
-		{ "name", Types.VARCHAR },
-		{ "nameIdFormat", Types.VARCHAR },
-		{ "signAuthnRequest", Types.BOOLEAN },
-		{ "userAttributeMappings", Types.VARCHAR }
+		{"samlSpIdpConnectionId", Types.BIGINT},
+		{"companyId", Types.BIGINT},
+		{"userId", Types.BIGINT},
+		{"userName", Types.VARCHAR},
+		{"createDate", Types.TIMESTAMP},
+		{"modifiedDate", Types.TIMESTAMP},
+		{"samlIdpEntityId", Types.VARCHAR},
+		{"assertionSignatureRequired", Types.BOOLEAN},
+		{"clockSkew", Types.BIGINT},
+		{"enabled", Types.BOOLEAN},
+		{"forceAuthn", Types.BOOLEAN},
+		{"ldapImportEnabled", Types.BOOLEAN},
+		{"metadataUrl", Types.VARCHAR},
+		{"metadataXml", Types.CLOB},
+		{"metadataUpdatedDate", Types.TIMESTAMP},
+		{"name", Types.VARCHAR},
+		{"nameIdFormat", Types.VARCHAR},
+		{"signAuthnRequest", Types.BOOLEAN},
+		{"userAttributeMappings", Types.VARCHAR}
 	};
 
 	public static final String TABLE_NAME = "SamlSpIdpConnection";
