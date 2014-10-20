@@ -123,7 +123,7 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 		entry.setEmailNotifications(emailNotifications);
 		entry.setEmailDelivery(emailDelivery);
 		entry.setPortletId(portletId);
-		entry.setPageURL(pageURL + "&entryId=" + entryId);
+		entry.setPageURL(pageURL + "&_" + portletId + "_entryId=" + entryId);
 		entry.setStatus(ReportStatus.PENDING.getValue());
 
 		entryPersistence.update(entry);
