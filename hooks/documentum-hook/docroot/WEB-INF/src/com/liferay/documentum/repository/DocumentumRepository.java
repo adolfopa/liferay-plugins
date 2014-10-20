@@ -742,8 +742,8 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 
 	@Override
 	public List<Folder> getFolders(
-		long parentFolderId, boolean includeMountFolders, int start,
-		int end, OrderByComparator obc) {
+		long parentFolderId, boolean includeMountFolders, int start, int end,
+		OrderByComparator obc) {
 
 		IDfSession idfSession = null;
 
@@ -2028,8 +2028,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 	}
 
 	protected IDfId getObjectId(
-		IDfSession idfSession, long folderId, boolean fileEntry,
-		String name) {
+		IDfSession idfSession, long folderId, boolean fileEntry, String name) {
 
 		IDfCollection idfCollection = null;
 

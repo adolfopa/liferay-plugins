@@ -15,11 +15,13 @@
 package com.liferay.documentum.repository.model;
 
 import com.liferay.documentum.repository.DocumentumRepository;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.lar.StagedModelType;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.FileVersion;
+import com.liferay.portal.kernel.repository.model.RepositoryModelOperation;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.security.auth.PrincipalThreadLocal;
@@ -44,6 +46,13 @@ public class DocumentumFileVersion
 
 		_documentumRepository = documentumRepository;
 		_fileEntry = fileEntry;
+	}
+
+	@Override
+	public void execute(RepositoryModelOperation repositoryModelOperation)
+		throws PortalException {
+
+		repositoryModelOperation.execute(this);
 	}
 
 	@Override
