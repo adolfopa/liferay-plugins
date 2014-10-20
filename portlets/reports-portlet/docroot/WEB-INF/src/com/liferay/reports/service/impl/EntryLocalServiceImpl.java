@@ -51,7 +51,6 @@ import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portal.util.PortletKeys;
 import com.liferay.portal.util.SubscriptionSender;
 import com.liferay.portlet.documentlibrary.DuplicateDirectoryException;
 import com.liferay.portlet.documentlibrary.NoSuchDirectoryException;
@@ -65,6 +64,7 @@ import com.liferay.reports.model.Definition;
 import com.liferay.reports.model.Entry;
 import com.liferay.reports.model.Source;
 import com.liferay.reports.service.base.EntryLocalServiceBaseImpl;
+import com.liferay.reports.util.PortletKeys;
 
 import java.io.File;
 import java.io.IOException;
@@ -103,6 +103,8 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 		long entryId = counterLocalService.increment();
 
 		Entry entry = entryPersistence.create(entryId);
+
+		portletId = PortletKeys.REPORTS_ADMIN;
 
 		entry.setGroupId(groupId);
 		entry.setCompanyId(user.getCompanyId());
