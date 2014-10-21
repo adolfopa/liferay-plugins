@@ -183,30 +183,31 @@ portletURL.setParameter("kaleoProcessId", String.valueOf(kaleoProcessId));
 <%@ include file="/admin/export_kaleo_process.jspf" %>
 
 <aui:script>
-	<portlet:namespace />previewDialog = null;
-
 	Liferay.provide(
 		window,
 		'<portlet:namespace />openPreviewDialog',
 		function(content) {
-			var previewDialog = <portlet:namespace />previewDialog;
+			var util = Liferay.Util;
 
-			if (!previewDialog) {
-				previewDialog = Liferay.Util.Window.getWindow(
+			var dialog = util.getWindow('<portlet:namespace />previewDialog');
+
+			if (!dialog) {
+				previewDialog = util.Window.getWindow(
 					{
 						dialog: {
 							bodyContent: content
 						},
+						id: '<portlet:namespace />previewDialog',
 						title: Liferay.Language.get('preview')
 					}
 				);
 
-				<portlet:namespace />previewDialog = previewDialog;
+				dialog = previewDialog;
 			}
 			else {
-				previewDialog.show();
+				dialog.show();
 
-				previewDialog.set('bodyContent', content);
+				dialog.set('bodyContent', content);
 			}
 		},
 		['liferay-util-window']
