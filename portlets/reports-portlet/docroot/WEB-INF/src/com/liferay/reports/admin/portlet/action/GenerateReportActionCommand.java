@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.reports.model.Definition;
 import com.liferay.reports.model.Entry;
 import com.liferay.reports.service.DefinitionServiceUtil;
@@ -59,6 +60,7 @@ public class GenerateReportActionCommand extends BaseActionCommand {
 			portletRequest, "emailNotifications");
 		String emailDelivery = ParamUtil.getString(
 			portletRequest, "emailDelivery");
+		String portletId = PortalUtil.getPortletId(portletRequest);
 		String generatedReportsURL = ParamUtil.getString(
 			portletRequest, "generatedReportsURL");
 		String reportName = ParamUtil.getString(portletRequest, "reportName");
@@ -111,7 +113,7 @@ public class GenerateReportActionCommand extends BaseActionCommand {
 
 		EntryServiceUtil.addEntry(
 			themeDisplay.getScopeGroupId(), definitionId, format, false, null,
-			null, false, null, emailNotifications, emailDelivery, null,
+			null, false, null, emailNotifications, emailDelivery, portletId,
 			generatedReportsURL, reportName,
 			entryReportParametersJSONArray.toString(), serviceContext);
 	}
