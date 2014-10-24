@@ -28,7 +28,11 @@ import com.liferay.portal.model.Role;
 import com.liferay.portal.model.RoleConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.model.UserGroup;
+import com.liferay.portal.model.UserGroupGroupRole;
 import com.liferay.portal.model.UserGroupRole;
+import com.liferay.portal.service.GroupLocalServiceUtil;
+import com.liferay.portal.service.RoleLocalServiceUtil;
+import com.liferay.portal.service.UserGroupGroupRoleLocalServiceUtil;
 import com.liferay.portal.service.UserGroupRoleLocalServiceUtil;
 import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.saml.metadata.MetadataManagerUtil;
@@ -39,6 +43,7 @@ import com.liferay.saml.util.SamlUtil;
 import java.io.Serializable;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -106,8 +111,10 @@ public class DefaultAttributeResolver implements AttributeResolver {
 					user, samlMessageContext, attributes, attributeName,
 					namespaceEnabled);
 			}
-			else if (attributeName.equals("userGroupRoles")) {
-				addUserGroupRolesAttribute(
+			else if (attributeName.equals("siteRoles") ||
+					 attributeName.equals("userGroupRoles")) {
+
+				addSiteRolesAttribute(
 					user, samlMessageContext, attributes, attributeName,
 					namespaceEnabled);
 			}
@@ -387,6 +394,106 @@ public class DefaultAttributeResolver implements AttributeResolver {
 		}
 	}
 
+	protected void addSiteRolesAttribute(
+		User user, SAMLMessageContext<?, ?, ?> samlMessageContext,
+		List<Attribute> attributes, String attributeName,
+		boolean namespaceEnabled) {
+
+		try {
+			List<UserGroupRole> userGroupRoles =
+				UserGroupRoleLocalServiceUtil.getUserGroupRoles(
+					user.getUserId());
+
+			Map<String, Set<Role>> groupRoles =
+				new HashMap<String, Set<Role>>();
+
+			for (UserGroupRole userGroupRole : userGroupRoles) {
+				Group group = userGroupRole.getGroup();
+
+				if ((userGroupRole.getRole().getType() ==
+						RoleConstants.TYPE_ORGANIZATION) &&
+					!attributeName.equals("userGroupRoles")) {
+
+					continue;
+				}
+
+				Set<Role> roles = groupRoles.get(group.getName());
+
+				if (roles == null) {
+					roles = new HashSet<Role>();
+
+					groupRoles.put(group.getName(), roles);
+				}
+
+				roles.add(userGroupRole.getRole());
+			}
+
+			List<UserGroupGroupRole> inheritedSiteRoles =
+				UserGroupGroupRoleLocalServiceUtil.getUserGroupGroupRolesByUser(
+					user.getUserId());
+
+			for (UserGroupGroupRole userGroupGroupRole : inheritedSiteRoles) {
+				Group group = userGroupGroupRole.getGroup();
+				Role role = userGroupGroupRole.getRole();
+
+				Set<Role> roles = groupRoles.get(group.getName());
+
+				if (roles == null) {
+					roles = new HashSet<Role>();
+
+					groupRoles.put(group.getName(), roles);
+				}
+
+				roles.add(role);
+			}
+
+			for (Entry<String, Set<Role>> entry : groupRoles.entrySet()) {
+				String groupName = entry.getKey();
+				Set<Role> roles = entry.getValue();
+
+				Attribute attribute = OpenSamlUtil.buildAttribute();
+
+				if (namespaceEnabled) {
+					if (attributeName.equals("siteRoles")) {
+						attribute.setName("urn:liferay:siteRole:" + groupName);
+					}
+					else {
+						attribute.setName(
+							"urn:liferay:userGroupRole:" + groupName);
+					}
+
+					attribute.setNameFormat(Attribute.URI_REFERENCE);
+				}
+				else {
+					if (attributeName.equals("siteRoles")) {
+						attribute.setName("siteRole:" + groupName);
+					}
+					else {
+						attribute.setName("userGroupRole:" + groupName);
+					}
+
+					attribute.setNameFormat(Attribute.UNSPECIFIED);
+				}
+
+				List<XMLObject> xmlObjects = attribute.getAttributeValues();
+
+				for (Role role : roles) {
+					XMLObject xmlObject = OpenSamlUtil.buildAttributeValue(
+						role.getName());
+
+					xmlObjects.add(xmlObject);
+				}
+
+				attributes.add(attribute);
+			}
+		}
+		catch (Exception e) {
+			_log.error(
+				"Unable to get user group roles for user " + user.getUserId(),
+				e);
+		}
+	}
+
 	protected void addStaticAttribute(
 		User user, SAMLMessageContext<?, ?, ?> samlMessageContext,
 		List<Attribute> attributes, String attributeName,
@@ -442,71 +549,6 @@ public class DefaultAttributeResolver implements AttributeResolver {
 		}
 
 		attributes.add(attribute);
-	}
-
-	protected void addUserGroupRolesAttribute(
-		User user, SAMLMessageContext<?, ?, ?> samlMessageContext,
-		List<Attribute> attributes, String attributeName,
-		boolean namespaceEnabled) {
-
-		try {
-			List<UserGroupRole> userGroupRoles =
-				UserGroupRoleLocalServiceUtil.getUserGroupRoles(
-					user.getUserId());
-
-			if (userGroupRoles.isEmpty()) {
-				return;
-			}
-
-			Map<String, List<Role>> groupRoles =
-				new HashMap<String, List<Role>>();
-
-			for (UserGroupRole userGroupRole : userGroupRoles) {
-				Group group = userGroupRole.getGroup();
-
-				List<Role> roles = groupRoles.get(group.getName());
-
-				if (roles == null) {
-					roles = new ArrayList<Role>();
-
-					groupRoles.put(group.getName(), roles);
-				}
-
-				roles.add(userGroupRole.getRole());
-			}
-
-			for (Entry<String, List<Role>> entry : groupRoles.entrySet()) {
-				String groupName = entry.getKey();
-				List<Role> roles = entry.getValue();
-
-				Attribute attribute = OpenSamlUtil.buildAttribute();
-
-				if (namespaceEnabled) {
-					attribute.setName("urn:liferay:userGroupRole:" + groupName);
-					attribute.setNameFormat(Attribute.URI_REFERENCE);
-				}
-				else {
-					attribute.setName("userGroupRole:" + groupName);
-					attribute.setNameFormat(Attribute.UNSPECIFIED);
-				}
-
-				List<XMLObject> xmlObjects = attribute.getAttributeValues();
-
-				for (Role role : roles) {
-					XMLObject xmlObject = OpenSamlUtil.buildAttributeValue(
-						role.getName());
-
-					xmlObjects.add(xmlObject);
-				}
-
-				attributes.add(attribute);
-			}
-		}
-		catch (Exception e) {
-			_log.error(
-				"Unable to get user group roles for user " + user.getUserId(),
-				e);
-		}
 	}
 
 	protected void addUserGroupsAttribute(
