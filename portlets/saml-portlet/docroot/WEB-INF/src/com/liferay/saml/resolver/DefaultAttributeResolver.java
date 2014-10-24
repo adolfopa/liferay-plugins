@@ -313,7 +313,50 @@ public class DefaultAttributeResolver implements AttributeResolver {
 		try {
 			List<Role> roles = user.getRoles();
 
-			if (roles.isEmpty()) {
+			List<Group> groups = user.getGroups();
+			List<Organization> organizations = user.getOrganizations();
+			List<UserGroup> userGroups = user.getUserGroups();
+
+			List<Group> inheritedSites =
+				GroupLocalServiceUtil.getUserGroupsRelatedGroups(userGroups);
+			List<Group> organizationsRelatedGroups = Collections.emptyList();
+
+			if (!organizations.isEmpty()) {
+				organizationsRelatedGroups =
+					GroupLocalServiceUtil.getOrganizationsRelatedGroups(
+						organizations);
+
+				for (Group group : organizationsRelatedGroups) {
+					if (!inheritedSites.contains(group)) {
+						inheritedSites.add(group);
+					}
+				}
+			}
+
+			List<Group> allGroups = new ArrayList<Group>();
+
+			allGroups.addAll(groups);
+			allGroups.addAll(inheritedSites);
+			allGroups.addAll(organizationsRelatedGroups);
+			allGroups.addAll(
+				GroupLocalServiceUtil.getOrganizationsGroups(organizations));
+			allGroups.addAll(
+				GroupLocalServiceUtil.getUserGroupsGroups(userGroups));
+
+			Set<Role> uniqueRoles = new HashSet<Role>();
+
+			uniqueRoles.addAll(roles);
+
+			for (Group group : allGroups) {
+				if (RoleLocalServiceUtil.hasGroupRoles(group.getGroupId())) {
+					List<Role> groupRoles = RoleLocalServiceUtil.getGroupRoles(
+						group.getGroupId());
+
+					uniqueRoles.addAll(groupRoles);
+				}
+			}
+
+			if (uniqueRoles.isEmpty()) {
 				return;
 			}
 
@@ -330,7 +373,7 @@ public class DefaultAttributeResolver implements AttributeResolver {
 
 			List<XMLObject> xmlObjects = attribute.getAttributeValues();
 
-			for (Role role : roles) {
+			for (Role role : uniqueRoles) {
 				XMLObject xmlObject = OpenSamlUtil.buildAttributeValue(
 					role.getName());
 
