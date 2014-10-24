@@ -25,7 +25,6 @@ import org.opensaml.xml.parse.ParserPool;
 public class HttpRedirectBinding extends BaseSamlBinding {
 
 	public HttpRedirectBinding(ParserPool parserPool) {
-
 		super(
 			new HTTPRedirectDeflateDecoder(parserPool),
 			new HTTPRedirectDeflateEncoder());

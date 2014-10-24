@@ -179,8 +179,8 @@ public class DefaultAttributeResolverTest extends BaseSamlTestCase {
 			group1.getName()
 		).thenReturn(
 			"Group Test 1"
-		)
-;
+		);
+
 		Role role1 = mock(Role.class);
 
 		when(
@@ -408,8 +408,8 @@ public class DefaultAttributeResolverTest extends BaseSamlTestCase {
 			group1.getName()
 		).thenReturn(
 			"Group Test 1"
-		)
-;
+		);
+
 		Role role1 = mock(Role.class);
 
 		when(
@@ -635,8 +635,8 @@ public class DefaultAttributeResolverTest extends BaseSamlTestCase {
 			group1.getName()
 		).thenReturn(
 			"Group Test 1"
-		)
-;
+		);
+
 		Role role1 = mock(Role.class);
 
 		when(

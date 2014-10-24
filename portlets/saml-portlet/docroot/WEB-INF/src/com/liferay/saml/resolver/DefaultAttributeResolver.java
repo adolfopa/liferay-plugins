@@ -324,8 +324,9 @@ public class DefaultAttributeResolver implements AttributeResolver {
 			List<Organization> organizations = user.getOrganizations();
 			List<UserGroup> userGroups = user.getUserGroups();
 
-			List<Group> inheritedSites =
+			List<Group> inheritedSiteGroups =
 				GroupLocalServiceUtil.getUserGroupsRelatedGroups(userGroups);
+
 			List<Group> organizationsRelatedGroups = Collections.emptyList();
 
 			if (!organizations.isEmpty()) {
@@ -334,8 +335,8 @@ public class DefaultAttributeResolver implements AttributeResolver {
 						organizations);
 
 				for (Group group : organizationsRelatedGroups) {
-					if (!inheritedSites.contains(group)) {
-						inheritedSites.add(group);
+					if (!inheritedSiteGroups.contains(group)) {
+						inheritedSiteGroups.add(group);
 					}
 				}
 			}
@@ -343,7 +344,7 @@ public class DefaultAttributeResolver implements AttributeResolver {
 			List<Group> allGroups = new ArrayList<Group>();
 
 			allGroups.addAll(groups);
-			allGroups.addAll(inheritedSites);
+			allGroups.addAll(inheritedSiteGroups);
 			allGroups.addAll(organizationsRelatedGroups);
 			allGroups.addAll(
 				GroupLocalServiceUtil.getOrganizationsGroups(organizations));

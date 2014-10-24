@@ -387,9 +387,8 @@ public class SingleLogoutProfileImpl
 
 		HttpSession session = request.getSession();
 
-		SamlSloContext samlSloContext =
-			(SamlSloContext)session.getAttribute(
-				PortletWebKeys.SAML_SLO_CONTEXT);
+		SamlSloContext samlSloContext = (SamlSloContext)session.getAttribute(
+			PortletWebKeys.SAML_SLO_CONTEXT);
 
 		String samlSsoSessionId = getSamlSsoSessionId(request);
 
@@ -902,8 +901,7 @@ public class SingleLogoutProfileImpl
 						request, response, samlSloRequestInfo.getEntityId());
 
 		SPSSODescriptor spSsoDescriptor =
-			(SPSSODescriptor)
-				samlMessageContext.getPeerEntityRoleMetadata();
+			(SPSSODescriptor)samlMessageContext.getPeerEntityRoleMetadata();
 
 		SingleLogoutService singleLogoutService =
 			SamlUtil.resolveSingleLogoutService(
