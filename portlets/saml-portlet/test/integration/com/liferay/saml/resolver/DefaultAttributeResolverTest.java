@@ -23,6 +23,8 @@ import com.liferay.portal.model.Role;
 import com.liferay.portal.model.User;
 import com.liferay.portal.model.UserGroup;
 import com.liferay.portal.model.UserGroupRole;
+import com.liferay.portal.service.UserGroupGroupRoleLocalService;
+import com.liferay.portal.service.UserGroupGroupRoleLocalServiceUtil;
 import com.liferay.portal.service.UserGroupRoleLocalService;
 import com.liferay.portal.service.UserGroupRoleLocalServiceUtil;
 import com.liferay.portlet.expando.model.ExpandoBridge;
@@ -388,6 +390,11 @@ public class DefaultAttributeResolverTest extends BaseSamlTestCase {
 		).thenReturn(
 			userGroupRoles
 		);
+
+		UserGroupGroupRoleLocalService userGroupGroupRoleLocalService =
+			getMockPortalService(
+				UserGroupGroupRoleLocalServiceUtil.class,
+				UserGroupGroupRoleLocalService.class);
 
 		List<Attribute> attributes = _defaultAttributeResolver.resolve(
 			_user, _samlMessageContext);
