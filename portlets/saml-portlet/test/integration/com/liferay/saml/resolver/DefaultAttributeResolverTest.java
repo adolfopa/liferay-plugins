@@ -20,9 +20,13 @@ import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Organization;
 import com.liferay.portal.model.Role;
+import com.liferay.portal.model.RoleConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.model.UserGroup;
+import com.liferay.portal.model.UserGroupGroupRole;
 import com.liferay.portal.model.UserGroupRole;
+import com.liferay.portal.service.RoleLocalService;
+import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.UserGroupGroupRoleLocalService;
 import com.liferay.portal.service.UserGroupGroupRoleLocalServiceUtil;
 import com.liferay.portal.service.UserGroupRoleLocalService;
@@ -157,6 +161,103 @@ public class DefaultAttributeResolverTest extends BaseSamlTestCase {
 	}
 
 	@Test
+	public void testResolveOrganizationRolesAttributes() throws Exception {
+		when(
+			_metadataManager.getAttributeNames(Mockito.eq(SP_ENTITY_ID))
+		).thenReturn(
+			new String[] {"organizationRoles"}
+		);
+
+		UserGroupRoleLocalService userGroupRoleLocalService =
+			getMockPortalService(
+				UserGroupRoleLocalServiceUtil.class,
+				UserGroupRoleLocalService.class);
+
+		Group group1 = mock(Group.class);
+
+		when(
+			group1.getName()
+		).thenReturn(
+			"Group Test 1"
+		)
+;
+		Role role1 = mock(Role.class);
+
+		when(
+			role1.getName()
+		).thenReturn(
+			"Role Test 1"
+		);
+
+		when(
+			role1.getType()
+		).thenReturn(
+			RoleConstants.TYPE_ORGANIZATION
+		);
+
+		Role role2 = mock(Role.class);
+
+		when(
+			role2.getName()
+		).thenReturn(
+			"Role Test 2"
+		);
+
+		when(
+			role2.getType()
+		).thenReturn(
+			RoleConstants.TYPE_ORGANIZATION
+		);
+
+		List<UserGroupRole> userGroupRoles = new ArrayList<UserGroupRole>();
+
+		UserGroupRole userGroupRole1 = mock(UserGroupRole.class);
+
+		when(
+			userGroupRole1.getGroup()
+		).thenReturn(
+			group1
+		);
+
+		when(
+			userGroupRole1.getRole()
+		).thenReturn(
+			role1
+		);
+
+		userGroupRoles.add(userGroupRole1);
+
+		UserGroupRole userGroupRole2 = mock(UserGroupRole.class);
+
+		when(
+			userGroupRole2.getGroup()
+		).thenReturn(
+			group1
+		);
+
+		when(
+			userGroupRole2.getRole()
+		).thenReturn(
+			role2
+		);
+
+		userGroupRoles.add(userGroupRole2);
+
+		when(
+			userGroupRoleLocalService.getUserGroupRoles(Mockito.anyLong())
+		).thenReturn(
+			userGroupRoles
+		);
+
+		List<Attribute> attributes = _defaultAttributeResolver.resolve(
+			_user, _samlMessageContext);
+
+		assertEquals(
+			attributes, "organizationRole:Group Test 1",
+			new String[] {"Role Test 1", "Role Test 2"});
+	}
+
+	@Test
 	public void testResolveOrganizationsAttributes() throws Exception {
 		when(
 			_metadataManager.getAttributeNames(Mockito.eq(SP_ENTITY_ID))
@@ -235,10 +336,211 @@ public class DefaultAttributeResolverTest extends BaseSamlTestCase {
 			roles
 		);
 
+		List<Group> groups = new ArrayList<Group>();
+
+		Group group1 = mock(Group.class);
+
+		when(
+			group1.getName()
+		).thenReturn(
+			"Group Test 1"
+		);
+
+		groups.add(group1);
+
+		when(
+			_user.getGroups()
+		).thenReturn(
+			groups
+		);
+
+		RoleLocalService roleLocalService = getMockPortalService(
+			RoleLocalServiceUtil.class, RoleLocalService.class);
+
+		when(
+			roleLocalService.hasGroupRoles(Mockito.anyLong())
+		).thenReturn(
+			Boolean.TRUE
+		);
+
+		List<Role> groupRoles = new ArrayList<Role>();
+
+		Role groupRole1 = mock(Role.class);
+
+		when(
+			groupRole1.getName()
+		).thenReturn(
+			"Group Role Test 1"
+		);
+
+		groupRoles.add(groupRole1);
+
+		when(
+			roleLocalService.getGroupRoles(Mockito.anyLong())
+		).thenReturn(
+			groupRoles
+		);
+
 		List<Attribute> attributes = _defaultAttributeResolver.resolve(
 			_user, _samlMessageContext);
 
-		assertEquals(attributes, "roles", new String[] {"Test 1", "Test 2"});
+		assertEquals(
+			attributes, "roles",
+			new String[] {"Test 1", "Test 2", "Group Role Test 1"});
+	}
+
+	@Test
+	public void testResolveSiteRolesAttributes() throws Exception {
+		when(
+			_metadataManager.getAttributeNames(Mockito.eq(SP_ENTITY_ID))
+		).thenReturn(
+			new String[] {"siteRoles"}
+		);
+
+		UserGroupRoleLocalService userGroupRoleLocalService =
+			getMockPortalService(
+				UserGroupRoleLocalServiceUtil.class,
+				UserGroupRoleLocalService.class);
+
+		Group group1 = mock(Group.class);
+
+		when(
+			group1.getName()
+		).thenReturn(
+			"Group Test 1"
+		)
+;
+		Role role1 = mock(Role.class);
+
+		when(
+			role1.getName()
+		).thenReturn(
+			"Role Test 1"
+		);
+
+		Role role2 = mock(Role.class);
+
+		when(
+			role2.getName()
+		).thenReturn(
+			"Role Test 2"
+		);
+
+		Role role3 = mock(Role.class);
+
+		when(
+			role3.getName()
+		).thenReturn(
+			"Org Role Test"
+		);
+
+		when(
+			role3.getType()
+		).thenReturn(
+			RoleConstants.TYPE_ORGANIZATION
+		);
+
+		Role role4 = mock(Role.class);
+
+		when(
+			role4.getName()
+		).thenReturn(
+			"Inherited Role Test"
+		);
+
+		List<UserGroupRole> userGroupRoles = new ArrayList<UserGroupRole>();
+
+		UserGroupRole userGroupRole1 = mock(UserGroupRole.class);
+
+		when(
+			userGroupRole1.getGroup()
+		).thenReturn(
+			group1
+		);
+
+		when(
+			userGroupRole1.getRole()
+		).thenReturn(
+			role1
+		);
+
+		userGroupRoles.add(userGroupRole1);
+
+		UserGroupRole userGroupRole2 = mock(UserGroupRole.class);
+
+		when(
+			userGroupRole2.getGroup()
+		).thenReturn(
+			group1
+		);
+
+		when(
+			userGroupRole2.getRole()
+		).thenReturn(
+			role2
+		);
+
+		userGroupRoles.add(userGroupRole2);
+
+		UserGroupRole userGroupRole3 = mock(UserGroupRole.class);
+
+		when(
+			userGroupRole3.getGroup()
+		).thenReturn(
+			group1
+		);
+
+		when(
+			userGroupRole3.getRole()
+		).thenReturn(
+			role3
+		);
+
+		userGroupRoles.add(userGroupRole3);
+
+		when(
+			userGroupRoleLocalService.getUserGroupRoles(Mockito.anyLong())
+		).thenReturn(
+			userGroupRoles
+		);
+
+		List<UserGroupGroupRole> userGroupGroupRoles =
+			new ArrayList<UserGroupGroupRole>();
+
+		UserGroupGroupRole userGroupGroupRole = mock(UserGroupGroupRole.class);
+
+		when(
+			userGroupGroupRole.getGroup()
+		).thenReturn(
+			group1
+		);
+
+		when(
+			userGroupGroupRole.getRole()
+		).thenReturn(
+			role4
+		);
+
+		userGroupGroupRoles.add(userGroupGroupRole);
+
+		UserGroupGroupRoleLocalService userGroupGroupRoleLocalService =
+			getMockPortalService(
+				UserGroupGroupRoleLocalServiceUtil.class,
+				UserGroupGroupRoleLocalService.class);
+
+		when(
+			userGroupGroupRoleLocalService.getUserGroupGroupRolesByUser(
+				Mockito.anyLong())
+		).thenReturn(
+			userGroupGroupRoles
+		);
+
+		List<Attribute> attributes = _defaultAttributeResolver.resolve(
+			_user, _samlMessageContext);
+
+		assertEquals(
+			attributes, "siteRole:Group Test 1",
+			new String[] {"Role Test 1", "Role Test 2", "Inherited Role Test"});
 	}
 
 	@Test
@@ -351,6 +653,20 @@ public class DefaultAttributeResolverTest extends BaseSamlTestCase {
 			"Role Test 2"
 		);
 
+		Role role3 = mock(Role.class);
+
+		when(
+			role3.getName()
+		).thenReturn(
+			"Org Role Test"
+		);
+
+		when(
+			role3.getType()
+		).thenReturn(
+			RoleConstants.TYPE_ORGANIZATION
+		);
+
 		List<UserGroupRole> userGroupRoles = new ArrayList<UserGroupRole>();
 
 		UserGroupRole userGroupRole1 = mock(UserGroupRole.class);
@@ -385,6 +701,22 @@ public class DefaultAttributeResolverTest extends BaseSamlTestCase {
 
 		userGroupRoles.add(userGroupRole2);
 
+		UserGroupRole userGroupRole3 = mock(UserGroupRole.class);
+
+		when(
+			userGroupRole3.getGroup()
+		).thenReturn(
+			group1
+		);
+
+		when(
+			userGroupRole3.getRole()
+		).thenReturn(
+			role3
+		);
+
+		userGroupRoles.add(userGroupRole3);
+
 		when(
 			userGroupRoleLocalService.getUserGroupRoles(Mockito.anyLong())
 		).thenReturn(
@@ -401,7 +733,7 @@ public class DefaultAttributeResolverTest extends BaseSamlTestCase {
 
 		assertEquals(
 			attributes, "userGroupRole:Group Test 1",
-			new String[] {"Role Test 1", "Role Test 2"});
+			new String[] {"Role Test 1", "Role Test 2", "Org Role Test"});
 	}
 
 	@Test
