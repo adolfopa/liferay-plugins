@@ -220,9 +220,9 @@ public class DefaultAttributeResolver implements AttributeResolver {
 			for (UserGroupRole userGroupRole : userGroupRoles) {
 				Group group = userGroupRole.getGroup();
 
-				if (userGroupRole.getRole().getType() !=
-						RoleConstants.TYPE_ORGANIZATION) {
+				Role role = userGroupRole.getRole();
 
+				if (role.getType() != RoleConstants.TYPE_ORGANIZATION) {
 					continue;
 				}
 
@@ -410,8 +410,9 @@ public class DefaultAttributeResolver implements AttributeResolver {
 			for (UserGroupRole userGroupRole : userGroupRoles) {
 				Group group = userGroupRole.getGroup();
 
-				if ((userGroupRole.getRole().getType() ==
-						RoleConstants.TYPE_ORGANIZATION) &&
+				Role role = userGroupRole.getRole();
+
+				if ((role.getType() == RoleConstants.TYPE_ORGANIZATION) &&
 					!attributeName.equals("userGroupRoles")) {
 
 					continue;
@@ -505,7 +506,6 @@ public class DefaultAttributeResolver implements AttributeResolver {
 			String[] values = StringUtil.split(attributeName, "=");
 
 			attributeName = values[0];
-
 			attributeValue = values[1];
 
 			if (values.length > 2) {
