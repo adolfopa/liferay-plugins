@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Organization;
 import com.liferay.portal.model.Role;
+import com.liferay.portal.model.RoleConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.model.UserGroup;
 import com.liferay.portal.model.UserGroupRole;
@@ -39,9 +40,11 @@ import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import org.opensaml.common.binding.SAMLMessageContext;
 import org.opensaml.common.xml.SAMLConstants;
@@ -83,6 +86,11 @@ public class DefaultAttributeResolver implements AttributeResolver {
 			}
 			else if (attributeName.equals("organizations")) {
 				addOrganizationsAttribute(
+					user, samlMessageContext, attributes, attributeName,
+					namespaceEnabled);
+			}
+			else if (attributeName.equals("organizationRoles")) {
+				addOrganizationRolesAttribute(
 					user, samlMessageContext, attributes, attributeName,
 					namespaceEnabled);
 			}
@@ -186,6 +194,74 @@ public class DefaultAttributeResolver implements AttributeResolver {
 		}
 		catch (Exception e) {
 			_log.error("Unable to get groups for user " + user.getUserId(), e);
+		}
+	}
+
+	protected void addOrganizationRolesAttribute(
+		User user, SAMLMessageContext<?, ?, ?> samlMessageContext,
+		List<Attribute> attributes, String attributeName,
+		boolean namespaceEnabled) {
+
+		try {
+			List<UserGroupRole> userGroupRoles =
+				UserGroupRoleLocalServiceUtil.getUserGroupRoles(
+					user.getUserId());
+
+			Map<String, Set<Role>> groupRoles =
+				new HashMap<String, Set<Role>>();
+
+			for (UserGroupRole userGroupRole : userGroupRoles) {
+				Group group = userGroupRole.getGroup();
+
+				if (userGroupRole.getRole().getType() !=
+						RoleConstants.TYPE_ORGANIZATION) {
+
+					continue;
+				}
+
+				Set<Role> roles = groupRoles.get(group.getName());
+
+				if (roles == null) {
+					roles = new HashSet<Role>();
+
+					groupRoles.put(group.getName(), roles);
+				}
+
+				roles.add(userGroupRole.getRole());
+			}
+
+			for (Entry<String, Set<Role>> entry : groupRoles.entrySet()) {
+				String groupName = entry.getKey();
+				Set<Role> roles = entry.getValue();
+
+				Attribute attribute = OpenSamlUtil.buildAttribute();
+
+				if (namespaceEnabled) {
+					attribute.setName(
+						"urn:liferay:organizationRole:" + groupName);
+					attribute.setNameFormat(Attribute.URI_REFERENCE);
+				}
+				else {
+					attribute.setName("organizationRole:" + groupName);
+					attribute.setNameFormat(Attribute.UNSPECIFIED);
+				}
+
+				List<XMLObject> xmlObjects = attribute.getAttributeValues();
+
+				for (Role role : roles) {
+					XMLObject xmlObject = OpenSamlUtil.buildAttributeValue(
+						role.getName());
+
+					xmlObjects.add(xmlObject);
+				}
+
+				attributes.add(attribute);
+			}
+		}
+		catch (Exception e) {
+			_log.error(
+				"Unable to get organization roles for user " + user.getUserId(),
+				e);
 		}
 	}
 
