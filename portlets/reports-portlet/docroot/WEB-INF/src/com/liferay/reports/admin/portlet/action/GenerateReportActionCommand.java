@@ -17,6 +17,7 @@ package com.liferay.reports.admin.portlet.action;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.portlet.bridges.mvc.BaseActionCommand;
 import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -30,7 +31,6 @@ import com.liferay.reports.model.Entry;
 import com.liferay.reports.service.DefinitionServiceUtil;
 import com.liferay.reports.service.EntryServiceUtil;
 import com.liferay.reports.util.ReportsUtil;
-import com.liferay.portal.kernel.portlet.bridges.mvc.BaseActionCommand;
 
 import java.text.DateFormat;
 

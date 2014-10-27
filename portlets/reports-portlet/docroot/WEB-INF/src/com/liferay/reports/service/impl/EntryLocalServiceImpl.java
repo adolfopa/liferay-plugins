@@ -51,6 +51,7 @@ import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portal.util.SubscriptionSender;
 import com.liferay.portlet.documentlibrary.DuplicateDirectoryException;
@@ -125,12 +126,13 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 		StringBundler sb = new StringBundler(5);
 
 		sb.append(pageURL);
-		sb.append("&_");
-		sb.append(portletId);
-		sb.append("_entryId=");
+		sb.append("&");
+		sb.append(PortalUtil.getPortletNamespace(portletId));
+		sb.append("entryId=");
 		sb.append(entryId);
 
 		entry.setPageURL(sb.toString());
+
 		entry.setStatus(ReportStatus.PENDING.getValue());
 
 		entryPersistence.update(entry);
