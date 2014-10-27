@@ -22,17 +22,15 @@ import com.liferay.util.portlet.PortletProps;
  */
 public class PortletPropsValues {
 
-	public static final String ADMIN_EMAIL_DELIVERY_BODY =
-		GetterUtil.getString(
-			PortletProps.get(PortletPropsKeys.ADMIN_EMAIL_DELIVERY_BODY));
+	public static final String ADMIN_EMAIL_DELIVERY_BODY = GetterUtil.getString(
+		PortletProps.get(PortletPropsKeys.ADMIN_EMAIL_DELIVERY_BODY));
 
 	public static final String ADMIN_EMAIL_DELIVERY_SUBJECT =
 		GetterUtil.getString(
 			PortletProps.get(PortletPropsKeys.ADMIN_EMAIL_DELIVERY_SUBJECT));
 
-	public static final String ADMIN_EMAIL_FROM_ADDRESS =
-		GetterUtil.getString(
-			PortletProps.get(PortletPropsKeys.ADMIN_EMAIL_FROM_ADDRESS));
+	public static final String ADMIN_EMAIL_FROM_ADDRESS = GetterUtil.getString(
+		PortletProps.get(PortletPropsKeys.ADMIN_EMAIL_FROM_ADDRESS));
 
 	public static final String ADMIN_EMAIL_FROM_NAME = GetterUtil.getString(
 		PortletProps.get(PortletPropsKeys.ADMIN_EMAIL_FROM_NAME));

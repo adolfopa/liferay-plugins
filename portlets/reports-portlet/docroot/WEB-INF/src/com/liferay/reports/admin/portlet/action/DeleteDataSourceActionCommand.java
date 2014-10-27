@@ -14,9 +14,9 @@
 
 package com.liferay.reports.admin.portlet.action;
 
+import com.liferay.portal.kernel.portlet.bridges.mvc.BaseActionCommand;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.reports.service.SourceServiceUtil;
-import com.liferay.portal.kernel.portlet.bridges.mvc.BaseActionCommand;
 
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletResponse;

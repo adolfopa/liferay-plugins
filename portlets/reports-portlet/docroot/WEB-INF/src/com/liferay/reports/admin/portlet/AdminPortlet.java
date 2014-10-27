@@ -15,6 +15,7 @@
 package com.liferay.reports.admin.portlet;
 
 import com.liferay.portal.kernel.portlet.PortletResponseUtil;
+import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
@@ -23,7 +24,6 @@ import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.documentlibrary.store.DLStoreUtil;
-import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 
 import java.io.IOException;
 import java.io.InputStream;
