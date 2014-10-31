@@ -36,6 +36,7 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portlet.documentlibrary.DuplicateDirectoryException;
 import com.liferay.portlet.documentlibrary.NoSuchDirectoryException;
 import com.liferay.portlet.documentlibrary.store.DLStoreUtil;
+import com.liferay.reports.DefinitionFileException;
 import com.liferay.reports.DefinitionNameException;
 import com.liferay.reports.model.Definition;
 import com.liferay.reports.service.base.DefinitionLocalServiceBaseImpl;
@@ -95,6 +96,9 @@ public class DefinitionLocalServiceImpl extends DefinitionLocalServiceBaseImpl {
 		if (Validator.isNotNull(fileName) && (inputStream != null)) {
 			addDefinitionFile(
 				user.getCompanyId(), definition, fileName, inputStream);
+		}
+		else {
+			throw new DefinitionFileException();
 		}
 
 		return definition;
