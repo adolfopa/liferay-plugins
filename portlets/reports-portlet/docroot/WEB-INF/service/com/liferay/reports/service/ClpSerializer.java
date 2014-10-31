@@ -14,6 +14,8 @@
 
 package com.liferay.reports.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream;
 import com.liferay.portal.kernel.log.Log;
@@ -38,6 +40,7 @@ import java.util.List;
 /**
  * @author Brian Wing Shun Chan
  */
+@ProviderType
 public class ClpSerializer {
 	public static String getServletContextName() {
 		if (Validator.isNotNull(_servletContextName)) {
@@ -413,23 +416,8 @@ public class ClpSerializer {
 				throwable.getCause());
 		}
 
-		if (className.equals("com.liferay.reports.SourceLoginException")) {
-			return new com.liferay.reports.SourceLoginException(throwable.getMessage(),
-				throwable.getCause());
-		}
-
-		if (className.equals("com.liferay.reports.SourceNameException")) {
-			return new com.liferay.reports.SourceNameException(throwable.getMessage(),
-				throwable.getCause());
-		}
-
 		if (className.equals("com.liferay.reports.SourceTypeException")) {
 			return new com.liferay.reports.SourceTypeException(throwable.getMessage(),
-				throwable.getCause());
-		}
-
-		if (className.equals("com.liferay.reports.SourceURLException")) {
-			return new com.liferay.reports.SourceURLException(throwable.getMessage(),
 				throwable.getCause());
 		}
 
