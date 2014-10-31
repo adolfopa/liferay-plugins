@@ -43,6 +43,7 @@ String name = BeanParamUtil.getString(source, request, "name");
 
 <aui:form action="<%= actionURL %>" method="post" name="fm">
 	<liferay-ui:error exception="<%= SourceDriverClassNameException.class %>" message="please-enter-a-valid-data-source-driver" />
+	<liferay-ui:error exception="<%= SourceJDBCConnectionException.class %>" message="could-not-connect-to-the-database.-please-verify-that-the-settings-are-correct" />
 	<liferay-ui:error exception="<%= SourceTypeException.class %>" message="please-enter-a-valid-data-source-type" />
 
 	<aui:model-context bean="<%= source %>" model="<%= Source.class %>" />
