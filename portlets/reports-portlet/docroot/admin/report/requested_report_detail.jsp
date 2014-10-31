@@ -85,7 +85,7 @@ String status = entry.getStatus();
 		for (String reportParameter : StringUtil.split(entry.getReportParameters())) {
 		%>
 
-			<%= Validator.isNull(reportParameter) ? StringPool.BLANK : reportParameter %>
+			<%= reportParameter.equals("[]") ? StringPool.BLANK : reportParameter %>
 
 		<%
 		}
