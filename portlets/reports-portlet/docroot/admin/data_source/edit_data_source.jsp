@@ -43,27 +43,26 @@ String name = BeanParamUtil.getString(source, request, "name");
 
 <aui:form action="<%= actionURL %>" method="post" name="fm">
 	<liferay-ui:error exception="<%= SourceDriverClassNameException.class %>" message="please-enter-a-valid-data-source-driver" />
-	<liferay-ui:error exception="<%= SourceLoginException.class %>" message="please-enter-a-valid-user-name" />
-	<liferay-ui:error exception="<%= SourceNameException.class %>" message="please-enter-a-valid-data-source-name" />
 	<liferay-ui:error exception="<%= SourceTypeException.class %>" message="please-enter-a-valid-data-source-type" />
-	<liferay-ui:error exception="<%= SourceURLException.class %>" message="please-enter-a-valid-data-source-url" />
 
 	<aui:model-context bean="<%= source %>" model="<%= Source.class %>" />
 
 	<aui:input name="sourceId" type="hidden" />
 
 	<aui:fieldset>
-		<aui:field-wrapper label="data-source-name">
-			<liferay-ui:input-localized name="name" xml="<%= name %>" />
-		</aui:field-wrapper>
+		<div class="form-group">
+			<aui:field-wrapper label="data-source-name">
+				<liferay-ui:input-localized name="name" required="<%= true %>" xml="<%= name %>" />
+			</aui:field-wrapper>
 
-		<aui:input label="jdbc-driver-class-name" name="driverClassName" />
+			<aui:input label="jdbc-driver-class-name" name="driverClassName" required="<%= true %>" />
 
-		<aui:input label="jdbc-url" name="driverUrl" />
+			<aui:input label="jdbc-url" name="driverUrl" required="<%= true %>" />
 
-		<aui:input label="jdbc-user-name" name="driverUserName" />
+			<aui:input label="jdbc-user-name" name="driverUserName" required="<%= true %>" />
 
-		<aui:input autocomplete="off" label="jdbc-password" name="driverPassword" type="password" />
+			<aui:input autocomplete="off" label="jdbc-password" name="driverPassword" required="<%= true %>" type="password" />
+		</div>
 
 		<c:if test="<%= source == null %>">
 			<aui:field-wrapper label="permissions">

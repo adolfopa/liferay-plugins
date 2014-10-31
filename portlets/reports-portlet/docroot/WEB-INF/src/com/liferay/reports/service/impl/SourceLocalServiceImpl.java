@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
-import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.kernel.util.StringPool;
@@ -32,9 +31,6 @@ import com.liferay.portal.model.SystemEventConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.reports.SourceDriverClassNameException;
-import com.liferay.reports.SourceLoginException;
-import com.liferay.reports.SourceNameException;
-import com.liferay.reports.SourceURLException;
 import com.liferay.reports.model.Source;
 import com.liferay.reports.service.base.SourceLocalServiceBaseImpl;
 import com.liferay.reports.util.ReportsUtil;
@@ -61,9 +57,7 @@ public class SourceLocalServiceImpl extends SourceLocalServiceBaseImpl {
 		User user = userPersistence.findByPrimaryKey(userId);
 		Date now = new Date();
 
-		validate(
-			nameMap, driverClassName, driverUrl, driverUserName,
-			driverPassword);
+		validate(driverClassName, driverUrl, driverUserName, driverPassword);
 
 		long sourceId = counterLocalService.increment();
 
@@ -162,9 +156,7 @@ public class SourceLocalServiceImpl extends SourceLocalServiceBaseImpl {
 			driverPassword = source.getDriverPassword();
 		}
 
-		validate(
-			nameMap, driverClassName, driverUrl, driverUserName,
-			driverPassword);
+		validate(driverClassName, driverUrl, driverUserName, driverPassword);
 
 		source.setModifiedDate(serviceContext.getModifiedDate(null));
 		source.setNameMap(nameMap);
@@ -221,21 +213,9 @@ public class SourceLocalServiceImpl extends SourceLocalServiceBaseImpl {
 	}
 
 	protected void validate(
-			Map<Locale, String> nameMap, String driverClassName,
-			String driverUrl, String driverUserName, String driverPassword)
+			String driverClassName, String driverUrl, String driverUserName,
+			String driverPassword)
 		throws PortalException {
-
-		Locale locale = LocaleUtil.getDefault();
-
-		String name = nameMap.get(locale);
-
-		if (Validator.isNull(name)) {
-			throw new SourceNameException();
-		}
-
-		if (Validator.isNull(driverClassName)) {
-			throw new SourceDriverClassNameException();
-		}
 
 		try {
 			Class.forName(
@@ -243,18 +223,6 @@ public class SourceLocalServiceImpl extends SourceLocalServiceBaseImpl {
 		}
 		catch (ClassNotFoundException cnfe) {
 			throw new SourceDriverClassNameException();
-		}
-
-		if (Validator.isNull(driverUrl)) {
-			throw new SourceURLException();
-		}
-
-		if (Validator.isNull(driverUserName)) {
-			throw new SourceLoginException();
-		}
-
-		if (Validator.isNull(driverPassword)) {
-			throw new SourceLoginException();
 		}
 
 		ReportsUtil.validateJDBCConnection(
