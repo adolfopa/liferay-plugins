@@ -70,7 +70,7 @@ AUI().use(
 			openTask: function(href, tasksEntryId) {
 				var instance = this;
 
-				instance.displayPopup(href, "Tasks");
+				instance.displayPopup(href, Liferay.Language.get('model.resource.com.liferay.tasks.model.TasksEntry'));
 
 				instance._updateViewCount(tasksEntryId);
 			},
@@ -241,10 +241,16 @@ AUI().use(
 
 						var pos = str.substring(str.indexOf('progress-') + 9);
 
+						var completedText = Liferay.Language.get('complete');
+
+						if (pos !== "100") {
+							completedText = Liferay.Language.get(pos + '-percent-complete');
+						}
+
 						var container = event.ancestor('.progress-wrapper');
 
 						container.one('.new-progress').setStyle('width', pos + '%');
-						container.one('.progress-indicator').set('text', pos + '% Complete');
+						container.one('.progress-indicator').set('text', completedText);
 					},
 					'.progress-selector a'
 				);
