@@ -39,6 +39,7 @@ import com.liferay.saml.ExpiredException;
 import com.liferay.saml.InResponseToException;
 import com.liferay.saml.IssuerException;
 import com.liferay.saml.NoSuchIdpSpSessionException;
+import com.liferay.saml.NoSuchSpIdpConnectionException;
 import com.liferay.saml.ReplayException;
 import com.liferay.saml.SamlException;
 import com.liferay.saml.SamlSsoRequestContext;
@@ -633,11 +634,19 @@ public class WebSsoProfileImpl extends BaseProfile implements WebSsoProfile {
 
 		long companyId = PortalUtil.getCompanyId(request);
 
-		SamlSpIdpConnection samlSpIdpConnection =
-			SamlSpIdpConnectionLocalServiceUtil.getSamlSpIdpConnection(
-				companyId, entityId);
+		boolean forceAuthn = false;
 
-		authnRequest.setForceAuthn(samlSpIdpConnection.isForceAuthn());
+		try {
+			SamlSpIdpConnection samlSpIdpConnection =
+				SamlSpIdpConnectionLocalServiceUtil.getSamlSpIdpConnection(
+					companyId, entityId);
+
+			forceAuthn = samlSpIdpConnection.isForceAuthn();
+		}
+		catch (NoSuchSpIdpConnectionException nssice) {
+		}
+
+		authnRequest.setForceAuthn(forceAuthn);
 
 		samlMessageContext.setOutboundSAMLMessage(authnRequest);
 
