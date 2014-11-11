@@ -366,10 +366,10 @@ AUI.add(
 
 						formatted += item + STR_CHAR_CRLF;
 
-						if (item.indexOf(STR_CDATA_OPEN) != -1) {
+						if (item.indexOf(STR_CDATA_OPEN) > -1) {
 							inCDATA = true;
 						}
-						else if (item.indexOf(STR_CDATA_CLOSE) != -1) {
+						else if (item.indexOf(STR_CDATA_CLOSE) > -1) {
 							inCDATA = false;
 						}
 
