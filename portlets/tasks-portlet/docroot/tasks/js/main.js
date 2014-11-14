@@ -238,6 +238,7 @@ AUI().use(
 						event = event.currentTarget;
 
 						var str = event.getAttribute('class');
+
 						var pos = str.substring(str.indexOf('progress-') + 9);
 
 						var container = event.ancestor('.progress-wrapper');
