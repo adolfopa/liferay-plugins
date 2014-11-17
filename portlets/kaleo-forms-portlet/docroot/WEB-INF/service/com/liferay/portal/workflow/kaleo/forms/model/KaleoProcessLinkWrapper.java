@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.forms.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
@@ -29,6 +31,7 @@ import java.util.Map;
  * @see KaleoProcessLink
  * @generated
  */
+@ProviderType
 public class KaleoProcessLinkWrapper implements KaleoProcessLink,
 	ModelWrapper<KaleoProcessLink> {
 	public KaleoProcessLinkWrapper(KaleoProcessLink kaleoProcessLink) {
@@ -342,5 +345,5 @@ public class KaleoProcessLinkWrapper implements KaleoProcessLink,
 		_kaleoProcessLink.resetOriginalValues();
 	}
 
-	private KaleoProcessLink _kaleoProcessLink;
+	private final KaleoProcessLink _kaleoProcessLink;
 }

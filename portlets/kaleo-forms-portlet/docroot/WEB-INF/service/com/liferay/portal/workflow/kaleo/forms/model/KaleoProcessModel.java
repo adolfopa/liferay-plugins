@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.forms.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
@@ -39,6 +41,7 @@ import java.util.Date;
  * @see com.liferay.portal.workflow.kaleo.forms.model.impl.KaleoProcessModelImpl
  * @generated
  */
+@ProviderType
 public interface KaleoProcessModel extends BaseModel<KaleoProcess>, GroupedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
@@ -281,19 +284,20 @@ public interface KaleoProcessModel extends BaseModel<KaleoProcess>, GroupedModel
 	public Object clone();
 
 	@Override
-	public int compareTo(KaleoProcess kaleoProcess);
+	public int compareTo(
+		com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess kaleoProcess);
 
 	@Override
 	public int hashCode();
 
 	@Override
-	public CacheModel<KaleoProcess> toCacheModel();
+	public CacheModel<com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess> toCacheModel();
 
 	@Override
-	public KaleoProcess toEscapedModel();
+	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess toEscapedModel();
 
 	@Override
-	public KaleoProcess toUnescapedModel();
+	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess toUnescapedModel();
 
 	@Override
 	public String toString();

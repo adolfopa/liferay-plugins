@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.forms.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSON;
@@ -57,6 +59,7 @@ import java.util.Map;
  * @generated
  */
 @JSON(strict = true)
+@ProviderType
 public class KaleoProcessModelImpl extends BaseModelImpl<KaleoProcess>
 	implements KaleoProcessModel {
 	/*
@@ -94,9 +97,9 @@ public class KaleoProcessModelImpl extends BaseModelImpl<KaleoProcess>
 	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.column.bitmask.enabled.com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess"),
 			true);
-	public static long DDLRECORDSETID_COLUMN_BITMASK = 1L;
-	public static long GROUPID_COLUMN_BITMASK = 2L;
-	public static long KALEOPROCESSID_COLUMN_BITMASK = 4L;
+	public static final long DDLRECORDSETID_COLUMN_BITMASK = 1L;
+	public static final long GROUPID_COLUMN_BITMASK = 2L;
+	public static final long KALEOPROCESSID_COLUMN_BITMASK = 4L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -707,8 +710,8 @@ public class KaleoProcessModelImpl extends BaseModelImpl<KaleoProcess>
 		return sb.toString();
 	}
 
-	private static ClassLoader _classLoader = KaleoProcess.class.getClassLoader();
-	private static Class<?>[] _escapedModelInterfaces = new Class[] {
+	private static final ClassLoader _classLoader = KaleoProcess.class.getClassLoader();
+	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
 			KaleoProcess.class
 		};
 	private long _kaleoProcessId;

@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.forms.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.bean.IdentifiableBean;
 import com.liferay.portal.kernel.dao.db.DB;
@@ -64,6 +66,7 @@ import javax.sql.DataSource;
  * @see com.liferay.portal.workflow.kaleo.forms.service.KaleoProcessLocalServiceUtil
  * @generated
  */
+@ProviderType
 public abstract class KaleoProcessLocalServiceBaseImpl
 	extends BaseLocalServiceImpl implements KaleoProcessLocalService,
 		IdentifiableBean {
@@ -185,10 +188,10 @@ public abstract class KaleoProcessLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the number of rows that match the dynamic query.
+	 * Returns the number of rows matching the dynamic query.
 	 *
 	 * @param dynamicQuery the dynamic query
-	 * @return the number of rows that match the dynamic query
+	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
@@ -196,11 +199,11 @@ public abstract class KaleoProcessLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the number of rows that match the dynamic query.
+	 * Returns the number of rows matching the dynamic query.
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
-	 * @return the number of rows that match the dynamic query
+	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
@@ -376,25 +379,6 @@ public abstract class KaleoProcessLocalServiceBaseImpl
 	public void setKaleoProcessLinkLocalService(
 		com.liferay.portal.workflow.kaleo.forms.service.KaleoProcessLinkLocalService kaleoProcessLinkLocalService) {
 		this.kaleoProcessLinkLocalService = kaleoProcessLinkLocalService;
-	}
-
-	/**
-	 * Returns the kaleo process link remote service.
-	 *
-	 * @return the kaleo process link remote service
-	 */
-	public com.liferay.portal.workflow.kaleo.forms.service.KaleoProcessLinkService getKaleoProcessLinkService() {
-		return kaleoProcessLinkService;
-	}
-
-	/**
-	 * Sets the kaleo process link remote service.
-	 *
-	 * @param kaleoProcessLinkService the kaleo process link remote service
-	 */
-	public void setKaleoProcessLinkService(
-		com.liferay.portal.workflow.kaleo.forms.service.KaleoProcessLinkService kaleoProcessLinkService) {
-		this.kaleoProcessLinkService = kaleoProcessLinkService;
 	}
 
 	/**
@@ -852,8 +836,6 @@ public abstract class KaleoProcessLocalServiceBaseImpl
 	protected KaleoProcessPersistence kaleoProcessPersistence;
 	@BeanReference(type = com.liferay.portal.workflow.kaleo.forms.service.KaleoProcessLinkLocalService.class)
 	protected com.liferay.portal.workflow.kaleo.forms.service.KaleoProcessLinkLocalService kaleoProcessLinkLocalService;
-	@BeanReference(type = com.liferay.portal.workflow.kaleo.forms.service.KaleoProcessLinkService.class)
-	protected com.liferay.portal.workflow.kaleo.forms.service.KaleoProcessLinkService kaleoProcessLinkService;
 	@BeanReference(type = KaleoProcessLinkPersistence.class)
 	protected KaleoProcessLinkPersistence kaleoProcessLinkPersistence;
 	@BeanReference(type = com.liferay.counter.service.CounterLocalService.class)

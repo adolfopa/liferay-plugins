@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.forms.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.persistence.BasePersistence;
 import com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink;
 
@@ -29,6 +31,7 @@ import com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink;
  * @see KaleoProcessLinkUtil
  * @generated
  */
+@ProviderType
 public interface KaleoProcessLinkPersistence extends BasePersistence<KaleoProcessLink> {
 	/*
 	 * NOTE FOR DEVELOPERS:

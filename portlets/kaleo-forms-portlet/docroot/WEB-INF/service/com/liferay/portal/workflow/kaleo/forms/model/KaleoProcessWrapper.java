@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.forms.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
@@ -30,6 +32,7 @@ import java.util.Map;
  * @see KaleoProcess
  * @generated
  */
+@ProviderType
 public class KaleoProcessWrapper implements KaleoProcess,
 	ModelWrapper<KaleoProcess> {
 	public KaleoProcessWrapper(KaleoProcess kaleoProcess) {
@@ -595,5 +598,5 @@ public class KaleoProcessWrapper implements KaleoProcess,
 		_kaleoProcess.resetOriginalValues();
 	}
 
-	private KaleoProcess _kaleoProcess;
+	private final KaleoProcess _kaleoProcess;
 }

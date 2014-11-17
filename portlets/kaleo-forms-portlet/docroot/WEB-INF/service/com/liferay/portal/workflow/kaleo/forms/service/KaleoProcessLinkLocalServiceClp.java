@@ -14,12 +14,15 @@
 
 package com.liferay.portal.workflow.kaleo.forms.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * @author Marcellus Tavares
  * @generated
  */
+@ProviderType
 public class KaleoProcessLinkLocalServiceClp
 	implements KaleoProcessLinkLocalService {
 	public KaleoProcessLinkLocalServiceClp(

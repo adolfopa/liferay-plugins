@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.forms.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
@@ -31,6 +33,7 @@ import java.io.ObjectOutput;
  * @see KaleoProcessLink
  * @generated
  */
+@ProviderType
 public class KaleoProcessLinkCacheModel implements CacheModel<KaleoProcessLink>,
 	Externalizable {
 	@Override

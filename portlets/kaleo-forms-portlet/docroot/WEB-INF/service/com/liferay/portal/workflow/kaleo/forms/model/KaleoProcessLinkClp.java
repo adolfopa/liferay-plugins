@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.forms.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
@@ -33,6 +35,7 @@ import java.util.Map;
 /**
  * @author Marcellus Tavares
  */
+@ProviderType
 public class KaleoProcessLinkClp extends BaseModelImpl<KaleoProcessLink>
 	implements KaleoProcessLink {
 	public KaleoProcessLinkClp() {

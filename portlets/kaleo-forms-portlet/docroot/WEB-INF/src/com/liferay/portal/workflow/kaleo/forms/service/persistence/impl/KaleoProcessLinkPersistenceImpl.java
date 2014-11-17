@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.forms.service.persistence.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -61,6 +63,7 @@ import java.util.Set;
  * @see KaleoProcessLinkUtil
  * @generated
  */
+@ProviderType
 public class KaleoProcessLinkPersistenceImpl extends BasePersistenceImpl<KaleoProcessLink>
 	implements KaleoProcessLinkPersistence {
 	/*
@@ -1554,8 +1557,8 @@ public class KaleoProcessLinkPersistenceImpl extends BasePersistenceImpl<KaleoPr
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No KaleoProcessLink exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
-	private static Log _log = LogFactoryUtil.getLog(KaleoProcessLinkPersistenceImpl.class);
-	private static KaleoProcessLink _nullKaleoProcessLink = new KaleoProcessLinkImpl() {
+	private static final Log _log = LogFactoryUtil.getLog(KaleoProcessLinkPersistenceImpl.class);
+	private static final KaleoProcessLink _nullKaleoProcessLink = new KaleoProcessLinkImpl() {
 			@Override
 			public Object clone() {
 				return this;
@@ -1567,7 +1570,8 @@ public class KaleoProcessLinkPersistenceImpl extends BasePersistenceImpl<KaleoPr
 			}
 		};
 
-	private static CacheModel<KaleoProcessLink> _nullKaleoProcessLinkCacheModel = new CacheModel<KaleoProcessLink>() {
+	private static final CacheModel<KaleoProcessLink> _nullKaleoProcessLinkCacheModel =
+		new CacheModel<KaleoProcessLink>() {
 			@Override
 			public KaleoProcessLink toEntityModel() {
 				return _nullKaleoProcessLink;

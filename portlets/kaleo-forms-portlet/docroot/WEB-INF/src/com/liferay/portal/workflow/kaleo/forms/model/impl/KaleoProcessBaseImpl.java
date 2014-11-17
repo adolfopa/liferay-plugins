@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.forms.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess;
 import com.liferay.portal.workflow.kaleo.forms.service.KaleoProcessLocalServiceUtil;
 
@@ -29,6 +31,7 @@ import com.liferay.portal.workflow.kaleo.forms.service.KaleoProcessLocalServiceU
  * @see com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess
  * @generated
  */
+@ProviderType
 public abstract class KaleoProcessBaseImpl extends KaleoProcessModelImpl
 	implements KaleoProcess {
 	/*

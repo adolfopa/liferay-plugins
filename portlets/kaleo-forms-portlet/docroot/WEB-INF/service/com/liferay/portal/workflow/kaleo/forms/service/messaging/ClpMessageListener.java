@@ -14,17 +14,19 @@
 
 package com.liferay.portal.workflow.kaleo.forms.service.messaging;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.workflow.kaleo.forms.service.ClpSerializer;
 import com.liferay.portal.workflow.kaleo.forms.service.KaleoProcessLinkLocalServiceUtil;
-import com.liferay.portal.workflow.kaleo.forms.service.KaleoProcessLinkServiceUtil;
 import com.liferay.portal.workflow.kaleo.forms.service.KaleoProcessLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.forms.service.KaleoProcessServiceUtil;
 
 /**
  * @author Marcellus Tavares
  */
+@ProviderType
 public class ClpMessageListener extends BaseMessageListener {
 	public static String getServletContextName() {
 		return ClpSerializer.getServletContextName();
@@ -41,8 +43,6 @@ public class ClpMessageListener extends BaseMessageListener {
 
 			KaleoProcessServiceUtil.clearService();
 			KaleoProcessLinkLocalServiceUtil.clearService();
-
-			KaleoProcessLinkServiceUtil.clearService();
 		}
 	}
 }

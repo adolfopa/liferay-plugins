@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.forms.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.ServiceWrapper;
 
 /**
@@ -23,6 +25,7 @@ import com.liferay.portal.service.ServiceWrapper;
  * @see KaleoProcessService
  * @generated
  */
+@ProviderType
 public class KaleoProcessServiceWrapper implements KaleoProcessService,
 	ServiceWrapper<KaleoProcessService> {
 	public KaleoProcessServiceWrapper(KaleoProcessService kaleoProcessService) {

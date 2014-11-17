@@ -14,8 +14,9 @@
 
 package com.liferay.portal.workflow.kaleo.forms.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
-import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -25,7 +26,6 @@ import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink;
 import com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLinkModel;
-import com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLinkSoap;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
@@ -34,9 +34,7 @@ import java.io.Serializable;
 
 import java.sql.Types;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -52,7 +50,7 @@ import java.util.Map;
  * @see com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLinkModel
  * @generated
  */
-@JSON(strict = true)
+@ProviderType
 public class KaleoProcessLinkModelImpl extends BaseModelImpl<KaleoProcessLink>
 	implements KaleoProcessLinkModel {
 	/*
@@ -83,52 +81,9 @@ public class KaleoProcessLinkModelImpl extends BaseModelImpl<KaleoProcessLink>
 	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.column.bitmask.enabled.com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink"),
 			true);
-	public static long KALEOPROCESSID_COLUMN_BITMASK = 1L;
-	public static long WORKFLOWTASKNAME_COLUMN_BITMASK = 2L;
-	public static long KALEOPROCESSLINKID_COLUMN_BITMASK = 4L;
-
-	/**
-	 * Converts the soap model instance into a normal model instance.
-	 *
-	 * @param soapModel the soap model instance to convert
-	 * @return the normal model instance
-	 */
-	public static KaleoProcessLink toModel(KaleoProcessLinkSoap soapModel) {
-		if (soapModel == null) {
-			return null;
-		}
-
-		KaleoProcessLink model = new KaleoProcessLinkImpl();
-
-		model.setKaleoProcessLinkId(soapModel.getKaleoProcessLinkId());
-		model.setKaleoProcessId(soapModel.getKaleoProcessId());
-		model.setWorkflowTaskName(soapModel.getWorkflowTaskName());
-		model.setDDMTemplateId(soapModel.getDDMTemplateId());
-
-		return model;
-	}
-
-	/**
-	 * Converts the soap model instances into normal model instances.
-	 *
-	 * @param soapModels the soap model instances to convert
-	 * @return the normal model instances
-	 */
-	public static List<KaleoProcessLink> toModels(
-		KaleoProcessLinkSoap[] soapModels) {
-		if (soapModels == null) {
-			return null;
-		}
-
-		List<KaleoProcessLink> models = new ArrayList<KaleoProcessLink>(soapModels.length);
-
-		for (KaleoProcessLinkSoap soapModel : soapModels) {
-			models.add(toModel(soapModel));
-		}
-
-		return models;
-	}
-
+	public static final long KALEOPROCESSID_COLUMN_BITMASK = 1L;
+	public static final long WORKFLOWTASKNAME_COLUMN_BITMASK = 2L;
+	public static final long KALEOPROCESSLINKID_COLUMN_BITMASK = 4L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink"));
 
@@ -207,7 +162,6 @@ public class KaleoProcessLinkModelImpl extends BaseModelImpl<KaleoProcessLink>
 		}
 	}
 
-	@JSON
 	@Override
 	public long getKaleoProcessLinkId() {
 		return _kaleoProcessLinkId;
@@ -218,7 +172,6 @@ public class KaleoProcessLinkModelImpl extends BaseModelImpl<KaleoProcessLink>
 		_kaleoProcessLinkId = kaleoProcessLinkId;
 	}
 
-	@JSON
 	@Override
 	public long getKaleoProcessId() {
 		return _kaleoProcessId;
@@ -241,7 +194,6 @@ public class KaleoProcessLinkModelImpl extends BaseModelImpl<KaleoProcessLink>
 		return _originalKaleoProcessId;
 	}
 
-	@JSON
 	@Override
 	public String getWorkflowTaskName() {
 		if (_workflowTaskName == null) {
@@ -267,7 +219,6 @@ public class KaleoProcessLinkModelImpl extends BaseModelImpl<KaleoProcessLink>
 		return GetterUtil.getString(_originalWorkflowTaskName);
 	}
 
-	@JSON
 	@Override
 	public long getDDMTemplateId() {
 		return _DDMTemplateId;
@@ -453,8 +404,8 @@ public class KaleoProcessLinkModelImpl extends BaseModelImpl<KaleoProcessLink>
 		return sb.toString();
 	}
 
-	private static ClassLoader _classLoader = KaleoProcessLink.class.getClassLoader();
-	private static Class<?>[] _escapedModelInterfaces = new Class[] {
+	private static final ClassLoader _classLoader = KaleoProcessLink.class.getClassLoader();
+	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
 			KaleoProcessLink.class
 		};
 	private long _kaleoProcessLinkId;

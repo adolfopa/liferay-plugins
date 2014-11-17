@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.forms.service.http;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.workflow.kaleo.forms.service.KaleoProcessServiceUtil;
@@ -60,6 +62,7 @@ import java.rmi.RemoteException;
  * @see com.liferay.portal.workflow.kaleo.forms.service.KaleoProcessServiceUtil
  * @generated
  */
+@ProviderType
 public class KaleoProcessServiceSoap {
 	public static com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessSoap addKaleoProcess(
 		long groupId, long ddlRecordSetId, long ddmTemplateId,

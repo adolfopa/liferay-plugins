@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class KaleoProcessDDMTemplateIdException extends PortalException {
 
 	public KaleoProcessDDMTemplateIdException() {
-		super();
 	}
 
 	public KaleoProcessDDMTemplateIdException(String msg) {

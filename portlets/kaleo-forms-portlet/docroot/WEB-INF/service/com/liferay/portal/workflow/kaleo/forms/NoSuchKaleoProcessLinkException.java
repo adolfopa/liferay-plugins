@@ -22,7 +22,6 @@ import com.liferay.portal.NoSuchModelException;
 public class NoSuchKaleoProcessLinkException extends NoSuchModelException {
 
 	public NoSuchKaleoProcessLinkException() {
-		super();
 	}
 
 	public NoSuchKaleoProcessLinkException(String msg) {

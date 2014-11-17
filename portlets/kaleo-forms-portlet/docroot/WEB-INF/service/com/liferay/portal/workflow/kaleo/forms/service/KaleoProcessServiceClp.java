@@ -14,12 +14,15 @@
 
 package com.liferay.portal.workflow.kaleo.forms.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.InvokableService;
 
 /**
  * @author Marcellus Tavares
  * @generated
  */
+@ProviderType
 public class KaleoProcessServiceClp implements KaleoProcessService {
 	public KaleoProcessServiceClp(InvokableService invokableService) {
 		_invokableService = invokableService;

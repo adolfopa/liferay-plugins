@@ -14,18 +14,20 @@
 
 package com.liferay.portal.workflow.kaleo.forms.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class is used by SOAP remote services, specifically {@link com.liferay.portal.workflow.kaleo.forms.service.http.KaleoProcessLinkServiceSoap}.
+ * This class is used by SOAP remote services.
  *
  * @author Marcellus Tavares
- * @see com.liferay.portal.workflow.kaleo.forms.service.http.KaleoProcessLinkServiceSoap
  * @generated
  */
+@ProviderType
 public class KaleoProcessLinkSoap implements Serializable {
 	public static KaleoProcessLinkSoap toSoapModel(KaleoProcessLink model) {
 		KaleoProcessLinkSoap soapModel = new KaleoProcessLinkSoap();

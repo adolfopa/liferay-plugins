@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.forms.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
@@ -33,6 +35,7 @@ import java.util.Date;
  * @see KaleoProcess
  * @generated
  */
+@ProviderType
 public class KaleoProcessCacheModel implements CacheModel<KaleoProcess>,
 	Externalizable {
 	@Override
