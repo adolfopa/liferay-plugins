@@ -101,7 +101,9 @@ portletURL.setParameter("kaleoProcessId", String.valueOf(kaleoProcessId));
 
 			List<DDMFormField> ddmFormfields = ddmStructure.getDDMFormFields(false);
 
-			Fields fields = ddlRecord.getFields();
+			DDMFormValues ddmFormValues = ddlRecord.getDDMFormValues();
+
+			Map<String, List<DDMFormFieldValue>> ddmFormFieldValuesMap = ddmFormValues.getDDMFormFieldValuesMap();
 
 			for (DDMFormField ddmFormField : ddmFormfields) {
 				String name = ddmFormField.getName();
@@ -114,31 +116,12 @@ portletURL.setParameter("kaleoProcessId", String.valueOf(kaleoProcessId));
 
 				String value = StringPool.BLANK;
 
-				if (fields.contains(name)) {
-					com.liferay.portlet.dynamicdatamapping.storage.Field field = fields.get(name);
+				List<DDMFormFieldValue> ddmFormFieldValues = ddmFormFieldValuesMap.get(ddmFormField.getName());
 
-					value = field.getRenderedValue(themeDisplay.getLocale());
+				if (ddmFormFieldValues != null) {
+					DDMFormFieldValueRenderer ddmFormFieldValueRenderer = DDMFormFieldValueRendererRegistryUtil.getDDMFormFieldValueRenderer(ddmFormField.getType());
 
-					String dataType = field.getDataType();
-
-					if (dataType.equals(FieldConstants.HTML)) {
-						StringBundler sb = new StringBundler(9);
-
-						sb.append("<a href=\"");
-						sb.append("javascript:");
-						sb.append(renderResponse.getNamespace());
-						sb.append("openPreviewDialog");
-						sb.append("('");
-						sb.append(HtmlUtil.escapeJS(value));
-						sb.append("')\">(");
-						sb.append(LanguageUtil.get(request, "preview"));
-						sb.append(")</a>");
-
-						value = sb.toString();
-					}
-					else {
-						value = HtmlUtil.escape(value);
-					}
+					value = ddmFormFieldValueRenderer.render(ddmFormFieldValues, themeDisplay.getLocale());
 				}
 				%>
 
