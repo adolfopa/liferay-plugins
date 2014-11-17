@@ -35,7 +35,7 @@ public class ViewAttributesQueryOption extends BaseQueryOption {
 		super.populate(element);
 
 		if (_recursive) {
-			element.addAttribute("Scope", "Recursive");
+			element.addAttribute("Scope", "RecursiveAll");
 		}
 	}
 
