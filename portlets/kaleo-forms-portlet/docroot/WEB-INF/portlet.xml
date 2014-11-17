@@ -4,7 +4,7 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<display-name>Kaleo Forms</display-name>
-		<portlet-class>com.liferay.portal.workflow.kaleo.forms.portlet.KaleoFormsPortlet</portlet-class>
+		<portlet-class>com.liferay.portal.workflow.kaleo.forms.portlet.KaleoFormsDisplayPortlet</portlet-class>
 		<init-param>
 			<name>copy-request-parameters</name>
 			<value>true</value>
@@ -42,7 +42,7 @@
 	<portlet>
 		<portlet-name>2</portlet-name>
 		<display-name>Kaleo Forms Admin</display-name>
-		<portlet-class>com.liferay.portal.workflow.kaleo.forms.portlet.KaleoFormsPortlet</portlet-class>
+		<portlet-class>com.liferay.portal.workflow.kaleo.forms.portlet.KaleoFormsAdminPortlet</portlet-class>
 		<init-param>
 			<name>copy-request-parameters</name>
 			<value>true</value>
