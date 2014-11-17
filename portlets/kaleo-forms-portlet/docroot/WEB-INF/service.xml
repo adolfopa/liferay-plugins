@@ -45,7 +45,7 @@
 		<reference package-path="com.liferay.portlet.dynamicdatalists" entity="DDLRecord" />
 		<reference package-path="com.liferay.portlet.dynamicdatalists" entity="DDLRecordSet" />
 	</entity>
-	<entity name="KaleoProcessLink" local-service="true" remote-service="true">
+	<entity name="KaleoProcessLink" local-service="true" remote-service="false">
 
 		<!-- PK fields -->
 
