@@ -34,7 +34,8 @@ page import="com.liferay.portal.service.WorkflowInstanceLinkLocalServiceUtil" %>
 page import="com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink" %><%@
 page import="com.liferay.portal.workflow.kaleo.forms.service.KaleoProcessLinkLocalServiceUtil" %><%@
 page import="com.liferay.portal.workflow.kaleo.forms.service.KaleoProcessLocalServiceUtil" %><%@
-page import="com.liferay.portlet.dynamicdatamapping.NoSuchTemplateException" %>
+page import="com.liferay.portlet.dynamicdatamapping.NoSuchTemplateException" %><%@
+page import="com.liferay.portlet.dynamicdatamapping.storage.StorageEngineUtil" %>
 
 <%@ page import="java.io.Serializable" %>
 

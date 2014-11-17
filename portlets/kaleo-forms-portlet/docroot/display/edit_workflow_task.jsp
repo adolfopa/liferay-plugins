@@ -146,7 +146,7 @@ headerTitle = headerTitle.concat(StringPool.COLON + StringPool.SPACE + ddlRecord
 			<liferay-ui:panel defaultState="open" title="current-entry">
 
 				<%
-				Fields fields = ddlRecord.getFields();
+				Fields fields = StorageEngineUtil.getFields(ddlRecord.getDDMStorageId());
 
 				DDMStructure ddmStructure = ddlRecordSet.getDDMStructure();
 				%>

@@ -46,7 +46,7 @@ String formName = ParamUtil.getString(request, "formName");
 		<%
 		DDLRecord ddlRecord = DDLRecordLocalServiceUtil.getRecord(ddlRecordId);
 
-		Fields fields = ddlRecord.getFields();
+		Fields fields = StorageEngineUtil.getFields(ddlRecord.getDDMStorageId());
 
 		long classNameId = 0;
 		long classPK = 0;
