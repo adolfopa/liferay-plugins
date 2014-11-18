@@ -70,7 +70,6 @@ import com.liferay.saml.util.PortletWebKeys;
 import com.liferay.saml.util.SamlUtil;
 
 import java.io.IOException;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,7 +80,6 @@ import javax.servlet.http.HttpSession;
 
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
-
 import org.opensaml.common.SAMLObject;
 import org.opensaml.common.SAMLVersion;
 import org.opensaml.common.binding.SAMLMessageContext;
@@ -189,6 +187,28 @@ public class WebSsoProfileImpl extends BaseProfile implements WebSsoProfile {
 			}
 			else {
 				throw new SamlException(e);
+			}
+		}
+	}
+
+	@Override
+	public void updateSamlSpSession(
+		HttpServletRequest request, HttpServletResponse response) {
+
+		SamlSpSession samlSpSession = getSamlSpSession(request);
+
+		HttpSession session = request.getSession();
+
+		String jSessionId = session.getId();
+
+		if ((samlSpSession != null) &&
+			!jSessionId.equals(samlSpSession.getJSessionId())) {
+
+			try {
+				SamlSpSessionLocalServiceUtil.updateSamlSpSession(
+					samlSpSession.getPrimaryKey(), jSessionId);
+			}
+			catch (PortalException pe) {
 			}
 		}
 	}

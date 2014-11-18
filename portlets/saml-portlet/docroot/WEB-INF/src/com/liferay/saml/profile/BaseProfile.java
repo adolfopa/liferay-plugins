@@ -273,8 +273,17 @@ public abstract class BaseProfile {
 	}
 
 	public String getSamlSpSessionKey(HttpServletRequest request) {
-		return CookieKeys.getCookie(
-			request, PortletWebKeys.SAML_SP_SESSION_KEY);
+		HttpSession session = request.getSession();
+
+		String samlSpSessionKey = (String)session.getAttribute(
+			PortletWebKeys.SAML_SP_SESSION_KEY);
+		
+		if (Validator.isNull(samlSpSessionKey)) {
+			samlSpSessionKey = CookieKeys.getCookie(
+				request, PortletWebKeys.SAML_SP_SESSION_KEY);
+		}
+
+		return samlSpSessionKey;
 	}
 
 	public String getSamlSsoSessionId(HttpServletRequest request) {

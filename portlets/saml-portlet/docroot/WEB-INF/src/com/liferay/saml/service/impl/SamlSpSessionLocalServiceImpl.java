@@ -124,6 +124,22 @@ public class SamlSpSessionLocalServiceImpl
 
 	@Override
 	public SamlSpSession updateSamlSpSession(
+			long samlSpSessionId, String jSessionId)
+		throws PortalException {
+
+		SamlSpSession samlSpSession = samlSpSessionPersistence.findByPrimaryKey(
+			samlSpSessionId);
+
+		samlSpSession.setJSessionId(jSessionId);
+		samlSpSession.setModifiedDate(new Date());
+
+		samlSpSessionPersistence.update(samlSpSession);
+
+		return samlSpSession;
+	}
+
+	@Override
+	public SamlSpSession updateSamlSpSession(
 			long samlSpSessionId, String samlSpSessionKey, String assertionXml,
 			String jSessionId, String nameIdFormat, String nameIdNameQualifier,
 			String nameIdSPNameQualifier, String nameIdValue,
@@ -147,6 +163,8 @@ public class SamlSpSessionLocalServiceImpl
 		samlSpSession.setNameIdSPNameQualifier(nameIdSPNameQualifier);
 		samlSpSession.setNameIdValue(nameIdValue);
 		samlSpSession.setSessionIndex(sessionIndex);
+
+		samlSpSessionPersistence.update(samlSpSession);
 
 		return samlSpSession;
 	}

@@ -163,6 +163,8 @@ public class SamlSpSsoFilter extends BaseFilter {
 					PortalUtil.getCurrentCompleteURL(request));
 			}
 			else {
+				WebSsoProfileUtil.updateSamlSpSession(request, response);
+
 				filterChain.doFilter(request, response);
 			}
 		}

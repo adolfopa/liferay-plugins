@@ -59,6 +59,12 @@ public class WebSsoProfileUtil {
 		_webSsoProfile = webSsoProfile;
 	}
 
+	public static void updateSamlSpSession(
+		HttpServletRequest request, HttpServletResponse response) {
+
+		getWebSsoProfile().updateSamlSpSession(request, response);
+	}
+
 	private static WebSsoProfile _webSsoProfile;
 
 }

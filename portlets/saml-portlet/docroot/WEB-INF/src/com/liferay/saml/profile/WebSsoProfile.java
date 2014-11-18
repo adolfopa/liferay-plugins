@@ -40,4 +40,8 @@ public interface WebSsoProfile {
 			String relayState)
 		throws PortalException;
 
+	public void updateSamlSpSession(
+		HttpServletRequest request,
+		HttpServletResponse httpServletResponse);
+
 }
