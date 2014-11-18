@@ -167,7 +167,11 @@ public class SamlSpSessionLocalServiceClp implements SamlSpSessionLocalService {
 
 		_methodName29 = "updateSamlSpSession";
 
-		_methodParameterTypes29 = new String[] {
+		_methodParameterTypes29 = new String[] { "long", "java.lang.String" };
+
+		_methodName30 = "updateSamlSpSession";
+
+		_methodParameterTypes30 = new String[] {
 				"long", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.lang.String",
@@ -953,6 +957,40 @@ public class SamlSpSessionLocalServiceClp implements SamlSpSessionLocalService {
 
 	@Override
 	public com.liferay.saml.model.SamlSpSession updateSamlSpSession(
+		long samlSpSessionId, java.lang.String jSessionId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName29,
+					_methodParameterTypes29,
+					new Object[] {
+						samlSpSessionId,
+						
+					ClpSerializer.translateInput(jSessionId)
+					});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.saml.model.SamlSpSession)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public com.liferay.saml.model.SamlSpSession updateSamlSpSession(
 		long samlSpSessionId, java.lang.String samlSpSessionKey,
 		java.lang.String assertionXml, java.lang.String jSessionId,
 		java.lang.String nameIdFormat, java.lang.String nameIdNameQualifier,
@@ -963,8 +1001,8 @@ public class SamlSpSessionLocalServiceClp implements SamlSpSessionLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName29,
-					_methodParameterTypes29,
+			returnObj = _invokableLocalService.invokeMethod(_methodName30,
+					_methodParameterTypes30,
 					new Object[] {
 						samlSpSessionId,
 						
@@ -1065,4 +1103,6 @@ public class SamlSpSessionLocalServiceClp implements SamlSpSessionLocalService {
 	private String[] _methodParameterTypes28;
 	private String _methodName29;
 	private String[] _methodParameterTypes29;
+	private String _methodName30;
+	private String[] _methodParameterTypes30;
 }

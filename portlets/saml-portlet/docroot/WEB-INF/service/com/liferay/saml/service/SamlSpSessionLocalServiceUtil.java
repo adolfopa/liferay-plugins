@@ -317,6 +317,12 @@ public class SamlSpSessionLocalServiceUtil {
 	}
 
 	public static com.liferay.saml.model.SamlSpSession updateSamlSpSession(
+		long samlSpSessionId, java.lang.String jSessionId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().updateSamlSpSession(samlSpSessionId, jSessionId);
+	}
+
+	public static com.liferay.saml.model.SamlSpSession updateSamlSpSession(
 		long samlSpSessionId, java.lang.String samlSpSessionKey,
 		java.lang.String assertionXml, java.lang.String jSessionId,
 		java.lang.String nameIdFormat, java.lang.String nameIdNameQualifier,
