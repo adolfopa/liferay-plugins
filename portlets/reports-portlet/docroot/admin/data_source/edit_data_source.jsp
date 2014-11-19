@@ -62,7 +62,7 @@ String name = BeanParamUtil.getString(source, request, "name");
 
 			<aui:input label="jdbc-user-name" name="driverUserName" required="<%= true %>" />
 
-			<aui:input autocomplete="off" label="jdbc-password" name="driverPassword" required="<%= true %>" type="password" />
+			<aui:input autocomplete="off" label="jdbc-password" name="driverPassword" type="password" />
 		</div>
 
 		<c:if test="<%= source == null %>">
