@@ -559,7 +559,6 @@ public class SalesforceConnection {
 	private class UpsertBatcher {
 
 		public UpsertResult[] perform(String externalId, SObject[] sObjects) {
-
 			login();
 
 			try {
