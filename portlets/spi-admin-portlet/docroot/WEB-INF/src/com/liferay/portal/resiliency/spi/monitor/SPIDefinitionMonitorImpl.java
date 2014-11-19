@@ -173,6 +173,7 @@ public class SPIDefinitionMonitorImpl implements SPIDefinitionMonitor {
 			}
 			while (!_stopped);
 		}
+
 	}
 
 }

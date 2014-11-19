@@ -430,6 +430,7 @@ public class DBMetadataProvider extends BaseMetadataProvider {
 		}
 
 		private List<XMLObject> _xmlObjects;
+
 	}
 
 }

@@ -662,6 +662,7 @@ public class BaseSamlTestCase extends PowerMockito {
 
 			return null;
 		}
+
 	}
 
 }

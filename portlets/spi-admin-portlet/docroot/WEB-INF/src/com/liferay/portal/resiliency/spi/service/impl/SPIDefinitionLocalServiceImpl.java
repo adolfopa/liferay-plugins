@@ -190,7 +190,9 @@ public class SPIDefinitionLocalServiceImpl
 	}
 
 	@Override
-	public List<SPIDefinition> getSPIDefinitions(long companyId, int[] statuses) {
+	public List<SPIDefinition> getSPIDefinitions(
+		long companyId, int[] statuses) {
+
 		return spiDefinitionPersistence.findByC_S(companyId, statuses);
 	}
 

@@ -198,9 +198,8 @@ public class V10aOAuth implements OAuth {
 		OAuthAccessor oAuthAccessor = _portalCache.get(token);
 
 		if (oAuthAccessor == null) {
-			net.oauth.OAuthException oAuthException =
-				new OAuthProblemException(
-					net.oauth.OAuth.Problems.TOKEN_EXPIRED);
+			net.oauth.OAuthException oAuthException = new OAuthProblemException(
+				net.oauth.OAuth.Problems.TOKEN_EXPIRED);
 
 			throw new OAuthException(oAuthException);
 		}
@@ -218,9 +217,8 @@ public class V10aOAuth implements OAuth {
 			consumerKey = requestMessage.getConsumerKey();
 		}
 		catch (IOException ioe) {
-			net.oauth.OAuthException oAuthException =
-				new OAuthProblemException(
-					net.oauth.OAuth.Problems.CONSUMER_KEY_UNKNOWN);
+			net.oauth.OAuthException oAuthException = new OAuthProblemException(
+				net.oauth.OAuth.Problems.CONSUMER_KEY_UNKNOWN);
 
 			oAuthException.initCause(ioe);
 
@@ -231,9 +229,8 @@ public class V10aOAuth implements OAuth {
 			OAuthApplicationLocalServiceUtil.fetchOAuthApplication(consumerKey);
 
 		if (oAuthApplication == null) {
-			net.oauth.OAuthException oAuthException =
-				new OAuthProblemException(
-					net.oauth.OAuth.Problems.CONSUMER_KEY_REFUSED);
+			net.oauth.OAuthException oAuthException = new OAuthProblemException(
+				net.oauth.OAuth.Problems.CONSUMER_KEY_REFUSED);
 
 			throw new OAuthException(oAuthException);
 		}
