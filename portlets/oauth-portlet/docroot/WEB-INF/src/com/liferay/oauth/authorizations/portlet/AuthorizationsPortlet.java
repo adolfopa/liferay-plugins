@@ -15,8 +15,8 @@
 package com.liferay.oauth.authorizations.portlet;
 
 import com.liferay.oauth.service.OAuthUserServiceUtil;
-import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
+import com.liferay.portal.kernel.util.ParamUtil;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;

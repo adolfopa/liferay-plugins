@@ -17,6 +17,7 @@ package com.liferay.salesforce.portlet.action;
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.portlet.bridges.mvc.BaseActionCommand;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -26,7 +27,6 @@ import com.liferay.salesforce.connection.SalesforceConnectionManager;
 import com.liferay.salesforce.service.ClpSerializer;
 import com.liferay.salesforce.util.PortletPropsKeys;
 import com.liferay.salesforce.util.PrefsPortletPropsUtil;
-import com.liferay.portal.kernel.portlet.bridges.mvc.BaseActionCommand;
 
 import javax.portlet.PortletPreferences;
 import javax.portlet.PortletRequest;

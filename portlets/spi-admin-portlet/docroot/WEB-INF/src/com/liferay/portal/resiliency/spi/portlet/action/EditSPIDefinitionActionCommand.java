@@ -14,6 +14,7 @@
 
 package com.liferay.portal.resiliency.spi.portlet.action;
 
+import com.liferay.portal.kernel.portlet.bridges.mvc.BaseActionCommand;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PropertiesParamUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
@@ -21,7 +22,6 @@ import com.liferay.portal.resiliency.spi.model.SPIDefinition;
 import com.liferay.portal.resiliency.spi.service.SPIDefinitionServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
-import com.liferay.portal.kernel.portlet.bridges.mvc.BaseActionCommand;
 
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletResponse;
