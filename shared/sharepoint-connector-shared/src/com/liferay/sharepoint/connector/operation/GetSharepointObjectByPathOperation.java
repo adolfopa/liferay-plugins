@@ -43,10 +43,9 @@ public class GetSharepointObjectByPathOperation extends BaseOperation {
 			new EqOperator(
 				new QueryField("FileRef"),
 				new QueryValue(fullPath.substring(1))));
-
-		QueryOptionsList queryOptionsList = 
-			new QueryOptionsList(new FolderQueryOption(StringPool.BLANK),
-				new ViewAttributesQueryOption(true));
+		QueryOptionsList queryOptionsList =  new QueryOptionsList(
+			new FolderQueryOption(StringPool.BLANK),
+			new ViewAttributesQueryOption(true));
 
 		return getSharepointObject(
 			_getSharepointObjectsByQueryOperation.execute(

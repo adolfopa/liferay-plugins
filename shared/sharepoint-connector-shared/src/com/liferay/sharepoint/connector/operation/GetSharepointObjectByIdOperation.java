@@ -43,10 +43,9 @@ public class GetSharepointObjectByIdOperation extends BaseOperation {
 			new EqOperator(
 				new QueryField("ID"),
 				new QueryValue(String.valueOf(sharepointObjectId))));
-
-		QueryOptionsList queryOptionsList = 
-			new QueryOptionsList(new FolderQueryOption(StringPool.BLANK),
-				new ViewAttributesQueryOption(true));
+		QueryOptionsList queryOptionsList =  new QueryOptionsList(
+			new FolderQueryOption(StringPool.BLANK),
+			new ViewAttributesQueryOption(true));
 
 		return getSharepointObject(
 			_getSharepointObjectsByQueryOperation.execute(
