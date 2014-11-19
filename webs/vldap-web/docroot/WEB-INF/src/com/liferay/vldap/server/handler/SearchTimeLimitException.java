@@ -23,7 +23,6 @@ import com.liferay.portal.kernel.exception.SystemException;
 public class SearchTimeLimitException extends SystemException {
 
 	public SearchTimeLimitException() {
-		super();
 	}
 
 	public SearchTimeLimitException(String msg) {

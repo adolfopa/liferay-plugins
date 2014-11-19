@@ -23,7 +23,6 @@ import com.liferay.portal.kernel.exception.SystemException;
 public class SearchSizeLimitException extends SystemException {
 
 	public SearchSizeLimitException() {
-		super();
 	}
 
 	public SearchSizeLimitException(String msg) {
