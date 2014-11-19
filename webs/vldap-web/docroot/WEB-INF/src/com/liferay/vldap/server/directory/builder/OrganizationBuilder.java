@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UniqueList;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.Organization;
@@ -43,17 +44,18 @@ public class OrganizationBuilder extends DirectoryBuilder {
 
 	@Override
 	public boolean isValidAttribute(String attributeId, String value) {
-		if (attributeId.equalsIgnoreCase("cn") ||
-			attributeId.equalsIgnoreCase("member") ||
-			attributeId.equalsIgnoreCase("ou")) {
+		if (StringUtil.equalsIgnoreCase(attributeId, "cn") ||
+			StringUtil.equalsIgnoreCase(attributeId, "member") ||
+			StringUtil.equalsIgnoreCase(attributeId, "ou")) {
 
 			return true;
 		}
-		else if (attributeId.equalsIgnoreCase("objectclass")) {
-			if (value.equalsIgnoreCase("groupOfNames") ||
-				value.equalsIgnoreCase("organizationalUnit") ||
-				value.equalsIgnoreCase("liferayOrganization") ||
-				value.equalsIgnoreCase("top") || value.equalsIgnoreCase("*")) {
+		else if (StringUtil.equalsIgnoreCase(attributeId, "objectclass")) {
+			if (StringUtil.equalsIgnoreCase(value, "groupOfNames") ||
+				StringUtil.equalsIgnoreCase(value, "organizationalUnit") ||
+				StringUtil.equalsIgnoreCase(value, "liferayOrganization") ||
+				StringUtil.equalsIgnoreCase(value, "top") ||
+				StringUtil.equalsIgnoreCase(value, "*")) {
 
 				return true;
 			}

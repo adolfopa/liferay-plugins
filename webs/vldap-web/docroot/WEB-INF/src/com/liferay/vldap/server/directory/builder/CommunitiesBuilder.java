@@ -14,6 +14,7 @@
 
 package com.liferay.vldap.server.directory.builder;
 
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.Company;
 import com.liferay.vldap.server.directory.FilterConstraint;
 import com.liferay.vldap.server.directory.SearchBase;
@@ -31,16 +32,17 @@ public class CommunitiesBuilder extends DirectoryBuilder {
 
 	@Override
 	public boolean isValidAttribute(String attributeId, String value) {
-		if (attributeId.equalsIgnoreCase("objectclass")) {
-			if (value.equalsIgnoreCase("organizationalUnit") ||
-				value.equalsIgnoreCase("top") || value.equalsIgnoreCase("*")) {
+		if (StringUtil.equalsIgnoreCase(attributeId, "objectclass")) {
+			if (StringUtil.equalsIgnoreCase(value, "organizationalUnit") ||
+				StringUtil.equalsIgnoreCase(value, "top") ||
+				StringUtil.equalsIgnoreCase(value, "*")) {
 
 				return true;
 			}
 		}
-		else if (attributeId.equalsIgnoreCase("ou")) {
-			if (value.equalsIgnoreCase("Communities") ||
-				value.equalsIgnoreCase("*")) {
+		else if (StringUtil.equalsIgnoreCase(attributeId, "ou")) {
+			if (StringUtil.equalsIgnoreCase(value, "Communities") ||
+				StringUtil.equalsIgnoreCase(value, "*")) {
 
 				return true;
 			}

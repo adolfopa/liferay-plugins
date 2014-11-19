@@ -17,6 +17,7 @@ package com.liferay.vldap.server.directory;
 import com.liferay.portal.NoSuchUserException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Company;
@@ -172,12 +173,12 @@ public class DirectoryTree {
 				new RootDirectory(), _rootBuilder, TopDirectory.NAME);
 		}
 
-		if (top.equalsIgnoreCase(SchemaDirectory.COMMON_NAME)) {
+		if (StringUtil.equalsIgnoreCase(top, SchemaDirectory.COMMON_NAME)) {
 			return new SearchBase(
 				new SchemaDirectory(), _schemaBuilder, TopDirectory.NAME);
 		}
 
-		if (!top.equalsIgnoreCase(TopDirectory.NAME)) {
+		if (!StringUtil.equalsIgnoreCase(top, TopDirectory.NAME)) {
 			return null;
 		}
 
@@ -199,27 +200,27 @@ public class DirectoryTree {
 		}
 
 		if (typeValue == null) {
-			if (type.equalsIgnoreCase("Communities")) {
+			if (StringUtil.equalsIgnoreCase(type, "Communities")) {
 				return new SearchBase(
 					new CommunitiesDirectory(top, company), _communitiesBuilder,
 					top, company);
 			}
-			else if (type.equalsIgnoreCase("Organizations")) {
+			else if (StringUtil.equalsIgnoreCase(type, "Organizations")) {
 				return new SearchBase(
 					new OrganizationsDirectory(top, company),
 					_organizationsBuilder, top, company);
 			}
-			else if (type.equalsIgnoreCase("Roles")) {
+			else if (StringUtil.equalsIgnoreCase(type, "Roles")) {
 				return new SearchBase(
 					new RolesDirectory(top, company), _rolesBuilder, top,
 					company);
 			}
-			else if (type.equalsIgnoreCase("User Groups")) {
+			else if (StringUtil.equalsIgnoreCase(type, "User Groups")) {
 				return new SearchBase(
 					new UserGroupsDirectory(top, company), _userGroupsBuilder,
 					top, company);
 			}
-			else if (type.equalsIgnoreCase("Users")) {
+			else if (StringUtil.equalsIgnoreCase(type, "Users")) {
 				return new SearchBase(
 					new UsersDirectory(top, company), _usersBuilder, top,
 					company);
@@ -231,45 +232,45 @@ public class DirectoryTree {
 		Role role = null;
 		UserGroup userGroup = null;
 
-		if (type.equalsIgnoreCase("Communities")) {
+		if (StringUtil.equalsIgnoreCase(type, "Communities")) {
 			community = GroupLocalServiceUtil.getGroup(
 				company.getCompanyId(), typeValue);
 		}
-		else if (type.equalsIgnoreCase("Organizations")) {
+		else if (StringUtil.equalsIgnoreCase(type, "Organizations")) {
 			organization = OrganizationLocalServiceUtil.getOrganization(
 				company.getCompanyId(), typeValue);
 		}
-		else if (type.equalsIgnoreCase("Roles")) {
+		else if (StringUtil.equalsIgnoreCase(type, "Roles")) {
 			role = RoleLocalServiceUtil.getRole(
 				company.getCompanyId(), typeValue);
 		}
-		else if (type.equalsIgnoreCase("User Groups")) {
+		else if (StringUtil.equalsIgnoreCase(type, "User Groups")) {
 			userGroup = UserGroupLocalServiceUtil.getUserGroup(
 				company.getCompanyId(), typeValue);
 		}
 
 		if (identifiers.isEmpty()) {
-			if (type.equalsIgnoreCase("Communities")) {
+			if (StringUtil.equalsIgnoreCase(type, "Communities")) {
 				return new SearchBase(
 					new CommunityDirectory(top, company, community),
 					_communityBuilder, top, company, community);
 			}
-			else if (type.equalsIgnoreCase("Organizations")) {
+			else if (StringUtil.equalsIgnoreCase(type, "Organizations")) {
 				return new SearchBase(
 					new OrganizationDirectory(top, company, organization),
 					_organizationBuilder, top, company, organization);
 			}
-			else if (type.equalsIgnoreCase("Roles")) {
+			else if (StringUtil.equalsIgnoreCase(type, "Roles")) {
 				return new SearchBase(
 					new RoleDirectory(top, company, role), _roleBuilder, top,
 					company, role);
 			}
-			else if (type.equalsIgnoreCase("User Groups")) {
+			else if (StringUtil.equalsIgnoreCase(type, "User Groups")) {
 				return new SearchBase(
 					new UserGroupDirectory(top, company, userGroup),
 					_userGroupBuilder, top, company, userGroup);
 			}
-			else if (type.equalsIgnoreCase("Users")) {
+			else if (StringUtil.equalsIgnoreCase(type, "Users")) {
 				try {
 					User user = UserLocalServiceUtil.getUserByScreenName(
 						company.getCompanyId(), typeValue);
@@ -309,8 +310,8 @@ public class DirectoryTree {
 		String rdnValue = identifier.getRdnValue();
 
 		if (identifiers.size() == 1) {
-			if (!rdnType.equalsIgnoreCase("cn") &&
-				!rdnType.equalsIgnoreCase("uid")) {
+			if (!StringUtil.equalsIgnoreCase(rdnType, "cn") &&
+				!StringUtil.equalsIgnoreCase(rdnType, "uid")) {
 
 				return null;
 			}
@@ -331,8 +332,8 @@ public class DirectoryTree {
 				top, company, users.get(0));
 		}
 
-		if (rdnType.equalsIgnoreCase("ou") &&
-			rdnValue.equalsIgnoreCase("Samba Machines")) {
+		if (StringUtil.equalsIgnoreCase(rdnType, "ou") &&
+			StringUtil.equalsIgnoreCase(rdnValue, "Samba Machines")) {
 
 			if ((identifiers.size() > 2) || (organization == null)) {
 				return null;
@@ -342,7 +343,9 @@ public class DirectoryTree {
 
 			String subidentifierRdnType = subidentifier.getRdnType();
 
-			if (!subidentifierRdnType.equalsIgnoreCase("sambaDomainName")) {
+			if (!StringUtil.equalsIgnoreCase(
+					subidentifierRdnType, "sambaDomainName")) {
+
 				return null;
 			}
 

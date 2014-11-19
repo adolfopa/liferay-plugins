@@ -14,6 +14,7 @@
 
 package com.liferay.vldap.server.directory.builder;
 
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UniqueList;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
@@ -33,14 +34,15 @@ public class CompanyBuilder extends DirectoryBuilder {
 
 	@Override
 	public boolean isValidAttribute(String attributeId, String value) {
-		if (attributeId.equalsIgnoreCase("objectclass")) {
-			if (value.equalsIgnoreCase("organizationalUnit") ||
-				value.equalsIgnoreCase("top") || value.equalsIgnoreCase("*")) {
+		if (StringUtil.equalsIgnoreCase(attributeId, "objectclass")) {
+			if (StringUtil.equalsIgnoreCase(value, "organizationalUnit") ||
+				StringUtil.equalsIgnoreCase(value, "top") ||
+				StringUtil.equalsIgnoreCase(value, "*")) {
 
 				return true;
 			}
 		}
-		else if (attributeId.equalsIgnoreCase("ou")) {
+		else if (StringUtil.equalsIgnoreCase(attributeId, "ou")) {
 			return true;
 		}
 

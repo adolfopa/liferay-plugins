@@ -15,6 +15,7 @@
 package com.liferay.vldap.server.directory.builder;
 
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.Organization;
@@ -36,20 +37,21 @@ public class SambaGroupBuilder extends DirectoryBuilder {
 
 	@Override
 	public boolean isValidAttribute(String attributeId, String value) {
-		if (attributeId.equalsIgnoreCase("cn") ||
-			attributeId.equalsIgnoreCase("displayName") ||
-			attributeId.equalsIgnoreCase("gidNumber") ||
-			attributeId.equalsIgnoreCase("sambaGroupType") ||
-			attributeId.equalsIgnoreCase("sambaSID") ||
-			attributeId.equalsIgnoreCase("sambaSIDList")) {
+		if (StringUtil.equalsIgnoreCase(attributeId, "cn") ||
+			StringUtil.equalsIgnoreCase(attributeId, "displayName") ||
+			StringUtil.equalsIgnoreCase(attributeId, "gidNumber") ||
+			StringUtil.equalsIgnoreCase(attributeId, "sambaGroupType") ||
+			StringUtil.equalsIgnoreCase(attributeId, "sambaSID") ||
+			StringUtil.equalsIgnoreCase(attributeId, "sambaSIDList")) {
 
 			return true;
 		}
-		else if (attributeId.equalsIgnoreCase("objectclass")) {
-			if (value.equalsIgnoreCase("liferayRole") ||
-				value.equalsIgnoreCase("posixGroup") ||
-				value.equalsIgnoreCase("sambaGroupMapping") ||
-				value.equalsIgnoreCase("top") || value.equalsIgnoreCase("*")) {
+		else if (StringUtil.equalsIgnoreCase(attributeId, "objectclass")) {
+			if (StringUtil.equalsIgnoreCase(value, "liferayRole") ||
+				StringUtil.equalsIgnoreCase(value, "posixGroup") ||
+				StringUtil.equalsIgnoreCase(value, "sambaGroupMapping") ||
+				StringUtil.equalsIgnoreCase(value, "top") ||
+				StringUtil.equalsIgnoreCase(value, "*")) {
 
 				return true;
 			}

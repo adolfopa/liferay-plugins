@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UniqueList;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Company;
@@ -55,33 +56,34 @@ public class UserBuilder extends DirectoryBuilder {
 
 	@Override
 	public boolean isValidAttribute(String attributeId, String value) {
-		if (attributeId.equalsIgnoreCase("cn") ||
-			attributeId.equalsIgnoreCase("gidNumber") ||
-			attributeId.equalsIgnoreCase("givenName") ||
-			attributeId.equalsIgnoreCase("mail") ||
-			attributeId.equalsIgnoreCase("member") ||
-			attributeId.equalsIgnoreCase("sambaSID") ||
-			attributeId.equalsIgnoreCase("sn") ||
-			attributeId.equalsIgnoreCase("uid") ||
-			attributeId.equalsIgnoreCase("uidNumber") ||
-			attributeId.equalsIgnoreCase("uuid")) {
+		if (StringUtil.equalsIgnoreCase(attributeId, "cn") ||
+			StringUtil.equalsIgnoreCase(attributeId, "gidNumber") ||
+			StringUtil.equalsIgnoreCase(attributeId, "givenName") ||
+			StringUtil.equalsIgnoreCase(attributeId, "mail") ||
+			StringUtil.equalsIgnoreCase(attributeId, "member") ||
+			StringUtil.equalsIgnoreCase(attributeId, "sambaSID") ||
+			StringUtil.equalsIgnoreCase(attributeId, "sn") ||
+			StringUtil.equalsIgnoreCase(attributeId, "uid") ||
+			StringUtil.equalsIgnoreCase(attributeId, "uidNumber") ||
+			StringUtil.equalsIgnoreCase(attributeId, "uuid")) {
 
 			return true;
 		}
-		else if (attributeId.equalsIgnoreCase("createTimestamp") ||
-				 attributeId.equalsIgnoreCase("displayName") ||
-				 attributeId.equalsIgnoreCase("modifyTimestamp")) {
+		else if (StringUtil.equalsIgnoreCase(attributeId, "createTimestamp") ||
+				 StringUtil.equalsIgnoreCase(attributeId, "displayName") ||
+				 StringUtil.equalsIgnoreCase(attributeId, "modifyTimestamp")) {
 
-			if (value.equalsIgnoreCase("*")) {
+			if (StringUtil.equalsIgnoreCase(value, "*")) {
 				return true;
 			}
 		}
-		else if (attributeId.equalsIgnoreCase("objectclass")) {
-			if (value.equalsIgnoreCase("groupOfNames") ||
-				value.equalsIgnoreCase("inetOrgPerson") ||
-				value.equalsIgnoreCase("liferayPerson") ||
-				value.equalsIgnoreCase("sambaSamAccount") ||
-				value.equalsIgnoreCase("top") || value.equalsIgnoreCase("*")) {
+		else if (StringUtil.equalsIgnoreCase(attributeId, "objectclass")) {
+			if (StringUtil.equalsIgnoreCase(value, "groupOfNames") ||
+				StringUtil.equalsIgnoreCase(value, "inetOrgPerson") ||
+				StringUtil.equalsIgnoreCase(value, "liferayPerson") ||
+				StringUtil.equalsIgnoreCase(value, "sambaSamAccount") ||
+				StringUtil.equalsIgnoreCase(value, "top") ||
+				StringUtil.equalsIgnoreCase(value, "*")) {
 
 				return true;
 			}
@@ -296,26 +298,26 @@ public class UserBuilder extends DirectoryBuilder {
 		Company company = CompanyLocalServiceUtil.getCompanyByWebId(
 			companyWebId);
 
-		if (type.equalsIgnoreCase("Communities")) {
+		if (StringUtil.equalsIgnoreCase(type, "Communities")) {
 			Group group = GroupLocalServiceUtil.getGroup(
 				company.getCompanyId(), typeValue);
 
 			params.put("usersGroups", group.getGroupId());
 		}
-		else if (type.equalsIgnoreCase("Organizations")) {
+		else if (StringUtil.equalsIgnoreCase(type, "Organizations")) {
 			Organization organization =
 				OrganizationLocalServiceUtil.getOrganization(
 					company.getCompanyId(), typeValue);
 
 			params.put("usersOrgs", organization.getOrganizationId());
 		}
-		else if (type.equalsIgnoreCase("Roles")) {
+		else if (StringUtil.equalsIgnoreCase(type, "Roles")) {
 			Role role = RoleLocalServiceUtil.getRole(
 				company.getCompanyId(), typeValue);
 
 			params.put("usersRoles", role.getRoleId());
 		}
-		else if (type.equalsIgnoreCase("User Groups")) {
+		else if (StringUtil.equalsIgnoreCase(type, "User Groups")) {
 			UserGroup userGroup = UserGroupLocalServiceUtil.getUserGroup(
 				company.getCompanyId(), typeValue);
 

@@ -14,6 +14,7 @@
 
 package com.liferay.vldap.server.directory.builder;
 
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UniqueList;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.Group;
@@ -39,18 +40,19 @@ public class CommunityBuilder extends DirectoryBuilder {
 
 	@Override
 	public boolean isValidAttribute(String attributeId, String value) {
-		if (attributeId.equalsIgnoreCase("cn") ||
-			attributeId.equalsIgnoreCase("description") ||
-			attributeId.equalsIgnoreCase("member") ||
-			attributeId.equalsIgnoreCase("ou")) {
+		if (StringUtil.equalsIgnoreCase(attributeId, "cn") ||
+			StringUtil.equalsIgnoreCase(attributeId, "description") ||
+			StringUtil.equalsIgnoreCase(attributeId, "member") ||
+			StringUtil.equalsIgnoreCase(attributeId, "ou")) {
 
 			return true;
 		}
-		else if (attributeId.equalsIgnoreCase("objectclass")) {
-			if (value.equalsIgnoreCase("groupOfNames") ||
-				value.equalsIgnoreCase("organizationalUnit") ||
-				value.equalsIgnoreCase("liferayCommunity") ||
-				value.equalsIgnoreCase("top") || value.equalsIgnoreCase("*")) {
+		else if (StringUtil.equalsIgnoreCase(attributeId, "objectclass")) {
+			if (StringUtil.equalsIgnoreCase(value, "groupOfNames") ||
+				StringUtil.equalsIgnoreCase(value, "organizationalUnit") ||
+				StringUtil.equalsIgnoreCase(value, "liferayCommunity") ||
+				StringUtil.equalsIgnoreCase(value, "top") ||
+				StringUtil.equalsIgnoreCase(value, "*")) {
 
 				return true;
 			}

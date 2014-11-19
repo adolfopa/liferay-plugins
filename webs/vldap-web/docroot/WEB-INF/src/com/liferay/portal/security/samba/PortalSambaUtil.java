@@ -105,7 +105,7 @@ public class PortalSambaUtil {
 	private static String _getSambaLMPassword(String password)
 		throws Exception {
 
-		password = password.toUpperCase();
+		password = StringUtil.toUpperCase(password);
 
 		byte[] passwordBytes = password.getBytes("US-ASCII");
 
@@ -139,7 +139,7 @@ public class PortalSambaUtil {
 		String sambaLMPassword = StringUtil.bytesToHexString(
 			sambaLMPasswordBytes);
 
-		sambaLMPassword = sambaLMPassword.toUpperCase();
+		sambaLMPassword = StringUtil.toUpperCase(sambaLMPassword);
 
 		return sambaLMPassword;
 	}
@@ -156,7 +156,7 @@ public class PortalSambaUtil {
 		String sambaNTPassword = StringUtil.bytesToHexString(
 			sambaNTPasswordBytes);
 
-		sambaNTPassword = sambaNTPassword.toUpperCase();
+		sambaNTPassword = StringUtil.toUpperCase(sambaNTPassword);
 
 		return sambaNTPassword;
 	}

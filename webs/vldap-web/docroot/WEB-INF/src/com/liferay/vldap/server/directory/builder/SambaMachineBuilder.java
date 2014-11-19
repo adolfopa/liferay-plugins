@@ -14,6 +14,7 @@
 
 package com.liferay.vldap.server.directory.builder;
 
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.Organization;
@@ -59,11 +60,11 @@ public class SambaMachineBuilder extends DirectoryBuilder {
 
 	@Override
 	public boolean isValidAttribute(String attributeId, String value) {
-		if (attributeId.equalsIgnoreCase("sambaDomainName")) {
+		if (StringUtil.equalsIgnoreCase(attributeId, "sambaDomainName")) {
 			return true;
 		}
-		else if (attributeId.equalsIgnoreCase("objectclass")) {
-			if (value.equalsIgnoreCase("sambaDomain")) {
+		else if (StringUtil.equalsIgnoreCase(attributeId, "objectclass")) {
+			if (StringUtil.equalsIgnoreCase(value, "sambaDomain")) {
 				return true;
 			}
 		}
