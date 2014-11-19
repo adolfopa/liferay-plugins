@@ -126,7 +126,8 @@ public abstract class BaseReportFillManager implements ReportFillManager {
 
 		String dataSourceCharSet = GetterUtil.getString(
 			(String)reportRequestContext.getAttribute(
-				ReportRequestContext.DATA_SOURCE_CHARSET), StringPool.UTF8);
+				ReportRequestContext.DATA_SOURCE_CHARSET),
+			StringPool.UTF8);
 
 		return dataSourceCharSet;
 	}
@@ -137,7 +138,7 @@ public abstract class BaseReportFillManager implements ReportFillManager {
 
 		String dataSourceColumnNames =
 			(String)reportRequestContext.getAttribute(
-			ReportRequestContext.DATA_SOURCE_COLUMN_NAMES);
+				ReportRequestContext.DATA_SOURCE_COLUMN_NAMES);
 
 		if (Validator.isNotNull(dataSourceColumnNames)) {
 			return StringUtil.split(dataSourceColumnNames, StringPool.COMMA);

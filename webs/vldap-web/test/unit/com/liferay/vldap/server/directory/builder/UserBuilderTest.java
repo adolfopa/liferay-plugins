@@ -148,8 +148,8 @@ public class UserBuilderTest extends BaseVLDAPTestCase {
 					"ou=Communities,ou=liferay.com,o=Liferay"));
 		Assert.assertTrue(
 			directory.hasAttribute(
-			"member", "cn=testOrganizationName,ou=testOrganizationName," +
-				"ou=Organizations,ou=liferay.com,o=Liferay"));
+				"member", "cn=testOrganizationName,ou=testOrganizationName," +
+					"ou=Organizations,ou=liferay.com,o=Liferay"));
 		Assert.assertTrue(
 			directory.hasAttribute(
 				"member", "cn=testRoleName,ou=testRoleName," +
