@@ -22,7 +22,6 @@ import com.liferay.portal.NoSuchModelException;
 public class NoSuchIdpSpSessionException extends NoSuchModelException {
 
 	public NoSuchIdpSpSessionException() {
-		super();
 	}
 
 	public NoSuchIdpSpSessionException(String msg) {

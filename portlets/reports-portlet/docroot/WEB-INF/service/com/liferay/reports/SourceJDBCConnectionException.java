@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class SourceJDBCConnectionException extends PortalException {
 
 	public SourceJDBCConnectionException() {
-		super();
 	}
 
 	public SourceJDBCConnectionException(String msg) {

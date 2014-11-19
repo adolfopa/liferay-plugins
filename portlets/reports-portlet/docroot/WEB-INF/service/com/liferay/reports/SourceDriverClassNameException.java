@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class SourceDriverClassNameException extends PortalException {
 
 	public SourceDriverClassNameException() {
-		super();
 	}
 
 	public SourceDriverClassNameException(String msg) {

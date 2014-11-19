@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class DefinitionFormatException extends PortalException {
 
 	public DefinitionFormatException() {
-		super();
 	}
 
 	public DefinitionFormatException(String msg) {

@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class EntityIdException extends PortalException {
 
 	public EntityIdException() {
-		super();
 	}
 
 	public EntityIdException(String msg) {

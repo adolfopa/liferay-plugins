@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class DuplicateSamlIdpSsoSessionException extends PortalException {
 
 	public DuplicateSamlIdpSsoSessionException() {
-		super();
 	}
 
 	public DuplicateSamlIdpSsoSessionException(String msg) {

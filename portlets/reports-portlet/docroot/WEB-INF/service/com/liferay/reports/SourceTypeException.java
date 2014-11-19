@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class SourceTypeException extends PortalException {
 
 	public SourceTypeException() {
-		super();
 	}
 
 	public SourceTypeException(String msg) {

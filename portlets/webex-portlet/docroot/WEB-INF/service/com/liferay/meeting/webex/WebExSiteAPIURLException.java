@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class WebExSiteAPIURLException extends PortalException {
 
 	public WebExSiteAPIURLException() {
-		super();
 	}
 
 	public WebExSiteAPIURLException(String msg) {

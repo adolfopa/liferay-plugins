@@ -23,7 +23,6 @@ public class SamlIdpSpConnectionSamlSpEntityIdException
 	extends PortalException {
 
 	public SamlIdpSpConnectionSamlSpEntityIdException() {
-		super();
 	}
 
 	public SamlIdpSpConnectionSamlSpEntityIdException(String msg) {

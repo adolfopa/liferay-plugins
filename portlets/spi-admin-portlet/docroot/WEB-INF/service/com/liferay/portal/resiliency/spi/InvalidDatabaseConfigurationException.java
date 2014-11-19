@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class InvalidDatabaseConfigurationException extends PortalException {
 
 	public InvalidDatabaseConfigurationException() {
-		super();
 	}
 
 	public InvalidDatabaseConfigurationException(String msg) {

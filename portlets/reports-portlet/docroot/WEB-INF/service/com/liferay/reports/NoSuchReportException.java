@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class NoSuchReportException extends PortalException {
 
 	public NoSuchReportException() {
-		super();
 	}
 
 	public NoSuchReportException(String msg) {

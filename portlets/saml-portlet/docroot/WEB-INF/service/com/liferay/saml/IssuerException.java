@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class IssuerException extends PortalException {
 
 	public IssuerException() {
-		super();
 	}
 
 	public IssuerException(String msg) {

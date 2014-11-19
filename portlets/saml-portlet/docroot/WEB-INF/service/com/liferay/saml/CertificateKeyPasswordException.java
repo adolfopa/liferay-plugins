@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class CertificateKeyPasswordException extends PortalException {
 
 	public CertificateKeyPasswordException() {
-		super();
 	}
 
 	public CertificateKeyPasswordException(String msg) {

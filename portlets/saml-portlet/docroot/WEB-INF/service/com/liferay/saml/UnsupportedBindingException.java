@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class UnsupportedBindingException extends PortalException {
 
 	public UnsupportedBindingException() {
-		super();
 	}
 
 	public UnsupportedBindingException(String msg) {

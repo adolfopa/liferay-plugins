@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class DefinitionFileException extends PortalException {
 
 	public DefinitionFileException() {
-		super();
 	}
 
 	public DefinitionFileException(String msg) {

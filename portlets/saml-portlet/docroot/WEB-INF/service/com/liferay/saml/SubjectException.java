@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class SubjectException extends PortalException {
 
 	public SubjectException() {
-		super();
 	}
 
 	public SubjectException(String msg) {

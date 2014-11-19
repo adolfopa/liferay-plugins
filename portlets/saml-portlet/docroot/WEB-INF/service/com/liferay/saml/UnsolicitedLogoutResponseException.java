@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class UnsolicitedLogoutResponseException extends PortalException {
 
 	public UnsolicitedLogoutResponseException() {
-		super();
 	}
 
 	public UnsolicitedLogoutResponseException(String msg) {

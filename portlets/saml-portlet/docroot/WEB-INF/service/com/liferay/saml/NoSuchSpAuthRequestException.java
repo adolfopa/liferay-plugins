@@ -22,7 +22,6 @@ import com.liferay.portal.NoSuchModelException;
 public class NoSuchSpAuthRequestException extends NoSuchModelException {
 
 	public NoSuchSpAuthRequestException() {
-		super();
 	}
 
 	public NoSuchSpAuthRequestException(String msg) {

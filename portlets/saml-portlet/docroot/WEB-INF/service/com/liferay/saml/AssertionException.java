@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class AssertionException extends PortalException {
 
 	public AssertionException() {
-		super();
 	}
 
 	public AssertionException(String msg) {

@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class WebExSiteNameException extends PortalException {
 
 	public WebExSiteNameException() {
-		super();
 	}
 
 	public WebExSiteNameException(String msg) {

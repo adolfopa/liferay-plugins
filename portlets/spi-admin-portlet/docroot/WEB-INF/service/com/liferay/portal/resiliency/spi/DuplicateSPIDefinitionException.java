@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class DuplicateSPIDefinitionException extends PortalException {
 
 	public DuplicateSPIDefinitionException() {
-		super();
 	}
 
 	public DuplicateSPIDefinitionException(String msg) {

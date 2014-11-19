@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class SamlSpIdpConnectionMetadataXmlException extends PortalException {
 
 	public SamlSpIdpConnectionMetadataXmlException() {
-		super();
 	}
 
 	public SamlSpIdpConnectionMetadataXmlException(String msg) {

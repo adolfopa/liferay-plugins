@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class StatusException extends PortalException {
 
 	public StatusException() {
-		super();
 	}
 
 	public StatusException(String msg) {

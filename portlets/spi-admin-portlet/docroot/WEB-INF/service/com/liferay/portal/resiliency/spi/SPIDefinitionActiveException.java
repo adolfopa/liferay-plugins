@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class SPIDefinitionActiveException extends PortalException {
 
 	public SPIDefinitionActiveException() {
-		super();
 	}
 
 	public SPIDefinitionActiveException(String msg) {

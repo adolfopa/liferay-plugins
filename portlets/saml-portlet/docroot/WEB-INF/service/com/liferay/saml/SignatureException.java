@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class SignatureException extends PortalException {
 
 	public SignatureException() {
-		super();
 	}
 
 	public SignatureException(String msg) {

@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class WebExSitePasswordException extends PortalException {
 
 	public WebExSitePasswordException() {
-		super();
 	}
 
 	public WebExSitePasswordException(String msg) {

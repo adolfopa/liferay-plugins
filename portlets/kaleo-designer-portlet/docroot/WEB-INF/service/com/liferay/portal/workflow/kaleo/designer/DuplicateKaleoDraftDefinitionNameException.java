@@ -23,7 +23,6 @@ public class DuplicateKaleoDraftDefinitionNameException
 	extends PortalException {
 
 	public DuplicateKaleoDraftDefinitionNameException() {
-		super();
 	}
 
 	public DuplicateKaleoDraftDefinitionNameException(String msg) {

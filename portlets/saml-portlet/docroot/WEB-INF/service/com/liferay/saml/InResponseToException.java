@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class InResponseToException extends PortalException {
 
 	public InResponseToException() {
-		super();
 	}
 
 	public InResponseToException(String msg) {

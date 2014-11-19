@@ -22,7 +22,6 @@ import com.liferay.portal.NoSuchModelException;
 public class NoSuchSpIdpConnectionException extends NoSuchModelException {
 
 	public NoSuchSpIdpConnectionException() {
-		super();
 	}
 
 	public NoSuchSpIdpConnectionException(String msg) {

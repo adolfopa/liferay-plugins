@@ -23,7 +23,6 @@ public class DuplicateSamlSpIdpConnectionSamlIdpEntityIdException
 	extends PortalException {
 
 	public DuplicateSamlSpIdpConnectionSamlIdpEntityIdException() {
-		super();
 	}
 
 	public DuplicateSamlSpIdpConnectionSamlIdpEntityIdException(String msg) {

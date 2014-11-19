@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class EntryEmailNotificationsException extends PortalException {
 
 	public EntryEmailNotificationsException() {
-		super();
 	}
 
 	public EntryEmailNotificationsException(String msg) {

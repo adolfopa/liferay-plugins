@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class SamlIdpSpConnectionNameException extends PortalException {
 
 	public SamlIdpSpConnectionNameException() {
-		super();
 	}
 
 	public SamlIdpSpConnectionNameException(String msg) {

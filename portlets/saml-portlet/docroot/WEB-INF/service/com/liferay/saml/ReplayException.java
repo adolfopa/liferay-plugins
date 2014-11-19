@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class ReplayException extends PortalException {
 
 	public ReplayException() {
-		super();
 	}
 
 	public ReplayException(String msg) {

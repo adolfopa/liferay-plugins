@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class DestinationException extends PortalException {
 
 	public DestinationException() {
-		super();
 	}
 
 	public DestinationException(String msg) {

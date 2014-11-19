@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class OAuthApplicationCallbackURIException extends PortalException {
 
 	public OAuthApplicationCallbackURIException() {
-		super();
 	}
 
 	public OAuthApplicationCallbackURIException(String msg) {

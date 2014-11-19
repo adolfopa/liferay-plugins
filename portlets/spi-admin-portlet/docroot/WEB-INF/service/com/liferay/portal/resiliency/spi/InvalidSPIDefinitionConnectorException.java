@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class InvalidSPIDefinitionConnectorException extends PortalException {
 
 	public InvalidSPIDefinitionConnectorException() {
-		super();
 	}
 
 	public InvalidSPIDefinitionConnectorException(String msg) {

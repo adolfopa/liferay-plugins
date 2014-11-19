@@ -24,7 +24,6 @@ public class MeetingException extends PortalException {
 	public static final int INVALID_EMAIL_ADDRESS = 1;
 
 	public MeetingException() {
-		super();
 	}
 
 	public MeetingException(int type) {

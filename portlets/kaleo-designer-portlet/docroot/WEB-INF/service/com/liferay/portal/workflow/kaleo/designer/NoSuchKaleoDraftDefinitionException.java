@@ -22,7 +22,6 @@ import com.liferay.portal.NoSuchModelException;
 public class NoSuchKaleoDraftDefinitionException extends NoSuchModelException {
 
 	public NoSuchKaleoDraftDefinitionException() {
-		super();
 	}
 
 	public NoSuchKaleoDraftDefinitionException(String msg) {

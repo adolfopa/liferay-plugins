@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class SourceCharsetException extends PortalException {
 
 	public SourceCharsetException() {
-		super();
 	}
 
 	public SourceCharsetException(String msg) {

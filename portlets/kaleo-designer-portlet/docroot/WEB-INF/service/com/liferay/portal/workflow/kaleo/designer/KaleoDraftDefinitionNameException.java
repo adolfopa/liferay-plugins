@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class KaleoDraftDefinitionNameException extends PortalException {
 
 	public KaleoDraftDefinitionNameException() {
-		super();
 	}
 
 	public KaleoDraftDefinitionNameException(String msg) {
