@@ -285,7 +285,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 
 	@Override
 	public void checkInFileEntry(
-			long fileEntryId, boolean major, String changeLog,
+			long userId, long fileEntryId, boolean major, String changeLog,
 			ServiceContext serviceContext)
 		throws PortalException {
 
@@ -314,7 +314,8 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 
 	@Override
 	public void checkInFileEntry(
-		long fileEntryId, String lockUuid, ServiceContext serviceContext) {
+		long userId, long fileEntryId, String lockUuid,
+		ServiceContext serviceContext) {
 
 		throw new UnsupportedOperationException();
 	}
@@ -1063,7 +1064,8 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 
 	@Override
 	public void revertFileEntry(
-			long fileEntryId, String version, ServiceContext serviceContext)
+			long userId, long fileEntryId, String version,
+			ServiceContext serviceContext)
 		throws PortalException {
 
 		IDfSession idfSession = null;
