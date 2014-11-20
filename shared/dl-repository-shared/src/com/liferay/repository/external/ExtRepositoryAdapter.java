@@ -646,7 +646,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 		List<String> extRepositorySubfolderKeys =
 			_extRepository.getSubfolderKeys(extRepositoryFolderKey, recurse);
 
-		List<Long> subfolderIds = new ArrayList<>();
+		List<Long> subfolderIds = new ArrayList<Long>();
 
 		for (String extRepositorySubfolderKey : extRepositorySubfolderKeys) {
 			Object[] ids = getRepositoryEntryIds(extRepositorySubfolderKey);
@@ -690,13 +690,21 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 			_extRepository.initRepository(
 				getTypeSettingsProperties(), credentialsProvider);
 		}
-		catch (PortalException | SystemException e) {
+		catch (PortalException pe) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Unable to initialize repository " + _extRepository, e);
+					"Unable to initialize repository " + _extRepository, pe);
 			}
 
-			throw e;
+			throw pe;
+		}
+		catch (SystemException se) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(
+					"Unable to initialize repository " + _extRepository, se);
+			}
+
+			throw se;
 		}
 	}
 
@@ -883,15 +891,18 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 			extRepositorySearchResults = _extRepository.search(
 				searchContext, query, new ExtRepositoryQueryMapperImpl(this));
 		}
-		catch (PortalException | SystemException e) {
-			throw new SearchException("Unable to perform search", e);
+		catch (PortalException pe) {
+			throw new SearchException("Unable to perform search", pe);
+		}
+		catch (SystemException se) {
+			throw new SearchException("Unable to perform search", se);
 		}
 
 		QueryConfig queryConfig = searchContext.getQueryConfig();
 
-		List<Document> documents = new ArrayList<>();
-		List<String> snippets = new ArrayList<>();
-		List<Float> scores = new ArrayList<>();
+		List<Document> documents = new ArrayList<Document>();
+		List<String> snippets = new ArrayList<String>();
+		List<Float> scores = new ArrayList<Float>();
 
 		int total = 0;
 
@@ -928,9 +939,14 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 
 				total++;
 			}
-			catch (PortalException | SystemException e) {
+			catch (SystemException se) {
 				if (_log.isWarnEnabled()) {
-					_log.warn("Invalid entry returned from search", e);
+					_log.warn("Invalid entry returned from search", se);
+				}
+			}
+			catch (PortalException pe) {
+				if (_log.isWarnEnabled()) {
+					_log.warn("Invalid entry returned from search", pe);
 				}
 			}
 		}
@@ -1102,9 +1118,10 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 			return extRepositoryObjects;
 		}
 
-		Set<String> allowedMimeTypes = new HashSet<>(Arrays.asList(mimeTypes));
+		Set<String> allowedMimeTypes = new HashSet<String>(
+			Arrays.asList(mimeTypes));
 
-		List<T> filteredExtRepositoryObjects = new ArrayList<>();
+		List<T> filteredExtRepositoryObjects = new ArrayList<T>();
 
 		for (T extRepositoryObject : extRepositoryObjects) {
 			if (extRepositoryObject instanceof ExtRepositoryFileEntryAdapter) {
@@ -1164,7 +1181,17 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 				}
 			}
 		}
-		catch (PortalException | SystemException e) {
+		catch (PortalException e) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(
+					"Unable to get login to connect to external repository " +
+						_extRepository,
+					e);
+			}
+
+			login = null;
+		}
+		catch (SystemException e) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					"Unable to get login to connect to external repository " +
@@ -1260,7 +1287,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 		throws PortalException {
 
 		List<ExtRepositoryFileVersionAdapter> extRepositoryFileVersionAdapters =
-			new ArrayList<>();
+			new ArrayList<ExtRepositoryFileVersionAdapter>();
 
 		for (ExtRepositoryFileVersion extRepositoryFileVersion :
 				extRepositoryFileVersions) {
@@ -1365,7 +1392,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 				List<? extends ExtRepositoryObject> extRepositoryObjects)
 		throws PortalException {
 
-		List<T> extRepositoryObjectAdapters = new ArrayList<>();
+		List<T> extRepositoryObjectAdapters = new ArrayList<T>();
 
 		for (ExtRepositoryObject extRepositoryObject : extRepositoryObjects) {
 			extRepositoryObjectAdapters.add(
