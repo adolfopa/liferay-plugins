@@ -79,6 +79,7 @@
 
 			total = AuditEventLocalServiceUtil.getAuditEventsCount(themeDisplay.getCompanyId(), new Long(number), keywords, null, null, keywords, keywords, keywords, keywords, keywords, keywords, new Integer(number), keywords, false);
 
+			searchContainer.setTotal(total);
 			searchContainer.setResults(AuditEventLocalServiceUtil.getAuditEvents(themeDisplay.getCompanyId(), new Long(number), keywords, null, null, keywords, keywords, keywords, keywords, keywords, keywords, new Integer(number), keywords, false, searchContainer.getStart(), searchContainer.getEnd(), new AuditEventCreateDateComparator()));
 		}
 		%>
