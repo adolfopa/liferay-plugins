@@ -41,7 +41,6 @@ public interface WebSsoProfile {
 		throws PortalException;
 
 	public void updateSamlSpSession(
-		HttpServletRequest request,
-		HttpServletResponse httpServletResponse);
+		HttpServletRequest request, HttpServletResponse httpServletResponse);
 
 }

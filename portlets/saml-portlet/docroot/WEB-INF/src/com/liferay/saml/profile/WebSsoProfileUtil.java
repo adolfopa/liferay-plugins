@@ -55,14 +55,14 @@ public class WebSsoProfileUtil {
 		getWebSsoProfile().sendAuthnRequest(request, response, relayState);
 	}
 
-	public void setWebSsoProfile(WebSsoProfile webSsoProfile) {
-		_webSsoProfile = webSsoProfile;
-	}
-
 	public static void updateSamlSpSession(
 		HttpServletRequest request, HttpServletResponse response) {
 
 		getWebSsoProfile().updateSamlSpSession(request, response);
+	}
+
+	public void setWebSsoProfile(WebSsoProfile webSsoProfile) {
+		_webSsoProfile = webSsoProfile;
 	}
 
 	private static WebSsoProfile _webSsoProfile;

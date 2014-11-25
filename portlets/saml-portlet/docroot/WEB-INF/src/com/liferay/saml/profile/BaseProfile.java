@@ -277,7 +277,7 @@ public abstract class BaseProfile {
 
 		String samlSpSessionKey = (String)session.getAttribute(
 			PortletWebKeys.SAML_SP_SESSION_KEY);
-		
+
 		if (Validator.isNull(samlSpSessionKey)) {
 			samlSpSessionKey = CookieKeys.getCookie(
 				request, PortletWebKeys.SAML_SP_SESSION_KEY);
