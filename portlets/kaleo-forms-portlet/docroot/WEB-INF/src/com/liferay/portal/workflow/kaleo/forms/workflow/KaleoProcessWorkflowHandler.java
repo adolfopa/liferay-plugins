@@ -15,6 +15,8 @@
 package com.liferay.portal.workflow.kaleo.forms.workflow;
 
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.workflow.BaseWorkflowHandler;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -25,6 +27,7 @@ import com.liferay.portal.service.WorkflowDefinitionLinkLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess;
 import com.liferay.portal.workflow.kaleo.forms.service.KaleoProcessLocalServiceUtil;
 import com.liferay.portlet.dynamicdatalists.model.DDLRecord;
+import com.liferay.portlet.dynamicdatalists.model.DDLRecordSet;
 import com.liferay.portlet.dynamicdatalists.model.DDLRecordVersion;
 import com.liferay.portlet.dynamicdatalists.service.DDLRecordLocalServiceUtil;
 
@@ -44,6 +47,29 @@ public class KaleoProcessWorkflowHandler
 	@Override
 	public String getClassName() {
 		return CLASS_NAME;
+	}
+
+	@Override
+	public String getTitle(long classPK, Locale locale) {
+		try {
+			DDLRecord ddlRecord = DDLRecordLocalServiceUtil.getDDLRecord(
+				classPK);
+
+			KaleoProcess kaleoProcess =
+				KaleoProcessLocalServiceUtil.getDDLRecordSetKaleoProcess(
+					ddlRecord.getRecordSetId());
+
+			DDLRecordSet ddlRecordSet = kaleoProcess.getDDLRecordSet();
+
+			return ddlRecordSet.getName(locale);
+		}
+		catch (Exception e) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(e, e);
+			}
+		}
+
+		return null;
 	}
 
 	@Override
@@ -108,5 +134,8 @@ public class KaleoProcessWorkflowHandler
 		return DDLRecordLocalServiceUtil.updateStatus(
 			userId, recordVersion.getRecordVersionId(), status, serviceContext);
 	}
+
+	private static Log _log = LogFactoryUtil.getLog(
+					KaleoProcessWorkflowHandler.class);
 
 }
