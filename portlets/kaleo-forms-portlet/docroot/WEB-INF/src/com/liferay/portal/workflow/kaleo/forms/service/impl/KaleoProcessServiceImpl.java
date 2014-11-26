@@ -25,6 +25,8 @@ import com.liferay.portal.workflow.kaleo.forms.util.ActionKeys;
 import com.liferay.portal.workflow.kaleo.forms.util.TaskFormPairs;
 
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 /**
  * @author Marcellus Tavares
@@ -32,7 +34,8 @@ import java.util.List;
 public class KaleoProcessServiceImpl extends KaleoProcessServiceBaseImpl {
 
 	public KaleoProcess addKaleoProcess(
-			long groupId, long ddlRecordSetId, long ddmTemplateId,
+			long groupId, long ddmStructureId, Map<Locale, String> nameMap,
+			Map<Locale, String> descriptionMap, long ddmTemplateId,
 			String workflowDefinitionName, long workflowDefinitionVersion,
 			TaskFormPairs taskFormPairs, ServiceContext serviceContext)
 		throws PortalException {
@@ -41,9 +44,9 @@ public class KaleoProcessServiceImpl extends KaleoProcessServiceBaseImpl {
 			getPermissionChecker(), groupId, ActionKeys.ADD_PROCESS);
 
 		return kaleoProcessLocalService.addKaleoProcess(
-			getUserId(), groupId, ddlRecordSetId, ddmTemplateId,
-			workflowDefinitionName, workflowDefinitionVersion, taskFormPairs,
-			serviceContext);
+			getUserId(), groupId, ddmStructureId, nameMap, descriptionMap,
+			ddmTemplateId, workflowDefinitionName, workflowDefinitionVersion,
+			taskFormPairs, serviceContext);
 	}
 
 	public KaleoProcess deleteKaleoProcess(long kaleoProcessId)
@@ -53,15 +56,6 @@ public class KaleoProcessServiceImpl extends KaleoProcessServiceBaseImpl {
 			getPermissionChecker(), kaleoProcessId, ActionKeys.DELETE);
 
 		return kaleoProcessLocalService.deleteKaleoProcess(kaleoProcessId);
-	}
-
-	public void deleteKaleoProcessData(long kaleoProcessId)
-		throws PortalException {
-
-		KaleoProcessPermission.check(
-			getPermissionChecker(), kaleoProcessId, ActionKeys.DELETE);
-
-		kaleoProcessLocalService.deleteKaleoProcessData(kaleoProcessId);
 	}
 
 	public KaleoProcess getKaleoProcess(long kaleoProcessId)
@@ -85,17 +79,20 @@ public class KaleoProcessServiceImpl extends KaleoProcessServiceBaseImpl {
 	}
 
 	public KaleoProcess updateKaleoProcess(
-			long kaleoProcessId, long ddmTemplateId,
-			String workflowDefinitionName, long workflowDefinitionVersion,
-			TaskFormPairs taskFormPairs, ServiceContext serviceContext)
+			long kaleoProcessId, long ddmStructureId,
+			Map<Locale, String> nameMap, Map<Locale, String> descriptionMap,
+			long ddmTemplateId, String workflowDefinitionName,
+			long workflowDefinitionVersion, TaskFormPairs taskFormPairs,
+			ServiceContext serviceContext)
 		throws PortalException {
 
 		KaleoProcessPermission.check(
 			getPermissionChecker(), kaleoProcessId, ActionKeys.UPDATE);
 
 		return kaleoProcessLocalService.updateKaleoProcess(
-			kaleoProcessId, ddmTemplateId, workflowDefinitionName,
-			workflowDefinitionVersion, taskFormPairs, serviceContext);
+			kaleoProcessId, ddmStructureId, nameMap, descriptionMap,
+			ddmTemplateId, workflowDefinitionName, workflowDefinitionVersion,
+			taskFormPairs, serviceContext);
 	}
 
 }

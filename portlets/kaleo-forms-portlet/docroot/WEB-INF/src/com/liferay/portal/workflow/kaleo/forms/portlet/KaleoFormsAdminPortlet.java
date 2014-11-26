@@ -59,10 +59,7 @@ import com.liferay.portal.workflow.kaleo.forms.util.TaskFormPairs;
 import com.liferay.portal.workflow.kaleo.forms.util.WebKeys;
 import com.liferay.portlet.dynamicdatalists.RecordSetDDMStructureIdException;
 import com.liferay.portlet.dynamicdatalists.RecordSetNameException;
-import com.liferay.portlet.dynamicdatalists.model.DDLRecordSet;
-import com.liferay.portlet.dynamicdatalists.model.DDLRecordSetConstants;
 import com.liferay.portlet.dynamicdatalists.service.DDLRecordServiceUtil;
-import com.liferay.portlet.dynamicdatalists.service.DDLRecordSetServiceUtil;
 import com.liferay.portlet.dynamicdatalists.util.DDLExportFormat;
 import com.liferay.portlet.dynamicdatalists.util.DDLExporter;
 import com.liferay.portlet.dynamicdatalists.util.DDLExporterFactory;
@@ -369,6 +366,12 @@ public class KaleoFormsAdminPortlet extends BaseKaleoFormsPorlet {
 			actionRequest, "kaleoProcessId");
 
 		long groupId = ParamUtil.getLong(actionRequest, "groupId");
+		long ddmStructureId = ParamUtil.getLong(
+			actionRequest, "ddmStructureId");
+		Map<Locale, String> nameMap = LocalizationUtil.getLocalizationMap(
+			actionRequest, "name");
+		Map<Locale, String> descriptionMap =
+			LocalizationUtil.getLocalizationMap(actionRequest, "description");
 		long ddmTemplateId = ParamUtil.getLong(actionRequest, "ddmTemplateId");
 		String workflowDefinitionName = ParamUtil.getString(
 			actionRequest, "workflowDefinitionName");
@@ -382,21 +385,18 @@ public class KaleoFormsAdminPortlet extends BaseKaleoFormsPorlet {
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			KaleoProcess.class.getName(), actionRequest);
 
-		deleteKaleoProcessData(kaleoProcessId, actionRequest);
-
-		DDLRecordSet ddlRecordSet = updateDDLRecordSet(actionRequest);
-
 		KaleoProcess kaleoProcess = null;
 
 		if (kaleoProcessId <= 0) {
 			kaleoProcess = KaleoProcessServiceUtil.addKaleoProcess(
-				groupId, ddlRecordSet.getRecordSetId(), ddmTemplateId,
+				groupId, ddmStructureId, nameMap, descriptionMap, ddmTemplateId,
 				workflowDefinitionName, workflowDefinitionVersion,
 				taskFormPairs, serviceContext);
 		}
 		else {
 			kaleoProcess = KaleoProcessServiceUtil.updateKaleoProcess(
-				kaleoProcessId, ddmTemplateId, workflowDefinitionName,
+				kaleoProcessId, ddmStructureId, nameMap, descriptionMap,
+				ddmTemplateId, workflowDefinitionName,
 				workflowDefinitionVersion, taskFormPairs, serviceContext);
 		}
 
@@ -463,31 +463,6 @@ public class KaleoFormsAdminPortlet extends BaseKaleoFormsPorlet {
 			else {
 				throw e;
 			}
-		}
-	}
-
-	protected void deleteKaleoProcessData(
-			long kaleoProcessId, ActionRequest actionRequest)
-		throws PortalException {
-
-		if (kaleoProcessId <= 0) {
-			return;
-		}
-
-		long ddmSructureId = ParamUtil.getLong(actionRequest, "ddmStructureId");
-
-		String workflowDefinition = ParamUtil.getString(
-			actionRequest, "workflowDefinition");
-
-		KaleoProcess kaleoProcess = KaleoProcessServiceUtil.getKaleoProcess(
-			kaleoProcessId);
-
-		DDLRecordSet ddlRecordSet = kaleoProcess.getDDLRecordSet();
-
-		if ((ddmSructureId != ddlRecordSet.getDDMStructureId()) ||
-			!workflowDefinition.equals(kaleoProcess.getWorkflowDefinition())) {
-
-			KaleoProcessServiceUtil.deleteKaleoProcessData(kaleoProcessId);
 		}
 	}
 
@@ -665,41 +640,6 @@ public class KaleoFormsAdminPortlet extends BaseKaleoFormsPorlet {
 
 		PortletResponseUtil.sendFile(
 			resourceRequest, resourceResponse, fileName, bytes, contentType);
-	}
-
-	protected DDLRecordSet updateDDLRecordSet(ActionRequest actionRequest)
-		throws Exception {
-
-		long ddlRecordSetId = ParamUtil.getLong(
-			actionRequest, "ddlRecordSetId");
-
-		long groupId = ParamUtil.getLong(actionRequest, "groupId");
-		long ddmStructureId = ParamUtil.getLong(
-			actionRequest, "ddmStructureId");
-		Map<Locale, String> nameMap = LocalizationUtil.getLocalizationMap(
-			actionRequest, "name");
-		Map<Locale, String> descriptionMap =
-			LocalizationUtil.getLocalizationMap(actionRequest, "description");
-		int scope = ParamUtil.getInteger(actionRequest, "scope");
-
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			DDLRecordSet.class.getName(), actionRequest);
-
-		DDLRecordSet ddlRecordSet = null;
-
-		if (ddlRecordSetId <= 0) {
-			ddlRecordSet = DDLRecordSetServiceUtil.addRecordSet(
-				groupId, ddmStructureId, null, nameMap, descriptionMap,
-				DDLRecordSetConstants.MIN_DISPLAY_ROWS_DEFAULT, scope,
-				serviceContext);
-		}
-		else {
-			ddlRecordSet = DDLRecordSetServiceUtil.updateRecordSet(
-				ddlRecordSetId, ddmStructureId, nameMap, descriptionMap,
-				DDLRecordSetConstants.MIN_DISPLAY_ROWS_DEFAULT, serviceContext);
-		}
-
-		return ddlRecordSet;
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
