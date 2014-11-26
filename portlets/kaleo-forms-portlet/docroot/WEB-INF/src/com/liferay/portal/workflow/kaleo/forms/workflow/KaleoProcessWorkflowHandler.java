@@ -17,6 +17,7 @@ package com.liferay.portal.workflow.kaleo.forms.workflow;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.portlet.LiferayPortletURL;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.workflow.BaseWorkflowHandler;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -26,6 +27,8 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.WorkflowDefinitionLinkLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess;
 import com.liferay.portal.workflow.kaleo.forms.service.KaleoProcessLocalServiceUtil;
+import com.liferay.portal.workflow.kaleo.forms.util.PortletKeys;
+import com.liferay.portlet.PortletURLFactoryUtil;
 import com.liferay.portlet.dynamicdatalists.model.DDLRecord;
 import com.liferay.portlet.dynamicdatalists.model.DDLRecordSet;
 import com.liferay.portlet.dynamicdatalists.model.DDLRecordVersion;
@@ -35,6 +38,12 @@ import java.io.Serializable;
 
 import java.util.Locale;
 import java.util.Map;
+
+import javax.portlet.PortletMode;
+import javax.portlet.PortletModeException;
+import javax.portlet.PortletRequest;
+import javax.portlet.WindowState;
+import javax.portlet.WindowStateException;
 
 /**
  * @author Marcellus Tavares
@@ -82,7 +91,28 @@ public class KaleoProcessWorkflowHandler
 			long workflowTaskId, ServiceContext serviceContext)
 		throws PortalException {
 
-		return null;
+		try {
+			LiferayPortletURL liferayPortletURL = PortletURLFactoryUtil.create(
+				serviceContext.getRequest(), PortletKeys.KALEO_FORMS,
+				serviceContext.getPlid(), PortletRequest.RENDER_PHASE);
+
+			String currentURL = liferayPortletURL.toString();
+
+			liferayPortletURL.setParameter("backURL", currentURL);
+			liferayPortletURL.setParameter("tabs2", "edit-workflow-task");
+			liferayPortletURL.setParameter(
+				"workflowTaskId", String.valueOf(workflowTaskId));
+			liferayPortletURL.setPortletMode(new PortletMode("view"));
+			liferayPortletURL.setWindowState(WindowState.NORMAL);
+
+			return liferayPortletURL.toString();
+		}
+		catch (PortletModeException pme) {
+			throw new PortalException(pme);
+		}
+		catch (WindowStateException wse) {
+			throw new PortalException(wse);
+		}
 	}
 
 	@Override
