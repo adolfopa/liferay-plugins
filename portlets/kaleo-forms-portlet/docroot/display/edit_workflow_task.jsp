@@ -38,9 +38,11 @@ KaleoProcess kaleoProcess = KaleoProcessLocalServiceUtil.getDDLRecordSetKaleoPro
 
 DDLRecordSet ddlRecordSet = kaleoProcess.getDDLRecordSet();
 
+WorkflowHandler<?> workflowHandler = WorkflowHandlerRegistryUtil.getWorkflowHandler(className);
+
 String headerTitle = LanguageUtil.get(request, workflowTask.getName());
 
-headerTitle = headerTitle.concat(StringPool.COLON + StringPool.SPACE + ddlRecordSet.getName(locale));
+headerTitle = headerTitle.concat(StringPool.COLON + StringPool.SPACE + workflowHandler.getTitle(classPK, locale));
 %>
 
 <liferay-ui:header

@@ -18,6 +18,8 @@
 
 <%@ page import="com.liferay.portal.kernel.dao.orm.QueryUtil" %><%@
 page import="com.liferay.portal.kernel.util.StringUtil" %><%@
+page import="com.liferay.portal.kernel.workflow.WorkflowHandler" %><%@
+page import="com.liferay.portal.kernel.workflow.WorkflowHandlerRegistryUtil" %><%@
 page import="com.liferay.portal.kernel.workflow.WorkflowInstance" %><%@
 page import="com.liferay.portal.kernel.workflow.WorkflowInstanceManagerUtil" %><%@
 page import="com.liferay.portal.kernel.workflow.WorkflowLog" %><%@
