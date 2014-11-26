@@ -24,11 +24,10 @@
 	<model-resource>
 		<model-name>com.liferay.portal.workflow.kaleo.forms</model-name>
 		<portlet-ref>
-			<portlet-name>1</portlet-name>
+			<portlet-name>2</portlet-name>
 		</portlet-ref>
 		<permissions>
 			<supports>
-				<action-key>ADD_PORTLET_DISPLAY_TEMPLATE</action-key>
 				<action-key>ADD_PROCESS</action-key>
 				<action-key>ADD_STRUCTURE</action-key>
 				<action-key>ADD_TEMPLATE</action-key>
@@ -48,6 +47,7 @@
 		<model-name>com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess</model-name>
 		<portlet-ref>
 			<portlet-name>1</portlet-name>
+			<portlet-name>2</portlet-name>
 		</portlet-ref>
 		<permissions>
 			<supports>
