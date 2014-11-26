@@ -72,6 +72,7 @@ public class KaleoProcessLocalServiceImpl
 			serviceContext);
 
 		kaleoProcess.setDDLRecordSetId(ddlRecordSet.getRecordSetId());
+
 		kaleoProcess.setDDMTemplateId(ddmTemplateId);
 		kaleoProcess.setWorkflowDefinitionName(workflowDefinitionName);
 		kaleoProcess.setWorkflowDefinitionVersion(workflowDefinitionVersion);
@@ -160,13 +161,13 @@ public class KaleoProcessLocalServiceImpl
 			ServiceContext serviceContext)
 		throws PortalException {
 
+		// Kaleo process
+
 		KaleoProcess kaleoProcess = kaleoProcessPersistence.findByPrimaryKey(
 			kaleoProcessId);
 
-		boolean isKaleoProcessDataStale = isKaleoProcessDataStale(
+		boolean kaleoProcessDataStale = isKaleoProcessDataStale(
 			kaleoProcess, ddmStructureId, workflowDefinitionName);
-
-		// Kaleo process
 
 		validate(ddmTemplateId);
 
@@ -177,12 +178,6 @@ public class KaleoProcessLocalServiceImpl
 
 		kaleoProcessPersistence.update(kaleoProcess);
 
-		// DDL record set
-
-		updateDDLRecordSet(
-			kaleoProcess.getDDLRecordSetId(), ddmStructureId, nameMap,
-			descriptionMap, serviceContext);
-
 		// Kaleo process links
 
 		kaleoProcessLinkLocalService.deleteKaleoProcessLinks(kaleoProcessId);
@@ -191,9 +186,15 @@ public class KaleoProcessLocalServiceImpl
 
 		// Kaleo process data
 
-		if (isKaleoProcessDataStale) {
+		if (kaleoProcessDataStale) {
 			deleteKaleoProcessData(kaleoProcess);
 		}
+
+		// Dynamic data lists record set
+
+		updateDDLRecordSet(
+			kaleoProcess.getDDLRecordSetId(), ddmStructureId, nameMap,
+			descriptionMap, serviceContext);
 
 		return kaleoProcess;
 	}
