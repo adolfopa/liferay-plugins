@@ -24,8 +24,6 @@ KaleoProcess kaleoProcess = (KaleoProcess)request.getAttribute(WebKeys.KALEO_PRO
 
 long kaleoProcessId = BeanParamUtil.getLong(kaleoProcess, request, "kaleoProcessId");
 
-long ddlRecordSetId = BeanParamUtil.getLong(kaleoProcess, request, "DDLRecordSetId");
-
 long ddmStructureId = KaleoFormsUtil.getKaleoProcessDDMStructureId(kaleoProcess, portletSession);
 
 String ddmStructureName = StringPool.BLANK;
@@ -50,7 +48,6 @@ JSONArray availableDefinitionsJSONArray = JSONFactoryUtil.createJSONArray();
 
 	<aui:a cssClass="badge badge-info kaleo-process-preview-definition" data-definition-id="<%= ddmStructureId %>" href="javascript:;" id="ddmStructureDisplay" label="<%= HtmlUtil.escape(ddmStructureName) %>" />
 
-	<aui:input name="ddlRecordSetId" type="hidden" value="<%= ddlRecordSetId %>" />
 	<aui:input name="ddmStructureId" type="hidden" value="<%= ddmStructureId %>" />
 
 	<aui:input name="ddmStructureName" type="hidden" value="<%= ddmStructureName %>">
@@ -89,14 +86,16 @@ JSONArray availableDefinitionsJSONArray = JSONFactoryUtil.createJSONArray();
 
 	</liferay-ui:search-container-results>
 
-	<portlet:renderURL var="editDefinitionURL">
-		<portlet:param name="mvcPath" value="/admin/process/edit_structure.jsp" />
-		<portlet:param name="redirect" value="<%= currentSectionURL %>" />
-	</portlet:renderURL>
+	<c:if test="<%= permissionChecker.hasPermission(scopeGroupId, ddmDisplay.getResourceName(), scopeGroupId, ddmDisplay.getAddStructureActionId()) %>">
+		<portlet:renderURL var="editDefinitionURL">
+			<portlet:param name="mvcPath" value="/admin/process/edit_structure.jsp" />
+			<portlet:param name="redirect" value="<%= currentSectionURL %>" />
+		</portlet:renderURL>
 
-	<aui:button-row>
-		<aui:button href="<%= editDefinitionURL.toString() %>" primary="<%= true %>" value="add-field-set" />
-	</aui:button-row>
+		<aui:button-row>
+			<aui:button href="<%= editDefinitionURL.toString() %>" primary="<%= true %>" value="add-field-set" />
+		</aui:button-row>
+	</c:if>
 
 	<liferay-ui:search-container-row
 		className="com.liferay.portlet.dynamicdatamapping.model.DDMStructure"

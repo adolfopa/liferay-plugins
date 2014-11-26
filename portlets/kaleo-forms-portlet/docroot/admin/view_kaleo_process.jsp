@@ -41,14 +41,16 @@ portletURL.setParameter("kaleoProcessId", String.valueOf(kaleoProcessId));
 	>
 		<aui:nav-bar>
 			<aui:nav cssClass="navbar-nav" searchContainer="<%= searchContainer %>">
-				<portlet:renderURL var="submitURL">
-					<portlet:param name="mvcPath" value="/admin/edit_request.jsp" />
-					<portlet:param name="redirect" value="<%= currentURL %>" />
-					<portlet:param name="backURL" value="<%= currentURL %>" />
-					<portlet:param name="kaleoProcessId" value="<%= String.valueOf(kaleoProcessId) %>" />
-				</portlet:renderURL>
+				<c:if test="<%= KaleoProcessPermission.contains(permissionChecker, kaleoProcess, ActionKeys.SUBMIT) %>">
+					<portlet:renderURL var="submitURL">
+						<portlet:param name="mvcPath" value="/admin/edit_request.jsp" />
+						<portlet:param name="redirect" value="<%= currentURL %>" />
+						<portlet:param name="backURL" value="<%= currentURL %>" />
+						<portlet:param name="kaleoProcessId" value="<%= String.valueOf(kaleoProcessId) %>" />
+					</portlet:renderURL>
 
-				<aui:nav-item href="<%= submitURL %>" iconCssClass="icon-plus" label='<%= LanguageUtil.format(request, "submit-new-x", HtmlUtil.escape(kaleoProcess.getName(locale)), false) %>' />
+					<aui:nav-item href="<%= submitURL %>" iconCssClass="icon-plus" label='<%= LanguageUtil.format(request, "submit-new-x", HtmlUtil.escape(kaleoProcess.getName(locale)), false) %>' />
+				</c:if>
 
 				<portlet:resourceURL id="kaleoProcess" var="exportURL">
 					<portlet:param name="kaleoProcessId" value="<%= String.valueOf(kaleoProcess.getKaleoProcessId()) %>" />
