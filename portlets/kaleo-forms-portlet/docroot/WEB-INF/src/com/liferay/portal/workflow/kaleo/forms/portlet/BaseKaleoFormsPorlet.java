@@ -184,7 +184,7 @@ public abstract class BaseKaleoFormsPorlet extends MVCPortlet {
 		long ddlRecordSetId = ParamUtil.getLong(request, "ddlRecordSetId");
 
 		return DDLUtil.updateRecord(
-			ddlRecordId, ddlRecordSetId, true, true, serviceContext);
+			ddlRecordId, ddlRecordSetId, true, false, serviceContext);
 	}
 
 }
