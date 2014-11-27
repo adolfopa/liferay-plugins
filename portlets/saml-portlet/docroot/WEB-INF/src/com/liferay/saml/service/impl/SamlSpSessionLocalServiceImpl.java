@@ -130,8 +130,8 @@ public class SamlSpSessionLocalServiceImpl
 		SamlSpSession samlSpSession = samlSpSessionPersistence.findByPrimaryKey(
 			samlSpSessionId);
 
-		samlSpSession.setJSessionId(jSessionId);
 		samlSpSession.setModifiedDate(new Date());
+		samlSpSession.setJSessionId(jSessionId);
 
 		samlSpSessionPersistence.update(samlSpSession);
 
