@@ -30,7 +30,8 @@ public class KaleoProcessServiceClp implements KaleoProcessService {
 		_methodName0 = "addKaleoProcess";
 
 		_methodParameterTypes0 = new String[] {
-				"long", "long", "long", "java.lang.String", "long",
+				"long", "long", "java.util.Map", "java.util.Map", "long",
+				"java.lang.String", "long",
 				"com.liferay.portal.workflow.kaleo.forms.util.TaskFormPairs",
 				"com.liferay.portal.service.ServiceContext"
 			};
@@ -39,37 +40,34 @@ public class KaleoProcessServiceClp implements KaleoProcessService {
 
 		_methodParameterTypes1 = new String[] { "long" };
 
-		_methodName2 = "deleteKaleoProcessData";
+		_methodName2 = "getBeanIdentifier";
 
-		_methodParameterTypes2 = new String[] { "long" };
+		_methodParameterTypes2 = new String[] {  };
 
-		_methodName3 = "getBeanIdentifier";
+		_methodName3 = "getKaleoProcess";
 
-		_methodParameterTypes3 = new String[] {  };
+		_methodParameterTypes3 = new String[] { "long" };
 
-		_methodName4 = "getKaleoProcess";
+		_methodName4 = "getKaleoProcesses";
 
-		_methodParameterTypes4 = new String[] { "long" };
-
-		_methodName5 = "getKaleoProcesses";
-
-		_methodParameterTypes5 = new String[] {
+		_methodParameterTypes4 = new String[] {
 				"long", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName6 = "getKaleoProcessesCount";
+		_methodName5 = "getKaleoProcessesCount";
 
-		_methodParameterTypes6 = new String[] { "long" };
+		_methodParameterTypes5 = new String[] { "long" };
 
-		_methodName8 = "setBeanIdentifier";
+		_methodName7 = "setBeanIdentifier";
 
-		_methodParameterTypes8 = new String[] { "java.lang.String" };
+		_methodParameterTypes7 = new String[] { "java.lang.String" };
 
-		_methodName9 = "updateKaleoProcess";
+		_methodName8 = "updateKaleoProcess";
 
-		_methodParameterTypes9 = new String[] {
-				"long", "long", "java.lang.String", "long",
+		_methodParameterTypes8 = new String[] {
+				"long", "long", "java.util.Map", "java.util.Map", "long",
+				"java.lang.String", "long",
 				"com.liferay.portal.workflow.kaleo.forms.util.TaskFormPairs",
 				"com.liferay.portal.service.ServiceContext"
 			};
@@ -77,8 +75,10 @@ public class KaleoProcessServiceClp implements KaleoProcessService {
 
 	@Override
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess addKaleoProcess(
-		long groupId, long ddlRecordSetId, long ddmTemplateId,
-		java.lang.String workflowDefinitionName,
+		long groupId, long ddmStructureId,
+		java.util.Map<java.util.Locale, java.lang.String> nameMap,
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		long ddmTemplateId, java.lang.String workflowDefinitionName,
 		long workflowDefinitionVersion,
 		com.liferay.portal.workflow.kaleo.forms.util.TaskFormPairs taskFormPairs,
 		com.liferay.portal.service.ServiceContext serviceContext)
@@ -91,7 +91,11 @@ public class KaleoProcessServiceClp implements KaleoProcessService {
 					new Object[] {
 						groupId,
 						
-					ddlRecordSetId,
+					ddmStructureId,
+						
+					ClpSerializer.translateInput(nameMap),
+						
+					ClpSerializer.translateInput(descriptionMap),
 						
 					ddmTemplateId,
 						
@@ -153,36 +157,12 @@ public class KaleoProcessServiceClp implements KaleoProcessService {
 	}
 
 	@Override
-	public void deleteKaleoProcessData(long kaleoProcessId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		try {
-			_invokableService.invokeMethod(_methodName2,
-				_methodParameterTypes2, new Object[] { kaleoProcessId });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	@Override
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName3,
-					_methodParameterTypes3, new Object[] {  });
+			returnObj = _invokableService.invokeMethod(_methodName2,
+					_methodParameterTypes2, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -206,8 +186,8 @@ public class KaleoProcessServiceClp implements KaleoProcessService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName4,
-					_methodParameterTypes4, new Object[] { kaleoProcessId });
+			returnObj = _invokableService.invokeMethod(_methodName3,
+					_methodParameterTypes3, new Object[] { kaleoProcessId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -235,8 +215,8 @@ public class KaleoProcessServiceClp implements KaleoProcessService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName5,
-					_methodParameterTypes5,
+			returnObj = _invokableService.invokeMethod(_methodName4,
+					_methodParameterTypes4,
 					new Object[] {
 						groupId,
 						
@@ -267,8 +247,8 @@ public class KaleoProcessServiceClp implements KaleoProcessService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName6,
-					_methodParameterTypes6, new Object[] { groupId });
+			returnObj = _invokableService.invokeMethod(_methodName5,
+					_methodParameterTypes5, new Object[] { groupId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -295,8 +275,8 @@ public class KaleoProcessServiceClp implements KaleoProcessService {
 	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		try {
-			_invokableService.invokeMethod(_methodName8,
-				_methodParameterTypes8,
+			_invokableService.invokeMethod(_methodName7,
+				_methodParameterTypes7,
 				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
 		}
 		catch (Throwable t) {
@@ -314,8 +294,10 @@ public class KaleoProcessServiceClp implements KaleoProcessService {
 
 	@Override
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess updateKaleoProcess(
-		long kaleoProcessId, long ddmTemplateId,
-		java.lang.String workflowDefinitionName,
+		long kaleoProcessId, long ddmStructureId,
+		java.util.Map<java.util.Locale, java.lang.String> nameMap,
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		long ddmTemplateId, java.lang.String workflowDefinitionName,
 		long workflowDefinitionVersion,
 		com.liferay.portal.workflow.kaleo.forms.util.TaskFormPairs taskFormPairs,
 		com.liferay.portal.service.ServiceContext serviceContext)
@@ -323,10 +305,16 @@ public class KaleoProcessServiceClp implements KaleoProcessService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName9,
-					_methodParameterTypes9,
+			returnObj = _invokableService.invokeMethod(_methodName8,
+					_methodParameterTypes8,
 					new Object[] {
 						kaleoProcessId,
+						
+					ddmStructureId,
+						
+					ClpSerializer.translateInput(nameMap),
+						
+					ClpSerializer.translateInput(descriptionMap),
 						
 					ddmTemplateId,
 						
@@ -371,10 +359,8 @@ public class KaleoProcessServiceClp implements KaleoProcessService {
 	private String[] _methodParameterTypes4;
 	private String _methodName5;
 	private String[] _methodParameterTypes5;
-	private String _methodName6;
-	private String[] _methodParameterTypes6;
+	private String _methodName7;
+	private String[] _methodParameterTypes7;
 	private String _methodName8;
 	private String[] _methodParameterTypes8;
-	private String _methodName9;
-	private String[] _methodParameterTypes9;
 }

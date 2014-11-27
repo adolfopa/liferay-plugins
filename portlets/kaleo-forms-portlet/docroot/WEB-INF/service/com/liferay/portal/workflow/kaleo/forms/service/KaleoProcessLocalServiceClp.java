@@ -37,7 +37,8 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 		_methodName1 = "addKaleoProcess";
 
 		_methodParameterTypes1 = new String[] {
-				"long", "long", "long", "long", "java.lang.String", "long",
+				"long", "long", "long", "java.util.Map", "java.util.Map", "long",
+				"java.lang.String", "long",
 				"com.liferay.portal.workflow.kaleo.forms.util.TaskFormPairs",
 				"com.liferay.portal.service.ServiceContext"
 			};
@@ -56,119 +57,110 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 
 		_methodParameterTypes4 = new String[] { "long" };
 
-		_methodName5 = "deleteKaleoProcessData";
+		_methodName5 = "deletePersistedModel";
 
 		_methodParameterTypes5 = new String[] {
-				"com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess"
+				"com.liferay.portal.model.PersistedModel"
 			};
 
-		_methodName6 = "deleteKaleoProcessData";
+		_methodName6 = "dynamicQuery";
 
-		_methodParameterTypes6 = new String[] { "long" };
+		_methodParameterTypes6 = new String[] {  };
 
-		_methodName7 = "deletePersistedModel";
+		_methodName7 = "dynamicQuery";
 
 		_methodParameterTypes7 = new String[] {
-				"com.liferay.portal.model.PersistedModel"
+				"com.liferay.portal.kernel.dao.orm.DynamicQuery"
 			};
 
 		_methodName8 = "dynamicQuery";
 
-		_methodParameterTypes8 = new String[] {  };
+		_methodParameterTypes8 = new String[] {
+				"com.liferay.portal.kernel.dao.orm.DynamicQuery", "int", "int"
+			};
 
 		_methodName9 = "dynamicQuery";
 
 		_methodParameterTypes9 = new String[] {
-				"com.liferay.portal.kernel.dao.orm.DynamicQuery"
-			};
-
-		_methodName10 = "dynamicQuery";
-
-		_methodParameterTypes10 = new String[] {
-				"com.liferay.portal.kernel.dao.orm.DynamicQuery", "int", "int"
-			};
-
-		_methodName11 = "dynamicQuery";
-
-		_methodParameterTypes11 = new String[] {
 				"com.liferay.portal.kernel.dao.orm.DynamicQuery", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName12 = "dynamicQueryCount";
+		_methodName10 = "dynamicQueryCount";
 
-		_methodParameterTypes12 = new String[] {
+		_methodParameterTypes10 = new String[] {
 				"com.liferay.portal.kernel.dao.orm.DynamicQuery"
 			};
 
-		_methodName13 = "dynamicQueryCount";
+		_methodName11 = "dynamicQueryCount";
 
-		_methodParameterTypes13 = new String[] {
+		_methodParameterTypes11 = new String[] {
 				"com.liferay.portal.kernel.dao.orm.DynamicQuery",
 				"com.liferay.portal.kernel.dao.orm.Projection"
 			};
 
-		_methodName14 = "fetchKaleoProcess";
+		_methodName12 = "fetchKaleoProcess";
 
-		_methodParameterTypes14 = new String[] { "long" };
+		_methodParameterTypes12 = new String[] { "long" };
 
-		_methodName15 = "getActionableDynamicQuery";
+		_methodName13 = "getActionableDynamicQuery";
 
-		_methodParameterTypes15 = new String[] {  };
+		_methodParameterTypes13 = new String[] {  };
 
-		_methodName16 = "getBeanIdentifier";
+		_methodName14 = "getBeanIdentifier";
 
-		_methodParameterTypes16 = new String[] {  };
+		_methodParameterTypes14 = new String[] {  };
 
-		_methodName17 = "getDDLRecordSetKaleoProcess";
+		_methodName15 = "getDDLRecordSetKaleoProcess";
+
+		_methodParameterTypes15 = new String[] { "long" };
+
+		_methodName16 = "getKaleoProcess";
+
+		_methodParameterTypes16 = new String[] { "long" };
+
+		_methodName17 = "getKaleoProcesses";
 
 		_methodParameterTypes17 = new String[] { "long" };
 
-		_methodName18 = "getKaleoProcess";
+		_methodName18 = "getKaleoProcesses";
 
-		_methodParameterTypes18 = new String[] { "long" };
-
-		_methodName19 = "getKaleoProcesses";
-
-		_methodParameterTypes19 = new String[] { "long" };
-
-		_methodName20 = "getKaleoProcesses";
-
-		_methodParameterTypes20 = new String[] {
+		_methodParameterTypes18 = new String[] {
 				"long", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName21 = "getKaleoProcesses";
+		_methodName19 = "getKaleoProcesses";
 
-		_methodParameterTypes21 = new String[] { "int", "int" };
+		_methodParameterTypes19 = new String[] { "int", "int" };
 
-		_methodName22 = "getKaleoProcessesCount";
+		_methodName20 = "getKaleoProcessesCount";
 
-		_methodParameterTypes22 = new String[] {  };
+		_methodParameterTypes20 = new String[] {  };
 
-		_methodName23 = "getKaleoProcessesCount";
+		_methodName21 = "getKaleoProcessesCount";
 
-		_methodParameterTypes23 = new String[] { "long" };
+		_methodParameterTypes21 = new String[] { "long" };
 
-		_methodName24 = "getPersistedModel";
+		_methodName22 = "getPersistedModel";
 
-		_methodParameterTypes24 = new String[] { "java.io.Serializable" };
+		_methodParameterTypes22 = new String[] { "java.io.Serializable" };
 
-		_methodName26 = "setBeanIdentifier";
+		_methodName24 = "setBeanIdentifier";
 
-		_methodParameterTypes26 = new String[] { "java.lang.String" };
+		_methodParameterTypes24 = new String[] { "java.lang.String" };
 
-		_methodName27 = "updateKaleoProcess";
+		_methodName25 = "updateKaleoProcess";
 
-		_methodParameterTypes27 = new String[] {
+		_methodParameterTypes25 = new String[] {
 				"com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess"
 			};
 
-		_methodName28 = "updateKaleoProcess";
+		_methodName26 = "updateKaleoProcess";
 
-		_methodParameterTypes28 = new String[] {
-				"long", "long", "java.lang.String", "long",
+		_methodParameterTypes26 = new String[] {
+				"long", "long", "java.util.Map", "java.util.Map", "long",
+				"java.lang.String", "long",
 				"com.liferay.portal.workflow.kaleo.forms.util.TaskFormPairs",
 				"com.liferay.portal.service.ServiceContext"
 			};
@@ -201,8 +193,10 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 
 	@Override
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess addKaleoProcess(
-		long userId, long groupId, long ddlRecordSetId, long ddmTemplateId,
-		java.lang.String workflowDefinitionName,
+		long userId, long groupId, long ddmStructureId,
+		java.util.Map<java.util.Locale, java.lang.String> nameMap,
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		long ddmTemplateId, java.lang.String workflowDefinitionName,
 		long workflowDefinitionVersion,
 		com.liferay.portal.workflow.kaleo.forms.util.TaskFormPairs taskFormPairs,
 		com.liferay.portal.service.ServiceContext serviceContext)
@@ -217,7 +211,11 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 						
 					groupId,
 						
-					ddlRecordSetId,
+					ddmStructureId,
+						
+					ClpSerializer.translateInput(nameMap),
+						
+					ClpSerializer.translateInput(descriptionMap),
 						
 					ddmTemplateId,
 						
@@ -333,64 +331,14 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 	}
 
 	@Override
-	public void deleteKaleoProcessData(
-		com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess kaleoProcess)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		try {
-			_invokableLocalService.invokeMethod(_methodName5,
-				_methodParameterTypes5,
-				new Object[] { ClpSerializer.translateInput(kaleoProcess) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	@Override
-	public void deleteKaleoProcessData(long kaleoProcessId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		try {
-			_invokableLocalService.invokeMethod(_methodName6,
-				_methodParameterTypes6, new Object[] { kaleoProcessId });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	@Override
 	public com.liferay.portal.model.PersistedModel deletePersistedModel(
 		com.liferay.portal.model.PersistedModel persistedModel)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName7,
-					_methodParameterTypes7,
+			returnObj = _invokableLocalService.invokeMethod(_methodName5,
+					_methodParameterTypes5,
 					new Object[] { ClpSerializer.translateInput(persistedModel) });
 		}
 		catch (Throwable t) {
@@ -417,8 +365,8 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName8,
-					_methodParameterTypes8, new Object[] {  });
+			returnObj = _invokableLocalService.invokeMethod(_methodName6,
+					_methodParameterTypes6, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -441,8 +389,8 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName9,
-					_methodParameterTypes9,
+			returnObj = _invokableLocalService.invokeMethod(_methodName7,
+					_methodParameterTypes7,
 					new Object[] { ClpSerializer.translateInput(dynamicQuery) });
 		}
 		catch (Throwable t) {
@@ -467,8 +415,8 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName10,
-					_methodParameterTypes10,
+			returnObj = _invokableLocalService.invokeMethod(_methodName8,
+					_methodParameterTypes8,
 					new Object[] {
 						ClpSerializer.translateInput(dynamicQuery),
 						
@@ -500,8 +448,8 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName11,
-					_methodParameterTypes11,
+			returnObj = _invokableLocalService.invokeMethod(_methodName9,
+					_methodParameterTypes9,
 					new Object[] {
 						ClpSerializer.translateInput(dynamicQuery),
 						
@@ -533,8 +481,8 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName12,
-					_methodParameterTypes12,
+			returnObj = _invokableLocalService.invokeMethod(_methodName10,
+					_methodParameterTypes10,
 					new Object[] { ClpSerializer.translateInput(dynamicQuery) });
 		}
 		catch (Throwable t) {
@@ -559,8 +507,8 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName13,
-					_methodParameterTypes13,
+			returnObj = _invokableLocalService.invokeMethod(_methodName11,
+					_methodParameterTypes11,
 					new Object[] {
 						ClpSerializer.translateInput(dynamicQuery),
 						
@@ -588,8 +536,8 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName14,
-					_methodParameterTypes14, new Object[] { kaleoProcessId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName12,
+					_methodParameterTypes12, new Object[] { kaleoProcessId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -611,8 +559,8 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName15,
-					_methodParameterTypes15, new Object[] {  });
+			returnObj = _invokableLocalService.invokeMethod(_methodName13,
+					_methodParameterTypes13, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -634,8 +582,8 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName16,
-					_methodParameterTypes16, new Object[] {  });
+			returnObj = _invokableLocalService.invokeMethod(_methodName14,
+					_methodParameterTypes14, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -659,8 +607,8 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName17,
-					_methodParameterTypes17, new Object[] { ddlRecordSetId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName15,
+					_methodParameterTypes15, new Object[] { ddlRecordSetId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -688,8 +636,8 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName18,
-					_methodParameterTypes18, new Object[] { kaleoProcessId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName16,
+					_methodParameterTypes16, new Object[] { kaleoProcessId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -716,8 +664,8 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName19,
-					_methodParameterTypes19, new Object[] { groupId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName17,
+					_methodParameterTypes17, new Object[] { groupId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -741,8 +689,8 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName20,
-					_methodParameterTypes20,
+			returnObj = _invokableLocalService.invokeMethod(_methodName18,
+					_methodParameterTypes18,
 					new Object[] {
 						groupId,
 						
@@ -774,8 +722,8 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName21,
-					_methodParameterTypes21, new Object[] { start, end });
+			returnObj = _invokableLocalService.invokeMethod(_methodName19,
+					_methodParameterTypes19, new Object[] { start, end });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -797,8 +745,8 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName22,
-					_methodParameterTypes22, new Object[] {  });
+			returnObj = _invokableLocalService.invokeMethod(_methodName20,
+					_methodParameterTypes20, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -820,8 +768,8 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName23,
-					_methodParameterTypes23, new Object[] { groupId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName21,
+					_methodParameterTypes21, new Object[] { groupId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -845,8 +793,8 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName24,
-					_methodParameterTypes24,
+			returnObj = _invokableLocalService.invokeMethod(_methodName22,
+					_methodParameterTypes22,
 					new Object[] { ClpSerializer.translateInput(primaryKeyObj) });
 		}
 		catch (Throwable t) {
@@ -878,8 +826,8 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		try {
-			_invokableLocalService.invokeMethod(_methodName26,
-				_methodParameterTypes26,
+			_invokableLocalService.invokeMethod(_methodName24,
+				_methodParameterTypes24,
 				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
 		}
 		catch (Throwable t) {
@@ -901,8 +849,8 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName27,
-					_methodParameterTypes27,
+			returnObj = _invokableLocalService.invokeMethod(_methodName25,
+					_methodParameterTypes25,
 					new Object[] { ClpSerializer.translateInput(kaleoProcess) });
 		}
 		catch (Throwable t) {
@@ -922,8 +870,10 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 
 	@Override
 	public com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess updateKaleoProcess(
-		long kaleoProcessId, long ddmTemplateId,
-		java.lang.String workflowDefinitionName,
+		long kaleoProcessId, long ddmStructureId,
+		java.util.Map<java.util.Locale, java.lang.String> nameMap,
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		long ddmTemplateId, java.lang.String workflowDefinitionName,
 		long workflowDefinitionVersion,
 		com.liferay.portal.workflow.kaleo.forms.util.TaskFormPairs taskFormPairs,
 		com.liferay.portal.service.ServiceContext serviceContext)
@@ -931,10 +881,16 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName28,
-					_methodParameterTypes28,
+			returnObj = _invokableLocalService.invokeMethod(_methodName26,
+					_methodParameterTypes26,
 					new Object[] {
 						kaleoProcessId,
+						
+					ddmStructureId,
+						
+					ClpSerializer.translateInput(nameMap),
+						
+					ClpSerializer.translateInput(descriptionMap),
 						
 					ddmTemplateId,
 						
@@ -1013,14 +969,10 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 	private String[] _methodParameterTypes21;
 	private String _methodName22;
 	private String[] _methodParameterTypes22;
-	private String _methodName23;
-	private String[] _methodParameterTypes23;
 	private String _methodName24;
 	private String[] _methodParameterTypes24;
+	private String _methodName25;
+	private String[] _methodParameterTypes25;
 	private String _methodName26;
 	private String[] _methodParameterTypes26;
-	private String _methodName27;
-	private String[] _methodParameterTypes27;
-	private String _methodName28;
-	private String[] _methodParameterTypes28;
 }

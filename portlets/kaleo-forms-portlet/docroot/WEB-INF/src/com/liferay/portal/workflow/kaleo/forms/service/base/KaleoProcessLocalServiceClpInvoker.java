@@ -130,7 +130,8 @@ public class KaleoProcessLocalServiceClpInvoker {
 		_methodName73 = "addKaleoProcess";
 
 		_methodParameterTypes73 = new String[] {
-				"long", "long", "long", "long", "java.lang.String", "long",
+				"long", "long", "long", "java.util.Map", "java.util.Map", "long",
+				"java.lang.String", "long",
 				"com.liferay.portal.workflow.kaleo.forms.util.TaskFormPairs",
 				"com.liferay.portal.service.ServiceContext"
 			};
@@ -145,43 +146,34 @@ public class KaleoProcessLocalServiceClpInvoker {
 
 		_methodParameterTypes75 = new String[] { "long" };
 
-		_methodName76 = "deleteKaleoProcessData";
+		_methodName76 = "getDDLRecordSetKaleoProcess";
 
-		_methodParameterTypes76 = new String[] {
-				"com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess"
-			};
+		_methodParameterTypes76 = new String[] { "long" };
 
-		_methodName77 = "deleteKaleoProcessData";
+		_methodName77 = "getKaleoProcess";
 
 		_methodParameterTypes77 = new String[] { "long" };
 
-		_methodName78 = "getDDLRecordSetKaleoProcess";
+		_methodName78 = "getKaleoProcesses";
 
 		_methodParameterTypes78 = new String[] { "long" };
 
-		_methodName79 = "getKaleoProcess";
+		_methodName79 = "getKaleoProcesses";
 
-		_methodParameterTypes79 = new String[] { "long" };
-
-		_methodName80 = "getKaleoProcesses";
-
-		_methodParameterTypes80 = new String[] { "long" };
-
-		_methodName81 = "getKaleoProcesses";
-
-		_methodParameterTypes81 = new String[] {
+		_methodParameterTypes79 = new String[] {
 				"long", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName82 = "getKaleoProcessesCount";
+		_methodName80 = "getKaleoProcessesCount";
 
-		_methodParameterTypes82 = new String[] { "long" };
+		_methodParameterTypes80 = new String[] { "long" };
 
-		_methodName83 = "updateKaleoProcess";
+		_methodName81 = "updateKaleoProcess";
 
-		_methodParameterTypes83 = new String[] {
-				"long", "long", "java.lang.String", "long",
+		_methodParameterTypes81 = new String[] {
+				"long", "long", "java.util.Map", "java.util.Map", "long",
+				"java.lang.String", "long",
 				"com.liferay.portal.workflow.kaleo.forms.util.TaskFormPairs",
 				"com.liferay.portal.service.ServiceContext"
 			};
@@ -303,11 +295,13 @@ public class KaleoProcessLocalServiceClpInvoker {
 			return KaleoProcessLocalServiceUtil.addKaleoProcess(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
-				((Long)arguments[3]).longValue(),
-				(java.lang.String)arguments[4],
+				(java.util.Map<java.util.Locale, java.lang.String>)arguments[3],
+				(java.util.Map<java.util.Locale, java.lang.String>)arguments[4],
 				((Long)arguments[5]).longValue(),
-				(com.liferay.portal.workflow.kaleo.forms.util.TaskFormPairs)arguments[6],
-				(com.liferay.portal.service.ServiceContext)arguments[7]);
+				(java.lang.String)arguments[6],
+				((Long)arguments[7]).longValue(),
+				(com.liferay.portal.workflow.kaleo.forms.util.TaskFormPairs)arguments[8],
+				(com.liferay.portal.service.ServiceContext)arguments[9]);
 		}
 
 		if (_methodName74.equals(name) &&
@@ -322,54 +316,43 @@ public class KaleoProcessLocalServiceClpInvoker {
 
 		if (_methodName76.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes76, parameterTypes)) {
-			KaleoProcessLocalServiceUtil.deleteKaleoProcessData((com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess)arguments[0]);
-
-			return null;
+			return KaleoProcessLocalServiceUtil.getDDLRecordSetKaleoProcess(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName77.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes77, parameterTypes)) {
-			KaleoProcessLocalServiceUtil.deleteKaleoProcessData(((Long)arguments[0]).longValue());
-
-			return null;
+			return KaleoProcessLocalServiceUtil.getKaleoProcess(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName78.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes78, parameterTypes)) {
-			return KaleoProcessLocalServiceUtil.getDDLRecordSetKaleoProcess(((Long)arguments[0]).longValue());
+			return KaleoProcessLocalServiceUtil.getKaleoProcesses(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName79.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes79, parameterTypes)) {
-			return KaleoProcessLocalServiceUtil.getKaleoProcess(((Long)arguments[0]).longValue());
-		}
-
-		if (_methodName80.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes80, parameterTypes)) {
-			return KaleoProcessLocalServiceUtil.getKaleoProcesses(((Long)arguments[0]).longValue());
-		}
-
-		if (_methodName81.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes81, parameterTypes)) {
 			return KaleoProcessLocalServiceUtil.getKaleoProcesses(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue(),
 				(com.liferay.portal.kernel.util.OrderByComparator)arguments[3]);
 		}
 
-		if (_methodName82.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes82, parameterTypes)) {
+		if (_methodName80.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes80, parameterTypes)) {
 			return KaleoProcessLocalServiceUtil.getKaleoProcessesCount(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName83.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes83, parameterTypes)) {
+		if (_methodName81.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes81, parameterTypes)) {
 			return KaleoProcessLocalServiceUtil.updateKaleoProcess(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
-				(java.lang.String)arguments[2],
-				((Long)arguments[3]).longValue(),
-				(com.liferay.portal.workflow.kaleo.forms.util.TaskFormPairs)arguments[4],
-				(com.liferay.portal.service.ServiceContext)arguments[5]);
+				(java.util.Map<java.util.Locale, java.lang.String>)arguments[2],
+				(java.util.Map<java.util.Locale, java.lang.String>)arguments[3],
+				((Long)arguments[4]).longValue(),
+				(java.lang.String)arguments[5],
+				((Long)arguments[6]).longValue(),
+				(com.liferay.portal.workflow.kaleo.forms.util.TaskFormPairs)arguments[7],
+				(com.liferay.portal.service.ServiceContext)arguments[8]);
 		}
 
 		throw new UnsupportedOperationException();
@@ -433,8 +416,4 @@ public class KaleoProcessLocalServiceClpInvoker {
 	private String[] _methodParameterTypes80;
 	private String _methodName81;
 	private String[] _methodParameterTypes81;
-	private String _methodName82;
-	private String[] _methodParameterTypes82;
-	private String _methodName83;
-	private String[] _methodParameterTypes83;
 }
