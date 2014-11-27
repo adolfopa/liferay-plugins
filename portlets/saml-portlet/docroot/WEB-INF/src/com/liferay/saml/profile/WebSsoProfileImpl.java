@@ -210,7 +210,7 @@ public class WebSsoProfileImpl extends BaseProfile implements WebSsoProfile {
 				SamlSpSessionLocalServiceUtil.updateSamlSpSession(
 					samlSpSession.getPrimaryKey(), jSessionId);
 			}
-			catch (PortalException pe) {
+			catch (Exception e) {
 			}
 		}
 	}
