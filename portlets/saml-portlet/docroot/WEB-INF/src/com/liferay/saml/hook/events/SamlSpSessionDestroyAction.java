@@ -16,7 +16,6 @@ package com.liferay.saml.hook.events;
 
 import com.liferay.portal.kernel.events.ActionException;
 import com.liferay.portal.kernel.events.SessionAction;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.saml.model.SamlSpSession;
@@ -24,6 +23,10 @@ import com.liferay.saml.service.SamlSpSessionLocalServiceUtil;
 import com.liferay.saml.util.SamlUtil;
 
 import javax.servlet.http.HttpSession;
+
+/**
+ * @author Mika Koivisto
+ */
 public class SamlSpSessionDestroyAction extends SessionAction {
 
 	@Override
@@ -39,18 +42,19 @@ public class SamlSpSessionDestroyAction extends SessionAction {
 
 			if (_log.isDebugEnabled()) {
 				_log.debug(
-					"HttpSession expired with jsessionid: " + session.getId() +
-						" expiring SamlSpSession with samlSpSessionKey: " +
+					"HTTP session " + session.getId() +
+						" expiring SAML SP session " +
 							samlSpSession.getSamlSpSessionKey());
 			}
 
 			SamlSpSessionLocalServiceUtil.deleteSamlSpSession(
 				samlSpSession.getSamlSpSessionId());
 		}
-		catch (PortalException e) {
+		catch (Exception e) {
 		}
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
 		SamlSpSessionDestroyAction.class);
+
 }
