@@ -1,3 +1,4 @@
+AUI().use('escape', function(A) {
 Liferay.Report = {
 
 	deleteParameter: function(parameterKey, parameterValue, parameterType) {
@@ -6,7 +7,7 @@ Liferay.Report = {
 		instance._portletMessageContainer.setStyle('display', 'none');
 
 		if (confirm(Liferay.Language.get('are-you-sure-you-want-to-delete-this-entry'))) {
-			var parametersInput = AUI().one('.report-parameters');
+			var parametersInput = A.one('.report-parameters');
 
 			var reportParameters = JSON.parse(parametersInput.get('value'));
 
@@ -24,7 +25,7 @@ Liferay.Report = {
 
 			var key = ('.report-tag-' + parameterKey).replace(/ /g,"BLANK");
 
-			AUI().one(key).remove(true);
+			A.one(key).remove(true);
 		}
 	},
 
@@ -33,41 +34,41 @@ Liferay.Report = {
 
 		var namespace = param.namespace;
 
-		instance._portletMessageContainer = AUI().one('.report-message');
+		instance._portletMessageContainer = A.one('.report-message');
 
 		instance._displayParameters(param.parameters);
 
-		AUI().one('.add-parameter').on(
+		A.one('.add-parameter').on(
 			'click',
 			function() {
 				instance._addParameter(namespace);
 			}
 		);
 
-		AUI().one('.remove-existing-report').on(
+		A.one('.remove-existing-report').on(
 			'click',
 			function() {
-				AUI().one('.existing-report').setStyle('display', 'none');
-				AUI().one('.template-report').setStyle('display', 'block');
-				AUI().one('.cancel-update-template-report').setStyle('display', 'block');
+				A.one('.existing-report').setStyle('display', 'none');
+				A.one('.template-report').setStyle('display', 'block');
+				A.one('.cancel-update-template-report').setStyle('display', 'block');
 			}
 		);
 
-		AUI().one('.cancel-update-template-report').on(
+		A.one('.cancel-update-template-report').on(
 			'click',
 			function() {
-				AUI().one('.existing-report').setStyle('display', 'block');
-				AUI().one('.template-report').setStyle('display', 'none');
-				AUI().one('.cancel-update-template-report').setStyle('display', 'none');
+				A.one('.existing-report').setStyle('display', 'block');
+				A.one('.template-report').setStyle('display', 'none');
+				A.one('.cancel-update-template-report').setStyle('display', 'none');
 			}
 		);
 
-		AUI().one('.parameters-input-type').on(
+		A.one('.parameters-input-type').on(
 			'change',
 			function() {
-				var parametersValueFieldSet = AUI().one('.parameters-value-field-set');
-				var parametersInputDate = AUI().one('.parameters-input-date');
-				var parametersValue = AUI().one('.parameters-value');
+				var parametersValueFieldSet = A.one('.parameters-value-field-set');
+				var parametersInputDate = A.one('.parameters-input-date');
+				var parametersValue = A.one('.parameters-value');
 
 				if (this.get('value') == 'text') {
 					parametersValue.set('value', '');
@@ -103,14 +104,14 @@ Liferay.Report = {
 
 		instance._portletMessageContainer.setStyle('display', 'none');
 
-		var parameterKey = AUI().one('.parameters-key').get('value');
-		var parameterType = AUI().one('.parameters-input-type').get('value');
-		var parameterValue = AUI().one('.parameters-value').get('value');
+		var parameterKey = A.one('.parameters-key').get('value');
+		var parameterType = A.one('.parameters-input-type').get('value');
+		var parameterValue = A.one('.parameters-value').get('value');
 
 		// Validate
 
 		if (parameterKey.length == 0) {
-			AUI().all('.portlet-msg-error').setStyle('display', 'none');
+			A.all('.portlet-msg-error').setStyle('display', 'none');
 
 			instance._sendMessage('please-enter-a-valid-report-parameter-key');
 
@@ -118,7 +119,7 @@ Liferay.Report = {
 		}
 
 		if (parameterType != 'date' && parameterValue.length == 0) {
-			AUI().all('.portlet-msg-error').setStyle('display', 'none');
+			A.all('.portlet-msg-error').setStyle('display', 'none');
 
 			instance._sendMessage('please-enter-a-valid-report-parameter-value');
 
@@ -131,7 +132,7 @@ Liferay.Report = {
 			return;
 		}
 
-		var reportParameters = AUI().one('.report-parameters').get('value');
+		var reportParameters = A.one('.report-parameters').get('value');
 
 		if (reportParameters) {
 			var reportParametersJSON = JSON.parse(reportParameters);
@@ -148,9 +149,9 @@ Liferay.Report = {
 		}
 
 		if (parameterType == 'date') {
-			var parameterDateDay = AUI().one('#' + namespace + 'parameterdateday');
-			var parameterDateMonth = AUI().one('#' + namespace + 'parameterdatemonth');
-			var parameterDateYear = AUI().one('#' + namespace + 'parameterdateyear');
+			var parameterDateDay = A.one('#' + namespace + 'parameterdateday');
+			var parameterDateMonth = A.one('#' + namespace + 'parameterdatemonth');
+			var parameterDateYear = A.one('#' + namespace + 'parameterdateyear');
 
 			var parameterDate = new Date();
 
@@ -158,21 +159,21 @@ Liferay.Report = {
 			parameterDate.setMonth(parameterDateMonth.get('value'));
 			parameterDate.setYear(parameterDateYear.get('value'));
 
-			parameterValue = AUI().DataType.Date.format(parameterDate);
+			parameterValue = A.DataType.Date.format(parameterDate);
 		}
 
 		instance._addTag(parameterKey, parameterValue, parameterType);
 
 		instance._addReportParameter(parameterKey, parameterValue, parameterType);
 
-		AUI().one('.parameters-key').set('value', '');
-		AUI().one('.parameters-value').set('value', '');
+		A.one('.parameters-key').set('value', '');
+		A.one('.parameters-value').set('value', '');
 	},
 
 	_addReportParameter: function(parameterKey, parameterValue, parameterType) {
 		var reportParameters = [];
 
-		var parametersInput = AUI().one('.report-parameters');
+		var parametersInput = A.one('.report-parameters');
 
 		if (parametersInput.get('value')) {
 			reportParameters = JSON.parse(parametersInput.get('value'));
@@ -190,13 +191,13 @@ Liferay.Report = {
 	},
 
 	_addTag: function(parameterKey, parameterValue, parameterType) {
-		var tagsContainer = AUI().one(".report-tags");
+		var tagsContainer = A.one(".report-tags");
 
 		var oldTags = tagsContainer.get('innerHTML');
 
-		var key = ('report-tag-' + parameterKey).replace(/ /g,"BLANK");
+		var key = ('report-tag-' + A.Escape.html(parameterKey)).replace(/ /g,"BLANK");
 
-		var innerHTML = "<div class='" + key + "' >";
+		var innerHTML = '<div class="form-inline ' + A.Escape.html(key) + '" >';
 
 		innerHTML += "<input type='text' disabled='disabled' value='" + parameterKey + "' >";
 		innerHTML += "<input type='text' disabled='disabled' value='" + parameterValue + "' >";
@@ -212,7 +213,7 @@ Liferay.Report = {
 
 		instance._portletMessageContainer.setStyle('display', 'none');
 
-		AUI().one('.report-parameters').set('value', parameters);
+		A.one('.report-parameters').set('value', parameters);
 
 		if (!parameters) {
 			return;
@@ -237,3 +238,4 @@ Liferay.Report = {
 		instance._portletMessageContainer.setStyle('display', 'block');
 	}
 }
+});
