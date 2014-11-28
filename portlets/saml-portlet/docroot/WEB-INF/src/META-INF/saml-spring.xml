@@ -90,5 +90,16 @@
 	</bean>
 	<bean id="org.apache.velocity.app.VelocityEngine" class="com.liferay.saml.util.VelocityEngineFactory" factory-method="getVelocityEngine" />
 	<bean id="org.opensaml.common.IdentifierGenerator" class="com.liferay.saml.util.SamlIdentifierGenerator" />
-	<bean id="org.opensaml.xml.parse.ParserPool" class="org.opensaml.xml.parse.BasicParserPool" />
+	<bean id="org.opensaml.xml.parse.ParserPool" class="org.opensaml.xml.parse.BasicParserPool">
+		<property name="builderFeatures">
+			<map>
+				<entry key="http://apache.org/xml/features/disallow-doctype-decl" value="true" />
+				<entry key="http://javax.xml.XMLConstants/feature/secure-processing" value="true" />
+				<entry key="http://xml.org/sax/features/external-general-entities" value="false" />
+				<entry key="http://xml.org/sax/features/external-parameter-entities" value="false" />
+			</map>
+		</property>
+		<property name="dTDValidating" value="false" />
+		<property name="expandEntityReferences" value="false" />
+	</bean>
 </beans>

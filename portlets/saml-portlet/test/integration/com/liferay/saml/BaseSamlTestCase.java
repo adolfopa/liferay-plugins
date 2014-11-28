@@ -60,7 +60,9 @@ import java.lang.reflect.Field;
 import java.net.URLDecoder;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -106,6 +108,7 @@ public class BaseSamlTestCase extends PowerMockito {
 		setupConfiguration();
 		setupIdentifiers();
 		setupMetadata();
+		setupParserPool();
 		setupPortal();
 		setupSamlBindings();
 
@@ -372,6 +375,29 @@ public class BaseSamlTestCase extends PowerMockito {
 			new MockMetadataProvider());
 	}
 
+	protected void setupParserPool() throws Exception {
+		parserPool = new BasicParserPool();
+
+		Map<String, Boolean> builderFeatures = new HashMap<String, Boolean>();
+
+		builderFeatures.put(
+			"http://apache.org/xml/features/disallow-doctype-decl",
+			Boolean.TRUE);
+		builderFeatures.put(
+			"http://javax.xml.XMLConstants/feature/secure-processing",
+			Boolean.TRUE);
+		builderFeatures.put(
+			"http://xml.org/sax/features/external-general-entities",
+			Boolean.FALSE);
+		builderFeatures.put(
+			"http://xml.org/sax/features/external-parameter-entities",
+			Boolean.FALSE);
+
+		parserPool.setBuilderFeatures(builderFeatures);
+		parserPool.setDTDValidating(false);
+		parserPool.setExpandEntityReferences(false);
+	}
+
 	protected void setupPortal() throws Exception {
 		httpClient = mock(HttpClient.class);
 
@@ -529,11 +555,10 @@ public class BaseSamlTestCase extends PowerMockito {
 
 		samlBindings.add(
 			new HttpPostBinding(
-				new BasicParserPool(),
-				VelocityEngineFactory.getVelocityEngine()));
-		samlBindings.add(new HttpRedirectBinding(new BasicParserPool()));
+				parserPool, VelocityEngineFactory.getVelocityEngine()));
+		samlBindings.add(new HttpRedirectBinding(parserPool));
 		samlBindings.add(
-			new HttpSoap11Binding(new BasicParserPool(), httpClient));
+			new HttpSoap11Binding(parserPool, httpClient));
 	}
 
 	protected static final String ACS_URL =
@@ -573,6 +598,7 @@ public class BaseSamlTestCase extends PowerMockito {
 	protected HttpClient httpClient;
 	protected IdentifierGenerator identifierGenerator;
 	protected List<String> identifiers = new ArrayList<String>();
+	protected BasicParserPool parserPool;
 	protected Portal portal;
 	protected BeanLocator portalBeanLocator;
 	protected BeanLocator portletBeanLocator;
