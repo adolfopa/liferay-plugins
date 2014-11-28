@@ -557,8 +557,7 @@ public class BaseSamlTestCase extends PowerMockito {
 			new HttpPostBinding(
 				parserPool, VelocityEngineFactory.getVelocityEngine()));
 		samlBindings.add(new HttpRedirectBinding(parserPool));
-		samlBindings.add(
-			new HttpSoap11Binding(parserPool, httpClient));
+		samlBindings.add(new HttpSoap11Binding(parserPool, httpClient));
 	}
 
 	protected static final String ACS_URL =

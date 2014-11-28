@@ -19,7 +19,6 @@ import com.liferay.saml.SamlSsoRequestContext;
 import com.liferay.saml.metadata.MetadataManagerUtil;
 import com.liferay.saml.model.SamlSpIdpConnection;
 import com.liferay.saml.model.impl.SamlSpIdpConnectionImpl;
-import com.liferay.saml.profile.WebSsoProfileImpl;
 import com.liferay.saml.service.SamlSpAuthRequestLocalService;
 import com.liferay.saml.service.SamlSpAuthRequestLocalServiceUtil;
 import com.liferay.saml.service.SamlSpIdpConnectionLocalService;
@@ -47,7 +46,6 @@ import org.opensaml.xml.util.Base64;
 
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
-
 public class XMLSecurityTest extends BaseSamlTestCase {
 
 	@Before
@@ -77,7 +75,7 @@ public class XMLSecurityTest extends BaseSamlTestCase {
 
 		authnRequestXml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"+
 			"<!DOCTYPE saml2p:AuthnRequest [\n"+
-			"	<!ENTITY lol1 \"lol\">\n";
+			" <!ENTITY lol1 \"lol\">\n";
 
 		for (int i = 2; i < 10; i++) {
 			String lol = "";
@@ -87,7 +85,7 @@ public class XMLSecurityTest extends BaseSamlTestCase {
 			}
 
 			authnRequestXml = authnRequestXml +
-				"	<!ENTITY lol" + i +" \""+ lol + "\">\n";
+				" <!ENTITY lol" + i +" \""+ lol + "\">\n";
 		}
 
 		authnRequestXml += "]>" + samlMessageXml;
@@ -109,7 +107,8 @@ public class XMLSecurityTest extends BaseSamlTestCase {
 
 		authnRequestXml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"+
 			"<!DOCTYPE saml2p:AuthnRequest [\n"+
-			"	<!ENTITY a \"";
+			" <!ENTITY a \"";
+
 		for (int i = 0; i < 5000; i++) {
 			authnRequestXml += "aaaaaaaaaa";
 		}
@@ -119,6 +118,7 @@ public class XMLSecurityTest extends BaseSamlTestCase {
 		authnRequestXml += "]>" + samlMessageXml;
 
 		String entity = "";
+
 		for (int i = 0; i < 5000; i++) {
 			entity += "&a;&a;&a;&a;&a;&a;&a;&a;&a;&a;";
 		}
@@ -177,7 +177,7 @@ public class XMLSecurityTest extends BaseSamlTestCase {
 		authnRequestXml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"+
 			"<!DOCTYPE saml2p:AuthnRequest [\n"+
 			"	<!ENTITY % remote SYSTEM \"http://localhost/saml-request\">\n"+
-			"	%remote;\n"+
+			" %remote;\n"+
 			"]>" + authnRequestXml.substring(38);
 
 		decodeAuthnRequest(authnRequestXml, redirectURL);
@@ -220,8 +220,7 @@ public class XMLSecurityTest extends BaseSamlTestCase {
 		deflaterStream.write(requestXml.getBytes("UTF-8"));
 		deflaterStream.finish();
 
-		return Base64.encodeBytes(
-			baos.toByteArray(), Base64.DONT_BREAK_LINES);
+		return Base64.encodeBytes(baos.toByteArray(), Base64.DONT_BREAK_LINES);
 	}
 
 	protected String generateSignature(
