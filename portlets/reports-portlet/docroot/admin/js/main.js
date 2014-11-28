@@ -199,11 +199,12 @@ Liferay.Report = {
 
 		var innerHTML = '<div class="form-inline ' + A.Escape.html(key) + '" >';
 
-		innerHTML += "<input type='text' disabled='disabled' value='" + parameterKey + "' >";
-		innerHTML += "<input type='text' disabled='disabled' value='" + parameterValue + "' >";
-		innerHTML += "<img alt='" + Liferay.Language.get('delete') + "' src='" + themeDisplay.getPathThemeImages() + "/common/delete.png' ";
-		innerHTML += " onClick=\"Liferay.Report.deleteParameter('" + parameterKey + "','" + parameterValue + "','" + parameterType + "'); \" />";
-		innerHTML += "<//div>";
+		innerHTML += '<input class="form-control" type="text" disabled="disabled" value="' + A.Escape.html(parameterKey) + '" > ';
+		innerHTML += '<input class="form-control" type="text" disabled="disabled" value="' + A.Escape.html(parameterValue) + '" >';
+		innerHTML += ' <button class="btn btn-default"';
+		innerHTML += " onClick=\"Liferay.Report.deleteParameter('" + A.Escape.html(parameterKey) + "','" + A.Escape.html(parameterValue) + "','" + A.Escape.html(parameterType) + "'); \">";
+		innerHTML += '<i class="icon-remove" aria-label="Remove"></i></button>';
+		innerHTML += '</div>';
 
 		tagsContainer.set('innerHTML', oldTags + innerHTML);
 	},
@@ -233,7 +234,7 @@ Liferay.Report = {
 	_sendMessage: function(messageKey) {
 		var instance = this;
 
-		instance._portletMessageContainer.addClass('portlet-msg-error')
+		instance._portletMessageContainer.addClass('portlet-msg-error');
 		instance._portletMessageContainer.set('innerHTML', Liferay.Language.get(messageKey));
 		instance._portletMessageContainer.setStyle('display', 'block');
 	}

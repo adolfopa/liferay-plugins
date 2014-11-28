@@ -94,7 +94,7 @@ if (definition != null) {
 
 		</aui:select>
 
-		<aui:field-wrapper label="template">
+		<aui:field-wrapper>
 			<span class="existing-report" style='<%= Validator.isNull(reportName) ? "display: none;" : "display: block;" %>'>
 				<%= reportName %>
 
@@ -143,11 +143,14 @@ if (definition != null) {
 				</aui:select>
 			</aui:column>
 			<aui:column>
-				<span class="add-parameter">
-					<liferay-ui:icon cssClass="add-parameter-button" iconCssClass="icon-plus" message="add" />
-				</span>
+				<aui:button-row cssClass="add-parameter">
+					<aui:button value="add-parameter" />
+				</aui:button-row>
 			</aui:column>
 		</aui:field-wrapper>
+
+		<div class="clearfix"></div>
+
 		<aui:field-wrapper>
 			<aui:column>
 				<div class="report-tags"></div>
