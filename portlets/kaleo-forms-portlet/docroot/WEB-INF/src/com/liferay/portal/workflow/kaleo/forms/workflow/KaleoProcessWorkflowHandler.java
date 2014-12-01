@@ -39,8 +39,6 @@ import java.io.Serializable;
 import java.util.Locale;
 import java.util.Map;
 
-import javax.portlet.PortletMode;
-import javax.portlet.PortletModeException;
 import javax.portlet.PortletRequest;
 import javax.portlet.WindowState;
 import javax.portlet.WindowStateException;
@@ -102,13 +100,9 @@ public class KaleoProcessWorkflowHandler
 			liferayPortletURL.setParameter("tabs2", "edit-workflow-task");
 			liferayPortletURL.setParameter(
 				"workflowTaskId", String.valueOf(workflowTaskId));
-			liferayPortletURL.setPortletMode(new PortletMode("view"));
 			liferayPortletURL.setWindowState(WindowState.NORMAL);
 
 			return liferayPortletURL.toString();
-		}
-		catch (PortletModeException pme) {
-			throw new PortalException(pme);
 		}
 		catch (WindowStateException wse) {
 			throw new PortalException(wse);
@@ -166,6 +160,6 @@ public class KaleoProcessWorkflowHandler
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
-					KaleoProcessWorkflowHandler.class);
+		KaleoProcessWorkflowHandler.class);
 
 }
