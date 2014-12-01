@@ -60,9 +60,7 @@ import java.lang.reflect.Field;
 import java.net.URLDecoder;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -85,6 +83,7 @@ import org.opensaml.saml2.metadata.SingleSignOnService;
 import org.opensaml.saml2.metadata.provider.MetadataProvider;
 import org.opensaml.saml2.metadata.provider.MetadataProviderException;
 import org.opensaml.xml.parse.BasicParserPool;
+import org.opensaml.xml.parse.ParserPool;
 import org.opensaml.xml.security.CriteriaSet;
 import org.opensaml.xml.security.credential.Credential;
 import org.opensaml.xml.security.credential.CredentialResolver;
@@ -108,11 +107,12 @@ public class BaseSamlTestCase extends PowerMockito {
 		setupConfiguration();
 		setupIdentifiers();
 		setupMetadata();
-		setupParserPool();
 		setupPortal();
-		setupSamlBindings();
 
 		OpenSamlBootstrap.bootstrap();
+
+		setupParserPool();
+		setupSamlBindings();
 	}
 
 	@After
@@ -376,26 +376,27 @@ public class BaseSamlTestCase extends PowerMockito {
 	}
 
 	protected void setupParserPool() throws Exception {
-		parserPool = new BasicParserPool();
-
-		Map<String, Boolean> builderFeatures = new HashMap<String, Boolean>();
-
-		builderFeatures.put(
-			"http://apache.org/xml/features/disallow-doctype-decl",
-			Boolean.TRUE);
-		builderFeatures.put(
-			"http://javax.xml.XMLConstants/feature/secure-processing",
-			Boolean.TRUE);
-		builderFeatures.put(
-			"http://xml.org/sax/features/external-general-entities",
-			Boolean.FALSE);
-		builderFeatures.put(
-			"http://xml.org/sax/features/external-parameter-entities",
-			Boolean.FALSE);
-
-		parserPool.setBuilderFeatures(builderFeatures);
-		parserPool.setDTDValidating(false);
-		parserPool.setExpandEntityReferences(false);
+		parserPool = org.opensaml.Configuration.getParserPool();
+//		parserPool = new BasicParserPool();
+//
+//		Map<String, Boolean> builderFeatures = new HashMap<String, Boolean>();
+//
+//		builderFeatures.put(
+//			"http://apache.org/xml/features/disallow-doctype-decl",
+//			Boolean.TRUE);
+//		builderFeatures.put(
+//			"http://javax.xml.XMLConstants/feature/secure-processing",
+//			Boolean.TRUE);
+//		builderFeatures.put(
+//			"http://xml.org/sax/features/external-general-entities",
+//			Boolean.FALSE);
+//		builderFeatures.put(
+//			"http://xml.org/sax/features/external-parameter-entities",
+//			Boolean.FALSE);
+//
+//		parserPool.setBuilderFeatures(builderFeatures);
+//		parserPool.setDTDValidating(false);
+//		parserPool.setExpandEntityReferences(false);
 	}
 
 	protected void setupPortal() throws Exception {
@@ -597,7 +598,7 @@ public class BaseSamlTestCase extends PowerMockito {
 	protected HttpClient httpClient;
 	protected IdentifierGenerator identifierGenerator;
 	protected List<String> identifiers = new ArrayList<String>();
-	protected BasicParserPool parserPool;
+	protected ParserPool parserPool;
 	protected Portal portal;
 	protected BeanLocator portalBeanLocator;
 	protected BeanLocator portletBeanLocator;

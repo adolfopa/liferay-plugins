@@ -8,6 +8,10 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
 >
 
+	<!-- Bootstrap -->
+
+	<bean id="com.liferay.saml.util.OpenSamlBootstrap" class="com.liferay.saml.util.OpenSamlBootstrap" init-method="bootstrap" />
+
 	<!-- Binding -->
 
 	<bean id="com.liferay.saml.binding.impl.HttpPostBinding" class="com.liferay.saml.binding.impl.HttpPostBinding">
@@ -90,16 +94,5 @@
 	</bean>
 	<bean id="org.apache.velocity.app.VelocityEngine" class="com.liferay.saml.util.VelocityEngineFactory" factory-method="getVelocityEngine" />
 	<bean id="org.opensaml.common.IdentifierGenerator" class="com.liferay.saml.util.SamlIdentifierGenerator" />
-	<bean id="org.opensaml.xml.parse.ParserPool" class="org.opensaml.xml.parse.BasicParserPool">
-		<property name="builderFeatures">
-			<map>
-				<entry key="http://apache.org/xml/features/disallow-doctype-decl" value="true" />
-				<entry key="http://javax.xml.XMLConstants/feature/secure-processing" value="true" />
-				<entry key="http://xml.org/sax/features/external-general-entities" value="false" />
-				<entry key="http://xml.org/sax/features/external-parameter-entities" value="false" />
-			</map>
-		</property>
-		<property name="dTDValidating" value="false" />
-		<property name="expandEntityReferences" value="false" />
-	</bean>
+	<bean id="org.opensaml.xml.parse.ParserPool" class="org.opensaml.Configuration" factory-method="getParserPool" />
 </beans>

@@ -5,7 +5,4 @@
 		<param-name>portalContextConfigLocation</param-name>
 		<param-value>/WEB-INF/classes/META-INF/saml-spring.xml</param-value>
 	</context-param>
-	<listener>
-		<listener-class>com.liferay.saml.servlet.SamlIdpServletContextListener</listener-class>
-	</listener>
 </web-app>

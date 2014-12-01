@@ -16,8 +16,13 @@ package com.liferay.saml.util;
 
 import com.liferay.portal.kernel.portlet.PortletClassLoaderUtil;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.opensaml.Configuration;
 import org.opensaml.DefaultBootstrap;
 import org.opensaml.xml.ConfigurationException;
+import org.opensaml.xml.parse.BasicParserPool;
 
 /**
  * @author Mika Koivisto
@@ -48,6 +53,32 @@ public class OpenSamlBootstrap extends DefaultBootstrap {
 		finally {
 			currentThread.setContextClassLoader(classLoader);
 		}
+	}
+
+	protected static void initializeParserPool() throws ConfigurationException {
+		BasicParserPool parserPool = new BasicParserPool();
+
+		Map<String, Boolean> builderFeatures = new HashMap<String, Boolean>();
+
+		builderFeatures.put(
+			"http://apache.org/xml/features/disallow-doctype-decl",
+			Boolean.TRUE);
+		builderFeatures.put(
+			"http://javax.xml.XMLConstants/feature/secure-processing",
+			Boolean.TRUE);
+		builderFeatures.put(
+			"http://xml.org/sax/features/external-general-entities",
+			Boolean.FALSE);
+		builderFeatures.put(
+			"http://xml.org/sax/features/external-parameter-entities",
+			Boolean.FALSE);
+
+		parserPool.setBuilderFeatures(builderFeatures);
+		parserPool.setDTDValidating(false);
+		parserPool.setExpandEntityReferences(false);
+		parserPool.setMaxPoolSize(50);
+
+		Configuration.setParserPool(parserPool);
 	}
 
 	private static String[] _xmlToolingConfigs = {
