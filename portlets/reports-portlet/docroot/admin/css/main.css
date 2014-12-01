@@ -1,24 +1,27 @@
-.reports-portlet .lfr-table tr td,
-.reports-portlet .lfr-table tr th {
-	padding-bottom: 4px;
-}
+.reports-portlet {
+	.lfr-table tr {
+		td, th {
+			padding-bottom: 4px;
+		}
+	}
 
-.reports-portlet .report-parameters {
-	padding-top: 4px;
-}
+	.report-parameters {
+		padding-top: 4px;
+	}
 
-.reports-portlet .required {
-	color: red;
-}
+	.required {
+		color: red;
+	}
 
-.reports-portlet .search-buttons {
-	margin: 15px 0;
-}
+	.search-buttons {
+		margin: 15px 0;
+	}
 
-.reports-portlet .search-table {
-	margin: 10px 0;
-}
+	.search-table {
+		margin: 10px 0;
+	}
 
-.reports-portlet .parameters-input-date{
-	display: none;
+	.parameters-input-date {
+		display: none;
+	}
 }

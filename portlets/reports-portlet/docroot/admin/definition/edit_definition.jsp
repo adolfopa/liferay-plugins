@@ -116,7 +116,7 @@ if (definition != null) {
 			</aui:column>
 
 			<aui:column>
-				<aui:input cssClass="parameters-value-field-set parameters-value" inlineLabel="default-value" name="value" size="20" type="text" />
+				<aui:input cssClass="parameters-value parameters-value-field-set" inlineLabel="default-value" name="value" size="20" type="text" />
 
 				<%
 				Calendar calendar = CalendarFactoryUtil.getCalendar(timeZone, locale);
@@ -191,8 +191,8 @@ if (definition != null) {
 		function(A) {
 			Liferay.Report.initialize(
 				{
-					parameters:'<%= BeanParamUtil.getString(definition, request, "reportParameters") %>',
-					namespace:'<portlet:namespace />'
+					namespace:'<portlet:namespace />',
+					parameters:'<%= BeanParamUtil.getString(definition, request, "reportParameters") %>'
 				}
 			);
 		}
