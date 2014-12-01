@@ -84,8 +84,8 @@ public class XMLSecurityTest extends BaseSamlTestCase {
 				lol += "&lol"+(i-1) + ";";
 			}
 
-			authnRequestXml = authnRequestXml +
-				" <!ENTITY lol" + i +" \""+ lol + "\">\n";
+			authnRequestXml =
+				authnRequestXml + " <!ENTITY lol" + i +" \"" + lol + "\">\n";
 		}
 
 		authnRequestXml += "]>" + samlMessageXml;
@@ -184,7 +184,8 @@ public class XMLSecurityTest extends BaseSamlTestCase {
 	}
 
 	protected void decodeAuthnRequest(
-		String authnRequestXml, String redirectURL) throws Exception {
+			String authnRequestXml, String redirectURL)
+		throws Exception {
 
 		String encodedAuthnRequest = encodeRequest(authnRequestXml);
 

@@ -377,26 +377,6 @@ public class BaseSamlTestCase extends PowerMockito {
 
 	protected void setupParserPool() throws Exception {
 		parserPool = org.opensaml.Configuration.getParserPool();
-//		parserPool = new BasicParserPool();
-//
-//		Map<String, Boolean> builderFeatures = new HashMap<String, Boolean>();
-//
-//		builderFeatures.put(
-//			"http://apache.org/xml/features/disallow-doctype-decl",
-//			Boolean.TRUE);
-//		builderFeatures.put(
-//			"http://javax.xml.XMLConstants/feature/secure-processing",
-//			Boolean.TRUE);
-//		builderFeatures.put(
-//			"http://xml.org/sax/features/external-general-entities",
-//			Boolean.FALSE);
-//		builderFeatures.put(
-//			"http://xml.org/sax/features/external-parameter-entities",
-//			Boolean.FALSE);
-//
-//		parserPool.setBuilderFeatures(builderFeatures);
-//		parserPool.setDTDValidating(false);
-//		parserPool.setExpandEntityReferences(false);
 	}
 
 	protected void setupPortal() throws Exception {
