@@ -96,8 +96,8 @@ public class KaleoProcessWorkflowHandler
 
 			String currentURL = liferayPortletURL.toString();
 
-			liferayPortletURL.setParameter("backURL", currentURL);
 			liferayPortletURL.setParameter("tabs2", "edit-workflow-task");
+			liferayPortletURL.setParameter("backURL", currentURL);
 			liferayPortletURL.setParameter(
 				"workflowTaskId", String.valueOf(workflowTaskId));
 			liferayPortletURL.setWindowState(WindowState.NORMAL);

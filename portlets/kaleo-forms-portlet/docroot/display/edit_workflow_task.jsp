@@ -38,9 +38,9 @@ KaleoProcess kaleoProcess = KaleoProcessLocalServiceUtil.getDDLRecordSetKaleoPro
 
 DDLRecordSet ddlRecordSet = kaleoProcess.getDDLRecordSet();
 
-WorkflowHandler<?> workflowHandler = WorkflowHandlerRegistryUtil.getWorkflowHandler(className);
-
 String headerTitle = LanguageUtil.get(request, workflowTask.getName());
+
+WorkflowHandler<?> workflowHandler = WorkflowHandlerRegistryUtil.getWorkflowHandler(className);
 
 headerTitle = headerTitle.concat(StringPool.COLON + StringPool.SPACE + workflowHandler.getTitle(classPK, locale));
 %>
