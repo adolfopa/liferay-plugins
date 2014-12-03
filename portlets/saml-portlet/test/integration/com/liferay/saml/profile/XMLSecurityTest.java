@@ -46,6 +46,10 @@ import org.opensaml.xml.util.Base64;
 
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
+
+/**
+ * @author Mika Koivisto
+ */
 public class XMLSecurityTest extends BaseSamlTestCase {
 
 	@Before
@@ -67,6 +71,7 @@ public class XMLSecurityTest extends BaseSamlTestCase {
 	@Test(expected = MessageDecodingException.class)
 	public void testXMLBombBillionLaughs() throws Exception {
 		String redirectURL = getAuthnRequestRedirectURL();
+
 		AuthnRequest authnRequest = getAuthnRequest(redirectURL);
 
 		String authnRequestXml = OpenSamlUtil.marshall(authnRequest);
