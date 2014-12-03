@@ -158,9 +158,9 @@ AUI().use(
 				}
 
 				if (parameterType == 'date') {
-					var parameterDateDay = A.one('#' + namespace + 'parameterdateday');
-					var parameterDateMonth = A.one('#' + namespace + 'parameterdatemonth');
-					var parameterDateYear = A.one('#' + namespace + 'parameterdateyear');
+					var parameterDateDay = A.one('#' + namespace + 'parameterDateDay');
+					var parameterDateMonth = A.one('#' + namespace + 'parameterDateMonth');
+					var parameterDateYear = A.one('#' + namespace + 'parameterDateYear');
 
 					var parameterDate = new Date();
 
