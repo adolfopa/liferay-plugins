@@ -57,10 +57,9 @@ public class XMLSecurityTest extends BaseSamlTestCase {
 	public void setUp() throws Exception {
 		super.setUp();
 
-		SamlSpAuthRequestLocalService samlSpAuthRequestLocalService =
-			getMockPortletService(
-				SamlSpAuthRequestLocalServiceUtil.class,
-				SamlSpAuthRequestLocalService.class);
+		getMockPortletService(
+			SamlSpAuthRequestLocalServiceUtil.class,
+			SamlSpAuthRequestLocalService.class);
 
 		_webSsoProfileImpl.setIdentifierGenerator(identifierGenerator);
 		_webSsoProfileImpl.setSamlBindings(samlBindings);
