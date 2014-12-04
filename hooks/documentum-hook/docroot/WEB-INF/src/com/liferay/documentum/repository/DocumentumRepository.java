@@ -868,7 +868,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 		int count = 0;
 
 		for (long folderId : folderIds) {
-			count += getFoldersAndFileEntriesCount(folderId);
+			count += getFileEntriesCount(folderId);
 		}
 
 		return count;
