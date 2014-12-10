@@ -221,7 +221,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 
 	@Override
 	public Folder addFolder(
-			long parentFolderId, String name, String description,
+			long userId, long parentFolderId, String name, String description,
 			ServiceContext serviceContext)
 		throws PortalException {
 
@@ -951,7 +951,8 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 
 	@Override
 	public FileEntry moveFileEntry(
-			long fileEntryId, long newFolderId, ServiceContext serviceContext)
+			long userId, long fileEntryId, long newFolderId,
+			ServiceContext serviceContext)
 		throws PortalException {
 
 		IDfSession idfSession = null;
@@ -994,7 +995,7 @@ public class DocumentumRepository extends BaseRepositoryImpl {
 
 	@Override
 	public Folder moveFolder(
-			long folderId, long newParentFolderId,
+			long userId, long folderId, long newParentFolderId,
 			ServiceContext serviceContext)
 		throws PortalException {
 
