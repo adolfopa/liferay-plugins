@@ -166,11 +166,9 @@ public class KaleoProcessLocalServiceImpl
 		KaleoProcess kaleoProcess = kaleoProcessPersistence.findByPrimaryKey(
 			kaleoProcessId);
 
-		String newWorkflowDefinition =
-			workflowDefinitionName + "@" + workflowDefinitionVersion;
-
 		boolean kaleoProcessDataStale = isKaleoProcessDataStale(
-			kaleoProcess, ddmStructureId, newWorkflowDefinition);
+			kaleoProcess, ddmStructureId,
+			workflowDefinitionName + "@" + workflowDefinitionVersion);
 
 		validate(ddmTemplateId);
 
