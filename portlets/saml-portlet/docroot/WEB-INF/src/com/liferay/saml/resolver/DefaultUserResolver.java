@@ -29,7 +29,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Contact;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.auth.CompanyThreadLocal;
-import com.liferay.portal.security.ldap.PortalLDAPImporterUtil;
+import com.liferay.portal.security.exportimport.UserImporterUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.saml.metadata.MetadataManagerUtil;
@@ -310,11 +310,11 @@ public class DefaultUserResolver implements UserResolver {
 		if (subjectNameIdentifierType.endsWith(
 				_SUBJECT_NAME_TYPE_EMAIL_ADDRESS)) {
 
-			user = PortalLDAPImporterUtil.importLDAPUser(
+			user = UserImporterUtil.importUser(
 				companyId, subjectNameIdentifier, StringPool.BLANK);
 		}
 		else {
-			user = PortalLDAPImporterUtil.importLDAPUser(
+			user = UserImporterUtil.importUser(
 				companyId, StringPool.BLANK, subjectNameIdentifier);
 		}
 
