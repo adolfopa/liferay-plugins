@@ -59,4 +59,6 @@ public class Constants {
 
 	public static final String VERSION_LABEL_CURRENT = "CURRENT";
 
+	public static final String VERSION_LABEL_PWC = "PWC";
+
 }
