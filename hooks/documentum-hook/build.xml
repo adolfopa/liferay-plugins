@@ -2,5 +2,7 @@
 <!DOCTYPE project>
 
 <project name="documentum-hook" basedir="." default="deploy">
+	<property name="import.shared" value="dl-repository-shared" />
+
 	<import file="../build-common-hook.xml" />
 </project>
