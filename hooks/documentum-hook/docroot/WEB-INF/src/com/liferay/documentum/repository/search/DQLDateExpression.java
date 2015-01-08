@@ -14,10 +14,13 @@
 
 package com.liferay.documentum.repository.search;
 
-import com.liferay.portal.kernel.util.PropsKeys;
-import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
+import java.util.Date;
 
 /**
  * @author Mika Koivisto
@@ -25,34 +28,35 @@ import com.liferay.portal.kernel.util.StringPool;
 public class DQLDateExpression extends DQLSimpleExpression {
 
 	public DQLDateExpression(
-		String field, String value,
+		String field, Date value,
 		DQLSimpleExpressionOperator dqlSimpleExpressionOperator) {
 
-		super(field, value, dqlSimpleExpressionOperator);
+		super(field, _format(value), dqlSimpleExpressionOperator);
 	}
 
 	@Override
 	public String toQueryFragment() {
 		StringBundler sb = new StringBundler(9);
 
-		sb.append(_field);
+		sb.append(getField());
 		sb.append(StringPool.SPACE);
-		sb.append(_dqlSimpleExpressionOperator);
+		sb.append(getDQLSimpleExpressionOperator());
 		sb.append(StringPool.SPACE);
 		sb.append("DATE('");
-		sb.append(_value);
+		sb.append(getValue());
 		sb.append("', '");
-		sb.append(_INDEX_DATE_FORMAT_PATTERN);
+		sb.append(_DATE_FORMAT_PATTERN);
 		sb.append("')");
 
 		return sb.toString();
 	}
 
-	private static final String _INDEX_DATE_FORMAT_PATTERN = PropsUtil.get(
-		PropsKeys.INDEX_DATE_FORMAT_PATTERN);
+	private static String _format(Date value) {
+		DateFormat dateFormat = new SimpleDateFormat(_DATE_FORMAT_PATTERN);
 
-	private DQLSimpleExpressionOperator _dqlSimpleExpressionOperator;
-	private String _field;
-	private String _value;
+		return dateFormat.format(value);
+	}
+
+	private static final String _DATE_FORMAT_PATTERN = "yyyyMMddHHmmss";
 
 }
