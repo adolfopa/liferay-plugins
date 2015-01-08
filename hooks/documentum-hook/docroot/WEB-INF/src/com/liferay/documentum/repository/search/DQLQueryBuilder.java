@@ -14,12 +14,7 @@
 
 package com.liferay.documentum.repository.search;
 
-import com.liferay.documentum.repository.DocumentumRepository;
 import com.liferay.documentum.repository.model.Constants;
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.search.BooleanClause;
 import com.liferay.portal.kernel.search.BooleanClauseOccur;
 import com.liferay.portal.kernel.search.BooleanQuery;
@@ -28,21 +23,16 @@ import com.liferay.portal.kernel.search.Query;
 import com.liferay.portal.kernel.search.QueryConfig;
 import com.liferay.portal.kernel.search.QueryTerm;
 import com.liferay.portal.kernel.search.SearchContext;
+import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.TermQuery;
 import com.liferay.portal.kernel.search.TermRangeQuery;
 import com.liferay.portal.kernel.search.WildcardQuery;
-import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.model.User;
-import com.liferay.portal.service.UserLocalServiceUtil;
-import com.liferay.portlet.documentlibrary.util.comparator.RepositoryModelCreateDateComparator;
-import com.liferay.portlet.documentlibrary.util.comparator.RepositoryModelModifiedDateComparator;
-import com.liferay.portlet.documentlibrary.util.comparator.RepositoryModelNameComparator;
-import com.liferay.portlet.documentlibrary.util.comparator.RepositoryModelSizeComparator;
+import com.liferay.repository.external.search.ExtRepositoryQueryMapper;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -51,109 +41,17 @@ import java.util.Set;
 
 /**
  * @author Mika Koivisto
+ * @author Iván Zaera Avellón
  */
 public class DQLQueryBuilder {
 
-	public static String buildFileEntriesCountQueryString(
-		DocumentumRepository documentRepository, long folderId,
-		String[] mimeTypes) {
-
-		StringBundler sb = new StringBundler(4);
-
-		sb.append("SELECT COUNT(r_object_id) AS num_hits FROM ");
-		sb.append(Constants.DM_SYSOBJECT);
-		sb.append(" WHERE ");
-		sb.append(
-			buildFileEntriesWhereClause(
-				documentRepository, folderId, mimeTypes, null));
-
-		return sb.toString();
+	public DQLQueryBuilder(ExtRepositoryQueryMapper extRepositoryQueryMapper) {
+		_extRepositoryQueryMapper = extRepositoryQueryMapper;
 	}
 
-	public static String buildFileEntriesSelectQueryString(
-		DocumentumRepository documentRepository, long folderId,
-		String[] mimeTypes, OrderByComparator obc) {
-
-		StringBundler sb = new StringBundler(6);
-
-		sb.append("SELECT ");
-		sb.append(Constants.R_OBJECT_ID);
-		sb.append(" FROM ");
-		sb.append(Constants.DM_SYSOBJECT);
-		sb.append(" WHERE ");
-		sb.append(
-			buildFileEntriesWhereClause(
-				documentRepository, folderId, mimeTypes, obc));
-
-		return sb.toString();
-	}
-
-	public static String buildFoldersAndFileEntriesCountQueryString(
-		DocumentumRepository documentRepository, long folderId,
-		String[] mimeTypes) {
-
-		StringBundler sb = new StringBundler(4);
-
-		sb.append("SELECT COUNT(r_object_id) AS num_hits FROM ");
-		sb.append(Constants.DM_SYSOBJECT);
-		sb.append(" WHERE ");
-		sb.append(
-			buildFoldersAndFileEntriesWhereClause(
-				documentRepository, folderId, mimeTypes, null));
-
-		return sb.toString();
-	}
-
-	public static String buildFoldersAndFileEntriesSelectQueryString(
-		DocumentumRepository documentRepository, long folderId,
-		String[] mimeTypes, OrderByComparator obc) {
-
-		StringBundler sb = new StringBundler(6);
-
-		sb.append("SELECT ");
-		sb.append(Constants.R_OBJECT_ID);
-		sb.append(" FROM ");
-		sb.append(Constants.DM_SYSOBJECT);
-		sb.append(" WHERE ");
-		sb.append(
-			buildFoldersAndFileEntriesWhereClause(
-				documentRepository, folderId, mimeTypes, obc));
-
-		return sb.toString();
-	}
-
-	public static String buildFoldersCountQueryString(
-		DocumentumRepository documentRepository, long folderId) {
-
-		StringBundler sb = new StringBundler(4);
-
-		sb.append("SELECT COUNT(r_object_id) AS num_hits FROM ");
-		sb.append(Constants.DM_FOLDER);
-		sb.append(" WHERE ");
-		sb.append(buildFoldersWhereClause(documentRepository, folderId, null));
-
-		return sb.toString();
-	}
-
-	public static String buildFoldersSelectQueryString(
-		DocumentumRepository documentRepository, long folderId,
-		OrderByComparator obc) {
-
-		StringBundler sb = new StringBundler(6);
-
-		sb.append("SELECT ");
-		sb.append(Constants.R_OBJECT_ID);
-		sb.append(" FROM ");
-		sb.append(Constants.DM_FOLDER);
-		sb.append(" WHERE ");
-		sb.append(buildFoldersWhereClause(documentRepository, folderId, obc));
-
-		return sb.toString();
-	}
-
-	public static String buildSearchCountQueryString(
-		DocumentumRepository documentRepository, SearchContext searchContext,
-		Query query) {
+	public String buildSearchCountQueryString(
+			SearchContext searchContext, Query query)
+		throws SearchException {
 
 		StringBundler sb = new StringBundler();
 
@@ -164,7 +62,7 @@ public class DQLQueryBuilder {
 
 		QueryConfig queryConfig = searchContext.getQueryConfig();
 
-		_traverseQuery(documentRepository, dqlConjunction, query, queryConfig);
+		_traverseQuery(dqlConjunction, query, queryConfig);
 
 		if (!dqlConjunction.isEmpty()) {
 			sb.append(" WHERE ");
@@ -174,9 +72,9 @@ public class DQLQueryBuilder {
 		return sb.toString();
 	}
 
-	public static String buildSearchSelectQueryString(
-		DocumentumRepository documentRepository, SearchContext searchContext,
-		Query query) {
+	public String buildSearchSelectQueryString(
+			SearchContext searchContext, Query query)
+		throws SearchException {
 
 		StringBundler sb = new StringBundler();
 
@@ -189,7 +87,7 @@ public class DQLQueryBuilder {
 
 		QueryConfig queryConfig = searchContext.getQueryConfig();
 
-		_traverseQuery(documentRepository, dqlConjunction, query, queryConfig);
+		_traverseQuery(dqlConjunction, query, queryConfig);
 
 		if (!dqlConjunction.isEmpty()) {
 			sb.append(" WHERE ");
@@ -224,207 +122,11 @@ public class DQLQueryBuilder {
 		return sb.toString();
 	}
 
-	public static void main(String[] arguments) {
-		System.out.println(
-			buildFoldersAndFileEntriesSelectQueryString(
-				null, 100, new String[] {"jpeg", "png"}, null));
-	}
-
-	protected static String buildFileEntriesWhereClause(
-		DocumentumRepository documentRepository, long folderId,
-		String[] mimeTypes, OrderByComparator obc) {
-
-		StringBundler sb = new StringBundler();
-
-		DQLConjunction dqlConjunction = new DQLConjunction();
-
-		DQLCriterion dqlFolderCriterion = _buildFieldExpression(
-			documentRepository, Field.FOLDER_ID, String.valueOf(folderId),
-			DQLSimpleExpressionOperator.EQ, null);
-
-		if (dqlFolderCriterion != null) {
-			dqlConjunction.add(dqlFolderCriterion);
-		}
-
-		DQLCriterion dqlTypeCriterion = _buildFieldExpression(
-			documentRepository, Constants.R_OBJECT_TYPE, Constants.DM_FOLDER,
-			DQLSimpleExpressionOperator.NE, null);
-
-		dqlConjunction.add(dqlTypeCriterion);
-
-		if (mimeTypes != null) {
-			DQLDisjunction dqlDisjunction = new DQLDisjunction();
-
-			for (String mimeType : mimeTypes) {
-				dqlDisjunction.add(
-					_buildFieldExpression(
-						documentRepository, Constants.A_CONTENT_TYPE, mimeType,
-						DQLSimpleExpressionOperator.EQ, null));
-			}
-
-			if (!dqlDisjunction.isEmpty()) {
-				dqlConjunction.add(dqlDisjunction);
-			}
-		}
-
-		sb.append(dqlConjunction.toQueryFragment());
-
-		if ((obc != null) &&
-			((obc instanceof RepositoryModelCreateDateComparator) ||
-			 (obc instanceof RepositoryModelModifiedDateComparator) ||
-			 (obc instanceof RepositoryModelNameComparator) ||
-			 (obc instanceof RepositoryModelSizeComparator))) {
-
-			String[] orderByFields = obc.getOrderByConditionFields();
-
-			if (orderByFields.length > 0) {
-				sb.append(" ORDER BY ");
-			}
-
-			for (int i = 0; i < orderByFields.length; i++) {
-				String fieldName = orderByFields[i];
-
-				if (i > 0) {
-					sb.append(", ");
-				}
-
-				sb.append(_dqlFields.get(fieldName));
-
-				if (obc.isAscending()) {
-					sb.append(" ASC");
-				}
-				else {
-					sb.append(" DESC");
-				}
-			}
-		}
-
-		return sb.toString();
-	}
-
-	protected static String buildFoldersAndFileEntriesWhereClause(
-		DocumentumRepository documentRepository, long folderId,
-		String[] mimeTypes, OrderByComparator obc) {
-
-		StringBundler sb = new StringBundler();
-
-		DQLConjunction dqlConjunction = new DQLConjunction();
-
-		DQLCriterion dqlCriterion = _buildFieldExpression(
-			documentRepository, Field.FOLDER_ID, String.valueOf(folderId),
-			DQLSimpleExpressionOperator.EQ, null);
-
-		if (dqlCriterion != null) {
-			dqlConjunction.add(dqlCriterion);
-		}
-
-		if (mimeTypes != null) {
-			DQLDisjunction dqlDisjunction = new DQLDisjunction();
-
-			dqlDisjunction.add(
-				_buildFieldExpression(
-					documentRepository, Constants.R_OBJECT_TYPE,
-					Constants.DM_FOLDER, DQLSimpleExpressionOperator.EQ, null));
-
-			for (String mimeType : mimeTypes) {
-				dqlDisjunction.add(
-					_buildFieldExpression(
-						documentRepository, Constants.A_CONTENT_TYPE, mimeType,
-						DQLSimpleExpressionOperator.EQ, null));
-			}
-
-			if (!dqlDisjunction.isEmpty()) {
-				dqlConjunction.add(dqlDisjunction);
-			}
-		}
-
-		sb.append(dqlConjunction.toQueryFragment());
-
-		if ((obc != null) &&
-			((obc instanceof RepositoryModelCreateDateComparator) ||
-			 (obc instanceof RepositoryModelModifiedDateComparator) ||
-			 (obc instanceof RepositoryModelNameComparator) ||
-			 (obc instanceof RepositoryModelSizeComparator))) {
-
-			String[] orderByFields = obc.getOrderByConditionFields();
-
-			if (orderByFields.length > 0) {
-				sb.append(" ORDER BY ");
-			}
-
-			for (int i = 0; i < orderByFields.length; i++) {
-				String fieldName = orderByFields[i];
-
-				if (i > 0) {
-					sb.append(", ");
-				}
-
-				sb.append(_dqlFields.get(fieldName));
-
-				if (obc.isAscending()) {
-					sb.append(" ASC");
-				}
-				else {
-					sb.append(" DESC");
-				}
-			}
-		}
-
-		return sb.toString();
-	}
-
-	protected static String buildFoldersWhereClause(
-		DocumentumRepository documentRepository, long folderId,
-		OrderByComparator obc) {
-
-		StringBundler sb = new StringBundler();
-
-		DQLConjunction dqlConjunction = new DQLConjunction();
-
-		DQLCriterion dqlCriterion = _buildFieldExpression(
-			documentRepository, Field.FOLDER_ID, String.valueOf(folderId),
-			DQLSimpleExpressionOperator.EQ, null);
-
-		dqlConjunction.add(dqlCriterion);
-
-		sb.append(dqlConjunction.toQueryFragment());
-
-		if ((obc != null) &&
-			((obc instanceof RepositoryModelCreateDateComparator) ||
-			 (obc instanceof RepositoryModelModifiedDateComparator) ||
-			 (obc instanceof RepositoryModelNameComparator))) {
-
-			String[] orderByFields = obc.getOrderByConditionFields();
-
-			if (orderByFields.length > 0) {
-				sb.append(" ORDER BY ");
-			}
-
-			for (int i = 0; i < orderByFields.length; i++) {
-				String fieldName = orderByFields[i];
-
-				if (i > 0) {
-					sb.append(", ");
-				}
-
-				sb.append(_dqlFields.get(fieldName));
-
-				if (obc.isAscending()) {
-					sb.append(" ASC");
-				}
-				else {
-					sb.append(" DESC");
-				}
-			}
-		}
-
-		return sb.toString();
-	}
-
-	private static DQLCriterion _buildFieldExpression(
-		DocumentumRepository documentRepository, String field, String value,
-		DQLSimpleExpressionOperator dqlSimpleExpressionOperator,
-		QueryConfig queryConfig) {
+	private DQLCriterion _buildFieldExpression(
+			String field, String value,
+			DQLSimpleExpressionOperator dqlSimpleExpressionOperator,
+			QueryConfig queryConfig)
+		throws SearchException {
 
 		DQLCriterion dqlCriterion = null;
 
@@ -434,61 +136,36 @@ public class DQLQueryBuilder {
 		if (field.equals(Field.CREATE_DATE) ||
 			field.equals(Field.MODIFIED_DATE)) {
 
+			Date date = _extRepositoryQueryMapper.formatDateParameterValue(
+				field, value);
+
 			dqlCriterion = new DQLDateExpression(
-				_dqlFields.get(field), value, dqlSimpleExpressionOperator);
+				_dqlFields.get(field), date, dqlSimpleExpressionOperator);
 		}
 		else if (field.equals(Field.FOLDER_ID)) {
-			long folderId = GetterUtil.getLong(value);
+			String extRepositoryFolderKey =
+				_extRepositoryQueryMapper.formatParameterValue(field, value);
 
-			try {
-				String objectId = documentRepository.toFolderObjectId(folderId);
+			boolean descend = false;
 
-				if (objectId != null) {
-					boolean decend = false;
-
-					if (queryConfig != null) {
-						decend = queryConfig.isSearchSubfolders();
-					}
-
-					dqlCriterion = new DQLInFolderExpression(objectId, decend);
-				}
+			if (queryConfig != null) {
+				descend = queryConfig.isSearchSubfolders();
 			}
-			catch (Exception e) {
-				_log.error(e, e);
-			}
+
+			dqlCriterion = new DQLInFolderExpression(
+				extRepositoryFolderKey, descend);
 		}
-		else if (field.equals(Field.USER_ID)) {
-			try {
-				long userId = GetterUtil.getLong(value);
-
-				User user = UserLocalServiceUtil.getUserById(userId);
-
-				String screenName = DQLParameterValueUtil.formatParameterValue(
-					field, user.getScreenName(), wildcard);
-
-				dqlCriterion = new DQLSimpleExpression(
-					Constants.R_CREATOR_NAME, screenName,
-					dqlSimpleExpressionOperator);
-			}
-			catch (PortalException pe) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(pe, pe);
-				}
-			}
-			catch (SystemException se) {
-				_log.error(se, se);
-			}
-		}
-		else if (field.equals(Field.USER_NAME)) {
-			value = DQLParameterValueUtil.formatParameterValue(
-				field, value, wildcard);
+		else if (field.equals(Field.USER_ID) || field.equals(Field.USER_NAME)) {
+			String screenName = _extRepositoryQueryMapper.formatParameterValue(
+				field, value);
 
 			dqlCriterion = new DQLSimpleExpression(
-				Constants.R_CREATOR_NAME, value, dqlSimpleExpressionOperator);
+				Constants.R_CREATOR_NAME, screenName,
+				dqlSimpleExpressionOperator);
 		}
 		else {
-			value = DQLParameterValueUtil.formatParameterValue(
-				field, value, wildcard);
+			value = _extRepositoryQueryMapper.formatParameterValue(
+				field, value);
 
 			String dqlField = _dqlFields.get(field);
 
@@ -503,10 +180,10 @@ public class DQLQueryBuilder {
 		return dqlCriterion;
 	}
 
-	private static void _traverseQuery(
-		DocumentumRepository documentRepository,
-		DQLJunction criterionDQLJunction, Query query,
-		QueryConfig queryConfig) {
+	private void _traverseQuery(
+			DQLJunction criterionDQLJunction, Query query,
+			QueryConfig queryConfig)
+		throws SearchException {
 
 		if (query instanceof BooleanQuery) {
 			BooleanQuery booleanQuery = (BooleanQuery)query;
@@ -533,9 +210,7 @@ public class DQLQueryBuilder {
 
 				Query booleanClauseQuery = booleanClause.getQuery();
 
-				_traverseQuery(
-					documentRepository, dqlJunction, booleanClauseQuery,
-					queryConfig);
+				_traverseQuery(dqlJunction, booleanClauseQuery, queryConfig);
 			}
 
 			if (!anyDQLConjunction.isEmpty()) {
@@ -561,7 +236,7 @@ public class DQLQueryBuilder {
 			}
 
 			DQLCriterion dqlExpression = _buildFieldExpression(
-				documentRepository, queryTerm.getField(), queryTerm.getValue(),
+				queryTerm.getField(), queryTerm.getValue(),
 				DQLSimpleExpressionOperator.EQ, queryConfig);
 
 			if (dqlExpression != null) {
@@ -599,7 +274,7 @@ public class DQLQueryBuilder {
 			}
 
 			DQLCriterion dqlCriterion = _buildFieldExpression(
-				documentRepository, queryTerm.getField(), queryTerm.getValue(),
+				queryTerm.getField(), queryTerm.getValue(),
 				DQLSimpleExpressionOperator.LIKE, queryConfig);
 
 			if (dqlCriterion != null) {
@@ -607,8 +282,6 @@ public class DQLQueryBuilder {
 			}
 		}
 	}
-
-	private static Log _log = LogFactoryUtil.getLog(DQLQueryBuilder.class);
 
 	private static Map<String, String> _dqlFields;
 	private static Set<String> _supportedFields;
@@ -634,5 +307,7 @@ public class DQLQueryBuilder {
 		_supportedFields.add(Field.USER_ID);
 		_supportedFields.add(Field.USER_NAME);
 	}
+
+	private final ExtRepositoryQueryMapper _extRepositoryQueryMapper;
 
 }
