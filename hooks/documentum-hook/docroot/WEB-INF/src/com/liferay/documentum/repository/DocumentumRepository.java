@@ -137,11 +137,11 @@ public class DocumentumRepository
 					idfDocument.setObjectName(title);
 					idfDocument.setTitle(description);
 
-					IDfFolder idfFolderParent = getIDfSysObject(
+					IDfFolder parentIDfFolder = getIDfSysObject(
 						IDfFolder.class, idfSession,
 						extRepositoryParentFolderKey);
 
-					idfDocument.link(idfFolderParent.getFolderPath(0));
+					idfDocument.link(parentIDfFolder.getFolderPath(0));
 
 					StringBundler sb = new StringBundler(5);
 
@@ -199,10 +199,10 @@ public class DocumentumRepository
 				idfFolder.setObjectName(name);
 				idfFolder.setTitle(description);
 
-				IDfFolder idfFolderParent = getIDfSysObject(
+				IDfFolder parentIDfFolder = getIDfSysObject(
 					IDfFolder.class, idfSession, extRepositoryParentFolderKey);
 
-				idfFolder.link(idfFolderParent.getFolderPath(0));
+				idfFolder.link(parentIDfFolder.getFolderPath(0));
 
 				idfFolder.save();
 
@@ -679,12 +679,12 @@ public class DocumentumRepository
 
 				IDfSysObject idfSysObject = documentumObject.getIDfSysObject();
 
-				IDfFolder idfFolderParent = getParentFolder(
+				IDfFolder parentIDfFolder = getParentFolder(
 					idfSession, idfSysObject);
 
 				return toExtRepositoryObject(
 					idfSession, ExtRepositoryObjectType.FOLDER,
-					idfFolderParent);
+					parentIDfFolder);
 			}
 		});
 	}
