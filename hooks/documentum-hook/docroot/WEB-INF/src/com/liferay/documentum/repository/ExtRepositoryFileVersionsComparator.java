@@ -30,13 +30,13 @@ public class ExtRepositoryFileVersionsComparator
 		ExtRepositoryFileVersion extRepositoryFileVersion1,
 		ExtRepositoryFileVersion extRepositoryFileVersion2) {
 
-		String versionLabel1 = extRepositoryFileVersion1.getVersion();
-		String versionLabel2 = extRepositoryFileVersion2.getVersion();
+		String version1 = extRepositoryFileVersion1.getVersion();
+		String version2 = extRepositoryFileVersion2.getVersion();
 
 		DocumentumVersionNumber documentumVersionNumber1 =
-			new DocumentumVersionNumber(versionLabel1);
+			new DocumentumVersionNumber(version1);
 		DocumentumVersionNumber documentumVersionNumber2 =
-			new DocumentumVersionNumber(versionLabel2);
+			new DocumentumVersionNumber(version2);
 
 		return -documentumVersionNumber1.compareTo(documentumVersionNumber2);
 	}
