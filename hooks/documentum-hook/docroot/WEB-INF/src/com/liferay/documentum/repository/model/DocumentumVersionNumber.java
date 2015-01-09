@@ -66,7 +66,9 @@ public class DocumentumVersionNumber
 	@Override
 	public int hashCode() {
 		int result = major;
+
 		result = 31 * result + minor;
+
 		return result;
 	}
 
@@ -74,9 +76,8 @@ public class DocumentumVersionNumber
 		if (incrementMajor) {
 			return new DocumentumVersionNumber(major + 1, 0);
 		}
-		else {
-			return new DocumentumVersionNumber(major, minor + 1);
-		}
+
+		return new DocumentumVersionNumber(major, minor + 1);
 	}
 
 	@Override
