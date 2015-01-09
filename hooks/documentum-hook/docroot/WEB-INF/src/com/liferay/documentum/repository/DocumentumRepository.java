@@ -185,31 +185,35 @@ public class DocumentumRepository
 			final String description)
 		throws PortalException {
 
-		return run(new DocumentumAction<ExtRepositoryFolder>() {
+		return run(
+			new DocumentumAction<ExtRepositoryFolder>() {
 
-			@Override
-			public ExtRepositoryFolder run(IDfSession idfSession)
-				throws DfException, PortalException {
+				@Override
+				public ExtRepositoryFolder run(IDfSession idfSession)
+					throws DfException, PortalException {
 
-				validateTitle(idfSession, extRepositoryParentFolderKey, name);
+					validateTitle(
+						idfSession, extRepositoryParentFolderKey, name);
 
-				IDfFolder idfFolder = (IDfFolder)idfSession.newObject(
-					Constants.DM_FOLDER);
+					IDfFolder idfFolder = (IDfFolder)idfSession.newObject(
+						Constants.DM_FOLDER);
 
-				idfFolder.setObjectName(name);
-				idfFolder.setTitle(description);
+					idfFolder.setObjectName(name);
+					idfFolder.setTitle(description);
 
-				IDfFolder parentIDfFolder = getIDfSysObject(
-					IDfFolder.class, idfSession, extRepositoryParentFolderKey);
+					IDfFolder parentIDfFolder = getIDfSysObject(
+						IDfFolder.class, idfSession,
+						extRepositoryParentFolderKey);
 
-				idfFolder.link(parentIDfFolder.getFolderPath(0));
+					idfFolder.link(parentIDfFolder.getFolderPath(0));
 
-				idfFolder.save();
+					idfFolder.save();
 
-				return toExtRepositoryObject(
-					idfSession, ExtRepositoryObjectType.FOLDER, idfFolder);
-			}
-		});
+					return toExtRepositoryObject(
+						idfSession, ExtRepositoryObjectType.FOLDER, idfFolder);
+				}
+
+			});
 	}
 
 	@Override
@@ -245,30 +249,34 @@ public class DocumentumRepository
 			final String extRepositoryFileEntryKey)
 		throws PortalException {
 
-		return run(new DocumentumAction<ExtRepositoryFileVersion>() {
+		return run(
+			new DocumentumAction<ExtRepositoryFileVersion>() {
 
-			@Override
-			public ExtRepositoryFileVersion run(IDfSession idfSession)
-				throws DfException {
+				@Override
+				public ExtRepositoryFileVersion run(IDfSession idfSession)
+					throws DfException {
 
-				IDfDocument idfDocument = getIDfSysObject(
-					IDfDocument.class, idfSession, extRepositoryFileEntryKey);
+					IDfDocument idfDocument = getIDfSysObject(
+						IDfDocument.class, idfSession,
+						extRepositoryFileEntryKey);
 
-				Map<String, IDfDocument> idfDocumentVersions =
-					getIDfDocumentVersions(idfSession, idfDocument);
+					Map<String, IDfDocument> idfDocumentVersions =
+						getIDfDocumentVersions(idfSession, idfDocument);
 
-				IDfDocument idfDocumentLastVersion = getIDfDocumentLastVersion(
-					idfDocumentVersions);
+					IDfDocument idfDocumentLastVersion =
+						getIDfDocumentLastVersion(idfDocumentVersions);
 
-				idfDocumentLastVersion.cancelCheckout();
+					idfDocumentLastVersion.cancelCheckout();
 
-				idfDocumentLastVersion.destroy();
+					idfDocumentLastVersion.destroy();
 
-				return new DocumentumFileVersion(
-					idfDocumentVersions.get(Constants.VERSION_LABEL_CURRENT),
-					idfDocument);
-			}
-		});
+					return new DocumentumFileVersion(
+						idfDocumentVersions.get(
+							Constants.VERSION_LABEL_CURRENT),
+						idfDocument);
+				}
+
+			});
 	}
 
 	@Override
@@ -277,25 +285,29 @@ public class DocumentumRepository
 			String changeLog)
 		throws PortalException {
 
-		run(new DocumentumAction<Void>() {
+		run(
+			new DocumentumAction<Void>() {
 
-			@Override
-			public Void run(IDfSession idfSession) throws DfException {
-				IDfDocument idfDocument = getIDfSysObject(
-					IDfDocument.class, idfSession, extRepositoryFileEntryKey);
+				@Override
+				public Void run(IDfSession idfSession) throws DfException {
+					IDfDocument idfDocument = getIDfSysObject(
+						IDfDocument.class, idfSession,
+						extRepositoryFileEntryKey);
 
-				IDfDocument idfDocumentLastVersion = getIDfDocumentLastVersion(
-					idfSession, idfDocument);
+					IDfDocument idfDocumentLastVersion =
+						getIDfDocumentLastVersion(idfSession, idfDocument);
 
-				idfDocumentLastVersion.unmark(Constants.VERSION_LABEL_PWC);
+					idfDocumentLastVersion.unmark(Constants.VERSION_LABEL_PWC);
 
-				idfDocumentLastVersion.mark(Constants.VERSION_LABEL_CURRENT);
+					idfDocumentLastVersion.mark(
+						Constants.VERSION_LABEL_CURRENT);
 
-				idfDocumentLastVersion.save();
+					idfDocumentLastVersion.save();
 
-				return null;
-			}
-		});
+					return null;
+				}
+
+			});
 	}
 
 	@Override
@@ -303,45 +315,48 @@ public class DocumentumRepository
 			final String extRepositoryFileEntryKey)
 		throws PortalException {
 
-		return run(new DocumentumAction<ExtRepositoryFileEntry>() {
+		return run(
+			new DocumentumAction<ExtRepositoryFileEntry>() {
 
-			@Override
-			public ExtRepositoryFileEntry run(IDfSession idfSession)
-				throws DfException {
+				@Override
+				public ExtRepositoryFileEntry run(IDfSession idfSession)
+					throws DfException {
 
-				IDfDocument idfDocument = getIDfSysObject(
-					IDfDocument.class, idfSession, extRepositoryFileEntryKey);
+					IDfDocument idfDocument = getIDfSysObject(
+						IDfDocument.class, idfSession,
+						extRepositoryFileEntryKey);
 
-				Map<String, IDfDocument> idfDocumentVersions =
-					getIDfDocumentVersions(idfSession, idfDocument);
+					Map<String, IDfDocument> idfDocumentVersions =
+						getIDfDocumentVersions(idfSession, idfDocument);
 
-				if (!idfDocumentVersions.containsKey(
-						Constants.VERSION_LABEL_PWC)) {
+					if (!idfDocumentVersions.containsKey(
+							Constants.VERSION_LABEL_PWC)) {
 
-					IDfDocument idfDocumentLastVersion =
-						getIDfDocumentLastVersion(idfDocumentVersions);
+						IDfDocument idfDocumentLastVersion =
+							getIDfDocumentLastVersion(idfDocumentVersions);
 
-					String versionLabel =
-						idfDocumentLastVersion.getImplicitVersionLabel();
+						String versionLabel =
+							idfDocumentLastVersion.getImplicitVersionLabel();
 
-					idfDocumentLastVersion.checkout();
+						idfDocumentLastVersion.checkout();
 
-					DocumentumVersionNumber documentumVersionNumber =
-						new DocumentumVersionNumber(versionLabel);
+						DocumentumVersionNumber documentumVersionNumber =
+							new DocumentumVersionNumber(versionLabel);
 
-					documentumVersionNumber = documentumVersionNumber.increment(
-						false);
+						documentumVersionNumber =
+							documentumVersionNumber.increment(false);
 
-					idfDocumentLastVersion.checkin(
-						true,
-						Constants.VERSION_LABEL_PWC + StringPool.COMMA +
-							documentumVersionNumber.toString());
+						idfDocumentLastVersion.checkin(
+							true,
+							Constants.VERSION_LABEL_PWC + StringPool.COMMA +
+								documentumVersionNumber.toString());
+					}
+
+					return toExtRepositoryObject(
+						idfSession, ExtRepositoryObjectType.FILE, idfDocument);
 				}
 
-				return toExtRepositoryObject(
-					idfSession, ExtRepositoryObjectType.FILE, idfDocument);
-			}
-		});
+			});
 	}
 
 	@Override
@@ -351,50 +366,53 @@ public class DocumentumRepository
 			final String newExtRepositoryFolderKey, String newTitle)
 		throws PortalException {
 
-		return run(new DocumentumAction<T>() {
+		return run(
+			new DocumentumAction<T>() {
 
-			@Override
-			public T run(IDfSession idfSession)
-				throws DfException, PortalException {
+				@Override
+				public T run(IDfSession idfSession)
+					throws DfException, PortalException {
 
-				if (extRepositoryObjectType != ExtRepositoryObjectType.FILE) {
-					throw new UnsupportedOperationException(
-						"Copying non-file external repository objects is not " +
-							"supported");
+					if (extRepositoryObjectType != ExtRepositoryObjectType.FILE) {
+						throw new UnsupportedOperationException(
+							"Copying non-file external repository objects is " +
+								"not supported");
+					}
+
+					IDfDocument idfDocument = getIDfSysObject(
+						IDfDocument.class, idfSession, extRepositoryFileEntryKey);
+
+					validateTitle(
+						idfSession, newExtRepositoryFolderKey,
+						idfDocument.getObjectName());
+
+					IDfCopyOperation idfCopyOperation =
+						_idfClientX.getCopyOperation();
+
+					idfCopyOperation.setDestinationFolderId(
+						getIDfId(idfSession, newExtRepositoryFolderKey));
+
+					idfCopyOperation.add(idfDocument);
+
+					if (!idfCopyOperation.execute()) {
+						IDfList idfList = idfCopyOperation.getErrors();
+
+						IDfOperationError idfOperationError =
+							(IDfOperationError)idfList.get(0);
+
+						throw new PrincipalException(
+							idfOperationError.getMessage());
+					}
+
+					IDfList idfList = idfCopyOperation.getNewObjects();
+
+					return toExtRepositoryObject(
+						idfSession, extRepositoryObjectType,
+						(IDfDocument)idfSession.getObject(
+							(IDfId)idfList.get(0)));
 				}
 
-				IDfDocument idfDocument = getIDfSysObject(
-					IDfDocument.class, idfSession, extRepositoryFileEntryKey);
-
-				validateTitle(
-					idfSession, newExtRepositoryFolderKey,
-					idfDocument.getObjectName());
-
-				IDfCopyOperation idfCopyOperation =
-					_idfClientX.getCopyOperation();
-
-				idfCopyOperation.setDestinationFolderId(
-					getIDfId(idfSession, newExtRepositoryFolderKey));
-
-				idfCopyOperation.add(idfDocument);
-
-				if (!idfCopyOperation.execute()) {
-					IDfList idfList = idfCopyOperation.getErrors();
-
-					IDfOperationError idfOperationError =
-						(IDfOperationError)idfList.get(0);
-
-					throw new PrincipalException(
-						idfOperationError.getMessage());
-				}
-
-				IDfList idfList = idfCopyOperation.getNewObjects();
-
-				return toExtRepositoryObject(
-					idfSession, extRepositoryObjectType,
-					(IDfDocument)idfSession.getObject((IDfId)idfList.get(0)));
-			}
-		});
+			});
 	}
 
 	@Override
@@ -404,31 +422,32 @@ public class DocumentumRepository
 			final String extRepositoryObjectKey)
 		throws PortalException {
 
-		run(new DocumentumAction<Void>() {
+		run(
+			new DocumentumAction<Void>() {
 
-			@Override
-			public Void run(IDfSession idfSession) throws DfException {
-				IDfId idfId = getIDfId(idfSession, extRepositoryObjectKey);
+				@Override
+				public Void run(IDfSession idfSession) throws DfException {
+					IDfId idfId = getIDfId(idfSession, extRepositoryObjectKey);
 
-				if (extRepositoryObjectType == ExtRepositoryObjectType.FILE) {
-					IDfDocument idfDocument = (IDfDocument)idfSession.getObject(
-						idfId);
+					if (extRepositoryObjectType == ExtRepositoryObjectType.FILE) {
+						IDfDocument idfDocument =
+							(IDfDocument)idfSession.getObject(idfId);
 
-					idfDocument.destroyAllVersions();
+						idfDocument.destroyAllVersions();
+					}
+					else if (extRepositoryObjectType ==
+								ExtRepositoryObjectType.FOLDER) {
+
+						IDfFolder idfFolder = (IDfFolder)idfSession.getObject(
+							idfId);
+
+						deleteFolder(idfSession, idfFolder);
+					}
+
+					return null;
 				}
-				else if (
-							extRepositoryObjectType ==
-						ExtRepositoryObjectType.FOLDER) {
 
-					IDfFolder idfFolder = (IDfFolder)idfSession.getObject(
-						idfId);
-
-					deleteFolder(idfSession, idfFolder);
-				}
-
-				return null;
-			}
-		});
+			});
 	}
 
 	@Override
@@ -441,16 +460,20 @@ public class DocumentumRepository
 			final ExtRepositoryFileEntry extRepositoryFileEntry)
 		throws PortalException {
 
-		return run(new DocumentumAction<InputStream>() {
+		return run(
+			new DocumentumAction<InputStream>() {
 
-			@Override
-			public InputStream run(IDfSession idfSession) throws DfException {
-				IDfDocument idfDocument = getIDfSysObject(
-					IDfDocument.class, extRepositoryFileEntry);
+				@Override
+				public InputStream run(IDfSession idfSession)
+					throws DfException {
 
-				return idfDocument.getContent();
-			}
-		});
+					IDfDocument idfDocument = getIDfSysObject(
+						IDfDocument.class, extRepositoryFileEntry);
+
+					return idfDocument.getContent();
+				}
+
+			});
 	}
 
 	@Override
@@ -476,29 +499,31 @@ public class DocumentumRepository
 			final String version)
 		throws PortalException {
 
-		return run(new DocumentumAction<ExtRepositoryFileVersion>() {
+		return run(
+			new DocumentumAction<ExtRepositoryFileVersion>() {
 
-			@Override
-			public ExtRepositoryFileVersion run(IDfSession idfSession)
-				throws DfException, PortalException {
+				@Override
+				public ExtRepositoryFileVersion run(IDfSession idfSession)
+					throws DfException, PortalException {
 
-				IDfDocument idfDocument = getIDfSysObject(
-					IDfDocument.class, extRepositoryFileEntry);
+					IDfDocument idfDocument = getIDfSysObject(
+						IDfDocument.class, extRepositoryFileEntry);
 
-				Map<String, IDfDocument> idfDocumentVersions =
-					getIDfDocumentVersions(idfSession, idfDocument);
+					Map<String, IDfDocument> idfDocumentVersions =
+						getIDfDocumentVersions(idfSession, idfDocument);
 
-				IDfDocument idfDocumentVersion = idfDocumentVersions.get(
-					version);
+					IDfDocument idfDocumentVersion = idfDocumentVersions.get(
+						version);
 
-				if (idfDocumentVersion == null) {
-					throw new NoSuchFileVersionException(version);
+					if (idfDocumentVersion == null) {
+						throw new NoSuchFileVersionException(version);
+					}
+
+					return new DocumentumFileVersion(
+						idfDocumentVersion, idfDocument);
 				}
 
-				return new DocumentumFileVersion(
-					idfDocumentVersion, idfDocument);
-			}
-		});
+			});
 	}
 
 	@Override
@@ -521,37 +546,41 @@ public class DocumentumRepository
 			final ExtRepositoryFileEntry extRepositoryFileEntry)
 		throws PortalException {
 
-		return run(new DocumentumAction<List<ExtRepositoryFileVersion>>() {
+		return run(
+			new DocumentumAction<List<ExtRepositoryFileVersion>>() {
 
-			@Override
-			public List<ExtRepositoryFileVersion> run(IDfSession idfSession)
-				throws DfException {
+				@Override
+				public List<ExtRepositoryFileVersion> run(IDfSession idfSession)
+					throws DfException {
 
-				IDfDocument idfDocument = getIDfSysObject(
-					IDfDocument.class, extRepositoryFileEntry);
+					IDfDocument idfDocument = getIDfSysObject(
+						IDfDocument.class, extRepositoryFileEntry);
 
-				Map<String, IDfDocument> idfDocumentVersionsMap =
-					getIDfDocumentVersions(idfSession, idfDocument);
+					Map<String, IDfDocument> idfDocumentVersionsMap =
+						getIDfDocumentVersions(idfSession, idfDocument);
 
-				Set<IDfDocument> idfDocumentVersionsSet = new HashSet<>(
-					idfDocumentVersionsMap.values());
+					Set<IDfDocument> idfDocumentVersionsSet = new HashSet<>(
+						idfDocumentVersionsMap.values());
 
-				List<ExtRepositoryFileVersion> extRepositoryFileVersions =
-					new ArrayList<>();
+					List<ExtRepositoryFileVersion> extRepositoryFileVersions =
+						new ArrayList<>();
 
-				for (IDfDocument idfDocumentVersion : idfDocumentVersionsSet) {
-					extRepositoryFileVersions.add(
-						new DocumentumFileVersion(
-							idfDocumentVersion, idfDocument));
+					for (IDfDocument idfDocumentVersion :
+							idfDocumentVersionsSet) {
+
+						extRepositoryFileVersions.add(
+							new DocumentumFileVersion(
+								idfDocumentVersion, idfDocument));
+					}
+
+					Collections.sort(
+						extRepositoryFileVersions,
+						_extRepositoryFileVersionsComparator);
+
+					return extRepositoryFileVersions;
 				}
 
-				Collections.sort(
-					extRepositoryFileVersions,
-					_extRepositoryFileVersionsComparator);
-
-				return extRepositoryFileVersions;
-			}
-		});
+			});
 	}
 
 	@Override
@@ -560,32 +589,34 @@ public class DocumentumRepository
 			final String extRepositoryObjectKey)
 		throws PortalException {
 
-		return run(new DocumentumAction<T>() {
+		return run(
+			new DocumentumAction<T>() {
 
-			@Override
-			public T run(IDfSession idfSession)
-				throws DfException, PortalException {
+				@Override
+				public T run(IDfSession idfSession)
+					throws DfException, PortalException {
 
-				IDfSysObject idfSysObject = getIDfSysObject(
-					IDfSysObject.class, idfSession, extRepositoryObjectKey);
+					IDfSysObject idfSysObject = getIDfSysObject(
+						IDfSysObject.class, idfSession, extRepositoryObjectKey);
 
-				if (idfSysObject == null) {
-					if (
-							extRepositoryObjectType ==
+					if (idfSysObject == null) {
+						if (extRepositoryObjectType ==
 								ExtRepositoryObjectType.FOLDER) {
 
-						throw new NoSuchFolderException(extRepositoryObjectKey);
+							throw new NoSuchFolderException(
+								extRepositoryObjectKey);
+						}
+						else {
+							throw new NoSuchFileEntryException(
+								extRepositoryObjectKey);
+						}
 					}
-					else {
-						throw new NoSuchFileEntryException(
-							extRepositoryObjectKey);
-					}
+
+					return toExtRepositoryObject(
+						idfSession, extRepositoryObjectType, idfSysObject);
 				}
 
-				return toExtRepositoryObject(
-					idfSession, extRepositoryObjectType, idfSysObject);
-			}
-		});
+			});
 	}
 
 	@Override
@@ -594,30 +625,33 @@ public class DocumentumRepository
 			final String extRepositoryFolderKey, final String title)
 		throws PortalException {
 
-		return run(new DocumentumAction<T>() {
+		return run(
+			new DocumentumAction<T>() {
 
-			@Override
-			public T run(IDfSession idfSession)
-				throws DfException, PortalException {
+				@Override
+				public T run(IDfSession idfSession)
+					throws DfException, PortalException {
 
-				IDfId idfId = getIDfId(
-					idfSession, extRepositoryFolderKey,
-					ExtRepositoryObjectType.FILE, title);
+					IDfId idfId = getIDfId(
+						idfSession, extRepositoryFolderKey,
+						ExtRepositoryObjectType.FILE, title);
 
-				if (idfId == null) {
-					throw new NoSuchFileEntryException(
-						"No Documentum file entry with " +
-							"{extRepositoryFolderKey=" +
-							extRepositoryFolderKey + ", title=" + title + "}");
+					if (idfId == null) {
+						throw new NoSuchFileEntryException(
+							"No Documentum file entry with " +
+								"{extRepositoryFolderKey=" +
+									extRepositoryFolderKey + ", title=" +
+										title + "}");
+					}
+
+					IDfDocument idfDocument = (IDfDocument)idfSession.getObject(
+						idfId);
+
+					return toExtRepositoryObject(
+						idfSession, extRepositoryObjectType, idfDocument);
 				}
 
-				IDfDocument idfDocument = (IDfDocument)idfSession.getObject(
-					idfId);
-
-				return toExtRepositoryObject(
-					idfSession, extRepositoryObjectType, idfDocument);
-			}
-		});
+			});
 	}
 
 	@Override
@@ -626,21 +660,23 @@ public class DocumentumRepository
 			final String extRepositoryFolderKey)
 		throws PortalException {
 
-		return run(new DocumentumAction<List<T>>() {
+		return run(
+			new DocumentumAction<List<T>>() {
 
-			@Override
-			public List<T> run(IDfSession idfSession) throws DfException {
-				DocumentumQuery documentumQuery = new DocumentumQuery(
-					_idfClientX, idfSession);
+				@Override
+				public List<T> run(IDfSession idfSession) throws DfException {
+					DocumentumQuery documentumQuery = new DocumentumQuery(
+						_idfClientX, idfSession);
 
-				List<IDfSysObject> idfSysObjects =
-					documentumQuery.getIDfSysObjects(
-						extRepositoryFolderKey, extRepositoryObjectType);
+					List<IDfSysObject> idfSysObjects =
+						documentumQuery.getIDfSysObjects(
+							extRepositoryFolderKey, extRepositoryObjectType);
 
-				return toExtRepositoryObjects(
-					idfSession, extRepositoryObjectType, idfSysObjects);
-			}
-		});
+					return toExtRepositoryObjects(
+						idfSession, extRepositoryObjectType, idfSysObjects);
+				}
+
+			});
 	}
 
 	@Override
@@ -650,17 +686,19 @@ public class DocumentumRepository
 			final String extRepositoryFolderKey)
 		throws PortalException {
 
-		return run(new DocumentumAction<Integer>() {
+		return run(
+			new DocumentumAction<Integer>() {
 
-			@Override
-			public Integer run(IDfSession idfSession) throws DfException {
-				DocumentumQuery documentumQuery = new DocumentumQuery(
-					_idfClientX, idfSession);
+				@Override
+				public Integer run(IDfSession idfSession) throws DfException {
+					DocumentumQuery documentumQuery = new DocumentumQuery(
+						_idfClientX, idfSession);
 
-				return documentumQuery.getCount(
-					extRepositoryFolderKey, extRepositoryObjectType);
-			}
-		});
+					return documentumQuery.getCount(
+						extRepositoryFolderKey, extRepositoryObjectType);
+				}
+
+			});
 	}
 
 	@Override
@@ -668,7 +706,8 @@ public class DocumentumRepository
 			final ExtRepositoryObject extRepositoryObject)
 		throws PortalException {
 
-		return run(new DocumentumAction<ExtRepositoryFolder>() {
+		return run(
+			new DocumentumAction<ExtRepositoryFolder>() {
 
 			@Override
 			public ExtRepositoryFolder run(IDfSession idfSession)
@@ -686,6 +725,7 @@ public class DocumentumRepository
 					idfSession, ExtRepositoryObjectType.FOLDER,
 					parentIDfFolder);
 			}
+
 		});
 	}
 
@@ -704,19 +744,24 @@ public class DocumentumRepository
 			final String extRepositoryFolderKey, final boolean recurse)
 		throws PortalException {
 
-		return run(new DocumentumAction<List<String>>() {
+		return run(
+			new DocumentumAction<List<String>>() {
 
-			@Override
-			public List<String> run(IDfSession idfSession) throws DfException {
-				List<String> extRepositoryFolderKeys = new ArrayList<String>();
+				@Override
+				public List<String> run(IDfSession idfSession)
+					throws DfException {
 
-				getSubfolderKeys(
-					idfSession, extRepositoryFolderKey, extRepositoryFolderKeys,
-					recurse);
+					List<String> extRepositoryFolderKeys =
+						new ArrayList<String>();
 
-				return extRepositoryFolderKeys;
-			}
-		});
+					getSubfolderKeys(
+						idfSession, extRepositoryFolderKey,
+						extRepositoryFolderKeys, recurse);
+
+					return extRepositoryFolderKeys;
+				}
+
+			});
 	}
 
 	@Override
@@ -786,46 +831,49 @@ public class DocumentumRepository
 			final String newExtRepositoryFolderKey, final String newTitle)
 		throws PortalException {
 
-		return run(new DocumentumAction<T>() {
+		return run(
+			new DocumentumAction<T>() {
 
-			@Override
-			public T run(IDfSession idfSession)
-				throws DfException, PortalException {
+				@Override
+				public T run(IDfSession idfSession)
+					throws DfException, PortalException {
 
-				validateTitle(idfSession, newExtRepositoryFolderKey, newTitle);
+					validateTitle(
+						idfSession, newExtRepositoryFolderKey, newTitle);
 
-				IDfSysObject idfSysObject = getIDfSysObject(
-					IDfSysObject.class, idfSession, extRepositoryObjectKey);
+					IDfSysObject idfSysObject = getIDfSysObject(
+						IDfSysObject.class, idfSession, extRepositoryObjectKey);
 
-				IDfFolder idfFolderOld = getParentFolder(
-					idfSession, idfSysObject);
+					IDfFolder idfFolderOld = getParentFolder(
+						idfSession, idfSysObject);
 
-				IDfFolder idfFolderNew = getIDfSysObject(
-					IDfFolder.class, idfSession, newExtRepositoryFolderKey);
+					IDfFolder idfFolderNew = getIDfSysObject(
+						IDfFolder.class, idfSession, newExtRepositoryFolderKey);
 
-				IDfSysObject idfSysObjectToMove = idfSysObject;
+					IDfSysObject idfSysObjectToMove = idfSysObject;
 
-				if (idfSysObject instanceof IDfDocument) {
-					IDfDocument idfDocument = (IDfDocument)idfSysObject;
+					if (idfSysObject instanceof IDfDocument) {
+						IDfDocument idfDocument = (IDfDocument)idfSysObject;
 
-					IDfDocument idfDocumentLastVersion =
-						getIDfDocumentLastVersion(idfSession, idfDocument);
+						IDfDocument idfDocumentLastVersion =
+							getIDfDocumentLastVersion(idfSession, idfDocument);
 
-					idfSysObjectToMove = idfDocumentLastVersion;
+						idfSysObjectToMove = idfDocumentLastVersion;
+					}
+
+					idfSysObjectToMove.unlink(idfFolderOld.getFolderPath(0));
+
+					idfSysObjectToMove.link(idfFolderNew.getFolderPath(0));
+
+					idfSysObjectToMove.setObjectName(newTitle);
+
+					idfSysObjectToMove.save();
+
+					return toExtRepositoryObject(
+						idfSession, extRepositoryObjectType, idfSysObject);
 				}
 
-				idfSysObjectToMove.unlink(idfFolderOld.getFolderPath(0));
-
-				idfSysObjectToMove.link(idfFolderNew.getFolderPath(0));
-
-				idfSysObjectToMove.setObjectName(newTitle);
-
-				idfSysObjectToMove.save();
-
-				return toExtRepositoryObject(
-					idfSession, extRepositoryObjectType, idfSysObject);
-			}
-		});
+			});
 	}
 
 	@Override
@@ -834,107 +882,113 @@ public class DocumentumRepository
 			final ExtRepositoryQueryMapper extRepositoryQueryMapper)
 		throws PortalException {
 
-		return run(new DocumentumAction<List<ExtRepositorySearchResult<?>>>() {
+		return run(
+			new DocumentumAction<List<ExtRepositorySearchResult<?>>>() {
 
-			@Override
-			public List<ExtRepositorySearchResult<?>> run(IDfSession idfSession)
-				throws DfException, PortalException {
+				@Override
+				public List<ExtRepositorySearchResult<?>> run(
+						IDfSession idfSession)
+					throws DfException, PortalException {
 
-				DQLQueryBuilder dqlQueryBuilder = new DQLQueryBuilder(
-					extRepositoryQueryMapper);
+					DQLQueryBuilder dqlQueryBuilder = new DQLQueryBuilder(
+						extRepositoryQueryMapper);
 
-				String searchCountQueryString =
-					dqlQueryBuilder.buildSearchCountQueryString(
-						searchContext, query);
+					String searchCountQueryString =
+						dqlQueryBuilder.buildSearchCountQueryString(
+							searchContext, query);
 
-				IDfQuery idfQuery = _idfClientX.getQuery();
+					IDfQuery idfQuery = _idfClientX.getQuery();
 
-				idfQuery.setDQL(searchCountQueryString);
+					idfQuery.setDQL(searchCountQueryString);
 
-				if (_log.isDebugEnabled()) {
-					_log.debug("Executing query: " + searchCountQueryString);
-				}
-
-				List<ExtRepositorySearchResult<?>>
-					extRepositorySearchResults = new ArrayList<>();
-
-				IDfCollection idfCollection = idfQuery.execute(
-					idfSession, IDfQuery.DF_READ_QUERY);
-
-				try {
-					long total = 0;
-
-					if (idfCollection.next()) {
-						total = idfCollection.getLong("num_hits");
+					if (_log.isDebugEnabled()) {
+						_log.debug(
+							"Executing query: " + searchCountQueryString);
 					}
 
-					idfCollection.close();
+					List<ExtRepositorySearchResult<?>>
+						extRepositorySearchResults = new ArrayList<>();
 
-					int start = searchContext.getStart();
-					int end = searchContext.getEnd();
+					IDfCollection idfCollection = idfQuery.execute(
+						idfSession, IDfQuery.DF_READ_QUERY);
 
-					if ((start == QueryUtil.ALL_POS) &&
-						(end == QueryUtil.ALL_POS)) {
+					try {
+						long total = 0;
 
-						start = 0;
-						end = (int)total;
-					}
-					else if (end > total) {
-						end = (int)total;
-					}
-
-					if (total > 0) {
-						String searchSelectQueryString =
-							dqlQueryBuilder.buildSearchSelectQueryString(
-								searchContext, query);
-
-						idfQuery.setDQL(searchSelectQueryString);
-
-						if (_log.isDebugEnabled()) {
-							_log.debug(
-								"Executing query: " + searchSelectQueryString);
+						if (idfCollection.next()) {
+							total = idfCollection.getLong("num_hits");
 						}
 
-						idfCollection = idfQuery.execute(
-							idfSession, IDfQuery.DF_READ_QUERY);
+						idfCollection.close();
 
-						for (int i = 0; i < start && i < total; i++) {
-							idfCollection.next();
+						int start = searchContext.getStart();
+						int end = searchContext.getEnd();
+
+						if ((start == QueryUtil.ALL_POS) &&
+							(end == QueryUtil.ALL_POS)) {
+
+							start = 0;
+							end = (int)total;
+						}
+						else if (end > total) {
+							end = (int)total;
 						}
 
-						for (int i = start;
-									(i < end) && idfCollection.next(); i++) {
+						if (total > 0) {
+							String searchSelectQueryString =
+								dqlQueryBuilder.buildSearchSelectQueryString(
+									searchContext, query);
 
-							IDfId idfId = idfCollection.getId(
-								Constants.R_OBJECT_ID);
+							idfQuery.setDQL(searchSelectQueryString);
 
-							IDfDocument idfDocument =
-								(IDfDocument)idfSession.getObject(idfId);
-
-							if (_log.isTraceEnabled()) {
-								_log.trace(idfDocument.dump());
+							if (_log.isDebugEnabled()) {
+								_log.debug(
+									"Executing query: " +
+										searchSelectQueryString);
 							}
 
-							ExtRepositoryFileEntry extRepositoryFileEntry =
-								toExtRepositoryObject(
-									idfSession, ExtRepositoryObjectType.FILE,
-									idfDocument);
+							idfCollection = idfQuery.execute(
+								idfSession, IDfQuery.DF_READ_QUERY);
 
-							extRepositorySearchResults.add(
-								new ExtRepositorySearchResult
-									<ExtRepositoryObject>(
-										extRepositoryFileEntry, 1,
-										StringPool.BLANK));
+							for (int i = 0; i < start && i < total; i++) {
+								idfCollection.next();
+							}
+
+							for (int i = start;
+									(i < end) && idfCollection.next(); i++) {
+
+								IDfId idfId = idfCollection.getId(
+									Constants.R_OBJECT_ID);
+
+								IDfDocument idfDocument =
+									(IDfDocument)idfSession.getObject(idfId);
+
+								if (_log.isTraceEnabled()) {
+									_log.trace(idfDocument.dump());
+								}
+
+								ExtRepositoryFileEntry extRepositoryFileEntry =
+									toExtRepositoryObject(
+										idfSession,
+										ExtRepositoryObjectType.FILE,
+										idfDocument);
+
+								extRepositorySearchResults.add(
+									new ExtRepositorySearchResult
+										<ExtRepositoryObject>(
+											extRepositoryFileEntry, 1,
+											StringPool.BLANK));
+							}
 						}
 					}
-				}
-				finally {
-					close(idfCollection);
+					finally {
+						close(idfCollection);
+					}
+
+					return extRepositorySearchResults;
 				}
 
-				return extRepositorySearchResults;
-			}
-		});
+			});
 	}
 
 	@Override
@@ -943,68 +997,71 @@ public class DocumentumRepository
 			final InputStream inputStream)
 		throws PortalException {
 
-		return run(new DocumentumAction<ExtRepositoryFileEntry>() {
+		return run(
+			new DocumentumAction<ExtRepositoryFileEntry>() {
 
-			@Override
-			public ExtRepositoryFileEntry run(IDfSession idfSession)
-				throws DfException, PortalException {
+				@Override
+				public ExtRepositoryFileEntry run(IDfSession idfSession)
+					throws DfException, PortalException {
 
-				IDfDocument idfDocument = getIDfSysObject(
-					IDfDocument.class, idfSession, extRepositoryFileEntryKey);
+					IDfDocument idfDocument = getIDfSysObject(
+						IDfDocument.class, idfSession,
+						extRepositoryFileEntryKey);
 
-				IDfDocument idfDocumentLastVersion = getIDfDocumentLastVersion(
-					idfSession, idfDocument);
+					IDfDocument idfDocumentLastVersion =
+						getIDfDocumentLastVersion(idfSession, idfDocument);
 
-				String title = idfDocumentLastVersion.getObjectName();
+					String title = idfDocumentLastVersion.getObjectName();
 
-				StringBundler sb = new StringBundler(5);
+					StringBundler sb = new StringBundler(5);
 
-				sb.append(SystemProperties.get(SystemProperties.TMP_DIR));
-				sb.append("/liferay/documentum/");
-				sb.append(PwdGenerator.getPassword());
-				sb.append(StringPool.UNDERLINE);
-				sb.append(title);
+					sb.append(SystemProperties.get(SystemProperties.TMP_DIR));
+					sb.append("/liferay/documentum/");
+					sb.append(PwdGenerator.getPassword());
+					sb.append(StringPool.UNDERLINE);
+					sb.append(title);
 
-				String fileName = sb.toString();
+					String fileName = sb.toString();
 
-				File file = new File(fileName);
+					File file = new File(fileName);
 
-				try {
-					FileUtil.write(file, inputStream);
+					try {
+						FileUtil.write(file, inputStream);
 
-					String contentType = getContentType(
-						idfSession, mimeType, title);
+						String contentType = getContentType(
+							idfSession, mimeType, title);
 
-					if (Validator.isNull(contentType)) {
-						throw new FileExtensionException(
-							"Unsupported file type " + title);
+						if (Validator.isNull(contentType)) {
+							throw new FileExtensionException(
+								"Unsupported file type " + title);
+						}
+
+						idfDocumentLastVersion.setContentType(contentType);
+
+						idfDocumentLastVersion.setFile(fileName);
+
+						if (
+								Validator.isNull(
+									idfDocumentLastVersion.getLockOwner())) {
+
+							idfDocumentLastVersion.save();
+						}
+						else {
+							idfDocumentLastVersion.saveLock();
+						}
+					}
+					catch (IOException ioe) {
+						throw new RepositoryException(ioe);
+					}
+					finally {
+						file.delete();
 					}
 
-					idfDocumentLastVersion.setContentType(contentType);
-
-					idfDocumentLastVersion.setFile(fileName);
-
-					if (
-							Validator.isNull(
-								idfDocumentLastVersion.getLockOwner())) {
-
-						idfDocumentLastVersion.save();
-					}
-					else {
-						idfDocumentLastVersion.saveLock();
-					}
-				}
-				catch (IOException ioe) {
-					throw new RepositoryException(ioe);
-				}
-				finally {
-					file.delete();
+					return toExtRepositoryObject(
+						idfSession, ExtRepositoryObjectType.FILE, idfDocument);
 				}
 
-				return toExtRepositoryObject(
-					idfSession, ExtRepositoryObjectType.FILE, idfDocument);
-			}
-		});
+			});
 	}
 
 	protected void close(IDfCollection idfCollection) {
