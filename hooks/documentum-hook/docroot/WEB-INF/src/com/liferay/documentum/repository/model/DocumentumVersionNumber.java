@@ -34,22 +34,33 @@ public class DocumentumVersionNumber
 
 	@Override
 	public int compareTo(DocumentumVersionNumber documentumVersionNumber) {
-		if (this.major != documentumVersionNumber.major) {
-			return this.major - documentumVersionNumber.major;
+		if (major != documentumVersionNumber.major) {
+			return major - documentumVersionNumber.major;
 		}
 
-		return this.minor - documentumVersionNumber.minor;
+		return minor - documentumVersionNumber.minor;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
 		if (!(obj instanceof DocumentumVersionNumber)) {
 			return false;
 		}
 
-		DocumentumVersionNumber that = (DocumentumVersionNumber)obj;
+		DocumentumVersionNumber documentumVersionNumber =
+			(DocumentumVersionNumber)obj;
 
-		return (this.major == that.major) && (this.minor == that.minor);
+		if ((major == documentumVersionNumber.major) &&
+			(minor == documentumVersionNumber.minor)) {
+
+			return true;
+		}
+
+		return false;
 	}
 
 	@Override
