@@ -51,7 +51,7 @@ public class DocumentumQuery {
 		try {
 			IDfQuery idfQuery = _idfClientX.getQuery();
 
-			String queryString = _buildSysObjectQuery(
+			String queryString = buildSysObjectQuery(
 				"COUNT(r_object_id) AS num_hits", extRepositoryFolderKey,
 				extRepositoryObjectType);
 
@@ -73,7 +73,7 @@ public class DocumentumQuery {
 			return total;
 		}
 		finally {
-			_close(idfCollection);
+			close(idfCollection);
 		}
 	}
 
@@ -89,7 +89,7 @@ public class DocumentumQuery {
 
 			IDfQuery idfQuery = _idfClientX.getQuery();
 
-			String queryString = _buildSysObjectQuery(
+			String queryString = buildSysObjectQuery(
 				Constants.R_OBJECT_ID, extRepositoryFolderKey,
 				extRepositoryObjectType);
 
@@ -125,11 +125,11 @@ public class DocumentumQuery {
 			return idfSysObjects;
 		}
 		finally {
-			_close(idfCollection);
+			close(idfCollection);
 		}
 	}
 
-	private String _buildSysObjectQuery(
+	protected String buildSysObjectQuery(
 		String selector, String extRepositoryFolderKey,
 		ExtRepositoryObjectType<?> extRepositoryObjectType) {
 
@@ -170,7 +170,7 @@ public class DocumentumQuery {
 		return sb.toString();
 	}
 
-	private void _close(IDfCollection idfCollection) {
+	protected void close(IDfCollection idfCollection) {
 		if (idfCollection != null) {
 			try {
 				idfCollection.close();
