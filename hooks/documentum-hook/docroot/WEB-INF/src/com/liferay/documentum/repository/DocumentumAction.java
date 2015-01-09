@@ -24,6 +24,6 @@ import com.liferay.portal.kernel.exception.PortalException;
  */
 public interface DocumentumAction<T> {
 
-	public T run(IDfSession iDfSession) throws DfException, PortalException;
+	public T run(IDfSession idfSession) throws DfException, PortalException;
 
 }

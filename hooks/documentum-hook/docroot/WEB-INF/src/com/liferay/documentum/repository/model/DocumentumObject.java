@@ -37,8 +37,8 @@ import java.util.Set;
 public abstract class DocumentumObject
 	implements ExtRepositoryObject, ExtRepositoryModel {
 
-	public DocumentumObject(IDfSysObject iDfSysObject) {
-		_iDfSysObject = iDfSysObject;
+	public DocumentumObject(IDfSysObject idfSysObject) {
+		_idfSysObject = idfSysObject;
 	}
 
 	@Override
@@ -54,7 +54,7 @@ public abstract class DocumentumObject
 		try {
 			int permit = _permits.get(extRepositoryPermission);
 
-			return _iDfSysObject.getPermit() >= permit;
+			return _idfSysObject.getPermit() >= permit;
 		}
 		catch (DfException de) {
 			throw new SystemException(de);
@@ -64,9 +64,9 @@ public abstract class DocumentumObject
 	@Override
 	public Date getCreateDate() {
 		try {
-			IDfTime iDfTime = _iDfSysObject.getCreationDate();
+			IDfTime idfTime = _idfSysObject.getCreationDate();
 
-			return iDfTime.getDate();
+			return idfTime.getDate();
 		}
 		catch (DfException de) {
 			throw new SystemException(de);
@@ -81,7 +81,7 @@ public abstract class DocumentumObject
 	@Override
 	public String getExtension() {
 		try {
-			return FileUtil.getExtension(_iDfSysObject.getObjectName());
+			return FileUtil.getExtension(_idfSysObject.getObjectName());
 		}
 		catch (DfException de) {
 			throw new SystemException(de);
@@ -91,9 +91,9 @@ public abstract class DocumentumObject
 	@Override
 	public String getExtRepositoryModelKey() {
 		try {
-			IDfId iDfId = _iDfSysObject.getObjectId();
+			IDfId idfId = _idfSysObject.getObjectId();
 
-			return iDfId.getId();
+			return idfId.getId();
 		}
 		catch (DfException de) {
 			throw new SystemException(de);
@@ -101,15 +101,15 @@ public abstract class DocumentumObject
 	}
 
 	public IDfSysObject getIDfSysObject() {
-		return _iDfSysObject;
+		return _idfSysObject;
 	}
 
 	@Override
 	public Date getModifiedDate() {
 		try {
-			IDfTime iDfTime = _iDfSysObject.getModifyDate();
+			IDfTime idfTime = _idfSysObject.getModifyDate();
 
-			return iDfTime.getDate();
+			return idfTime.getDate();
 		}
 		catch (DfException de) {
 			throw new SystemException(de);
@@ -119,7 +119,7 @@ public abstract class DocumentumObject
 	@Override
 	public String getOwner() {
 		try {
-			return _iDfSysObject.getOwnerName();
+			return _idfSysObject.getOwnerName();
 		}
 		catch (DfException de) {
 			throw new SystemException(de);
@@ -129,7 +129,7 @@ public abstract class DocumentumObject
 	@Override
 	public long getSize() {
 		try {
-			return _iDfSysObject.getContentSize();
+			return _idfSysObject.getContentSize();
 		}
 		catch (DfException de) {
 			throw new SystemException(de);
@@ -161,6 +161,6 @@ public abstract class DocumentumObject
 		_permits.put(ExtRepositoryPermission.VIEW, Constants.DF_PERMIT_READ);
 	}
 
-	private final IDfSysObject _iDfSysObject;
+	private final IDfSysObject _idfSysObject;
 
 }

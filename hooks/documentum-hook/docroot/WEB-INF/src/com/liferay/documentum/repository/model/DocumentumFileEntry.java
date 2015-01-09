@@ -27,18 +27,18 @@ public class DocumentumFileEntry
 	extends DocumentumObject implements ExtRepositoryFileEntry {
 
 	public DocumentumFileEntry(
-		IDfDocument iDfDocument, IDfDocument iDfDocumentLastVersion) {
+		IDfDocument idfDocument, IDfDocument idfDocumentLastVersion) {
 
-		super(iDfDocument);
+		super(idfDocument);
 
-		_iDfDocument = iDfDocument;
-		_iDfDocumentLastVersion = iDfDocumentLastVersion;
+		_idfDocument = idfDocument;
+		_idfDocumentLastVersion = idfDocumentLastVersion;
 	}
 
 	@Override
 	public String getCheckedOutBy() {
 		try {
-			return _iDfDocumentLastVersion.getLockOwner();
+			return _idfDocumentLastVersion.getLockOwner();
 		}
 		catch (DfException de) {
 			throw new SystemException(de);
@@ -46,7 +46,7 @@ public class DocumentumFileEntry
 	}
 
 	public IDfDocument getIDfDocument() {
-		return _iDfDocument;
+		return _idfDocument;
 	}
 
 	@Override
@@ -57,14 +57,14 @@ public class DocumentumFileEntry
 	@Override
 	public String getTitle() {
 		try {
-			return _iDfDocument.getObjectName();
+			return _idfDocument.getObjectName();
 		}
 		catch (DfException de) {
 			throw new SystemException(de);
 		}
 	}
 
-	private final IDfDocument _iDfDocument;
-	private final IDfDocument _iDfDocumentLastVersion;
+	private final IDfDocument _idfDocument;
+	private final IDfDocument _idfDocumentLastVersion;
 
 }

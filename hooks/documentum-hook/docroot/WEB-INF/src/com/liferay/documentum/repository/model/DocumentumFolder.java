@@ -26,21 +26,21 @@ import com.liferay.repository.external.ExtRepositoryFolder;
 public class DocumentumFolder
 	extends DocumentumObject implements ExtRepositoryFolder {
 
-	public DocumentumFolder(IDfFolder iDfFolder, boolean root) {
-		super(iDfFolder);
+	public DocumentumFolder(IDfFolder idfFolder, boolean root) {
+		super(idfFolder);
 
-		_iDfFolder = iDfFolder;
+		_idfFolder = idfFolder;
 		_root = root;
 	}
 
 	public IDfFolder getIDfFolder() {
-		return _iDfFolder;
+		return _idfFolder;
 	}
 
 	@Override
 	public String getName() {
 		try {
-			return _iDfFolder.getObjectName();
+			return _idfFolder.getObjectName();
 		}
 		catch (DfException de) {
 			throw new SystemException(de);
@@ -52,7 +52,7 @@ public class DocumentumFolder
 		return _root;
 	}
 
-	private final IDfFolder _iDfFolder;
+	private final IDfFolder _idfFolder;
 	private boolean _root;
 
 }

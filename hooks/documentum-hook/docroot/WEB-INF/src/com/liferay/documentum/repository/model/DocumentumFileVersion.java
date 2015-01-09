@@ -31,16 +31,16 @@ import java.util.Date;
 public class DocumentumFileVersion implements ExtRepositoryFileVersion {
 
 	public DocumentumFileVersion(
-		IDfDocument iDfDocument, IDfDocument iDfDocumentFirstVersion) {
+		IDfDocument idfDocument, IDfDocument idfDocumentFirstVersion) {
 
-		_iDfDocument = iDfDocument;
-		_iDfDocumentFirstVersion = iDfDocumentFirstVersion;
+		_idfDocument = idfDocument;
+		_idfDocumentFirstVersion = idfDocumentFirstVersion;
 	}
 
 	@Override
 	public String getChangeLog() {
 		try {
-			return _iDfDocument.getLogEntry();
+			return _idfDocument.getLogEntry();
 		}
 		catch (DfException de) {
 			throw new SystemException(de);
@@ -50,7 +50,7 @@ public class DocumentumFileVersion implements ExtRepositoryFileVersion {
 	@Override
 	public Date getCreateDate() {
 		try {
-			IDfTime creationDate = _iDfDocument.getCreationDate();
+			IDfTime creationDate = _idfDocument.getCreationDate();
 
 			return creationDate.getDate();
 		}
@@ -62,9 +62,9 @@ public class DocumentumFileVersion implements ExtRepositoryFileVersion {
 	@Override
 	public String getExtRepositoryModelKey() {
 		try {
-			IDfId iDfId = _iDfDocumentFirstVersion.getObjectId();
+			IDfId idfId = _idfDocumentFirstVersion.getObjectId();
 
-			return iDfId.getId() + StringPool.AT + getVersion();
+			return idfId.getId() + StringPool.AT + getVersion();
 		}
 		catch (DfException de) {
 			throw new SystemException(de);
@@ -72,7 +72,7 @@ public class DocumentumFileVersion implements ExtRepositoryFileVersion {
 	}
 
 	public IDfDocument getIDfDocument() {
-		return _iDfDocument;
+		return _idfDocument;
 	}
 
 	@Override
@@ -83,7 +83,7 @@ public class DocumentumFileVersion implements ExtRepositoryFileVersion {
 	@Override
 	public String getOwner() {
 		try {
-			return _iDfDocument.getOwnerName();
+			return _idfDocument.getOwnerName();
 		}
 		catch (DfException de) {
 			throw new SystemException(de);
@@ -93,7 +93,7 @@ public class DocumentumFileVersion implements ExtRepositoryFileVersion {
 	@Override
 	public long getSize() {
 		try {
-			return _iDfDocument.getContentSize();
+			return _idfDocument.getContentSize();
 		}
 		catch (DfException de) {
 			throw new SystemException(de);
@@ -103,14 +103,14 @@ public class DocumentumFileVersion implements ExtRepositoryFileVersion {
 	@Override
 	public String getVersion() {
 		try {
-			return _iDfDocument.getVersionLabel(0);
+			return _idfDocument.getVersionLabel(0);
 		}
 		catch (DfException de) {
 			throw new SystemException(de);
 		}
 	}
 
-	private final IDfDocument _iDfDocument;
-	private final IDfDocument _iDfDocumentFirstVersion;
+	private final IDfDocument _idfDocument;
+	private final IDfDocument _idfDocumentFirstVersion;
 
 }

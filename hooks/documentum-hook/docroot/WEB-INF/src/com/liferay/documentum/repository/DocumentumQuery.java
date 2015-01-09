@@ -36,9 +36,9 @@ import java.util.List;
  */
 public class DocumentumQuery {
 
-	public DocumentumQuery(IDfClientX iDfClientX, IDfSession iDfSession) {
-		_iDfClientX = iDfClientX;
-		_iDfSession = iDfSession;
+	public DocumentumQuery(IDfClientX idfClientX, IDfSession idfSession) {
+		_idfClientX = idfClientX;
+		_idfSession = idfSession;
 	}
 
 	public int getCount(
@@ -46,34 +46,34 @@ public class DocumentumQuery {
 			ExtRepositoryObjectType<?> extRepositoryObjectType)
 		throws DfException {
 
-		IDfCollection iDfCollection = null;
+		IDfCollection idfCollection = null;
 
 		try {
-			IDfQuery iDfQuery = _iDfClientX.getQuery();
+			IDfQuery idfQuery = _idfClientX.getQuery();
 
 			String queryString = _buildSysObjectQuery(
 				"COUNT(r_object_id) AS num_hits", extRepositoryFolderKey,
 				extRepositoryObjectType);
 
-			iDfQuery.setDQL(queryString);
+			idfQuery.setDQL(queryString);
 
 			if (_log.isDebugEnabled()) {
 				_log.debug("Executing query: " + queryString);
 			}
 
-			iDfCollection = iDfQuery.execute(
-				_iDfSession, IDfQuery.DF_READ_QUERY);
+			idfCollection = idfQuery.execute(
+				_idfSession, IDfQuery.DF_READ_QUERY);
 
 			int total = 0;
 
-			if (iDfCollection.next()) {
-				total = iDfCollection.getInt("num_hits");
+			if (idfCollection.next()) {
+				total = idfCollection.getInt("num_hits");
 			}
 
 			return total;
 		}
 		finally {
-			_close(iDfCollection);
+			_close(idfCollection);
 		}
 	}
 
@@ -82,30 +82,30 @@ public class DocumentumQuery {
 			ExtRepositoryObjectType<?> extRepositoryObjectType)
 		throws DfException {
 
-		IDfCollection iDfCollection = null;
+		IDfCollection idfCollection = null;
 
 		try {
-			List<IDfSysObject> iDfSysObjects = new ArrayList<>();
+			List<IDfSysObject> idfSysObjects = new ArrayList<>();
 
-			IDfQuery iDfQuery = _iDfClientX.getQuery();
+			IDfQuery idfQuery = _idfClientX.getQuery();
 
 			String queryString = _buildSysObjectQuery(
 				Constants.R_OBJECT_ID, extRepositoryFolderKey,
 				extRepositoryObjectType);
 
-			iDfQuery.setDQL(queryString);
+			idfQuery.setDQL(queryString);
 
 			if (_log.isDebugEnabled()) {
 				_log.debug("Executing query: " + queryString);
 			}
 
-			iDfCollection = iDfQuery.execute(
-				_iDfSession, IDfQuery.DF_READ_QUERY);
+			idfCollection = idfQuery.execute(
+				_idfSession, IDfQuery.DF_READ_QUERY);
 
-			while (iDfCollection.next()) {
-				IDfId idfId = iDfCollection.getId(Constants.R_OBJECT_ID);
+			while (idfCollection.next()) {
+				IDfId idfId = idfCollection.getId(Constants.R_OBJECT_ID);
 
-				IDfSysObject idfSysObject = (IDfSysObject)_iDfSession.getObject(
+				IDfSysObject idfSysObject = (IDfSysObject)_idfSession.getObject(
 					idfId);
 
 				if (_log.isTraceEnabled()) {
@@ -113,7 +113,7 @@ public class DocumentumQuery {
 				}
 
 				try {
-					iDfSysObjects.add(idfSysObject);
+					idfSysObjects.add(idfSysObject);
 				}
 				catch (RepositoryException re) {
 					if (_log.isWarnEnabled()) {
@@ -122,10 +122,10 @@ public class DocumentumQuery {
 				}
 			}
 
-			return iDfSysObjects;
+			return idfSysObjects;
 		}
 		finally {
-			_close(iDfCollection);
+			_close(idfCollection);
 		}
 	}
 
@@ -170,10 +170,10 @@ public class DocumentumQuery {
 		return sb.toString();
 	}
 
-	private void _close(IDfCollection iDfCollection) {
-		if (iDfCollection != null) {
+	private void _close(IDfCollection idfCollection) {
+		if (idfCollection != null) {
 			try {
-				iDfCollection.close();
+				idfCollection.close();
 			}
 			catch (DfException de) {
 			}
@@ -182,7 +182,7 @@ public class DocumentumQuery {
 
 	private static Log _log = LogFactoryUtil.getLog(DocumentumQuery.class);
 
-	private final IDfClientX _iDfClientX;
-	private final IDfSession _iDfSession;
+	private final IDfClientX _idfClientX;
+	private final IDfSession _idfSession;
 
 }
