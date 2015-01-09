@@ -373,14 +373,17 @@ public class DocumentumRepository
 				public T run(IDfSession idfSession)
 					throws DfException, PortalException {
 
-					if (extRepositoryObjectType != ExtRepositoryObjectType.FILE) {
+					if (extRepositoryObjectType !=
+							ExtRepositoryObjectType.FILE) {
+
 						throw new UnsupportedOperationException(
 							"Copying non-file external repository objects is " +
 								"not supported");
 					}
 
 					IDfDocument idfDocument = getIDfSysObject(
-						IDfDocument.class, idfSession, extRepositoryFileEntryKey);
+						IDfDocument.class, idfSession,
+						extRepositoryFileEntryKey);
 
 					validateTitle(
 						idfSession, newExtRepositoryFolderKey,
@@ -429,7 +432,9 @@ public class DocumentumRepository
 				public Void run(IDfSession idfSession) throws DfException {
 					IDfId idfId = getIDfId(idfSession, extRepositoryObjectKey);
 
-					if (extRepositoryObjectType == ExtRepositoryObjectType.FILE) {
+					if (extRepositoryObjectType ==
+							ExtRepositoryObjectType.FILE) {
+
 						IDfDocument idfDocument =
 							(IDfDocument)idfSession.getObject(idfId);
 
