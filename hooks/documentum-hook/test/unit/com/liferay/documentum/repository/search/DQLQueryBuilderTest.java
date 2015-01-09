@@ -14,7 +14,6 @@
 
 package com.liferay.documentum.repository.search;
 
-import com.liferay.documentum.repository.DocumentumRepository;
 import com.liferay.portal.kernel.bean.BeanLocator;
 import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
 import com.liferay.portal.kernel.repository.search.RepositorySearchQueryBuilderUtil;
@@ -23,7 +22,6 @@ import com.liferay.portal.kernel.search.BooleanQuery;
 import com.liferay.portal.kernel.search.QueryConfig;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchEngineUtil;
-import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.util.Props;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
@@ -80,8 +78,6 @@ public class DQLQueryBuilderTest extends PowerMockito {
 			"true"
 		);
 
-		_documentumRepository = mock(DocumentumRepository.class);
-
 		PowerMockito.mockStatic(LuceneHelperUtil.class);
 
 		when(
@@ -113,21 +109,21 @@ public class DQLQueryBuilderTest extends PowerMockito {
 			SearchEngineUtil.GENERIC_ENGINE_ID, searchEngine);
 
 		_extRepositoryQueryMapper = new ExtRepositoryQueryMapper() {
+
 			@Override
 			public Date formatDateParameterValue(
-					String fieldName, String fieldValue)
-				throws SearchException {
+				String fieldName, String fieldValue) {
 
 				return _now;
 			}
 
 			@Override
 			public String formatParameterValue(
-					String fieldName, String fieldValue)
-				throws SearchException {
+				String fieldName, String fieldValue) {
 
 				return fieldValue;
 			}
+
 		};
 
 		_dqlQueryBuilder = new DQLQueryBuilder(_extRepositoryQueryMapper);
@@ -248,7 +244,6 @@ public class DQLQueryBuilderTest extends PowerMockito {
 		"SELECT r_object_id FROM dm_document WHERE (";
 
 	private BeanLocator _beanLocator;
-	private DocumentumRepository _documentumRepository;
 	private DQLQueryBuilder _dqlQueryBuilder;
 	private ExtRepositoryQueryMapper _extRepositoryQueryMapper;
 	private Date _now = new Date();
