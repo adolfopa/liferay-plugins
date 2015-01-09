@@ -54,7 +54,11 @@ public abstract class DocumentumObject
 		try {
 			int permit = _permits.get(extRepositoryPermission);
 
-			return _idfSysObject.getPermit() >= permit;
+			if (_idfSysObject.getPermit() >= permit) {
+				return true;
+			}
+
+			return false;
 		}
 		catch (DfException de) {
 			throw new SystemException(de);
