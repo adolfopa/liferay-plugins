@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.search.TermQuery;
 import com.liferay.portal.kernel.search.TermRangeQuery;
 import com.liferay.portal.kernel.search.WildcardQuery;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.repository.external.search.ExtRepositoryQueryMapper;
 
@@ -130,8 +131,9 @@ public class DQLQueryBuilder {
 
 		DQLCriterion dqlCriterion = null;
 
-		boolean wildcard =
-			DQLSimpleExpressionOperator.LIKE == dqlSimpleExpressionOperator;
+		if (DQLSimpleExpressionOperator.LIKE == dqlSimpleExpressionOperator) {
+			value = value.replaceAll("\\*", StringPool.PERCENT);
+		}
 
 		if (field.equals(Field.CREATE_DATE) ||
 			field.equals(Field.MODIFIED_DATE)) {
