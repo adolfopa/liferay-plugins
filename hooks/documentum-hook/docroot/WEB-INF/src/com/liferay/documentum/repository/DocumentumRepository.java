@@ -348,7 +348,7 @@ public class DocumentumRepository
 						latestIDfDocument.checkin(
 							true,
 							Constants.VERSION_LABEL_PWC + StringPool.COMMA +
-								documentumVersionNumber.toString());
+								documentumVersionNumber);
 					}
 
 					return toExtRepositoryObject(
