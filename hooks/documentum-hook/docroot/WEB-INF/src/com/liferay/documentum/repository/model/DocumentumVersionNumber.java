@@ -33,12 +33,12 @@ public class DocumentumVersionNumber
 	}
 
 	@Override
-	public int compareTo(DocumentumVersionNumber that) {
-		if (this.major != that.major) {
-			return this.major - that.major;
+	public int compareTo(DocumentumVersionNumber documentumVersionNumber) {
+		if (this.major != documentumVersionNumber.major) {
+			return this.major - documentumVersionNumber.major;
 		}
 
-		return this.minor - that.minor;
+		return this.minor - documentumVersionNumber.minor;
 	}
 
 	@Override
