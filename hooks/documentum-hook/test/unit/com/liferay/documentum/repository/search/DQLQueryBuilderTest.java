@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.search.BooleanQuery;
 import com.liferay.portal.kernel.search.QueryConfig;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchEngineUtil;
+import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.util.Props;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
@@ -34,10 +35,12 @@ import com.liferay.portal.search.generic.TermRangeQueryFactoryImpl;
 import com.liferay.portal.search.lucene.LuceneHelperUtil;
 import com.liferay.portlet.documentlibrary.service.DLAppService;
 import com.liferay.portlet.documentlibrary.service.DLAppServiceUtil;
+import com.liferay.repository.external.search.ExtRepositoryQueryMapper;
 
 import java.lang.reflect.Field;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.lucene.analysis.KeywordAnalyzer;
@@ -108,6 +111,26 @@ public class DQLQueryBuilderTest extends PowerMockito {
 
 		SearchEngineUtil.setSearchEngine(
 			SearchEngineUtil.GENERIC_ENGINE_ID, searchEngine);
+
+		_extRepositoryQueryMapper = new ExtRepositoryQueryMapper() {
+			@Override
+			public Date formatDateParameterValue(
+					String fieldName, String fieldValue)
+				throws SearchException {
+
+				return _now;
+			}
+
+			@Override
+			public String formatParameterValue(
+					String fieldName, String fieldValue)
+				throws SearchException {
+
+				return fieldValue;
+			}
+		};
+
+		_dqlQueryBuilder = new DQLQueryBuilder(_extRepositoryQueryMapper);
 	}
 
 	@After
@@ -134,8 +157,8 @@ public class DQLQueryBuilderTest extends PowerMockito {
 		BooleanQuery searchQuery =
 			RepositorySearchQueryBuilderUtil.getFullQuery(searchContext);
 
-		String dql = DQLQueryBuilder.buildSearchSelectQueryString(
-			_documentumRepository, searchContext, searchQuery);
+		String dql = _dqlQueryBuilder.buildSearchSelectQueryString(
+			searchContext, searchQuery);
 
 		assertQueryEquals(
 			"(object_name LIKE 'test%' AND NOT(object_name = 'test.doc')) OR " +
@@ -148,12 +171,6 @@ public class DQLQueryBuilderTest extends PowerMockito {
 	public void testFolderQuery() throws Exception {
 		getService(DLAppServiceUtil.class, DLAppService.class);
 
-		when(
-			_documentumRepository.toFolderObjectId(Mockito.eq(1000l))
-		).thenReturn(
-			"1000"
-		);
-
 		SearchContext searchContext = getSearchContext();
 
 		searchContext.setFolderIds(new long[] {1000});
@@ -162,8 +179,8 @@ public class DQLQueryBuilderTest extends PowerMockito {
 		BooleanQuery searchQuery =
 			RepositorySearchQueryBuilderUtil.getFullQuery(searchContext);
 
-		String dql = DQLQueryBuilder.buildSearchSelectQueryString(
-			_documentumRepository, searchContext, searchQuery);
+		String dql = _dqlQueryBuilder.buildSearchSelectQueryString(
+			searchContext, searchQuery);
 
 		assertQueryEquals(
 			"(FOLDER(ID('1000'))) AND ((object_name = 'test') OR " +
@@ -174,12 +191,6 @@ public class DQLQueryBuilderTest extends PowerMockito {
 	@Test
 	public void testSubfolderQuery() throws Exception {
 		getService(DLAppServiceUtil.class, DLAppService.class);
-
-		when(
-			_documentumRepository.toFolderObjectId(Mockito.eq(1000l))
-		).thenReturn(
-			"1000"
-		);
 
 		SearchContext searchContext = getSearchContext();
 
@@ -193,8 +204,8 @@ public class DQLQueryBuilderTest extends PowerMockito {
 
 		queryConfig.setSearchSubfolders(true);
 
-		String dql = DQLQueryBuilder.buildSearchSelectQueryString(
-			_documentumRepository, searchContext, searchQuery);
+		String dql = _dqlQueryBuilder.buildSearchSelectQueryString(
+			searchContext, searchQuery);
 
 		assertQueryEquals(
 			"(FOLDER(ID('1000'), DESCEND)) AND ((object_name = 'test') OR " +
@@ -238,6 +249,9 @@ public class DQLQueryBuilderTest extends PowerMockito {
 
 	private BeanLocator _beanLocator;
 	private DocumentumRepository _documentumRepository;
+	private DQLQueryBuilder _dqlQueryBuilder;
+	private ExtRepositoryQueryMapper _extRepositoryQueryMapper;
+	private Date _now = new Date();
 	private List<Class<?>> _serviceUtilClasses = new ArrayList<Class<?>>();
 
 }
