@@ -299,8 +299,7 @@ public class DocumentumRepository
 
 					latestIDfDocument.unmark(Constants.VERSION_LABEL_PWC);
 
-					latestIDfDocument.mark(
-						Constants.VERSION_LABEL_CURRENT);
+					latestIDfDocument.mark(Constants.VERSION_LABEL_CURRENT);
 
 					latestIDfDocument.save();
 
@@ -1141,30 +1140,6 @@ public class DocumentumRepository
 		return null;
 	}
 
-	protected IDfDocument getLatestIDfDocument(
-			IDfSession idfSession, IDfDocument idfDocument)
-		throws DfException {
-
-		Map<String, IDfDocument> idfDocumentVersions = getIDfDocumentVersions(
-			idfSession, idfDocument);
-
-		return getLatestIDfDocument(idfDocumentVersions);
-	}
-
-	protected IDfDocument getLatestIDfDocument(
-		Map<String, IDfDocument> idfDocumentVersions) {
-
-		IDfDocument latestIDfDocument = idfDocumentVersions.get(
-			Constants.VERSION_LABEL_CURRENT);
-
-		if (idfDocumentVersions.containsKey(Constants.VERSION_LABEL_PWC)) {
-			latestIDfDocument = idfDocumentVersions.get(
-				Constants.VERSION_LABEL_PWC);
-		}
-
-		return latestIDfDocument;
-	}
-
 	protected Map<String, IDfDocument> getIDfDocumentVersions(
 			IDfSession idfSession, final IDfDocument idfDocument)
 		throws DfException {
@@ -1290,6 +1265,30 @@ public class DocumentumRepository
 		IDfId idfId = getIDfId(idfSession, extRepositoryObjectKey);
 
 		return (T)idfSession.getObject(idfId);
+	}
+
+	protected IDfDocument getLatestIDfDocument(
+			IDfSession idfSession, IDfDocument idfDocument)
+		throws DfException {
+
+		Map<String, IDfDocument> idfDocumentVersions = getIDfDocumentVersions(
+			idfSession, idfDocument);
+
+		return getLatestIDfDocument(idfDocumentVersions);
+	}
+
+	protected IDfDocument getLatestIDfDocument(
+		Map<String, IDfDocument> idfDocumentVersions) {
+
+		IDfDocument latestIDfDocument = idfDocumentVersions.get(
+			Constants.VERSION_LABEL_CURRENT);
+
+		if (idfDocumentVersions.containsKey(Constants.VERSION_LABEL_PWC)) {
+			latestIDfDocument = idfDocumentVersions.get(
+				Constants.VERSION_LABEL_PWC);
+		}
+
+		return latestIDfDocument;
 	}
 
 	protected IDfFolder getParentFolder(
