@@ -110,69 +110,73 @@ public class DocumentumRepository
 			final String changeLog, final InputStream inputStream)
 		throws PortalException {
 
-		return run(new DocumentumAction<ExtRepositoryFileEntry>() {
+		return run(
+			new DocumentumAction<ExtRepositoryFileEntry>() {
 
-			@Override
-			public ExtRepositoryFileEntry run(IDfSession idfSession)
-				throws DfException, PortalException {
+				@Override
+				public ExtRepositoryFileEntry run(IDfSession idfSession)
+					throws DfException, PortalException {
 
-				validateTitle(idfSession, extRepositoryParentFolderKey, title);
+					validateTitle(
+						idfSession, extRepositoryParentFolderKey, title);
 
-				IDfDocument idfDocument = (IDfDocument)idfSession.newObject(
-					Constants.DM_DOCUMENT);
+					IDfDocument idfDocument = (IDfDocument)idfSession.newObject(
+						Constants.DM_DOCUMENT);
 
-				String contentType = getContentType(
-					idfSession, mimeType, title);
+					String contentType = getContentType(
+						idfSession, mimeType, title);
 
-				if (Validator.isNull(contentType)) {
-					throw new FileExtensionException(
-						"Unsupported file type " + title);
+					if (Validator.isNull(contentType)) {
+						throw new FileExtensionException(
+							"Unsupported file type " + title);
+					}
+
+					idfDocument.setContentType(contentType);
+
+					idfDocument.setLogEntry(changeLog);
+					idfDocument.setObjectName(title);
+					idfDocument.setTitle(description);
+
+					IDfFolder idfFolderParent = getIDfSysObject(
+						IDfFolder.class, idfSession,
+						extRepositoryParentFolderKey);
+
+					idfDocument.link(idfFolderParent.getFolderPath(0));
+
+					StringBundler sb = new StringBundler(5);
+
+					sb.append(SystemProperties.get(SystemProperties.TMP_DIR));
+					sb.append("/liferay/documentum/");
+					sb.append(PwdGenerator.getPassword());
+					sb.append(StringPool.UNDERLINE);
+					sb.append(title);
+
+					String fileName = sb.toString();
+
+					File file = new File(fileName);
+
+					try {
+						FileUtil.write(file, inputStream);
+
+						idfDocument.setFile(fileName);
+
+						idfDocument.save();
+					}
+					catch (IOException ioe) {
+						throw new RepositoryException(
+							"Unable to update external repository file entry " +
+								title,
+							ioe);
+					}
+					finally {
+						file.delete();
+					}
+
+					return toExtRepositoryObject(
+						idfSession, ExtRepositoryObjectType.FILE, idfDocument);
 				}
 
-				idfDocument.setContentType(contentType);
-
-				idfDocument.setLogEntry(changeLog);
-				idfDocument.setObjectName(title);
-				idfDocument.setTitle(description);
-
-				IDfFolder idfFolderParent = getIDfSysObject(
-					IDfFolder.class, idfSession, extRepositoryParentFolderKey);
-
-				idfDocument.link(idfFolderParent.getFolderPath(0));
-
-				StringBundler sb = new StringBundler(5);
-
-				sb.append(SystemProperties.get(SystemProperties.TMP_DIR));
-				sb.append("/liferay/documentum/");
-				sb.append(PwdGenerator.getPassword());
-				sb.append(StringPool.UNDERLINE);
-				sb.append(title);
-
-				String fileName = sb.toString();
-
-				File file = new File(fileName);
-
-				try {
-					FileUtil.write(file, inputStream);
-
-					idfDocument.setFile(fileName);
-
-					idfDocument.save();
-				}
-				catch (IOException ioe) {
-					throw new RepositoryException(
-						"Cannot update external repository file entry " +
-							title,
-						ioe);
-				}
-				finally {
-					file.delete();
-				}
-
-				return toExtRepositoryObject(
-					idfSession, ExtRepositoryObjectType.FILE, idfDocument);
-			}
-		});
+			});
 	}
 
 	@Override
