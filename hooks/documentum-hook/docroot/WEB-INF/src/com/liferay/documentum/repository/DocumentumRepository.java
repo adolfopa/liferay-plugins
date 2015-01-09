@@ -512,21 +512,18 @@ public class DocumentumRepository
 				Set<IDfDocument> iDfDocumentVersionsSet = new HashSet<>(
 					iDfDocumentVersionsMap.values());
 
-				List<IDfDocument> iDfDocumentVersionsList = new ArrayList<>(
-					iDfDocumentVersionsSet);
-
-				Collections.sort(
-					iDfDocumentVersionsList, _iDfDocumentVersionsComparator);
-
 				List<ExtRepositoryFileVersion> extRepositoryFileVersions =
 					new ArrayList<>();
 
-				for (IDfDocument iDfDocumentVersion : iDfDocumentVersionsList) {
+				for (IDfDocument iDfDocumentVersion : iDfDocumentVersionsSet) {
 					extRepositoryFileVersions.add(
 						new DocumentumFileVersion(
 							iDfDocumentVersion, iDfDocument));
 				}
 
+				Collections.sort(
+					extRepositoryFileVersions,
+					_extRepositoryFileVersionsComparator);
 
 				return extRepositoryFileVersions;
 			}
@@ -1371,9 +1368,10 @@ public class DocumentumRepository
 	private String _cabinet;
 	private ConnectionCache<IDfSessionManager> _connectionCache;
 	private CredentialsProvider _credentialsProvider;
+	private Comparator<ExtRepositoryFileVersion>
+		_extRepositoryFileVersionsComparator =
+			new ExtRepositoryFileVersionsComparator();
 	private IDfClientX _iDfClientX;
-	private Comparator<IDfDocument> _iDfDocumentVersionsComparator =
-		new IDfDocumentVersionsComparator();
 	private String _repository;
 	private String _rootFolderKey;
 

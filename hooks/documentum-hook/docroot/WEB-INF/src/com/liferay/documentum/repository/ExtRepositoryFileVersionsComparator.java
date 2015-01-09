@@ -14,36 +14,31 @@
 
 package com.liferay.documentum.repository;
 
-import com.documentum.fc.client.IDfDocument;
-import com.documentum.fc.common.DfException;
-
 import com.liferay.documentum.repository.model.DocumentumVersionNumber;
-import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.repository.external.ExtRepositoryFileVersion;
 
 import java.util.Comparator;
 
 /**
  * @author Ivan Zaera
  */
-public class IDfDocumentVersionsComparator implements Comparator<IDfDocument> {
+public class ExtRepositoryFileVersionsComparator
+	implements Comparator<ExtRepositoryFileVersion> {
 
 	@Override
-	public int compare(IDfDocument iDfDocument1, IDfDocument iDfDocument2) {
-		try {
-			String versionLabel1 = iDfDocument1.getVersionLabel(0);
-			String versionLabel2 = iDfDocument2.getVersionLabel(0);
+	public int compare(
+		ExtRepositoryFileVersion extRepositoryFileVersion1,
+		ExtRepositoryFileVersion extRepositoryFileVersion2) {
 
-			DocumentumVersionNumber documentumVersionNumber1 =
-				new DocumentumVersionNumber(versionLabel1);
-			DocumentumVersionNumber documentumVersionNumber2 =
-				new DocumentumVersionNumber(versionLabel2);
+		String versionLabel1 = extRepositoryFileVersion1.getVersion();
+		String versionLabel2 = extRepositoryFileVersion2.getVersion();
 
-			return -documentumVersionNumber1.compareTo(
-				documentumVersionNumber2);
-		}
-		catch (DfException de) {
-			throw new SystemException(de);
-		}
+		DocumentumVersionNumber documentumVersionNumber1 =
+			new DocumentumVersionNumber(versionLabel1);
+		DocumentumVersionNumber documentumVersionNumber2 =
+			new DocumentumVersionNumber(versionLabel2);
+
+		return -documentumVersionNumber1.compareTo(documentumVersionNumber2);
 	}
 
 }
