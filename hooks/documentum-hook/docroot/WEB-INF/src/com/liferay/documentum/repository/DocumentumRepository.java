@@ -1141,7 +1141,7 @@ public class DocumentumRepository
 
 	protected IDfId getIDfId(
 			IDfSession iDfSession, String extRepositoryParentFolderKey,
-			ExtRepositoryObjectType extRepositoryObjectType, String name)
+			ExtRepositoryObjectType<?> extRepositoryObjectType, String name)
 		throws DfException {
 
 		IDfId idfId = getIDfId(iDfSession, extRepositoryParentFolderKey);
