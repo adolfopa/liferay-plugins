@@ -111,6 +111,8 @@ public class DocumentumRepository
 		throws PortalException {
 
 		return run(new DocumentumAction<ExtRepositoryFileEntry>() {
+
+			@Override
 			public ExtRepositoryFileEntry run(IDfSession iDfSession)
 				throws DfException, PortalException {
 
@@ -180,6 +182,8 @@ public class DocumentumRepository
 		throws PortalException {
 
 		return run(new DocumentumAction<ExtRepositoryFolder>() {
+
+			@Override
 			public ExtRepositoryFolder run(IDfSession iDfSession)
 				throws DfException, PortalException {
 
@@ -238,8 +242,10 @@ public class DocumentumRepository
 		throws PortalException {
 
 		return run(new DocumentumAction<ExtRepositoryFileVersion>() {
+		
+			@Override
 			public ExtRepositoryFileVersion run(IDfSession iDfSession)
-				throws DfException, PortalException {
+				throws DfException {
 
 				IDfDocument iDfDocument = getIDfSysObject(
 					IDfDocument.class, iDfSession, extRepositoryFileEntryKey);
@@ -268,9 +274,9 @@ public class DocumentumRepository
 		throws PortalException {
 
 		run(new DocumentumAction<Void>() {
-			public Void run(IDfSession iDfSession)
-				throws DfException, PortalException {
-
+		
+			@Override
+			public Void run(IDfSession iDfSession) throws DfException {
 				IDfDocument iDfDocument = getIDfSysObject(
 					IDfDocument.class, iDfSession, extRepositoryFileEntryKey);
 
@@ -294,8 +300,10 @@ public class DocumentumRepository
 		throws PortalException {
 
 		return run(new DocumentumAction<ExtRepositoryFileEntry>() {
+			
+			@Override
 			public ExtRepositoryFileEntry run(IDfSession iDfSession)
-				throws DfException, PortalException {
+				throws DfException {
 
 				IDfDocument iDfDocument = getIDfSysObject(
 					IDfDocument.class, iDfSession, extRepositoryFileEntryKey);
@@ -340,6 +348,8 @@ public class DocumentumRepository
 		throws PortalException {
 
 		return run(new DocumentumAction<T>() {
+
+			@Override
 			public T run(IDfSession iDfSession)
 				throws DfException, PortalException {
 
@@ -391,9 +401,9 @@ public class DocumentumRepository
 		throws PortalException {
 
 		run(new DocumentumAction<Void>() {
-			public Void run(IDfSession iDfSession)
-				throws DfException, PortalException {
-
+		
+			@Override
+			public Void run(IDfSession iDfSession) throws DfException {
 				IDfId iDfId = getIDfId(iDfSession, extRepositoryObjectKey);
 
 				if (extRepositoryObjectType == ExtRepositoryObjectType.FILE) {
@@ -424,6 +434,23 @@ public class DocumentumRepository
 
 	@Override
 	public InputStream getContentStream(
+			final ExtRepositoryFileEntry extRepositoryFileEntry)
+		throws PortalException {
+
+		return run(new DocumentumAction<InputStream>() {
+		
+			@Override
+			public InputStream run(IDfSession iDfSession) throws DfException {
+				IDfDocument iDfDocument = getIDfSysObject(
+					IDfDocument.class, extRepositoryFileEntry);
+
+				return iDfDocument.getContent();
+			}
+		});
+	}
+
+	@Override
+	public InputStream getContentStream(
 		ExtRepositoryFileVersion extRepositoryFileVersion) {
 
 		try {
@@ -440,29 +467,14 @@ public class DocumentumRepository
 	}
 
 	@Override
-	public InputStream getContentStream(
-			final ExtRepositoryFileEntry extRepositoryFileEntry)
-		throws PortalException {
-
-		return run(new DocumentumAction<InputStream>() {
-			public InputStream run(IDfSession iDfSession)
-				throws DfException, PortalException {
-
-				IDfDocument iDfDocument = getIDfSysObject(
-					IDfDocument.class, extRepositoryFileEntry);
-
-				return iDfDocument.getContent();
-			}
-		});
-	}
-
-	@Override
 	public ExtRepositoryFileVersion getExtRepositoryFileVersion(
 			final ExtRepositoryFileEntry extRepositoryFileEntry,
 			final String version)
 		throws PortalException {
 
 		return run(new DocumentumAction<ExtRepositoryFileVersion>() {
+		
+			@Override
 			public ExtRepositoryFileVersion run(IDfSession iDfSession)
 				throws DfException, PortalException {
 
@@ -506,8 +518,10 @@ public class DocumentumRepository
 		throws PortalException {
 
 		return run(new DocumentumAction<List<ExtRepositoryFileVersion>>() {
+		
+			@Override
 			public List<ExtRepositoryFileVersion> run(IDfSession iDfSession)
-				throws DfException, PortalException {
+				throws DfException {
 
 				IDfDocument iDfDocument = getIDfSysObject(
 					IDfDocument.class, extRepositoryFileEntry);
@@ -543,6 +557,8 @@ public class DocumentumRepository
 		throws PortalException {
 
 		return run(new DocumentumAction<T>() {
+		
+			@Override
 			public T run(IDfSession iDfSession)
 				throws DfException, PortalException {
 
@@ -575,6 +591,8 @@ public class DocumentumRepository
 		throws PortalException {
 
 		return run(new DocumentumAction<T>() {
+		
+			@Override
 			public T run(IDfSession iDfSession)
 				throws DfException, PortalException {
 
@@ -605,9 +623,9 @@ public class DocumentumRepository
 		throws PortalException {
 
 		return run(new DocumentumAction<List<T>>() {
-			public List<T> run(IDfSession iDfSession)
-				throws DfException, PortalException {
-
+		
+			@Override
+			public List<T> run(IDfSession iDfSession) throws DfException {
 				DocumentumQuery documentumQuery = new DocumentumQuery(
 					_iDfClientX, iDfSession);
 
@@ -629,9 +647,9 @@ public class DocumentumRepository
 		throws PortalException {
 
 		return run(new DocumentumAction<Integer>() {
-			public Integer run(IDfSession iDfSession)
-				throws DfException, PortalException {
-
+		
+			@Override
+			public Integer run(IDfSession iDfSession) throws DfException {
 				DocumentumQuery documentumQuery = new DocumentumQuery(
 					_iDfClientX, iDfSession);
 
@@ -647,8 +665,10 @@ public class DocumentumRepository
 		throws PortalException {
 
 		return run(new DocumentumAction<ExtRepositoryFolder>() {
+		
+			@Override
 			public ExtRepositoryFolder run(IDfSession iDfSession)
-				throws DfException, PortalException {
+				throws DfException {
 
 				DocumentumObject documentumObject =
 					(DocumentumObject)extRepositoryObject;
@@ -681,9 +701,9 @@ public class DocumentumRepository
 		throws PortalException {
 
 		return run(new DocumentumAction<List<String>>() {
-			public List<String> run(IDfSession iDfSession)
-				throws DfException, PortalException {
 
+			@Override
+			public List<String> run(IDfSession iDfSession) throws DfException {
 				List<String> extRepositoryFolderKeys = new ArrayList<String>();
 
 				getSubfolderKeys(
@@ -763,6 +783,8 @@ public class DocumentumRepository
 		throws PortalException {
 
 		return run(new DocumentumAction<T>() {
+
+			@Override
 			public T run(IDfSession iDfSession)
 				throws DfException, PortalException {
 
@@ -809,6 +831,8 @@ public class DocumentumRepository
 		throws PortalException {
 
 		return run(new DocumentumAction<List<ExtRepositorySearchResult<?>>>() {
+		
+			@Override
 			public List<ExtRepositorySearchResult<?>> run(IDfSession iDfSession)
 				throws DfException, PortalException {
 
@@ -916,6 +940,8 @@ public class DocumentumRepository
 		throws PortalException {
 
 		return run(new DocumentumAction<ExtRepositoryFileEntry>() {
+		
+			@Override
 			public ExtRepositoryFileEntry run(IDfSession iDfSession)
 				throws DfException, PortalException {
 
