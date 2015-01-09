@@ -66,6 +66,26 @@ public class DQLQueryBuilderTest extends PowerMockito {
 	public void setUp() {
 		_beanLocator = mock(BeanLocator.class);
 
+		_extRepositoryQueryMapper = new ExtRepositoryQueryMapper() {
+
+			@Override
+			public Date formatDateParameterValue(
+				String fieldName, String fieldValue) {
+
+				return _now;
+			}
+
+			@Override
+			public String formatParameterValue(
+				String fieldName, String fieldValue) {
+
+				return fieldValue;
+			}
+
+		};
+
+		_dqlQueryBuilder = new DQLQueryBuilder(_extRepositoryQueryMapper);
+
 		PortalBeanLocatorUtil.setBeanLocator(_beanLocator);
 
 		Props props = mock(Props.class);
@@ -107,26 +127,6 @@ public class DQLQueryBuilderTest extends PowerMockito {
 
 		SearchEngineUtil.setSearchEngine(
 			SearchEngineUtil.GENERIC_ENGINE_ID, searchEngine);
-
-		_extRepositoryQueryMapper = new ExtRepositoryQueryMapper() {
-
-			@Override
-			public Date formatDateParameterValue(
-				String fieldName, String fieldValue) {
-
-				return _now;
-			}
-
-			@Override
-			public String formatParameterValue(
-				String fieldName, String fieldValue) {
-
-				return fieldValue;
-			}
-
-		};
-
-		_dqlQueryBuilder = new DQLQueryBuilder(_extRepositoryQueryMapper);
 	}
 
 	@After
