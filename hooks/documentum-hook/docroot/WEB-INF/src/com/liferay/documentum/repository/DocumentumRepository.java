@@ -300,12 +300,18 @@ public class DocumentumRepository
 				IDfDocument iDfDocument = getIDfSysObject(
 					IDfDocument.class, iDfSession, extRepositoryFileEntryKey);
 
-				IDfDocument iDfDocumentLastVersion = getIDfDocumentLastVersion(
-					iDfSession, iDfDocument);
+				Map<String, IDfDocument> iDfDocumentVersions =
+					getIDfDocumentVersions(iDfSession, iDfDocument);
 
-				String versionLabel = iDfDocumentLastVersion.getVersionLabel(0);
+				if (!iDfDocumentVersions.containsKey(
+						Constants.VERSION_LABEL_PWC)) {
 
-				if (!versionLabel.equals(Constants.VERSION_LABEL_PWC)) {
+					IDfDocument iDfDocumentLastVersion =
+						getIDfDocumentLastVersion(iDfDocumentVersions);
+
+					String versionLabel =
+						iDfDocumentLastVersion.getImplicitVersionLabel();
+
 					iDfDocumentLastVersion.checkout();
 
 					DocumentumVersionNumber documentumVersionNumber =
