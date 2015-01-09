@@ -418,23 +418,6 @@ public class DocumentumRepository
 
 	@Override
 	public InputStream getContentStream(
-			final ExtRepositoryFileEntry extRepositoryFileEntry)
-		throws PortalException {
-
-		return run(new DocumentumAction<InputStream>() {
-			public InputStream run(IDfSession iDfSession)
-				throws DfException, PortalException {
-
-				IDfDocument iDfDocument = getIDfSysObject(
-					IDfDocument.class, extRepositoryFileEntry);
-
-				return iDfDocument.getContent();
-			}
-		});
-	}
-
-	@Override
-	public InputStream getContentStream(
 		ExtRepositoryFileVersion extRepositoryFileVersion) {
 
 		try {
@@ -448,6 +431,23 @@ public class DocumentumRepository
 		catch (DfException de) {
 			throw new RepositoryException(de);
 		}
+	}
+
+	@Override
+	public InputStream getContentStream(
+			final ExtRepositoryFileEntry extRepositoryFileEntry)
+		throws PortalException {
+
+		return run(new DocumentumAction<InputStream>() {
+			public InputStream run(IDfSession iDfSession)
+				throws DfException, PortalException {
+
+				IDfDocument iDfDocument = getIDfSysObject(
+					IDfDocument.class, extRepositoryFileEntry);
+
+				return iDfDocument.getContent();
+			}
+		});
 	}
 
 	@Override
