@@ -333,13 +333,11 @@ public class DocumentumRepository
 						IDfDocument latestIDfDocument = getLatestIDfDocument(
 							idfDocuments);
 
-						String versionLabel =
-							latestIDfDocument.getImplicitVersionLabel();
-
 						latestIDfDocument.checkout();
 
 						DocumentumVersionNumber documentumVersionNumber =
-							new DocumentumVersionNumber(versionLabel);
+							new DocumentumVersionNumber(
+								latestIDfDocument.getImplicitVersionLabel());
 
 						documentumVersionNumber =
 							documentumVersionNumber.increment(false);
