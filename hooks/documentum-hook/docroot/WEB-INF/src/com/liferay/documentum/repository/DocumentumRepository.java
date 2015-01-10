@@ -1362,7 +1362,7 @@ public class DocumentumRepository
 				throw new IllegalArgumentException(
 					"Invalid external repository object type " +
 						extRepositoryObjectType + " for Documentum object " +
-						idfSysObject);
+							idfSysObject);
 			}
 
 			IDfDocument idfDocument = (IDfDocument)idfSysObject;
