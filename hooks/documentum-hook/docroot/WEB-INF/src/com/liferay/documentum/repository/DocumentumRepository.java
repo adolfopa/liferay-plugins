@@ -635,11 +635,16 @@ public class DocumentumRepository
 						ExtRepositoryObjectType.FILE, title);
 
 					if (idfId == null) {
-						throw new NoSuchFileEntryException(
-							"No Documentum file entry with " +
-								"{extRepositoryFolderKey=" +
-									extRepositoryFolderKey + ", title=" +
-										title + "}");
+						StringBundler sb = new StringBundler(6);
+
+						sb.append("No Documentum file entry with ");
+						sb.append("{extRepositoryFolderKey=");
+						sb.append(extRepositoryFolderKey);
+						sb.append(", title=");
+						sb.append(title);
+						sb.append("}");
+
+						throw new NoSuchFileEntryException(sb.toString());
 					}
 
 					IDfDocument idfDocument = (IDfDocument)idfSession.getObject(
