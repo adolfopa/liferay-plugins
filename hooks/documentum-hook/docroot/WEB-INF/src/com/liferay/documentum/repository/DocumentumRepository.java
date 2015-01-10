@@ -515,8 +515,7 @@ public class DocumentumRepository
 					Map<String, IDfDocument> idfDocuments = getIDfDocuments(
 						idfSession, idfDocument);
 
-					IDfDocument versionIDfDocument = idfDocuments.get(
-						version);
+					IDfDocument versionIDfDocument = idfDocuments.get(version);
 
 					if (versionIDfDocument == null) {
 						throw new NoSuchFileVersionException(version);
