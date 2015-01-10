@@ -260,19 +260,18 @@ public class DocumentumRepository
 						IDfDocument.class, idfSession,
 						extRepositoryFileEntryKey);
 
-					Map<String, IDfDocument> idfDocumentVersions =
-						getIDfDocumentVersions(idfSession, idfDocument);
+					Map<String, IDfDocument> idfDocuments = getIDfDocuments(
+						idfSession, idfDocument);
 
 					IDfDocument latestIDfDocument = getLatestIDfDocument(
-						idfDocumentVersions);
+						idfDocuments);
 
 					latestIDfDocument.cancelCheckout();
 
 					latestIDfDocument.destroy();
 
 					return new DocumentumFileVersion(
-						idfDocumentVersions.get(
-							Constants.VERSION_LABEL_CURRENT),
+						idfDocuments.get(Constants.VERSION_LABEL_CURRENT),
 						idfDocument);
 				}
 
@@ -325,14 +324,14 @@ public class DocumentumRepository
 						IDfDocument.class, idfSession,
 						extRepositoryFileEntryKey);
 
-					Map<String, IDfDocument> idfDocumentVersions =
-						getIDfDocumentVersions(idfSession, idfDocument);
+					Map<String, IDfDocument> idfDocuments = getIDfDocuments(
+						idfSession, idfDocument);
 
-					if (!idfDocumentVersions.containsKey(
+					if (!idfDocuments.containsKey(
 							Constants.VERSION_LABEL_PWC)) {
 
 						IDfDocument latestIDfDocument = getLatestIDfDocument(
-							idfDocumentVersions);
+							idfDocuments);
 
 						String versionLabel =
 							latestIDfDocument.getImplicitVersionLabel();
@@ -513,18 +512,18 @@ public class DocumentumRepository
 					IDfDocument idfDocument = getIDfSysObject(
 						IDfDocument.class, extRepositoryFileEntry);
 
-					Map<String, IDfDocument> idfDocumentVersions =
-						getIDfDocumentVersions(idfSession, idfDocument);
+					Map<String, IDfDocument> idfDocuments = getIDfDocuments(
+						idfSession, idfDocument);
 
-					IDfDocument idfDocumentVersion = idfDocumentVersions.get(
+					IDfDocument versionIDfDocument = idfDocuments.get(
 						version);
 
-					if (idfDocumentVersion == null) {
+					if (versionIDfDocument == null) {
 						throw new NoSuchFileVersionException(version);
 					}
 
 					return new DocumentumFileVersion(
-						idfDocumentVersion, idfDocument);
+						versionIDfDocument, idfDocument);
 				}
 
 			});
@@ -557,24 +556,22 @@ public class DocumentumRepository
 				public List<ExtRepositoryFileVersion> run(IDfSession idfSession)
 					throws DfException {
 
-					IDfDocument idfDocument = getIDfSysObject(
-						IDfDocument.class, extRepositoryFileEntry);
-
-					Map<String, IDfDocument> idfDocumentVersionsMap =
-						getIDfDocumentVersions(idfSession, idfDocument);
-
-					Set<IDfDocument> idfDocumentVersionsSet = new HashSet<>(
-						idfDocumentVersionsMap.values());
-
 					List<ExtRepositoryFileVersion> extRepositoryFileVersions =
 						new ArrayList<>();
 
-					for (IDfDocument idfDocumentVersion :
-							idfDocumentVersionsSet) {
+					IDfDocument idfDocument = getIDfSysObject(
+						IDfDocument.class, extRepositoryFileEntry);
 
+					Map<String, IDfDocument> idfDocuments = getIDfDocuments(
+						idfSession, idfDocument);
+
+					Set<IDfDocument> idfDocumentsSet = new HashSet<>(
+						idfDocuments.values());
+
+					for (IDfDocument curIDfDocument : idfDocumentsSet) {
 						extRepositoryFileVersions.add(
 							new DocumentumFileVersion(
-								idfDocumentVersion, idfDocument));
+								curIDfDocument, idfDocument));
 					}
 
 					Collections.sort(
@@ -1140,26 +1137,24 @@ public class DocumentumRepository
 		return null;
 	}
 
-	protected Map<String, IDfDocument> getIDfDocumentVersions(
+	protected Map<String, IDfDocument> getIDfDocuments(
 			IDfSession idfSession, final IDfDocument idfDocument)
 		throws DfException {
 
-		Map<String, IDfDocument> idfDocumentVersions = new HashMap<>();
+		Map<String, IDfDocument> idfDocuments = new HashMap<>();
 
 		IDfCollection idfCollection = idfDocument.getVersions(null);
 
 		try {
 			while (idfCollection.next()) {
-				IDfDocument idfDocumentVersion = getIDfSysObject(
+				IDfDocument curIDfDocument = getIDfSysObject(
 					IDfDocument.class, idfSession, idfCollection);
 
-				int versionLabelCount =
-					idfDocumentVersion.getVersionLabelCount();
+				int versionLabelCount = curIDfDocument.getVersionLabelCount();
 
 				for (int i = 0; i<versionLabelCount; i++) {
-					idfDocumentVersions.put(
-						idfDocumentVersion.getVersionLabel(i),
-						idfDocumentVersion);
+					idfDocuments.put(
+						curIDfDocument.getVersionLabel(i), curIDfDocument);
 				}
 			}
 		}
@@ -1167,7 +1162,7 @@ public class DocumentumRepository
 			close(idfCollection);
 		}
 
-		return idfDocumentVersions;
+		return idfDocuments;
 	}
 
 	protected IDfId getIDfId(
@@ -1271,21 +1266,20 @@ public class DocumentumRepository
 			IDfSession idfSession, IDfDocument idfDocument)
 		throws DfException {
 
-		Map<String, IDfDocument> idfDocumentVersions = getIDfDocumentVersions(
+		Map<String, IDfDocument> idfDocuments = getIDfDocuments(
 			idfSession, idfDocument);
 
-		return getLatestIDfDocument(idfDocumentVersions);
+		return getLatestIDfDocument(idfDocuments);
 	}
 
 	protected IDfDocument getLatestIDfDocument(
-		Map<String, IDfDocument> idfDocumentVersions) {
+		Map<String, IDfDocument> idfDocuments) {
 
-		IDfDocument latestIDfDocument = idfDocumentVersions.get(
+		IDfDocument latestIDfDocument = idfDocuments.get(
 			Constants.VERSION_LABEL_CURRENT);
 
-		if (idfDocumentVersions.containsKey(Constants.VERSION_LABEL_PWC)) {
-			latestIDfDocument = idfDocumentVersions.get(
-				Constants.VERSION_LABEL_PWC);
+		if (idfDocuments.containsKey(Constants.VERSION_LABEL_PWC)) {
+			latestIDfDocument = idfDocuments.get(Constants.VERSION_LABEL_PWC);
 		}
 
 		return latestIDfDocument;
@@ -1371,14 +1365,13 @@ public class DocumentumRepository
 
 			IDfDocument idfDocument = (IDfDocument)idfSysObject;
 
-			Map<String, IDfDocument> idfDocumentVersions =
-				getIDfDocumentVersions(idfSession, idfDocument);
+			Map<String, IDfDocument> idfDocuments = getIDfDocuments(
+				idfSession, idfDocument);
 
-			IDfDocument latestIDfDocument = getLatestIDfDocument(
-				idfDocumentVersions);
+			IDfDocument latestIDfDocument = getLatestIDfDocument(idfDocuments);
 
 			return (T)new DocumentumFileEntry(
-				idfDocumentVersions.get("1.0"), latestIDfDocument);
+				idfDocuments.get("1.0"), latestIDfDocument);
 		}
 		else if (idfSysObject instanceof IDfFolder) {
 			if (extRepositoryObjectType == ExtRepositoryObjectType.FILE) {
