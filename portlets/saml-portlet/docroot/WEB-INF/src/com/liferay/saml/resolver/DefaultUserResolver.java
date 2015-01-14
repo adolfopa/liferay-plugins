@@ -415,7 +415,7 @@ public class DefaultUserResolver implements UserResolver {
 			lastName = getValueAsString("lastName", attributesMap);
 		}
 		else {
-			lastName = user.getScreenName();
+			lastName = user.getLastName();
 		}
 
 		Contact contact = user.getContact();
