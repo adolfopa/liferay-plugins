@@ -34,7 +34,6 @@ public class SkinnyBaseModel {
 		_dynamicElements = dynamicElements;
 	}
 
-	private Map<String, String> _dynamicElements =
-		new HashMap<String, String>();
+	private Map<String, String> _dynamicElements = new HashMap<>();
 
 }

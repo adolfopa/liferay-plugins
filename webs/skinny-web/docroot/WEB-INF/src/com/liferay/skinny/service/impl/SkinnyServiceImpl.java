@@ -16,8 +16,6 @@ package com.liferay.skinny.service.impl;
 
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
-import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.kernel.xml.Document;
 import com.liferay.portal.kernel.xml.Element;
@@ -29,20 +27,21 @@ import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portlet.dynamicdatalists.model.DDLRecord;
 import com.liferay.portlet.dynamicdatalists.model.DDLRecordSet;
 import com.liferay.portlet.dynamicdatamapping.model.DDMStructure;
-import com.liferay.portlet.dynamicdatamapping.storage.Fields;
+import com.liferay.portlet.dynamicdatamapping.model.Value;
+import com.liferay.portlet.dynamicdatamapping.storage.DDMFormFieldValue;
+import com.liferay.portlet.dynamicdatamapping.storage.DDMFormValues;
 import com.liferay.portlet.journal.NoSuchArticleException;
 import com.liferay.portlet.journal.model.JournalArticle;
 import com.liferay.skinny.model.SkinnyDDLRecord;
 import com.liferay.skinny.model.SkinnyJournalArticle;
 import com.liferay.skinny.service.base.SkinnyServiceBaseImpl;
 
-import java.io.Serializable;
-
 import java.text.Format;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 /**
@@ -56,8 +55,7 @@ public class SkinnyServiceImpl extends SkinnyServiceBaseImpl {
 	public List<SkinnyDDLRecord> getSkinnyDDLRecords(long ddlRecordSetId)
 		throws Exception {
 
-		List<SkinnyDDLRecord> skinnyDDLRecords =
-			new ArrayList<SkinnyDDLRecord>();
+		List<SkinnyDDLRecord> skinnyDDLRecords = new ArrayList<>();
 
 		PermissionChecker permissionChecker = getPermissionChecker();
 
@@ -85,15 +83,14 @@ public class SkinnyServiceImpl extends SkinnyServiceBaseImpl {
 			String locale)
 		throws Exception {
 
-		List<SkinnyJournalArticle> skinnyJournalArticles =
-			new ArrayList<SkinnyJournalArticle>();
+		List<SkinnyJournalArticle> skinnyJournalArticles = new ArrayList<>();
 
 		Group group = groupLocalService.getGroup(companyId, groupName);
 
 		DDMStructure ddmStructure = ddmStructureLocalService.getDDMStructure(
 			ddmStructureId);
 
-		Set<String> journalArticleIds = new HashSet<String>();
+		Set<String> journalArticleIds = new HashSet<>();
 
 		List<JournalArticle> journalArticles =
 			journalArticleLocalService.getStructureArticles(
@@ -138,42 +135,11 @@ public class SkinnyServiceImpl extends SkinnyServiceBaseImpl {
 
 		skinnyDDLRecord.addDynamicElement("uuid", ddlRecord.getUuid());
 
-		Fields fields = ddlRecord.getFields();
+		DDMFormValues ddmFormValues = ddlRecord.getDDMFormValues();
 
-		for (String fieldName : fields.getNames()) {
-			String fieldValueString = StringPool.BLANK;
-
-			String fieldDataType = GetterUtil.getString(
-				ddlRecord.getFieldDataType(fieldName));
-
-			Serializable fieldValue = ddlRecord.getFieldValue(fieldName);
-
-			if (fieldDataType.equals("boolean")) {
-				boolean booleanValue = GetterUtil.getBoolean(fieldValue);
-
-				fieldValueString = String.valueOf(booleanValue);
-			}
-			else if (fieldDataType.equals("date")) {
-				fieldValueString = _format.format(fieldValue);
-			}
-			else if (fieldDataType.equals("double")) {
-				double doubleValue = GetterUtil.getDouble(fieldValue);
-
-				fieldValueString = String.valueOf(doubleValue);
-			}
-			else if (fieldDataType.equals("integer") ||
-					 fieldDataType.equals("number")) {
-
-				int intValue = GetterUtil.getInteger(fieldValue);
-
-				fieldValueString = String.valueOf(intValue);
-			}
-			else {
-				fieldValueString = GetterUtil.getString(fieldValue);
-			}
-
-			skinnyDDLRecord.addDynamicElement(fieldName, fieldValueString);
-		}
+		populateSkinnyDDLRecord(
+			skinnyDDLRecord, ddmFormValues.getDDMFormFieldValues(),
+			ddmFormValues.getDefaultLocale());
 
 		return skinnyDDLRecord;
 	}
@@ -200,6 +166,22 @@ public class SkinnyServiceImpl extends SkinnyServiceBaseImpl {
 		populateSkinnyJournalArticle(skinnyJournalArticle, rootElement);
 
 		return skinnyJournalArticle;
+	}
+
+	protected void populateSkinnyDDLRecord(
+		SkinnyDDLRecord skinnyDDLRecord,
+		List<DDMFormFieldValue> ddmFormFieldValues, Locale defaultLocale) {
+
+		for (DDMFormFieldValue ddmFormFieldValue : ddmFormFieldValues) {
+			Value value = ddmFormFieldValue.getValue();
+
+			skinnyDDLRecord.addDynamicElement(
+				ddmFormFieldValue.getName(), value.getString(defaultLocale));
+
+			populateSkinnyDDLRecord(
+				skinnyDDLRecord,
+				ddmFormFieldValue.getNestedDDMFormFieldValues(), defaultLocale);
+		}
 	}
 
 	protected void populateSkinnyJournalArticle(
