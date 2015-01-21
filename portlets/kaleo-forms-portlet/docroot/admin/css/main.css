@@ -1,6 +1,3 @@
-@import "bourbon";
-@import "mixins";
-
 .kaleo-forms-admin-portlet {
 	.kaleo-process-assign-form-button {
 		width: 122px;
