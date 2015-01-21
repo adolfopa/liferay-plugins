@@ -104,18 +104,18 @@
 	.form .taglib-form-navigator > .form-steps > ul.form-navigator.nav {
 		.tab, .tab.section-error {
 			.tab-label .number {
-				@include box-shadow(0 0 5px 0 #8D8D8D);
+				box-shadow: 0 0 5px 0 #8D8D8D;
 			}
 		}
 
 		.tab.active, .tab.active.section-error, .tab.active, .tab.active.section-success {
 			.tab-label .number {
-				@include box-shadow(0 0 5px 0 #009AE5);
+				box-shadow: 0 0 5px 0 #009AE5;
 			}
 		}
 
 		.tab.section-success .tab-label .number {
-			@include box-shadow(0 0 5px 0 #80CCF2);
+			box-shadow: 0 0 5px 0 #80CCF2;
 		}
 	}
 }

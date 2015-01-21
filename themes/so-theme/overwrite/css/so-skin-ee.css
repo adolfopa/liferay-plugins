@@ -106,7 +106,7 @@
 				padding: 0.375em;
 
 				&, a {
-					@include border-radius(4px);
+					border-radius: 4px;
 				}
 
 				a {
@@ -354,6 +354,6 @@
 
 .portlet-document-library, .portlet-document-library-display {
 	.lfr-discussion-form-container .lfr-discussion-form.lfr-discussion-form-reply {
-		@include border-radius(0);
+		border-radius: 0;
 	}
 }
