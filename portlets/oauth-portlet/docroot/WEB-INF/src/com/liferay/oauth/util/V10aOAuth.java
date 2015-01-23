@@ -14,7 +14,6 @@
 
 package com.liferay.oauth.util;
 
-import com.liferay.compat.portal.util.PortalUtil;
 import com.liferay.oauth.model.OAuthApplication;
 import com.liferay.oauth.model.OAuthUser;
 import com.liferay.oauth.service.OAuthApplicationLocalServiceUtil;
@@ -38,6 +37,7 @@ import com.liferay.portal.kernel.util.MethodHandler;
 import com.liferay.portal.kernel.util.MethodKey;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.PwdGenerator;
 import com.liferay.util.portlet.PortletProps;
 
