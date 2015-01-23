@@ -112,8 +112,6 @@ import org.opensaml.saml2.metadata.SPSSODescriptor;
 import org.opensaml.saml2.metadata.SingleSignOnService;
 import org.opensaml.security.MetadataCriteria;
 import org.opensaml.security.SAMLSignatureProfileValidator;
-import org.opensaml.ws.transport.http.HttpServletRequestAdapter;
-import org.opensaml.ws.transport.http.HttpServletResponseAdapter;
 import org.opensaml.xml.security.CriteriaSet;
 import org.opensaml.xml.security.SecurityException;
 import org.opensaml.xml.security.credential.Credential;
@@ -268,19 +266,18 @@ public class WebSsoProfileImpl extends BaseProfile implements WebSsoProfile {
 
 			SAMLMessageContext<AuthnRequest, Response, NameID>
 				samlMessageContext =
-					samlSsoRequestContext.getSAMLMessageContext();
+					(SAMLMessageContext<AuthnRequest, Response, NameID>)
+						getSamlMessageContext(
+							request, response,
+							samlSsoRequestContext.getPeerEntityId());
 
-			HttpServletRequestAdapter inHttpServletRequestAdapter =
-				new HttpServletRequestAdapter(request);
+			samlSsoRequestContext.setSAMLMessageContext(samlMessageContext);
 
-			samlMessageContext.setInboundMessageTransport(
-				inHttpServletRequestAdapter);
+			String authnRequestXml = samlSsoRequestContext.getAutnRequestXml();
+			AuthnRequest authnRequest = (AuthnRequest)OpenSamlUtil.unmarshall(
+				authnRequestXml);
 
-			HttpServletResponseAdapter outHttpServletRequestAdapter =
-				new HttpServletResponseAdapter(response, request.isSecure());
-
-			samlMessageContext.setOutboundMessageTransport(
-				outHttpServletRequestAdapter);
+			samlMessageContext.setInboundSAMLMessage(authnRequest);
 
 			String samlSsoSessionId = getSamlSsoSessionId(request);
 
@@ -339,7 +336,13 @@ public class WebSsoProfileImpl extends BaseProfile implements WebSsoProfile {
 						MetadataManagerUtil.isWantAuthnRequestSigned());
 		}
 
-		samlSsoRequestContext = new SamlSsoRequestContext(samlMessageContext);
+		AuthnRequest authnRequest = samlMessageContext.getInboundSAMLMessage();
+
+		String authnRequestXml = OpenSamlUtil.marshall(authnRequest);
+
+		samlSsoRequestContext = new SamlSsoRequestContext(
+			authnRequestXml, samlMessageContext.getPeerEntityId(),
+			samlMessageContext);
 
 		String samlSsoSessionId = getSamlSsoSessionId(request);
 
@@ -974,11 +977,7 @@ public class WebSsoProfileImpl extends BaseProfile implements WebSsoProfile {
 				PortletWebKeys.FORCE_REAUHENTICATION, Boolean.TRUE);
 		}
 
-		SAMLMessageContext<AuthnRequest, Response, NameID> samlMessageContext =
-			samlSsoRequestContext.getSAMLMessageContext();
-
-		samlMessageContext.setInboundMessageTransport(null);
-		samlMessageContext.setOutboundMessageTransport(null);
+		samlSsoRequestContext.setSAMLMessageContext(null);
 
 		session.setAttribute(
 			PortletWebKeys.SAML_SSO_REQUEST_CONTEXT, samlSsoRequestContext);

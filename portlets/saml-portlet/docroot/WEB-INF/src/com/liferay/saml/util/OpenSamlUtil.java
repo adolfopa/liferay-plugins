@@ -17,6 +17,7 @@ package com.liferay.saml.util;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.Validator;
 
+import java.io.ByteArrayInputStream;
 import java.io.Serializable;
 import java.io.StringWriter;
 
@@ -68,6 +69,9 @@ import org.opensaml.xml.XMLObjectBuilderFactory;
 import org.opensaml.xml.io.Marshaller;
 import org.opensaml.xml.io.MarshallerFactory;
 import org.opensaml.xml.io.MarshallingException;
+import org.opensaml.xml.io.UnmarshallingException;
+import org.opensaml.xml.parse.ParserPool;
+import org.opensaml.xml.parse.XMLParserException;
 import org.opensaml.xml.schema.XSBoolean;
 import org.opensaml.xml.schema.XSBooleanValue;
 import org.opensaml.xml.schema.XSDateTime;
@@ -759,6 +763,15 @@ public class OpenSamlUtil {
 		marshaller.marshall(signableObject);
 
 		Signer.signObject(signature);
+	}
+
+	public static XMLObject unmarshall(String xml)
+		throws UnmarshallingException, XMLParserException {
+
+		ParserPool parserPool = Configuration.getParserPool();
+
+		return XMLObjectHelper.unmarshallFromInputStream(
+			parserPool, new ByteArrayInputStream(xml.getBytes()));
 	}
 
 	@SuppressWarnings("rawtypes")

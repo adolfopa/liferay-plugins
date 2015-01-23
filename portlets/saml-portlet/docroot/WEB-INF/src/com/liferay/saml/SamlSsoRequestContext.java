@@ -34,9 +34,20 @@ public class SamlSsoRequestContext implements Serializable {
 	public static final int STAGE_INITIAL = 0;
 
 	public SamlSsoRequestContext(
+		String authnRequestXml, String peerEntityId,
 		SAMLMessageContext<AuthnRequest, Response, NameID> samlMessageContext) {
 
+		_authnRequestXml = authnRequestXml;
+		_peerEntityId = peerEntityId;
 		_samlMessageContext = samlMessageContext;
+	}
+
+	public String getAutnRequestXml() {
+		return _authnRequestXml;
+	}
+
+	public String getPeerEntityId() {
+		return _peerEntityId;
 	}
 
 	public SAMLMessageContext<AuthnRequest, Response, NameID>
@@ -74,6 +85,12 @@ public class SamlSsoRequestContext implements Serializable {
 		_isNewSession = isNewSession;
 	}
 
+	public void setSAMLMessageContext(
+		SAMLMessageContext<AuthnRequest, Response, NameID> samlMessageContext) {
+
+		_samlMessageContext = samlMessageContext;
+	}
+
 	public void setSamlSsoSessionId(String samlSsoSessionId) {
 		_samlSsoSessionId = samlSsoSessionId;
 	}
@@ -86,8 +103,10 @@ public class SamlSsoRequestContext implements Serializable {
 		_userId = userId;
 	}
 
+	private String _authnRequestXml;
 	private boolean _isNewSession;
-	private SAMLMessageContext<AuthnRequest, Response, NameID>
+	private String _peerEntityId;
+	private volatile SAMLMessageContext<AuthnRequest, Response, NameID>
 		_samlMessageContext;
 	private String _samlSsoSessionId;
 	private int _stage;
