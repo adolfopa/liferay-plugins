@@ -19,8 +19,11 @@ import com.liferay.portal.kernel.oauth.OAuthException;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.util.portlet.PortletProps;
 
 import java.io.OutputStream;
+
+import java.lang.reflect.Constructor;
 
 import javax.portlet.PortletRequest;
 
@@ -84,6 +87,23 @@ public class OAuthUtil {
 	}
 
 	public static OAuth getOAuth() {
+		if (_oAuth == null) {
+			try {
+				Class oauthClassName = Class.forName(
+					PortletProps.get("oauth.class.name"));
+
+				Constructor oauthConstructor = oauthClassName.getConstructor(
+					OAuthValidator.class);
+
+				_oAuth =
+					(OAuth)oauthConstructor.newInstance(
+						new DefaultOAuthValidator());
+			}
+			catch (Exception e) {
+				throw new RuntimeException(e);
+			}
+		}
+
 		return _oAuth;
 	}
 
@@ -144,10 +164,6 @@ public class OAuthUtil {
 		throws OAuthException {
 
 		getOAuth().validateOAuthMessage(message, oAuthAccessor);
-	}
-
-	public void setOAuth(OAuth oAuth) {
-		_oAuth = oAuth;
 	}
 
 	private static String _getOAuthURI(String uriSuffix) {
