@@ -96,8 +96,7 @@ public class SamlUtil {
 	public static Map<String, List<Serializable>> getAttributesMap(
 		List<Attribute> attributes, Properties attributeMappingsProperties) {
 
-		Map<String, List<Serializable>> attributesMap =
-			new HashMap<String, List<Serializable>>();
+		Map<String, List<Serializable>> attributesMap = new HashMap<>();
 
 		for (Attribute attribute : attributes) {
 			String key = attributeMappingsProperties.getProperty(
@@ -119,7 +118,7 @@ public class SamlUtil {
 			List<Serializable> values = attributesMap.get(key);
 
 			if (values == null) {
-				values = new ArrayList<Serializable>(xmlValues.size());
+				values = new ArrayList<>(xmlValues.size());
 			}
 
 			for (XMLObject xmlObject : xmlValues) {

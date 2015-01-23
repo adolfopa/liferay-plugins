@@ -88,6 +88,6 @@ public class NameIdResolverFactory {
 
 	private static NameIdResolver _nameIdResolver = new DefaultNameIdResolver();
 	private static Map<String, NameIdResolver> _nameIdResolvers =
-		new ConcurrentHashMap<String, NameIdResolver>();
+		new ConcurrentHashMap<>();
 
 }

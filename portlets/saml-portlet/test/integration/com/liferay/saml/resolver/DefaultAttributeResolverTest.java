@@ -92,8 +92,7 @@ public class DefaultAttributeResolverTest extends BaseSamlTestCase {
 			_expandoBridge
 		);
 
-		_samlMessageContext =
-			new BasicSAMLMessageContext<AuthnRequest, Response, NameID>();
+		_samlMessageContext = new BasicSAMLMessageContext<>();
 
 		_samlMessageContext.setPeerEntityId(SP_ENTITY_ID);
 	}
@@ -126,7 +125,7 @@ public class DefaultAttributeResolverTest extends BaseSamlTestCase {
 			new String[] {"groups"}
 		);
 
-		List<Group> groups = new ArrayList<Group>();
+		List<Group> groups = new ArrayList<>();
 
 		Group group1 = mock(Group.class);
 
@@ -209,7 +208,7 @@ public class DefaultAttributeResolverTest extends BaseSamlTestCase {
 			RoleConstants.TYPE_ORGANIZATION
 		);
 
-		List<UserGroupRole> userGroupRoles = new ArrayList<UserGroupRole>();
+		List<UserGroupRole> userGroupRoles = new ArrayList<>();
 
 		UserGroupRole userGroupRole1 = mock(UserGroupRole.class);
 
@@ -265,7 +264,7 @@ public class DefaultAttributeResolverTest extends BaseSamlTestCase {
 			new String[] {"organizations"}
 		);
 
-		List<Organization> organizations = new ArrayList<Organization>();
+		List<Organization> organizations = new ArrayList<>();
 
 		Organization organization1 = mock(Organization.class);
 
@@ -308,7 +307,7 @@ public class DefaultAttributeResolverTest extends BaseSamlTestCase {
 			new String[] {"roles"}
 		);
 
-		List<Role> roles = new ArrayList<Role>();
+		List<Role> roles = new ArrayList<>();
 
 		Role role1 = mock(Role.class);
 
@@ -336,7 +335,7 @@ public class DefaultAttributeResolverTest extends BaseSamlTestCase {
 			roles
 		);
 
-		List<Group> groups = new ArrayList<Group>();
+		List<Group> groups = new ArrayList<>();
 
 		Group group1 = mock(Group.class);
 
@@ -363,7 +362,7 @@ public class DefaultAttributeResolverTest extends BaseSamlTestCase {
 			Boolean.TRUE
 		);
 
-		List<Role> groupRoles = new ArrayList<Role>();
+		List<Role> groupRoles = new ArrayList<>();
 
 		Role groupRole1 = mock(Role.class);
 
@@ -448,7 +447,7 @@ public class DefaultAttributeResolverTest extends BaseSamlTestCase {
 			"Inherited Role Test"
 		);
 
-		List<UserGroupRole> userGroupRoles = new ArrayList<UserGroupRole>();
+		List<UserGroupRole> userGroupRoles = new ArrayList<>();
 
 		UserGroupRole userGroupRole1 = mock(UserGroupRole.class);
 
@@ -504,8 +503,7 @@ public class DefaultAttributeResolverTest extends BaseSamlTestCase {
 			userGroupRoles
 		);
 
-		List<UserGroupGroupRole> userGroupGroupRoles =
-			new ArrayList<UserGroupGroupRole>();
+		List<UserGroupGroupRole> userGroupGroupRoles = new ArrayList<>();
 
 		UserGroupGroupRole userGroupGroupRole = mock(UserGroupGroupRole.class);
 
@@ -667,7 +665,7 @@ public class DefaultAttributeResolverTest extends BaseSamlTestCase {
 			RoleConstants.TYPE_ORGANIZATION
 		);
 
-		List<UserGroupRole> userGroupRoles = new ArrayList<UserGroupRole>();
+		List<UserGroupRole> userGroupRoles = new ArrayList<>();
 
 		UserGroupRole userGroupRole1 = mock(UserGroupRole.class);
 
@@ -744,7 +742,7 @@ public class DefaultAttributeResolverTest extends BaseSamlTestCase {
 			new String[] {"userGroups"}
 		);
 
-		List<UserGroup> userGroups = new ArrayList<UserGroup>();
+		List<UserGroup> userGroups = new ArrayList<>();
 
 		UserGroup userGroup1 = mock(UserGroup.class);
 

@@ -107,7 +107,7 @@ public class SessionKeepAliveAction extends BaseSamlStrutsAction {
 			return Collections.emptyList();
 		}
 
-		List<String> sessionKeepAliveURLs = new ArrayList<String>();
+		List<String> sessionKeepAliveURLs = new ArrayList<>();
 
 		String entityId = ParamUtil.getString(request, "entityId");
 

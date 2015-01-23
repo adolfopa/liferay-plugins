@@ -192,7 +192,7 @@ public class MetadataManagerImpl implements MetadataManager {
 
 		long companyId = CompanyThreadLocal.getCompanyId();
 
-		ReadWriteLockKey<Long> readWriteLockKey = new ReadWriteLockKey<Long>(
+		ReadWriteLockKey<Long> readWriteLockKey = new ReadWriteLockKey<>(
 			companyId, true);
 
 		Lock lock = _readWriteLockRegistry.acquireLock(readWriteLockKey);
@@ -626,7 +626,7 @@ public class MetadataManagerImpl implements MetadataManager {
 	private CredentialResolver _credentialResolver;
 	private HttpClient _httpClient;
 	private ConcurrentHashMap<Long, MetadataProvider> _metadataProviders =
-		new ConcurrentHashMap<Long, MetadataProvider>();
+		new ConcurrentHashMap<>();
 	private ParserPool _parserPool;
 	private ReadWriteLockRegistry _readWriteLockRegistry =
 		new ReadWriteLockRegistry();

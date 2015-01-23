@@ -132,7 +132,7 @@ public class DefaultUserResolverTest extends BaseSamlTestCase {
 				"screenName", _SUBJECT_NAME_IDENTIFIER_SCREEN_NAME));
 
 		SAMLMessageContext<Response, SAMLObject, NameID> samlMessageContext =
-			new BasicSAMLMessageContext<Response, SAMLObject, NameID>();
+			new BasicSAMLMessageContext<>();
 
 		samlMessageContext.setPeerEntityId(IDP_ENTITY_ID);
 

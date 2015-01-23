@@ -58,7 +58,7 @@ public class OpenSamlBootstrap extends DefaultBootstrap {
 	protected static void initializeParserPool() throws ConfigurationException {
 		BasicParserPool parserPool = new BasicParserPool();
 
-		Map<String, Boolean> builderFeatures = new HashMap<String, Boolean>();
+		Map<String, Boolean> builderFeatures = new HashMap<>();
 
 		builderFeatures.put(
 			"http://apache.org/xml/features/disallow-doctype-decl",

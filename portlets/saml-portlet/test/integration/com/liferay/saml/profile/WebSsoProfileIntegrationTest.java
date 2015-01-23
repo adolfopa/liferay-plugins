@@ -434,8 +434,7 @@ public class WebSsoProfileIntegrationTest extends BaseSamlTestCase {
 
 	@Test
 	public void testVerifyAudienceRestrictionsAllow() throws Exception {
-		List<AudienceRestriction> audienceRestrictions =
-			new ArrayList<AudienceRestriction>();
+		List<AudienceRestriction> audienceRestrictions = new ArrayList<>();
 
 		MockHttpServletRequest mockHttpServletRequest =
 			getMockHttpServletRequest(ACS_URL);
@@ -456,8 +455,7 @@ public class WebSsoProfileIntegrationTest extends BaseSamlTestCase {
 
 	@Test(expected = AudienceException.class)
 	public void testVerifyAudienceRestrictionsDeny() throws Exception {
-		List<AudienceRestriction> audienceRestrictions =
-			new ArrayList<AudienceRestriction>();
+		List<AudienceRestriction> audienceRestrictions = new ArrayList<>();
 
 		AudienceRestriction audienceRestriction =
 			_webSsoProfileImpl.getSuccessAudienceRestriction(UNKNOWN_ENTITY_ID);

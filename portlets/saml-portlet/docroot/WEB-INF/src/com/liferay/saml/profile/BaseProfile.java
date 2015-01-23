@@ -150,7 +150,7 @@ public abstract class BaseProfile {
 		throws Exception {
 
 		SAMLMessageContext<SAMLObject, SAMLObject, NameID> samlMessageContext =
-			new BasicSAMLMessageContext<SAMLObject, SAMLObject, NameID>();
+			new BasicSAMLMessageContext<>();
 
 		HttpServletRequestAdapter httpServletRequestAdapter =
 			new HttpServletRequestAdapter(request);

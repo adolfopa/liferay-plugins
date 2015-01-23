@@ -346,15 +346,15 @@ public class CachingChainingMetadataProvider extends BaseMetadataProvider {
 		CachingChainingMetadataProvider.class);
 
 	private List<MetadataProvider> _metadataProviders =
-		new CopyOnWriteArrayList<MetadataProvider>();
+		new CopyOnWriteArrayList<>();
 	private Map<String, MetadataProvider> _metadataProvidersMap =
-		new ConcurrentHashMap<String, MetadataProvider>();
+		new ConcurrentHashMap<>();
 	private ReadWriteLock _readWriteLock = new ReentrantReadWriteLock(true);
 
 	private class ChainingEntitiesDescriptor implements EntitiesDescriptor {
 
 		public ChainingEntitiesDescriptor() {
-			_xmlObjects = new ArrayList<XMLObject>();
+			_xmlObjects = new ArrayList<>();
 
 			Lock lock = _readWriteLock.readLock();
 
@@ -404,8 +404,7 @@ public class CachingChainingMetadataProvider extends BaseMetadataProvider {
 
 		@Override
 		public List<EntitiesDescriptor> getEntitiesDescriptors() {
-			List<EntitiesDescriptor> entitiesDescriptors =
-				new ArrayList<EntitiesDescriptor>();
+			List<EntitiesDescriptor> entitiesDescriptors = new ArrayList<>();
 
 			for (XMLObject xmlObject : _xmlObjects) {
 				if (xmlObject instanceof EntitiesDescriptor) {
@@ -421,8 +420,7 @@ public class CachingChainingMetadataProvider extends BaseMetadataProvider {
 
 		@Override
 		public List<EntityDescriptor> getEntityDescriptors() {
-			List<EntityDescriptor> entityDescriptors =
-				new ArrayList<EntityDescriptor>();
+			List<EntityDescriptor> entityDescriptors = new ArrayList<>();
 
 			for (XMLObject xmlObject : _xmlObjects) {
 				if (xmlObject instanceof EntityDescriptor) {
@@ -463,7 +461,7 @@ public class CachingChainingMetadataProvider extends BaseMetadataProvider {
 
 		@Override
 		public Set<Namespace> getNamespaces() {
-			return new LazySet<Namespace>();
+			return new LazySet<>();
 		}
 
 		@Override
@@ -473,7 +471,7 @@ public class CachingChainingMetadataProvider extends BaseMetadataProvider {
 
 		@Override
 		public List<XMLObject> getOrderedChildren() {
-			List<XMLObject> xmlObjects = new ArrayList<XMLObject>();
+			List<XMLObject> xmlObjects = new ArrayList<>();
 
 			try {
 				for (MetadataProvider metadataProvider : _metadataProviders) {
@@ -518,7 +516,7 @@ public class CachingChainingMetadataProvider extends BaseMetadataProvider {
 		@Override
 		@SuppressWarnings("rawtypes")
 		public List<Validator> getValidators() {
-			return new ArrayList<Validator>();
+			return new ArrayList<>();
 		}
 
 		@Override

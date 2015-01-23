@@ -169,7 +169,7 @@ public class DefaultUserResolver implements UserResolver {
 		SAMLMessageContext<Response, SAMLObject, NameID>
 			samlMessageContext) {
 
-		List<Attribute> attributes = new ArrayList<Attribute>();
+		List<Attribute> attributes = new ArrayList<>();
 
 		for (AttributeStatement attributeStatement :
 				assertion.getAttributeStatements()) {

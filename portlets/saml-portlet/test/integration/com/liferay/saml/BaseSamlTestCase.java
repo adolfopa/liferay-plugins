@@ -532,7 +532,7 @@ public class BaseSamlTestCase extends PowerMockito {
 	}
 
 	protected void setupSamlBindings() {
-		samlBindings = new ArrayList<SamlBinding>();
+		samlBindings = new ArrayList<>();
 
 		samlBindings.add(
 			new HttpPostBinding(
@@ -577,7 +577,7 @@ public class BaseSamlTestCase extends PowerMockito {
 	protected CredentialResolver credentialResolver;
 	protected HttpClient httpClient;
 	protected IdentifierGenerator identifierGenerator;
-	protected List<String> identifiers = new ArrayList<String>();
+	protected List<String> identifiers = new ArrayList<>();
 	protected ParserPool parserPool;
 	protected Portal portal;
 	protected BeanLocator portalBeanLocator;
@@ -586,7 +586,7 @@ public class BaseSamlTestCase extends PowerMockito {
 	protected List<SamlBinding> samlBindings;
 	protected IdentifierGenerator samlIdentifierGenerator =
 		new SamlIdentifierGenerator();
-	protected List<Class<?>> serviceUtilClasses = new ArrayList<Class<?>>();
+	protected List<Class<?>> serviceUtilClasses = new ArrayList<>();
 
 	private class MockMetadataProvider extends DBMetadataProvider {
 

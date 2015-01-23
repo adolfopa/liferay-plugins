@@ -115,8 +115,7 @@ public class KeyStoreCredentialResolver
 
 		basicX509Credential.setEntityCertificate(x509Certificate);
 
-		List<X509Certificate> x509Certificates =
-			new ArrayList<X509Certificate>();
+		List<X509Certificate> x509Certificates = new ArrayList<>();
 
 		x509Certificates.add(x509Certificate);
 

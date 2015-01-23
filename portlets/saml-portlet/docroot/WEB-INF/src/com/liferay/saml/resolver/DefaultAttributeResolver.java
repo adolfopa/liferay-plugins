@@ -68,7 +68,7 @@ public class DefaultAttributeResolver implements AttributeResolver {
 	public List<Attribute> resolve(
 		User user, SAMLMessageContext<?, ?, ?> samlMessageContext) {
 
-		List<Attribute> attributes = new ArrayList<Attribute>();
+		List<Attribute> attributes = new ArrayList<>();
 
 		String entityId = samlMessageContext.getPeerEntityId();
 
@@ -214,8 +214,7 @@ public class DefaultAttributeResolver implements AttributeResolver {
 				UserGroupRoleLocalServiceUtil.getUserGroupRoles(
 					user.getUserId());
 
-			Map<String, Set<Role>> groupRoles =
-				new HashMap<String, Set<Role>>();
+			Map<String, Set<Role>> groupRoles = new HashMap<>();
 
 			for (UserGroupRole userGroupRole : userGroupRoles) {
 				Group group = userGroupRole.getGroup();
@@ -229,7 +228,7 @@ public class DefaultAttributeResolver implements AttributeResolver {
 				Set<Role> roles = groupRoles.get(group.getName());
 
 				if (roles == null) {
-					roles = new HashSet<Role>();
+					roles = new HashSet<>();
 
 					groupRoles.put(group.getName(), roles);
 				}
@@ -341,7 +340,7 @@ public class DefaultAttributeResolver implements AttributeResolver {
 				}
 			}
 
-			List<Group> allGroups = new ArrayList<Group>();
+			List<Group> allGroups = new ArrayList<>();
 
 			allGroups.addAll(groups);
 			allGroups.addAll(inheritedSiteGroups);
@@ -351,7 +350,7 @@ public class DefaultAttributeResolver implements AttributeResolver {
 			allGroups.addAll(
 				GroupLocalServiceUtil.getUserGroupsGroups(userGroups));
 
-			Set<Role> uniqueRoles = new HashSet<Role>();
+			Set<Role> uniqueRoles = new HashSet<>();
 
 			uniqueRoles.addAll(roles);
 
@@ -405,8 +404,7 @@ public class DefaultAttributeResolver implements AttributeResolver {
 				UserGroupRoleLocalServiceUtil.getUserGroupRoles(
 					user.getUserId());
 
-			Map<String, Set<Role>> groupRoles =
-				new HashMap<String, Set<Role>>();
+			Map<String, Set<Role>> groupRoles = new HashMap<>();
 
 			for (UserGroupRole userGroupRole : userGroupRoles) {
 				Group group = userGroupRole.getGroup();
@@ -422,7 +420,7 @@ public class DefaultAttributeResolver implements AttributeResolver {
 				Set<Role> roles = groupRoles.get(group.getName());
 
 				if (roles == null) {
-					roles = new HashSet<Role>();
+					roles = new HashSet<>();
 
 					groupRoles.put(group.getName(), roles);
 				}
@@ -441,7 +439,7 @@ public class DefaultAttributeResolver implements AttributeResolver {
 				Set<Role> roles = groupRoles.get(group.getName());
 
 				if (roles == null) {
-					roles = new HashSet<Role>();
+					roles = new HashSet<>();
 
 					groupRoles.put(group.getName(), roles);
 				}
@@ -599,7 +597,7 @@ public class DefaultAttributeResolver implements AttributeResolver {
 	protected List<Attribute> getSalesForceAttributes(
 		SAMLMessageContext<?, ?, ?> samlMessageContext) {
 
-		List<Attribute> attributes = new ArrayList<Attribute>();
+		List<Attribute> attributes = new ArrayList<>();
 
 		String samlIdpMetadataSalesForceLogoutUrl = GetterUtil.getString(
 			PropsUtil.get(

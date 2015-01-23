@@ -205,8 +205,7 @@ public class DBMetadataProvider extends BaseMetadataProvider {
 
 		@Override
 		public List<EntitiesDescriptor> getEntitiesDescriptors() {
-			List<EntitiesDescriptor> entitiesDescriptors =
-				new ArrayList<EntitiesDescriptor>();
+			List<EntitiesDescriptor> entitiesDescriptors = new ArrayList<>();
 
 			for (XMLObject xmlObject : _xmlObjects) {
 				if (xmlObject instanceof EntitiesDescriptor) {
@@ -222,8 +221,7 @@ public class DBMetadataProvider extends BaseMetadataProvider {
 
 		@Override
 		public List<EntityDescriptor> getEntityDescriptors() {
-			List<EntityDescriptor> entityDescriptors =
-				new ArrayList<EntityDescriptor>();
+			List<EntityDescriptor> entityDescriptors = new ArrayList<>();
 
 			for (XMLObject xmlObject : _xmlObjects) {
 				if (xmlObject instanceof EntityDescriptor) {
@@ -264,7 +262,7 @@ public class DBMetadataProvider extends BaseMetadataProvider {
 
 		@Override
 		public Set<Namespace> getNamespaces() {
-			return new LazySet<Namespace>();
+			return new LazySet<>();
 		}
 
 		@Override
@@ -274,7 +272,7 @@ public class DBMetadataProvider extends BaseMetadataProvider {
 
 		@Override
 		public List<XMLObject> getOrderedChildren() {
-			return new ArrayList<XMLObject>();
+			return new ArrayList<>();
 		}
 
 		@Override
@@ -305,7 +303,7 @@ public class DBMetadataProvider extends BaseMetadataProvider {
 		@Override
 		@SuppressWarnings("rawtypes")
 		public List<org.opensaml.xml.validation.Validator> getValidators() {
-			return new ArrayList<org.opensaml.xml.validation.Validator>();
+			return new ArrayList<>();
 		}
 
 		@Override

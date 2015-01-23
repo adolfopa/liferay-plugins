@@ -121,8 +121,7 @@ public class SingleLogoutProfileIntegrationTest extends BaseSamlTestCase {
 			samlIdpSpConnection
 		);
 
-		List<SamlIdpSpSession> samlIdpSpSessions =
-			new ArrayList<SamlIdpSpSession>();
+		List<SamlIdpSpSession> samlIdpSpSessions = new ArrayList<>();
 
 		SamlIdpSpSessionImpl samlIdpSpSessionImpl = new SamlIdpSpSessionImpl();
 

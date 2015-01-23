@@ -473,7 +473,7 @@ public class WebSsoProfileImpl extends BaseProfile implements WebSsoProfile {
 		SignatureTrustEngine signatureTrustEngine =
 			MetadataManagerUtil.getSignatureTrustEngine();
 
-		List<Attribute> attributes = new ArrayList<Attribute>();
+		List<Attribute> attributes = new ArrayList<>();
 
 		for (Assertion curAssertion : samlResponse.getAssertions()) {
 			try {

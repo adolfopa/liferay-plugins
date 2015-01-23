@@ -90,6 +90,6 @@ public class AttributeResolverFactory {
 	private static AttributeResolver _attributeResolver =
 		new DefaultAttributeResolver();
 	private static Map<String, AttributeResolver> _attributeResolvers =
-		new ConcurrentHashMap<String, AttributeResolver>();
+		new ConcurrentHashMap<>();
 
 }

@@ -124,7 +124,7 @@ public class SamlSloContext implements Serializable {
 	}
 
 	public Set<SamlSloRequestInfo> getSamlSloRequestInfos() {
-		return new HashSet<SamlSloRequestInfo>(_samlRequestInfos.values());
+		return new HashSet<>(_samlRequestInfos.values());
 	}
 
 	public Set<String> getSamlSpEntityIds() {
@@ -179,7 +179,7 @@ public class SamlSloContext implements Serializable {
 	private SAMLMessageContext<LogoutRequest, LogoutResponse, NameID>
 		_samlMessageContext;
 	private Map<String, SamlSloRequestInfo> _samlRequestInfos =
-		new ConcurrentHashMap<String, SamlSloRequestInfo>();
+		new ConcurrentHashMap<>();
 	private String _samlSsoSessionId;
 	private long _userId;
 
