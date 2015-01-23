@@ -16,8 +16,6 @@ package com.liferay.oauth.servlet;
 
 import com.liferay.compat.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.messaging.DestinationNames;
-import com.liferay.portal.kernel.messaging.HotDeployMessageListener;
-import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.messaging.MessageListener;
 import com.liferay.portal.kernel.util.BasePortalLifecycle;
@@ -57,23 +55,8 @@ public class OAuthServletContextListener
 	}
 
 	@Override
-	protected void doPortalInit() {
-		_messageListener = new HotDeployMessageListener(
-			"oauth-portlet") {
-
-			@Override
-			protected void onDeploy(Message message) throws Exception {
-				loadClusterLinkHelperClass();
-			}
-
-			@Override
-			protected void onUndeploy(Message message) throws Exception {
-			}
-
-		};
-
-		MessageBusUtil.registerMessageListener(
-			DestinationNames.HOT_DEPLOY, _messageListener);
+	protected void doPortalInit() throws Exception {
+		loadClusterLinkHelperClass();
 	}
 
 	protected void loadClusterLinkHelperClass() throws Exception {
