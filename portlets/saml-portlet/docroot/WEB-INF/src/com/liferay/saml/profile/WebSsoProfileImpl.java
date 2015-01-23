@@ -274,6 +274,7 @@ public class WebSsoProfileImpl extends BaseProfile implements WebSsoProfile {
 			samlSsoRequestContext.setSAMLMessageContext(samlMessageContext);
 
 			String authnRequestXml = samlSsoRequestContext.getAutnRequestXml();
+
 			AuthnRequest authnRequest = (AuthnRequest)OpenSamlUtil.unmarshall(
 				authnRequestXml);
 
