@@ -14,11 +14,16 @@
 
 package com.liferay.oauth.service.impl;
 
+import com.liferay.oauth.model.OAuthApplication;
 import com.liferay.oauth.model.OAuthUser;
 import com.liferay.oauth.service.base.OAuthUserServiceBaseImpl;
 import com.liferay.oauth.service.permission.OAuthUserPermission;
+import com.liferay.oauth.util.OAuthUtil;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.model.User;
 import com.liferay.portal.security.permission.ActionKeys;
+import com.liferay.portal.service.ServiceContext;
 
 /**
  * @author Ivica Cardic
@@ -27,8 +32,35 @@ import com.liferay.portal.security.permission.ActionKeys;
 public class OAuthUserServiceImpl extends OAuthUserServiceBaseImpl {
 
 	@Override
+	public OAuthUser addOAuthUser(
+			String consumerKey, ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		OAuthApplication oAuthApplication =
+			oAuthApplicationPersistence.findByConsumerKey(consumerKey);
+
+		User user = getUser();
+
+		OAuthUser oAuthUser = oAuthUserPersistence.fetchByU_OAI(
+			user.getUserId(), oAuthApplication.getOAuthApplicationId());
+
+		if (oAuthUser != null) {
+			return oAuthUser;
+		}
+
+		String accessToken = OAuthUtil.randomizeToken(
+			oAuthApplication.getConsumerKey());
+		String accessSecret = OAuthUtil.randomizeToken(
+			consumerKey.concat(accessToken));
+
+		return oAuthUserLocalService.addOAuthUser(
+			user.getUserId(), oAuthApplication.getOAuthApplicationId(),
+			accessToken, accessSecret, serviceContext);
+	}
+
+	@Override
 	public OAuthUser deleteOAuthUser(long oAuthApplicationId)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		OAuthUser oAuthUser = oAuthUserPersistence.findByU_OAI(
 			getUserId(), oAuthApplicationId);
