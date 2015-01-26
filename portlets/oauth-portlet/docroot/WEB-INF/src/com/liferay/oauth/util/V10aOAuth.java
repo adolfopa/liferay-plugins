@@ -14,24 +14,37 @@
 
 package com.liferay.oauth.util;
 
+import com.liferay.compat.portal.util.PortalUtil;
 import com.liferay.oauth.model.OAuthApplication;
 import com.liferay.oauth.model.OAuthUser;
 import com.liferay.oauth.service.OAuthApplicationLocalServiceUtil;
 import com.liferay.oauth.service.OAuthUserLocalServiceUtil;
-import com.liferay.portal.kernel.cache.MultiVMPoolUtil;
 import com.liferay.portal.kernel.cache.PortalCache;
+import com.liferay.portal.kernel.cache.SingleVMPoolUtil;
+import com.liferay.portal.kernel.cluster.ClusterExecutorUtil;
+import com.liferay.portal.kernel.cluster.ClusterRequest;
+import com.liferay.portal.kernel.cluster.FutureClusterResponses;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.io.Deserializer;
+import com.liferay.portal.kernel.io.Serializer;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.oauth.OAuthException;
+import com.liferay.portal.kernel.util.ClassLoaderPool;
 import com.liferay.portal.kernel.util.Digester;
 import com.liferay.portal.kernel.util.DigesterUtil;
-import com.liferay.portal.kernel.util.PwdGenerator;
+import com.liferay.portal.kernel.util.Http;
+import com.liferay.portal.kernel.util.MethodHandler;
+import com.liferay.portal.kernel.util.MethodKey;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portal.util.PortalUtil;
-import com.liferay.util.portlet.PortletProps;
+import com.liferay.util.PwdGenerator;
 
 import java.io.IOException;
 import java.io.OutputStream;
+
+import java.nio.ByteBuffer;
 
 import java.util.List;
 
@@ -40,7 +53,6 @@ import javax.portlet.PortletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.oauth.OAuthProblemException;
 import net.oauth.server.OAuthServlet;
 
 /**
@@ -85,7 +97,7 @@ public class V10aOAuth implements OAuth {
 			OAuthAccessorConstants.AUTHORIZED, Boolean.TRUE);
 		oAuthAccessor.setProperty(OAuthAccessorConstants.USER_ID, userId);
 
-		_portalCache.put(oAuthAccessor.getRequestToken(), oAuthAccessor);
+		_put(oAuthAccessor.getRequestToken(), oAuthAccessor);
 	}
 
 	@Override
@@ -158,7 +170,7 @@ public class V10aOAuth implements OAuth {
 			}
 		}
 
-		_portalCache.put(token, oAuthAccessor);
+		_put(token, oAuthAccessor);
 	}
 
 	@Override
@@ -179,7 +191,7 @@ public class V10aOAuth implements OAuth {
 
 		oAuthAccessor.setTokenSecret(tokenSecret);
 
-		_portalCache.put(token, oAuthAccessor);
+		_put(token, oAuthAccessor);
 	}
 
 	@Override
@@ -195,13 +207,10 @@ public class V10aOAuth implements OAuth {
 			throw new OAuthException(ioe);
 		}
 
-		OAuthAccessor oAuthAccessor = _portalCache.get(token);
+		OAuthAccessor oAuthAccessor = (OAuthAccessor)_portalCache.get(token);
 
 		if (oAuthAccessor == null) {
-			net.oauth.OAuthException oAuthException = new OAuthProblemException(
-				net.oauth.OAuth.Problems.TOKEN_EXPIRED);
-
-			throw new OAuthException(oAuthException);
+			throw new OAuthException(net.oauth.OAuth.Problems.TOKEN_EXPIRED);
 		}
 
 		return oAuthAccessor;
@@ -217,22 +226,15 @@ public class V10aOAuth implements OAuth {
 			consumerKey = requestMessage.getConsumerKey();
 		}
 		catch (IOException ioe) {
-			net.oauth.OAuthException oAuthException = new OAuthProblemException(
-				net.oauth.OAuth.Problems.CONSUMER_KEY_UNKNOWN);
-
-			oAuthException.initCause(ioe);
-
-			throw new OAuthException(oAuthException);
+			throw new OAuthException(ioe);
 		}
 
 		OAuthApplication oAuthApplication =
 			OAuthApplicationLocalServiceUtil.fetchOAuthApplication(consumerKey);
 
 		if (oAuthApplication == null) {
-			net.oauth.OAuthException oAuthException = new OAuthProblemException(
+			throw new OAuthException(
 				net.oauth.OAuth.Problems.CONSUMER_KEY_REFUSED);
-
-			throw new OAuthException(oAuthException);
 		}
 
 		return new DefaultOAuthConsumer(oAuthApplication);
@@ -271,11 +273,17 @@ public class V10aOAuth implements OAuth {
 			Exception exception, boolean sendBody)
 		throws OAuthException {
 
+		String realm = Http.HTTP_WITH_SLASH;
+
+		if (request.isSecure()) {
+			realm = Http.HTTPS_WITH_SLASH;
+		}
+
+		realm = realm.concat(request.getLocalName());
+
 		if (exception.getCause() != null) {
 			exception = (Exception)exception.getCause();
 		}
-
-		String realm = PortletProps.get("oauth.realm");
 
 		try {
 			OAuthServlet.handleException(response, exception, realm, sendBody);
@@ -299,8 +307,90 @@ public class V10aOAuth implements OAuth {
 		_oAuthValidator.validateOAuthMessage(oAuthMessage, accessor);
 	}
 
-	private static PortalCache<String, OAuthAccessor> _portalCache =
-		MultiVMPoolUtil.getCache(V10aOAuth.class.getName());
+	protected static OAuthAccessor deserialize(byte[] bytes) {
+		Deserializer deserializer = new Deserializer(ByteBuffer.wrap(bytes));
+
+		try {
+			DefaultOAuthAccessor oAuthAccessor = deserializer.readObject();
+
+			return oAuthAccessor;
+		}
+		catch (ClassNotFoundException cnfe) {
+			cnfe.printStackTrace();
+		}
+
+		return null;
+	}
+
+	protected byte[] serialize(OAuthAccessor oAuthAccessor) {
+		Serializer serializer = new Serializer();
+
+		serializer.writeObject((DefaultOAuthAccessor)oAuthAccessor);
+
+		ByteBuffer byteBuffer = serializer.toByteBuffer();
+
+		return byteBuffer.array();
+	}
+
+	private static String _getServletContextName() {
+		Thread currentThread = Thread.currentThread();
+
+		ClassLoader classLoader = currentThread.getContextClassLoader();
+
+		return ClassLoaderPool.getContextName(classLoader);
+	}
+
+	@SuppressWarnings("unused")
+	private static void _put(String key, byte[] bytes) {
+		OAuthAccessor oAuthAccessor = deserialize(bytes);
+
+		_portalCache.put(key, oAuthAccessor);
+	}
+
+	private void _notifyCluster(String key, OAuthAccessor oAuthAccessor)
+		throws Exception {
+
+		MethodHandler putMethodHandler = new MethodHandler(
+			_putMethodKey, key, serialize(oAuthAccessor));
+
+		MethodHandler invokeMethodHandler = new MethodHandler(
+			_invokeMethodKey, putMethodHandler, _getServletContextName());
+
+		ClusterRequest clusterRequest = ClusterRequest.createMulticastRequest(
+			invokeMethodHandler, true);
+
+		FutureClusterResponses futureClusterResponses =
+			ClusterExecutorUtil.execute(clusterRequest);
+
+		futureClusterResponses.get();
+	}
+
+	private void _put(String key, OAuthAccessor oAuthAccessor) {
+		_portalCache.put(key, oAuthAccessor);
+
+		if (ClusterExecutorUtil.isEnabled()) {
+			try {
+				_notifyCluster(key, oAuthAccessor);
+
+				if (_log.isDebugEnabled()) {
+					_log.debug("Cluster notified with OAuthAccessor.");
+				}
+			}
+			catch (Exception se) {
+				_log.error("Failed to notify cluster with OAuthAccessor.", se);
+			}
+		}
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(V10aOAuth.class);
+
+	private static MethodKey _invokeMethodKey = new MethodKey(
+		"com.liferay.oauth.util.ClusterLinkHelper", "_invoke",
+		MethodHandler.class, String.class);
+	private static PortalCache _portalCache = SingleVMPoolUtil.getCache(
+		V10aOAuth.class.getName());
+	private static MethodKey _putMethodKey = new MethodKey(
+		V10aOAuth.class.getName(), "_put", String.class, byte[].class);
 
 	private OAuthValidator _oAuthValidator;
 
