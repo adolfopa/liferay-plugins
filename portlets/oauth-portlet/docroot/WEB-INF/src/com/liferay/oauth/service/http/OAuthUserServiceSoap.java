@@ -62,6 +62,23 @@ import java.rmi.RemoteException;
  * @generated
  */
 public class OAuthUserServiceSoap {
+	public static com.liferay.oauth.model.OAuthUserSoap addOAuthUser(
+		java.lang.String consumerKey,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws RemoteException {
+		try {
+			com.liferay.oauth.model.OAuthUser returnValue = OAuthUserServiceUtil.addOAuthUser(consumerKey,
+					serviceContext);
+
+			return com.liferay.oauth.model.OAuthUserSoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	public static com.liferay.oauth.model.OAuthUserSoap deleteOAuthUser(
 		long oAuthApplicationId) throws RemoteException {
 		try {

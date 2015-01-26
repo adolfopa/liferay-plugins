@@ -18,15 +18,12 @@ import com.liferay.oauth.service.ClpSerializer;
 import com.liferay.oauth.service.OAuthUserLocalServiceUtil;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.BaseModel;
-import com.liferay.portal.model.User;
 import com.liferay.portal.model.impl.BaseModelImpl;
-import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.util.PortalUtil;
 
 import java.io.Serializable;
 
@@ -87,9 +84,6 @@ public class OAuthUserClp extends BaseModelImpl<OAuthUser> implements OAuthUser 
 		attributes.put("accessToken", getAccessToken());
 		attributes.put("accessSecret", getAccessSecret());
 
-		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
-		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
-
 		return attributes;
 	}
 
@@ -148,9 +142,6 @@ public class OAuthUserClp extends BaseModelImpl<OAuthUser> implements OAuthUser 
 		if (accessSecret != null) {
 			setAccessSecret(accessSecret);
 		}
-
-		_entityCacheEnabled = GetterUtil.getBoolean("entityCacheEnabled");
-		_finderCacheEnabled = GetterUtil.getBoolean("finderCacheEnabled");
 	}
 
 	@Override
@@ -177,19 +168,13 @@ public class OAuthUserClp extends BaseModelImpl<OAuthUser> implements OAuthUser 
 	}
 
 	@Override
-	public String getOAuthUserUuid() {
-		try {
-			User user = UserLocalServiceUtil.getUserById(getOAuthUserId());
-
-			return user.getUuid();
-		}
-		catch (PortalException pe) {
-			return StringPool.BLANK;
-		}
+	public String getOAuthUserUuid() throws SystemException {
+		return PortalUtil.getUserValue(getOAuthUserId(), "uuid", _oAuthUserUuid);
 	}
 
 	@Override
 	public void setOAuthUserUuid(String oAuthUserUuid) {
+		_oAuthUserUuid = oAuthUserUuid;
 	}
 
 	@Override
@@ -239,19 +224,13 @@ public class OAuthUserClp extends BaseModelImpl<OAuthUser> implements OAuthUser 
 	}
 
 	@Override
-	public String getUserUuid() {
-		try {
-			User user = UserLocalServiceUtil.getUserById(getUserId());
-
-			return user.getUuid();
-		}
-		catch (PortalException pe) {
-			return StringPool.BLANK;
-		}
+	public String getUserUuid() throws SystemException {
+		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
 	}
 
 	@Override
 	public void setUserUuid(String userUuid) {
+		_userUuid = userUuid;
 	}
 
 	@Override
@@ -443,7 +422,7 @@ public class OAuthUserClp extends BaseModelImpl<OAuthUser> implements OAuthUser 
 	}
 
 	@Override
-	public void persist() {
+	public void persist() throws SystemException {
 		if (this.isNew()) {
 			OAuthUserLocalServiceUtil.addOAuthUser(this);
 		}
@@ -519,16 +498,6 @@ public class OAuthUserClp extends BaseModelImpl<OAuthUser> implements OAuthUser 
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
-	}
-
-	@Override
-	public boolean isEntityCacheEnabled() {
-		return _entityCacheEnabled;
-	}
-
-	@Override
-	public boolean isFinderCacheEnabled() {
-		return _finderCacheEnabled;
 	}
 
 	@Override
@@ -609,8 +578,10 @@ public class OAuthUserClp extends BaseModelImpl<OAuthUser> implements OAuthUser 
 	}
 
 	private long _oAuthUserId;
+	private String _oAuthUserUuid;
 	private long _companyId;
 	private long _userId;
+	private String _userUuid;
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
@@ -619,6 +590,4 @@ public class OAuthUserClp extends BaseModelImpl<OAuthUser> implements OAuthUser 
 	private String _accessSecret;
 	private BaseModel<?> _oAuthUserRemoteModel;
 	private Class<?> _clpSerializerClass = com.liferay.oauth.service.ClpSerializer.class;
-	private boolean _entityCacheEnabled;
-	private boolean _finderCacheEnabled;
 }

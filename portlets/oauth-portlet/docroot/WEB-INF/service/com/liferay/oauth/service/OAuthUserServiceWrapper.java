@@ -29,13 +29,6 @@ public class OAuthUserServiceWrapper implements OAuthUserService,
 		_oAuthUserService = oAuthUserService;
 	}
 
-	@Override
-	public com.liferay.oauth.model.OAuthUser deleteOAuthUser(
-		long oAuthApplicationId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _oAuthUserService.deleteOAuthUser(oAuthApplicationId);
-	}
-
 	/**
 	* Returns the Spring bean ID for this bean.
 	*
@@ -44,13 +37,6 @@ public class OAuthUserServiceWrapper implements OAuthUserService,
 	@Override
 	public java.lang.String getBeanIdentifier() {
 		return _oAuthUserService.getBeanIdentifier();
-	}
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _oAuthUserService.invokeMethod(name, parameterTypes, arguments);
 	}
 
 	/**
@@ -63,10 +49,33 @@ public class OAuthUserServiceWrapper implements OAuthUserService,
 		_oAuthUserService.setBeanIdentifier(beanIdentifier);
 	}
 
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _oAuthUserService.invokeMethod(name, parameterTypes, arguments);
+	}
+
+	@Override
+	public com.liferay.oauth.model.OAuthUser addOAuthUser(
+		java.lang.String consumerKey,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _oAuthUserService.addOAuthUser(consumerKey, serviceContext);
+	}
+
+	@Override
+	public com.liferay.oauth.model.OAuthUser deleteOAuthUser(
+		long oAuthApplicationId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _oAuthUserService.deleteOAuthUser(oAuthApplicationId);
+	}
+
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
-	@Deprecated
 	public OAuthUserService getWrappedOAuthUserService() {
 		return _oAuthUserService;
 	}
@@ -74,7 +83,6 @@ public class OAuthUserServiceWrapper implements OAuthUserService,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
 	 */
-	@Deprecated
 	public void setWrappedOAuthUserService(OAuthUserService oAuthUserService) {
 		_oAuthUserService = oAuthUserService;
 	}
