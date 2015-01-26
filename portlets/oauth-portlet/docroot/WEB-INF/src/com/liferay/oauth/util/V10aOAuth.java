@@ -352,11 +352,8 @@ public class V10aOAuth implements OAuth {
 		MethodHandler putMethodHandler = new MethodHandler(
 			_putMethodKey, key, serialize(oAuthAccessor));
 
-		MethodHandler invokeMethodHandler = new MethodHandler(
-			_invokeMethodKey, putMethodHandler, _getServletContextName());
-
 		ClusterRequest clusterRequest = ClusterRequest.createMulticastRequest(
-			invokeMethodHandler, true);
+			putMethodHandler, true);
 
 		FutureClusterResponses futureClusterResponses =
 			ClusterExecutorUtil.execute(clusterRequest);
@@ -383,13 +380,10 @@ public class V10aOAuth implements OAuth {
 
 	private static Log _log = LogFactoryUtil.getLog(V10aOAuth.class);
 
-	private static MethodKey _invokeMethodKey = new MethodKey(
-		"com.liferay.oauth.util.ClusterLinkHelper", "_invoke",
-		MethodHandler.class, String.class);
 	private static PortalCache _portalCache = SingleVMPoolUtil.getCache(
 		V10aOAuth.class.getName());
 	private static MethodKey _putMethodKey = new MethodKey(
-		V10aOAuth.class.getName(), "_put", String.class, byte[].class);
+		V10aOAuth.class, "_put", String.class, byte[].class);
 
 	private OAuthValidator _oAuthValidator;
 
