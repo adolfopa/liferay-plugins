@@ -109,7 +109,7 @@ public class WebSsoProfileIntegrationTest extends BaseSamlTestCase {
 		MockHttpServletRequest mockHttpServletRequest =
 			getMockHttpServletRequest(SSO_URL);
 
-		mockHttpServletRequest.setParameter("entityId", IDP_ENTITY_ID);
+		mockHttpServletRequest.setParameter("entityId", SP_ENTITY_ID);
 		mockHttpServletRequest.setParameter("RelayState", RELAY_STATE);
 
 		SamlSsoRequestContext samlSsoRequestContext =
@@ -127,9 +127,54 @@ public class WebSsoProfileIntegrationTest extends BaseSamlTestCase {
 			samlMessageContext.getLocalEntityRoleMetadata() instanceof
 				IDPSSODescriptor);
 		Assert.assertEquals(
-			IDP_ENTITY_ID, samlMessageContext.getPeerEntityId());
+			SP_ENTITY_ID, samlMessageContext.getPeerEntityId());
 		Assert.assertNotNull(samlMessageContext.getPeerEntityMetadata());
-		Assert.assertNull(samlMessageContext.getPeerEntityRoleMetadata());
+		Assert.assertNotNull(samlMessageContext.getPeerEntityRoleMetadata());
+		Assert.assertTrue(
+			samlMessageContext.getPeerEntityRoleMetadata() instanceof
+				SPSSODescriptor);
+		Assert.assertEquals(RELAY_STATE, samlMessageContext.getRelayState());
+		Assert.assertTrue(samlSsoRequestContext.isNewSession());
+	}
+
+	@Test
+	public void testDecodeAuthnRequestIdpInitiatedSsoAfterAuthentication()
+		throws Exception {
+
+		prepareIdentityProvider(IDP_ENTITY_ID);
+
+		MockHttpServletRequest mockHttpServletRequest =
+			getMockHttpServletRequest(SSO_URL);
+
+		HttpSession mockSession = mockHttpServletRequest.getSession();
+
+		SamlSsoRequestContext samlSsoRequestContext = new SamlSsoRequestContext(
+			SP_ENTITY_ID, RELAY_STATE, null);
+
+		mockSession.setAttribute(
+			PortletWebKeys.SAML_SSO_REQUEST_CONTEXT, samlSsoRequestContext);
+
+		samlSsoRequestContext =
+			_webSsoProfileImpl.decodeAuthnRequest(
+				mockHttpServletRequest, new MockHttpServletResponse());
+
+		SAMLMessageContext<AuthnRequest, Response, NameID> samlMessageContext =
+			samlSsoRequestContext.getSAMLMessageContext();
+
+		Assert.assertEquals(
+			IDP_ENTITY_ID, samlMessageContext.getLocalEntityId());
+		Assert.assertNotNull(samlMessageContext.getLocalEntityMetadata());
+		Assert.assertNotNull(samlMessageContext.getLocalEntityRoleMetadata());
+		Assert.assertTrue(
+			samlMessageContext.getLocalEntityRoleMetadata() instanceof
+				IDPSSODescriptor);
+		Assert.assertEquals(
+			SP_ENTITY_ID, samlMessageContext.getPeerEntityId());
+		Assert.assertNotNull(samlMessageContext.getPeerEntityMetadata());
+		Assert.assertNotNull(samlMessageContext.getPeerEntityRoleMetadata());
+		Assert.assertTrue(
+			samlMessageContext.getPeerEntityRoleMetadata() instanceof
+				SPSSODescriptor);
 		Assert.assertEquals(RELAY_STATE, samlMessageContext.getRelayState());
 		Assert.assertTrue(samlSsoRequestContext.isNewSession());
 	}
@@ -178,6 +223,8 @@ public class WebSsoProfileIntegrationTest extends BaseSamlTestCase {
 
 		HttpSession mockSession = mockHttpServletRequest.getSession();
 
+		samlSsoRequestContext.setSAMLMessageContext(null);
+
 		mockSession.setAttribute(
 			PortletWebKeys.SAML_SSO_REQUEST_CONTEXT, samlSsoRequestContext);
 
@@ -192,6 +239,8 @@ public class WebSsoProfileIntegrationTest extends BaseSamlTestCase {
 
 		samlMessageContext = samlSsoRequestContext.getSAMLMessageContext();
 
+		Assert.assertNotNull(samlMessageContext.getInboundSAMLMessage());
+		Assert.assertEquals(RELAY_STATE, samlMessageContext.getRelayState());
 		Assert.assertNull(
 			mockSession.getAttribute(PortletWebKeys.SAML_SSO_REQUEST_CONTEXT));
 		Assert.assertEquals(
@@ -489,7 +538,7 @@ public class WebSsoProfileIntegrationTest extends BaseSamlTestCase {
 		idpSamlMessageContext.setPeerEntityId(SP_ENTITY_ID);
 
 		SamlSsoRequestContext samlSsoRequestContext = new SamlSsoRequestContext(
-			idpSamlMessageContext);
+			SP_ENTITY_ID, null, idpSamlMessageContext);
 
 		Conditions conditions = _webSsoProfileImpl.getSuccessConditions(
 			samlSsoRequestContext, null, null);
@@ -645,7 +694,7 @@ public class WebSsoProfileIntegrationTest extends BaseSamlTestCase {
 		idpSamlMessageContext.setPeerEntityId(SP_ENTITY_ID);
 
 		SamlSsoRequestContext samlSsoRequestContext = new SamlSsoRequestContext(
-			idpSamlMessageContext);
+			SP_ENTITY_ID, null, idpSamlMessageContext);
 
 		Conditions conditions = _webSsoProfileImpl.getSuccessConditions(
 			samlSsoRequestContext, null, null);
@@ -780,7 +829,8 @@ public class WebSsoProfileIntegrationTest extends BaseSamlTestCase {
 		throws Exception {
 
 		SamlSsoRequestContext samlSsoRequestContext = new SamlSsoRequestContext(
-			samlMessageContext);
+			samlMessageContext.getPeerEntityId(),
+			samlMessageContext.getRelayState(), samlMessageContext);
 
 		SPSSODescriptor spSsoDescriptor =
 			(SPSSODescriptor)samlMessageContext.getLocalEntityRoleMetadata();

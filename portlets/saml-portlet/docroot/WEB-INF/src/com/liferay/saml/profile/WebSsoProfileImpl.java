@@ -275,10 +275,16 @@ public class WebSsoProfileImpl extends BaseProfile implements WebSsoProfile {
 
 			String authnRequestXml = samlSsoRequestContext.getAutnRequestXml();
 
-			AuthnRequest authnRequest = (AuthnRequest)OpenSamlUtil.unmarshall(
-				authnRequestXml);
+			if (Validator.isNotNull(authnRequestXml)) {
+				AuthnRequest authnRequest =
+					(AuthnRequest)OpenSamlUtil.unmarshall(authnRequestXml);
 
-			samlMessageContext.setInboundSAMLMessage(authnRequest);
+				samlMessageContext.setInboundSAMLMessage(authnRequest);
+			}
+
+			String relayState = samlSsoRequestContext.getRelayState();
+
+			samlMessageContext.setRelayState(relayState);
 
 			String samlSsoSessionId = getSamlSsoSessionId(request);
 
@@ -328,6 +334,10 @@ public class WebSsoProfileImpl extends BaseProfile implements WebSsoProfile {
 			String relayState = ParamUtil.getString(request, "RelayState");
 
 			samlMessageContext.setRelayState(relayState);
+
+			samlSsoRequestContext = new SamlSsoRequestContext(
+				samlMessageContext.getPeerEntityId(), relayState,
+				samlMessageContext);
 		}
 		else {
 			samlMessageContext =
@@ -335,15 +345,16 @@ public class WebSsoProfileImpl extends BaseProfile implements WebSsoProfile {
 					decodeSamlMessage(
 						request, response, samlBinding,
 						MetadataManagerUtil.isWantAuthnRequestSigned());
+
+			AuthnRequest authnRequest =
+				samlMessageContext.getInboundSAMLMessage();
+
+			String authnRequestXml = OpenSamlUtil.marshall(authnRequest);
+
+			samlSsoRequestContext = new SamlSsoRequestContext(
+				authnRequestXml, samlMessageContext.getPeerEntityId(),
+				samlMessageContext.getRelayState(), samlMessageContext);
 		}
-
-		AuthnRequest authnRequest = samlMessageContext.getInboundSAMLMessage();
-
-		String authnRequestXml = OpenSamlUtil.marshall(authnRequest);
-
-		samlSsoRequestContext = new SamlSsoRequestContext(
-			authnRequestXml, samlMessageContext.getPeerEntityId(),
-			samlMessageContext);
 
 		String samlSsoSessionId = getSamlSsoSessionId(request);
 
