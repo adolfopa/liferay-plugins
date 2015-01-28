@@ -21,7 +21,7 @@ import com.liferay.sharepoint.connector.operation.URLHelper;
 import java.net.URL;
 
 /**
- * @author Ivan Zaera
+ * @author Iván Zaera
  */
 public class SharepointConnectionInfo {
 

@@ -34,7 +34,7 @@ import java.util.List;
 import org.apache.axis.holders.UnsignedIntHolder;
 
 /**
- * @author Ivan Zaera
+ * @author Iván Zaera
  */
 public class CopySharepointObjectOperation extends BaseOperation {
 

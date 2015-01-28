@@ -29,7 +29,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * @author Ivan Zaera
+ * @author Iván Zaera
  */
 public class GetObjectsByQueryPacketOperation extends BaseOperation {
 

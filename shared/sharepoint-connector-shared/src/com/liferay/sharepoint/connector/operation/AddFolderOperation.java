@@ -20,7 +20,7 @@ import com.liferay.sharepoint.connector.schema.batch.BatchField;
 import com.liferay.sharepoint.connector.schema.batch.BatchMethod;
 
 /**
- * @author Ivan Zaera
+ * @author Iván Zaera
  */
 public class AddFolderOperation extends BaseOperation {
 

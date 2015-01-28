@@ -40,7 +40,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * @author Ivan Zaera
+ * @author Iván Zaera
  */
 public class GetSharepointVersionsOperation extends BaseOperation {
 

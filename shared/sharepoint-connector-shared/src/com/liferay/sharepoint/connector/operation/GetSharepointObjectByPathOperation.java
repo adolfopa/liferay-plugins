@@ -26,7 +26,7 @@ import com.liferay.sharepoint.connector.schema.query.option.FolderQueryOption;
 import com.liferay.sharepoint.connector.schema.query.option.ViewAttributesQueryOption;
 
 /**
- * @author Ivan Zaera
+ * @author Iván Zaera
  */
 public class GetSharepointObjectByPathOperation extends BaseOperation {
 

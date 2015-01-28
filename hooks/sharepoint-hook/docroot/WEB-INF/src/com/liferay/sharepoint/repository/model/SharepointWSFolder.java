@@ -19,7 +19,7 @@ import com.liferay.repository.external.ExtRepositoryFolder;
 import com.liferay.sharepoint.connector.SharepointObject;
 
 /**
- * @author Ivan Zaera
+ * @author Iván Zaera
  */
 public class SharepointWSFolder
 	extends SharepointWSObject implements ExtRepositoryFolder {

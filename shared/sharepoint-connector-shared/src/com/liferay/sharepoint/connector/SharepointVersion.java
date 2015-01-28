@@ -21,7 +21,7 @@ import java.net.URL;
 import java.util.Date;
 
 /**
- * @author Ivan Zaera
+ * @author Iván Zaera
  */
 public class SharepointVersion {
 

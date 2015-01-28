@@ -18,7 +18,7 @@ import com.liferay.repository.external.ExtRepositoryFileEntry;
 import com.liferay.sharepoint.connector.SharepointObject;
 
 /**
- * @author Ivan Zaera
+ * @author Iván Zaera
  */
 public class SharepointWSFileEntry
 	extends SharepointWSObject implements ExtRepositoryFileEntry {

@@ -41,7 +41,7 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 /**
- * @author Ivan Zaera
+ * @author Iván Zaera
  */
 public class XMLHelper {
 

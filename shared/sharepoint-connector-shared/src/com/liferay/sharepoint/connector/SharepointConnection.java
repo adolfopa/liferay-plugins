@@ -22,7 +22,7 @@ import java.io.InputStream;
 import java.util.List;
 
 /**
- * @author Ivan Zaera
+ * @author Iván Zaera
  */
 public interface SharepointConnection {
 

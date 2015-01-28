@@ -68,7 +68,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author Ivan Zaera
+ * @author Iván Zaera
  */
 public class SharepointWSRepository
 	extends ExtRepositoryAdapter

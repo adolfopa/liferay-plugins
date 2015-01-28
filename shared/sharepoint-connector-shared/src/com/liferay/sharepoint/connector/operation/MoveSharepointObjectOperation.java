@@ -26,7 +26,7 @@ import com.liferay.sharepoint.connector.schema.batch.BatchMethod;
 import java.net.URL;
 
 /**
- * @author Ivan Zaera
+ * @author Iván Zaera
  */
 public class MoveSharepointObjectOperation extends BaseOperation {
 

@@ -34,7 +34,7 @@ import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.params.HttpClientParams;
 
 /**
- * @author Ivan Zaera
+ * @author Iván Zaera
  */
 public class GetInputStreamOperation extends BaseOperation {
 

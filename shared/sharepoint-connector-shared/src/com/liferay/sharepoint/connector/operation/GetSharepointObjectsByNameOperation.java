@@ -27,7 +27,7 @@ import com.liferay.sharepoint.connector.schema.query.option.FolderQueryOption;
 import java.util.List;
 
 /**
- * @author Ivan Zaera
+ * @author Iván Zaera
  */
 public class GetSharepointObjectsByNameOperation extends BaseOperation {
 
