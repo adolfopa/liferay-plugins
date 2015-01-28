@@ -93,7 +93,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * @author Ivan Zaera
+ * @author Iván Zaera
  */
 public class DocumentumRepository
 	extends ExtRepositoryAdapter

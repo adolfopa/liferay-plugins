@@ -15,7 +15,7 @@
 package com.liferay.documentum.repository.model;
 
 /**
- * @author Ivan Zaera
+ * @author Iván Zaera
  */
 public class DocumentumVersionNumber
 	implements Comparable<DocumentumVersionNumber> {

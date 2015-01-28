@@ -26,7 +26,7 @@ import com.liferay.repository.external.ExtRepositoryFileVersion;
 import java.util.Date;
 
 /**
- * @author Ivan Zaera
+ * @author Iván Zaera
  */
 public class DocumentumFileVersion implements ExtRepositoryFileVersion {
 

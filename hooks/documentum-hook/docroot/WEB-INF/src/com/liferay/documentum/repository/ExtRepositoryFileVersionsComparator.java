@@ -20,7 +20,7 @@ import com.liferay.repository.external.ExtRepositoryFileVersion;
 import java.util.Comparator;
 
 /**
- * @author Ivan Zaera
+ * @author Iván Zaera
  */
 public class ExtRepositoryFileVersionsComparator
 	implements Comparator<ExtRepositoryFileVersion> {

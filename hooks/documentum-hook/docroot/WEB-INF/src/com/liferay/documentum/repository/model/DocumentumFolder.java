@@ -21,7 +21,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.repository.external.ExtRepositoryFolder;
 
 /**
- * @author Ivan Zaera
+ * @author Iván Zaera
  */
 public class DocumentumFolder
 	extends DocumentumObject implements ExtRepositoryFolder {

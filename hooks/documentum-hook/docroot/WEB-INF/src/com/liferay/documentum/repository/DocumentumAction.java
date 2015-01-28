@@ -20,7 +20,7 @@ import com.documentum.fc.common.DfException;
 import com.liferay.portal.kernel.exception.PortalException;
 
 /**
- * @author Ivan Zaera
+ * @author Iván Zaera
  */
 public interface DocumentumAction {
 
