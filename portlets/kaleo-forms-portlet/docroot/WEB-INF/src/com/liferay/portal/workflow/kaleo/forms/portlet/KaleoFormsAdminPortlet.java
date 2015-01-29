@@ -66,11 +66,12 @@ import com.liferay.portlet.dynamicdatalists.util.DDLExporterFactory;
 import com.liferay.portlet.dynamicdatamapping.RequiredStructureException;
 import com.liferay.portlet.dynamicdatamapping.StructureDefinitionException;
 import com.liferay.portlet.dynamicdatamapping.io.DDMFormJSONDeserializerUtil;
-import com.liferay.portlet.dynamicdatamapping.io.DDMFormXSDSerializerUtil;
 import com.liferay.portlet.dynamicdatamapping.model.DDMForm;
+import com.liferay.portlet.dynamicdatamapping.model.DDMFormLayout;
 import com.liferay.portlet.dynamicdatamapping.model.DDMStructure;
 import com.liferay.portlet.dynamicdatamapping.model.DDMStructureConstants;
 import com.liferay.portlet.dynamicdatamapping.service.DDMStructureServiceUtil;
+import com.liferay.portlet.dynamicdatamapping.util.DDMUtil;
 
 import java.io.IOException;
 
@@ -430,6 +431,8 @@ public class KaleoFormsAdminPortlet extends BaseKaleoFormsPorlet {
 				LocalizationUtil.getLocalizationMap(
 					actionRequest, "description");
 			DDMForm ddmForm = getDDMForm(actionRequest);
+			DDMFormLayout ddmFormLayout = DDMUtil.getDefaultDDMFormLayout(
+				ddmForm);
 			String storageType = ParamUtil.getString(
 				actionRequest, "storageType");
 
@@ -440,16 +443,16 @@ public class KaleoFormsAdminPortlet extends BaseKaleoFormsPorlet {
 				DDMStructure ddmStructure =
 					DDMStructureServiceUtil.addStructure(
 						groupId, parentStructureId, scopeClassNameId, null,
-						nameMap, descriptionMap, ddmForm, storageType,
-						DDMStructureConstants.TYPE_DEFAULT, serviceContext);
+						nameMap, descriptionMap, ddmForm, ddmFormLayout,
+						storageType, DDMStructureConstants.TYPE_DEFAULT,
+						serviceContext);
 
 				saveInPortletSession(actionRequest, ddmStructure);
 			}
 			else if (cmd.equals(Constants.UPDATE)) {
 				DDMStructureServiceUtil.updateStructure(
 					classPK, parentStructureId, nameMap, descriptionMap,
-					DDMFormXSDSerializerUtil.serialize(ddmForm),
-					serviceContext);
+					ddmForm, ddmFormLayout, serviceContext);
 			}
 		}
 		catch (Exception e) {

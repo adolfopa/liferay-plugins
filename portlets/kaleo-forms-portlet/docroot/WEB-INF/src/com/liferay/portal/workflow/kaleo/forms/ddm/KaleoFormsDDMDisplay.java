@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.workflow.kaleo.forms.service.permission.KaleoFormsPermission;
 import com.liferay.portlet.dynamicdatalists.model.DDLRecordSet;
 import com.liferay.portlet.dynamicdatamapping.model.DDMStructure;
@@ -32,6 +33,10 @@ import java.util.Locale;
  * @author Marcellus Tavares
  */
 public class KaleoFormsDDMDisplay extends BaseDDMDisplay {
+
+	public static final long[] RESOURCE_CLASS_NAME_IDS = new long[] {
+		PortalUtil.getClassNameId(DDLRecordSet.class)
+	};
 
 	@Override
 	public String getEditTemplateTitle(
@@ -52,7 +57,17 @@ public class KaleoFormsDDMDisplay extends BaseDDMDisplay {
 	}
 
 	@Override
+	public long[] getResourceClassNameIds() {
+		return RESOURCE_CLASS_NAME_IDS;
+	}
+
+	@Override
 	public String getResourceName() {
+		return KaleoFormsPermission.RESOURCE_NAME;
+	}
+
+	@Override
+	public String getResourceName(long classNameId) {
 		return KaleoFormsPermission.RESOURCE_NAME;
 	}
 
