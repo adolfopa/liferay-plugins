@@ -81,6 +81,6 @@ public class TaskFormPairs implements Iterable<TaskFormPair> {
 		return sb.toString();
 	}
 
-	private List<TaskFormPair> _taskFormPairs = new ArrayList<TaskFormPair>();
+	private List<TaskFormPair> _taskFormPairs = new ArrayList<>();
 
 }

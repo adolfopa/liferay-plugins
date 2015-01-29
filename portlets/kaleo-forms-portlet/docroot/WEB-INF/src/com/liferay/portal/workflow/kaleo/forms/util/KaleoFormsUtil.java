@@ -147,7 +147,7 @@ public class KaleoFormsUtil {
 			KaleoProcess kaleoProcess, PortletSession portletSession)
 		throws Exception {
 
-		Map<Locale, String> descriptionMap = new HashMap<Locale, String>();
+		Map<Locale, String> descriptionMap = new HashMap<>();
 
 		String translatedLanguagesDescription = GetterUtil.getString(
 			portletSession.getAttribute("translatedLanguagesDescription"),
@@ -185,7 +185,7 @@ public class KaleoFormsUtil {
 			KaleoProcess kaleoProcess, PortletSession portletSession)
 		throws Exception {
 
-		Map<Locale, String> nameMap = new HashMap<Locale, String>();
+		Map<Locale, String> nameMap = new HashMap<>();
 
 		String translatedLanguagesName = GetterUtil.getString(
 			portletSession.getAttribute("translatedLanguagesName"),
@@ -379,7 +379,7 @@ public class KaleoFormsUtil {
 	}
 
 	private static List<String> _getTaskNames(Element rootElement) {
-		List<String> taskNames = new ArrayList<String>();
+		List<String> taskNames = new ArrayList<>();
 
 		_addTaskNames(rootElement, taskNames);
 
