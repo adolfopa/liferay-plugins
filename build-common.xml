@@ -1991,7 +1991,7 @@ Please find a solution that does not require portal-impl.jar.
 		</sequential>
 	</macrodef>
 
-	<macrodef name="start-testing-app-server">
+	<macrodef name="start-test-app-server">
 		<attribute name="module.dir" />
 
 		<sequential>
@@ -2028,7 +2028,7 @@ Please find a solution that does not require portal-impl.jar.
 		</sequential>
 	</macrodef>
 
-	<macrodef name="stop-testing-app-server">
+	<macrodef name="stop-test-app-server">
 		<sequential>
 			<if>
 				<and>
@@ -2149,7 +2149,7 @@ Please find a solution that does not require portal-impl.jar.
 						test.type="@{test.type}"
 					/>
 
-					<start-testing-app-server
+					<start-test-app-server
 						module.dir="@{module.dir}"
 					/>
 
@@ -2762,7 +2762,7 @@ for (String path : paths) {
 			target.name="test"
 		/>
 
-		<stop-testing-app-server />
+		<stop-test-app-server />
 	</target>
 
 	<target name="test-integration">
@@ -2771,7 +2771,7 @@ for (String path : paths) {
 			target.name="test-integration"
 		/>
 
-		<stop-testing-app-server />
+		<stop-test-app-server />
 	</target>
 
 	<target name="test-unit">
