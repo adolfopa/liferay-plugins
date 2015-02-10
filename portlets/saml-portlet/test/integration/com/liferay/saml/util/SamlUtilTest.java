@@ -89,9 +89,9 @@ public class SamlUtilTest extends BaseSamlTestCase {
 			OpenSamlUtil.buildAttribute("givenName", "TestFirstName"));
 		attributes.add(OpenSamlUtil.buildAttribute("mail", "test@liferay.com"));
 		attributes.add(OpenSamlUtil.buildAttribute("sn", "TestLastName"));
+		attributes.add(OpenSamlUtil.buildAttribute("title", "TestJobTitle"));
 		attributes.add(
 			OpenSamlUtil.buildAttribute("userPrincipalName", "test"));
-		attributes.add(OpenSamlUtil.buildAttribute("title", "TestJobTitle"));
 
 		Properties attributeMappingsProperties = new Properties();
 
@@ -151,8 +151,8 @@ public class SamlUtilTest extends BaseSamlTestCase {
 
 		Properties attributeMappingsProperties = new Properties();
 
-		attributeMappingsProperties.put("firstName", "firstName");
 		attributeMappingsProperties.put("emailAddress", "emailAddress");
+		attributeMappingsProperties.put("firstName", "firstName");
 		attributeMappingsProperties.put("lastName", "lastName");
 		attributeMappingsProperties.put("screenName", "screenName");
 		attributeMappingsProperties.put("whenChanged", "modifiedDate");
