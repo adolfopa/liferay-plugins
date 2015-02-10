@@ -125,22 +125,22 @@ public class SamlUtilTest extends BaseSamlTestCase {
 
 		attributes.add(
 			OpenSamlUtil.buildAttribute(
-				"mail", "emailAddress", Attribute.UNSPECIFIED,
-				"test@liferay.com"));
-		attributes.add(
-			OpenSamlUtil.buildAttribute(
 				"givenName", "firstName", Attribute.UNSPECIFIED,
 				"TestFirstName"));
+		attributes.add(
+			OpenSamlUtil.buildAttribute(
+				"mail", "emailAddress", Attribute.UNSPECIFIED,
+				"test@liferay.com"));
 		attributes.add(
 			OpenSamlUtil.buildAttribute(
 				"sn", "lastName", Attribute.UNSPECIFIED, "TestLastName"));
 		attributes.add(
 			OpenSamlUtil.buildAttribute(
-				"userPrincipalName", "screenName", Attribute.UNSPECIFIED,
-				"test"));
+				"title", "jobTitle", Attribute.UNSPECIFIED, "TestJobTitle"));
 		attributes.add(
 			OpenSamlUtil.buildAttribute(
-				"title", "jobTitle", Attribute.UNSPECIFIED, "TestJobTitle"));
+				"userPrincipalName", "screenName", Attribute.UNSPECIFIED,
+				"test"));
 
 		DateTime modifiedDate = new DateTime(DateTimeZone.UTC);
 
