@@ -91,7 +91,7 @@ public class SamlUtilTest extends BaseSamlTestCase {
 		attributes.add(OpenSamlUtil.buildAttribute("sn", "TestLastName"));
 		attributes.add(
 			OpenSamlUtil.buildAttribute("userPrincipalName", "test"));
-		attributes.add(OpenSamlUtil.buildAttribute("title", "test job title"));
+		attributes.add(OpenSamlUtil.buildAttribute("title", "TestJobTitle"));
 
 		Properties attributeMappingsProperties = new Properties();
 
@@ -115,7 +115,7 @@ public class SamlUtilTest extends BaseSamlTestCase {
 		Assert.assertEquals(
 			"test", SamlUtil.getValueAsString("screenName", attributesMap));
 		Assert.assertEquals(
-			"test job title",
+			"TestJobTitle",
 			SamlUtil.getValueAsString("title", attributesMap));
 	}
 
@@ -140,7 +140,7 @@ public class SamlUtilTest extends BaseSamlTestCase {
 				"test"));
 		attributes.add(
 			OpenSamlUtil.buildAttribute(
-				"title", "jobTitle", Attribute.UNSPECIFIED, "test job title"));
+				"title", "jobTitle", Attribute.UNSPECIFIED, "TestJobTitle"));
 
 		DateTime modifiedDate = new DateTime(DateTimeZone.UTC);
 
@@ -177,7 +177,7 @@ public class SamlUtilTest extends BaseSamlTestCase {
 		Assert.assertEquals(
 			"test", SamlUtil.getValueAsString("screenName", attributesMap));
 		Assert.assertEquals(
-			"test job title",
+			"TestJobTitle",
 			SamlUtil.getValueAsString("title", attributesMap));
 	}
 
