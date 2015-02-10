@@ -43,6 +43,7 @@ import org.springframework.mock.web.MockHttpServletRequest;
 public class SamlUtilTest extends BaseSamlTestCase {
 
 	@Before
+	@Override
 	public void setUp() throws Exception {
 		super.setUp();
 
