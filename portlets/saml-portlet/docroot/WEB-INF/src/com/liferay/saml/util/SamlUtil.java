@@ -15,18 +15,22 @@
 package com.liferay.saml.util;
 
 import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.io.Serializable;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
 import javax.servlet.http.HttpServletRequest;
+
+import org.joda.time.DateTime;
 
 import org.opensaml.common.binding.SAMLMessageContext;
 import org.opensaml.saml2.core.Attribute;
@@ -222,6 +226,32 @@ public class SamlUtil {
 			"Binding " + binding + " is not supported");
 	}
 
+	public static Date getValueAsDate(
+		String key, Map<String, List<Serializable>> attributesMap) {
+
+		List<Serializable> values = attributesMap.get(key);
+
+		if (ListUtil.isEmpty(values)) {
+			return null;
+		}
+
+		DateTime dateTime = new DateTime(values.get(0));
+
+		return dateTime.toDate();
+	}
+
+	public static DateTime getValueAsDateTime(
+		String key, Map<String, List<Serializable>> attributesMap) {
+
+		List<Serializable> values = attributesMap.get(key);
+
+		if (ListUtil.isEmpty(values)) {
+			return null;
+		}
+
+		return new DateTime(values.get(0));
+	}
+
 	public static String getValueAsString(Attribute attribute) {
 		if (attribute == null) {
 			return null;
@@ -234,6 +264,18 @@ public class SamlUtil {
 		}
 
 		return getValueAsString(values.get(0));
+	}
+
+	public static String getValueAsString(
+		String key, Map<String, List<Serializable>> attributesMap) {
+
+		List<Serializable> values = attributesMap.get(key);
+
+		if (ListUtil.isEmpty(values)) {
+			return null;
+		}
+
+		return String.valueOf(values.get(0));
 	}
 
 	public static String getValueAsString(XMLObject xmlObject) {

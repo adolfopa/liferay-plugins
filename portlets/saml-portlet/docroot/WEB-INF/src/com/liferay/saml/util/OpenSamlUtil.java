@@ -140,9 +140,19 @@ public class OpenSamlUtil {
 	}
 
 	public static Attribute buildAttribute(
-		String name, String nameFormat, Boolean value) {
+		String name, String nameFormat, Serializable value) {
+
+		return buildAttribute(name, null, nameFormat, value);
+	}
+
+	public static Attribute buildAttribute(
+		String name, String friendlyName, String nameFormat, Boolean value) {
 
 		Attribute attribute = OpenSamlUtil.buildAttribute();
+
+		if (Validator.isNotNull(friendlyName)) {
+			attribute.setFriendlyName(friendlyName);
+		}
 
 		attribute.setName(name);
 		attribute.setNameFormat(nameFormat);
@@ -157,9 +167,13 @@ public class OpenSamlUtil {
 	}
 
 	public static Attribute buildAttribute(
-		String name, String nameFormat, boolean[] values) {
+		String name, String friendlyName, String nameFormat, boolean[] values) {
 
 		Attribute attribute = OpenSamlUtil.buildAttribute();
+
+		if (Validator.isNotNull(friendlyName)) {
+			attribute.setFriendlyName(friendlyName);
+		}
 
 		attribute.setName(name);
 		attribute.setNameFormat(nameFormat);
@@ -177,17 +191,17 @@ public class OpenSamlUtil {
 	}
 
 	public static Attribute buildAttribute(
-		String name, String nameFormat, Date value) {
+		String name, String friendlyName, String nameFormat, Date value) {
 
 		DateTime dateTime = new DateTime(value);
 
 		dateTime = dateTime.withZone(DateTimeZone.UTC);
 
-		return buildAttribute(name, nameFormat, dateTime);
+		return buildAttribute(name, friendlyName, nameFormat, dateTime);
 	}
 
 	public static Attribute buildAttribute(
-		String name, String nameFormat, Date[] values) {
+		String name, String friendlyName, String nameFormat, Date[] values) {
 
 		DateTime[] dateTimeValues = new DateTime[values.length];
 
@@ -199,13 +213,17 @@ public class OpenSamlUtil {
 			dateTimeValues[i] = dateTime;
 		}
 
-		return buildAttribute(name, nameFormat, dateTimeValues);
+		return buildAttribute(name, friendlyName, nameFormat, dateTimeValues);
 	}
 
 	public static Attribute buildAttribute(
-		String name, String nameFormat, DateTime value) {
+		String name, String friendlyName, String nameFormat, DateTime value) {
 
 		Attribute attribute = OpenSamlUtil.buildAttribute();
+
+		if (Validator.isNotNull(friendlyName)) {
+			attribute.setFriendlyName(friendlyName);
+		}
 
 		attribute.setName(name);
 		attribute.setNameFormat(nameFormat);
@@ -220,9 +238,14 @@ public class OpenSamlUtil {
 	}
 
 	public static Attribute buildAttribute(
-		String name, String nameFormat, DateTime[] values) {
+		String name, String friendlyName, String nameFormat,
+		DateTime[] values) {
 
 		Attribute attribute = OpenSamlUtil.buildAttribute();
+
+		if (Validator.isNotNull(friendlyName)) {
+			attribute.setFriendlyName(friendlyName);
+		}
 
 		attribute.setName(name);
 		attribute.setNameFormat(nameFormat);
@@ -239,9 +262,13 @@ public class OpenSamlUtil {
 	}
 
 	public static Attribute buildAttribute(
-		String name, String nameFormat, int[] values) {
+		String name, String friendlyName, String nameFormat, int[] values) {
 
 		Attribute attribute = OpenSamlUtil.buildAttribute();
+
+		if (Validator.isNotNull(friendlyName)) {
+			attribute.setFriendlyName(friendlyName);
+		}
 
 		attribute.setName(name);
 		attribute.setNameFormat(nameFormat);
@@ -259,65 +286,80 @@ public class OpenSamlUtil {
 	}
 
 	public static Attribute buildAttribute(
-		String name, String nameFormat, Serializable value) {
+		String name, String friendlyName, String nameFormat,
+		Serializable value) {
 
 		if (value instanceof Boolean) {
-			return buildAttribute(name, nameFormat, (Boolean)value);
+			return buildAttribute(
+				name, friendlyName, nameFormat, (Boolean)value);
 		}
 		else if (value instanceof boolean[]) {
-			return buildAttribute(name, nameFormat, (boolean[])value);
+			return buildAttribute(
+				name, friendlyName, nameFormat, (boolean[])value);
 		}
 		else if (value instanceof Date) {
-			return buildAttribute(name, nameFormat, (Date)value);
+			return buildAttribute(name, friendlyName, nameFormat, (Date)value);
 		}
 		else if (value instanceof Date) {
-			return buildAttribute(name, nameFormat, (Date[])value);
+			return buildAttribute(
+				name, friendlyName, nameFormat, (Date[])value);
 		}
 		else if (value instanceof double[]) {
 			double[] values = (double[])value;
 
 			return buildAttribute(
-				name, nameFormat, ArrayUtil.toStringArray(values));
+				name, friendlyName, nameFormat,
+				ArrayUtil.toStringArray(values));
 		}
 		else if (value instanceof float[]) {
 			float[] values = (float[])value;
 
 			return buildAttribute(
-				name, nameFormat, ArrayUtil.toStringArray(values));
+				name, friendlyName, nameFormat,
+				ArrayUtil.toStringArray(values));
 		}
 		else if (value instanceof int[]) {
-			return buildAttribute(name, nameFormat, (int[])value);
+			return buildAttribute(name, friendlyName, nameFormat, (int[])value);
 		}
 		else if (value instanceof long[]) {
 			long[] values = (long[])value;
 
 			return buildAttribute(
-				name, nameFormat, ArrayUtil.toStringArray(values));
+				name, friendlyName, nameFormat,
+				ArrayUtil.toStringArray(values));
 		}
 		else if (value instanceof Number[]) {
 			Number[] values = (Number[])value;
 
 			return buildAttribute(
-				name, nameFormat, ArrayUtil.toStringArray(values));
+				name, friendlyName, nameFormat,
+				ArrayUtil.toStringArray(values));
 		}
 		else if (value instanceof short[]) {
 			short[] values = (short[])value;
 
 			return buildAttribute(
-				name, nameFormat, ArrayUtil.toStringArray(values));
+				name, friendlyName, nameFormat,
+				ArrayUtil.toStringArray(values));
 		}
 		else if (value instanceof String[]) {
-			return buildAttribute(name, nameFormat, (String[])value);
+			return buildAttribute(
+				name, friendlyName, nameFormat, (String[])value);
 		}
 		else {
-			return buildAttribute(name, nameFormat, String.valueOf(value));
+			return buildAttribute(
+				name, friendlyName, nameFormat, String.valueOf(value));
 		}
 	}
 
 	public static Attribute buildAttribute(
-		String name, String nameFormat, String value) {
+		String name, String friendlyName, String nameFormat, String value) {
 
 		Attribute attribute = OpenSamlUtil.buildAttribute();
+
+		if (Validator.isNotNull(friendlyName)) {
+			attribute.setFriendlyName(friendlyName);
+		}
 
 		attribute.setName(name);
 		attribute.setNameFormat(nameFormat);
@@ -332,9 +374,13 @@ public class OpenSamlUtil {
 	}
 
 	public static Attribute buildAttribute(
-		String name, String nameFormat, String[] values) {
+		String name, String friendlyName, String nameFormat, String[] values) {
 
 		Attribute attribute = OpenSamlUtil.buildAttribute();
+
+		if (Validator.isNotNull(friendlyName)) {
+			attribute.setFriendlyName(friendlyName);
+		}
 
 		attribute.setName(name);
 		attribute.setNameFormat(nameFormat);
