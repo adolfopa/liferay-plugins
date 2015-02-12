@@ -80,59 +80,69 @@ String reportName = BeanParamUtil.getString(definition, request, "reportName");
 	<c:if test="<%= reportParameters.length() > 0 %>">
 		<aui:field-wrapper helpMessage="entry-report-parameters-help" label="report-parameters">
 			<table class="lfr-table">
-			<tr>
+				<tr>
+					<th>
+						<liferay-ui:message key="key" /> 
+					</th>
+					<th>
+						<liferay-ui:message key="value" /> 
+					</th>
+				</tr>
+			
 
-			<%
-			JSONArray reportParametersJSONArray = JSONFactoryUtil.createJSONArray(reportParameters);
+				<%
+				JSONArray reportParametersJSONArray = JSONFactoryUtil.createJSONArray(reportParameters);
 
-			for (int i = 0; i < reportParametersJSONArray.length(); i++) {
-				JSONObject reportParameterJSONObject = reportParametersJSONArray.getJSONObject(i);
+				for (int i = 0; i < reportParametersJSONArray.length(); i++) {
+					JSONObject reportParameterJSONObject = reportParametersJSONArray.getJSONObject(i);
 
-				String key = reportParameterJSONObject.getString("key");
-				String type = reportParameterJSONObject.getString("type");
-				String value = reportParameterJSONObject.getString("value");
-			%>
+					String key = reportParameterJSONObject.getString("key");
+					String type = reportParameterJSONObject.getString("type");
+					String value = reportParameterJSONObject.getString("value");
+				%>
 
-				<c:choose>
-					<c:when test='<%= type.equals("date") %>'>
-						<td>
-							<%= key %>
-						</td>
-						<td>
+				<tr>
+					<c:choose>
+						<c:when test='<%= type.equals("date") %>'>
+							<td>
+								<%= key %>
+							</td>
+							<td>
 
-							<%
-							String[] date = value.split("-");
+								<%
+								String[] date = value.split("-");
 
-							Calendar calendar = CalendarFactoryUtil.getCalendar(timeZone, locale);
+								Calendar calendar = CalendarFactoryUtil.getCalendar(timeZone, locale);
 
-							calendar.set(Calendar.YEAR, GetterUtil.getInteger(date[0]));
-							calendar.set(Calendar.MONTH, GetterUtil.getInteger(date[1]) - 1);
-							calendar.set(Calendar.DATE, GetterUtil.getInteger(date[2]));
-							%>
+								calendar.set(Calendar.YEAR, GetterUtil.getInteger(date[0]));
+								calendar.set(Calendar.MONTH, GetterUtil.getInteger(date[1]) - 1);
+								calendar.set(Calendar.DATE, GetterUtil.getInteger(date[2]));
+								%>
 
-							<liferay-ui:input-date
-								dayParam='<%= key + "Day" %>'
-								dayValue="<%= calendar.get(Calendar.DATE) %>"
-								disabled="<%= false %>"
-								firstDayOfWeek="<%= calendar.getFirstDayOfWeek() - 1 %>"
-								monthParam='<%= key + "Month" %>'
-								monthValue="<%= calendar.get(Calendar.MONTH) %>"
-								yearParam='<%= key +"Year" %>'
-								yearValue="<%= calendar.get(Calendar.YEAR) %>"
-							/>
-						</td>
-					</c:when>
-					<c:otherwise>
-						<td>
-							<%= key %>
-						</td>
-						<td>
-							<span class="field field-text">
-								<input name="<portlet:namespace /><%= "parameterValue" + key %>" type="text" value="<%= value %>" /><br />
-							</span>
-						</td>
-					</c:otherwise>
-				</c:choose>
+								<liferay-ui:input-date
+									dayParam='<%= key + "Day" %>'
+									dayValue="<%= calendar.get(Calendar.DATE) %>"
+									disabled="<%= false %>"
+									firstDayOfWeek="<%= calendar.getFirstDayOfWeek() - 1 %>"
+									monthParam='<%= key + "Month" %>'
+									monthValue="<%= calendar.get(Calendar.MONTH) %>"
+									yearParam='<%= key +"Year" %>'
+									yearValue="<%= calendar.get(Calendar.YEAR) %>"
+								/>
+							</td>
+						</c:when>
+						<c:otherwise>
+							<td>
+								<%= key %>
+							</td>
+							<td>
+								<span class="field field-text">
+									<input class="form-control" name="<portlet:namespace /><%= "parameterValue" + key %>" type="text" value="<%= value %>" />
+								</span>
+							</td>
+						</c:otherwise>
+					</c:choose>
+				</tr>
 
 			<%
 			}

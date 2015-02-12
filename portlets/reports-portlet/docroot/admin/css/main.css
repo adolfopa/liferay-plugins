@@ -1,7 +1,12 @@
 .reports-portlet {
-	.lfr-table tr {
-		td, th {
-			padding-bottom: 4px;
+	.lfr-table {
+		width: 100%;
+
+		tr {
+			td, th {
+				padding-bottom: 4px;
+				width: 50%;
+			}
 		}
 	}
 
