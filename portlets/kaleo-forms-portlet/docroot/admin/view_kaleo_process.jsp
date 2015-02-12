@@ -177,7 +177,7 @@ portletURL.setParameter("kaleoProcessId", String.valueOf(kaleoProcessId));
 			var dialog = Util.getWindow('<portlet:namespace />previewDialog');
 
 			if (!dialog) {
-				previewDialog = Util.Window.getWindow(
+				dialog = Util.Window.getWindow(
 					{
 						dialog: {
 							bodyContent: content
@@ -186,8 +186,6 @@ portletURL.setParameter("kaleoProcessId", String.valueOf(kaleoProcessId));
 						title: Liferay.Language.get('preview')
 					}
 				);
-
-				dialog = previewDialog;
 			}
 			else {
 				dialog.show();

@@ -215,7 +215,7 @@ List<String> transitionNames = WorkflowTaskManagerUtil.getNextTransitionNames(co
 
 <aui:script use="liferay-kaleo-forms,liferay-workflow-tasks">
 	var onTaskClickFn = A.rbind(Liferay.WorkflowTasks.onTaskClick, Liferay.WorkflowTasks, '<%= randomId %>');
-	var onCompleteTaskClickFn = A.rbind(Liferay.KaleoForms.onCompleteTask, Liferay.KaleoForms, '<portlet:namespace />' , '<%= randomId %>');
+	var onCompleteTaskClickFn = A.rbind(Liferay.KaleoForms.onCompleteTask, Liferay.KaleoForms, '<portlet:namespace />', '<%= randomId %>');
 
 	<c:if test="<%= showCompleteFormButton %>">
 		Liferay.delegateClick('<portlet:namespace /><%= randomId %>completeForm', onCompleteTaskClickFn);
