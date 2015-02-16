@@ -17,8 +17,14 @@ package com.liferay.vldap.server.directory.ldap;
 /**
  * @author Jonathan Potter
  * @author Brian Wing Shun Chan
+ * @author Igor Beslic
  */
 public class Attribute {
+
+	public Attribute(String name, byte[] bytes) {
+		setAttributeId(name);
+		setValue(bytes);
+	}
 
 	public Attribute(String name, String value) {
 		setAttributeId(name);
@@ -29,12 +35,24 @@ public class Attribute {
 		return _attributeId;
 	}
 
+	public byte[] getBytes() {
+		return _bytes;
+	}
+
 	public String getValue() {
 		return _value;
 	}
 
+	public boolean isBinary() {
+		return _bytes != null;
+	}
+
 	public void setAttributeId(String attributeId) {
 		_attributeId = attributeId;
+	}
+
+	public void setValue(byte[] bytes) {
+		_bytes = bytes;
 	}
 
 	public void setValue(String value) {
@@ -42,6 +60,7 @@ public class Attribute {
 	}
 
 	private String _attributeId;
+	private byte[] _bytes;
 	private String _value;
 
 }
