@@ -19,9 +19,6 @@ package com.liferay.vldap.util;
  */
 public class PortletPropsKeys {
 
-	public static final String ATTRIBUTE_PORTRAIT_ENABLED =
-		"attribute.portrait.enabled";
-
 	public static final String BIND_PORT = "bind.port";
 
 	public static final String BIND_SASL_HOSTNAME = "bind.sasl.hostname";

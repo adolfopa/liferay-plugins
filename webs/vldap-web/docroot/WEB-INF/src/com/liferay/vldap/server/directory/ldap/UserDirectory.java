@@ -65,9 +65,7 @@ public class UserDirectory extends Directory {
 		addAttribute("gidNumber", PortletPropsValues.POSIX_GROUP_ID);
 		addAttribute("givenName", user.getFirstName());
 
-		if (PortletPropsValues.ATTRIBUTE_PORTRAIT_ENABLED &&
-			(user.getPortraitId() != 0)) {
-
+		if (user.getPortraitId() != 0) {
 			Image image = ImageServiceUtil.getImage(user.getPortraitId());
 
 			addAttribute("jpegphoto", image.getTextObj());
