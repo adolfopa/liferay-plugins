@@ -44,7 +44,11 @@ public class Attribute {
 	}
 
 	public boolean isBinary() {
-		return _bytes != null;
+		if (_bytes != null) {
+			return true;
+		}
+
+		return false;
 	}
 
 	public void setAttributeId(String attributeId) {
