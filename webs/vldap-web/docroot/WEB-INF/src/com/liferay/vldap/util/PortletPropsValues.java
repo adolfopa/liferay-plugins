@@ -22,6 +22,10 @@ import com.liferay.util.portlet.PortletProps;
  */
 public class PortletPropsValues {
 
+	public static final boolean ATTRIBUTE_PORTRAIT_ENABLED =
+		GetterUtil.getBoolean(
+			PortletProps.get(PortletPropsKeys.ATTRIBUTE_PORTRAIT_ENABLED));
+
 	public static final int BIND_PORT = GetterUtil.getInteger(
 		PortletProps.get(PortletPropsKeys.BIND_PORT));
 
