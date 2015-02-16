@@ -37,6 +37,7 @@ import org.apache.directory.shared.ldap.model.name.Dn;
 /**
  * @author Jonathan Potter
  * @author Brian Wing Shun Chan
+ * @author Igor Beslic
  */
 public abstract class Directory {
 
@@ -87,6 +88,12 @@ public abstract class Directory {
 				continue;
 			}
 
+			if (attribute.isBinary()) {
+				entry.add(attribute.getAttributeId(), attribute.getBytes());
+
+				continue;
+			}
+
 			entry.add(attribute.getAttributeId(), attribute.getValue());
 		}
 
@@ -95,6 +102,12 @@ public abstract class Directory {
 		}
 
 		return entry;
+	}
+
+	protected void addAttribute(String attributeId, byte[] bytes) {
+		Attribute attribute = new Attribute(attributeId, bytes);
+
+		_attributes.add(attribute);
 	}
 
 	protected void addAttribute(String attributeId, String value) {
