@@ -25,14 +25,14 @@
 	</servlet-filter-mapping>
 	<servlet-filter-mapping>
 		<servlet-filter-name>SSO SAML IdP Filter</servlet-filter-name>
-		<before-filter>SSO CAS Filter</before-filter>
+		<after-filter>Virtual Host Filter</after-filter>
 		<url-pattern>/c/portal/logout</url-pattern>
 		<dispatcher>REQUEST</dispatcher>
 		<dispatcher>FORWARD</dispatcher>
 	</servlet-filter-mapping>
 	<servlet-filter-mapping>
 		<servlet-filter-name>SSO SAML SP Filter</servlet-filter-name>
-		<before-filter>SSO CAS Filter</before-filter>
+		<after-filter>Virtual Host Filter</after-filter>
 		<url-pattern>/*</url-pattern>
 		<dispatcher>REQUEST</dispatcher>
 		<dispatcher>FORWARD</dispatcher>
