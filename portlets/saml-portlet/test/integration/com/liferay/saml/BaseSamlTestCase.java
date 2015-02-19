@@ -382,18 +382,6 @@ public class BaseSamlTestCase extends PowerMockito {
 	protected void setupPortal() throws Exception {
 		httpClient = mock(HttpClient.class);
 
-		when(
-			props.get(PropsKeys.VELOCITY_ENGINE_LOGGER)
-		).thenReturn(
-			"org.apache.velocity.runtime.log.SimpleLog4JLogSystem"
-		);
-
-		when(
-			props.get(PropsKeys.VELOCITY_ENGINE_LOGGER_CATEGORY)
-		).thenReturn(
-			"org.apache.velocity"
-		);
-
 		PortalUtil portalUtil = new PortalUtil();
 
 		portal = mock(Portal.class);
