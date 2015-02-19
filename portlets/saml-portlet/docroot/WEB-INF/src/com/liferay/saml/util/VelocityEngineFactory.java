@@ -15,8 +15,6 @@
 package com.liferay.saml.util;
 
 import com.liferay.portal.kernel.portlet.PortletClassLoaderUtil;
-import com.liferay.portal.kernel.util.PropsKeys;
-import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringPool;
 
 import org.apache.velocity.app.VelocityEngine;
@@ -47,10 +45,10 @@ public class VelocityEngineFactory {
 				RuntimeConstants.RESOURCE_LOADER, "classpath");
 			velocityEngine.setProperty(
 				RuntimeConstants.RUNTIME_LOG_LOGSYSTEM_CLASS,
-				PropsUtil.get(PropsKeys.VELOCITY_ENGINE_LOGGER));
+				org.apache.velocity.runtime.log.Log4JLogChute.class.getName());
 			velocityEngine.setProperty(
 				RuntimeConstants.RUNTIME_LOG_LOGSYSTEM + ".log4j.category",
-				PropsUtil.get(PropsKeys.VELOCITY_ENGINE_LOGGER_CATEGORY));
+				"org.apache.velocity");
 			velocityEngine.setProperty(
 				"classpath.resource.loader.class",
 				ClasspathResourceLoader.class.getName());
