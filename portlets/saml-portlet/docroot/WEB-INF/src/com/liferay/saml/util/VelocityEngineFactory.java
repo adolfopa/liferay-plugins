@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.util.StringPool;
 
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.runtime.RuntimeConstants;
+import org.apache.velocity.runtime.log.Log4JLogChute;
 import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
 
 /**
@@ -44,11 +45,11 @@ public class VelocityEngineFactory {
 			velocityEngine.setProperty(
 				RuntimeConstants.RESOURCE_LOADER, "classpath");
 			velocityEngine.setProperty(
-				RuntimeConstants.RUNTIME_LOG_LOGSYSTEM_CLASS,
-				org.apache.velocity.runtime.log.Log4JLogChute.class.getName());
-			velocityEngine.setProperty(
 				RuntimeConstants.RUNTIME_LOG_LOGSYSTEM + ".log4j.category",
 				"org.apache.velocity");
+			velocityEngine.setProperty(
+				RuntimeConstants.RUNTIME_LOG_LOGSYSTEM_CLASS,
+				Log4JLogChute.class.getName());
 			velocityEngine.setProperty(
 				"classpath.resource.loader.class",
 				ClasspathResourceLoader.class.getName());
