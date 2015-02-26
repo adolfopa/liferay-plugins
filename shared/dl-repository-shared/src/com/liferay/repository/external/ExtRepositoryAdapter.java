@@ -1014,6 +1014,11 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 			extRepositoryFileEntry = _extRepository.moveExtRepositoryObject(
 				ExtRepositoryObjectType.FILE, extRepositoryFileEntryKey,
 				folder.getExtRepositoryModelKey(), title);
+
+			ExtRepositoryAdapterCache extRepositoryAdapterCache =
+				ExtRepositoryAdapterCache.getInstance();
+
+			extRepositoryAdapterCache.remove(extRepositoryFileEntryKey);
 		}
 
 		if (needsCheckIn) {
@@ -1044,6 +1049,11 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 			_extRepository.moveExtRepositoryObject(
 				ExtRepositoryObjectType.FOLDER, extRepositoryFolderKey,
 				parentExtRepositoryFolder.getExtRepositoryModelKey(), name);
+
+		ExtRepositoryAdapterCache extRepositoryAdapterCache =
+			ExtRepositoryAdapterCache.getInstance();
+
+		extRepositoryAdapterCache.remove(extRepositoryFolderKey);
 
 		return _toExtRepositoryObjectAdapter(
 			ExtRepositoryObjectAdapterType.FOLDER, newExtRepositoryFolder);
