@@ -79,9 +79,6 @@ String reportName = BeanParamUtil.getString(definition, request, "reportName");
 	<aui:input name="reportName" value="<%= reportName %>" />
 
 	<aui:field-wrapper helpMessage="entry-report-parameters-help" label="report-parameters">
-		<table class="lfr-table">
-		<tr>
-
 			<%
 			JSONArray reportParametersJSONArray = JSONFactoryUtil.createJSONArray(definition.getReportParameters());
 
@@ -92,13 +89,13 @@ String reportName = BeanParamUtil.getString(definition, request, "reportName");
 				String type = reportParameterJSONObject.getString("type");
 				String value = reportParameterJSONObject.getString("value");
 			%>
-
+			<aui:layout>
 				<c:choose>
 					<c:when test='<%= type.equals("date") %>'>
-						<td>
+						<aui:column columnWidth="20">
 							<%= key %>
-						</td>
-						<td>
+						</aui:column>
+						<aui:column columnWidth="30">
 
 							<%
 							Calendar calendar = CalendarFactoryUtil.getCalendar(timeZone, locale);
@@ -120,9 +117,9 @@ String reportName = BeanParamUtil.getString(definition, request, "reportName");
 								yearParam='<%= key +"Year" %>'
 								yearValue="<%= calendar.get(Calendar.YEAR) %>"
 							/>
-						</td>
-						<td>
-							<aui:select name='<%= "useVariable" + key %>' onChange='<%= "useVariable" + key + "();" %>' showEmptyOption="<%= Boolean.TRUE %>">
+						</aui:column>
+						<aui:column columnWidth="20">
+							<aui:select label='' name='<%= "useVariable" + key %>' onChange='<%= "useVariable" + key + "();" %>' showEmptyOption="<%= Boolean.TRUE %>">
 								<aui:option label="start-date" value="startDate" />
 								<aui:option label="end-date" value="endDate" />
 							</aui:select>
@@ -152,29 +149,26 @@ String reportName = BeanParamUtil.getString(definition, request, "reportName");
 									}
 								}
 							</script>
-						</td>
-						<td>
+						</aui:column>
+						<aui:column columnWidth="30">
 							<liferay-ui:icon-help message="entry-report-date-parameters-help" />
-						</td>
+						</aui:column>
 					</c:when>
 					<c:otherwise>
-						<td>
+						<aui:column columnWidth="20">
 							<%= key %>
-						</td>
-						<td colspan="3">
+						</aui:column>
+						<aui:column columnWidth="80">
 							<span class="field field-text" id="aui_3_2_0_1428">
 								<input name="<portlet:namespace /><%= "parameterValue" + key %>" type="text" value="<%= value %>" /><br />
 							</span>
-						</td>
+						</aui:column>
 					</c:otherwise>
 				</c:choose>
-
+			</aui:layout>
 			<%
 			}
 			%>
-
-		</tr>
-		</table>
 	</aui:field-wrapper>
 
 	<aui:input label="email-notifications" name="emailNotifications" type="text" />
