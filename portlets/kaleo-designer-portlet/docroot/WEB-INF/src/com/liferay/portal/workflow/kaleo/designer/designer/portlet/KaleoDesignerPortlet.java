@@ -25,7 +25,6 @@ import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.kernel.workflow.WorkflowException;
@@ -44,7 +43,6 @@ import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.service.permission.RolePermissionUtil;
 import com.liferay.portal.service.permission.UserPermissionUtil;
 import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.workflow.kaleo.designer.DuplicateKaleoDraftDefinitionNameException;
 import com.liferay.portal.workflow.kaleo.designer.KaleoDraftDefinitionContentException;
 import com.liferay.portal.workflow.kaleo.designer.KaleoDraftDefinitionNameException;
@@ -53,10 +51,6 @@ import com.liferay.portal.workflow.kaleo.designer.model.KaleoDraftDefinition;
 import com.liferay.portal.workflow.kaleo.designer.service.KaleoDraftDefinitionServiceUtil;
 import com.liferay.portal.workflow.kaleo.designer.util.KaleoDesignerUtil;
 import com.liferay.portal.workflow.kaleo.designer.util.WebKeys;
-import com.liferay.portlet.dynamicdatamapping.model.DDMStructure;
-import com.liferay.portlet.dynamicdatamapping.model.DDMTemplate;
-import com.liferay.portlet.dynamicdatamapping.model.DDMTemplateConstants;
-import com.liferay.portlet.dynamicdatamapping.service.DDMTemplateServiceUtil;
 
 import java.io.IOException;
 
@@ -172,10 +166,7 @@ public class KaleoDesignerPortlet extends MVCPortlet {
 		try {
 			String resourceID = resourceRequest.getResourceID();
 
-			if (resourceID.equals("forms")) {
-				serveForms(resourceRequest, resourceResponse);
-			}
-			else if (resourceID.equals("kaleoDraftDefinitions")) {
+			if (resourceID.equals("kaleoDraftDefinitions")) {
 				serveKaleoDraftDefinitions(resourceRequest, resourceResponse);
 			}
 			else if (resourceID.equals("roles")) {
@@ -296,49 +287,6 @@ public class KaleoDesignerPortlet extends MVCPortlet {
 		}
 
 		return false;
-	}
-
-	protected void serveForms(
-			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
-		throws Exception {
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		long ddmStructureId = ParamUtil.getLong(
-			resourceRequest, "ddmStructureId");
-		String keywords = ParamUtil.getString(resourceRequest, "keywords");
-
-		List<DDMTemplate> ddmTemplates = DDMTemplateServiceUtil.search(
-			themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
-			PortalUtil.getClassNameId(DDMStructure.class), ddmStructureId,
-			keywords, DDMTemplateConstants.TEMPLATE_TYPE_FORM, null, 0,
-			SearchContainer.DEFAULT_DELTA, (OrderByComparator)null);
-
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
-
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-
-		jsonObject.put("description", StringPool.BLANK);
-		jsonObject.put("name", StringPool.BLANK);
-		jsonObject.put("templateId", 0);
-
-		jsonArray.put(jsonObject);
-
-		for (DDMTemplate ddmTemplate : ddmTemplates) {
-			jsonObject = JSONFactoryUtil.createJSONObject();
-
-			jsonObject.put(
-				"description",
-				ddmTemplate.getDescription(themeDisplay.getLocale()));
-			jsonObject.put(
-				"name", ddmTemplate.getName(themeDisplay.getLocale()));
-			jsonObject.put("templateId", ddmTemplate.getTemplateId());
-
-			jsonArray.put(jsonObject);
-		}
-
-		writeJSON(resourceRequest, resourceResponse, jsonArray);
 	}
 
 	protected void serveKaleoDraftDefinitions(

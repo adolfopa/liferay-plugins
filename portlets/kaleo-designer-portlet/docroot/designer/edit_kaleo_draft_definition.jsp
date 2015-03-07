@@ -567,20 +567,6 @@
 						<portlet:namespace />kaleoDesigner.connect('StartNode', 'EndNode');
 					}
 
-					<%
-					long ddmStructureId = ParamUtil.getLong(request, "ddmStructureId");
-					%>
-
-					<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="forms" var="formsResourceURL">
-						<portlet:param name="ddmStructureId" value="<%= String.valueOf(ddmStructureId) %>" />
-					</liferay-portlet:resourceURL>
-
-					var createFormsAutocomplete = function(inputNode, resultTextLocator, selectFn) {
-						var autocomplete = Liferay.KaleoDesignerAutoCompleteUtil.create('<portlet:namespace />', inputNode, '<%= formsResourceURL %>', null, resultTextLocator, selectFn);
-
-						autocomplete.sendRequest('');
-					};
-
 					var createRoleAutocomplete = function(inputNode, resultTextLocator, selectFn) {
 						var instance = this;
 
@@ -613,66 +599,42 @@
 
 							var inputName = inputNode.attr('name');
 
-							if (inputNode.hasClass('forms-cell-editor-input')) {
-								if (inputName == 'templateName') {
-									createFormsAutocomplete(
-										inputNode,
-										null,
-										function(event) {
-											var data = event.result.raw;
+							if ((inputName == 'roleName') || (inputName == 'roleNameAC')) {
+								createRoleAutocomplete(
+									inputNode,
+									null,
+									function(event) {
+										var data = event.result.raw;
+										var roleId = inputNode.next('[name=roleId]');
 
-											var formsEditor = A.Widget.getByNode(inputNode.ancestor('.basecelleditor'));
-
-											var value = {
-												templateId: [data.templateId],
-												templateName: [data.name]
-											};
-
-											formsEditor.set('value', value);
-
-											<portlet:namespace />kaleoDesigner.editingNode.set('forms', value);
+										if (roleId) {
+											roleId.val(data.roleId);
 										}
-									);
-								}
+									}
+								);
 							}
-							else {
-								if ((inputName == 'roleName') || (inputName == 'roleNameAC')) {
-									createRoleAutocomplete(
-										inputNode,
-										null,
-										function(event) {
-											var data = event.result.raw;
-											var roleId = inputNode.next('[name=roleId]');
+							else if (inputName == 'fullName') {
+								createUserAutocomplete(
+									inputNode,
+									inputName,
+									function(event) {
+										var data = event.result.raw;
 
-											if (roleId) {
-												roleId.val(data.roleId);
-											}
-										}
-									);
-								}
-								else if (inputName == 'fullName') {
-									createUserAutocomplete(
-										inputNode,
-										inputName,
-										function(event) {
-											var data = event.result.raw;
+										A.each(
+											data,
+											function(item, index, collection) {
+												var input = inputNode.siblings('[name=' + index + ']').first();
 
-											A.each(
-												data,
-												function(item, index, collection) {
-													var input = inputNode.siblings('[name=' + index + ']').first();
-
-													if (input) {
-														input.val(data[index]);
-													}
+												if (input) {
+													input.val(data[index]);
 												}
-											);
-										}
-									);
-								}
+											}
+										);
+									}
+								);
 							}
 						},
-						'.forms-cell-editor-input, .assignments-cell-editor-input'
+						'.assignments-cell-editor-input'
 					);
 
 					<c:choose>
