@@ -79,16 +79,6 @@ String reportName = BeanParamUtil.getString(definition, request, "reportName");
 
 	<c:if test="<%= reportParameters.length() > 0 %>">
 		<aui:field-wrapper helpMessage="entry-report-parameters-help" label="report-parameters">
-			<table class="lfr-table">
-				<tr>
-					<th>
-						<liferay-ui:message key="key" /> 
-					</th>
-					<th>
-						<liferay-ui:message key="value" /> 
-					</th>
-				</tr>
-			
 
 				<%
 				JSONArray reportParametersJSONArray = JSONFactoryUtil.createJSONArray(reportParameters);
@@ -101,13 +91,13 @@ String reportName = BeanParamUtil.getString(definition, request, "reportName");
 					String value = reportParameterJSONObject.getString("value");
 				%>
 
-				<tr>
+				<aui:layout>
 					<c:choose>
 						<c:when test='<%= type.equals("date") %>'>
-							<td>
+							<aui:column columnWidth="<%= 20 %>">
 								<%= key %>
-							</td>
-							<td>
+							</aui:column>
+							<aui:column columnWidth="<%= 80 %>">
 
 								<%
 								String[] date = value.split("-");
@@ -129,20 +119,20 @@ String reportName = BeanParamUtil.getString(definition, request, "reportName");
 									yearParam='<%= key +"Year" %>'
 									yearValue="<%= calendar.get(Calendar.YEAR) %>"
 								/>
-							</td>
+							</aui:column>
 						</c:when>
 						<c:otherwise>
-							<td>
+							<aui:column columnWidth="<%= 20 %>">
 								<%= key %>
-							</td>
-							<td>
+							</aui:column>
+							<aui:column columnWidth="<%= 80 %>">
 								<span class="field field-text">
 									<input class="form-control" name="<portlet:namespace /><%= "parameterValue" + key %>" type="text" value="<%= value %>" />
 								</span>
-							</td>
+							</aui:column>
 						</c:otherwise>
 					</c:choose>
-				</tr>
+				</aui:layout>
 
 			<%
 			}
