@@ -254,7 +254,7 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 
 		long sourceId = definition.getSourceId();
 
-		Map<String, String> reportParameters = new HashMap<String, String>();
+		Map<String, String> reportParameters = new HashMap<>();
 
 		JSONArray reportParametersJSONArray = JSONFactoryUtil.createJSONArray(
 			entry.getReportParameters());

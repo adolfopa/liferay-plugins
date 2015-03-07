@@ -99,7 +99,7 @@ public class ReportsUtil {
 
 		Locale[] locales = LanguageUtil.getAvailableLocales();
 
-		Map<Locale, String> map = new HashMap<Locale, String>();
+		Map<Locale, String> map = new HashMap<>();
 
 		for (Locale locale : locales) {
 			String languageId = LocaleUtil.toLanguageId(locale);

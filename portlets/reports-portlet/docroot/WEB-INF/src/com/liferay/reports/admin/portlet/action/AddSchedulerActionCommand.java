@@ -219,8 +219,7 @@ public class AddSchedulerActionCommand extends BaseActionCommand {
 
 			recurrence.setInterval(weeklyInterval);
 
-			List<DayAndPosition> dayAndPositions =
-				new ArrayList<DayAndPosition>();
+			List<DayAndPosition> dayAndPositions = new ArrayList<>();
 
 			addWeeklyDayPos(portletRequest, dayAndPositions, Calendar.SUNDAY);
 			addWeeklyDayPos(portletRequest, dayAndPositions, Calendar.MONDAY);
