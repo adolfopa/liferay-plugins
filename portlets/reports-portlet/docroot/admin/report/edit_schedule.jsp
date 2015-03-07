@@ -79,6 +79,7 @@ String reportName = BeanParamUtil.getString(definition, request, "reportName");
 	<aui:input name="reportName" value="<%= reportName %>" />
 
 	<aui:field-wrapper helpMessage="entry-report-parameters-help" label="report-parameters">
+
 			<%
 			JSONArray reportParametersJSONArray = JSONFactoryUtil.createJSONArray(definition.getReportParameters());
 
@@ -89,86 +90,86 @@ String reportName = BeanParamUtil.getString(definition, request, "reportName");
 				String type = reportParameterJSONObject.getString("type");
 				String value = reportParameterJSONObject.getString("value");
 			%>
-			<aui:layout>
-				<c:choose>
-					<c:when test='<%= type.equals("date") %>'>
-						<aui:column columnWidth="20">
-							<%= key %>
-						</aui:column>
-						<aui:column columnWidth="30">
 
-							<%
-							Calendar calendar = CalendarFactoryUtil.getCalendar(timeZone, locale);
+				<aui:layout>
+					<c:choose>
+						<c:when test='<%= type.equals("date") %>'>
+							<aui:column columnWidth="<%= 20 %>">
+								<aui:field-wrapper helpMessage="entry-report-date-parameters-help" label="<%= key %>" />
+							</aui:column>
+							<aui:column columnWidth="<%= 30 %>">
 
-							String[] date = value.split("-");
+								<%
+								Calendar calendar = CalendarFactoryUtil.getCalendar(timeZone, locale);
 
-							calendar.set(Calendar.YEAR, GetterUtil.getInteger(date[0]));
-							calendar.set(Calendar.MONTH, GetterUtil.getInteger(date[1]) - 1);
-							calendar.set(Calendar.DATE, GetterUtil.getInteger(date[2]));
-							%>
+								String[] date = value.split("-");
 
-							<liferay-ui:input-date
-								dayParam='<%= key + "Day" %>'
-								dayValue="<%= calendar.get(Calendar.DATE) %>"
-								disabled="<%= false %>"
-								firstDayOfWeek="<%= calendar.getFirstDayOfWeek() - 1 %>"
-								monthParam='<%= key + "Month" %>'
-								monthValue="<%= calendar.get(Calendar.MONTH) %>"
-								yearParam='<%= key +"Year" %>'
-								yearValue="<%= calendar.get(Calendar.YEAR) %>"
-							/>
-						</aui:column>
-						<aui:column columnWidth="20">
-							<aui:select label='' name='<%= "useVariable" + key %>' onChange='<%= "useVariable" + key + "();" %>' showEmptyOption="<%= Boolean.TRUE %>">
-								<aui:option label="start-date" value="startDate" />
-								<aui:option label="end-date" value="endDate" />
-							</aui:select>
+								calendar.set(Calendar.YEAR, GetterUtil.getInteger(date[0]));
+								calendar.set(Calendar.MONTH, GetterUtil.getInteger(date[1]) - 1);
+								calendar.set(Calendar.DATE, GetterUtil.getInteger(date[2]));
+								%>
 
-							<script type="text/javascript">
-								function useVariable<%= key %>() {
-									var A = AUI();
+								<liferay-ui:input-date
+									dayParam='<%= key + "Day" %>'
+									dayValue="<%= calendar.get(Calendar.DATE) %>"
+									disabled="<%= false %>"
+									firstDayOfWeek="<%= calendar.getFirstDayOfWeek() - 1 %>"
+									monthParam='<%= key + "Month" %>'
+									monthValue="<%= calendar.get(Calendar.MONTH) %>"
+									yearParam='<%= key +"Year" %>'
+									yearValue="<%= calendar.get(Calendar.YEAR) %>"
+								/>
+							</aui:column>
+							<aui:column columnWidth="<%= 50 %>">
+								<aui:select label="" name='<%= "useVariable" + key %>' onChange='<%= "useVariable" + key + "();" %>' showEmptyOption="<%= Boolean.TRUE %>">
+									<aui:option label="start-date" value="startDate" />
+									<aui:option label="end-date" value="endDate" />
+								</aui:select>
 
-									var type = A.one('#<%= renderResponse.getNamespace() + "useVariable" + key %>').get('value');
-									var day = A.one('#<%= renderResponse.getNamespace()+ key + "Day" %>');
-									var month = A.one('#<%= renderResponse.getNamespace()+ key + "Month" %>');
-									var year = A.one('#<%= renderResponse.getNamespace()+ key + "Year" %>');
+								<script type="text/javascript">
+									function useVariable<%= key %>() {
+										var A = AUI();
 
-									if ((type == 'startDate') || (type =='endDate')) {
-										day.attr('disabled', 'disabled');
-										month.attr('disabled', 'disabled');
-										year.attr('disabled', 'disabled');
+										var type = A.one('#<%= renderResponse.getNamespace() + "useVariable" + key %>').get('value');
+										var day = A.one('#<%= renderResponse.getNamespace()+ key + "Day" %>');
+										var month = A.one('#<%= renderResponse.getNamespace()+ key + "Month" %>');
+										var year = A.one('#<%= renderResponse.getNamespace()+ key + "Year" %>');
 
-										if (type =='endDate') {
-											document.<portlet:namespace />fm.<portlet:namespace />endDateType[1].checked = 'true';
+										if ((type == 'startDate') || (type =='endDate')) {
+											day.attr('disabled', 'disabled');
+											month.attr('disabled', 'disabled');
+											year.attr('disabled', 'disabled');
+
+											if (type =='endDate') {
+												document.<portlet:namespace />fm.<portlet:namespace />endDateType[1].checked = 'true';
+											}
+										}
+										else {
+											day.attr('disabled', '');
+											month.attr('disabled', '');
+											year.attr('disabled', '');
 										}
 									}
-									else {
-										day.attr('disabled', '');
-										month.attr('disabled', '');
-										year.attr('disabled', '');
-									}
-								}
-							</script>
-						</aui:column>
-						<aui:column columnWidth="30">
-							<liferay-ui:icon-help message="entry-report-date-parameters-help" />
-						</aui:column>
-					</c:when>
-					<c:otherwise>
-						<aui:column columnWidth="20">
-							<%= key %>
-						</aui:column>
-						<aui:column columnWidth="80">
-							<span class="field field-text" id="aui_3_2_0_1428">
-								<input name="<portlet:namespace /><%= "parameterValue" + key %>" type="text" value="<%= value %>" /><br />
-							</span>
-						</aui:column>
-					</c:otherwise>
-				</c:choose>
-			</aui:layout>
+								</script>
+							</aui:column>
+						</c:when>
+						<c:otherwise>
+							<aui:column columnWidth="<%= 20 %>">
+								<%= key %>
+							</aui:column>
+							<aui:column columnWidth="<%= 80 %>">
+								<span class="field field-text" id="aui_3_2_0_1428">
+									<input class="form-control" name="<portlet:namespace /><%= "parameterValue" + key %>" type="text" value="<%= value %>" /><br />
+								</span>
+							</aui:column>
+						</c:otherwise>
+					</c:choose>
+				</aui:layout>
+
 			<%
 			}
 			%>
+
 	</aui:field-wrapper>
 
 	<aui:input label="email-notifications" name="emailNotifications" type="text" />
