@@ -56,7 +56,7 @@ public class UpgradeKaleoProcess extends UpgradeProcess {
 				int workflowDefinitionVersion = rs.getInt(
 					"workflowDefinitionVersion");
 
-				updateKaleoProcessWorkflowDefinition(
+				updateKaleoProcess(
 					kaleoProcessId, workflowDefinitioName,
 					workflowDefinitionVersion);
 			}
@@ -66,7 +66,7 @@ public class UpgradeKaleoProcess extends UpgradeProcess {
 		}
 	}
 
-	protected void updateKaleoProcessWorkflowDefinition(
+	protected void updateKaleoProcess(
 			long kaleoProcessId, String workflowDefinitioName,
 			int workflowDefinitionVersion)
 		throws Exception {
