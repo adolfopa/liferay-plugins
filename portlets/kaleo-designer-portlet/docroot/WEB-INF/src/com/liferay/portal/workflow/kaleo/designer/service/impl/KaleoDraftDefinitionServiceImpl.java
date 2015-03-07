@@ -156,7 +156,7 @@ public class KaleoDraftDefinitionServiceImpl
 		throws PrincipalException {
 
 		List<KaleoDraftDefinition> filteredKaleoDraftDefinitions =
-			new ArrayList<KaleoDraftDefinition>();
+			new ArrayList<>();
 
 		for (KaleoDraftDefinition kaleoDraftDefinition :
 				kaleoDraftDefinitions) {

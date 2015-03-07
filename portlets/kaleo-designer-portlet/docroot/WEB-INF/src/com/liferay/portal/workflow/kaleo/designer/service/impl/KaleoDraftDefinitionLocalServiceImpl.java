@@ -248,10 +248,9 @@ public class KaleoDraftDefinitionLocalServiceImpl
 
 		int version = workflowDefinition.getVersion();
 
-		KaleoDraftDefinition kaleoDraftDefinition =
-			addKaleoDraftDefinition(
-				userId, groupId, name, titleMap, content, version, 1,
-				serviceContext);
+		KaleoDraftDefinition kaleoDraftDefinition = addKaleoDraftDefinition(
+			userId, groupId, name, titleMap, content, version, 1,
+			serviceContext);
 
 		if (version == 1) {
 			deleteKaleoDraftDefinitions(name, 0, serviceContext);
@@ -280,7 +279,7 @@ public class KaleoDraftDefinitionLocalServiceImpl
 	protected List<Object> getKaleoDraftDefinitionIds(
 		long companyId, int version) {
 
-		List<Object> kaleoDraftDefinitionIds = new ArrayList<Object>();
+		List<Object> kaleoDraftDefinitionIds = new ArrayList<>();
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
 			KaleoDraftDefinition.class, getClassLoader());
