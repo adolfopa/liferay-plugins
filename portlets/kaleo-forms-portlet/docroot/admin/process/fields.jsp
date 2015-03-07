@@ -75,18 +75,18 @@ JSONArray availableDefinitionsJSONArray = JSONFactoryUtil.createJSONArray();
 	<liferay-ui:search-container-results>
 
 		<%
-		total = DDMStructureServiceUtil.searchCount(company.getCompanyId(), PortalUtil.getSiteAndCompanyGroupIds(scopeGroupId), new long[] {PortalUtil.getClassNameId(ddmDisplay.getStructureType())}, displayTerms.getKeywords());
+		total = DDMStructureServiceUtil.searchCount(company.getCompanyId(), PortalUtil.getSiteAndCompanyGroupIds(scopeGroupId), scopeClassNameId, displayTerms.getKeywords());
 
 		searchContainer.setTotal(total);
 
-		results = DDMStructureServiceUtil.search(company.getCompanyId(), PortalUtil.getSiteAndCompanyGroupIds(scopeGroupId), new long[] {PortalUtil.getClassNameId(ddmDisplay.getStructureType())}, displayTerms.getKeywords(), searchContainer.getStart(), searchContainer.getEnd(), null);
+		results = DDMStructureServiceUtil.search(company.getCompanyId(), PortalUtil.getSiteAndCompanyGroupIds(scopeGroupId), scopeClassNameId, displayTerms.getKeywords(), searchContainer.getStart(), searchContainer.getEnd(), null);
 
 		searchContainer.setResults(results);
 		%>
 
 	</liferay-ui:search-container-results>
 
-	<c:if test="<%= permissionChecker.hasPermission(scopeGroupId, ddmDisplay.getResourceName(), scopeGroupId, ddmDisplay.getAddStructureActionId()) %>">
+	<c:if test="<%= permissionChecker.hasPermission(scopeGroupId, ddmPermissionHandler.getResourceName(scopeClassNameId), scopeGroupId, ddmPermissionHandler.getAddStructureActionId()) %>">
 		<portlet:renderURL var="editDefinitionURL">
 			<portlet:param name="mvcPath" value="/admin/process/edit_structure.jsp" />
 			<portlet:param name="redirect" value="<%= currentSectionURL %>" />

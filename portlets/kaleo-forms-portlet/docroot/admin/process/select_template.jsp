@@ -52,18 +52,18 @@ String mode = ParamUtil.getString(request, "mode");
 		<%
 		long[] groupIds = ddmDisplay.getTemplateGroupIds(themeDisplay, true);
 
-		total = DDMTemplateLocalServiceUtil.searchCount(company.getCompanyId(), scopeGroupId, PortalUtil.getClassNameId(DDMStructure.class), ddmStructureId, displayTerms.getKeywords(), DDMTemplateConstants.TEMPLATE_TYPE_FORM, mode);
+		total = DDMTemplateLocalServiceUtil.searchCount(company.getCompanyId(), scopeGroupId, PortalUtil.getClassNameId(DDMStructure.class), ddmStructureId, scopeClassNameId, displayTerms.getKeywords(), DDMTemplateConstants.TEMPLATE_TYPE_FORM, mode);
 
 		searchContainer.setTotal(total);
 
-		results = DDMTemplateLocalServiceUtil.search(company.getCompanyId(), scopeGroupId, PortalUtil.getClassNameId(DDMStructure.class), ddmStructureId, displayTerms.getKeywords(), DDMTemplateConstants.TEMPLATE_TYPE_FORM, mode, searchContainer.getStart(), searchContainer.getEnd(), null);
+		results = DDMTemplateLocalServiceUtil.search(company.getCompanyId(), scopeGroupId, PortalUtil.getClassNameId(DDMStructure.class), ddmStructureId, scopeClassNameId, displayTerms.getKeywords(), DDMTemplateConstants.TEMPLATE_TYPE_FORM, mode, searchContainer.getStart(), searchContainer.getEnd(), null);
 
 		searchContainer.setResults(results);
 		%>
 
 	</liferay-ui:search-container-results>
 
-	<c:if test="<%= permissionChecker.hasPermission(scopeGroupId, ddmDisplay.getResourceName(), scopeGroupId, ddmDisplay.getAddTemplateActionId()) %>">
+	<c:if test="<%= permissionChecker.hasPermission(scopeGroupId, ddmPermissionHandler.getResourceName(scopeClassNameId), scopeGroupId, ddmPermissionHandler.getAddTemplateActionId()) %>">
 
 		<%
 		String taglibOnClick = "javascript:" + renderResponse.getNamespace() + "openDDMPortlet();";
@@ -132,6 +132,7 @@ String mode = ParamUtil.getString(request, "mode");
 					basePortletURL: '<%= PortletURLFactoryUtil.create(request, PortletKeys.DYNAMIC_DATA_MAPPING, themeDisplay.getPlid(), PortletRequest.RENDER_PHASE) %>',
 					classNameId: <%= PortalUtil.getClassNameId(DDMStructure.class) %>,
 					classPK: <%= ddmStructureId %>,
+					resourceClassNameId: <%= scopeClassNameId %>,
 					dialog: {
 						destroyOnHide: true,
 						on: {
