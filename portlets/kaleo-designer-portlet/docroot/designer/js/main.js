@@ -3,9 +3,9 @@ AUI.add(
 	function(A) {
 		var AArray = A.Array;
 		var AObject = A.Object;
+		var AJSON = A.JSON;
 		var DiagramBuilder = A.DiagramBuilder;
 		var getClassName = A.getClassName;
-		var JSON = A.JSON;
 		var Lang = A.Lang;
 		var LString = Lang.String;
 		var Template = A.Template;
@@ -23,7 +23,9 @@ AUI.add(
 		var isValue = Lang.isValue;
 
 		var BUFFER_ATTR = [null, '="', null, '" '];
+
 		var BUFFER_CLOSE_NODE = ['</', null, '>'];
+
 		var BUFFER_OPEN_NODE = ['<', null, null, '>'];
 
 		var COL_TYPES_ASSIGNMENT = ['address', 'resourceActions', 'roleId', 'roleType', 'scriptedAssignment', 'taskAssignees', 'user', 'userId'];
@@ -36,6 +38,8 @@ AUI.add(
 
 		var DEFAULT_LANGUAGE = 'groovy';
 
+		var SCHEMA_FIELDS_PATH = ['results', '0', 'name'];
+
 		var SCHEMA_MAP_RESULTS = {
 			resultFields: [
 				{
@@ -46,17 +50,15 @@ AUI.add(
 			resultListLocator: 'root'
 		};
 
-		var SCHEMA_FIELDS_PATH = ['results', '0', 'name'];
-
 		var STR_BLANK = '';
 
 		var STR_CDATA_CLOSE = ']]>';
 
 		var STR_CDATA_OPEN = '<![CDATA[';
 
-		var STR_CHAR_TAB = '\t';
-
 		var STR_CHAR_CRLF = '\r\n';
+
+		var STR_CHAR_TAB = '\t';
 
 		var STR_DASH = '-';
 
@@ -78,7 +80,7 @@ AUI.add(
 			var jsonObj = null;
 
 			try {
-				jsonObj = JSON.parse(val);
+				jsonObj = AJSON.parse(val);
 			}
 			catch (e) {
 			}
@@ -90,7 +92,7 @@ AUI.add(
 			var jsonString = null;
 
 			try {
-				jsonString = JSON.stringify(val);
+				jsonString = AJSON.stringify(val);
 			}
 			catch (e) {
 			}
