@@ -20,8 +20,8 @@ package com.liferay.portal.workflow.kaleo.forms.util;
 public class TaskFormPair {
 
 	public TaskFormPair(String workflowTaskName, long ddmTemplateId) {
-		_ddmTemplateId = ddmTemplateId;
 		_workflowTaskName = workflowTaskName;
+		_ddmTemplateId = ddmTemplateId;
 	}
 
 	public long getDDMTemplateId() {
