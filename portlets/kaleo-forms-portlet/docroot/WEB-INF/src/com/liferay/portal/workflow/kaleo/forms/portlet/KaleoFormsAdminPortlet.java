@@ -376,7 +376,7 @@ public class KaleoFormsAdminPortlet extends BaseKaleoFormsPorlet {
 		long ddmTemplateId = ParamUtil.getLong(actionRequest, "ddmTemplateId");
 		String workflowDefinitionName = ParamUtil.getString(
 			actionRequest, "workflowDefinitionName");
-		long workflowDefinitionVersion = ParamUtil.getLong(
+		int workflowDefinitionVersion = ParamUtil.getInteger(
 			actionRequest, "workflowDefinitionVersion");
 		String taskFormPairsData = ParamUtil.getString(
 			actionRequest, "taskFormPairsData");

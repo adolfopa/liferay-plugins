@@ -27,7 +27,7 @@
 		<column name="DDLRecordSetId" type="long" />
 		<column name="DDMTemplateId" type="long" />
 		<column name="workflowDefinitionName" type="String" />
-		<column name="workflowDefinitionVersion" type="long" />
+		<column name="workflowDefinitionVersion" type="int" />
 
 		<!-- Finder methods -->
 

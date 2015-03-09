@@ -36,7 +36,7 @@ public class KaleoProcessServiceImpl extends KaleoProcessServiceBaseImpl {
 	public KaleoProcess addKaleoProcess(
 			long groupId, long ddmStructureId, Map<Locale, String> nameMap,
 			Map<Locale, String> descriptionMap, long ddmTemplateId,
-			String workflowDefinitionName, long workflowDefinitionVersion,
+			String workflowDefinitionName, int workflowDefinitionVersion,
 			TaskFormPairs taskFormPairs, ServiceContext serviceContext)
 		throws PortalException {
 
@@ -82,7 +82,7 @@ public class KaleoProcessServiceImpl extends KaleoProcessServiceBaseImpl {
 			long kaleoProcessId, long ddmStructureId,
 			Map<Locale, String> nameMap, Map<Locale, String> descriptionMap,
 			long ddmTemplateId, String workflowDefinitionName,
-			long workflowDefinitionVersion, TaskFormPairs taskFormPairs,
+			int workflowDefinitionVersion, TaskFormPairs taskFormPairs,
 			ServiceContext serviceContext)
 		throws PortalException {
 

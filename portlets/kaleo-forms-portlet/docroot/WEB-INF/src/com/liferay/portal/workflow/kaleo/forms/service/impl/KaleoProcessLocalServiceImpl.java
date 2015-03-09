@@ -44,7 +44,7 @@ public class KaleoProcessLocalServiceImpl
 			long userId, long groupId, long ddmStructureId,
 			Map<Locale, String> nameMap, Map<Locale, String> descriptionMap,
 			long ddmTemplateId, String workflowDefinitionName,
-			long workflowDefinitionVersion, TaskFormPairs taskFormPairs,
+			int workflowDefinitionVersion, TaskFormPairs taskFormPairs,
 			ServiceContext serviceContext)
 		throws PortalException {
 
@@ -157,7 +157,7 @@ public class KaleoProcessLocalServiceImpl
 			long kaleoProcessId, long ddmStructureId,
 			Map<Locale, String> nameMap, Map<Locale, String> descriptionMap,
 			long ddmTemplateId, String workflowDefinitionName,
-			long workflowDefinitionVersion, TaskFormPairs taskFormPairs,
+			int workflowDefinitionVersion, TaskFormPairs taskFormPairs,
 			ServiceContext serviceContext)
 		throws PortalException {
 
