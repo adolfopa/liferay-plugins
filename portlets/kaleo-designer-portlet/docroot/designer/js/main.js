@@ -2216,20 +2216,6 @@ AUI.add(
 				NAME: 'notifications-cell-editor',
 
 				prototype: {
-					initializer: function() {
-						var instance = this;
-
-						instance.after('visibleChange', instance._afterVisibleChange);
-					},
-
-					_afterVisibleChange: function(event) {
-						var instance = this;
-
-						if (!event.newVal) {
-							instance.destroy();
-						}
-					},
-
 					_valueAssignmentsType: function() {
 						var instance = this;
 
@@ -2389,6 +2375,11 @@ AUI.add(
 						}
 					},
 
+					recipients: {
+						getter: '_getRecipients',
+						value: []
+					},
+
 					templateLanguages: {
 						valueFn: function() {
 							var instance = this;
@@ -2539,31 +2530,45 @@ AUI.add(
 					getRecipientsEditor: function(anchor) {
 						var instance = this;
 
-						var recipients = instance.get('value.recipients') || [];
+						var recipients = instance.get('recipients');
 						var recipientsEditorIndex = instance.getEditRecipientsLinks().indexOf(anchor);
 						var recipientsEditorValue = recipients[recipientsEditorIndex];
 
-						return new NotificationRecipientsEditor(
-							{
-								builder: instance.get('builder'),
-								index: recipientsEditorIndex,
-								on: {
-									save: function(event) {
-										var editor = this;
+						if (instance._recipientsEditor) {
+							instance._recipientsEditor.setAttrs(
+								{
+									index: recipientsEditorIndex,
+									value: recipientsEditorValue
+								}
+							);
+						}
+						else {
+							instance._recipientsEditor = new NotificationRecipientsEditor(
+								{
+									builder: instance.get('builder'),
+									index: recipientsEditorIndex,
+									on: {
+										save: function(event) {
+											var editor = this;
 
-										var value = editor.getValue();
+											var value = editor.getValue();
 
-										editor.set('value', value);
+											editor.set('value', value);
 
-										recipients[recipientsEditorIndex] = value;
-									}
-								},
-								parentEditor: instance,
-								render: anchor.ancestor('.basecelleditor'),
-								value: recipientsEditorValue,
-								visible: false
-							}
-						);
+											recipients[editor.get('index')] = value;
+
+											instance.set('recipients', recipients);
+										}
+									},
+									parentEditor: instance,
+									render: anchor.ancestor('.basecelleditor'),
+									value: recipientsEditorValue,
+									visible: false
+								}
+							);
+						}
+
+						return instance._recipientsEditor;
 					},
 
 					getValue: function() {
@@ -2630,6 +2635,12 @@ AUI.add(
 						}
 
 						return count;
+					},
+
+					_getRecipients: function(val) {
+						var instance = this;
+
+						return instance.get('value.recipients') || val;
 					},
 
 					_onClickEditRecipientsMenu: function(event) {
