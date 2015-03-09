@@ -80,16 +80,16 @@ String reportName = BeanParamUtil.getString(definition, request, "reportName");
 	<c:if test="<%= reportParameters.length() > 0 %>">
 		<aui:field-wrapper helpMessage="entry-report-parameters-help" label="report-parameters">
 
-				<%
-				JSONArray reportParametersJSONArray = JSONFactoryUtil.createJSONArray(reportParameters);
+			<%
+			JSONArray reportParametersJSONArray = JSONFactoryUtil.createJSONArray(reportParameters);
 
-				for (int i = 0; i < reportParametersJSONArray.length(); i++) {
-					JSONObject reportParameterJSONObject = reportParametersJSONArray.getJSONObject(i);
+			for (int i = 0; i < reportParametersJSONArray.length(); i++) {
+				JSONObject reportParameterJSONObject = reportParametersJSONArray.getJSONObject(i);
 
-					String key = reportParameterJSONObject.getString("key");
-					String type = reportParameterJSONObject.getString("type");
-					String value = reportParameterJSONObject.getString("value");
-				%>
+				String key = reportParameterJSONObject.getString("key");
+				String type = reportParameterJSONObject.getString("type");
+				String value = reportParameterJSONObject.getString("value");
+			%>
 
 				<aui:layout>
 					<c:choose>
