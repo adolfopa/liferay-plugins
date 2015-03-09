@@ -2,8 +2,8 @@ AUI.add(
 	'liferay-portlet-workflow-designer',
 	function(A) {
 		var AArray = A.Array;
-		var AObject = A.Object;
 		var AJSON = A.JSON;
+		var AObject = A.Object;
 		var DiagramBuilder = A.DiagramBuilder;
 		var getClassName = A.getClassName;
 		var Lang = A.Lang;
