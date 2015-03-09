@@ -38,7 +38,7 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 
 		_methodParameterTypes1 = new String[] {
 				"long", "long", "long", "java.util.Map", "java.util.Map", "long",
-				"java.lang.String", "long",
+				"java.lang.String", "int",
 				"com.liferay.portal.workflow.kaleo.forms.util.TaskFormPairs",
 				"com.liferay.portal.service.ServiceContext"
 			};
@@ -160,7 +160,7 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 
 		_methodParameterTypes26 = new String[] {
 				"long", "long", "java.util.Map", "java.util.Map", "long",
-				"java.lang.String", "long",
+				"java.lang.String", "int",
 				"com.liferay.portal.workflow.kaleo.forms.util.TaskFormPairs",
 				"com.liferay.portal.service.ServiceContext"
 			};
@@ -197,7 +197,7 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 		java.util.Map<java.util.Locale, java.lang.String> nameMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
 		long ddmTemplateId, java.lang.String workflowDefinitionName,
-		long workflowDefinitionVersion,
+		int workflowDefinitionVersion,
 		com.liferay.portal.workflow.kaleo.forms.util.TaskFormPairs taskFormPairs,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
@@ -874,7 +874,7 @@ public class KaleoProcessLocalServiceClp implements KaleoProcessLocalService {
 		java.util.Map<java.util.Locale, java.lang.String> nameMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
 		long ddmTemplateId, java.lang.String workflowDefinitionName,
-		long workflowDefinitionVersion,
+		int workflowDefinitionVersion,
 		com.liferay.portal.workflow.kaleo.forms.util.TaskFormPairs taskFormPairs,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {

@@ -16,6 +16,7 @@ package com.liferay.portal.workflow.kaleo.forms.model.impl;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
@@ -39,6 +40,30 @@ import java.util.Date;
 public class KaleoProcessCacheModel implements CacheModel<KaleoProcess>,
 	Externalizable {
 	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof KaleoProcessCacheModel)) {
+			return false;
+		}
+
+		KaleoProcessCacheModel kaleoProcessCacheModel = (KaleoProcessCacheModel)obj;
+
+		if (kaleoProcessId == kaleoProcessCacheModel.kaleoProcessId) {
+			return true;
+		}
+
+		return false;
+	}
+
+	@Override
+	public int hashCode() {
+		return HashUtil.hash(0, kaleoProcessId);
+	}
+
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(23);
 
@@ -60,10 +85,10 @@ public class KaleoProcessCacheModel implements CacheModel<KaleoProcess>,
 		sb.append(DDLRecordSetId);
 		sb.append(", DDMTemplateId=");
 		sb.append(DDMTemplateId);
-		sb.append(", WorkflowDefinitionName=");
-		sb.append(WorkflowDefinitionName);
-		sb.append(", WorkflowDefinitionVersion=");
-		sb.append(WorkflowDefinitionVersion);
+		sb.append(", workflowDefinitionName=");
+		sb.append(workflowDefinitionName);
+		sb.append(", workflowDefinitionVersion=");
+		sb.append(workflowDefinitionVersion);
 		sb.append("}");
 
 		return sb.toString();
@@ -102,14 +127,14 @@ public class KaleoProcessCacheModel implements CacheModel<KaleoProcess>,
 		kaleoProcessImpl.setDDLRecordSetId(DDLRecordSetId);
 		kaleoProcessImpl.setDDMTemplateId(DDMTemplateId);
 
-		if (WorkflowDefinitionName == null) {
+		if (workflowDefinitionName == null) {
 			kaleoProcessImpl.setWorkflowDefinitionName(StringPool.BLANK);
 		}
 		else {
-			kaleoProcessImpl.setWorkflowDefinitionName(WorkflowDefinitionName);
+			kaleoProcessImpl.setWorkflowDefinitionName(workflowDefinitionName);
 		}
 
-		kaleoProcessImpl.setWorkflowDefinitionVersion(WorkflowDefinitionVersion);
+		kaleoProcessImpl.setWorkflowDefinitionVersion(workflowDefinitionVersion);
 
 		kaleoProcessImpl.resetOriginalValues();
 
@@ -127,8 +152,8 @@ public class KaleoProcessCacheModel implements CacheModel<KaleoProcess>,
 		modifiedDate = objectInput.readLong();
 		DDLRecordSetId = objectInput.readLong();
 		DDMTemplateId = objectInput.readLong();
-		WorkflowDefinitionName = objectInput.readUTF();
-		WorkflowDefinitionVersion = objectInput.readLong();
+		workflowDefinitionName = objectInput.readUTF();
+		workflowDefinitionVersion = objectInput.readInt();
 	}
 
 	@Override
@@ -151,14 +176,14 @@ public class KaleoProcessCacheModel implements CacheModel<KaleoProcess>,
 		objectOutput.writeLong(DDLRecordSetId);
 		objectOutput.writeLong(DDMTemplateId);
 
-		if (WorkflowDefinitionName == null) {
+		if (workflowDefinitionName == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
 		}
 		else {
-			objectOutput.writeUTF(WorkflowDefinitionName);
+			objectOutput.writeUTF(workflowDefinitionName);
 		}
 
-		objectOutput.writeLong(WorkflowDefinitionVersion);
+		objectOutput.writeInt(workflowDefinitionVersion);
 	}
 
 	public long kaleoProcessId;
@@ -170,6 +195,6 @@ public class KaleoProcessCacheModel implements CacheModel<KaleoProcess>,
 	public long modifiedDate;
 	public long DDLRecordSetId;
 	public long DDMTemplateId;
-	public String WorkflowDefinitionName;
-	public long WorkflowDefinitionVersion;
+	public String workflowDefinitionName;
+	public int workflowDefinitionVersion;
 }

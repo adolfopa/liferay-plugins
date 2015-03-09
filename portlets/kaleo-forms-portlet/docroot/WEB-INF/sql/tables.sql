@@ -8,8 +8,8 @@ create table KaleoProcess (
 	modifiedDate DATE null,
 	DDLRecordSetId LONG,
 	DDMTemplateId LONG,
-	WorkflowDefinitionName VARCHAR(75) null,
-	WorkflowDefinitionVersion LONG
+	workflowDefinitionName VARCHAR(75) null,
+	workflowDefinitionVersion INTEGER
 );
 
 create table KaleoProcessLink (

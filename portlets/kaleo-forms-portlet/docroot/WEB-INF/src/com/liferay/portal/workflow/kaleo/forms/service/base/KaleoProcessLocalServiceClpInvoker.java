@@ -131,7 +131,7 @@ public class KaleoProcessLocalServiceClpInvoker {
 
 		_methodParameterTypes73 = new String[] {
 				"long", "long", "long", "java.util.Map", "java.util.Map", "long",
-				"java.lang.String", "long",
+				"java.lang.String", "int",
 				"com.liferay.portal.workflow.kaleo.forms.util.TaskFormPairs",
 				"com.liferay.portal.service.ServiceContext"
 			};
@@ -173,7 +173,7 @@ public class KaleoProcessLocalServiceClpInvoker {
 
 		_methodParameterTypes81 = new String[] {
 				"long", "long", "java.util.Map", "java.util.Map", "long",
-				"java.lang.String", "long",
+				"java.lang.String", "int",
 				"com.liferay.portal.workflow.kaleo.forms.util.TaskFormPairs",
 				"com.liferay.portal.service.ServiceContext"
 			};
@@ -299,7 +299,7 @@ public class KaleoProcessLocalServiceClpInvoker {
 				(java.util.Map<java.util.Locale, java.lang.String>)arguments[4],
 				((Long)arguments[5]).longValue(),
 				(java.lang.String)arguments[6],
-				((Long)arguments[7]).longValue(),
+				((Integer)arguments[7]).intValue(),
 				(com.liferay.portal.workflow.kaleo.forms.util.TaskFormPairs)arguments[8],
 				(com.liferay.portal.service.ServiceContext)arguments[9]);
 		}
@@ -350,7 +350,7 @@ public class KaleoProcessLocalServiceClpInvoker {
 				(java.util.Map<java.util.Locale, java.lang.String>)arguments[3],
 				((Long)arguments[4]).longValue(),
 				(java.lang.String)arguments[5],
-				((Long)arguments[6]).longValue(),
+				((Integer)arguments[6]).intValue(),
 				(com.liferay.portal.workflow.kaleo.forms.util.TaskFormPairs)arguments[7],
 				(com.liferay.portal.service.ServiceContext)arguments[8]);
 		}

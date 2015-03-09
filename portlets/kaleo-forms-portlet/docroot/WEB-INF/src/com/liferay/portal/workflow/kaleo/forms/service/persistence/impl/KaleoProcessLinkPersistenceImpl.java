@@ -60,7 +60,7 @@ import java.util.Set;
  *
  * @author Marcellus Tavares
  * @see KaleoProcessLinkPersistence
- * @see KaleoProcessLinkUtil
+ * @see com.liferay.portal.workflow.kaleo.forms.service.persistence.KaleoProcessLinkUtil
  * @generated
  */
 @ProviderType

@@ -27,7 +27,7 @@ import com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess;
  * </p>
  *
  * @author Marcellus Tavares
- * @see KaleoProcessPersistenceImpl
+ * @see com.liferay.portal.workflow.kaleo.forms.service.persistence.impl.KaleoProcessPersistenceImpl
  * @see KaleoProcessUtil
  * @generated
  */

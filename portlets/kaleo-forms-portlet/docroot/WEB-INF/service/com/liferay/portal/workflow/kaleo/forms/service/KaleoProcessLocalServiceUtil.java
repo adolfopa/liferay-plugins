@@ -58,7 +58,7 @@ public class KaleoProcessLocalServiceUtil {
 		java.util.Map<java.util.Locale, java.lang.String> nameMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
 		long ddmTemplateId, java.lang.String workflowDefinitionName,
-		long workflowDefinitionVersion,
+		int workflowDefinitionVersion,
 		com.liferay.portal.workflow.kaleo.forms.util.TaskFormPairs taskFormPairs,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
@@ -307,7 +307,7 @@ public class KaleoProcessLocalServiceUtil {
 		java.util.Map<java.util.Locale, java.lang.String> nameMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
 		long ddmTemplateId, java.lang.String workflowDefinitionName,
-		long workflowDefinitionVersion,
+		int workflowDefinitionVersion,
 		com.liferay.portal.workflow.kaleo.forms.util.TaskFormPairs taskFormPairs,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {

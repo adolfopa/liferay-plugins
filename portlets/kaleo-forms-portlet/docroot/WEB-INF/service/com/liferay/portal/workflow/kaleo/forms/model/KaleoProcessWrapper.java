@@ -62,8 +62,8 @@ public class KaleoProcessWrapper implements KaleoProcess,
 		attributes.put("modifiedDate", getModifiedDate());
 		attributes.put("DDLRecordSetId", getDDLRecordSetId());
 		attributes.put("DDMTemplateId", getDDMTemplateId());
-		attributes.put("WorkflowDefinitionName", getWorkflowDefinitionName());
-		attributes.put("WorkflowDefinitionVersion",
+		attributes.put("workflowDefinitionName", getWorkflowDefinitionName());
+		attributes.put("workflowDefinitionVersion",
 			getWorkflowDefinitionVersion());
 
 		return attributes;
@@ -125,18 +125,18 @@ public class KaleoProcessWrapper implements KaleoProcess,
 			setDDMTemplateId(DDMTemplateId);
 		}
 
-		String WorkflowDefinitionName = (String)attributes.get(
-				"WorkflowDefinitionName");
+		String workflowDefinitionName = (String)attributes.get(
+				"workflowDefinitionName");
 
-		if (WorkflowDefinitionName != null) {
-			setWorkflowDefinitionName(WorkflowDefinitionName);
+		if (workflowDefinitionName != null) {
+			setWorkflowDefinitionName(workflowDefinitionName);
 		}
 
-		Long WorkflowDefinitionVersion = (Long)attributes.get(
-				"WorkflowDefinitionVersion");
+		Integer workflowDefinitionVersion = (Integer)attributes.get(
+				"workflowDefinitionVersion");
 
-		if (WorkflowDefinitionVersion != null) {
-			setWorkflowDefinitionVersion(WorkflowDefinitionVersion);
+		if (workflowDefinitionVersion != null) {
+			setWorkflowDefinitionVersion(workflowDefinitionVersion);
 		}
 	}
 
@@ -333,7 +333,7 @@ public class KaleoProcessWrapper implements KaleoProcess,
 	* @return the workflow definition version of this kaleo process
 	*/
 	@Override
-	public long getWorkflowDefinitionVersion() {
+	public int getWorkflowDefinitionVersion() {
 		return _kaleoProcess.getWorkflowDefinitionVersion();
 	}
 
@@ -508,22 +508,22 @@ public class KaleoProcessWrapper implements KaleoProcess,
 	/**
 	* Sets the workflow definition name of this kaleo process.
 	*
-	* @param WorkflowDefinitionName the workflow definition name of this kaleo process
+	* @param workflowDefinitionName the workflow definition name of this kaleo process
 	*/
 	@Override
 	public void setWorkflowDefinitionName(
-		java.lang.String WorkflowDefinitionName) {
-		_kaleoProcess.setWorkflowDefinitionName(WorkflowDefinitionName);
+		java.lang.String workflowDefinitionName) {
+		_kaleoProcess.setWorkflowDefinitionName(workflowDefinitionName);
 	}
 
 	/**
 	* Sets the workflow definition version of this kaleo process.
 	*
-	* @param WorkflowDefinitionVersion the workflow definition version of this kaleo process
+	* @param workflowDefinitionVersion the workflow definition version of this kaleo process
 	*/
 	@Override
-	public void setWorkflowDefinitionVersion(long WorkflowDefinitionVersion) {
-		_kaleoProcess.setWorkflowDefinitionVersion(WorkflowDefinitionVersion);
+	public void setWorkflowDefinitionVersion(int workflowDefinitionVersion) {
+		_kaleoProcess.setWorkflowDefinitionVersion(workflowDefinitionVersion);
 	}
 
 	@Override

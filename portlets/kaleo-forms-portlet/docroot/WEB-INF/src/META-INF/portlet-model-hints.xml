@@ -11,8 +11,8 @@
 		<field name="modifiedDate" type="Date" />
 		<field name="DDLRecordSetId" type="long" />
 		<field name="DDMTemplateId" type="long" />
-		<field name="WorkflowDefinitionName" type="String" />
-		<field name="WorkflowDefinitionVersion" type="long" />
+		<field name="workflowDefinitionName" type="String" />
+		<field name="workflowDefinitionVersion" type="int" />
 	</model>
 	<model name="com.liferay.portal.workflow.kaleo.forms.model.KaleoProcessLink">
 		<field name="kaleoProcessLinkId" type="long" />

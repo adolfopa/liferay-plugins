@@ -170,19 +170,19 @@ public class KaleoProcessSoap implements Serializable {
 	}
 
 	public String getWorkflowDefinitionName() {
-		return _WorkflowDefinitionName;
+		return _workflowDefinitionName;
 	}
 
-	public void setWorkflowDefinitionName(String WorkflowDefinitionName) {
-		_WorkflowDefinitionName = WorkflowDefinitionName;
+	public void setWorkflowDefinitionName(String workflowDefinitionName) {
+		_workflowDefinitionName = workflowDefinitionName;
 	}
 
-	public long getWorkflowDefinitionVersion() {
-		return _WorkflowDefinitionVersion;
+	public int getWorkflowDefinitionVersion() {
+		return _workflowDefinitionVersion;
 	}
 
-	public void setWorkflowDefinitionVersion(long WorkflowDefinitionVersion) {
-		_WorkflowDefinitionVersion = WorkflowDefinitionVersion;
+	public void setWorkflowDefinitionVersion(int workflowDefinitionVersion) {
+		_workflowDefinitionVersion = workflowDefinitionVersion;
 	}
 
 	private long _kaleoProcessId;
@@ -194,6 +194,6 @@ public class KaleoProcessSoap implements Serializable {
 	private Date _modifiedDate;
 	private long _DDLRecordSetId;
 	private long _DDMTemplateId;
-	private String _WorkflowDefinitionName;
-	private long _WorkflowDefinitionVersion;
+	private String _workflowDefinitionName;
+	private int _workflowDefinitionVersion;
 }

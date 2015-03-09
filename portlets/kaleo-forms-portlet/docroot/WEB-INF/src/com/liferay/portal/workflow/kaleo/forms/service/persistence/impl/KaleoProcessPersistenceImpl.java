@@ -62,7 +62,7 @@ import java.util.Set;
  *
  * @author Marcellus Tavares
  * @see KaleoProcessPersistence
- * @see KaleoProcessUtil
+ * @see com.liferay.portal.workflow.kaleo.forms.service.persistence.KaleoProcessUtil
  * @generated
  */
 @ProviderType
