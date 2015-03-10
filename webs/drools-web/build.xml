@@ -2,52 +2,5 @@
 <!DOCTYPE project>
 
 <project name="drools-web" basedir="." default="deploy">
-	<property name="original.war.file" value="drools-distribution-5.4.0.Final.zip" />
-
 	<import file="../build-common-web.xml" />
-
-	<target name="merge-unzip">
-		<unzip
-			dest="tmp/WEB-INF/lib"
-			src="${original.war.file}"
-		>
-			<mapper type="flatten" />
-		</unzip>
-
-		<mkdir dir="tmp/WEB-INF/src/org/drools/base" />
-
-		<get
-			dest="tmp/WEB-INF/src/org/drools/base/ClassFieldAccessorCache.java"
-			src="https://raw.github.com/droolsjbpm/drools/5.4.0.Final/drools-core/src/main/java/org/drools/base/ClassFieldAccessorCache.java"
-		/>
-
-		<replace file="tmp/WEB-INF/src/org/drools/base/ClassFieldAccessorCache.java">
-			<replacetoken><![CDATA[throw new RuntimeDroolsException( "Unable to resolve class '" + className + "'" );]]></replacetoken>
-			<replacevalue><![CDATA[throw new RuntimeDroolsException( "Unable to resolve class '" + className + "'", e );]]></replacevalue>
-		</replace>
-
-		<replace file="tmp/WEB-INF/src/org/drools/base/ClassFieldAccessorCache.java">
-			<replacetoken><![CDATA[cache = new CacheEntry( this.classLoader );]]></replacetoken>
-			<replacevalue><![CDATA[cache = new CacheEntry( com.liferay.portal.kernel.util.AggregateClassLoader.getAggregateClassLoader(new ClassLoader[] {cl, this.classLoader}) );]]></replacevalue>
-		</replace>
-
-		<path id="plugin-lib.classpath">
-			<fileset dir="tmp/WEB-INF/lib" includes="*.jar" />
-			<pathelement location="tmp/WEB-INF/classes" />
-		</path>
-
-		<compile-java
-			javac.classpathref="plugin.classpath"
-			javac.destdir="tmp/WEB-INF/classes"
-			javac.srcdir="tmp/WEB-INF/src"
-		/>
-	</target>
-
-	<target name="shrink-zip">
-		<antcall target="shrink-zip-cmd">
-			<param name="zip.excludes" value="drools-distribution-5.4.0.Final/binaries/log4j*.jar" />
-			<param name="zip.file.name" value="${original.war.file}" />
-			<param name="zip.includes" value="drools-distribution-5.4.0.Final/binaries/*.jar" />
-		</antcall>
-	</target>
 </project>
