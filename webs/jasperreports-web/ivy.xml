@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+<ivy-module
+	version="2.0"
+	xmlns:m2="http://ant.apache.org/ivy/maven"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd"
+>
+	<info module="jasperreports-web" organisation="com.liferay">
+		<extends extendType="configurations,description,info" location="${sdk.dir}/ivy.xml" module="com.liferay.sdk" organisation="com.liferay" revision="latest.integration" />
+	</info>
+
+	<dependencies defaultconf="default">
+		<dependency name="commons-collections" org="commons-collections" rev="2.1.1" transitive="false" />
+		<dependency name="commons-digester" org="commons-digester" rev="2.1" transitive="false" />
+		<dependency name="commons-javaflow" org="commons-javaflow" rev="20060411" transitive="false" />
+		<dependency name="groovy-all" org="org.codehaus.groovy" rev="2.0.1" transitive="false" />
+		<dependency name="itext" org="com.lowagie" rev="2.1.7.js2" transitive="false" />
+		<dependency name="jasperreports" org="net.sf.jasperreports" rev="5.2.0" transitive="false" />
+		<dependency name="jasperreports-fonts" org="net.sf.jasperreports" rev="5.6.1" transitive="false" />
+		<dependency name="core" org="org.eclipse.jdt" rev="3.1.1" transitive="false" />
+		<dependency name="jxl" org="net.sourceforge.jexcelapi" rev="2.6.10" transitive="false" />
+		<dependency name="png-encoder" org="com.keypoint" rev="1.5" transitive="false" />
+	</dependencies>
+</ivy-module>
