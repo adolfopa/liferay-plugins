@@ -11,12 +11,12 @@
 	</info>
 
 	<dependencies defaultconf="default">
-		<dependency name="drools-clips" org="org.drools" rev="5.4.0.Final"/>
-		<dependency name="drools-compiler" org="org.drools" rev="5.4.0.Final"/>
-		<dependency name="drools-decisiontables" org="org.drools" rev="5.4.0.Final"/>
-		<dependency name="drools-jsr94" org="org.drools" rev="5.4.0.Final"/>
-		<dependency name="drools-persistence-jpa" org="org.drools" rev="5.4.0.Final"/>
-		<dependency name="drools-verifier" org="org.drools" rev="5.4.0.Final"/>
+		<dependency name="drools-clips" org="org.drools" rev="5.4.0.Final" />
+		<dependency name="drools-compiler" org="org.drools" rev="5.4.0.Final" />
+		<dependency name="drools-decisiontables" org="org.drools" rev="5.4.0.Final" />
+		<dependency name="drools-jsr94" org="org.drools" rev="5.4.0.Final" />
+		<dependency name="drools-persistence-jpa" org="org.drools" rev="5.4.0.Final" />
+		<dependency name="drools-verifier" org="org.drools" rev="5.4.0.Final" />
 		<dependency name="org.drools.core" org="com.liferay" rev="5.4.0.Final.LIFERAY-PATCHED-1" />
 	</dependencies>
 </ivy-module>
