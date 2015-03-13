@@ -3,6 +3,12 @@
 
 <hook>
 	<portal-properties>portal.properties</portal-properties>
+	<servlet-filter-mapping>
+		<servlet-filter-name>Auto Login Filter</servlet-filter-name>
+		<url-pattern>/c/portal/oauth/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+	</servlet-filter-mapping>
 	<struts-action>
 		<struts-action-path>/portal/oauth/access_token</struts-action-path>
 		<struts-action-impl>com.liferay.oauth.hook.action.OAuthAccessTokenAction</struts-action-impl>
