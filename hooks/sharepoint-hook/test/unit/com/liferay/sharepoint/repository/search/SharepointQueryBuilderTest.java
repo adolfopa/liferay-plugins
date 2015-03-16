@@ -832,7 +832,8 @@ public class SharepointQueryBuilderTest extends PowerMockito {
 			sharepointConnection.getSharepointConnectionInfo()
 		).thenReturn(
 			new SharepointConnectionInfo(
-				"http", "host", 80, "", "Library", "username", "password")
+				SharepointConnection.ServerVersion.SHAREPOINT_2010, "http",
+				"host", 80, "", "Library", "Library", "username", "password")
 		);
 
 		_sharepointExtRepository = mock(SharepointWSRepository.class);

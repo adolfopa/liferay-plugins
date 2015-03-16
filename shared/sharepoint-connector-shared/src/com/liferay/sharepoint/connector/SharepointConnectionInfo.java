@@ -21,33 +21,40 @@ import com.liferay.sharepoint.connector.operation.URLHelper;
 import java.net.URL;
 
 /**
- * @author Iv·n Zaera
+ * @author Iv√°n Zaera
  */
 public class SharepointConnectionInfo {
 
 	public SharepointConnectionInfo(
+			SharepointConnection.ServerVersion serverVersion,
 			String serverProtocol, String serverAddress, int serverPort,
-			String sitePath, String libraryName, String username,
-			String password)
+			String sitePath, String libraryName, String libraryPath,
+			String username, String password)
 		throws SharepointRuntimeException {
 
 		validate(sitePath, username, password);
 
+		_serverVersion = serverVersion;
 		_serverProtocol = serverProtocol;
 		_serverAddress = serverAddress;
 		_serverPort = serverPort;
 		_sitePath = sitePath;
 		_libraryName = libraryName;
+		_libraryPath = libraryPath;
 		_username = username;
 		_password = password;
 
 		_serviceURL = _urlHelper.toURL(
-			_serverProtocol + "://" + _serverAddress + _sitePath +
-				StringPool.SLASH);
+			_serverProtocol + "://" + _serverAddress + StringPool.COLON +
+				_serverPort + _sitePath + StringPool.SLASH);
 	}
 
 	public String getLibraryName() {
 		return _libraryName;
+	}
+
+	public String getLibraryPath() {
+		return _libraryPath;
 	}
 
 	public String getPassword() {
@@ -60,6 +67,10 @@ public class SharepointConnectionInfo {
 
 	public int getServerPort() {
 		return _serverPort;
+	}
+
+	public SharepointConnection.ServerVersion getServerVersion() {
+		return _serverVersion;
 	}
 
 	public URL getServiceURL() {
@@ -109,10 +120,12 @@ public class SharepointConnectionInfo {
 	private static URLHelper _urlHelper = new URLHelper();
 
 	private String _libraryName;
+	private String _libraryPath;
 	private String _password;
 	private String _serverAddress;
 	private int _serverPort;
 	private String _serverProtocol;
+	private SharepointConnection.ServerVersion _serverVersion;
 	private URL _serviceURL;
 	private String _sitePath;
 	private String _username;

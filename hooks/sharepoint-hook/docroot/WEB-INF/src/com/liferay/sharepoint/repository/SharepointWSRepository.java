@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portlet.documentlibrary.DuplicateFileException;
 import com.liferay.portlet.documentlibrary.DuplicateFolderNameException;
@@ -68,7 +69,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author Iv·n Zaera
+ * @author Iv√°n Zaera
  */
 public class SharepointWSRepository
 	extends ExtRepositoryAdapter
@@ -155,15 +156,9 @@ public class SharepointWSRepository
 
 	public SharepointConnection buildConnection() throws RepositoryException {
 		try {
-			int serverPort = 80;
-
-			if (_protocol.equals("https")) {
-				serverPort = 443;
-			}
-
 			return SharepointConnectionFactory.getInstance(
-				_protocol, _host, serverPort, _sitePath, _libraryName,
-				_credentialsProvider.getLogin(),
+				_serverVersion, _protocol, _host, _port, _sitePath,
+				_libraryName, _libraryPath, _credentialsProvider.getLogin(),
 				_credentialsProvider.getPassword());
 		}
 		catch (SharepointRuntimeException sre) {
@@ -447,7 +442,7 @@ public class SharepointWSRepository
 				sharepointConnection.getSharepointVersions(filePath);
 
 			List<ExtRepositoryFileVersion> sharepointWSVersions =
-				new ArrayList<ExtRepositoryFileVersion>();
+				new ArrayList<>();
 
 			for (SharepointVersion sharepointVersion : sharepointVersions) {
 				SharepointWSFileVersion sharepointWSFileVersion =
@@ -566,7 +561,7 @@ public class SharepointWSRepository
 				sharepointConnection.getSharepointObjects(
 					folderPath, objectTypeFilter);
 
-			List<T> extRepositoryObjects = new ArrayList<T>();
+			List<T> extRepositoryObjects = new ArrayList<>();
 
 			for (SharepointObject sharepointObject : sharepointObjects) {
 				T extRepositoryObject = toExtRepositoryObject(
@@ -684,7 +679,7 @@ public class SharepointWSRepository
 
 			String folderPath = folderSharepointObject.getPath();
 
-			List<String> extRepositoryFolderKeys = new ArrayList<String>();
+			List<String> extRepositoryFolderKeys = new ArrayList<>();
 
 			getSubfolderKeys(folderPath, extRepositoryFolderKeys);
 
@@ -715,12 +710,31 @@ public class SharepointWSRepository
 
 			_libraryName = typeSettingsProperties.getProperty(_LIBRARY_NAME);
 
+			_libraryPath = typeSettingsProperties.getProperty(_LIBRARY_PATH);
+
+			if (Validator.isNull(_libraryPath)) {
+				_libraryPath = _libraryName;
+			}
+
+			String serverVersion = typeSettingsProperties.getProperty(
+				_SERVER_VERSION);
+
+			if (serverVersion.equals(_SHAREPOINT_2013_VALUE)) {
+				_serverVersion =
+					SharepointConnection.ServerVersion.SHAREPOINT_2013;
+			}
+			else {
+				_serverVersion =
+					SharepointConnection.ServerVersion.SHAREPOINT_2010;
+			}
+
 			String siteURL = typeSettingsProperties.getProperty(_SITE_URL);
 
 			URL url = urlHelper.toURL(siteURL);
 
 			_host = url.getHost();
 			_protocol = url.getProtocol();
+			_port = getPort(url);
 			_sitePath = url.getPath();
 
 			_connectionCache = new ConnectionCache<SharepointConnection>(
@@ -794,7 +808,7 @@ public class SharepointWSRepository
 		throws PortalException {
 
 		List<ExtRepositorySearchResult<?>> extRepositorySearchResults =
-			new ArrayList<ExtRepositorySearchResult<?>>();
+			new ArrayList<>();
 
 		List<SharepointObject> sharepointObjects = doSearch(
 			searchContext, query, extRepositoryQueryMapper);
@@ -870,6 +884,23 @@ public class SharepointWSRepository
 		return ListUtil.subList(
 			sharepointObjects, searchContext.getStart(),
 			searchContext.getEnd());
+	}
+
+	protected int getPort(URL url) {
+		int port = url.getPort();
+
+		if (port == -1) {
+			String protocol = url.getProtocol();
+
+			if (protocol.equals("https")) {
+				port = 443;
+			}
+			else {
+				port = 80;
+			}
+		}
+
+		return port;
 	}
 
 	protected void getSubfolderKeys(
@@ -1003,17 +1034,23 @@ public class SharepointWSRepository
 
 	private static final String _LIBRARY_NAME = "LIBRARY_NAME";
 
+	private static final String _LIBRARY_PATH = "LIBRARY_PATH";
+
+	private static final String _SERVER_VERSION = "SERVER_VERSION";
+
+	private static final String _SHAREPOINT_2013_VALUE =
+		SharepointConnection.ServerVersion.SHAREPOINT_2013.getValue();
+
 	private static final String _SITE_URL = "SITE_URL";
 
 	private static final String[] _SUPPORTED_CONFIGURATIONS =
 		{_CONFIGURATION_WS};
 
 	private static final String[][] _SUPPORTED_PARAMETERS =
-		{{_SITE_URL, _LIBRARY_NAME}};
+		{{_SERVER_VERSION, _SITE_URL, _LIBRARY_NAME, _LIBRARY_PATH}};
 
 	private static final Map<ExtRepositoryObjectType<?>, ObjectTypeFilter>
-		_objectTypeFilters =
-			new HashMap<ExtRepositoryObjectType<?>, ObjectTypeFilter>();
+		_objectTypeFilters = new HashMap<>();
 
 	static {
 		_objectTypeFilters.put(
@@ -1028,8 +1065,11 @@ public class SharepointWSRepository
 	private CredentialsProvider _credentialsProvider;
 	private String _host;
 	private String _libraryName;
+	private String _libraryPath;
+	private int _port;
 	private String _protocol;
 	private String _rootFolderKey;
+	private SharepointConnection.ServerVersion _serverVersion;
 	private String _sitePath;
 
 }

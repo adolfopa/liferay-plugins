@@ -265,8 +265,9 @@ public class SharepointConnectionTest {
 		Assert.assertEquals(_fileName1, sharepointObject.getName());
 		Assert.assertEquals(_filePath1, sharepointObject.getPath());
 		Assert.assertEquals(
-			_SERVER_PROTOCOL + "://" + _SERVER_ADDRESS + _SITE_PATH +
-				StringPool.SLASH + _LIBRARY_NAME + _filePath1,
+			_SERVER_PROTOCOL + "://" + _SERVER_ADDRESS + StringPool.COLON +
+				_SERVER_PORT + _SITE_PATH + StringPool.SLASH + _LIBRARY_PATH +
+				_filePath1,
 			String.valueOf(sharepointObject.getURL()));
 		Assert.assertTrue(sharepointObject.isFile());
 	}
@@ -300,8 +301,9 @@ public class SharepointConnectionTest {
 		Assert.assertEquals(_folderName1, sharepointObject.getName());
 		Assert.assertEquals(_folderPath1, sharepointObject.getPath());
 		Assert.assertEquals(
-			_SERVER_PROTOCOL + "://" + _SERVER_ADDRESS + _SITE_PATH +
-				StringPool.SLASH + _LIBRARY_NAME + _folderPath1,
+			_SERVER_PROTOCOL + "://" + _SERVER_ADDRESS + StringPool.COLON +
+				_SERVER_PORT + _SITE_PATH + StringPool.SLASH + _LIBRARY_PATH +
+				_folderPath1,
 			String.valueOf(sharepointObject.getURL()));
 		Assert.assertTrue(sharepointObject.isFolder());
 	}
@@ -683,8 +685,8 @@ public class SharepointConnectionTest {
 				SHAREPOINT_ROOT_FOLDER_SHAREPOINT_OBJECT_ID,
 			rootFolderSharepointObject.getSharepointObjectId());
 		Assert.assertEquals(
-			_SERVER_PROTOCOL + "://" + _SERVER_ADDRESS + _SITE_PATH +
-				StringPool.SLASH + _LIBRARY_NAME,
+			_SERVER_PROTOCOL + "://" + _SERVER_ADDRESS + StringPool.COLON +
+				_SERVER_PORT + _SITE_PATH + StringPool.SLASH + _LIBRARY_PATH,
 			String.valueOf(rootFolderSharepointObject.getURL()));
 		Assert.assertTrue(rootFolderSharepointObject.isFolder());
 	}
@@ -716,6 +718,8 @@ public class SharepointConnectionTest {
 
 	private static final String _LIBRARY_NAME = "Documents";
 
+	private static final String _LIBRARY_PATH = "Documents";
+
 	private static final String _PASSWORD = "password";
 
 	private static final String _SERVER_ADDRESS = "liferay-20jf4ic";
@@ -723,6 +727,9 @@ public class SharepointConnectionTest {
 	private static final int _SERVER_PORT = 80;
 
 	private static final String _SERVER_PROTOCOL = "http";
+
+	private static final SharepointConnection.ServerVersion _SERVER_VERSION =
+		SharepointConnection.ServerVersion.SHAREPOINT_2010;
 
 	private static final String _SITE_PATH = StringPool.BLANK;
 
@@ -738,8 +745,8 @@ public class SharepointConnectionTest {
 	private String _folderPath2;
 	private SharepointConnection _sharepointConnection =
 		SharepointConnectionFactory.getInstance(
-			_SERVER_PROTOCOL, _SERVER_ADDRESS, _SERVER_PORT, _SITE_PATH,
-			_LIBRARY_NAME, _USERNAME, _PASSWORD);
+			_SERVER_VERSION, _SERVER_PROTOCOL, _SERVER_ADDRESS, _SERVER_PORT,
+			_SITE_PATH, _LIBRARY_NAME, _LIBRARY_PATH, _USERNAME, _PASSWORD);
 	private long _timestamp = System.currentTimeMillis();
 
 }

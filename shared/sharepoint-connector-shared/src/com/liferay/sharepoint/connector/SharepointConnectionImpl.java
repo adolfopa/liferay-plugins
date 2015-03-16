@@ -72,14 +72,15 @@ public class SharepointConnectionImpl implements SharepointConnection {
 	public static final long SHAREPOINT_ROOT_FOLDER_SHAREPOINT_OBJECT_ID = -1;
 
 	public SharepointConnectionImpl(
+			SharepointConnection.ServerVersion serverVersion,
 			String serverProtocol, String serverAddress, int serverPort,
-			String sitePath, String libraryName, String username,
-			String password)
+			String sitePath, String libraryName, String libraryPath,
+			String username, String password)
 		throws SharepointRuntimeException {
 
 		_sharepointConnectionInfo = new SharepointConnectionInfo(
-			serverProtocol, serverAddress, serverPort, sitePath, libraryName,
-			username, password);
+			serverVersion, serverProtocol, serverAddress, serverPort, sitePath,
+			libraryName, libraryPath, username, password);
 
 		initCopySoap();
 		initListsSoap();
@@ -250,9 +251,9 @@ public class SharepointConnectionImpl implements SharepointConnection {
 	public void initSharepointRootFolder() {
 		URL serviceURL = _sharepointConnectionInfo.getServiceURL();
 
-		String libraryName = _sharepointConnectionInfo.getLibraryName();
+		String libraryPath = _sharepointConnectionInfo.getLibraryPath();
 
-		URL libraryURL = _urlHelper.toURL(serviceURL + libraryName);
+		URL libraryURL = _urlHelper.toURL(serviceURL + libraryPath);
 
 		_sharepointRootFolder = new SharepointObject(
 			StringPool.BLANK, null, new Date(0), true, new Date(0),
@@ -453,8 +454,7 @@ public class SharepointConnectionImpl implements SharepointConnection {
 	private GetSharepointVersionsOperation _getSharepointVersionsOperation;
 	private ListsSoap _listsSoap;
 	private MoveSharepointObjectOperation _moveSharepointObjectOperation;
-	private Map<Class<?>, Operation> _operations =
-		new HashMap<Class<?>, Operation>();
+	private Map<Class<?>, Operation> _operations = new HashMap<>();
 	private SharepointConnectionInfo _sharepointConnectionInfo;
 	private SharepointObject _sharepointRootFolder;
 	private VersionsSoap _versionsSoap;

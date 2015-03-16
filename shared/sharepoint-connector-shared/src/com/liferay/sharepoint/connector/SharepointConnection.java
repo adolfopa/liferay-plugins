@@ -22,7 +22,7 @@ import java.io.InputStream;
 import java.util.List;
 
 /**
- * @author Iv·n Zaera
+ * @author Iv√°n Zaera
  */
 public interface SharepointConnection {
 
@@ -99,11 +99,28 @@ public interface SharepointConnection {
 		}
 
 		private final int _protocolValue;
+
 	}
 
 	public enum ObjectTypeFilter {
 
 		ALL, FILES, FOLDERS
+
+	}
+
+	public enum ServerVersion {
+
+		SHAREPOINT_2010("2010"), SHAREPOINT_2013("2013");
+
+		public String getValue() {
+			return _value;
+		}
+
+		private ServerVersion(String value) {
+			_value = value;
+		}
+
+		private final String _value;
 
 	}
 
