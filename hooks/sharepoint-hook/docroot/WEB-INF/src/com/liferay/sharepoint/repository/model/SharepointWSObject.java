@@ -100,8 +100,7 @@ public abstract class SharepointWSObject
 	protected SharepointObject sharepointObject;
 
 	private static Map<ExtRepositoryPermission, Permission> _permissions =
-		new EnumMap<ExtRepositoryPermission, Permission>(
-			ExtRepositoryPermission.class);
+		new EnumMap<>(ExtRepositoryPermission.class);
 	private static Set<ExtRepositoryPermission>
 		_unsupportedExtRepositoryPermissions = EnumSet.of(
 			ExtRepositoryPermission.ADD_DISCUSSION,

@@ -737,7 +737,7 @@ public class SharepointWSRepository
 			_port = getPort(url);
 			_sitePath = url.getPath();
 
-			_connectionCache = new ConnectionCache<SharepointConnection>(
+			_connectionCache = new ConnectionCache<>(
 				SharepointConnection.class, getRepositoryId(), this);
 
 			SharepointConnection sharepointConnection =
@@ -820,7 +820,7 @@ public class SharepointWSRepository
 				ExtRepositoryObjectType.OBJECT, sharepointObject);
 
 			ExtRepositorySearchResult<?> extRepositorySearchResult =
-				new ExtRepositorySearchResult<ExtRepositoryObject>(
+				new ExtRepositorySearchResult<>(
 					extRepositoryObject, 1, StringPool.BLANK);
 
 			extRepositorySearchResults.add(extRepositorySearchResult);

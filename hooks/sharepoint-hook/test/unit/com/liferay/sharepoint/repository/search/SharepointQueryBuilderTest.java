@@ -904,7 +904,7 @@ public class SharepointQueryBuilderTest extends PowerMockito {
 
 	private BeanLocator _beanLocator;
 	private ExtRepositoryQueryMapper _extRepositoryQueryMapper;
-	private List<Class<?>> _serviceUtilClasses = new ArrayList<Class<?>>();
+	private List<Class<?>> _serviceUtilClasses = new ArrayList<>();
 	private SharepointWSRepository _sharepointExtRepository;
 
 }
