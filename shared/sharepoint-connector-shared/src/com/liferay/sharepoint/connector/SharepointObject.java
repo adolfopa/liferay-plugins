@@ -23,7 +23,7 @@ import java.util.Date;
 import java.util.Set;
 
 /**
- * @author Iv·n Zaera
+ * @author Iv√°n Zaera
  */
 public class SharepointObject {
 

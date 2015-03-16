@@ -29,7 +29,7 @@ import org.apache.axis.message.MessageElement;
 import org.w3c.dom.Element;
 
 /**
- * @author Iv·n Zaera
+ * @author Iv√°n Zaera
  */
 public class BatchOperation extends BaseOperation {
 

@@ -34,7 +34,7 @@ import java.rmi.RemoteException;
 import org.apache.axis.holders.UnsignedIntHolder;
 
 /**
- * @author Iv·n Zaera
+ * @author Iv√°n Zaera
  */
 public class AddOrUpdateFileOperation extends BaseOperation {
 

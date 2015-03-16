@@ -96,7 +96,7 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 /**
- * @author Iv·n Zaera
+ * @author Iv√°n Zaera
  */
 @PrepareForTest(LuceneHelperUtil.class)
 @RunWith(PowerMockRunner.class)

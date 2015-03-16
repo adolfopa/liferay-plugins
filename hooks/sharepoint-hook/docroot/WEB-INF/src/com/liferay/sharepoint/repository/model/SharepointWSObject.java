@@ -27,7 +27,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * @author Iv·n Zaera
+ * @author Iv√°n Zaera
  */
 public abstract class SharepointWSObject
 	implements ExtRepositoryObject, ExtRepositoryModel {

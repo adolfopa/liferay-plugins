@@ -20,7 +20,7 @@ import com.liferay.sharepoint.connector.SharepointVersion;
 import java.util.Date;
 
 /**
- * @author Iv·n Zaera
+ * @author Iv√°n Zaera
  */
 public class SharepointWSFileVersion implements ExtRepositoryFileVersion {
 

@@ -22,7 +22,7 @@ import java.net.URL;
 import java.rmi.RemoteException;
 
 /**
- * @author Iv·n Zaera
+ * @author Iv√°n Zaera
  */
 public class CheckInFileOperation extends BaseOperation {
 

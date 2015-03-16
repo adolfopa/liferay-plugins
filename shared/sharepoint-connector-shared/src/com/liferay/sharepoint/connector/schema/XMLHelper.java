@@ -41,7 +41,7 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 /**
- * @author Iv·n Zaera
+ * @author Iv√°n Zaera
  */
 public class XMLHelper {
 

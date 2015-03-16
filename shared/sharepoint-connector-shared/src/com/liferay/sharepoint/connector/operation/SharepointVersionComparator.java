@@ -21,7 +21,7 @@ import com.liferay.sharepoint.connector.SharepointVersion;
 import java.util.Comparator;
 
 /**
- * @author Iv·n Zaera
+ * @author Iv√°n Zaera
  */
 public class SharepointVersionComparator
 	implements Comparator<SharepointVersion> {

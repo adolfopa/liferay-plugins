@@ -21,7 +21,7 @@ import com.liferay.sharepoint.connector.schema.batch.BatchField;
 import com.liferay.sharepoint.connector.schema.batch.BatchMethod;
 
 /**
- * @author Iv·n Zaera
+ * @author Iv√°n Zaera
  */
 public class DeleteSharepointObjectOperation extends BaseOperation {
 
