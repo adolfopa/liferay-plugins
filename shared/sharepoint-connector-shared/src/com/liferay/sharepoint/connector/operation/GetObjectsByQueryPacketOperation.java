@@ -29,7 +29,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * @author Iv·n Zaera
+ * @author Iv√°n Zaera
  */
 public class GetObjectsByQueryPacketOperation extends BaseOperation {
 
@@ -68,8 +68,7 @@ public class GetObjectsByQueryPacketOperation extends BaseOperation {
 			List<String> queryServiceSoapResultLinkURLs =
 				queryServiceSoapResult.getLinkURLs();
 
-			List<SharepointObject> sharepointObjects =
-				new ArrayList<SharepointObject>();
+			List<SharepointObject> sharepointObjects = new ArrayList<>();
 
 			for (String queryServiceSoapResultLinkURL :
 					queryServiceSoapResultLinkURLs) {

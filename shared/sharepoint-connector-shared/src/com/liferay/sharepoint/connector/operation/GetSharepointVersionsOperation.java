@@ -40,7 +40,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * @author Iv·n Zaera
+ * @author Iv√°n Zaera
  */
 public class GetSharepointVersionsOperation extends BaseOperation {
 
@@ -97,8 +97,7 @@ public class GetSharepointVersionsOperation extends BaseOperation {
 		long sharepointObjectId,
 		Element getVersionsResponseGetVersionsResultElement) {
 
-		List<SharepointVersion> sharepointVersions =
-			new ArrayList<SharepointVersion>();
+		List<SharepointVersion> sharepointVersions = new ArrayList<>();
 
 		NodeList nodeList =
 			getVersionsResponseGetVersionsResultElement.getChildNodes();

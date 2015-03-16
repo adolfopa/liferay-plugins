@@ -26,7 +26,7 @@ import com.liferay.sharepoint.connector.schema.query.option.FolderQueryOption;
 import com.liferay.sharepoint.connector.schema.query.option.ViewAttributesQueryOption;
 
 /**
- * @author Iv·n Zaera
+ * @author Iv√°n Zaera
  */
 public class GetSharepointObjectByPathOperation extends BaseOperation {
 
@@ -43,7 +43,7 @@ public class GetSharepointObjectByPathOperation extends BaseOperation {
 			new EqOperator(
 				new QueryField("FileRef"),
 				new QueryValue(fullPath.substring(1))));
-		QueryOptionsList queryOptionsList =  new QueryOptionsList(
+		QueryOptionsList queryOptionsList = new QueryOptionsList(
 			new FolderQueryOption(StringPool.BLANK),
 			new ViewAttributesQueryOption(true));
 

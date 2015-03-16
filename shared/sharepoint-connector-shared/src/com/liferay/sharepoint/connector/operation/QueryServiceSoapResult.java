@@ -132,7 +132,7 @@ public class QueryServiceSoapResult {
 
 	};
 
-	private List<String> _linkURLs = new ArrayList<String>();
+	private List<String> _linkURLs = new ArrayList<>();
 	private String _status;
 
 }

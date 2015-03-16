@@ -51,7 +51,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * @author Iv·n Zaera
+ * @author Iv√°n Zaera
  */
 public class GetSharepointObjectsByQueryOperation extends BaseOperation {
 
@@ -177,8 +177,7 @@ public class GetSharepointObjectsByQueryOperation extends BaseOperation {
 		GetListItemsResponseGetListItemsResult
 			getListItemsResponseGetListItemsResult) {
 
-		List<SharepointObject> sharepointObjects =
-			new ArrayList<SharepointObject>();
+		List<SharepointObject> sharepointObjects = new ArrayList<>();
 
 		Element getListItemsResponseGetListItemsResultElement =
 			xmlHelper.getElement(getListItemsResponseGetListItemsResult);

@@ -199,7 +199,7 @@ public class SharepointQueryBuilder {
 						"CONTAINS queries due to repository limitations");
 			}
 
-			List<QueryClause> queryClauses = new ArrayList<QueryClause>();
+			List<QueryClause> queryClauses = new ArrayList<>();
 
 			String[] parts = StringUtil.split(fieldValue, StringPool.STAR);
 
@@ -314,7 +314,7 @@ public class SharepointQueryBuilder {
 			List<QueryClause> notQueryClauses, List<QueryClause> orQueryClauses)
 		throws SearchException {
 
-		List<QueryClause> queryClauses = new ArrayList<QueryClause>();
+		List<QueryClause> queryClauses = new ArrayList<>();
 
 		QueryClause queryClause = joinWithAnd(andQueryClauses);
 
@@ -529,9 +529,9 @@ public class SharepointQueryBuilder {
 	protected QueryClause traverseBooleanQuery(BooleanQuery booleanQuery)
 		throws SearchException {
 
-		List<QueryClause> andQueryClauses = new ArrayList<QueryClause>();
-		List<QueryClause> notQueryClauses = new ArrayList<QueryClause>();
-		List<QueryClause> orQueryClauses = new ArrayList<QueryClause>();
+		List<QueryClause> andQueryClauses = new ArrayList<>();
+		List<QueryClause> notQueryClauses = new ArrayList<>();
+		List<QueryClause> orQueryClauses = new ArrayList<>();
 
 		for (BooleanClause booleanClause : booleanQuery.clauses()) {
 			List<QueryClause> queryClauses = orQueryClauses;
@@ -661,9 +661,8 @@ public class SharepointQueryBuilder {
 
 	private static LiferayQueryExplainer _liferayQueryExplainer =
 		new LiferayQueryExplainer();
-	private static Map<String, String> _sharepointFields =
-		new HashMap<String, String>();
-	private static Set<String> _supportedFields = new HashSet<String>();
+	private static Map<String, String> _sharepointFields = new HashMap<>();
+	private static Set<String> _supportedFields = new HashSet<>();
 
 	static {
 		_sharepointFields.put(Field.CREATE_DATE, SharepointField.CREATE_DATE);
