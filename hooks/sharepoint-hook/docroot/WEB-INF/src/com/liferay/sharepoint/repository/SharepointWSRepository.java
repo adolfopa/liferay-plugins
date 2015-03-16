@@ -1047,7 +1047,7 @@ public class SharepointWSRepository
 		{_CONFIGURATION_WS};
 
 	private static final String[][] _SUPPORTED_PARAMETERS =
-		{{_SERVER_VERSION, _SITE_URL, _LIBRARY_NAME, _LIBRARY_PATH}};
+		{{_LIBRARY_NAME, _LIBRARY_PATH, _SERVER_VERSION, _SITE_URL}};
 
 	private static final Map<ExtRepositoryObjectType<?>, ObjectTypeFilter>
 		_objectTypeFilters = new HashMap<>();
