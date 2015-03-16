@@ -95,9 +95,7 @@ public abstract class BaseOperation implements Operation {
 		StringBundler sb = new StringBundler(4);
 
 		sb.append(sharepointConnectionInfo.getSitePath());
-
 		sb.append(StringPool.SLASH);
-
 		sb.append(sharepointConnectionInfo.getLibraryPath());
 
 		if (!path.equals(StringPool.SLASH)) {
