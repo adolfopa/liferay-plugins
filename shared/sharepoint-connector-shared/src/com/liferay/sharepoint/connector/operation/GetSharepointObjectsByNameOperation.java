@@ -15,6 +15,7 @@
 package com.liferay.sharepoint.connector.operation;
 
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.sharepoint.connector.SharepointConnection;
 import com.liferay.sharepoint.connector.SharepointException;
 import com.liferay.sharepoint.connector.SharepointObject;
 import com.liferay.sharepoint.connector.schema.query.Query;
@@ -22,12 +23,15 @@ import com.liferay.sharepoint.connector.schema.query.QueryField;
 import com.liferay.sharepoint.connector.schema.query.QueryOptionsList;
 import com.liferay.sharepoint.connector.schema.query.QueryValue;
 import com.liferay.sharepoint.connector.schema.query.operator.ContainsOperator;
+import com.liferay.sharepoint.connector.schema.query.option.BaseQueryOption;
 import com.liferay.sharepoint.connector.schema.query.option.FolderQueryOption;
+import com.liferay.sharepoint.connector.schema.query.option.ViewAttributesQueryOption;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Iv·n Zaera
+ * @author Iv√°n Zaera
  */
 public class GetSharepointObjectsByNameOperation extends BaseOperation {
 
@@ -44,9 +48,21 @@ public class GetSharepointObjectsByNameOperation extends BaseOperation {
 			new ContainsOperator(
 				new QueryField("FileRef"), new QueryValue(name)));
 
+		List<BaseQueryOption> baseQueryOptions = new ArrayList<>();
+
+		baseQueryOptions.add(new FolderQueryOption(StringPool.BLANK));
+
+		if (sharepointConnectionInfo.getServerVersion() ==
+				SharepointConnection.ServerVersion.SHAREPOINT_2013) {
+
+			baseQueryOptions.add(new ViewAttributesQueryOption(true));
+		}
+
 		return _getSharepointObjectsByQueryOperation.execute(
 			query,
-			new QueryOptionsList(new FolderQueryOption(StringPool.BLANK)));
+			new QueryOptionsList(
+				baseQueryOptions.toArray(
+					new BaseQueryOption[baseQueryOptions.size()])));
 	}
 
 	private GetSharepointObjectsByQueryOperation

@@ -40,7 +40,7 @@ public class GetObjectsByQueryPacketOperation extends BaseOperation {
 
 		_searchPrefix =
 			sharepointConnectionInfo.getServiceURL() +
-				sharepointConnectionInfo.getLibraryName();
+				sharepointConnectionInfo.getLibraryPath();
 
 		_searchPrefixLength = _searchPrefix.length();
 	}

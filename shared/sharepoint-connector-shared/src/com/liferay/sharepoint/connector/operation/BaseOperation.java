@@ -14,6 +14,7 @@
 
 package com.liferay.sharepoint.connector.operation;
 
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.sharepoint.connector.SharepointConnectionInfo;
 import com.liferay.sharepoint.connector.SharepointObject;
@@ -70,7 +71,7 @@ public abstract class BaseOperation implements Operation {
 		URL serviceURL = sharepointConnectionInfo.getServiceURL();
 
 		return urlHelper.toURL(
-			serviceURL.toString() + sharepointConnectionInfo.getLibraryName() +
+			serviceURL.toString() + sharepointConnectionInfo.getLibraryPath() +
 				path);
 	}
 
@@ -91,15 +92,19 @@ public abstract class BaseOperation implements Operation {
 	protected String toFullPath(String path) {
 		pathHelper.validatePath(path);
 
-		String sitePath = sharepointConnectionInfo.getSitePath();
+		StringBundler sb = new StringBundler(4);
 
-		String libraryName = sharepointConnectionInfo.getLibraryName();
+		sb.append(sharepointConnectionInfo.getSitePath());
 
-		if (path.equals(StringPool.SLASH)) {
-			return sitePath + StringPool.SLASH + libraryName;
+		sb.append(StringPool.SLASH);
+
+		sb.append(sharepointConnectionInfo.getLibraryPath());
+
+		if (!path.equals(StringPool.SLASH)) {
+			sb.append(path);
 		}
 
-		return sitePath + StringPool.SLASH + libraryName + path;
+		return sb.toString();
 	}
 
 	protected static PathHelper pathHelper = new PathHelper();

@@ -61,6 +61,7 @@ import com.liferay.sharepoint.connector.schema.query.operator.LtOperator;
 import com.liferay.sharepoint.connector.schema.query.operator.NeqOperator;
 import com.liferay.sharepoint.connector.schema.query.operator.NotIncludesOperator;
 import com.liferay.sharepoint.connector.schema.query.option.FolderQueryOption;
+import com.liferay.sharepoint.connector.schema.query.option.ViewAttributesQueryOption;
 import com.liferay.sharepoint.repository.SharepointWSRepository;
 import com.liferay.sharepoint.repository.model.SharepointWSFolder;
 
@@ -88,14 +89,29 @@ public class SharepointQueryBuilder {
 		_sharepointWSRepository = sharepointWSRepository;
 		_extRepositoryQueryMapper = extRepositoryQueryMapper;
 
+		SharepointConnection sharepointConnection =
+			sharepointWSRepository.getSharepointConnection();
+
+		_sharepointConnectionInfo =
+			sharepointConnection.getSharepointConnectionInfo();
+
 		_query = new com.liferay.sharepoint.connector.schema.query.Query(
 			traverseQuery(query));
 
 		QueryConfig queryConfig = searchContext.getQueryConfig();
 
 		if (queryConfig.isSearchSubfolders()) {
-			_queryOptionsList = new QueryOptionsList(
-				new FolderQueryOption(StringPool.BLANK));
+			if (isServerVersion(
+					SharepointConnection.ServerVersion.SHAREPOINT_2013)) {
+
+				_queryOptionsList = new QueryOptionsList(
+					new FolderQueryOption(StringPool.BLANK),
+					new ViewAttributesQueryOption(true));
+			}
+			else {
+				_queryOptionsList = new QueryOptionsList(
+					new FolderQueryOption(StringPool.BLANK));
+			}
 		}
 		else {
 			_queryOptionsList = new QueryOptionsList();
@@ -222,13 +238,21 @@ public class SharepointQueryBuilder {
 				SharepointConnectionInfo sharepointConnectionInfo =
 					sharepointConnection.getSharepointConnectionInfo();
 
-				String libraryName = sharepointConnectionInfo.getLibraryName();
+				String prefixPath = sharepointConnectionInfo.getLibraryPath();
+
+				if (isServerVersion(
+						SharepointConnection.ServerVersion.SHAREPOINT_2013)) {
+
+					prefixPath =
+						_sharepointConnectionInfo.getSitePath() +
+							StringPool.SLASH + prefixPath;
+				}
 
 				if (folderPath.equals(StringPool.SLASH)) {
-					return libraryName;
+					return prefixPath;
 				}
 				else {
-					return libraryName + folderPath;
+					return prefixPath + folderPath;
 				}
 			}
 			catch (PortalException pe) {
@@ -267,6 +291,18 @@ public class SharepointQueryBuilder {
 
 	protected String getSharepointFieldName(String fieldName) {
 		return _sharepointFields.get(fieldName);
+	}
+
+	protected boolean isServerVersion(
+		SharepointConnection.ServerVersion serverVersion) {
+
+		if (serverVersion.equals(
+				_sharepointConnectionInfo.getServerVersion())) {
+
+			return true;
+		}
+
+		return false;
 	}
 
 	protected boolean isSupportedField(String field) {
@@ -651,6 +687,7 @@ public class SharepointQueryBuilder {
 	private ExtRepositoryQueryMapper _extRepositoryQueryMapper;
 	private com.liferay.sharepoint.connector.schema.query.Query _query;
 	private QueryOptionsList _queryOptionsList;
+	private SharepointConnectionInfo _sharepointConnectionInfo;
 	private SharepointWSRepository _sharepointWSRepository;
 
 }

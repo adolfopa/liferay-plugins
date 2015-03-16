@@ -27,6 +27,7 @@ import com.liferay.sharepoint.connector.schema.query.QueryOptionsList;
 import com.liferay.sharepoint.connector.schema.query.QueryValue;
 import com.liferay.sharepoint.connector.schema.query.operator.ContainsOperator;
 import com.liferay.sharepoint.connector.schema.query.option.FolderQueryOption;
+import com.liferay.sharepoint.connector.schema.query.option.ViewAttributesQueryOption;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -384,8 +385,19 @@ public class SharepointConnectionTest {
 			new ContainsOperator(
 				new QueryField("BaseName"), new QueryValue("SubFile")));
 
-		QueryOptionsList queryOptionsList = new QueryOptionsList(
-			new FolderQueryOption(StringPool.BLANK));
+		QueryOptionsList queryOptionsList = null;
+
+		if (_SERVER_VERSION.equals(
+				SharepointConnection.ServerVersion.SHAREPOINT_2013)) {
+
+			queryOptionsList = new QueryOptionsList(
+				new FolderQueryOption(StringPool.BLANK),
+				new ViewAttributesQueryOption(true));
+		}
+		else {
+			queryOptionsList = new QueryOptionsList(
+				new FolderQueryOption(StringPool.BLANK));
+		}
 
 		List<SharepointObject> sharepointObjects =
 			_sharepointConnection.getSharepointObjects(query, queryOptionsList);

@@ -57,10 +57,10 @@ public class GetSharepointObjectsByQueryOperation extends BaseOperation {
 
 	@Override
 	public void afterPropertiesSet() {
-		String libraryName = sharepointConnectionInfo.getLibraryName();
+		String libraryPath = sharepointConnectionInfo.getLibraryPath();
 		String sitePath = sharepointConnectionInfo.getSitePath();
 
-		_pathPrefixToRemoveLength = libraryName.length() + sitePath.length();
+		_pathPrefixToRemoveLength = libraryPath.length() + sitePath.length();
 	}
 
 	public List<SharepointObject> execute(
