@@ -2,4 +2,5 @@
 /lib/.DS_Store
 /lib/axis-jaxrpc.jar
 /lib/axis.jar
+/lib/commons-logging.jar
 /lib/portal-compat-shared.jar
