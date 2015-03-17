@@ -717,7 +717,7 @@ public class SharepointWSRepository
 			}
 
 			String serverVersion = typeSettingsProperties.getProperty(
-				_SERVER_VERSION);
+				_SERVER_VERSION, StringPool.BLANK);
 
 			if (serverVersion.equals(_SHAREPOINT_2013_VALUE)) {
 				_serverVersion =
