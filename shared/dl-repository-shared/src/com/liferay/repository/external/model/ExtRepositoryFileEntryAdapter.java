@@ -331,9 +331,7 @@ public class ExtRepositoryFileEntryAdapter
 		User checkedOutByUser = getUser(
 			_extRepositoryFileEntry.getCheckedOutBy());
 
-		if (checkedOutByUser.getUserId() !=
-				PrincipalThreadLocal.getUserId()) {
-
+		if (checkedOutByUser.getUserId() != PrincipalThreadLocal.getUserId()) {
 			return false;
 		}
 
