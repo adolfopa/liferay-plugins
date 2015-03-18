@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.lar.PortletDataContext;
 import com.liferay.portal.kernel.lar.StagedModelDataHandlerUtil;
 import com.liferay.portal.kernel.lar.StagedModelModifiedDateComparator;
 import com.liferay.portal.kernel.util.FileUtil;
-import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.xml.Element;
@@ -60,27 +59,20 @@ public class DefinitionStagedModelDataHandler
 	}
 
 	@Override
-	public Definition fetchStagedModelByUuidAndCompanyId(
-		String uuid, long companyId) {
-
-		List<Definition> definitions =
-			DefinitionLocalServiceUtil.getDefinitionsByUuidAndCompanyId(
-				uuid, companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-				new StagedModelModifiedDateComparator<Definition>());
-
-		if (ListUtil.isEmpty(definitions)) {
-			return null;
-		}
-
-		return definitions.get(0);
-	}
-
-	@Override
 	public Definition fetchStagedModelByUuidAndGroupId(
 		String uuid, long groupId) {
 
 		return DefinitionLocalServiceUtil.fetchDefinitionByUuidAndGroupId(
 			uuid, groupId);
+	}
+
+	@Override
+	public List<Definition> fetchStagedModelsByUuidAndCompanyId(
+		String uuid, long companyId) {
+
+		return DefinitionLocalServiceUtil.getDefinitionsByUuidAndCompanyId(
+			uuid, companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			new StagedModelModifiedDateComparator<Definition>());
 	}
 
 	@Override

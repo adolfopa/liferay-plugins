@@ -20,7 +20,6 @@ import com.liferay.portal.kernel.lar.BaseStagedModelDataHandler;
 import com.liferay.portal.kernel.lar.ExportImportPathUtil;
 import com.liferay.portal.kernel.lar.PortletDataContext;
 import com.liferay.portal.kernel.lar.StagedModelModifiedDateComparator;
-import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.reports.model.Source;
@@ -49,25 +48,18 @@ public class SourceStagedModelDataHandler
 	}
 
 	@Override
-	public Source fetchStagedModelByUuidAndCompanyId(
-		String uuid, long companyId) {
-
-		List<Source> sources =
-			SourceLocalServiceUtil.getSourcesByUuidAndCompanyId(
-				uuid, companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-				new StagedModelModifiedDateComparator<Source>());
-
-		if (ListUtil.isEmpty(sources)) {
-			return null;
-		}
-
-		return sources.get(0);
-	}
-
-	@Override
 	public Source fetchStagedModelByUuidAndGroupId(String uuid, long groupId) {
 		return SourceLocalServiceUtil.fetchSourceByUuidAndGroupId(
 			uuid, groupId);
+	}
+
+	@Override
+	public List<Source> fetchStagedModelsByUuidAndCompanyId(
+		String uuid, long companyId) {
+
+		return SourceLocalServiceUtil.getSourcesByUuidAndCompanyId(
+			uuid, companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			new StagedModelModifiedDateComparator<Source>());
 	}
 
 	@Override
