@@ -20,7 +20,11 @@ package com.liferay.so.activities.util;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.model.DLFileVersion;
 import com.liferay.portlet.documentlibrary.service.DLFileVersionLocalServiceUtil;
+import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.portlet.social.model.SocialActivitySet;
+import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
+
+import java.util.List;
 
 /**
  * @author Matthew Kong
@@ -43,13 +47,25 @@ public class ActivitiesUtil {
 				classPK = activitySet.getActivitySetId();
 			}
 			else {
-				className = DLFileVersion.class.getName();
+				try {
+					className = DLFileVersion.class.getName();
 
-				DLFileVersion dlFileVersion =
-					DLFileVersionLocalServiceUtil.getLatestFileVersion(
-						classPK, false);
+					List<SocialActivity> activities = 
+						SocialActivityLocalServiceUtil.getActivitySetActivities(
+							activitySet.getActivitySetId(), -1, -1);
 
-				classPK = dlFileVersion.getFileVersionId();
+					SocialActivity activity = activities.get(0);
+	
+					classPK = activity.getClassPK();
+
+					DLFileVersion dlFileVersion =
+						DLFileVersionLocalServiceUtil.getLatestFileVersion(
+							classPK, false);
+
+					classPK = dlFileVersion.getFileVersionId();
+				}
+				catch (Exception e) {
+				}
 			}
 		}
 
