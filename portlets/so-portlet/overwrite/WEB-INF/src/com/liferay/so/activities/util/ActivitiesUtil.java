@@ -50,17 +50,15 @@ public class ActivitiesUtil {
 				try {
 					className = DLFileVersion.class.getName();
 
-					List<SocialActivity> activities = 
+					List<SocialActivity> activities =
 						SocialActivityLocalServiceUtil.getActivitySetActivities(
 							activitySet.getActivitySetId(), 0, 1);
 
 					SocialActivity activity = activities.get(0);
-	
-					classPK = activity.getClassPK();
 
 					DLFileVersion dlFileVersion =
 						DLFileVersionLocalServiceUtil.getLatestFileVersion(
-							classPK, false);
+							activity.getClassPK(), false);
 
 					classPK = dlFileVersion.getFileVersionId();
 				}
