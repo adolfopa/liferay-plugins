@@ -18,13 +18,7 @@
 package com.liferay.so.activities.util;
 
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
-import com.liferay.portlet.documentlibrary.model.DLFileVersion;
-import com.liferay.portlet.documentlibrary.service.DLFileVersionLocalServiceUtil;
-import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.portlet.social.model.SocialActivitySet;
-import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
-
-import java.util.List;
 
 /**
  * @author Matthew Kong
@@ -38,33 +32,13 @@ public class ActivitiesUtil {
 		String className = activitySet.getClassName();
 		long classPK = activitySet.getClassPK();
 
-		if (className.equals(DLFileEntry.class.getName())) {
-			if ((activitySet.getActivityCount() > 1) &&
-				(activitySet.getType() ==
-					SocialActivityKeyConstants.DL_ADD_FILE_ENTRY)) {
+		if (className.equals(DLFileEntry.class.getName()) &&
+			(activitySet.getActivityCount() > 1) &&
+			(activitySet.getType() ==
+				SocialActivityKeyConstants.DL_ADD_FILE_ENTRY)) {
 
-				className = SocialActivitySet.class.getName();
-				classPK = activitySet.getActivitySetId();
-			}
-			else {
-				try {
-					className = DLFileVersion.class.getName();
-
-					List<SocialActivity> activities =
-						SocialActivityLocalServiceUtil.getActivitySetActivities(
-							activitySet.getActivitySetId(), 0, 1);
-
-					SocialActivity activity = activities.get(0);
-
-					DLFileVersion dlFileVersion =
-						DLFileVersionLocalServiceUtil.getLatestFileVersion(
-							activity.getClassPK(), false);
-
-					classPK = dlFileVersion.getFileVersionId();
-				}
-				catch (Exception e) {
-				}
-			}
+			className = SocialActivitySet.class.getName();
+			classPK = activitySet.getActivitySetId();
 		}
 
 		return new Object[] {className, classPK};
