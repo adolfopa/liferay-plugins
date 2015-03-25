@@ -52,7 +52,7 @@ public class ActivitiesUtil {
 
 					List<SocialActivity> activities = 
 						SocialActivityLocalServiceUtil.getActivitySetActivities(
-							activitySet.getActivitySetId(), -1, -1);
+							activitySet.getActivitySetId(), 0, 1);
 
 					SocialActivity activity = activities.get(0);
 	
