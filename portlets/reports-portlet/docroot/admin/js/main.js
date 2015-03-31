@@ -2,12 +2,12 @@ AUI().use(
 	'escape',
 	function(A) {
 		var TPL_TAG_FORM = '<div class="form-inline {key}" >' +
-			'<input class="form-control" type="text" disabled="disabled" value="{parameterKey}" > ' +
-			'<input class="form-control" type="text" disabled="disabled" value="{parameterValue}" >' +
-			' <button class="btn btn-default"' +
-			' onClick="Liferay.Report.deleteParameter(\'{parameterKey}\', \'{parameterValue}\', \'{parameterType}\');">' +
-			'<i class="icon-remove" aria-label="Remove"></i></button>' +
-		'</div>';
+				'<input class="form-control" type="text" disabled="disabled" value="{parameterKey}" > ' +
+				'<input class="form-control" type="text" disabled="disabled" value="{parameterValue}" >' +
+				' <button class="btn btn-default"' +
+				' onClick="Liferay.Report.deleteParameter(\'{parameterKey}\', \'{parameterValue}\', \'{parameterType}\');">' +
+				'<i class="icon-remove" aria-label="Remove"></i></button>' +
+			'</div>';
 
 		Liferay.Report = {
 			initialize: function(param) {
@@ -68,14 +68,14 @@ AUI().use(
 						if (currentTarget.val() == 'startDateDay') {
 							parametersInputDate.setStyle('display', 'none');
 							parametersValueFieldSet.setStyle('display', 'block');
-							parametersValue.attr('disabled','disabled');
+							parametersValue.attr('disabled', 'disabled');
 							parametersValue.val('${startDateDay}');
 						}
 
 						if (currentTarget.val() == 'endDateDay') {
 							parametersInputDate.setStyle('display', 'none');
 							parametersValueFieldSet.setStyle('display', 'block');
-							parametersValue.attr('disabled','disabled');
+							parametersValue.attr('disabled', 'disabled');
 							parametersValue.val('${endDateDay}');
 						}
 					}

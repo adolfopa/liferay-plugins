@@ -5,9 +5,9 @@ AUI.add(
 
 		var CSS_DROPDOWN_MENU = '.dropdown-menu';
 
-		var CSS_LABEL_INFO = 'label-info';
-
 		var CSS_LABEL_IMPORTANT = 'label-important';
+
+		var CSS_LABEL_INFO = 'label-info';
 
 		var CSS_LABEL_SUCCESS = 'label-success';
 
@@ -124,6 +124,26 @@ AUI.add(
 						return url;
 					},
 
+					_updateItemStatus: function(item) {
+						var instance = this;
+
+						var status = item.status;
+
+						if (Lang.isNumber(status)) {
+							var cachedStatus = instance._cachedStatus;
+
+							var name = item.name;
+
+							var cachedValue = cachedStatus[name];
+
+							if (cachedValue !== status) {
+								instance._updateRowNodeLabelStatus(item);
+
+								cachedStatus[name] = status;
+							}
+						}
+					},
+
 					_updateLabelClass: function(node, status) {
 						var instance = this;
 
@@ -207,26 +227,6 @@ AUI.add(
 							instance._updateLabelClass(labelNode, status);
 
 							instance._updateRowNodeActionMenu(labelNode);
-						}
-					},
-
-					_updateItemStatus: function(item) {
-						var instance = this;
-
-						var status = item.status;
-
-						if (Lang.isNumber(status)) {
-							var cachedStatus = instance._cachedStatus;
-
-							var name = item.name;
-
-							var cachedValue = cachedStatus[name];
-
-							if (cachedValue !== status) {
-								instance._updateRowNodeLabelStatus(item);
-
-								cachedStatus[name] = status;
-							}
 						}
 					}
 				}

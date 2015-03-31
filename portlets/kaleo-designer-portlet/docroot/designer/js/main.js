@@ -1034,7 +1034,7 @@ AUI.add(
 											resultFields: [
 												{
 													key: 'resourceAction',
-													locator:'resource-action'
+													locator: 'resource-action'
 												}
 											],
 											resultListLocator: 'resource-actions'
@@ -1046,7 +1046,7 @@ AUI.add(
 											resultFields: [
 												{
 													key: 'roleId',
-													locator:'role-id'
+													locator: 'role-id'
 												}
 											],
 											resultListLocator: 'role'
@@ -1058,15 +1058,15 @@ AUI.add(
 											resultFields: [
 												{
 													key: 'autoCreate',
-													locator:'auto-create'
+													locator: 'auto-create'
 												},
 												{
 													key: 'roleName',
-													locator:'name'
+													locator: 'name'
 												},
 												{
 													key: 'roleType',
-													locator:'role-type'
+													locator: 'role-type'
 												}
 											],
 											resultListLocator: 'role'
@@ -1098,15 +1098,15 @@ AUI.add(
 											resultFields: [
 												{
 													key: 'emailAddress',
-													locator:'email-address'
+													locator: 'email-address'
 												},
 												{
 													key: 'screenName',
-													locator:'screen-name'
+													locator: 'screen-name'
 												},
 												{
 													key: 'userId',
-													locator:'user-id'
+													locator: 'user-id'
 												}
 											],
 											resultListLocator: 'user'
