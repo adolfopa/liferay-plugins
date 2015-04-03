@@ -216,6 +216,11 @@ public class WebSsoProfileIntegrationTest extends BaseSamlTestCase {
 		SAMLMessageContext<AuthnRequest, Response, NameID> samlMessageContext =
 			samlSsoRequestContext.getSAMLMessageContext();
 
+		Assert.assertNotNull(samlMessageContext.getInboundSAMLMessageId());
+
+		String inboundSamlMessageId =
+			samlMessageContext.getInboundSAMLMessageId();
+
 		mockHttpServletRequest = getMockHttpServletRequest(SSO_URL);
 
 		HttpSession mockSession = mockHttpServletRequest.getSession();
@@ -236,6 +241,8 @@ public class WebSsoProfileIntegrationTest extends BaseSamlTestCase {
 
 		samlMessageContext = samlSsoRequestContext.getSAMLMessageContext();
 
+		Assert.assertEquals(
+			inboundSamlMessageId, samlMessageContext.getInboundSAMLMessageId());
 		Assert.assertNotNull(samlMessageContext.getInboundSAMLMessage());
 		Assert.assertEquals(RELAY_STATE, samlMessageContext.getRelayState());
 		Assert.assertNull(
