@@ -280,6 +280,8 @@ public class WebSsoProfileImpl extends BaseProfile implements WebSsoProfile {
 					(AuthnRequest)OpenSamlUtil.unmarshall(authnRequestXml);
 
 				samlMessageContext.setInboundSAMLMessage(authnRequest);
+				samlMessageContext.setInboundSAMLMessageId(
+					authnRequest.getID());
 			}
 
 			String relayState = samlSsoRequestContext.getRelayState();
