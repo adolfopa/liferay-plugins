@@ -110,10 +110,9 @@ public class MetadataGeneratorUtil {
 
 		singleSignOnServices.add(singleSignOnService);
 
-		singleSignOnService =
-			OpenSamlUtil.buildSingleSignOnService(
-				SAMLConstants.SAML2_POST_BINDING_URI,
-				portalURL.concat(pathMain).concat("/portal/saml/sso"));
+		singleSignOnService = OpenSamlUtil.buildSingleSignOnService(
+			SAMLConstants.SAML2_POST_BINDING_URI,
+			portalURL.concat(pathMain).concat("/portal/saml/sso"));
 
 		singleSignOnServices.add(singleSignOnService);
 

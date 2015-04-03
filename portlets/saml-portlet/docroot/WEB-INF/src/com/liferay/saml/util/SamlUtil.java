@@ -395,7 +395,7 @@ public class SamlUtil {
 			}
 			else if (Validator.isNotNull(assertionConsumerServiceURL) &&
 					 assertionConsumerServiceURL.equals(
-						assertionConsumerService.getLocation())) {
+						 assertionConsumerService.getLocation())) {
 
 				return assertionConsumerService;
 			}
