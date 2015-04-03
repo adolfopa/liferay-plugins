@@ -241,9 +241,9 @@ public class WebSsoProfileIntegrationTest extends BaseSamlTestCase {
 
 		samlMessageContext = samlSsoRequestContext.getSAMLMessageContext();
 
+		Assert.assertNotNull(samlMessageContext.getInboundSAMLMessage());
 		Assert.assertEquals(
 			inboundSamlMessageId, samlMessageContext.getInboundSAMLMessageId());
-		Assert.assertNotNull(samlMessageContext.getInboundSAMLMessage());
 		Assert.assertEquals(RELAY_STATE, samlMessageContext.getRelayState());
 		Assert.assertNull(
 			mockSession.getAttribute(PortletWebKeys.SAML_SSO_REQUEST_CONTEXT));
