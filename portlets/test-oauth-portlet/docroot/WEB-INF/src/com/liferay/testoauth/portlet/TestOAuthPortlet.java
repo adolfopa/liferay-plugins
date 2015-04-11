@@ -48,6 +48,7 @@ public class TestOAuthPortlet extends MVCPortlet {
 		portletPreferences.reset("hostPort");
 		portletPreferences.reset("requestURI");
 		portletPreferences.reset("secret");
+		portletPreferences.reset("useServerProvidedCallbackUrl");
 
 		portletPreferences.store();
 	}
@@ -64,7 +65,7 @@ public class TestOAuthPortlet extends MVCPortlet {
 		String oAuthVerifier = ParamUtil.getString(
 			actionRequest, "oauth_verifier");
 
-		if (oAuthVerifier == null) {
+		if (Validator.isNull(oAuthVerifier)) {
 			SessionErrors.add(actionRequest, "authenticationFailed");
 
 			return;
@@ -100,6 +101,8 @@ public class TestOAuthPortlet extends MVCPortlet {
 		String hostPort = ParamUtil.getString(actionRequest, "hostPort");
 		String requestURI = ParamUtil.getString(actionRequest, "requestURI");
 		String secret = ParamUtil.getString(actionRequest, "secret");
+		boolean useServerProvidedCallbackUrl = ParamUtil.getBoolean(
+			actionRequest, "useServerProvidedCallbackUrl");
 
 		if (Validator.isNotNull(accessURI) &&
 			Validator.isNotNull(authorizeURI) &&
@@ -117,6 +120,9 @@ public class TestOAuthPortlet extends MVCPortlet {
 			portletPreferences.setValue("hostPort", hostPort);
 			portletPreferences.setValue("requestURI", requestURI);
 			portletPreferences.setValue("secret", secret);
+			portletPreferences.setValue(
+				"useServerProvidedCallbackUrl",
+				String.valueOf(useServerProvidedCallbackUrl));
 
 			portletPreferences.store();
 		}
