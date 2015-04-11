@@ -69,6 +69,10 @@ public class OAuthServiceHandlerFactory {
 		return oAuthServiceHandlerBase;
 	}
 
+	public static void resetServiceHandlers() {
+		_oAuthServiceHandlers.clear();
+	}
+
 	private static void validate(
 			String key, String secret, String accessURL, String authorizeURL,
 			String requestURL)
