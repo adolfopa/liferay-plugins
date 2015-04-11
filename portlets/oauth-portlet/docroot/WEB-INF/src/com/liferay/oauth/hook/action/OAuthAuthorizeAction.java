@@ -15,6 +15,7 @@
 package com.liferay.oauth.hook.action;
 
 import com.liferay.oauth.util.PortletKeys;
+import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.portlet.WindowStateFactory;
 import com.liferay.portal.kernel.struts.BaseStrutsAction;
 import com.liferay.portal.kernel.util.HttpUtil;
@@ -89,7 +90,7 @@ public class OAuthAuthorizeAction extends BaseStrutsAction {
 			return WindowStateFactory.getWindowState(windowStateString);
 		}
 
-		return WindowState.MAXIMIZED;
+		return LiferayWindowState.POP_UP;
 	}
 
 	protected boolean isSignedIn() {
