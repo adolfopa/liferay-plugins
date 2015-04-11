@@ -24,6 +24,7 @@
 	<liferay-ui:message key="access-uri" />: <strong><%= accessURI %></strong><br />
 	<liferay-ui:message key="authorize-uri" />: <strong><%= authorizeURI %></strong><br />
 	<liferay-ui:message key="request-uri" />: <strong><%= requestURI %></strong><br />
+	<liferay-ui:message key="use-server-provided-callback-url" />: <strong><%= String.valueOf(useServerProvidedCallbackUrl) %></strong><br />
 	<liferay-ui:message key="consumer-key" />: <strong><%= key %></strong><br />
 	<liferay-ui:message key="consumer-secret" />: <strong><%= secret %></strong>
 </p>

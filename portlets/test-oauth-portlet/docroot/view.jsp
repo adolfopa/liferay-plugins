@@ -38,6 +38,8 @@ String webId = ParamUtil.getString(request, "webId", null);
 
 			<aui:input label="request-uri" name="requestURI" required="<%= true %>" value="<%= requestURI %>" />
 
+			<aui:input helpMessage="check-to-test-server-side-defined-callback-url" label="use-server-provided-callback-url" name="useServerProvidedCallbackUrl" type="checkbox" />
+
 			<aui:input name="key" required="<%= true %>" />
 
 			<aui:input name="secret" required="<%= true %>" />
@@ -66,7 +68,7 @@ String webId = ParamUtil.getString(request, "webId", null);
 				<c:otherwise>
 					<liferay-portlet:actionURL name="setupOAuth" var="setupOAuthURL" />
 
-					<a href="<%= oAuthServiceHandler.getAuthorizeURL(requestToken, setupOAuthURL) %>"><liferay-ui:message key="authorize-access" /></a>
+					<a href="<%= oAuthServiceHandler.getAuthorizeURL(requestToken, useServerProvidedCallbackUrl ? null : setupOAuthURL) %>"><liferay-ui:message key="authorize-access" /></a>
 				</c:otherwise>
 			</c:choose>
 		</c:when>

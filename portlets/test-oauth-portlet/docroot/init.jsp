@@ -22,7 +22,8 @@
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
-<%@ page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
+<%@ page import="com.liferay.portal.kernel.util.GetterUtil" %><%@
+page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
 page import="com.liferay.portal.kernel.util.StringPool" %><%@
 page import="com.liferay.portal.kernel.util.Validator" %><%@
 page import="com.liferay.testoauth.oauth.LiferayOAuthJSONWSClient" %><%@
@@ -46,4 +47,5 @@ String hostPort = portletPreferences.getValue("hostPort", PortletPropsValues.OAU
 String key = portletPreferences.getValue("key", StringPool.BLANK);
 String requestURI = portletPreferences.getValue("requestURI", PortletPropsValues.OAUTH_REQUEST_TOKEN_URI);
 String secret = portletPreferences.getValue("secret", StringPool.BLANK);
+boolean useServerProvidedCallbackUrl = GetterUtil.getBoolean(portletPreferences.getValue("useServerProvidedCallbackUrl", null));
 %>
