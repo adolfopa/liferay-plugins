@@ -44,6 +44,13 @@ String webId = ParamUtil.getString(request, "webId", null);
 
 			<aui:input name="secret" required="<%= true %>" />
 
+			<aui:select label="oauth-portlet-authorize-window-state" name="windowState">
+				<aui:option label="oauth-provider-default" value="" />
+				<aui:option label="exclusive" value="<%= LiferayWindowState.EXCLUSIVE.toString() %>" />
+				<aui:option label="maximized" value="<%= LiferayWindowState.MAXIMIZED.toString() %>" />
+				<aui:option label="pop-up" value="<%= LiferayWindowState.POP_UP.toString() %>" />
+			</aui:select>
+
 			<aui:button-row>
 				<aui:button onClick='<%= renderResponse.getNamespace() + "setupOAuthConsumer();" %>' value="save" />
 			</aui:button-row>
