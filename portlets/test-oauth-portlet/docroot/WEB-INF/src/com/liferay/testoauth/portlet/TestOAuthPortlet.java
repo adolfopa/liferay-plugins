@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.testoauth.oauth.OAuthServiceHandler;
+import com.liferay.testoauth.oauth.OAuthServiceHandlerFactory;
 import com.liferay.testoauth.oauth.OAuthUtil;
 
 import javax.portlet.ActionRequest;
@@ -49,8 +50,11 @@ public class TestOAuthPortlet extends MVCPortlet {
 		portletPreferences.reset("requestURI");
 		portletPreferences.reset("secret");
 		portletPreferences.reset("useServerProvidedCallbackUrl");
+		portletPreferences.reset("windowState");
 
 		portletPreferences.store();
+
+		OAuthServiceHandlerFactory.resetServiceHandlers();
 	}
 
 	public void setupOAuth(
@@ -103,6 +107,7 @@ public class TestOAuthPortlet extends MVCPortlet {
 		String secret = ParamUtil.getString(actionRequest, "secret");
 		boolean useServerProvidedCallbackUrl = ParamUtil.getBoolean(
 			actionRequest, "useServerProvidedCallbackUrl");
+		String windowState = ParamUtil.getString(actionRequest, "windowState");
 
 		if (Validator.isNotNull(accessURI) &&
 			Validator.isNotNull(authorizeURI) &&
@@ -123,6 +128,7 @@ public class TestOAuthPortlet extends MVCPortlet {
 			portletPreferences.setValue(
 				"useServerProvidedCallbackUrl",
 				String.valueOf(useServerProvidedCallbackUrl));
+			portletPreferences.setValue("windowState", windowState);
 
 			portletPreferences.store();
 		}
