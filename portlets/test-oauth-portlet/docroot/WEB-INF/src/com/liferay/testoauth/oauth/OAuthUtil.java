@@ -17,6 +17,7 @@ package com.liferay.testoauth.oauth;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
@@ -74,9 +75,10 @@ public class OAuthUtil {
 		String windowState = portletPreferences.getValue("windowState", null);
 
 		String accessURL = buildURL(
-			hostName, Integer.parseInt(hostPort), "http", accessURI);
+			hostName, GetterUtil.getInteger(hostPort), "http", accessURI);
+
 		String authorizeURL = buildURL(
-			hostName, Integer.parseInt(hostPort), "http", authorizeURI);
+			hostName, GetterUtil.getInteger(hostPort), "http", authorizeURI);
 
 		if (Validator.isNotNull(windowState)) {
 			authorizeURL = HttpUtil.addParameter(
@@ -84,7 +86,7 @@ public class OAuthUtil {
 		}
 
 		String requestURL = buildURL(
-			hostName, Integer.parseInt(hostPort), "http", requestURI);
+			hostName, GetterUtil.getInteger(hostPort), "http", requestURI);
 
 		try {
 			return OAuthServiceHandlerFactory.getInstance(
