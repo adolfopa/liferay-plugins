@@ -647,7 +647,15 @@ public class SharepointWSRepository
 	public String getLiferayLogin(String extRepositoryLogin) {
 		int index = extRepositoryLogin.lastIndexOf(StringPool.BACK_SLASH);
 
-		return extRepositoryLogin.substring(index + 1);
+		String login = extRepositoryLogin.substring(index + 1);
+
+		index = login.indexOf(",#");
+
+		if (index == -1) {
+			return login;
+		}
+
+		return login.substring(0, index);
 	}
 
 	@Override

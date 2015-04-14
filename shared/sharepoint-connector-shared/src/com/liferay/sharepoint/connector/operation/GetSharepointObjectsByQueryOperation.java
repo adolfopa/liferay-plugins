@@ -208,7 +208,13 @@ public class GetSharepointObjectsByQueryOperation extends BaseOperation {
 
 			Node owsAuthorNode = namedNodeMap.getNamedItem("ows_Author");
 			Node owsCheckedOutUserIdNode = namedNodeMap.getNamedItem(
-				"ows_CheckedOutTitle");
+				"ows_CheckoutUser");
+
+			if (owsCheckedOutUserIdNode == null) {
+				owsCheckedOutUserIdNode = namedNodeMap.getNamedItem(
+					"ows_CheckedOutTitle");
+			}
+
 			Node owsCreatedX0020DateNode = namedNodeMap.getNamedItem(
 				"ows_Created_x0020_Date");
 			Node owsFSObjTypeNode = namedNodeMap.getNamedItem("ows_FSObjType");
