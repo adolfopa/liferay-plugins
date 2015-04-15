@@ -25,6 +25,7 @@ import com.liferay.sharepoint.connector.schema.query.Query;
 import com.liferay.sharepoint.connector.schema.query.QueryField;
 import com.liferay.sharepoint.connector.schema.query.QueryFieldsList;
 import com.liferay.sharepoint.connector.schema.query.QueryOptionsList;
+import com.liferay.sharepoint.connector.schema.query.option.ExpandUserFieldQueryOption;
 
 import com.microsoft.schemas.sharepoint.soap.GetListItemsQuery;
 import com.microsoft.schemas.sharepoint.soap.GetListItemsQueryOptions;
@@ -74,6 +75,12 @@ public class GetSharepointObjectsByQueryOperation extends BaseOperation {
 		GetListItemsQuery getListItemsQuery = getGetListItemsQuery(query);
 		GetListItemsViewFields getListItemsViewFields =
 			getGetListItemsViewFields(queryFieldNames);
+
+		if (!queryOptionsList.contains(ExpandUserFieldQueryOption.class)) {
+			queryOptionsList = queryOptionsList.append(
+				new ExpandUserFieldQueryOption(true));
+		}
+
 		GetListItemsQueryOptions getListItemsQueryOptions =
 			getGetListItemsQueryOptions(queryOptionsList);
 

@@ -87,7 +87,8 @@ public class PathHelper {
 	}
 
 	public void validatePath(String path) {
-		if ((path == null) || (!path.equals(StringPool.SLASH) &&
+		if ((path == null) ||
+			(!path.equals(StringPool.SLASH) &&
 			 (!path.startsWith(StringPool.SLASH) ||
 			  path.endsWith(StringPool.SLASH)))) {
 

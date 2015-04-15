@@ -14,6 +14,7 @@
 
 package com.liferay.sharepoint.connector.schema.query;
 
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.xml.simple.Element;
 import com.liferay.sharepoint.connector.schema.BaseNode;
 import com.liferay.sharepoint.connector.schema.query.option.BaseQueryOption;
@@ -30,6 +31,23 @@ public class QueryOptionsList extends BaseNode {
 		else {
 			_baseQueryOptions = baseQueryOptions;
 		}
+	}
+
+	public QueryOptionsList append(BaseQueryOption... baseQueryOptions) {
+		return new QueryOptionsList(
+			ArrayUtil.append(_baseQueryOptions, baseQueryOptions));
+	}
+
+	public boolean contains(
+		Class<? extends BaseQueryOption> baseQueryOptionClass) {
+
+		for (BaseQueryOption baseQueryOption : _baseQueryOptions) {
+			if (baseQueryOption.getClass() == baseQueryOptionClass) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	@Override

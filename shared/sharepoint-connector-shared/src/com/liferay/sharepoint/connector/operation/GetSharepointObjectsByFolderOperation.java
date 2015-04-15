@@ -22,7 +22,6 @@ import com.liferay.sharepoint.connector.schema.query.QueryField;
 import com.liferay.sharepoint.connector.schema.query.QueryOptionsList;
 import com.liferay.sharepoint.connector.schema.query.QueryValue;
 import com.liferay.sharepoint.connector.schema.query.operator.EqOperator;
-import com.liferay.sharepoint.connector.schema.query.option.ExpandUserFieldQueryOption;
 import com.liferay.sharepoint.connector.schema.query.option.FolderQueryOption;
 
 import java.util.List;
@@ -71,7 +70,6 @@ public class GetSharepointObjectsByFolderOperation extends BaseOperation {
 		String folderFullPath = toFullPath(folderPath);
 
 		QueryOptionsList queryOptionsList = new QueryOptionsList(
-			new ExpandUserFieldQueryOption(true),
 			new FolderQueryOption(folderFullPath));
 
 		return _getSharepointObjectsByQueryOperation.execute(

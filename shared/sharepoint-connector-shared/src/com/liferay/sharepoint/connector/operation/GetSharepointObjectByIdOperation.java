@@ -22,7 +22,6 @@ import com.liferay.sharepoint.connector.schema.query.QueryField;
 import com.liferay.sharepoint.connector.schema.query.QueryOptionsList;
 import com.liferay.sharepoint.connector.schema.query.QueryValue;
 import com.liferay.sharepoint.connector.schema.query.operator.EqOperator;
-import com.liferay.sharepoint.connector.schema.query.option.ExpandUserFieldQueryOption;
 import com.liferay.sharepoint.connector.schema.query.option.FolderQueryOption;
 import com.liferay.sharepoint.connector.schema.query.option.ViewAttributesQueryOption;
 
@@ -45,7 +44,6 @@ public class GetSharepointObjectByIdOperation extends BaseOperation {
 				new QueryField("ID"),
 				new QueryValue(String.valueOf(sharepointObjectId))));
 		QueryOptionsList queryOptionsList = new QueryOptionsList(
-			new ExpandUserFieldQueryOption(true),
 			new FolderQueryOption(StringPool.BLANK),
 			new ViewAttributesQueryOption(true));
 
