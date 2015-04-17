@@ -214,6 +214,7 @@ public class GetSharepointObjectsByQueryOperation extends BaseOperation {
 			path = path.substring(_pathPrefixToRemoveLength);
 
 			Node owsAuthorNode = namedNodeMap.getNamedItem("ows_Author");
+
 			Node owsCheckedOutUserIdNode = namedNodeMap.getNamedItem(
 				"ows_CheckoutUser");
 
