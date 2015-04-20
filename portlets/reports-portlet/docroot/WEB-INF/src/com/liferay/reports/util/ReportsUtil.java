@@ -97,11 +97,9 @@ public class ReportsUtil {
 	public static Map<Locale, String> getLocalizationMap(
 		HttpServletRequest request, String parameter) {
 
-		Locale[] locales = LanguageUtil.getAvailableLocales();
-
 		Map<Locale, String> map = new HashMap<>();
 
-		for (Locale locale : locales) {
+		for (Locale locale : LanguageUtil.getAvailableLocales()) {
 			String languageId = LocaleUtil.toLanguageId(locale);
 
 			String localeParameter =
