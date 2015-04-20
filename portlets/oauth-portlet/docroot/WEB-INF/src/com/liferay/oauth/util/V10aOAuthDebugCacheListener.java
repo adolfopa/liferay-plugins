@@ -29,8 +29,13 @@ import java.io.Serializable;
 public class V10aOAuthDebugCacheListener implements CacheListener {
 
 	@Override
+	public void dispose() {
+	}
+
+	@Override
 	public void notifyEntryEvicted(
-			PortalCache portalCache, Serializable key, Object value)
+			PortalCache portalCache, Serializable key, Object value,
+			int timeToLive)
 		throws PortalCacheException {
 
 		logDebug("Entry evicted", key, value);
@@ -38,7 +43,8 @@ public class V10aOAuthDebugCacheListener implements CacheListener {
 
 	@Override
 	public void notifyEntryExpired(
-			PortalCache portalCache, Serializable key, Object value)
+			PortalCache portalCache, Serializable key, Object value,
+			int timeToLive)
 		throws PortalCacheException {
 
 		logDebug("Entry expired", key, value);
@@ -46,7 +52,8 @@ public class V10aOAuthDebugCacheListener implements CacheListener {
 
 	@Override
 	public void notifyEntryPut(
-			PortalCache portalCache, Serializable key, Object value)
+			PortalCache portalCache, Serializable key, Object value,
+			int timeToLive)
 		throws PortalCacheException {
 
 		logDebug("Entry put", key, value);
@@ -54,7 +61,8 @@ public class V10aOAuthDebugCacheListener implements CacheListener {
 
 	@Override
 	public void notifyEntryRemoved(
-			PortalCache portalCache, Serializable key, Object value)
+			PortalCache portalCache, Serializable key, Object value,
+			int timeToLive)
 		throws PortalCacheException {
 
 		logDebug("Entry removed", key, value);
@@ -62,7 +70,8 @@ public class V10aOAuthDebugCacheListener implements CacheListener {
 
 	@Override
 	public void notifyEntryUpdated(
-			PortalCache portalCache, Serializable key, Object value)
+			PortalCache portalCache, Serializable key, Object value,
+			int timeToLive)
 		throws PortalCacheException {
 
 		logDebug("Entry updated", key, value);
