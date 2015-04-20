@@ -20,7 +20,6 @@ import com.liferay.oauth.service.base.OAuthUserServiceBaseImpl;
 import com.liferay.oauth.service.permission.OAuthUserPermission;
 import com.liferay.oauth.util.OAuthUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.service.ServiceContext;
@@ -34,7 +33,7 @@ public class OAuthUserServiceImpl extends OAuthUserServiceBaseImpl {
 	@Override
 	public OAuthUser addOAuthUser(
 			String consumerKey, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		OAuthApplication oAuthApplication =
 			oAuthApplicationPersistence.findByConsumerKey(consumerKey);
@@ -60,7 +59,7 @@ public class OAuthUserServiceImpl extends OAuthUserServiceBaseImpl {
 
 	@Override
 	public OAuthUser deleteOAuthUser(long oAuthApplicationId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		OAuthUser oAuthUser = oAuthUserPersistence.findByU_OAI(
 			getUserId(), oAuthApplicationId);

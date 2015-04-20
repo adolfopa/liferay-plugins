@@ -95,9 +95,8 @@ public class OAuthUtil {
 				Constructor oauthConstructor = oauthClassName.getConstructor(
 					OAuthValidator.class);
 
-				_oAuth =
-					(OAuth)oauthConstructor.newInstance(
-						new DefaultOAuthValidator());
+				_oAuth = (OAuth)oauthConstructor.newInstance(
+					new DefaultOAuthValidator());
 			}
 			catch (Exception e) {
 				throw new RuntimeException(e);
