@@ -14,11 +14,11 @@
 
 package com.liferay.oauth.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.oauth.model.OAuthApplicationClp;
 import com.liferay.oauth.model.OAuthUserClp;
 
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream;
 import com.liferay.portal.kernel.log.Log;
@@ -39,6 +39,7 @@ import java.util.List;
 /**
  * @author Ivica Cardic
  */
+@ProviderType
 public class ClpSerializer {
 	public static String getServletContextName() {
 		if (Validator.isNotNull(_servletContextName)) {
@@ -291,6 +292,13 @@ public class ClpSerializer {
 
 				return throwable;
 			}
+			catch (ClassNotFoundException cnfe) {
+				if (_log.isInfoEnabled()) {
+					_log.info("Do not use reflection to translate throwable");
+				}
+
+				_useReflectionToTranslateThrowable = false;
+			}
 			catch (SecurityException se) {
 				if (_log.isInfoEnabled()) {
 					_log.info("Do not use reflection to translate throwable");
@@ -309,34 +317,31 @@ public class ClpSerializer {
 
 		String className = clazz.getName();
 
-		if (className.equals(PortalException.class.getName())) {
-			return new PortalException();
-		}
-
-		if (className.equals(SystemException.class.getName())) {
-			return new SystemException();
-		}
-
 		if (className.equals(
 					"com.liferay.oauth.OAuthApplicationCallbackURIException")) {
-			return new com.liferay.oauth.OAuthApplicationCallbackURIException();
+			return new com.liferay.oauth.OAuthApplicationCallbackURIException(throwable.getMessage(),
+				throwable.getCause());
 		}
 
 		if (className.equals("com.liferay.oauth.OAuthApplicationNameException")) {
-			return new com.liferay.oauth.OAuthApplicationNameException();
+			return new com.liferay.oauth.OAuthApplicationNameException(throwable.getMessage(),
+				throwable.getCause());
 		}
 
 		if (className.equals(
 					"com.liferay.oauth.OAuthApplicationWebsiteURLException")) {
-			return new com.liferay.oauth.OAuthApplicationWebsiteURLException();
+			return new com.liferay.oauth.OAuthApplicationWebsiteURLException(throwable.getMessage(),
+				throwable.getCause());
 		}
 
 		if (className.equals("com.liferay.oauth.NoSuchApplicationException")) {
-			return new com.liferay.oauth.NoSuchApplicationException();
+			return new com.liferay.oauth.NoSuchApplicationException(throwable.getMessage(),
+				throwable.getCause());
 		}
 
 		if (className.equals("com.liferay.oauth.NoSuchUserException")) {
-			return new com.liferay.oauth.NoSuchUserException();
+			return new com.liferay.oauth.NoSuchUserException(throwable.getMessage(),
+				throwable.getCause());
 		}
 
 		return throwable;

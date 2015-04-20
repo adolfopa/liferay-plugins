@@ -14,6 +14,8 @@
 
 package com.liferay.oauth.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.model.AuditedModel;
 import com.liferay.portal.model.BaseModel;
@@ -39,6 +41,7 @@ import java.util.Date;
  * @see com.liferay.oauth.model.impl.OAuthUserModelImpl
  * @generated
  */
+@ProviderType
 public interface OAuthUserModel extends AuditedModel, BaseModel<OAuthUser> {
 	/*
 	 * NOTE FOR DEVELOPERS:
@@ -266,19 +269,19 @@ public interface OAuthUserModel extends AuditedModel, BaseModel<OAuthUser> {
 	public Object clone();
 
 	@Override
-	public int compareTo(OAuthUser oAuthUser);
+	public int compareTo(com.liferay.oauth.model.OAuthUser oAuthUser);
 
 	@Override
 	public int hashCode();
 
 	@Override
-	public CacheModel<OAuthUser> toCacheModel();
+	public CacheModel<com.liferay.oauth.model.OAuthUser> toCacheModel();
 
 	@Override
-	public OAuthUser toEscapedModel();
+	public com.liferay.oauth.model.OAuthUser toEscapedModel();
 
 	@Override
-	public OAuthUser toUnescapedModel();
+	public com.liferay.oauth.model.OAuthUser toUnescapedModel();
 
 	@Override
 	public String toString();

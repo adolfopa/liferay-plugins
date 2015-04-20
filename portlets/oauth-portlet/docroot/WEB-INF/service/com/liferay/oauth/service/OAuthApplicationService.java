@@ -14,6 +14,8 @@
 
 package com.liferay.oauth.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebService;
@@ -36,6 +38,7 @@ import com.liferay.portal.service.InvokableService;
  */
 @AccessControlled
 @JSONWebService
+@ProviderType
 @Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
 	PortalException.class, SystemException.class})
 public interface OAuthApplicationService extends BaseService, InvokableService {
@@ -49,14 +52,12 @@ public interface OAuthApplicationService extends BaseService, InvokableService {
 		boolean shareableAccessToken, java.lang.String callbackURI,
 		java.lang.String websiteURL,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		throws PortalException;
 
-	public void deleteLogo(long oAuthApplicationId)
-		throws com.liferay.portal.kernel.exception.PortalException;
+	public void deleteLogo(long oAuthApplicationId) throws PortalException;
 
 	public com.liferay.oauth.model.OAuthApplication deleteOAuthApplication(
-		long oAuthApplicationId)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		long oAuthApplicationId) throws PortalException;
 
 	/**
 	* Returns the Spring bean ID for this bean.
@@ -79,12 +80,12 @@ public interface OAuthApplicationService extends BaseService, InvokableService {
 
 	public com.liferay.oauth.model.OAuthApplication updateLogo(
 		long oAuthApplicationId, java.io.InputStream inputStream)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		throws PortalException;
 
 	public com.liferay.oauth.model.OAuthApplication updateOAuthApplication(
 		long oAuthApplicationId, java.lang.String name,
 		java.lang.String description, boolean shareableAccessToken,
 		java.lang.String callbackURI, java.lang.String websiteURL,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		throws PortalException;
 }

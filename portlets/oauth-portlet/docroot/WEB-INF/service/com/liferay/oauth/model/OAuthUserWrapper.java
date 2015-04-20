@@ -14,6 +14,8 @@
 
 package com.liferay.oauth.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
@@ -30,6 +32,7 @@ import java.util.Map;
  * @see OAuthUser
  * @generated
  */
+@ProviderType
 public class OAuthUserWrapper implements OAuthUser, ModelWrapper<OAuthUser> {
 	public OAuthUserWrapper(OAuthUser oAuthUser) {
 		_oAuthUser = oAuthUser;
@@ -165,7 +168,7 @@ public class OAuthUserWrapper implements OAuthUser, ModelWrapper<OAuthUser> {
 	* @return the create date of this o auth user
 	*/
 	@Override
-	public java.util.Date getCreateDate() {
+	public Date getCreateDate() {
 		return _oAuthUser.getCreateDate();
 	}
 
@@ -180,7 +183,7 @@ public class OAuthUserWrapper implements OAuthUser, ModelWrapper<OAuthUser> {
 	* @return the modified date of this o auth user
 	*/
 	@Override
-	public java.util.Date getModifiedDate() {
+	public Date getModifiedDate() {
 		return _oAuthUser.getModifiedDate();
 	}
 
@@ -325,7 +328,7 @@ public class OAuthUserWrapper implements OAuthUser, ModelWrapper<OAuthUser> {
 	* @param createDate the create date of this o auth user
 	*/
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
+	public void setCreateDate(Date createDate) {
 		_oAuthUser.setCreateDate(createDate);
 	}
 
@@ -353,7 +356,7 @@ public class OAuthUserWrapper implements OAuthUser, ModelWrapper<OAuthUser> {
 	* @param modifiedDate the modified date of this o auth user
 	*/
 	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
+	public void setModifiedDate(Date modifiedDate) {
 		_oAuthUser.setModifiedDate(modifiedDate);
 	}
 
@@ -509,5 +512,5 @@ public class OAuthUserWrapper implements OAuthUser, ModelWrapper<OAuthUser> {
 		_oAuthUser.resetOriginalValues();
 	}
 
-	private OAuthUser _oAuthUser;
+	private final OAuthUser _oAuthUser;
 }

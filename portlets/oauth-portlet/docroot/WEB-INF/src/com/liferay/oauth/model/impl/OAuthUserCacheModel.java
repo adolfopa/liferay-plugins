@@ -14,8 +14,11 @@
 
 package com.liferay.oauth.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.oauth.model.OAuthUser;
 
+import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
@@ -34,8 +37,33 @@ import java.util.Date;
  * @see OAuthUser
  * @generated
  */
+@ProviderType
 public class OAuthUserCacheModel implements CacheModel<OAuthUser>,
 	Externalizable {
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof OAuthUserCacheModel)) {
+			return false;
+		}
+
+		OAuthUserCacheModel oAuthUserCacheModel = (OAuthUserCacheModel)obj;
+
+		if (oAuthUserId == oAuthUserCacheModel.oAuthUserId) {
+			return true;
+		}
+
+		return false;
+	}
+
+	@Override
+	public int hashCode() {
+		return HashUtil.hash(0, oAuthUserId);
+	}
+
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(19);

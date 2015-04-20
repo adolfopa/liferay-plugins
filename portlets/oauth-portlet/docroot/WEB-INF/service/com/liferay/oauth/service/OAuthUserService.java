@@ -14,6 +14,8 @@
 
 package com.liferay.oauth.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebService;
@@ -36,6 +38,7 @@ import com.liferay.portal.service.InvokableService;
  */
 @AccessControlled
 @JSONWebService
+@ProviderType
 @Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
 	PortalException.class, SystemException.class})
 public interface OAuthUserService extends BaseService, InvokableService {
@@ -44,6 +47,13 @@ public interface OAuthUserService extends BaseService, InvokableService {
 	 *
 	 * Never modify or reference this interface directly. Always use {@link OAuthUserServiceUtil} to access the o auth user remote service. Add custom service methods to {@link com.liferay.oauth.service.impl.OAuthUserServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public com.liferay.oauth.model.OAuthUser addOAuthUser(
+		java.lang.String consumerKey,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws PortalException, SystemException;
+
+	public com.liferay.oauth.model.OAuthUser deleteOAuthUser(
+		long oAuthApplicationId) throws PortalException, SystemException;
 
 	/**
 	* Returns the Spring bean ID for this bean.
@@ -52,26 +62,15 @@ public interface OAuthUserService extends BaseService, InvokableService {
 	*/
 	public java.lang.String getBeanIdentifier();
 
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
+
 	/**
 	* Sets the Spring bean ID for this bean.
 	*
 	* @param beanIdentifier the Spring bean ID for this bean
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier);
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
-
-	public com.liferay.oauth.model.OAuthUser addOAuthUser(
-		java.lang.String consumerKey,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	public com.liferay.oauth.model.OAuthUser deleteOAuthUser(
-		long oAuthApplicationId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
 }

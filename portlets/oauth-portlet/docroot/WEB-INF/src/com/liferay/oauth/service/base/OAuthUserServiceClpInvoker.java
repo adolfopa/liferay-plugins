@@ -14,6 +14,8 @@
 
 package com.liferay.oauth.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.oauth.service.OAuthUserServiceUtil;
 
 import java.util.Arrays;
@@ -22,61 +24,62 @@ import java.util.Arrays;
  * @author Ivica Cardic
  * @generated
  */
+@ProviderType
 public class OAuthUserServiceClpInvoker {
 	public OAuthUserServiceClpInvoker() {
-		_methodName24 = "getBeanIdentifier";
+		_methodName30 = "getBeanIdentifier";
 
-		_methodParameterTypes24 = new String[] {  };
+		_methodParameterTypes30 = new String[] {  };
 
-		_methodName25 = "setBeanIdentifier";
+		_methodName31 = "setBeanIdentifier";
 
-		_methodParameterTypes25 = new String[] { "java.lang.String" };
+		_methodParameterTypes31 = new String[] { "java.lang.String" };
 
-		_methodName30 = "addOAuthUser";
+		_methodName36 = "addOAuthUser";
 
-		_methodParameterTypes30 = new String[] {
+		_methodParameterTypes36 = new String[] {
 				"java.lang.String", "com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName31 = "deleteOAuthUser";
+		_methodName37 = "deleteOAuthUser";
 
-		_methodParameterTypes31 = new String[] { "long" };
+		_methodParameterTypes37 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
-		if (_methodName24.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes24, parameterTypes)) {
+		if (_methodName30.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes30, parameterTypes)) {
 			return OAuthUserServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName25.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes25, parameterTypes)) {
+		if (_methodName31.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes31, parameterTypes)) {
 			OAuthUserServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName30.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes30, parameterTypes)) {
+		if (_methodName36.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes36, parameterTypes)) {
 			return OAuthUserServiceUtil.addOAuthUser((java.lang.String)arguments[0],
 				(com.liferay.portal.service.ServiceContext)arguments[1]);
 		}
 
-		if (_methodName31.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes31, parameterTypes)) {
+		if (_methodName37.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes37, parameterTypes)) {
 			return OAuthUserServiceUtil.deleteOAuthUser(((Long)arguments[0]).longValue());
 		}
 
 		throw new UnsupportedOperationException();
 	}
 
-	private String _methodName24;
-	private String[] _methodParameterTypes24;
-	private String _methodName25;
-	private String[] _methodParameterTypes25;
 	private String _methodName30;
 	private String[] _methodParameterTypes30;
 	private String _methodName31;
 	private String[] _methodParameterTypes31;
+	private String _methodName36;
+	private String[] _methodParameterTypes36;
+	private String _methodName37;
+	private String[] _methodParameterTypes37;
 }

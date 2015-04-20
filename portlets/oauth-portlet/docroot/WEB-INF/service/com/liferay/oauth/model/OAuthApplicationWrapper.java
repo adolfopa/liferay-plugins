@@ -14,6 +14,8 @@
 
 package com.liferay.oauth.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
@@ -30,6 +32,7 @@ import java.util.Map;
  * @see OAuthApplication
  * @generated
  */
+@ProviderType
 public class OAuthApplicationWrapper implements OAuthApplication,
 	ModelWrapper<OAuthApplication> {
 	public OAuthApplicationWrapper(OAuthApplication oAuthApplication) {
@@ -235,7 +238,7 @@ public class OAuthApplicationWrapper implements OAuthApplication,
 	* @return the create date of this o auth application
 	*/
 	@Override
-	public java.util.Date getCreateDate() {
+	public Date getCreateDate() {
 		return _oAuthApplication.getCreateDate();
 	}
 
@@ -270,7 +273,7 @@ public class OAuthApplicationWrapper implements OAuthApplication,
 	* @return the modified date of this o auth application
 	*/
 	@Override
-	public java.util.Date getModifiedDate() {
+	public Date getModifiedDate() {
 		return _oAuthApplication.getModifiedDate();
 	}
 
@@ -455,7 +458,7 @@ public class OAuthApplicationWrapper implements OAuthApplication,
 	* @param createDate the create date of this o auth application
 	*/
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
+	public void setCreateDate(Date createDate) {
 		_oAuthApplication.setCreateDate(createDate);
 	}
 
@@ -503,7 +506,7 @@ public class OAuthApplicationWrapper implements OAuthApplication,
 	* @param modifiedDate the modified date of this o auth application
 	*/
 	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
+	public void setModifiedDate(Date modifiedDate) {
 		_oAuthApplication.setModifiedDate(modifiedDate);
 	}
 
@@ -670,5 +673,5 @@ public class OAuthApplicationWrapper implements OAuthApplication,
 		_oAuthApplication.resetOriginalValues();
 	}
 
-	private OAuthApplication _oAuthApplication;
+	private final OAuthApplication _oAuthApplication;
 }

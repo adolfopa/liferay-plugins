@@ -14,6 +14,8 @@
 
 package com.liferay.oauth.service.persistence.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.oauth.NoSuchUserException;
 import com.liferay.oauth.model.OAuthUser;
 import com.liferay.oauth.model.impl.OAuthUserImpl;
@@ -61,9 +63,10 @@ import java.util.Set;
  *
  * @author Ivica Cardic
  * @see OAuthUserPersistence
- * @see OAuthUserUtil
+ * @see com.liferay.oauth.service.persistence.OAuthUserUtil
  * @generated
  */
+@ProviderType
 public class OAuthUserPersistenceImpl extends BasePersistenceImpl<OAuthUser>
 	implements OAuthUserPersistence {
 	/*
@@ -120,7 +123,7 @@ public class OAuthUserPersistenceImpl extends BasePersistenceImpl<OAuthUser>
 	 * Returns a range of all the o auth users where userId = &#63;.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.oauth.model.impl.OAuthUserModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link OAuthUserModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
 	 * @param userId the user ID
@@ -137,7 +140,7 @@ public class OAuthUserPersistenceImpl extends BasePersistenceImpl<OAuthUser>
 	 * Returns an ordered range of all the o auth users where userId = &#63;.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.oauth.model.impl.OAuthUserModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link OAuthUserModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
 	 * @param userId the user ID
@@ -250,7 +253,7 @@ public class OAuthUserPersistenceImpl extends BasePersistenceImpl<OAuthUser>
 	 * @param userId the user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching o auth user
-	 * @throws com.liferay.oauth.NoSuchUserException if a matching o auth user could not be found
+	 * @throws NoSuchUserException if a matching o auth user could not be found
 	 */
 	@Override
 	public OAuthUser findByUserId_First(long userId,
@@ -299,7 +302,7 @@ public class OAuthUserPersistenceImpl extends BasePersistenceImpl<OAuthUser>
 	 * @param userId the user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching o auth user
-	 * @throws com.liferay.oauth.NoSuchUserException if a matching o auth user could not be found
+	 * @throws NoSuchUserException if a matching o auth user could not be found
 	 */
 	@Override
 	public OAuthUser findByUserId_Last(long userId,
@@ -356,7 +359,7 @@ public class OAuthUserPersistenceImpl extends BasePersistenceImpl<OAuthUser>
 	 * @param userId the user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next o auth user
-	 * @throws com.liferay.oauth.NoSuchUserException if a o auth user with the primary key could not be found
+	 * @throws NoSuchUserException if a o auth user with the primary key could not be found
 	 */
 	@Override
 	public OAuthUser[] findByUserId_PrevAndNext(long oAuthUserId, long userId,
@@ -510,7 +513,7 @@ public class OAuthUserPersistenceImpl extends BasePersistenceImpl<OAuthUser>
 	 * Returns a range of all the o auth users that the user has permission to view where userId = &#63;.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.oauth.model.impl.OAuthUserModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link OAuthUserModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
 	 * @param userId the user ID
@@ -527,7 +530,7 @@ public class OAuthUserPersistenceImpl extends BasePersistenceImpl<OAuthUser>
 	 * Returns an ordered range of all the o auth users that the user has permissions to view where userId = &#63;.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.oauth.model.impl.OAuthUserModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link OAuthUserModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
 	 * @param userId the user ID
@@ -623,7 +626,7 @@ public class OAuthUserPersistenceImpl extends BasePersistenceImpl<OAuthUser>
 	 * @param userId the user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next o auth user
-	 * @throws com.liferay.oauth.NoSuchUserException if a o auth user with the primary key could not be found
+	 * @throws NoSuchUserException if a o auth user with the primary key could not be found
 	 */
 	@Override
 	public OAuthUser[] filterFindByUserId_PrevAndNext(long oAuthUserId,
@@ -950,7 +953,7 @@ public class OAuthUserPersistenceImpl extends BasePersistenceImpl<OAuthUser>
 	 * Returns a range of all the o auth users where oAuthApplicationId = &#63;.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.oauth.model.impl.OAuthUserModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link OAuthUserModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
 	 * @param oAuthApplicationId the o auth application ID
@@ -968,7 +971,7 @@ public class OAuthUserPersistenceImpl extends BasePersistenceImpl<OAuthUser>
 	 * Returns an ordered range of all the o auth users where oAuthApplicationId = &#63;.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.oauth.model.impl.OAuthUserModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link OAuthUserModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
 	 * @param oAuthApplicationId the o auth application ID
@@ -1085,7 +1088,7 @@ public class OAuthUserPersistenceImpl extends BasePersistenceImpl<OAuthUser>
 	 * @param oAuthApplicationId the o auth application ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching o auth user
-	 * @throws com.liferay.oauth.NoSuchUserException if a matching o auth user could not be found
+	 * @throws NoSuchUserException if a matching o auth user could not be found
 	 */
 	@Override
 	public OAuthUser findByOAuthApplicationId_First(long oAuthApplicationId,
@@ -1136,7 +1139,7 @@ public class OAuthUserPersistenceImpl extends BasePersistenceImpl<OAuthUser>
 	 * @param oAuthApplicationId the o auth application ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching o auth user
-	 * @throws com.liferay.oauth.NoSuchUserException if a matching o auth user could not be found
+	 * @throws NoSuchUserException if a matching o auth user could not be found
 	 */
 	@Override
 	public OAuthUser findByOAuthApplicationId_Last(long oAuthApplicationId,
@@ -1194,7 +1197,7 @@ public class OAuthUserPersistenceImpl extends BasePersistenceImpl<OAuthUser>
 	 * @param oAuthApplicationId the o auth application ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next o auth user
-	 * @throws com.liferay.oauth.NoSuchUserException if a o auth user with the primary key could not be found
+	 * @throws NoSuchUserException if a o auth user with the primary key could not be found
 	 */
 	@Override
 	public OAuthUser[] findByOAuthApplicationId_PrevAndNext(long oAuthUserId,
@@ -1349,7 +1352,7 @@ public class OAuthUserPersistenceImpl extends BasePersistenceImpl<OAuthUser>
 	 * Returns a range of all the o auth users that the user has permission to view where oAuthApplicationId = &#63;.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.oauth.model.impl.OAuthUserModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link OAuthUserModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
 	 * @param oAuthApplicationId the o auth application ID
@@ -1368,7 +1371,7 @@ public class OAuthUserPersistenceImpl extends BasePersistenceImpl<OAuthUser>
 	 * Returns an ordered range of all the o auth users that the user has permissions to view where oAuthApplicationId = &#63;.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.oauth.model.impl.OAuthUserModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link OAuthUserModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
 	 * @param oAuthApplicationId the o auth application ID
@@ -1466,7 +1469,7 @@ public class OAuthUserPersistenceImpl extends BasePersistenceImpl<OAuthUser>
 	 * @param oAuthApplicationId the o auth application ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next o auth user
-	 * @throws com.liferay.oauth.NoSuchUserException if a o auth user with the primary key could not be found
+	 * @throws NoSuchUserException if a o auth user with the primary key could not be found
 	 */
 	@Override
 	public OAuthUser[] filterFindByOAuthApplicationId_PrevAndNext(
@@ -1769,11 +1772,11 @@ public class OAuthUserPersistenceImpl extends BasePersistenceImpl<OAuthUser>
 			new String[] { String.class.getName() });
 
 	/**
-	 * Returns the o auth user where accessToken = &#63; or throws a {@link com.liferay.oauth.NoSuchUserException} if it could not be found.
+	 * Returns the o auth user where accessToken = &#63; or throws a {@link NoSuchUserException} if it could not be found.
 	 *
 	 * @param accessToken the access token
 	 * @return the matching o auth user
-	 * @throws com.liferay.oauth.NoSuchUserException if a matching o auth user could not be found
+	 * @throws NoSuchUserException if a matching o auth user could not be found
 	 */
 	@Override
 	public OAuthUser findByAccessToken(String accessToken)
@@ -2006,12 +2009,12 @@ public class OAuthUserPersistenceImpl extends BasePersistenceImpl<OAuthUser>
 			new String[] { Long.class.getName(), Long.class.getName() });
 
 	/**
-	 * Returns the o auth user where userId = &#63; and oAuthApplicationId = &#63; or throws a {@link com.liferay.oauth.NoSuchUserException} if it could not be found.
+	 * Returns the o auth user where userId = &#63; and oAuthApplicationId = &#63; or throws a {@link NoSuchUserException} if it could not be found.
 	 *
 	 * @param userId the user ID
 	 * @param oAuthApplicationId the o auth application ID
 	 * @return the matching o auth user
-	 * @throws com.liferay.oauth.NoSuchUserException if a matching o auth user could not be found
+	 * @throws NoSuchUserException if a matching o auth user could not be found
 	 */
 	@Override
 	public OAuthUser findByU_OAI(long userId, long oAuthApplicationId)
@@ -2416,7 +2419,7 @@ public class OAuthUserPersistenceImpl extends BasePersistenceImpl<OAuthUser>
 	 *
 	 * @param oAuthUserId the primary key of the o auth user
 	 * @return the o auth user that was removed
-	 * @throws com.liferay.oauth.NoSuchUserException if a o auth user with the primary key could not be found
+	 * @throws NoSuchUserException if a o auth user with the primary key could not be found
 	 */
 	@Override
 	public OAuthUser remove(long oAuthUserId) throws NoSuchUserException {
@@ -2428,7 +2431,7 @@ public class OAuthUserPersistenceImpl extends BasePersistenceImpl<OAuthUser>
 	 *
 	 * @param primaryKey the primary key of the o auth user
 	 * @return the o auth user that was removed
-	 * @throws com.liferay.oauth.NoSuchUserException if a o auth user with the primary key could not be found
+	 * @throws NoSuchUserException if a o auth user with the primary key could not be found
 	 */
 	@Override
 	public OAuthUser remove(Serializable primaryKey) throws NoSuchUserException {
@@ -2495,7 +2498,7 @@ public class OAuthUserPersistenceImpl extends BasePersistenceImpl<OAuthUser>
 	}
 
 	@Override
-	public OAuthUser updateImpl(com.liferay.oauth.model.OAuthUser oAuthUser) {
+	public OAuthUser updateImpl(OAuthUser oAuthUser) {
 		oAuthUser = toUnwrappedModel(oAuthUser);
 
 		boolean isNew = oAuthUser.isNew();
@@ -2606,7 +2609,7 @@ public class OAuthUserPersistenceImpl extends BasePersistenceImpl<OAuthUser>
 	 *
 	 * @param primaryKey the primary key of the o auth user
 	 * @return the o auth user
-	 * @throws com.liferay.oauth.NoSuchUserException if a o auth user with the primary key could not be found
+	 * @throws NoSuchUserException if a o auth user with the primary key could not be found
 	 */
 	@Override
 	public OAuthUser findByPrimaryKey(Serializable primaryKey)
@@ -2626,11 +2629,11 @@ public class OAuthUserPersistenceImpl extends BasePersistenceImpl<OAuthUser>
 	}
 
 	/**
-	 * Returns the o auth user with the primary key or throws a {@link com.liferay.oauth.NoSuchUserException} if it could not be found.
+	 * Returns the o auth user with the primary key or throws a {@link NoSuchUserException} if it could not be found.
 	 *
 	 * @param oAuthUserId the primary key of the o auth user
 	 * @return the o auth user
-	 * @throws com.liferay.oauth.NoSuchUserException if a o auth user with the primary key could not be found
+	 * @throws NoSuchUserException if a o auth user with the primary key could not be found
 	 */
 	@Override
 	public OAuthUser findByPrimaryKey(long oAuthUserId)
@@ -2801,7 +2804,7 @@ public class OAuthUserPersistenceImpl extends BasePersistenceImpl<OAuthUser>
 	 * Returns a range of all the o auth users.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.oauth.model.impl.OAuthUserModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link OAuthUserModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
 	 * @param start the lower bound of the range of o auth users
@@ -2817,7 +2820,7 @@ public class OAuthUserPersistenceImpl extends BasePersistenceImpl<OAuthUser>
 	 * Returns an ordered range of all the o auth users.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.oauth.model.impl.OAuthUserModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link OAuthUserModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
 	 * @param start the lower bound of the range of o auth users
@@ -2987,8 +2990,8 @@ public class OAuthUserPersistenceImpl extends BasePersistenceImpl<OAuthUser>
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No OAuthUser exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
-	private static Log _log = LogFactoryUtil.getLog(OAuthUserPersistenceImpl.class);
-	private static OAuthUser _nullOAuthUser = new OAuthUserImpl() {
+	private static final Log _log = LogFactoryUtil.getLog(OAuthUserPersistenceImpl.class);
+	private static final OAuthUser _nullOAuthUser = new OAuthUserImpl() {
 			@Override
 			public Object clone() {
 				return this;
@@ -3000,7 +3003,7 @@ public class OAuthUserPersistenceImpl extends BasePersistenceImpl<OAuthUser>
 			}
 		};
 
-	private static CacheModel<OAuthUser> _nullOAuthUserCacheModel = new CacheModel<OAuthUser>() {
+	private static final CacheModel<OAuthUser> _nullOAuthUserCacheModel = new CacheModel<OAuthUser>() {
 			@Override
 			public OAuthUser toEntityModel() {
 				return _nullOAuthUser;

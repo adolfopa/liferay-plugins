@@ -14,6 +14,8 @@
 
 package com.liferay.oauth.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.oauth.model.OAuthApplication;
 import com.liferay.oauth.service.OAuthApplicationLocalService;
 import com.liferay.oauth.service.persistence.OAuthApplicationPersistence;
@@ -38,6 +40,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.PersistedModel;
 import com.liferay.portal.service.BaseLocalServiceImpl;
 import com.liferay.portal.service.PersistedModelLocalServiceRegistryUtil;
+import com.liferay.portal.service.persistence.ClassNamePersistence;
 import com.liferay.portal.service.persistence.ImagePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.util.PortalUtil;
@@ -60,6 +63,7 @@ import javax.sql.DataSource;
  * @see com.liferay.oauth.service.OAuthApplicationLocalServiceUtil
  * @generated
  */
+@ProviderType
 public abstract class OAuthApplicationLocalServiceBaseImpl
 	extends BaseLocalServiceImpl implements OAuthApplicationLocalService,
 		IdentifiableBean {
@@ -182,10 +186,10 @@ public abstract class OAuthApplicationLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the number of rows that match the dynamic query.
+	 * Returns the number of rows matching the dynamic query.
 	 *
 	 * @param dynamicQuery the dynamic query
-	 * @return the number of rows that match the dynamic query
+	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
@@ -193,11 +197,11 @@ public abstract class OAuthApplicationLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the number of rows that match the dynamic query.
+	 * Returns the number of rows matching the dynamic query.
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
-	 * @return the number of rows that match the dynamic query
+	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
@@ -305,7 +309,7 @@ public abstract class OAuthApplicationLocalServiceBaseImpl
 	 *
 	 * @return the o auth application local service
 	 */
-	public com.liferay.oauth.service.OAuthApplicationLocalService getOAuthApplicationLocalService() {
+	public OAuthApplicationLocalService getOAuthApplicationLocalService() {
 		return oAuthApplicationLocalService;
 	}
 
@@ -315,7 +319,7 @@ public abstract class OAuthApplicationLocalServiceBaseImpl
 	 * @param oAuthApplicationLocalService the o auth application local service
 	 */
 	public void setOAuthApplicationLocalService(
-		com.liferay.oauth.service.OAuthApplicationLocalService oAuthApplicationLocalService) {
+		OAuthApplicationLocalService oAuthApplicationLocalService) {
 		this.oAuthApplicationLocalService = oAuthApplicationLocalService;
 	}
 
@@ -431,6 +435,63 @@ public abstract class OAuthApplicationLocalServiceBaseImpl
 	public void setCounterLocalService(
 		com.liferay.counter.service.CounterLocalService counterLocalService) {
 		this.counterLocalService = counterLocalService;
+	}
+
+	/**
+	 * Returns the class name local service.
+	 *
+	 * @return the class name local service
+	 */
+	public com.liferay.portal.service.ClassNameLocalService getClassNameLocalService() {
+		return classNameLocalService;
+	}
+
+	/**
+	 * Sets the class name local service.
+	 *
+	 * @param classNameLocalService the class name local service
+	 */
+	public void setClassNameLocalService(
+		com.liferay.portal.service.ClassNameLocalService classNameLocalService) {
+		this.classNameLocalService = classNameLocalService;
+	}
+
+	/**
+	 * Returns the class name remote service.
+	 *
+	 * @return the class name remote service
+	 */
+	public com.liferay.portal.service.ClassNameService getClassNameService() {
+		return classNameService;
+	}
+
+	/**
+	 * Sets the class name remote service.
+	 *
+	 * @param classNameService the class name remote service
+	 */
+	public void setClassNameService(
+		com.liferay.portal.service.ClassNameService classNameService) {
+		this.classNameService = classNameService;
+	}
+
+	/**
+	 * Returns the class name persistence.
+	 *
+	 * @return the class name persistence
+	 */
+	public ClassNamePersistence getClassNamePersistence() {
+		return classNamePersistence;
+	}
+
+	/**
+	 * Sets the class name persistence.
+	 *
+	 * @param classNamePersistence the class name persistence
+	 */
+	public void setClassNamePersistence(
+		ClassNamePersistence classNamePersistence) {
+		this.classNamePersistence = classNamePersistence;
 	}
 
 	/**
@@ -651,8 +712,8 @@ public abstract class OAuthApplicationLocalServiceBaseImpl
 		}
 	}
 
-	@BeanReference(type = com.liferay.oauth.service.OAuthApplicationLocalService.class)
-	protected com.liferay.oauth.service.OAuthApplicationLocalService oAuthApplicationLocalService;
+	@BeanReference(type = OAuthApplicationLocalService.class)
+	protected OAuthApplicationLocalService oAuthApplicationLocalService;
 	@BeanReference(type = com.liferay.oauth.service.OAuthApplicationService.class)
 	protected com.liferay.oauth.service.OAuthApplicationService oAuthApplicationService;
 	@BeanReference(type = OAuthApplicationPersistence.class)
@@ -665,6 +726,12 @@ public abstract class OAuthApplicationLocalServiceBaseImpl
 	protected OAuthUserPersistence oAuthUserPersistence;
 	@BeanReference(type = com.liferay.counter.service.CounterLocalService.class)
 	protected com.liferay.counter.service.CounterLocalService counterLocalService;
+	@BeanReference(type = com.liferay.portal.service.ClassNameLocalService.class)
+	protected com.liferay.portal.service.ClassNameLocalService classNameLocalService;
+	@BeanReference(type = com.liferay.portal.service.ClassNameService.class)
+	protected com.liferay.portal.service.ClassNameService classNameService;
+	@BeanReference(type = ClassNamePersistence.class)
+	protected ClassNamePersistence classNamePersistence;
 	@BeanReference(type = com.liferay.portal.service.ImageLocalService.class)
 	protected com.liferay.portal.service.ImageLocalService imageLocalService;
 	@BeanReference(type = com.liferay.portal.service.ImageService.class)

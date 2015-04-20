@@ -14,12 +14,15 @@
 
 package com.liferay.oauth.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * @author Ivica Cardic
  * @generated
  */
+@ProviderType
 public class OAuthApplicationLocalServiceClp
 	implements OAuthApplicationLocalService {
 	public OAuthApplicationLocalServiceClp(

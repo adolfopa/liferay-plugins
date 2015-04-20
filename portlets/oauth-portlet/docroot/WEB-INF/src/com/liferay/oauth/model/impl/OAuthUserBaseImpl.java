@@ -14,6 +14,8 @@
 
 package com.liferay.oauth.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.oauth.model.OAuthUser;
 import com.liferay.oauth.service.OAuthUserLocalServiceUtil;
 
@@ -26,9 +28,10 @@ import com.liferay.oauth.service.OAuthUserLocalServiceUtil;
  *
  * @author Ivica Cardic
  * @see OAuthUserImpl
- * @see com.liferay.oauth.model.OAuthUser
+ * @see OAuthUser
  * @generated
  */
+@ProviderType
 public abstract class OAuthUserBaseImpl extends OAuthUserModelImpl
 	implements OAuthUser {
 	/*

@@ -14,16 +14,21 @@
 
 package com.liferay.oauth.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.oauth.service.ClpSerializer;
 import com.liferay.oauth.service.OAuthApplicationLocalServiceUtil;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
-import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.BaseModel;
+import com.liferay.portal.model.User;
 import com.liferay.portal.model.impl.BaseModelImpl;
-import com.liferay.portal.util.PortalUtil;
+import com.liferay.portal.service.UserLocalServiceUtil;
 
 import java.io.Serializable;
 
@@ -36,6 +41,7 @@ import java.util.Map;
 /**
  * @author Ivica Cardic
  */
+@ProviderType
 public class OAuthApplicationClp extends BaseModelImpl<OAuthApplication>
 	implements OAuthApplication {
 	public OAuthApplicationClp() {
@@ -90,6 +96,9 @@ public class OAuthApplicationClp extends BaseModelImpl<OAuthApplication>
 		attributes.put("shareableAccessToken", getShareableAccessToken());
 		attributes.put("callbackURI", getCallbackURI());
 		attributes.put("websiteURL", getWebsiteURL());
+
+		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
+		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
 
 		return attributes;
 	}
@@ -186,6 +195,9 @@ public class OAuthApplicationClp extends BaseModelImpl<OAuthApplication>
 		if (websiteURL != null) {
 			setWebsiteURL(websiteURL);
 		}
+
+		_entityCacheEnabled = GetterUtil.getBoolean("entityCacheEnabled");
+		_finderCacheEnabled = GetterUtil.getBoolean("finderCacheEnabled");
 	}
 
 	@Override
@@ -259,13 +271,19 @@ public class OAuthApplicationClp extends BaseModelImpl<OAuthApplication>
 	}
 
 	@Override
-	public String getUserUuid() throws SystemException {
-		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
+	public String getUserUuid() {
+		try {
+			User user = UserLocalServiceUtil.getUserById(getUserId());
+
+			return user.getUuid();
+		}
+		catch (PortalException pe) {
+			return StringPool.BLANK;
+		}
 	}
 
 	@Override
 	public void setUserUuid(String userUuid) {
-		_userUuid = userUuid;
 	}
 
 	@Override
@@ -621,7 +639,7 @@ public class OAuthApplicationClp extends BaseModelImpl<OAuthApplication>
 	}
 
 	@Override
-	public void persist() throws SystemException {
+	public void persist() {
 		if (this.isNew()) {
 			OAuthApplicationLocalServiceUtil.addOAuthApplication(this);
 		}
@@ -704,6 +722,16 @@ public class OAuthApplicationClp extends BaseModelImpl<OAuthApplication>
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	@Override
+	public boolean isEntityCacheEnabled() {
+		return _entityCacheEnabled;
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _finderCacheEnabled;
 	}
 
 	@Override
@@ -822,7 +850,6 @@ public class OAuthApplicationClp extends BaseModelImpl<OAuthApplication>
 	private long _oAuthApplicationId;
 	private long _companyId;
 	private long _userId;
-	private String _userUuid;
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
@@ -836,5 +863,7 @@ public class OAuthApplicationClp extends BaseModelImpl<OAuthApplication>
 	private String _callbackURI;
 	private String _websiteURL;
 	private BaseModel<?> _oAuthApplicationRemoteModel;
-	private Class<?> _clpSerializerClass = com.liferay.oauth.service.ClpSerializer.class;
+	private Class<?> _clpSerializerClass = ClpSerializer.class;
+	private boolean _entityCacheEnabled;
+	private boolean _finderCacheEnabled;
 }

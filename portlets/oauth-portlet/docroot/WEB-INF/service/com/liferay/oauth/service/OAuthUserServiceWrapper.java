@@ -14,6 +14,8 @@
 
 package com.liferay.oauth.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.ServiceWrapper;
 
 /**
@@ -23,37 +25,11 @@ import com.liferay.portal.service.ServiceWrapper;
  * @see OAuthUserService
  * @generated
  */
+@ProviderType
 public class OAuthUserServiceWrapper implements OAuthUserService,
 	ServiceWrapper<OAuthUserService> {
 	public OAuthUserServiceWrapper(OAuthUserService oAuthUserService) {
 		_oAuthUserService = oAuthUserService;
-	}
-
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _oAuthUserService.getBeanIdentifier();
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_oAuthUserService.setBeanIdentifier(beanIdentifier);
-	}
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _oAuthUserService.invokeMethod(name, parameterTypes, arguments);
 	}
 
 	@Override
@@ -74,8 +50,36 @@ public class OAuthUserServiceWrapper implements OAuthUserService,
 	}
 
 	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	@Override
+	public java.lang.String getBeanIdentifier() {
+		return _oAuthUserService.getBeanIdentifier();
+	}
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _oAuthUserService.invokeMethod(name, parameterTypes, arguments);
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	@Override
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_oAuthUserService.setBeanIdentifier(beanIdentifier);
+	}
+
+	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
+	@Deprecated
 	public OAuthUserService getWrappedOAuthUserService() {
 		return _oAuthUserService;
 	}
@@ -83,6 +87,7 @@ public class OAuthUserServiceWrapper implements OAuthUserService,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
 	 */
+	@Deprecated
 	public void setWrappedOAuthUserService(OAuthUserService oAuthUserService) {
 		_oAuthUserService = oAuthUserService;
 	}

@@ -14,6 +14,8 @@
 
 package com.liferay.oauth.service.messaging;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.oauth.service.ClpSerializer;
 import com.liferay.oauth.service.OAuthApplicationLocalServiceUtil;
 import com.liferay.oauth.service.OAuthApplicationServiceUtil;
@@ -26,6 +28,7 @@ import com.liferay.portal.kernel.messaging.Message;
 /**
  * @author Ivica Cardic
  */
+@ProviderType
 public class ClpMessageListener extends BaseMessageListener {
 	public static String getServletContextName() {
 		return ClpSerializer.getServletContextName();

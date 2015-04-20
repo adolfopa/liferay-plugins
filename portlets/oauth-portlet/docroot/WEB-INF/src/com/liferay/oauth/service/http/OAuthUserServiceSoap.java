@@ -14,6 +14,8 @@
 
 package com.liferay.oauth.service.http;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.oauth.service.OAuthUserServiceUtil;
 
 import com.liferay.portal.kernel.log.Log;
@@ -23,7 +25,7 @@ import java.rmi.RemoteException;
 
 /**
  * Provides the SOAP utility for the
- * {@link com.liferay.oauth.service.OAuthUserServiceUtil} service utility. The
+ * {@link OAuthUserServiceUtil} service utility. The
  * static methods of this class calls the same methods of the service utility.
  * However, the signatures are different because it is difficult for SOAP to
  * support certain types.
@@ -58,9 +60,10 @@ import java.rmi.RemoteException;
  * @author Ivica Cardic
  * @see OAuthUserServiceHttp
  * @see com.liferay.oauth.model.OAuthUserSoap
- * @see com.liferay.oauth.service.OAuthUserServiceUtil
+ * @see OAuthUserServiceUtil
  * @generated
  */
+@ProviderType
 public class OAuthUserServiceSoap {
 	public static com.liferay.oauth.model.OAuthUserSoap addOAuthUser(
 		java.lang.String consumerKey,

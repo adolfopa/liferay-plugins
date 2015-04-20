@@ -14,6 +14,8 @@
 
 package com.liferay.oauth.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.model.PersistedModel;
 
 /**
@@ -25,6 +27,7 @@ import com.liferay.portal.model.PersistedModel;
  * @see com.liferay.oauth.model.impl.OAuthUserModelImpl
  * @generated
  */
+@ProviderType
 public interface OAuthUser extends OAuthUserModel, PersistedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:

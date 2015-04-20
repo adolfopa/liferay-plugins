@@ -14,6 +14,8 @@
 
 package com.liferay.oauth.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.oauth.model.OAuthApplication;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
@@ -25,7 +27,7 @@ import com.liferay.portal.service.ServiceContext;
 import java.util.List;
 
 /**
- * The persistence utility for the o auth application service. This utility wraps {@link OAuthApplicationPersistenceImpl} and provides direct access to the database for CRUD operations. This utility should only be used by the service layer, as it must operate within a transaction. Never access this utility in a JSP, controller, model, or other front-end class.
+ * The persistence utility for the o auth application service. This utility wraps {@link com.liferay.oauth.service.persistence.impl.OAuthApplicationPersistenceImpl} and provides direct access to the database for CRUD operations. This utility should only be used by the service layer, as it must operate within a transaction. Never access this utility in a JSP, controller, model, or other front-end class.
  *
  * <p>
  * Caching information and settings can be found in <code>portal.properties</code>
@@ -33,9 +35,10 @@ import java.util.List;
  *
  * @author Ivica Cardic
  * @see OAuthApplicationPersistence
- * @see OAuthApplicationPersistenceImpl
+ * @see com.liferay.oauth.service.persistence.impl.OAuthApplicationPersistenceImpl
  * @generated
  */
+@ProviderType
 public class OAuthApplicationUtil {
 	/*
 	 * NOTE FOR DEVELOPERS:
@@ -112,8 +115,7 @@ public class OAuthApplicationUtil {
 	* @param companyId the company ID
 	* @return the matching o auth applications
 	*/
-	public static java.util.List<com.liferay.oauth.model.OAuthApplication> findByCompanyId(
-		long companyId) {
+	public static List<OAuthApplication> findByCompanyId(long companyId) {
 		return getPersistence().findByCompanyId(companyId);
 	}
 
@@ -121,7 +123,7 @@ public class OAuthApplicationUtil {
 	* Returns a range of all the o auth applications where companyId = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.oauth.model.impl.OAuthApplicationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link OAuthApplicationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param companyId the company ID
@@ -129,8 +131,8 @@ public class OAuthApplicationUtil {
 	* @param end the upper bound of the range of o auth applications (not inclusive)
 	* @return the range of matching o auth applications
 	*/
-	public static java.util.List<com.liferay.oauth.model.OAuthApplication> findByCompanyId(
-		long companyId, int start, int end) {
+	public static List<OAuthApplication> findByCompanyId(long companyId,
+		int start, int end) {
 		return getPersistence().findByCompanyId(companyId, start, end);
 	}
 
@@ -138,7 +140,7 @@ public class OAuthApplicationUtil {
 	* Returns an ordered range of all the o auth applications where companyId = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.oauth.model.impl.OAuthApplicationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link OAuthApplicationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param companyId the company ID
@@ -147,9 +149,9 @@ public class OAuthApplicationUtil {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching o auth applications
 	*/
-	public static java.util.List<com.liferay.oauth.model.OAuthApplication> findByCompanyId(
-		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator) {
+	public static List<OAuthApplication> findByCompanyId(long companyId,
+		int start, int end,
+		OrderByComparator<OAuthApplication> orderByComparator) {
 		return getPersistence()
 				   .findByCompanyId(companyId, start, end, orderByComparator);
 	}
@@ -160,11 +162,10 @@ public class OAuthApplicationUtil {
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching o auth application
-	* @throws com.liferay.oauth.NoSuchApplicationException if a matching o auth application could not be found
+	* @throws NoSuchApplicationException if a matching o auth application could not be found
 	*/
-	public static com.liferay.oauth.model.OAuthApplication findByCompanyId_First(
-		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator)
+	public static OAuthApplication findByCompanyId_First(long companyId,
+		OrderByComparator<OAuthApplication> orderByComparator)
 		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence()
 				   .findByCompanyId_First(companyId, orderByComparator);
@@ -177,9 +178,8 @@ public class OAuthApplicationUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching o auth application, or <code>null</code> if a matching o auth application could not be found
 	*/
-	public static com.liferay.oauth.model.OAuthApplication fetchByCompanyId_First(
-		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator) {
+	public static OAuthApplication fetchByCompanyId_First(long companyId,
+		OrderByComparator<OAuthApplication> orderByComparator) {
 		return getPersistence()
 				   .fetchByCompanyId_First(companyId, orderByComparator);
 	}
@@ -190,11 +190,10 @@ public class OAuthApplicationUtil {
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching o auth application
-	* @throws com.liferay.oauth.NoSuchApplicationException if a matching o auth application could not be found
+	* @throws NoSuchApplicationException if a matching o auth application could not be found
 	*/
-	public static com.liferay.oauth.model.OAuthApplication findByCompanyId_Last(
-		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator)
+	public static OAuthApplication findByCompanyId_Last(long companyId,
+		OrderByComparator<OAuthApplication> orderByComparator)
 		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence()
 				   .findByCompanyId_Last(companyId, orderByComparator);
@@ -207,9 +206,8 @@ public class OAuthApplicationUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching o auth application, or <code>null</code> if a matching o auth application could not be found
 	*/
-	public static com.liferay.oauth.model.OAuthApplication fetchByCompanyId_Last(
-		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator) {
+	public static OAuthApplication fetchByCompanyId_Last(long companyId,
+		OrderByComparator<OAuthApplication> orderByComparator) {
 		return getPersistence()
 				   .fetchByCompanyId_Last(companyId, orderByComparator);
 	}
@@ -221,11 +219,11 @@ public class OAuthApplicationUtil {
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next o auth application
-	* @throws com.liferay.oauth.NoSuchApplicationException if a o auth application with the primary key could not be found
+	* @throws NoSuchApplicationException if a o auth application with the primary key could not be found
 	*/
-	public static com.liferay.oauth.model.OAuthApplication[] findByCompanyId_PrevAndNext(
+	public static OAuthApplication[] findByCompanyId_PrevAndNext(
 		long oAuthApplicationId, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator)
+		OrderByComparator<OAuthApplication> orderByComparator)
 		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence()
 				   .findByCompanyId_PrevAndNext(oAuthApplicationId, companyId,
@@ -238,8 +236,7 @@ public class OAuthApplicationUtil {
 	* @param companyId the company ID
 	* @return the matching o auth applications that the user has permission to view
 	*/
-	public static java.util.List<com.liferay.oauth.model.OAuthApplication> filterFindByCompanyId(
-		long companyId) {
+	public static List<OAuthApplication> filterFindByCompanyId(long companyId) {
 		return getPersistence().filterFindByCompanyId(companyId);
 	}
 
@@ -247,7 +244,7 @@ public class OAuthApplicationUtil {
 	* Returns a range of all the o auth applications that the user has permission to view where companyId = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.oauth.model.impl.OAuthApplicationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link OAuthApplicationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param companyId the company ID
@@ -255,8 +252,8 @@ public class OAuthApplicationUtil {
 	* @param end the upper bound of the range of o auth applications (not inclusive)
 	* @return the range of matching o auth applications that the user has permission to view
 	*/
-	public static java.util.List<com.liferay.oauth.model.OAuthApplication> filterFindByCompanyId(
-		long companyId, int start, int end) {
+	public static List<OAuthApplication> filterFindByCompanyId(long companyId,
+		int start, int end) {
 		return getPersistence().filterFindByCompanyId(companyId, start, end);
 	}
 
@@ -264,7 +261,7 @@ public class OAuthApplicationUtil {
 	* Returns an ordered range of all the o auth applications that the user has permissions to view where companyId = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.oauth.model.impl.OAuthApplicationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link OAuthApplicationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param companyId the company ID
@@ -273,9 +270,9 @@ public class OAuthApplicationUtil {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching o auth applications that the user has permission to view
 	*/
-	public static java.util.List<com.liferay.oauth.model.OAuthApplication> filterFindByCompanyId(
-		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator) {
+	public static List<OAuthApplication> filterFindByCompanyId(long companyId,
+		int start, int end,
+		OrderByComparator<OAuthApplication> orderByComparator) {
 		return getPersistence()
 				   .filterFindByCompanyId(companyId, start, end,
 			orderByComparator);
@@ -288,11 +285,11 @@ public class OAuthApplicationUtil {
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next o auth application
-	* @throws com.liferay.oauth.NoSuchApplicationException if a o auth application with the primary key could not be found
+	* @throws NoSuchApplicationException if a o auth application with the primary key could not be found
 	*/
-	public static com.liferay.oauth.model.OAuthApplication[] filterFindByCompanyId_PrevAndNext(
+	public static OAuthApplication[] filterFindByCompanyId_PrevAndNext(
 		long oAuthApplicationId, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator)
+		OrderByComparator<OAuthApplication> orderByComparator)
 		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence()
 				   .filterFindByCompanyId_PrevAndNext(oAuthApplicationId,
@@ -334,8 +331,7 @@ public class OAuthApplicationUtil {
 	* @param userId the user ID
 	* @return the matching o auth applications
 	*/
-	public static java.util.List<com.liferay.oauth.model.OAuthApplication> findByUserId(
-		long userId) {
+	public static List<OAuthApplication> findByUserId(long userId) {
 		return getPersistence().findByUserId(userId);
 	}
 
@@ -343,7 +339,7 @@ public class OAuthApplicationUtil {
 	* Returns a range of all the o auth applications where userId = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.oauth.model.impl.OAuthApplicationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link OAuthApplicationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param userId the user ID
@@ -351,8 +347,8 @@ public class OAuthApplicationUtil {
 	* @param end the upper bound of the range of o auth applications (not inclusive)
 	* @return the range of matching o auth applications
 	*/
-	public static java.util.List<com.liferay.oauth.model.OAuthApplication> findByUserId(
-		long userId, int start, int end) {
+	public static List<OAuthApplication> findByUserId(long userId, int start,
+		int end) {
 		return getPersistence().findByUserId(userId, start, end);
 	}
 
@@ -360,7 +356,7 @@ public class OAuthApplicationUtil {
 	* Returns an ordered range of all the o auth applications where userId = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.oauth.model.impl.OAuthApplicationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link OAuthApplicationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param userId the user ID
@@ -369,9 +365,8 @@ public class OAuthApplicationUtil {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching o auth applications
 	*/
-	public static java.util.List<com.liferay.oauth.model.OAuthApplication> findByUserId(
-		long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator) {
+	public static List<OAuthApplication> findByUserId(long userId, int start,
+		int end, OrderByComparator<OAuthApplication> orderByComparator) {
 		return getPersistence()
 				   .findByUserId(userId, start, end, orderByComparator);
 	}
@@ -382,11 +377,10 @@ public class OAuthApplicationUtil {
 	* @param userId the user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching o auth application
-	* @throws com.liferay.oauth.NoSuchApplicationException if a matching o auth application could not be found
+	* @throws NoSuchApplicationException if a matching o auth application could not be found
 	*/
-	public static com.liferay.oauth.model.OAuthApplication findByUserId_First(
-		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator)
+	public static OAuthApplication findByUserId_First(long userId,
+		OrderByComparator<OAuthApplication> orderByComparator)
 		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence().findByUserId_First(userId, orderByComparator);
 	}
@@ -398,9 +392,8 @@ public class OAuthApplicationUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching o auth application, or <code>null</code> if a matching o auth application could not be found
 	*/
-	public static com.liferay.oauth.model.OAuthApplication fetchByUserId_First(
-		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator) {
+	public static OAuthApplication fetchByUserId_First(long userId,
+		OrderByComparator<OAuthApplication> orderByComparator) {
 		return getPersistence().fetchByUserId_First(userId, orderByComparator);
 	}
 
@@ -410,11 +403,10 @@ public class OAuthApplicationUtil {
 	* @param userId the user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching o auth application
-	* @throws com.liferay.oauth.NoSuchApplicationException if a matching o auth application could not be found
+	* @throws NoSuchApplicationException if a matching o auth application could not be found
 	*/
-	public static com.liferay.oauth.model.OAuthApplication findByUserId_Last(
-		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator)
+	public static OAuthApplication findByUserId_Last(long userId,
+		OrderByComparator<OAuthApplication> orderByComparator)
 		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence().findByUserId_Last(userId, orderByComparator);
 	}
@@ -426,9 +418,8 @@ public class OAuthApplicationUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching o auth application, or <code>null</code> if a matching o auth application could not be found
 	*/
-	public static com.liferay.oauth.model.OAuthApplication fetchByUserId_Last(
-		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator) {
+	public static OAuthApplication fetchByUserId_Last(long userId,
+		OrderByComparator<OAuthApplication> orderByComparator) {
 		return getPersistence().fetchByUserId_Last(userId, orderByComparator);
 	}
 
@@ -439,11 +430,11 @@ public class OAuthApplicationUtil {
 	* @param userId the user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next o auth application
-	* @throws com.liferay.oauth.NoSuchApplicationException if a o auth application with the primary key could not be found
+	* @throws NoSuchApplicationException if a o auth application with the primary key could not be found
 	*/
-	public static com.liferay.oauth.model.OAuthApplication[] findByUserId_PrevAndNext(
+	public static OAuthApplication[] findByUserId_PrevAndNext(
 		long oAuthApplicationId, long userId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator)
+		OrderByComparator<OAuthApplication> orderByComparator)
 		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence()
 				   .findByUserId_PrevAndNext(oAuthApplicationId, userId,
@@ -456,8 +447,7 @@ public class OAuthApplicationUtil {
 	* @param userId the user ID
 	* @return the matching o auth applications that the user has permission to view
 	*/
-	public static java.util.List<com.liferay.oauth.model.OAuthApplication> filterFindByUserId(
-		long userId) {
+	public static List<OAuthApplication> filterFindByUserId(long userId) {
 		return getPersistence().filterFindByUserId(userId);
 	}
 
@@ -465,7 +455,7 @@ public class OAuthApplicationUtil {
 	* Returns a range of all the o auth applications that the user has permission to view where userId = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.oauth.model.impl.OAuthApplicationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link OAuthApplicationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param userId the user ID
@@ -473,8 +463,8 @@ public class OAuthApplicationUtil {
 	* @param end the upper bound of the range of o auth applications (not inclusive)
 	* @return the range of matching o auth applications that the user has permission to view
 	*/
-	public static java.util.List<com.liferay.oauth.model.OAuthApplication> filterFindByUserId(
-		long userId, int start, int end) {
+	public static List<OAuthApplication> filterFindByUserId(long userId,
+		int start, int end) {
 		return getPersistence().filterFindByUserId(userId, start, end);
 	}
 
@@ -482,7 +472,7 @@ public class OAuthApplicationUtil {
 	* Returns an ordered range of all the o auth applications that the user has permissions to view where userId = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.oauth.model.impl.OAuthApplicationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link OAuthApplicationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param userId the user ID
@@ -491,9 +481,9 @@ public class OAuthApplicationUtil {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching o auth applications that the user has permission to view
 	*/
-	public static java.util.List<com.liferay.oauth.model.OAuthApplication> filterFindByUserId(
-		long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator) {
+	public static List<OAuthApplication> filterFindByUserId(long userId,
+		int start, int end,
+		OrderByComparator<OAuthApplication> orderByComparator) {
 		return getPersistence()
 				   .filterFindByUserId(userId, start, end, orderByComparator);
 	}
@@ -505,11 +495,11 @@ public class OAuthApplicationUtil {
 	* @param userId the user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next o auth application
-	* @throws com.liferay.oauth.NoSuchApplicationException if a o auth application with the primary key could not be found
+	* @throws NoSuchApplicationException if a o auth application with the primary key could not be found
 	*/
-	public static com.liferay.oauth.model.OAuthApplication[] filterFindByUserId_PrevAndNext(
+	public static OAuthApplication[] filterFindByUserId_PrevAndNext(
 		long oAuthApplicationId, long userId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator)
+		OrderByComparator<OAuthApplication> orderByComparator)
 		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence()
 				   .filterFindByUserId_PrevAndNext(oAuthApplicationId, userId,
@@ -546,13 +536,13 @@ public class OAuthApplicationUtil {
 	}
 
 	/**
-	* Returns the o auth application where consumerKey = &#63; or throws a {@link com.liferay.oauth.NoSuchApplicationException} if it could not be found.
+	* Returns the o auth application where consumerKey = &#63; or throws a {@link NoSuchApplicationException} if it could not be found.
 	*
 	* @param consumerKey the consumer key
 	* @return the matching o auth application
-	* @throws com.liferay.oauth.NoSuchApplicationException if a matching o auth application could not be found
+	* @throws NoSuchApplicationException if a matching o auth application could not be found
 	*/
-	public static com.liferay.oauth.model.OAuthApplication findByConsumerKey(
+	public static OAuthApplication findByConsumerKey(
 		java.lang.String consumerKey)
 		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence().findByConsumerKey(consumerKey);
@@ -564,7 +554,7 @@ public class OAuthApplicationUtil {
 	* @param consumerKey the consumer key
 	* @return the matching o auth application, or <code>null</code> if a matching o auth application could not be found
 	*/
-	public static com.liferay.oauth.model.OAuthApplication fetchByConsumerKey(
+	public static OAuthApplication fetchByConsumerKey(
 		java.lang.String consumerKey) {
 		return getPersistence().fetchByConsumerKey(consumerKey);
 	}
@@ -576,7 +566,7 @@ public class OAuthApplicationUtil {
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching o auth application, or <code>null</code> if a matching o auth application could not be found
 	*/
-	public static com.liferay.oauth.model.OAuthApplication fetchByConsumerKey(
+	public static OAuthApplication fetchByConsumerKey(
 		java.lang.String consumerKey, boolean retrieveFromCache) {
 		return getPersistence()
 				   .fetchByConsumerKey(consumerKey, retrieveFromCache);
@@ -588,7 +578,7 @@ public class OAuthApplicationUtil {
 	* @param consumerKey the consumer key
 	* @return the o auth application that was removed
 	*/
-	public static com.liferay.oauth.model.OAuthApplication removeByConsumerKey(
+	public static OAuthApplication removeByConsumerKey(
 		java.lang.String consumerKey)
 		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence().removeByConsumerKey(consumerKey);
@@ -611,8 +601,8 @@ public class OAuthApplicationUtil {
 	* @param name the name
 	* @return the matching o auth applications
 	*/
-	public static java.util.List<com.liferay.oauth.model.OAuthApplication> findByC_N(
-		long companyId, java.lang.String name) {
+	public static List<OAuthApplication> findByC_N(long companyId,
+		java.lang.String name) {
 		return getPersistence().findByC_N(companyId, name);
 	}
 
@@ -620,7 +610,7 @@ public class OAuthApplicationUtil {
 	* Returns a range of all the o auth applications where companyId = &#63; and name LIKE &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.oauth.model.impl.OAuthApplicationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link OAuthApplicationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param companyId the company ID
@@ -629,8 +619,8 @@ public class OAuthApplicationUtil {
 	* @param end the upper bound of the range of o auth applications (not inclusive)
 	* @return the range of matching o auth applications
 	*/
-	public static java.util.List<com.liferay.oauth.model.OAuthApplication> findByC_N(
-		long companyId, java.lang.String name, int start, int end) {
+	public static List<OAuthApplication> findByC_N(long companyId,
+		java.lang.String name, int start, int end) {
 		return getPersistence().findByC_N(companyId, name, start, end);
 	}
 
@@ -638,7 +628,7 @@ public class OAuthApplicationUtil {
 	* Returns an ordered range of all the o auth applications where companyId = &#63; and name LIKE &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.oauth.model.impl.OAuthApplicationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link OAuthApplicationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param companyId the company ID
@@ -648,9 +638,9 @@ public class OAuthApplicationUtil {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching o auth applications
 	*/
-	public static java.util.List<com.liferay.oauth.model.OAuthApplication> findByC_N(
-		long companyId, java.lang.String name, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator) {
+	public static List<OAuthApplication> findByC_N(long companyId,
+		java.lang.String name, int start, int end,
+		OrderByComparator<OAuthApplication> orderByComparator) {
 		return getPersistence()
 				   .findByC_N(companyId, name, start, end, orderByComparator);
 	}
@@ -662,11 +652,11 @@ public class OAuthApplicationUtil {
 	* @param name the name
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching o auth application
-	* @throws com.liferay.oauth.NoSuchApplicationException if a matching o auth application could not be found
+	* @throws NoSuchApplicationException if a matching o auth application could not be found
 	*/
-	public static com.liferay.oauth.model.OAuthApplication findByC_N_First(
-		long companyId, java.lang.String name,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator)
+	public static OAuthApplication findByC_N_First(long companyId,
+		java.lang.String name,
+		OrderByComparator<OAuthApplication> orderByComparator)
 		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence()
 				   .findByC_N_First(companyId, name, orderByComparator);
@@ -680,9 +670,9 @@ public class OAuthApplicationUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching o auth application, or <code>null</code> if a matching o auth application could not be found
 	*/
-	public static com.liferay.oauth.model.OAuthApplication fetchByC_N_First(
-		long companyId, java.lang.String name,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator) {
+	public static OAuthApplication fetchByC_N_First(long companyId,
+		java.lang.String name,
+		OrderByComparator<OAuthApplication> orderByComparator) {
 		return getPersistence()
 				   .fetchByC_N_First(companyId, name, orderByComparator);
 	}
@@ -694,11 +684,11 @@ public class OAuthApplicationUtil {
 	* @param name the name
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching o auth application
-	* @throws com.liferay.oauth.NoSuchApplicationException if a matching o auth application could not be found
+	* @throws NoSuchApplicationException if a matching o auth application could not be found
 	*/
-	public static com.liferay.oauth.model.OAuthApplication findByC_N_Last(
-		long companyId, java.lang.String name,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator)
+	public static OAuthApplication findByC_N_Last(long companyId,
+		java.lang.String name,
+		OrderByComparator<OAuthApplication> orderByComparator)
 		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence()
 				   .findByC_N_Last(companyId, name, orderByComparator);
@@ -712,9 +702,9 @@ public class OAuthApplicationUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching o auth application, or <code>null</code> if a matching o auth application could not be found
 	*/
-	public static com.liferay.oauth.model.OAuthApplication fetchByC_N_Last(
-		long companyId, java.lang.String name,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator) {
+	public static OAuthApplication fetchByC_N_Last(long companyId,
+		java.lang.String name,
+		OrderByComparator<OAuthApplication> orderByComparator) {
 		return getPersistence()
 				   .fetchByC_N_Last(companyId, name, orderByComparator);
 	}
@@ -727,11 +717,11 @@ public class OAuthApplicationUtil {
 	* @param name the name
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next o auth application
-	* @throws com.liferay.oauth.NoSuchApplicationException if a o auth application with the primary key could not be found
+	* @throws NoSuchApplicationException if a o auth application with the primary key could not be found
 	*/
-	public static com.liferay.oauth.model.OAuthApplication[] findByC_N_PrevAndNext(
+	public static OAuthApplication[] findByC_N_PrevAndNext(
 		long oAuthApplicationId, long companyId, java.lang.String name,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator)
+		OrderByComparator<OAuthApplication> orderByComparator)
 		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence()
 				   .findByC_N_PrevAndNext(oAuthApplicationId, companyId, name,
@@ -745,8 +735,8 @@ public class OAuthApplicationUtil {
 	* @param name the name
 	* @return the matching o auth applications that the user has permission to view
 	*/
-	public static java.util.List<com.liferay.oauth.model.OAuthApplication> filterFindByC_N(
-		long companyId, java.lang.String name) {
+	public static List<OAuthApplication> filterFindByC_N(long companyId,
+		java.lang.String name) {
 		return getPersistence().filterFindByC_N(companyId, name);
 	}
 
@@ -754,7 +744,7 @@ public class OAuthApplicationUtil {
 	* Returns a range of all the o auth applications that the user has permission to view where companyId = &#63; and name LIKE &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.oauth.model.impl.OAuthApplicationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link OAuthApplicationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param companyId the company ID
@@ -763,8 +753,8 @@ public class OAuthApplicationUtil {
 	* @param end the upper bound of the range of o auth applications (not inclusive)
 	* @return the range of matching o auth applications that the user has permission to view
 	*/
-	public static java.util.List<com.liferay.oauth.model.OAuthApplication> filterFindByC_N(
-		long companyId, java.lang.String name, int start, int end) {
+	public static List<OAuthApplication> filterFindByC_N(long companyId,
+		java.lang.String name, int start, int end) {
 		return getPersistence().filterFindByC_N(companyId, name, start, end);
 	}
 
@@ -772,7 +762,7 @@ public class OAuthApplicationUtil {
 	* Returns an ordered range of all the o auth applications that the user has permissions to view where companyId = &#63; and name LIKE &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.oauth.model.impl.OAuthApplicationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link OAuthApplicationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param companyId the company ID
@@ -782,9 +772,9 @@ public class OAuthApplicationUtil {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching o auth applications that the user has permission to view
 	*/
-	public static java.util.List<com.liferay.oauth.model.OAuthApplication> filterFindByC_N(
-		long companyId, java.lang.String name, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator) {
+	public static List<OAuthApplication> filterFindByC_N(long companyId,
+		java.lang.String name, int start, int end,
+		OrderByComparator<OAuthApplication> orderByComparator) {
 		return getPersistence()
 				   .filterFindByC_N(companyId, name, start, end,
 			orderByComparator);
@@ -798,11 +788,11 @@ public class OAuthApplicationUtil {
 	* @param name the name
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next o auth application
-	* @throws com.liferay.oauth.NoSuchApplicationException if a o auth application with the primary key could not be found
+	* @throws NoSuchApplicationException if a o auth application with the primary key could not be found
 	*/
-	public static com.liferay.oauth.model.OAuthApplication[] filterFindByC_N_PrevAndNext(
+	public static OAuthApplication[] filterFindByC_N_PrevAndNext(
 		long oAuthApplicationId, long companyId, java.lang.String name,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator)
+		OrderByComparator<OAuthApplication> orderByComparator)
 		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence()
 				   .filterFindByC_N_PrevAndNext(oAuthApplicationId, companyId,
@@ -848,8 +838,8 @@ public class OAuthApplicationUtil {
 	* @param name the name
 	* @return the matching o auth applications
 	*/
-	public static java.util.List<com.liferay.oauth.model.OAuthApplication> findByU_N(
-		long userId, java.lang.String name) {
+	public static List<OAuthApplication> findByU_N(long userId,
+		java.lang.String name) {
 		return getPersistence().findByU_N(userId, name);
 	}
 
@@ -857,7 +847,7 @@ public class OAuthApplicationUtil {
 	* Returns a range of all the o auth applications where userId = &#63; and name LIKE &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.oauth.model.impl.OAuthApplicationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link OAuthApplicationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param userId the user ID
@@ -866,8 +856,8 @@ public class OAuthApplicationUtil {
 	* @param end the upper bound of the range of o auth applications (not inclusive)
 	* @return the range of matching o auth applications
 	*/
-	public static java.util.List<com.liferay.oauth.model.OAuthApplication> findByU_N(
-		long userId, java.lang.String name, int start, int end) {
+	public static List<OAuthApplication> findByU_N(long userId,
+		java.lang.String name, int start, int end) {
 		return getPersistence().findByU_N(userId, name, start, end);
 	}
 
@@ -875,7 +865,7 @@ public class OAuthApplicationUtil {
 	* Returns an ordered range of all the o auth applications where userId = &#63; and name LIKE &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.oauth.model.impl.OAuthApplicationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link OAuthApplicationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param userId the user ID
@@ -885,9 +875,9 @@ public class OAuthApplicationUtil {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching o auth applications
 	*/
-	public static java.util.List<com.liferay.oauth.model.OAuthApplication> findByU_N(
-		long userId, java.lang.String name, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator) {
+	public static List<OAuthApplication> findByU_N(long userId,
+		java.lang.String name, int start, int end,
+		OrderByComparator<OAuthApplication> orderByComparator) {
 		return getPersistence()
 				   .findByU_N(userId, name, start, end, orderByComparator);
 	}
@@ -899,11 +889,11 @@ public class OAuthApplicationUtil {
 	* @param name the name
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching o auth application
-	* @throws com.liferay.oauth.NoSuchApplicationException if a matching o auth application could not be found
+	* @throws NoSuchApplicationException if a matching o auth application could not be found
 	*/
-	public static com.liferay.oauth.model.OAuthApplication findByU_N_First(
-		long userId, java.lang.String name,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator)
+	public static OAuthApplication findByU_N_First(long userId,
+		java.lang.String name,
+		OrderByComparator<OAuthApplication> orderByComparator)
 		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence().findByU_N_First(userId, name, orderByComparator);
 	}
@@ -916,9 +906,9 @@ public class OAuthApplicationUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching o auth application, or <code>null</code> if a matching o auth application could not be found
 	*/
-	public static com.liferay.oauth.model.OAuthApplication fetchByU_N_First(
-		long userId, java.lang.String name,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator) {
+	public static OAuthApplication fetchByU_N_First(long userId,
+		java.lang.String name,
+		OrderByComparator<OAuthApplication> orderByComparator) {
 		return getPersistence().fetchByU_N_First(userId, name, orderByComparator);
 	}
 
@@ -929,11 +919,11 @@ public class OAuthApplicationUtil {
 	* @param name the name
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching o auth application
-	* @throws com.liferay.oauth.NoSuchApplicationException if a matching o auth application could not be found
+	* @throws NoSuchApplicationException if a matching o auth application could not be found
 	*/
-	public static com.liferay.oauth.model.OAuthApplication findByU_N_Last(
-		long userId, java.lang.String name,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator)
+	public static OAuthApplication findByU_N_Last(long userId,
+		java.lang.String name,
+		OrderByComparator<OAuthApplication> orderByComparator)
 		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence().findByU_N_Last(userId, name, orderByComparator);
 	}
@@ -946,9 +936,9 @@ public class OAuthApplicationUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching o auth application, or <code>null</code> if a matching o auth application could not be found
 	*/
-	public static com.liferay.oauth.model.OAuthApplication fetchByU_N_Last(
-		long userId, java.lang.String name,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator) {
+	public static OAuthApplication fetchByU_N_Last(long userId,
+		java.lang.String name,
+		OrderByComparator<OAuthApplication> orderByComparator) {
 		return getPersistence().fetchByU_N_Last(userId, name, orderByComparator);
 	}
 
@@ -960,11 +950,11 @@ public class OAuthApplicationUtil {
 	* @param name the name
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next o auth application
-	* @throws com.liferay.oauth.NoSuchApplicationException if a o auth application with the primary key could not be found
+	* @throws NoSuchApplicationException if a o auth application with the primary key could not be found
 	*/
-	public static com.liferay.oauth.model.OAuthApplication[] findByU_N_PrevAndNext(
+	public static OAuthApplication[] findByU_N_PrevAndNext(
 		long oAuthApplicationId, long userId, java.lang.String name,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator)
+		OrderByComparator<OAuthApplication> orderByComparator)
 		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence()
 				   .findByU_N_PrevAndNext(oAuthApplicationId, userId, name,
@@ -978,8 +968,8 @@ public class OAuthApplicationUtil {
 	* @param name the name
 	* @return the matching o auth applications that the user has permission to view
 	*/
-	public static java.util.List<com.liferay.oauth.model.OAuthApplication> filterFindByU_N(
-		long userId, java.lang.String name) {
+	public static List<OAuthApplication> filterFindByU_N(long userId,
+		java.lang.String name) {
 		return getPersistence().filterFindByU_N(userId, name);
 	}
 
@@ -987,7 +977,7 @@ public class OAuthApplicationUtil {
 	* Returns a range of all the o auth applications that the user has permission to view where userId = &#63; and name LIKE &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.oauth.model.impl.OAuthApplicationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link OAuthApplicationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param userId the user ID
@@ -996,8 +986,8 @@ public class OAuthApplicationUtil {
 	* @param end the upper bound of the range of o auth applications (not inclusive)
 	* @return the range of matching o auth applications that the user has permission to view
 	*/
-	public static java.util.List<com.liferay.oauth.model.OAuthApplication> filterFindByU_N(
-		long userId, java.lang.String name, int start, int end) {
+	public static List<OAuthApplication> filterFindByU_N(long userId,
+		java.lang.String name, int start, int end) {
 		return getPersistence().filterFindByU_N(userId, name, start, end);
 	}
 
@@ -1005,7 +995,7 @@ public class OAuthApplicationUtil {
 	* Returns an ordered range of all the o auth applications that the user has permissions to view where userId = &#63; and name LIKE &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.oauth.model.impl.OAuthApplicationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link OAuthApplicationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param userId the user ID
@@ -1015,9 +1005,9 @@ public class OAuthApplicationUtil {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching o auth applications that the user has permission to view
 	*/
-	public static java.util.List<com.liferay.oauth.model.OAuthApplication> filterFindByU_N(
-		long userId, java.lang.String name, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator) {
+	public static List<OAuthApplication> filterFindByU_N(long userId,
+		java.lang.String name, int start, int end,
+		OrderByComparator<OAuthApplication> orderByComparator) {
 		return getPersistence()
 				   .filterFindByU_N(userId, name, start, end, orderByComparator);
 	}
@@ -1030,11 +1020,11 @@ public class OAuthApplicationUtil {
 	* @param name the name
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next o auth application
-	* @throws com.liferay.oauth.NoSuchApplicationException if a o auth application with the primary key could not be found
+	* @throws NoSuchApplicationException if a o auth application with the primary key could not be found
 	*/
-	public static com.liferay.oauth.model.OAuthApplication[] filterFindByU_N_PrevAndNext(
+	public static OAuthApplication[] filterFindByU_N_PrevAndNext(
 		long oAuthApplicationId, long userId, java.lang.String name,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator)
+		OrderByComparator<OAuthApplication> orderByComparator)
 		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence()
 				   .filterFindByU_N_PrevAndNext(oAuthApplicationId, userId,
@@ -1078,8 +1068,7 @@ public class OAuthApplicationUtil {
 	*
 	* @param oAuthApplication the o auth application
 	*/
-	public static void cacheResult(
-		com.liferay.oauth.model.OAuthApplication oAuthApplication) {
+	public static void cacheResult(OAuthApplication oAuthApplication) {
 		getPersistence().cacheResult(oAuthApplication);
 	}
 
@@ -1088,8 +1077,7 @@ public class OAuthApplicationUtil {
 	*
 	* @param oAuthApplications the o auth applications
 	*/
-	public static void cacheResult(
-		java.util.List<com.liferay.oauth.model.OAuthApplication> oAuthApplications) {
+	public static void cacheResult(List<OAuthApplication> oAuthApplications) {
 		getPersistence().cacheResult(oAuthApplications);
 	}
 
@@ -1099,8 +1087,7 @@ public class OAuthApplicationUtil {
 	* @param oAuthApplicationId the primary key for the new o auth application
 	* @return the new o auth application
 	*/
-	public static com.liferay.oauth.model.OAuthApplication create(
-		long oAuthApplicationId) {
+	public static OAuthApplication create(long oAuthApplicationId) {
 		return getPersistence().create(oAuthApplicationId);
 	}
 
@@ -1109,28 +1096,25 @@ public class OAuthApplicationUtil {
 	*
 	* @param oAuthApplicationId the primary key of the o auth application
 	* @return the o auth application that was removed
-	* @throws com.liferay.oauth.NoSuchApplicationException if a o auth application with the primary key could not be found
+	* @throws NoSuchApplicationException if a o auth application with the primary key could not be found
 	*/
-	public static com.liferay.oauth.model.OAuthApplication remove(
-		long oAuthApplicationId)
+	public static OAuthApplication remove(long oAuthApplicationId)
 		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence().remove(oAuthApplicationId);
 	}
 
-	public static com.liferay.oauth.model.OAuthApplication updateImpl(
-		com.liferay.oauth.model.OAuthApplication oAuthApplication) {
+	public static OAuthApplication updateImpl(OAuthApplication oAuthApplication) {
 		return getPersistence().updateImpl(oAuthApplication);
 	}
 
 	/**
-	* Returns the o auth application with the primary key or throws a {@link com.liferay.oauth.NoSuchApplicationException} if it could not be found.
+	* Returns the o auth application with the primary key or throws a {@link NoSuchApplicationException} if it could not be found.
 	*
 	* @param oAuthApplicationId the primary key of the o auth application
 	* @return the o auth application
-	* @throws com.liferay.oauth.NoSuchApplicationException if a o auth application with the primary key could not be found
+	* @throws NoSuchApplicationException if a o auth application with the primary key could not be found
 	*/
-	public static com.liferay.oauth.model.OAuthApplication findByPrimaryKey(
-		long oAuthApplicationId)
+	public static OAuthApplication findByPrimaryKey(long oAuthApplicationId)
 		throws com.liferay.oauth.NoSuchApplicationException {
 		return getPersistence().findByPrimaryKey(oAuthApplicationId);
 	}
@@ -1141,12 +1125,11 @@ public class OAuthApplicationUtil {
 	* @param oAuthApplicationId the primary key of the o auth application
 	* @return the o auth application, or <code>null</code> if a o auth application with the primary key could not be found
 	*/
-	public static com.liferay.oauth.model.OAuthApplication fetchByPrimaryKey(
-		long oAuthApplicationId) {
+	public static OAuthApplication fetchByPrimaryKey(long oAuthApplicationId) {
 		return getPersistence().fetchByPrimaryKey(oAuthApplicationId);
 	}
 
-	public static java.util.Map<java.io.Serializable, com.liferay.oauth.model.OAuthApplication> fetchByPrimaryKeys(
+	public static java.util.Map<java.io.Serializable, OAuthApplication> fetchByPrimaryKeys(
 		java.util.Set<java.io.Serializable> primaryKeys) {
 		return getPersistence().fetchByPrimaryKeys(primaryKeys);
 	}
@@ -1156,7 +1139,7 @@ public class OAuthApplicationUtil {
 	*
 	* @return the o auth applications
 	*/
-	public static java.util.List<com.liferay.oauth.model.OAuthApplication> findAll() {
+	public static List<OAuthApplication> findAll() {
 		return getPersistence().findAll();
 	}
 
@@ -1164,15 +1147,14 @@ public class OAuthApplicationUtil {
 	* Returns a range of all the o auth applications.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.oauth.model.impl.OAuthApplicationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link OAuthApplicationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param start the lower bound of the range of o auth applications
 	* @param end the upper bound of the range of o auth applications (not inclusive)
 	* @return the range of o auth applications
 	*/
-	public static java.util.List<com.liferay.oauth.model.OAuthApplication> findAll(
-		int start, int end) {
+	public static List<OAuthApplication> findAll(int start, int end) {
 		return getPersistence().findAll(start, end);
 	}
 
@@ -1180,7 +1162,7 @@ public class OAuthApplicationUtil {
 	* Returns an ordered range of all the o auth applications.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.oauth.model.impl.OAuthApplicationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link OAuthApplicationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param start the lower bound of the range of o auth applications
@@ -1188,9 +1170,8 @@ public class OAuthApplicationUtil {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of o auth applications
 	*/
-	public static java.util.List<com.liferay.oauth.model.OAuthApplication> findAll(
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.oauth.model.OAuthApplication> orderByComparator) {
+	public static List<OAuthApplication> findAll(int start, int end,
+		OrderByComparator<OAuthApplication> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
