@@ -55,7 +55,7 @@ import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.ResourcePermissionLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.comparator.GroupNameComparator;
-import com.liferay.portlet.documentlibrary.DuplicateFileException;
+import com.liferay.portlet.documentlibrary.DuplicateFileEntryException;
 import com.liferay.portlet.documentlibrary.DuplicateFolderNameException;
 import com.liferay.portlet.documentlibrary.NoSuchFileEntryException;
 import com.liferay.portlet.documentlibrary.NoSuchFolderException;
@@ -124,7 +124,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			return toSyncDLObject(fileEntry, SyncConstants.EVENT_ADD);
 		}
 		catch (PortalException pe) {
-			if (pe instanceof DuplicateFileException) {
+			if (pe instanceof DuplicateFileEntryException) {
 				if (GetterUtil.getBoolean(
 						serviceContext.getAttribute("overwrite"))) {
 

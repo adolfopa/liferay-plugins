@@ -46,7 +46,7 @@ import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ImageServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.portlet.documentlibrary.DuplicateFileException;
+import com.liferay.portlet.documentlibrary.DuplicateFileEntryException;
 import com.liferay.portlet.documentlibrary.NoSuchFileEntryException;
 import com.liferay.portlet.documentlibrary.NoSuchFileVersionException;
 import com.liferay.portlet.documentlibrary.model.DLFileVersion;
@@ -327,7 +327,7 @@ public class DownloadServlet extends HttpServlet {
 							fileEntry.getFileEntryId(), sourceVersionId,
 							targetVersionId, deltaFile);
 				}
-				catch (DuplicateFileException dfe) {
+				catch (DuplicateFileEntryException dfe) {
 				}
 
 				return new DownloadServletInputStream(

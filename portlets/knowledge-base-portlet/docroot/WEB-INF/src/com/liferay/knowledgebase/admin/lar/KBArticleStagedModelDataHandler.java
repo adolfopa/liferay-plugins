@@ -35,7 +35,7 @@ import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.portletfilerepository.PortletFileRepositoryUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.portlet.documentlibrary.DuplicateFileException;
+import com.liferay.portlet.documentlibrary.DuplicateFileEntryException;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.exportimport.lar.BaseStagedModelDataHandler;
 import com.liferay.portlet.exportimport.lar.ExportImportPathUtil;
@@ -343,7 +343,7 @@ public class KBArticleStagedModelDataHandler
 					importedKBArticle.getAttachmentsFolderId(), inputStream,
 					fileName, mimeType, true);
 			}
-			catch (DuplicateFileException dfe) {
+			catch (DuplicateFileEntryException dfe) {
 				continue;
 			}
 			finally {
