@@ -343,7 +343,7 @@ public class KBArticleStagedModelDataHandler
 					importedKBArticle.getAttachmentsFolderId(), inputStream,
 					fileName, mimeType, true);
 			}
-			catch (DuplicateFileEntryException dfe) {
+			catch (DuplicateFileEntryException dfee) {
 				continue;
 			}
 			finally {

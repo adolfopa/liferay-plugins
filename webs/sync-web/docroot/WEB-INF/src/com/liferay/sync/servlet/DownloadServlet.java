@@ -327,7 +327,7 @@ public class DownloadServlet extends HttpServlet {
 							fileEntry.getFileEntryId(), sourceVersionId,
 							targetVersionId, deltaFile);
 				}
-				catch (DuplicateFileEntryException dfe) {
+				catch (DuplicateFileEntryException dfee) {
 				}
 
 				return new DownloadServletInputStream(

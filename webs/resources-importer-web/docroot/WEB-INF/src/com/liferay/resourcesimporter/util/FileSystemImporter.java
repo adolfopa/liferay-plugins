@@ -704,7 +704,7 @@ public class FileSystemImporter extends BaseImporter {
 					StringPool.BLANK, StringPool.BLANK, inputStream, length,
 					serviceContext);
 			}
-			catch (DuplicateFileEntryException dfe) {
+			catch (DuplicateFileEntryException dfee) {
 				fileEntry = DLAppLocalServiceUtil.getFileEntry(
 					groupId, parentFolderId, title);
 
